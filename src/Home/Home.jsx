@@ -11,8 +11,37 @@ import Footer from "../components/layout/Footer";
 import Navbar from '../components/layout/Navbar'
 import DashBoard from "../components/layout/DashBoard";
 import PrimaryButton from "../components/inputs/PrimaryButton";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function Home() {
+  const [userList, setUserList] = useState([]);
+  const [visibleCards, setVisibleCards] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [page, setPage] = useState(1);
+
+  const fetchUserList = async () => {
+    try {
+      const perPage = 4;
+      const response = await axios.get(`${process.env.REACT_APP_BE_BASE_URL}/campaign/campaign?page=${page}&limit=${perPage}`);
+      const res = response.data;
+      console.log(res,"cards");
+      console.log(res.rows)
+      if (Array.isArray(res.rows)) {
+        setTotalPages(res.pages_count);
+        setUserList([...userList,...res.rows])
+      } else {
+        console.error('Invalid data structure. Expected an array:', res.data);
+      }
+    } catch (error) {
+      console.error('Error fetching user list:', error);
+    }
+  };
+  useEffect(() => {
+    
+
+    fetchUserList();
+  }, [page]);
   
   let bnk = [
     {
@@ -23,62 +52,62 @@ function Home() {
       userCount: "1003",
       daysLeft: "10 Days Left",
     },
-    {
-      title: "Help me fund my College Fees for Harvard University",
-      img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-      actualMoney: " 2700 ",
-      totalMoney: " 64,000",
-      userCount: "1003",
-      daysLeft: "10 Days Left",
-    },
-    {
-      title: "Help me fund my College Fees for Harvard University",
-      img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-      actualMoney: " 2700 ",
-      totalMoney: " 64,000",
-      userCount: "1003",
-      daysLeft: "10 Days Left",
-    },
-    {
-      title: "Help me fund my College Fees for Harvard University",
-      img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-      actualMoney: " 2700 ",
-      totalMoney: " 64,000",
-      userCount: "1003",
-      daysLeft: "10 Days Left",
-    },
-    {
-      title: "Help me fund my College Fees for Harvard University",
-      img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-      actualMoney: " 2700 ",
-      totalMoney: " 64,000",
-      userCount: "1003",
-      daysLeft: "10 Days Left",
-    },
-    {
-      title: "Help me fund my College Fees for Harvard University",
-      img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-      actualMoney: " 2700 ",
-      totalMoney: " 64,000",
-      userCount: "1003",
-      daysLeft: "10 Days Left",
-    },
-    {
-      title: "Help me fund my College Fees for Harvard University",
-      img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-      actualMoney: " 2700 ",
-      totalMoney: " 64,000",
-      userCount: "1003",
-      daysLeft: "10 Days Left",
-    },
-    {
-      title: "Help me fund my College Fees for Harvard University",
-      img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-      actualMoney: " 2700 ",
-      totalMoney: " 64,000",
-      userCount: "1003",
-      daysLeft: "10 Days Left",
-    },
+    // {
+    //   title: "Help me fund my College Fees for Harvard University",
+    //   img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
+    //   actualMoney: " 2700 ",
+    //   totalMoney: " 64,000",
+    //   userCount: "1003",
+    //   daysLeft: "10 Days Left",
+    // },
+    // {
+    //   title: "Help me fund my College Fees for Harvard University",
+    //   img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
+    //   actualMoney: " 2700 ",
+    //   totalMoney: " 64,000",
+    //   userCount: "1003",
+    //   daysLeft: "10 Days Left",
+    // },
+    // {
+    //   title: "Help me fund my College Fees for Harvard University",
+    //   img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
+    //   actualMoney: " 2700 ",
+    //   totalMoney: " 64,000",
+    //   userCount: "1003",
+    //   daysLeft: "10 Days Left",
+    // },
+    // {
+    //   title: "Help me fund my College Fees for Harvard University",
+    //   img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
+    //   actualMoney: " 2700 ",
+    //   totalMoney: " 64,000",
+    //   userCount: "1003",
+    //   daysLeft: "10 Days Left",
+    // },
+    // {
+    //   title: "Help me fund my College Fees for Harvard University",
+    //   img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
+    //   actualMoney: " 2700 ",
+    //   totalMoney: " 64,000",
+    //   userCount: "1003",
+    //   daysLeft: "10 Days Left",
+    // },
+    // {
+    //   title: "Help me fund my College Fees for Harvard University",
+    //   img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
+    //   actualMoney: " 2700 ",
+    //   totalMoney: " 64,000",
+    //   userCount: "1003",
+    //   daysLeft: "10 Days Left",
+    // },
+    // {
+    //   title: "Help me fund my College Fees for Harvard University",
+    //   img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
+    //   actualMoney: " 2700 ",
+    //   totalMoney: " 64,000",
+    //   userCount: "1003",
+    //   daysLeft: "10 Days Left",
+    // },
   ];
 
   // {images: [{name:'',src:'..///'},{name:'',src:'.//'}] }
@@ -136,16 +165,15 @@ function Home() {
           display: "flex",
         }}
       >
-        {Dboard?.map((item) => {
-          return (
+        
             <DashBoard
               //  DashBoardText={item.DashBoardText}
               //  DashBoardTotal={item.DashBoardTotal}
               //  DashBoardImg={item?.DashBoardImg}
-              data={item}
+              
             />
-          );
-        })}
+          
+        
       </div>
       <div className="flex pt-[100px] ">
         <div className="w-full flex-wrap flex flex-col items-center mx-10">
@@ -192,21 +220,25 @@ function Home() {
           </button>
         </div>
         <div className="gap-4 mt-4  flex flex-wrap w-full justify-center">
-          {bnk?.map((item) => {
-            return (
+        {userList.map((item) => (
+            
               <Card
-                title={item?.title}
-                cardImage={item?.img}
-                actualMoney={item?.actualMoney}
-                totalMoney={item?.totalMoney}
-                daysLeft={item?.daysLeft}
-                userCount={item?.userCount}
+              key={item.id}
+              username={item.user.username}
+              title={item.title}
+              cardImage={item.category.image}
+              goalAmount={item.goal_amount}
+              fundRaised={item.fund_raised}
+              daysLeft={item.days_left}
+              userCount={item.donor_count}
+              location={item.location}
               />
-            );
-          })}
+            
+          ))}
         </div>
         <button
           className="pt-[68px]"
+          onClick={()=> setPage(page+1)}
           style={{
             width: "fit-content",
             textAlign: "center",

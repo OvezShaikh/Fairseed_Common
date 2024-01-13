@@ -7,6 +7,7 @@ import OnGoingCampaigns from './pages/Campaigns/OnGoingCampaigns'
 
 
 function App() {
+  console.log(`${process.env.REACT_APP_BE_BASE_URL}`);
   return (
     <div >
       {/* <OnGoingCampaigns/> */}

@@ -62,7 +62,7 @@ import ArrowBack from '../assets/ArrowBack .svg'
 import UploadSimple from '../assets/UploadSimple.svg'
 import UploadFile from '../assets/UploadFile.svg'
 import Success from '../assets/Success.svg'
-
+import MapPin from '../assets/MapPin.png'
 
 
 export default  {
@@ -128,7 +128,8 @@ export default  {
     ArrowBack,
     UploadSimple,
     UploadFile,
-    Success
+    Success,
+    MapPin
 
     
    
