@@ -1,0 +1,46 @@
+.slick-prev,
+.slick-next {
+    font-size: 0;
+    color: #080505; 
+  background-color: #fff; 
+  
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+    color: #080505; 
+  
+}
+
+.slick-prev {
+/* background: url('../../assets/reshot-icon-arrow-left-4NA6KJF8CU.svg') no-repeat center center;
+fill: rgb(1, 1, 12); */
+
+
+}
+
+.slick-next{
+    /* background: url('../../assets/reshot-icon-arrow-right-ZP2WDL9B8N.svg');
+    
+    background-color: white; */
+}
+
+
+.slick-prev:before, .slick-next:before {
+  color: #080505;
+  font-size: 35px;
+  
+}
+
+
+
+.slick-slider .slick-track {
+    margin: 0; /* Adjust the value to set the desired space between rows */
+  }
+  .slick-slide {
+    height: auto !important; /* Set the height to auto to accommodate variable content */
+  }
+
+  .slick-prev{
+    left: -30px;
+  }
