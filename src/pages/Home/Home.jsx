@@ -1,16 +1,17 @@
 import React from "react";
 import "./Home.css";
-import images from "../constants/images";
 // import icons from "../constants/icons";
-import button from "../constants/button";
-import Slider from "../components/layout/Slider";
-import Card from "../components/layout/Card";
-import ScrollableTabsButtonForce from "../components/layout/ScrollableTabsButtonAuto";
-import Coursal from "../components/layout/Coursal";
-import Footer from "../components/layout/Footer";
-import Navbar from '../components/layout/Navbar'
-import DashBoard from "../components/layout/DashBoard";
-import PrimaryButton from "../components/inputs/PrimaryButton";
+import button from "../../constants/button";
+import Slider from "../../components/layout/Slider";
+import Card from "../../components/layout/Card"
+import ScrollableTabsButtonForce from "../../components/layout/ScrollableTabsButtonAuto"
+import Coursal from "../../components/layout/Coursal"
+import Footer from "../../components/layout/Footer";
+import Navbar from "../../components/layout/Navbar";
+import DashBoard from "../../components/layout/DashBoard";
+import PrimaryButton from "../../components/inputs/PrimaryButton";
+
+import images from "../../constants/images";
 
 function Home() {
   

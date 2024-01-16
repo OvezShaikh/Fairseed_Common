@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
-import Button from "@mui/material/Button";
 import { Typography, TextField } from "@mui/material";
 import {
   useForm,
@@ -13,23 +12,17 @@ import {
   Form,
 } from "react-hook-form";
 import { colors } from "../../../constants/theme";
-import InputField from "../../../components/inputs/InputField";
-import SelectField from "../../../components/inputs/SelectField";
+import InputField from "../../inputs/InputField";
+import SelectField from "../../inputs/SelectField";
 import { FormLabel } from "react-bootstrap";
-import { RiStarSFill } from "react-icons/ri";
 import images from "../../../constants/images";
-import UploadField from "../../../components/inputs/UploadField/Index";
-import { pink, red } from "@mui/material/colors";
-import Checkbox from "../../../components/inputs/checkBox";
+import UploadField from "../../inputs/UploadField/Index";
+import Checkbox from "../../inputs/checkBox";
 import ReactQuill from "react-quill";
-import DropZone from "../../../components/inputs/dragAndDrop/index";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "../../../components/inputs/radioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import { useLocation, useNavigate } from "react-router-dom";
-import PrimaryButton from "../../../components/inputs/PrimaryButton";
-import SecondaryButton from "../../../components/inputs/secondaryButton";
+import DropZone from "../../inputs/dragAndDrop/index";
+import RadioGroup from "../../inputs/radioGroup";
+import PrimaryButton from "../../inputs/PrimaryButton";
+import SecondaryButton from "../../inputs/secondaryButton";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 const styleStep = {
@@ -163,7 +156,6 @@ const BasicForm = () => {
           <SelectField
             name={"Location"}
             label={"Location:"}
-            // placeholder={"Title of the Campaign (Max 250 Words)"}
             {...field}
           />
         )}
@@ -175,7 +167,6 @@ const BasicForm = () => {
           <SelectField
             name={"Category"}
             label={"Choose a Category:"}
-            // placeholder={"Title of the Campaign (Max 250 Words)"}
             {...field}
           />
         )}
@@ -199,38 +190,13 @@ const BasicForm = () => {
                     fontStyle: "normal",
                     height: "22px",
                   }}
-                  // sx={{ padding:'4px 8px 8px 8px',color: colors.text.main, fontSize: "20px", fontWeight:700,fontFamily:'satoshi',fontStyle:"normal",height: "22px" }}
                 >
                   Is the Campaign Zakaat eligible?
                   <span className="text-red-600">*</span>
                 </FormLabel>
-                <div className="inline-flex justify-center items-center text-center">
-                  {/* <Checkbox
-                    {...label}
-                    defaultChecked
-                    sx={{
-                      // color: red[500],
-                      "&.Mui-checked": {
-                        color: red[500],
-                      },
-                    }}
-                  /> */}
-                  <Checkbox name={"test"} />
-                  <FormLabel
-                    className="text-capitalize font-medium d-flex "
-                    style={{
-                      color: colors.text.main,
-                      fontSize: "20px",
-                      fontWeight: 700,
-                      fontFamily: "satoshi",
-                      fontStyle: "normal",
-                      height: "22px",
-                    }}
-                    // sx={{ padding:'4px 8px 8px 8px',color: colors.text.main, fontSize: "20px", fontWeight:700,fontFamily:'satoshi',fontStyle:"normal",height: "22px" }}
-                  >
-                    Yes
-                  </FormLabel>
-                </div>
+                  
+                  <Checkbox name={"test"} label={"Yes"} />
+                
               </>
             )}
           />
@@ -245,7 +211,6 @@ const BasicForm = () => {
                   type={"date"}
                   name={"Category"}
                   label={"Choose a Category:"}
-                  // placeholder={"Title of the Campaign (Max 250 Words)"}
                   {...field}
                 />
               </div>
@@ -360,80 +325,7 @@ const ContactForm = () => {
   const { control } = useFormContext();
   return (
     <div className="py-20">
-      {/* <FormControl sx={{ pb: "1.5rem" }}>
-        <FormLabel
-          className="text-capitalize font-medium d-flex align-items-center"
-          style={{
-            padding: "4px 8px 8px 8px",
-            color: colors.text.main,
-            fontSize: "20px",
-            fontWeight: 700,
-            fontFamily: "satoshi",
-            fontStyle: "normal",
-            height: "22px",
-          }}
-          // sx={{ padding:'4px 8px 8px 8px',color: colors.text.main, fontSize: "20px", fontWeight:700,fontFamily:'satoshi',fontStyle:"normal",height: "22px" }}
-        >
-          Raising this Campaign for:
-          <span className="text-red-600">*</span>
-        </FormLabel>
-        <RadioGroup
-          sx={{ pl: "10px" }}
-          row
-          aria-labelledby="demo-row-radio-buttons-group-label"
-          name="row-radio-buttons-group"
-        >
-          <FormControlLabel
-            sx={{ fontFamily: "satoshi", fontWeight: "700", color: "#383A42" }}
-            value="Self"
-            control={
-              <Radio
-                sx={{
-                  // color: red[500],
-                  "&.Mui-checked": {
-                    color: red[500],
-                  },
-                }}
-              />
-            }
-            label="Self"
-          />
-          <FormControlLabel
-            value="Family/Friends"
-            control={
-              <Radio
-                sx={{
-                  // color: red[500],
-                  "&.Mui-checked": {
-                    color: red[500],
-                  },
-                }}
-              />
-            }
-            label="Family/Friends"
-          />
-          <FormControlLabel
-            value="Charity"
-            control={
-              <Radio
-                sx={{
-                  // color: red[500],
-                  "&.Mui-checked": {
-                    color: red[500],
-                  },
-                }}
-              />
-            }
-            label="Charity"
-          />
-          <FormControlLabel
-          value="disabled"
-          disabled
-          control={<Radio />}
-          label="other"
-        />
-        </RadioGroup>
-      </FormControl> */}
+      
       <Controller
         control={control}
         name="Campaign"
@@ -446,7 +338,6 @@ const ContactForm = () => {
               { label: "Charity", value: "Charity" },
             ]}
             label="Raising this Campaign for:"
-            // placeholder={"Title of the Campaign (Max 250 Words)"}
             {...field}
           />
         )}
@@ -458,7 +349,6 @@ const ContactForm = () => {
           <InputField
             name={"HolderName"}
             label="Account holder Name:"
-            // placeholder={"Title of the Campaign (Max 250 Words)"}
             {...field}
           />
         )}
@@ -471,7 +361,6 @@ const ContactForm = () => {
           <SelectField
             name={"AccountNumber"}
             label={"Account Number:"}
-            // placeholder={"Title of the Campaign (Max 250 Words)"}
             {...field}
           />
         )}
@@ -483,7 +372,6 @@ const ContactForm = () => {
           <InputField
             name={"BankName"}
             label={"Bank Name:"}
-            // placeholder={"Title of the Campaign (Max 250 Words)"}
             {...field}
           />
         )}
@@ -496,7 +384,6 @@ const ContactForm = () => {
           <InputField
             name={"BranchName"}
             label={"Branch Name:"}
-            // placeholder={"Title of the Campaign (Max 250 Words)"}
             {...field}
           />
         )}
@@ -508,7 +395,6 @@ const ContactForm = () => {
           <InputField
             name={"IFSC"}
             label={"IFSC:"}
-            // placeholder={"Title of the Campaign (Max 250 Words)"}
             {...field}
           />
         )}
@@ -519,7 +405,7 @@ const ContactForm = () => {
         render={({ field }) => (
           <>
             <UploadField
-              label="label"
+              label="Upload Bank Passbook/Cheque:"
               name="UploadBankPassbook/Cheque"
               placeholder={
                 "Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."

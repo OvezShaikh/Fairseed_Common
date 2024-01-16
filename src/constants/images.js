@@ -62,6 +62,9 @@ import ArrowBack from '../assets/ArrowBack .svg'
 import UploadSimple from '../assets/UploadSimple.svg'
 import UploadFile from '../assets/UploadFile.svg'
 import Success from '../assets/Success.svg'
+import MegaphoneSimple from '../assets/MegaphoneSimple.png'
+import WarningCircle from '../assets/WarningCircle.svg'
+import HandCoins2  from'../assets/HandCoins2.svg'
 
 
 
@@ -128,7 +131,10 @@ export default  {
     ArrowBack,
     UploadSimple,
     UploadFile,
-    Success
+    Success,
+    MegaphoneSimple,
+    WarningCircle, 
+    HandCoins2
 
     
    

@@ -116,12 +116,12 @@ const InputField = ({
         // style={{ ...configTextfield?.style }}
         {...configTextfield}
       />
-      {/* <Error`Message
+      {/* <ErrorMessage
         name={name}
         render={(msg) => (
           <div style={{ color: "red", fontSize: "0.7rem" }}>{msg}</div>
         )}
-      />` */}
+      /> */}
     </>
   );
 };

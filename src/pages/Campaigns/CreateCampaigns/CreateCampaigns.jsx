@@ -2,8 +2,7 @@ import { Grid, Typography } from "@mui/material";
 import React, { useContext, useMemo } from "react";
 import images from "../../../constants/images";
 import { useLocation, useNavigate } from "react-router-dom";
-import SampleStepper from "./SampleStepper";
-import Stepper from "./Stepper";
+import Stepper from '../../../components/layout/Stepper/Index'
 
 function CreateCampaigns() {
   const navigate = useNavigate();
@@ -11,11 +10,12 @@ function CreateCampaigns() {
   const title = useMemo(
     () =>
       `${pathname
-        .replace("/", "")
-        .replace(/\/*\[[^\]]*]/g, "")
-        .replace(/-/g, " ")
-        .replace(/\//g, "  ")
-        .replace("General Settings"," ")}`,
+        // .replace("/", "")
+        // .replace(/\/*\[[^\]]*]/g, "")
+        // .replace(/-/g, " ")
+        // .replace(/\//g, "  ")
+        // .replace("General Settings"," ")
+      }`,
 
     [pathname]
   );
@@ -73,8 +73,7 @@ function CreateCampaigns() {
         justifyContent={"center"}
         className="pt-32 "
       >
-        {/* <Stepper /> */}
-        <SampleStepper/>
+        <Stepper/>
       </Grid>
     </>
   );

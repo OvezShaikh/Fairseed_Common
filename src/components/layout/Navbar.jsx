@@ -25,31 +25,37 @@ const products = [
   {
     name: "Analytics",
     description: "Get a better understanding of your traffic",
-    href: "#",
+    href: "/Home/OnGoingCampaigns",
     icon: ChartPieIcon,
   },
   {
     name: "Engagement",
     description: "Speak directly to your customers",
-    href: "#",
+    href: "/Home/Donate",
     icon: CursorArrowRaysIcon,
   },
   {
     name: "Create a Campaign",
     description: "Your customers’ data will be safe and secure",
-    href:'/Create-Campaign',
+    href:'/Home/Create-Campaign',
     icon: FingerPrintIcon,
   },
   {
     name: "Integrations",
     description: "Connect with third-party tools",
-    href: "/AdminPage",
+    href: "/Home/AdminPage",
     icon: SquaresPlusIcon,
   },
   {
     name: "Automations",
     description: "Build strategic funnels that will convert",
-    href: "#",
+    href: "/Home/DonateSettings",
+    icon: ArrowPathIcon,
+  },
+  {
+    name: "Religious Education Campaigns",
+    description: "Build strategic funnels that will convert",
+    href: "/Home/ReligiousEducationCampaigns",
     icon: ArrowPathIcon,
   },
 ];
@@ -375,7 +381,7 @@ export default function Example() {
                     wordWrap: "break-word",
                   }}
                 > */}
-                <a href="/Create-Campaign">
+                <a href="/Home/Create-Campaign">
                   Start a Campaign
                   </a>
                 {/* </div>

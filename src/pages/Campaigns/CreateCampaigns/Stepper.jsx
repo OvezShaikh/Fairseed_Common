@@ -753,7 +753,8 @@ const LinaerStepper = () => {
                   skip
                 </Button>
               )} */}
-            <StyledButton_1 // onClick={() => navigate(-1)}
+            <StyledButton_1 
+            onClick={() => navigate(-1)}
              >Home</StyledButton_1>
           </div>
         </React.Fragment>

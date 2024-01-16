@@ -6,7 +6,9 @@ import {
   FormGroup,
 } from "@mui/material";
 import { useField, useFormikContext } from "formik";
+import { pink, red } from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
+import { colors } from "../../../constants/theme";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -57,9 +59,26 @@ const CheckBox = ({
     <FormControl>
       <FormGroup>
         <FormControlLabel
+        sx={{"& .MuiTypography-root":{
+          color: colors.text.main,
+            fontSize: "20px",
+            fontWeight: 700,
+            fontFamily: "satoshi",
+            fontStyle: "normal",
+            justifyContent:'center',
+            alignItems:'center'
+        },
+       }}
+         
           label={label}
+
           control={
-            <Checkbox color="warning" checked={checked} />
+            <Checkbox sx={{
+              // color: red[500],
+              "&.Mui-checked": {
+                color: red[500],
+              },
+            }} checked={checked} />
           }
           className={root}
         />
