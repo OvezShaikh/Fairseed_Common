@@ -16,13 +16,15 @@ import InputField from "../../inputs/InputField";
 import SelectField from "../../inputs/SelectField";
 import { FormLabel } from "react-bootstrap";
 import images from "../../../constants/images";
-import UploadField from "../../inputs/UploadField/Index";
 import Checkbox from "../../inputs/checkBox";
-import ReactQuill from "react-quill";
 import DropZone from "../../inputs/dragAndDrop/index";
-import RadioGroup from "../../inputs/radioGroup";
 import PrimaryButton from "../../inputs/PrimaryButton";
 import SecondaryButton from "../../inputs/secondaryButton";
+import CompleteKYC from '../../../pages/Campaigns/CreateCampaigns/CreateCampaignsSteppes/CompleteKYC'
+import AccountDetails  from'../../../pages/Campaigns/CreateCampaigns/CreateCampaignsSteppes/AccountDetails'
+import YourStory  from'../../../pages/Campaigns/CreateCampaigns/CreateCampaignsSteppes/YourStory'
+import CampaignDetails from '../../../pages/Campaigns/CreateCampaigns/CreateCampaignsSteppes/CampaignDetails'
+
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 const styleStep = {
@@ -115,402 +117,321 @@ function getSteps() {
 const BasicForm = () => {
   const { control } = useFormContext();
   return (
-    <div className="pb-20">
-      <Box className="flex py-10 justify-center items-center">
-        <DropZone
-          name="files"
-          acceptedFiles={{ "file/*": [".xlsx"] }}
-          maxFiles={1}
-          // onChange={() => submitForm()}
-          // isLoading={isUploadLoading}
-        />
-      </Box>
-      <Controller
-        control={control}
-        name="Title"
-        render={({ field }) => (
-          <InputField
-            name={"Title"}
-            label={"Title of the Campaign:"}
-            placeholder={"Title of the Campaign (Max 250 Words)"}
-            {...field}
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name="Amount"
-        render={({ field }) => (
-          <InputField
-            name={"Amount"}
-            label={"Amount to be raised:"}
-            {...field}
-          />
-        )}
-      />
+    // <div className="pb-20">
+    //   <Box className="flex py-10 justify-center items-center">
+    //     <DropZone
+    //       name="files"
+    //       acceptedFiles={{ "file/*": [".xlsx"] }}
+    //       maxFiles={1}
+    //       // onChange={() => submitForm()}
+    //       // isLoading={isUploadLoading}
+    //     />
+    //   </Box>
+    //   <Controller
+    //     control={control}
+    //     name="Title"
+    //     render={({ field }) => (
+    //       <InputField
+    //         name={"Title"}
+    //         label={"Title of the Campaign:"}
+    //         placeholder={"Title of the Campaign (Max 250 Words)"}
+    //         {...field}
+    //       />
+    //     )}
+    //   />
+    //   <Controller
+    //     control={control}
+    //     name="Amount"
+    //     render={({ field }) => (
+    //       <InputField
+    //         name={"Amount"}
+    //         label={"Amount to be raised:"}
+    //         {...field}
+    //       />
+    //     )}
+    //   />
 
-      <Controller
-        control={control}
-        name="Location"
-        render={({ field }) => (
-          <SelectField
-            name={"Location"}
-            label={"Location:"}
-            {...field}
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name="Category"
-        render={({ field }) => (
-          <SelectField
-            name={"Category"}
-            label={"Choose a Category:"}
-            {...field}
-          />
-        )}
-      />
+    //   <Controller
+    //     control={control}
+    //     name="Location"
+    //     render={({ field }) => (
+    //       <SelectField
+    //         name={"Location"}
+    //         label={"Location:"}
+    //         {...field}
+    //       />
+    //     )}
+    //   />
+    //   <Controller
+    //     control={control}
+    //     name="Category"
+    //     render={({ field }) => (
+    //       <SelectField
+    //         name={"Category"}
+    //         label={"Choose a Category:"}
+    //         {...field}
+    //       />
+    //     )}
+    //   />
 
-      <div className="inline-flex w-full">
-        <div className="w-[50%]">
-          <Controller
-            control={control}
-            name="Category"
-            render={({ field }) => (
-              <>
-                <FormLabel
-                  className="text-capitalize font-medium d-flex align-items-center"
-                  style={{
-                    padding: "4px 8px 8px 8px",
-                    color: colors.text.main,
-                    fontSize: "20px",
-                    fontWeight: 700,
-                    fontFamily: "satoshi",
-                    fontStyle: "normal",
-                    height: "22px",
-                  }}
-                >
-                  Is the Campaign Zakaat eligible?
-                  <span className="text-red-600">*</span>
-                </FormLabel>
+    //   <div className="inline-flex w-full">
+    //     <div className="w-[50%]">
+    //       <Controller
+    //         control={control}
+    //         name="Category"
+    //         render={({ field }) => (
+    //           <>
+    //             <FormLabel
+    //               className="text-capitalize font-medium d-flex align-items-center"
+    //               style={{
+    //                 padding: "4px 8px 8px 8px",
+    //                 color: colors.text.main,
+    //                 fontSize: "20px",
+    //                 fontWeight: 700,
+    //                 fontFamily: "satoshi",
+    //                 fontStyle: "normal",
+    //                 height: "22px",
+    //               }}
+    //             >
+    //               Is the Campaign Zakaat eligible?
+    //               <span className="text-red-600">*</span>
+    //             </FormLabel>
                   
-                  <Checkbox name={"test"} label={"Yes"} />
+    //               <Checkbox name={"test"} label={"Yes"} />
                 
-              </>
-            )}
-          />
-        </div>
-        <div className="w-[50%]">
-          <Controller
-            control={control}
-            name="Category"
-            render={({ field }) => (
-              <div>
-                <InputField
-                  type={"date"}
-                  name={"Category"}
-                  label={"Choose a Category:"}
-                  {...field}
-                />
-              </div>
-            )}
-          />
-        </div>
-      </div>
-    </div>
+    //           </>
+    //         )}
+    //       />
+    //     </div>
+    //     <div className="w-[50%]">
+    //       <Controller
+    //         control={control}
+    //         name="Category"
+    //         render={({ field }) => (
+    //           <div>
+    //             <InputField
+    //               type={"date"}
+    //               name={"Category"}
+    //               label={"Choose a Category:"}
+    //               {...field}
+    //             />
+    //           </div>
+    //         )}
+    //       />
+    //     </div>
+    //   </div>
+    // </div>
+    // <AccountDetails/>
+    // <YourStory/>
+    <CampaignDetails/>
+
   );
 };
-const YourStory = () => {
+const SecondStep = () => {
   const { control } = useFormContext();
   const [valueText, setValueText] = useState("");
   const [valueText2, setValueText2] = useState("");
 
   return (
-    <div className="py-20 ">
-      <Controller
-        control={control}
-        name="Story"
-        render={({ field }) => (
-          <div className="pb-[8rem] ">
-            <FormLabel
-              className="text-capitalize font-medium d-flex align-items-center"
-              style={{
-                padding: "4px 8px 8px 8px",
-                color: colors.text.main,
-                fontSize: "20px",
-                fontWeight: 700,
-                fontFamily: "satoshi",
-                fontStyle: "normal",
-                height: "22px",
-              }}
-              // sx={{ padding:'4px 8px 8px 8px',color: colors.text.main, fontSize: "20px", fontWeight:700,fontFamily:'satoshi',fontStyle:"normal",height: "22px" }}
-            >
-              Tell us your Story:
-              <span className="text-red-600">*</span>
-            </FormLabel>
-            <div className="h-[250px]">
-              <ReactQuill
-                theme="snow"
-                name={"Story"}
-                value={valueText}
-                placeholder={`Write a story that does justice to your cause and make the supporter click the Donate button.
+  //   <div className="py-20 ">
+  //     <Controller
+  //       control={control}
+  //       name="Story"
+  //       render={({ field }) => (
+  //         <div className="pb-[8rem] ">
+  //           <FormLabel
+  //             className="text-capitalize font-medium d-flex align-items-center"
+  //             style={{
+  //               padding: "4px 8px 8px 8px",
+  //               color: colors.text.main,
+  //               fontSize: "20px",
+  //               fontWeight: 700,
+  //               fontFamily: "satoshi",
+  //               fontStyle: "normal",
+  //               height: "22px",
+  //             }}
+  //             // sx={{ padding:'4px 8px 8px 8px',color: colors.text.main, fontSize: "20px", fontWeight:700,fontFamily:'satoshi',fontStyle:"normal",height: "22px" }}
+  //           >
+  //             Tell us your Story:
+  //             <span className="text-red-600">*</span>
+  //           </FormLabel>
+  //           <div className="h-[250px]">
+  //             <ReactQuill
+  //               theme="snow"
+  //               name={"Story"}
+  //               value={valueText}
+  //               placeholder={`Write a story that does justice to your cause and make the supporter click the Donate button.
                 
-  Pointers:Explain who you are raising it for.
+  // Pointers:Explain who you are raising it for.
 
-  Explain why you are raising funds?
+  // Explain why you are raising funds?
                 
-  Make an Appeal.`}
-                onChange={setValueText}
-              />
-            </div>
-          </div>
-        )}
-      />
-      <Controller
-        control={control}
-        name="Summary"
-        render={({ field }) => (
-          <div className="pb-[8rem]">
-            <FormLabel
-              className="text-capitalize font-medium d-flex align-items-center"
-              style={{
-                padding: "4px 8px 8px 8px",
-                color: colors.text.main,
-                fontSize: "20px",
-                fontWeight: 700,
-                fontFamily: "satoshi",
-                fontStyle: "normal",
-                height: "22px",
-              }}
-              // sx={{ padding:'4px 8px 8px 8px',color: colors.text.main, fontSize: "20px", fontWeight:700,fontFamily:'satoshi',fontStyle:"normal",height: "22px" }}
-            >
-              Summary:
-              <span className="text-red-600">*</span>
-            </FormLabel>
-            <div className="h-[119px]">
-              <ReactQuill
-                theme="snow"
-                name={"Summary"}
-                value={valueText}
-                placeholder="Summarize in 100 words max."
-                style={{ "& .ql-editor": { minHeight: "50px" } }}
-                onChange={setValueText2}
-              />
-            </div>
-          </div>
-        )}
-      />
-      <Controller
-        control={control}
-        name="Documents"
-        render={({ field }) => (
-          <div className="">
-            <UploadField
-              name={"Documents"}
-              label="Documents:"
-              multiple={true}
-              placeholder={
-                "Upload marksheets, Medical records, Fees Structure etc."
-              }
-              {...field}
-            />
-          </div>
-        )}
-      />
-    </div>
+  // Make an Appeal.`}
+  //               onChange={setValueText}
+  //             />
+  //           </div>
+  //         </div>
+  //       )}
+  //     />
+  //     <Controller
+  //       control={control}
+  //       name="Summary"
+  //       render={({ field }) => (
+  //         <div className="pb-[8rem]">
+  //           <FormLabel
+  //             className="text-capitalize font-medium d-flex align-items-center"
+  //             style={{
+  //               padding: "4px 8px 8px 8px",
+  //               color: colors.text.main,
+  //               fontSize: "20px",
+  //               fontWeight: 700,
+  //               fontFamily: "satoshi",
+  //               fontStyle: "normal",
+  //               height: "22px",
+  //             }}
+  //             // sx={{ padding:'4px 8px 8px 8px',color: colors.text.main, fontSize: "20px", fontWeight:700,fontFamily:'satoshi',fontStyle:"normal",height: "22px" }}
+  //           >
+  //             Summary:
+  //             <span className="text-red-600">*</span>
+  //           </FormLabel>
+  //           <div className="h-[119px]">
+  //             <ReactQuill
+  //               theme="snow"
+  //               name={"Summary"}
+  //               value={valueText2}
+  //               placeholder="Summarize in 100 words max."
+  //               style={{ "& .ql-editor": { minHeight: "50px" } }}
+  //               onChange={setValueText2}
+  //             />
+  //           </div>
+  //         </div>
+  //       )}
+  //     />
+  //     <Controller
+  //       control={control}
+  //       name="Documents"
+  //       render={({ field }) => (
+  //         <div className="">
+  //           <UploadField
+  //             name={"Documents"}
+  //             label="Documents:"
+  //             multiple={true}
+  //             placeholder={
+  //               "Upload marksheets, Medical records, Fees Structure etc."
+  //             }
+  //             {...field}
+  //           />
+  //         </div>
+  //       )}
+  //     />
+  //   </div>
+  <YourStory/>
+
   );
 };
 const ContactForm = () => {
   const { control } = useFormContext();
   return (
-    <div className="py-20">
-      
-      <Controller
-        control={control}
-        name="Campaign"
-        render={({ field }) => (
-          <RadioGroup
-            name={"Campaign"}
-            options={[
-              { label: "Self", value: "Self" },
-              { label: "Family/Friends", value: "Family/Friends" },
-              { label: "Charity", value: "Charity" },
-            ]}
-            label="Raising this Campaign for:"
-            {...field}
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name="HolderName"
-        render={({ field }) => (
-          <InputField
-            name={"HolderName"}
-            label="Account holder Name:"
-            {...field}
-          />
-        )}
-      />
-
-      <Controller
-        control={control}
-        name="AccountNumber"
-        render={({ field }) => (
-          <SelectField
-            name={"AccountNumber"}
-            label={"Account Number:"}
-            {...field}
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name="BankName"
-        render={({ field }) => (
-          <InputField
-            name={"BankName"}
-            label={"Bank Name:"}
-            {...field}
-          />
-        )}
-      />
-
-      <Controller
-        control={control}
-        name="BranchName"
-        render={({ field }) => (
-          <InputField
-            name={"BranchName"}
-            label={"Branch Name:"}
-            {...field}
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name="IFSC"
-        render={({ field }) => (
-          <InputField
-            name={"IFSC"}
-            label={"IFSC:"}
-            {...field}
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name="UploadBankPassbook/Cheque"
-        render={({ field }) => (
-          <>
-            <UploadField
-              label="Upload Bank Passbook/Cheque:"
-              name="UploadBankPassbook/Cheque"
-              placeholder={
-                "Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
-              }
-              {...field}
-            />
-          </>
-        )}
-      />
-    </div>
+  
+    <AccountDetails/>
   );
 };
 const PersonalForm = () => {
   const { control } = useFormContext();
   return (
-    <div className="py-20">
-      <Controller
-        control={control}
-        name="UploadBankPassbook/Cheque"
-        render={({ field }) => (
-          <>
-            <InputField
-              name={"UploadBankPassbook/Cheque"}
-              label={"Enter Aadhar Card Number:"}
-              type={"password"}
-              placeholder={"xxxx xxxx xxxx"}
-              {...field}
-            />
-          </>
-        )}
-      />
-      <Controller
-        control={control}
-        name="UploadAadharCard"
-        render={({ field }) => (
-          <>
-            {console.log(field, "field......")}
-            <UploadField
-              name={"UploadAadharCard"}
-              label="Upload Aadhar Card (Front and Back):"
-              placeholder={
-                "Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
-              }
-              {...field}
-            />
-          </>
-        )}
-      />
+    // <div className="py-20">
+    //   <Controller
+    //     control={control}
+    //     name="UploadBankPassbook/Cheque"
+    //     render={({ field }) => (
+    //       <>
+    //         <InputField
+    //           name={"UploadBankPassbook/Cheque"}
+    //           label={"Enter Aadhar Card Number:"}
+    //           type={"password"}
+    //           required={true}
+    //           placeholder={"xxxx xxxx xxxx"}
+    //           {...field}
+    //         />
+    //       </>
+    //     )}
+    //   />
+    //   <Controller
+    //     control={control}
+    //     name="UploadAadharCard"
+    //     render={({ field }) => (
+    //       <>
+    //         {console.log(field, "field......")}
+    //         <UploadField
+    //           name={"UploadAadharCard"}
+    //           label="Upload Aadhar Card (Front and Back):"
+    //           placeholder={
+    //             "Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
+    //           }
+    //           {...field}
+    //         />
+    //       </>
+    //     )}
+    //   />
 
-      <Controller
-        control={control}
-        name="UploadPANCard"
-        render={({ field }) => (
-          <>
-            <InputField
-              name={"UploadPANCard"}
-              label="Upload PAN Card:"
-              type={"password"}
-              placeholder={"xxxxxxxxxxx"}
-              {...field}
-            />
-          </>
-        )}
-      />
-      <Controller
-        control={control}
-        name="Upload PANCard"
-        render={({ field }) => (
-          <>
-            <UploadField
-              name={"UploadPANCard"}
-              label="Upload PAN Card:"
-              placeholder={
-                "Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
-              }
-              {...field}
-            />
-          </>
-        )}
-      />
-      <Controller
-        control={control}
-        name="Upload PANCard"
-        render={({ field }) => (
-          <div className="flex items-center">
-            <Checkbox name={"test"} />
-            <FormLabel
-              // className="text-capitalize font-medium d-flex "
-              style={{
-                color: colors.text.main,
-                fontSize: "20px",
-                fontWeight: 700,
-                fontFamily: "satoshi",
-                fontStyle: "normal",
-                height: "22px",
-              }}
-              // sx={{ padding:'4px 8px 8px 8px',color: colors.text.main, fontSize: "20px", fontWeight:700,fontFamily:'satoshi',fontStyle:"normal",height: "22px" }}
-            >
-              I, hereby declare that I accept the above conditions
-            </FormLabel>
-          </div>
-        )}
-      />
-    </div>
-  );
+    //   <Controller
+    //     control={control}
+    //     name="UploadPANCard"
+    //     render={({ field }) => (
+    //       <>
+    //         <InputField
+    //           name={"UploadPANCard"}
+    //           label="Upload PAN Card:"
+    //           type={"password"}
+    //           placeholder={"xxxxxxxxxxx"}
+    //           {...field}
+    //         />
+    //       </>
+    //     )}
+    //   />
+    //   <Controller
+    //     control={control}
+    //     name="Upload PANCard"
+    //     render={({ field }) => (
+    //       <>
+    //         <UploadField
+    //           name={"UploadPANCard"}
+    //           label="Upload PAN Card:"
+    //           placeholder={
+    //             "Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
+    //           }
+    //           {...field}
+    //         />
+    //       </>
+    //     )}
+    //   />
+    //   <Controller
+    //     control={control}
+    //     name="Upload PANCard"
+    //     render={({ field }) => (
+    //       <div className="flex items-center">
+    //         <Checkbox name={"test"} />
+    //         <FormLabel
+    //           // className="text-capitalize font-medium d-flex "
+    //           style={{
+    //             color: colors.text.main,
+    //             fontSize: "20px",
+    //             fontWeight: 700,
+    //             fontFamily: "satoshi",
+    //             fontStyle: "normal",
+    //             height: "22px",
+    //           }}
+    //           // sx={{ padding:'4px 8px 8px 8px',color: colors.text.main, fontSize: "20px", fontWeight:700,fontFamily:'satoshi',fontStyle:"normal",height: "22px" }}
+    //         >
+    //           I, hereby declare that I accept the above conditions
+    //         </FormLabel>
+    //       </div>
+    //     )}
+    //   />
+    // </div>
+     <CompleteKYC/>
+  )
+ 
 };
 
 function getStepContent(step) {
@@ -519,7 +440,7 @@ function getStepContent(step) {
       return <BasicForm />;
 
     case 1:
-      return <YourStory />;
+      return <SecondStep />;
     case 2:
       return <ContactForm />;
     case 3:

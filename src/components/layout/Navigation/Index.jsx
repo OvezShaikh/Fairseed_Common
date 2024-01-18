@@ -41,7 +41,7 @@ const title = useMemo(
               </div>
               <div
                 className="flex flex-col "
-                style={{ fontFamily: "satoshi", fontSize: 20, fontWeight: 600 }}
+                style={{ fontFamily: "satoshi", fontSize: "28px", fontWeight:500 }}
               >
                 {title ? <>{title}</> : {label}}
               </div>

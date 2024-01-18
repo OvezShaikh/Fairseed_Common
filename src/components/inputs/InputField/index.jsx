@@ -4,7 +4,6 @@ import { FormLabel, InputBase, Tooltip } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import { ErrorMessage, useField } from "formik";
 import { colors } from "../../../constants/theme";
-import { RiStarSFill } from "react-icons/ri";
 
 const InputField = ({
   name,
@@ -15,10 +14,11 @@ const InputField = ({
   characterCount,
   label,
   sx,
-  required = true,
+  required,
   ...otherProps
 }) => {
   // const [field, meta] = useField(name);
+  console.log(required,name,otherProps,"reqqq")
 
   const configTextfield = {
     // ...field,
@@ -93,6 +93,7 @@ const InputField = ({
     },
     ...sx,
   });
+  console.log("End",required)
 
   // const tooltipData = localStorage.getItem("tooltipData")
   //   ? JSON.parse(localStorage.getItem("tooltipData"))?.filter(

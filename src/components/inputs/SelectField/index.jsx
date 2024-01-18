@@ -1,12 +1,10 @@
 import { ErrorMessage, useField, useFormikContext } from "formik";
 import React from "react";
 import { Autocomplete, FormLabel, TextField, Tooltip } from "@mui/material";
-import { makeStyles } from '@mui/styles';
+import { makeStyles } from "@mui/styles";
 import { colors } from "../../../constants/theme";
 
-
 const useStyles = makeStyles({
-  
   textField: {
     "& .MuiInput-root": {
       margin: "0px",
@@ -15,7 +13,6 @@ const useStyles = makeStyles({
       background: "#fff",
       "&::before": {
         display: "none",
-        
       },
       "&::after": {
         display: "none",
@@ -34,14 +31,13 @@ const useStyles = makeStyles({
       padding: "15px 15px",
       fontSize: "20px",
       // marginTop: "5px",
-    //   "&:focus": {
-    //     boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
-    //   borderColor: 'black',
-  
-    // },
+      //   "&:focus": {
+      //     boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
+      //   borderColor: 'black',
+
+      // },
     },
-    
-    
+
     "& .MuiOutlinedInput-notchedOutline": {
       border: `1px solid #e2e2e2`,
     },
@@ -55,6 +51,7 @@ const SelectField = ({
   sx,
   disable,
   onChange,
+  required = false,
   info,
   placeholder,
   onInputChange,
@@ -91,12 +88,17 @@ const SelectField = ({
       <Autocomplete
         {...configTextfield}
         value={value}
-        sx={{ ...sx, width: "100%",pb:'2rem',"&.Mui-focused .MuiFormControl-root .MuiOutlinedInput-notchedOutline":{
-          boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);
+        sx={{
+          ...sx,
+          width: "100%",
+          pb: "2rem",
+          "&.Mui-focused .MuiFormControl-root .MuiOutlinedInput-notchedOutline":
+            {
+              boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);
           `,
-        borderColor: 'black',
-      
-        }, }}
+              borderColor: "black",
+            },
+        }}
         options={options ? options : []}
         disabled={disable}
         // getOptionLabel={(option) => option?.location}
@@ -106,32 +108,42 @@ const SelectField = ({
         //   onChange ? onChange(value, reason) : setFieldValue(name, value);
         // }}
         // onBlur={() => setTouched({ ...touched, [name]: true })}
-        
+
         renderInput={(props) => (
           <>
-          {label && <FormLabel
-            className="text-capitalize font-medium d-flex align-items-center"
-            sx={{ padding:'8px 8px 16px 8px',color: colors.text.main, fontSize: "20px", fontWeight:700,fontFamily:'satoshi',fontStyle:"normal",height: "22px" }}
-          >
-            {label}
-            {/* <RiStarSFill style={{fill:'var(--Status-Error, #E00000)',}} /> */}
-            <span className="text-red-600">*</span>
-          </FormLabel>}
-          
-          <TextField
-            className={textField}
-            variant="outlined"
-            {...props}
-            onChange={(e) => {
-              props?.onChange && props?.onChange(e);
-              onInputChange && onInputChange(e);
-            }}
-            placeholder={placeholder}
-          />
+            {label && (
+              <FormLabel
+                className="text-capitalize font-medium d-flex align-items-center"
+                sx={{
+                  padding: "8px 8px 16px 8px",
+                  color: colors.text.main,
+                  fontSize: "20px",
+                  fontWeight: 700,
+                  fontFamily: "satoshi",
+                  fontStyle: "normal",
+                  height: "22px",
+                }}
+              >
+                {label}
+                {/* <RiStarSFill style={{fill:'var(--Status-Error, #E00000)',}} /> */}
+                {required ? <span className="text-red-600">*</span> : ""}
+              </FormLabel>
+            )}
+
+            <TextField
+              className={textField}
+              variant="outlined"
+              {...props}
+              onChange={(e) => {
+                props?.onChange && props?.onChange(e);
+                onInputChange && onInputChange(e);
+              }}
+              placeholder={placeholder}
+            />
           </>
         )}
       />
-      
+
       {/* <ErrorMessage
         name={name}
         render={(msg) => (

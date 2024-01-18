@@ -4,10 +4,15 @@ import {
   useFormContext,
 } from "react-hook-form";
 import InputField from '../../../../components/inputs/InputField';
-import SelectField from '../../../../components/inputs/SelectField';
+import { FormLabel } from 'react-bootstrap';
+import { colors } from '../../../../constants/theme';
 import DropZone from '../../../../components/inputs/dragAndDrop';
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
+import SelectField from '../../../../components/inputs/SelectField';
+import CheckBox from '../../../../components/inputs/checkBox';
+import Box from "@mui/material/Box";
 
+
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 function CampaignDetails() {
   const { control } = useFormContext();
@@ -29,6 +34,7 @@ function CampaignDetails() {
         render={({ field }) => (
           <InputField
             name={"Title"}
+            required={true}
             label={"Title of the Campaign:"}
             placeholder={"Title of the Campaign (Max 250 Words)"}
             {...field}
@@ -41,6 +47,7 @@ function CampaignDetails() {
         render={({ field }) => (
           <InputField
             name={"Amount"}
+            required={true}
             label={"Amount to be raised:"}
             {...field}
           />
@@ -52,6 +59,7 @@ function CampaignDetails() {
         name="Location"
         render={({ field }) => (
           <SelectField
+            required={true}
             name={"Location"}
             label={"Location:"}
             // placeholder={"Title of the Campaign (Max 250 Words)"}
@@ -64,6 +72,7 @@ function CampaignDetails() {
         name="Category"
         render={({ field }) => (
           <SelectField
+          required={true}
             name={"Category"}
             label={"Choose a Category:"}
             // placeholder={"Title of the Campaign (Max 250 Words)"}
@@ -72,8 +81,8 @@ function CampaignDetails() {
         )}
       />
      
-      <div className="inline-flex w-full">
-        <div className="w-[50%]">
+     <div className="inline-flex w-full">
+      <div className="w-[50%]">
           <Controller
             control={control}
             name="Category"
@@ -90,41 +99,18 @@ function CampaignDetails() {
                     fontStyle: "normal",
                     height: "22px",
                   }}
-                  // sx={{ padding:'4px 8px 8px 8px',color: colors.text.main, fontSize: "20px", fontWeight:700,fontFamily:'satoshi',fontStyle:"normal",height: "22px" }}
                 >
                   Is the Campaign Zakaat eligible?
                   <span className="text-red-600">*</span>
                 </FormLabel>
-                <div className="inline-flex justify-center items-center text-center">
-                  <Checkbox
-                    {...label}
-                    defaultChecked
-                    sx={{
-                      // color: red[500],
-                      "&.Mui-checked": {
-                        color: red[500],
-                      },
-                    }}
-                  />
-                  <FormLabel
-                    className="text-capitalize font-medium d-flex "
-                    style={{
-                      color: colors.text.main,
-                      fontSize: "20px",
-                      fontWeight: 700,
-                      fontFamily: "satoshi",
-                      fontStyle: "normal",
-                      height: "22px",
-                    }}
-                    // sx={{ padding:'4px 8px 8px 8px',color: colors.text.main, fontSize: "20px", fontWeight:700,fontFamily:'satoshi',fontStyle:"normal",height: "22px" }}
-                  >
-                    Yes
-                  </FormLabel>
-                </div>
+                  
+                  <CheckBox name={"test"} label={"Yes"} />
+                
               </>
             )}
           />
         </div>
+          
         <div className="w-[50%]">
           <Controller
             control={control}

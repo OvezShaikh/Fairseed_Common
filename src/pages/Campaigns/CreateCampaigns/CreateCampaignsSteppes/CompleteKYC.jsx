@@ -14,13 +14,14 @@ function CompleteKYC() {
     <div className="py-20">
     <Controller
       control={control}
-      name="UploadBankPassbook/Cheque"
+      name="EnterAadharCardNumber"
       render={({ field }) => (
         <>
           <InputField
-            name={"UploadBankPassbook/Cheque"}
+            required={true}
+            name={"EnterAadharCardNumber"}
             label="Enter Aadhar Card Number:"
-            type={'password'}
+            type={'text'}
             placeholder={
               "xxxx xxxx xxxx"
             }
@@ -31,12 +32,12 @@ function CompleteKYC() {
     />
     <Controller
       control={control}
-      name="UploadBankPassbook/Cheque"
+      name="UploadAadharCard(Front and Back)"
       render={({ field }) => (
         <>
           <UploadField
-            name={"UploadBankPassbook/Cheque"}
-            label="Upload Bank Passbook/Cheque:"
+            name={"UploadAadharCard(Front and Back)"}
+            label="Upload Aadhar Card (Front and Back):"
             placeholder={
               "Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
             }
@@ -48,13 +49,14 @@ function CompleteKYC() {
 
     <Controller
       control={control}
-      name="UploadPANCard"
+      name="EnterPANCardNumber"
       render={({ field }) => (
         <>
           <InputField
-            name={"UploadPANCard"}
-            label={"Upload PAN Card:"}
+            name={"EnterPANCardNumber"}
+            label={"Enter PAN Card Number:"}
             type={"password"}
+            required={true}
             placeholder={
               "xxxxxxxxxxx"
             }
@@ -65,12 +67,12 @@ function CompleteKYC() {
     />
     <Controller
       control={control}
-      name="UploadBankPassbook/Cheque"
+      name="UploadPANCard"
       render={({ field }) => (
         <>
           <UploadField
-            name={"UploadBankPassbook/Cheque"}
-            label="Upload Bank Passbook/Cheque:"
+            name={"UploadPANCard"}
+            label="Upload PAN Card:"
             placeholder={
               "Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
             }
