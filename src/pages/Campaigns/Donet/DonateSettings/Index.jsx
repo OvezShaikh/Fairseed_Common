@@ -6,7 +6,7 @@ import Footer from "../../../../components/layout/Footer";
 import images from "../../../../constants/images";
 import { Grid, Typography } from "@mui/material";
 import PrimaryButton from "../../../../components/inputs/PrimaryButton";
-
+import Navigation from '../../../../components/layout/Navigation/Index'
 function Index() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -27,50 +27,7 @@ function Index() {
     <div>
       <Navbar />
       <div className="flex flex-col ">
-        <Grid sx={{ padding: "100px 45px 40px 45px" }}>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            fontSize={"1rem"}
-            color={"black"}
-            display="flex"
-            flexDirection={"column"}
-            alignItems="start"
-            className="text-capitalize text-truncate"
-            // title={title}
-          >
-            <div className="py-3" onClick={() => navigate(-1)}>
-              <img src={images.ArrowBack} alt="" />
-            </div>
-            <div
-              className="flex flex-col "
-              style={{ fontFamily: "satoshi", fontSize: 20, fontWeight: 600 }}
-            >
-              {title ? <>{title}</> : "Donet"}
-            </div>
-          </Typography>
-        </Grid>
-        <Grid
-          className="bg-[#FFF6F5] w-full h-[100px]"
-          display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}
-        >
-          <h1
-            style={{
-              fontFamily: "satoshi",
-              fontWeight: 900,
-              fontSize: "48px",
-              background:
-                "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
-              "-webkit-background-clip": "text",
-              "-webkit-text-fill-color": "transparent",
-            }}
-          >
-            Settings
-          </h1>
-        </Grid>
+        <Navigation label={'DonateSetting'} heading={"Settings"}/>
       </div>
       <div className="flex flex-col w-full py-24 justify-center items-center">
         <div className="w-[50%]">

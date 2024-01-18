@@ -3,80 +3,51 @@ import "./Home.css";
 // import icons from "../constants/icons";
 import button from "../../constants/button";
 import Slider from "../../components/layout/Slider";
-import Card from "../../components/layout/Card"
-import ScrollableTabsButtonForce from "../../components/layout/ScrollableTabsButtonAuto"
-import Coursal from "../../components/layout/Coursal"
+import Card from "../../components/layout/Card";
+import ScrollableTabsButtonForce from "../../components/layout/ScrollableTabsButtonAuto";
+import Coursal from "../../components/layout/Coursal";
 import Footer from "../../components/layout/Footer";
 import Navbar from "../../components/layout/Navbar";
 import DashBoard from "../../components/layout/DashBoard";
 import PrimaryButton from "../../components/inputs/PrimaryButton";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import images from "../../constants/images";
 
 function Home() {
-  
+  const [userList, setUserList] = useState([]);
+  const [visibleCards, setVisibleCards] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [page, setPage] = useState(1);
+  const fetchUserList = async () => {
+    try {
+      const perPage = 8;
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
+      );
+      const res = response.data;
+      console.log(res, "cards");
+      console.log(res.rows);
+      if (Array.isArray(res.rows)) {
+        setTotalPages(res.pages_count);
+        setUserList([...userList, ...res.rows]);
+      } else {
+        console.error("Invalid data structure. Expected an array:", res.data);
+      }
+    } catch (error) {
+      console.error("Error fetching user list:", error);
+    }
+  };
+  useEffect(() => {
+    fetchUserList();
+  }, [page]);
   let bnk = [
     {
       title: "Help me fund my College Fees for Harvard University",
       img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-      actualMoney:  6700 ,
-      totalMoney:  64000,
-      userCount: "1003",
-      daysLeft: "10 Days Left",
-    },
-    {
-      title: "Help me fund my College Fees for Harvard University",
-      img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-      actualMoney: " 2700 ",
-      totalMoney: " 64,000",
-      userCount: "1003",
-      daysLeft: "10 Days Left",
-    },
-    {
-      title: "Help me fund my College Fees for Harvard University",
-      img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-      actualMoney: " 2700 ",
-      totalMoney: " 64,000",
-      userCount: "1003",
-      daysLeft: "10 Days Left",
-    },
-    {
-      title: "Help me fund my College Fees for Harvard University",
-      img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-      actualMoney: " 2700 ",
-      totalMoney: " 64,000",
-      userCount: "1003",
-      daysLeft: "10 Days Left",
-    },
-    {
-      title: "Help me fund my College Fees for Harvard University",
-      img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-      actualMoney: " 2700 ",
-      totalMoney: " 64,000",
-      userCount: "1003",
-      daysLeft: "10 Days Left",
-    },
-    {
-      title: "Help me fund my College Fees for Harvard University",
-      img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-      actualMoney: " 2700 ",
-      totalMoney: " 64,000",
-      userCount: "1003",
-      daysLeft: "10 Days Left",
-    },
-    {
-      title: "Help me fund my College Fees for Harvard University",
-      img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-      actualMoney: " 2700 ",
-      totalMoney: " 64,000",
-      userCount: "1003",
-      daysLeft: "10 Days Left",
-    },
-    {
-      title: "Help me fund my College Fees for Harvard University",
-      img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-      actualMoney: " 2700 ",
-      totalMoney: " 64,000",
+      actualMoney: 6700,
+      totalMoney: 64000,
       userCount: "1003",
       daysLeft: "10 Days Left",
     },
@@ -87,33 +58,33 @@ function Home() {
   // "https://wallpaperaccess.com/full/809523.jpg",
   // "https://getwallpapers.com/wallpaper/full/5/c/0/606489.jpg",
 
-  let Dboard = [
-    {
-      DashBoardImg: images.HandShake,
-      DashBoardTotal: 4,
-      DashBoardText: "Causes Raised",
-    },
-    {
-      DashBoardImg: images.UsersThree,
-      DashBoardTotal: "27 Lacs",
-      DashBoardText: "Funds Raised",
-    },
-    {
-      DashBoardImg: images.Student,
-      DashBoardTotal: "3000+",
-      DashBoardText: "Donors",
-    },
-    {
-      DashBoardImg: images.HandCoins,
-      DashBoardTotal: 4,
-      DashBoardText: "Successful Campaigns",
-    },
-    {
-      DashBoardImg: images.SedalCheck,
-      DashBoardTotal: 3,
-      DashBoardText: "Student Benefitted",
-    },
-  ];
+  // let Dboard = [
+  //   {
+  //     DashBoardImg: images.HandShake,
+  //     DashBoardTotal: 4,
+  //     DashBoardText: "Causes Raised",
+  //   },
+  //   {
+  //     DashBoardImg: images.UsersThree,
+  //     DashBoardTotal: "27 Lacs",
+  //     DashBoardText: "Funds Raised",
+  //   },
+  //   {
+  //     DashBoardImg: images.Student,
+  //     DashBoardTotal: "3000+",
+  //     DashBoardText: "Donors",
+  //   },
+  //   {
+  //     DashBoardImg: images.HandCoins,
+  //     DashBoardTotal: 4,
+  //     DashBoardText: "Successful Campaigns",
+  //   },
+  //   {
+  //     DashBoardImg: images.SedalCheck,
+  //     DashBoardTotal: 3,
+  //     DashBoardText: "Student Benefitted",
+  //   },
+  // ];
 
   return (
     <>
@@ -137,16 +108,7 @@ function Home() {
           display: "flex",
         }}
       >
-        {Dboard?.map((item) => {
-          return (
-            <DashBoard
-              //  DashBoardText={item.DashBoardText}
-              //  DashBoardTotal={item.DashBoardTotal}
-              //  DashBoardImg={item?.DashBoardImg}
-              data={item}
-            />
-          );
-        })}
+        <DashBoard />
       </div>
       <div className="flex pt-[100px] ">
         <div className="w-full flex-wrap flex flex-col items-center mx-10">
@@ -193,21 +155,27 @@ function Home() {
           </button>
         </div>
         <div className="gap-4 mt-4  flex flex-wrap w-full justify-center">
-          {bnk?.map((item) => {
+          {userList?.map((item) => {
             return (
               <Card
-                title={item?.title}
-                cardImage={item?.img}
-                actualMoney={item?.actualMoney}
-                totalMoney={item?.totalMoney}
-                daysLeft={item?.daysLeft}
-                userCount={item?.userCount}
+                key={item.id}
+                username={item.user.username}
+                title={item.title}
+                og_id={item.id}
+                cardImage={item.campaign_image}
+                goalAmount={item.goal_amount}
+                fundRaised={item.fund_raised}
+                daysLeft={item.days_left}
+                userCount={item.donor_count}
+                location={item.location}
               />
             );
           })}
         </div>
         <button
           className="pt-[68px]"
+          onClick={() => setPage(page + 1)}
+          disabled={page >= totalPages}
           style={{
             width: "fit-content",
             textAlign: "center",
@@ -362,35 +330,23 @@ function Home() {
               </div>
             </div>
           </div>
-          <PrimaryButton
-          sx={{borderRadius:'var(--Pixels-8, 8px)',fontSize: 20,
-            fontWeight: "900",padding:'8px',margin:'50px 0px 50px 0px'}}
-            className="p-2 my-10"
-            // style={{
-            //   background: "linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)",
-            //   borderRadius: 8,
-            //   justifyContent: "center",
-            //   alignItems: "center",
-            //   gap: 10,
-            //   display: "inline-flex",
-            // }}
-          >
-            <div style={{ width: 32, height: 32, position: "relative" }}>
-              <img src={images.RocketLaunch} alt="" />
-            </div>
-            <div
-               
-              // style={{
-              //   color: "white",
-              //   fontSize: 20,
-              //   fontWeight: "900",
-              //   wordWrap: "break-word",
-              //   fontFamily:'satoshi'
-              // }}
+          <a href="/Home/Create-Campaign">
+            <PrimaryButton
+              sx={{
+                borderRadius: "var(--Pixels-8, 8px)",
+                fontSize: 20,
+                fontWeight: "900",
+                padding: "8px",
+                margin: "50px 0px 50px 0px",
+              }}
+              className="p-2 my-10"
             >
-              Launch a Campaign Now !
-            </div>
-          </PrimaryButton>
+              <div style={{ width: 32, height: 32, position: "relative" }}>
+                <img src={images.RocketLaunch} alt="" />
+              </div>
+              <div>Launch a Campaign Now !</div>
+            </PrimaryButton>
+          </a>
         </div>
       </section>
       <div className="flex-col pt-[60px] pb-[50px] flex-wrap container flex w-full text-center items-center">
@@ -409,10 +365,8 @@ function Home() {
         </p>
       </div>
       <div className="flexDirection:'row' mt-[80px] gap-5 px-[50px] ">
-      
-      <Slider />
-
-          </div>
+        <Slider />
+      </div>
       <div className="">
         <Footer />
       </div>

@@ -65,6 +65,7 @@ import Success from '../assets/Success.svg'
 import MegaphoneSimple from '../assets/MegaphoneSimple.png'
 import WarningCircle from '../assets/WarningCircle.svg'
 import HandCoins2  from'../assets/HandCoins2.svg'
+import MapPin2 from '../assets/MapPin.svg'
 
 
 
@@ -134,7 +135,8 @@ export default  {
     Success,
     MegaphoneSimple,
     WarningCircle, 
-    HandCoins2
+    HandCoins2,
+    MapPin2
 
     
    
