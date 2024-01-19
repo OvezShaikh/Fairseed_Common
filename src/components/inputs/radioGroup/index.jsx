@@ -6,6 +6,8 @@ import {
   RadioGroup as MuiRadioGroup,
 } from "@mui/material";
 import React from "react";
+import { pink, red } from "@mui/material/colors";
+
 import { colors } from "../../../constants/theme";
 
 const RadioGroup = ({ label, options, onChange, ...otherProps }) => {
@@ -65,7 +67,10 @@ const RadioGroup = ({ label, options, onChange, ...otherProps }) => {
               <Radio
                 color="warning"
                 sx={{
-                  color: colors.primary.dark,
+                  // color: red[500],
+                  "&.Mui-checked": {
+                    color: red[500],
+                  },
                 }}
               />
             }

@@ -21,7 +21,7 @@ const SecondaryButton = ({
         //   md: "0.8rem",
         // },
         // alignItems: "center",
-        background: "black",
+        // background: "black",
         WebkitBackgroundClip: "text",
         display: "flex",
         alignitems: "flex-start",

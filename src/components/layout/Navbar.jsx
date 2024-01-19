@@ -21,41 +21,70 @@ import PrimaryButton from '../inputs/PrimaryButton'
 // import someImage from "../../constants/images";
 // import { OutlineIconName } from "@heroicons/react/outline";
 import images from "../../constants/images";
-const products = [
+import { color } from "@mui/system";
+const styleButton ={
+  color:'red'
+}
+const GetInvolved = [
   {
-    name: "Analytics",
-    description: "Get a better understanding of your traffic",
-    href: "#",
-    icon: ChartPieIcon,
+    name: "Associateship",
+    href: "/Home/OnGoingCampaigns",
   },
   {
-    name: "Engagement",
-    description: "Speak directly to your customers",
-    href: "#",
-    icon: CursorArrowRaysIcon,
+    name: "Partner with us",
+    href: "/Home/Donate",
   },
   {
-    name: "Create a Campaign",
-    description: "Your customers’ data will be safe and secure",
-    href:'/Create-Campaign',
-    icon: FingerPrintIcon,
+    name: "Internship",
+    href:'/Home/Create-Campaign',
   },
   {
-    name: "Integrations",
-    description: "Connect with third-party tools",
-    href: "/AdminPage",
-    icon: SquaresPlusIcon,
+    name: "Create a campaign",
+    href:'/Home/Create-Campaign',
   },
   {
-    name: "Automations",
-    description: "Build strategic funnels that will convert",
-    href: "#",
-    icon: ArrowPathIcon,
+    name: "Support a campaign",
+    href: "/Home/OnGoingCampaigns",
+  },
+  {
+    name: "Careers",
+    href: "/Home/ReligiousEducationCampaigns",
   },
 ];
-const callsToAction = [
-  { name: "Watch demo", href: "#", icon: PlayCircleIcon },
-  { name: "Contact sales", href: "#", icon: PhoneIcon },
+const OurImpact = [
+  {
+    name: "Ongoing Campaigns",
+    href: "/Home/OnGoingCampaigns",
+  },
+  {
+    name: "Successful Campaigns",
+    href: "/Home/Donate",
+  },
+  {
+    name: "Stories of Change",
+    href:'/Home/Create-Campaign',
+  },
+  {
+    name: "Reports",
+    href:'/Home/Create-Campaign',
+  },
+ 
+];
+const AboutUs = [
+  {
+    name: "Knowing Fairseed",
+    href: "/Home/OnGoingCampaigns",
+  },
+  {
+    name: "Vision & Mission",
+    href: "/Home/Donate",
+  },
+  {
+    name: "Our Mission",
+    href:'/Home/Create-Campaign',
+  },
+ 
+ 
 ];
 
 function classNames(...classes) {
@@ -91,8 +120,11 @@ export default function Example() {
             </button>
           </div>
           <Popover.Group className="hidden lg:flex lg:gap-x-12">
-            <Popover className="relative">
-              <Popover.Button className="flex pt-2 items-center gap-x-1 text-sm font-semibold  text-gray-900">
+            <Popover className="relative" >
+              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium   text-[#40444C]"
+              onclick="this.style.backgroundColor = (this.style.backgroundColor === '#40444C') ? 'blue' : '#40444C';"
+
+              >
                 Get Involved
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -130,19 +162,15 @@ export default function Example() {
                 leaveFrom="opacity-100 translate-y-0"
                 leaveTo="opacity-0 translate-y-1"
               >
-                <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
-                  <div className="p-4">
-                    {products.map((item) => (
+                <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-[250px] max-w-md overflow-hidden rounded bg-white shadow-lg ring-1 ring-gray-900/5">
+                  <div className="pl-3 pb-4">
+                    { GetInvolved.map((item) => (
                       <div
                         key={item.name}
-                        className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
+                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+                        style={{fontWeight:400}}
                       >
-                        <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                          <item.icon
-                            className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
-                            aria-hidden="true"
-                          />
-                        </div>
+                        
                         <div className="flex-auto">
                           <a
                             href={item.href}
@@ -151,35 +179,19 @@ export default function Example() {
                             {item.name}
                             <span className="absolute inset-0" />
                           </a>
-                          <p className="mt-1 text-gray-600">
-                            {item.description}
-                          </p>
+      
                         </div>
                       </div>
                     ))}
                   </div>
-                  <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
-                    {callsToAction.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
-                      >
-                        <item.icon
-                          className="h-5 w-5 flex-none text-gray-400"
-                          aria-hidden="true"
-                        />
-                        {item.name}
-                      </a>
-                    ))}
-                  </div>
+                
                 </Popover.Panel>
               </Transition>
             </Popover>
             {/*  second button */}
 
             <Popover className="relative">
-              <Popover.Button className="flex pt-2 items-center gap-x-1 text-sm font-semibold  text-gray-900">
+              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium  text-[#40444C]">
                 Our impact
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -217,19 +229,15 @@ export default function Example() {
                 leaveFrom="opacity-100 translate-y-0"
                 leaveTo="opacity-0 translate-y-1"
               >
-                <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
-                  <div className="p-4">
-                    {products.map((item) => (
+                <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-[250px] max-w-md overflow-hidden rounded bg-white shadow-lg ring-1 ring-gray-900/5">
+                  <div className="pl-3 pb-4">
+                    {OurImpact.map((item) => (
                       <div
                         key={item.name}
-                        className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm  hover:bg-gray-50"
+                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+                        style={{fontWeight:400}}
                       >
-                        <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                          <item.icon
-                            className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
-                            aria-hidden="true"
-                          />
-                        </div>
+                        
                         <div className="flex-auto">
                           <a
                             href={item.href}
@@ -238,35 +246,19 @@ export default function Example() {
                             {item.name}
                             <span className="absolute inset-0" />
                           </a>
-                          <p className="mt-1 text-gray-600">
-                            {item.description}
-                          </p>
+      
                         </div>
                       </div>
                     ))}
                   </div>
-                  <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
-                    {callsToAction.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
-                      >
-                        <item.icon
-                          className="h-5 w-5 flex-none text-gray-400"
-                          aria-hidden="true"
-                        />
-                        {item.name}
-                      </a>
-                    ))}
-                  </div>
+                
                 </Popover.Panel>
               </Transition>
             </Popover>
 
             {/* third button */}
             <Popover className="relative">
-              <Popover.Button className="flex pt-2 items-center gap-x-1 text-sm font-semibold   text-gray-900">
+              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium   text-[#40444C]">
                 About us
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -304,19 +296,15 @@ export default function Example() {
                 leaveFrom="opacity-100 translate-y-0"
                 leaveTo="opacity-0 translate-y-1"
               >
-                <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
-                  <div className="p-4">
-                    {products.map((item) => (
+                <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-[250px] max-w-md overflow-hidden rounded bg-white shadow-lg ring-1 ring-gray-900/5">
+                  <div className="pl-3 pb-4">
+                    {AboutUs.map((item) => (
                       <div
                         key={item.name}
-                        className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
+                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+                        style={{fontWeight:400}}
                       >
-                        <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                          <item.icon
-                            className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
-                            aria-hidden="true"
-                          />
-                        </div>
+                        
                         <div className="flex-auto">
                           <a
                             href={item.href}
@@ -325,28 +313,12 @@ export default function Example() {
                             {item.name}
                             <span className="absolute inset-0" />
                           </a>
-                          <p className="mt-1 text-gray-600">
-                            {item.description}
-                          </p>
+      
                         </div>
                       </div>
                     ))}
                   </div>
-                  <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
-                    {callsToAction.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
-                      >
-                        <item.icon
-                          className="h-5 w-5 flex-none text-gray-400"
-                          aria-hidden="true"
-                        />
-                        {item.name}
-                      </a>
-                    ))}
-                  </div>
+                
                 </Popover.Panel>
               </Transition>
             </Popover>
@@ -354,28 +326,8 @@ export default function Example() {
             {/* Fourth button */}
             <PrimaryButton
             sx={{borderRadius:'var(--Pixels-8, 8px)',fontWeight:700,fontSize:'18px'}}>
-              {/* <div
-                style={{
-                  background:
-                    "linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)",
-                  borderRadius: 8,
-                  padding: 8,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  gap: 10,
-                  display: "flex",
-                }}
-              >
-                <div
-                  style={{
-                    color: "white",
-                    fontSize: 18,
-                    fontFamily: "Satoshi",
-                    fontWeight: "700",
-                    wordWrap: "break-word",
-                  }}
-                > */}
-                <a href="/Create-Campaign">
+              
+                <a href="/Home/Create-Campaign">
                   Start a Campaign
                   </a>
                 {/* </div>
@@ -399,9 +351,12 @@ export default function Example() {
                   />
                 </svg>
               </button>
-              <Box sx={{ display: "flex", }}>
+              <button
+              className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
+              >Log In</button>
+              {/* <Box sx={{ display: "flex", }}>
                 <Avatar alt="Remy Sharp" src={images.Avatar} />
-              </Box>
+              </Box> */}
             </div>
           </Popover.Group>
         </div>
@@ -449,18 +404,7 @@ export default function Example() {
                           aria-hidden="true"
                         />
                       </Disclosure.Button>
-                      <Disclosure.Panel className="mt-2 space-y-2">
-                        {[...products, ...callsToAction].map((item) => (
-                          <Disclosure.Button
-                            key={item.name}
-                            as="a"
-                            href={item.href}
-                            className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                          >
-                            {item.name}
-                          </Disclosure.Button>
-                        ))}
-                      </Disclosure.Panel>
+                    
                     </>
                   )}
                 </Disclosure>

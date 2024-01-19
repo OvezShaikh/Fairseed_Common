@@ -4,8 +4,6 @@ import { FormLabel, InputBase, Tooltip } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import { ErrorMessage, useField } from "formik";
 import { colors } from "../../../constants/theme";
-import { RiStarSFill } from "react-icons/ri";
-
 
 const InputField = ({
   name,
@@ -16,9 +14,11 @@ const InputField = ({
   characterCount,
   label,
   sx,
+  required,
   ...otherProps
 }) => {
   // const [field, meta] = useField(name);
+  console.log(required,name,otherProps,"reqqq")
 
   const configTextfield = {
     // ...field,
@@ -36,7 +36,7 @@ const InputField = ({
     minHeight: "43.95px",
     "label + &": {
       marginTop: "0.3rem",
-      marginBottom:'2rem'
+      marginBottom: "2rem",
     },
     "& .MuiInputBase-input": {
       borderRadius: "3px",
@@ -57,7 +57,7 @@ const InputField = ({
       "&:focus": {
         boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);
         `,
-      borderColor: 'black',
+        borderColor: "black",
       },
 
       // "&.Mui-disabled": {
@@ -92,8 +92,8 @@ const InputField = ({
       borderBottomLeftRadius: theme.shape.borderRadius + "px",
     },
     ...sx,
-
   });
+  console.log("End",required)
 
   // const tooltipData = localStorage.getItem("tooltipData")
   //   ? JSON.parse(localStorage.getItem("tooltipData"))?.filter(
@@ -104,24 +104,34 @@ const InputField = ({
   //   : null;
   return (
     <>
-      {label && <FormLabel
-        className="text-capitalize font-medium d-flex align-items-center"
-        sx={{ padding:'4px 8px 8px 8px',color: colors.text.main, fontSize: "20px", fontWeight:700,fontFamily:'satoshi',fontStyle:"normal",height: "22px" }}
-      >
-        {label}
-        <span className="text-red-600">*</span>
-      </FormLabel>}
+      {label && (
+        <FormLabel
+          className="text-capitalize font-medium d-flex align-items-center"
+          sx={{
+            padding: "4px 8px 8px 8px",
+            color: colors.text.main,
+            fontSize: "20px",
+            fontWeight: 700,
+            fontFamily: "satoshi",
+            fontStyle: "normal",
+            height: "22px",
+          }}
+        >
+          {label}
+          {required ? <span className="text-red-600">*</span> : ""}
+        </FormLabel>
+      )}
       <InputBase
         sx={styles}
         // style={{ ...configTextfield?.style }}
         {...configTextfield}
       />
-      {/* <Error`Message
+      {/* <ErrorMessage
         name={name}
         render={(msg) => (
           <div style={{ color: "red", fontSize: "0.7rem" }}>{msg}</div>
         )}
-      />` */}
+      /> */}
     </>
   );
 };

@@ -58,7 +58,8 @@ function Footer() {
                   Support a Cause
                 </div>
               </button>
-              <button
+              <a
+                href="/Home/Create-Campaign"
                 className="px-3"
                 style={{
                  
@@ -87,7 +88,7 @@ function Footer() {
                 >
                   Launch a Campaign
                 </div>
-              </button>
+              </a>
             </div>
           </div>
         </div>
