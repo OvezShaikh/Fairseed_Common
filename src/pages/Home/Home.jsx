@@ -1,19 +1,6 @@
 import React from "react";
 import "./Home.css";
 // import icons from "../constants/icons";
-<<<<<<< HEAD:src/Home/Home.jsx
-import button from "../constants/button";
-import Slider from "../components/layout/Slider";
-import Card from "../components/layout/Card";
-import ScrollableTabsButtonForce from "../components/layout/ScrollableTabsButtonAuto";
-import Coursal from "../components/layout/Coursal";
-import Footer from "../components/layout/Footer";
-import Navbar from '../components/layout/Navbar'
-import DashBoard from "../components/layout/DashBoard";
-import PrimaryButton from "../components/inputs/PrimaryButton";
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-=======
 import button from "../../constants/button";
 import Slider from "../../components/layout/Slider";
 import Card from "../../components/layout/Card";
@@ -27,44 +14,17 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import images from "../../constants/images";
->>>>>>> d832e3f9e2e0ac16b082afe45a5bf60c0eac62b3:src/pages/Home/Home.jsx
 
 function Home() {
   const [userList, setUserList] = useState([]);
   const [visibleCards, setVisibleCards] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
-<<<<<<< HEAD:src/Home/Home.jsx
-
-  const fetchUserList = async () => {
-    try {
-      const perPage = 4;
-      const response = await axios.get(`${process.env.REACT_APP_BE_BASE_URL}/campaign/campaign?page=${page}&limit=${perPage}`);
-      const res = response.data;
-      console.log(res,"cards");
-      console.log(res.rows)
-      if (Array.isArray(res.rows)) {
-        setTotalPages(res.pages_count);
-        setUserList([...userList,...res.rows])
-      } else {
-        console.error('Invalid data structure. Expected an array:', res.data);
-      }
-    } catch (error) {
-      console.error('Error fetching user list:', error);
-    }
-  };
-  useEffect(() => {
-    
-
-    fetchUserList();
-  }, [page]);
-  
-=======
   const fetchUserList = async () => {
     try {
       const perPage = 8;
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
+        `${process.env.REACT_APP_BE_BASE_URL}/campaign/campaign?page=${page}&limit=${perPage}`
       );
       const res = response.data;
       console.log(res, "cards");
@@ -82,80 +42,15 @@ function Home() {
   useEffect(() => {
     fetchUserList();
   }, [page]);
->>>>>>> d832e3f9e2e0ac16b082afe45a5bf60c0eac62b3:src/pages/Home/Home.jsx
   let bnk = [
     {
       title: "Help me fund my College Fees for Harvard University",
       img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-<<<<<<< HEAD:src/Home/Home.jsx
-      actualMoney:  6700 ,
-      totalMoney:  64000,
-      userCount: "1003",
-      daysLeft: "10 Days Left",
-    },
-    // {
-    //   title: "Help me fund my College Fees for Harvard University",
-    //   img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-    //   actualMoney: " 2700 ",
-    //   totalMoney: " 64,000",
-    //   userCount: "1003",
-    //   daysLeft: "10 Days Left",
-    // },
-    // {
-    //   title: "Help me fund my College Fees for Harvard University",
-    //   img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-    //   actualMoney: " 2700 ",
-    //   totalMoney: " 64,000",
-    //   userCount: "1003",
-    //   daysLeft: "10 Days Left",
-    // },
-    // {
-    //   title: "Help me fund my College Fees for Harvard University",
-    //   img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-    //   actualMoney: " 2700 ",
-    //   totalMoney: " 64,000",
-    //   userCount: "1003",
-    //   daysLeft: "10 Days Left",
-    // },
-    // {
-    //   title: "Help me fund my College Fees for Harvard University",
-    //   img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-    //   actualMoney: " 2700 ",
-    //   totalMoney: " 64,000",
-    //   userCount: "1003",
-    //   daysLeft: "10 Days Left",
-    // },
-    // {
-    //   title: "Help me fund my College Fees for Harvard University",
-    //   img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-    //   actualMoney: " 2700 ",
-    //   totalMoney: " 64,000",
-    //   userCount: "1003",
-    //   daysLeft: "10 Days Left",
-    // },
-    // {
-    //   title: "Help me fund my College Fees for Harvard University",
-    //   img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-    //   actualMoney: " 2700 ",
-    //   totalMoney: " 64,000",
-    //   userCount: "1003",
-    //   daysLeft: "10 Days Left",
-    // },
-    // {
-    //   title: "Help me fund my College Fees for Harvard University",
-    //   img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-    //   actualMoney: " 2700 ",
-    //   totalMoney: " 64,000",
-    //   userCount: "1003",
-    //   daysLeft: "10 Days Left",
-    // },
-=======
       actualMoney: 6700,
       totalMoney: 64000,
       userCount: "1003",
       daysLeft: "10 Days Left",
     },
->>>>>>> d832e3f9e2e0ac16b082afe45a5bf60c0eac62b3:src/pages/Home/Home.jsx
   ];
 
   // {images: [{name:'',src:'..///'},{name:'',src:'.//'}] }
@@ -213,19 +108,7 @@ function Home() {
           display: "flex",
         }}
       >
-<<<<<<< HEAD:src/Home/Home.jsx
-        
-            <DashBoard
-              //  DashBoardText={item.DashBoardText}
-              //  DashBoardTotal={item.DashBoardTotal}
-              //  DashBoardImg={item?.DashBoardImg}
-              
-            />
-          
-        
-=======
         <DashBoard />
->>>>>>> d832e3f9e2e0ac16b082afe45a5bf60c0eac62b3:src/pages/Home/Home.jsx
       </div>
       <div className="flex pt-[100px] ">
         <div className="w-full flex-wrap flex flex-col items-center mx-10">
@@ -272,20 +155,6 @@ function Home() {
           </button>
         </div>
         <div className="gap-4 mt-4  flex flex-wrap w-full justify-center">
-<<<<<<< HEAD:src/Home/Home.jsx
-        {userList.map((item) => (
-            
-              <Card
-              key={item.id}
-              username={item.user.username}
-              title={item.title}
-              cardImage={item.category.image}
-              goalAmount={item.goal_amount}
-              fundRaised={item.fund_raised}
-              daysLeft={item.days_left}
-              userCount={item.donor_count}
-              location={item.location}
-=======
           {userList?.map((item) => {
             return (
               <Card
@@ -299,19 +168,14 @@ function Home() {
                 daysLeft={item.days_left}
                 userCount={item.donor_count}
                 location={item.location}
->>>>>>> d832e3f9e2e0ac16b082afe45a5bf60c0eac62b3:src/pages/Home/Home.jsx
               />
-            
-          ))}
+            );
+          })}
         </div>
         <button
           className="pt-[68px]"
-<<<<<<< HEAD:src/Home/Home.jsx
-          onClick={()=> setPage(page+1)}
-=======
           onClick={() => setPage(page + 1)}
           disabled={page >= totalPages}
->>>>>>> d832e3f9e2e0ac16b082afe45a5bf60c0eac62b3:src/pages/Home/Home.jsx
           style={{
             width: "fit-content",
             textAlign: "center",
@@ -493,7 +357,7 @@ function Home() {
           Causes by Category
         </h1>
         <p
-          className="text-black/40 font-bold mt-3 w-[33%]"
+          className="text-black/60 font-bold mt-3 w-[33%]"
           style={{ fontFamily: "Satoshi" }}
         >
           Be it for a personal need, social cause or a creative idea - you can

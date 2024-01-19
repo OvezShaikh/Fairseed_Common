@@ -3,6 +3,7 @@
     font-size: 0;
     color: #080505; 
   background-color: #fff; 
+ 
   
 }
 
@@ -12,18 +13,18 @@
   
 }
 
-.slick-prev {
+/* .slick-prev {
 /* background: url('../../assets/reshot-icon-arrow-left-4NA6KJF8CU.svg') no-repeat center center;
 fill: rgb(1, 1, 12); */
 
 
-}
+/* } */ */
 
-.slick-next{
+/* .slick-next{
     /* background: url('../../assets/reshot-icon-arrow-right-ZP2WDL9B8N.svg');
     
     background-color: white; */
-}
+/* } */ */
 
 
 .slick-prev:before, .slick-next:before {
@@ -43,4 +44,10 @@ fill: rgb(1, 1, 12); */
 
   .slick-prev{
     left: -30px;
+  }
+
+  .swiper-button-next::after{
+    height: 60px;
+    margin-right: 250px;
+    align-items: center;
   }

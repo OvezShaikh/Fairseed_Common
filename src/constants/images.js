@@ -62,15 +62,15 @@ import ArrowBack from '../assets/ArrowBack .svg'
 import UploadSimple from '../assets/UploadSimple.svg'
 import UploadFile from '../assets/UploadFile.svg'
 import Success from '../assets/Success.svg'
-<<<<<<< HEAD
+// <<<<<<< HEAD
 import MapPin from '../assets/MapPin.png'
-=======
+// =======
 import MegaphoneSimple from '../assets/MegaphoneSimple.png'
 import WarningCircle from '../assets/WarningCircle.svg'
 import HandCoins2  from'../assets/HandCoins2.svg'
 import MapPin2 from '../assets/MapPin.svg'
 
->>>>>>> d832e3f9e2e0ac16b082afe45a5bf60c0eac62b3
+// >>>>>>> d832e3f9e2e0ac16b082afe45a5bf60c0eac62b3
 
 
 export default  {
@@ -137,14 +137,14 @@ export default  {
     UploadSimple,
     UploadFile,
     Success,
-<<<<<<< HEAD
-    MapPin
-=======
+// <<<<<<< HEAD
+    MapPin,
+// =======
     MegaphoneSimple,
     WarningCircle, 
     HandCoins2,
     MapPin2
->>>>>>> d832e3f9e2e0ac16b082afe45a5bf60c0eac62b3
+// >>>>>>> d832e3f9e2e0ac16b082afe45a5bf60c0eac62b3
 
     
    
