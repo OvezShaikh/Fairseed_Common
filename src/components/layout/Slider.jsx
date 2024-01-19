@@ -5,7 +5,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Slider.css";
 import images from "../../constants/images";
+import { Link } from "react-router-dom";
 
+const MultipleRows = () => {
+  const [sliderData, setSliderData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [totalPages, setTotalPages] = useState(1);
+  const [page, setPage] = useState(1);
+  const limit = 20;
 
 const MultipleRows = () => {
   const [sliderData, setSliderData] = useState([]);
@@ -30,6 +38,14 @@ const MultipleRows = () => {
 
     fetchSliderData();
   }, []);
+
+  //  useEffect (()=>{
+  //   axios.get(`${process.env.REACT_APP_API_URL}/campaign/campaign-category?page=${page}&limit=${limit}`).then((response)=>{
+  //     setSliderData(response.data.rows);
+  //   setLoading(false);
+  //   })
+
+  // } ,[])
 
   const settings = {
     dots: true,
@@ -79,36 +95,46 @@ const MultipleRows = () => {
     ],
   };
 
-
-
-
-
-    return (
-      <div className="slider-container" >
-        <Slider {...settings} >
-          {loading && <div>Loading...</div>}
+  return (
+    <div className="slider-container">
+      <Slider {...settings}>
+        {loading && <div>Loading...</div>}
         {error && <div>Error: {error}</div>}
         {!loading &&
           !error &&
           sliderData.map((item, index) => (
-
-              <>
-
+            <>
+              <Link to={`/Home/CampaignsByCategory/${item.id}`}>
                 <div key={index}>
-                <img style={{ width: '250px', height: '200px', background: 'linear-gradient(0deg, #EBEBEB 0%, #EBEBEB 100%)', borderRadius: 12 }} 
-                src={`${process.env.REACT_APP_BE_BASE_URL}` +item.image} 
-                alt={`Slider Image ${index + 1}`} />
-                  
+                  <img
+                    style={{
+                      width: "250px",
+                      height: "200px",
+                      background:
+                        "linear-gradient(0deg, #EBEBEB 0%, #EBEBEB 100%)",
+                      borderRadius: 12,
+                    }}
+                    src={`${process.env.REACT_APP_BE_BASE_URL}` + item.image}
+                    alt={`Image ${index + 1}`}
+                  />
                 </div>
-                <div className="p-3 text-xl w-[90%] text-center" style={{ fontFamily: 'Satoshi ' ,color: '#383A42',fontWeight: '500' }}>
-                <h3>{item.name}</h3>
+                <div
+                  className="p-3 text-xl w-[90%] text-center"
+                  style={{
+                    fontFamily: "Satoshi ",
+                    color: "#383A42",
+                    fontWeight: "500",
+                  }}
+                >
+                  <h3>{item.name}</h3>
                 </div>
+              </Link>
+            </>
+          ))}
+      </Slider>
+    </div>
+  );
+}; 
 
-              </>
-          ))
-          }
-        </Slider>
-      </div>
-    );
-  };
+}
 export default MultipleRows;

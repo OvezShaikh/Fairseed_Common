@@ -25,11 +25,12 @@ function Home() {
       const perPage = 8;
       const response = await axios.get(
         `${process.env.REACT_APP_BE_BASE_URL}/campaign/campaign?page=${page}&limit=${perPage}`
-      );
-      const res = response.data;
-      console.log(res, "cards");
-      console.log(res.rows);
-      if (Array.isArray(res.rows)) {
+        );
+        const res = response.data;
+        console.log(res, "cards");
+        console.log(res.rows);
+        // `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
+        if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList([...userList, ...res.rows]);
       } else {
