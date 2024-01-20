@@ -453,9 +453,9 @@ function CurrentCampaign({key,username,cardImage,goalAmount,fundRaised,daysLeft,
         <div className="w-full h-full  flex  gap-5">
           <img
             className="w-[65%]  rounded-3xl"
-            src={images.sliderimg}
+            src={`${process.env.REACT_APP_API_URL}` + cardDetails?.campaign_image}
             alt="Img"
-          />
+          />+
           <div
             className="flex flex-col rounded-3xl justify-center items-center w-[35%] "
             style={{ border: "1px solid red" }}
@@ -614,8 +614,9 @@ function CurrentCampaign({key,username,cardImage,goalAmount,fundRaised,daysLeft,
               </div>  
             </div>
             <div className="pt-4">
-              <CampaignsTabs/>
-            </div>
+            {cardDetails?.story && (
+  <div className="pt-4" dangerouslySetInnerHTML={{ __html: cardDetails.story }} style={{whiteSpace:"pre-line"}}></div>
+)} </div>
           </div>
           <div className="w-[37%] flex pt-2 pl-5  pb-12" style={{background: 'white', borderRadius: 20, flexDirection: 'column', gap: 24, display: 'inline-flex'}}>
 

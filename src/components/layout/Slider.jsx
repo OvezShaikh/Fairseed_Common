@@ -108,7 +108,7 @@ const MultipleRows = () => {
                 <div key={index}>
                   <img
                     style={{
-                      width: "250px",
+                      width: "220px",
                       height: "200px",
                       background:
                         "linear-gradient(0deg, #EBEBEB 0%, #EBEBEB 100%)",
