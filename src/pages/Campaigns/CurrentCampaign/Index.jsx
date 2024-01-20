@@ -111,7 +111,7 @@ function CurrentCampaign({
         <div className="w-full h-full  flex  gap-5">
           <img
             className="w-[65%]  rounded-3xl"
-            src={images.sliderimg}
+            src={`${process.env.REACT_APP_API_URL}` + cardDetails?.campaign_image}
             alt="Img"
           />
           <div
@@ -293,7 +293,10 @@ function CurrentCampaign({
               </div>
             </div>
             <div className="pt-4">
-              <CampaignsTabs />
+            {cardDetails?.story && (
+  <div className="pt-4" dangerouslySetInnerHTML={{ __html: cardDetails.story }} style={{whiteSpace:"pre-line"}}></div>
+)}
+             
             </div>
           </div>
           <div
