@@ -65,13 +65,14 @@ const UploadField = ({
               padding: "10px",
               fontSize: "20px",
             },
-
+            
           }}
           fullWidth
-          InputProps={{
+          inputprops={{
             readOnly: true,
           }}
           {...configTextfield}
+          disabled
         />
         <>
           <input

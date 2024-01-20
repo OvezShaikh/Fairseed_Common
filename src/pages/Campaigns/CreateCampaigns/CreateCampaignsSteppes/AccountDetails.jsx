@@ -1,117 +1,113 @@
-import React from 'react'
-import {
-  Controller,
-  useFormContext
-} from "react-hook-form";
-import InputField from '../../../../components/inputs/InputField';
-import SelectField from '../../../../components/inputs/SelectField';
-import UploadField from '../../../../components/inputs/UploadField/Index';
-import RadioGroup from '../../../../components/inputs/radioGroup';
-
-
+import React from "react";
+import { Controller, useFormContext } from "react-hook-form";
+import InputField from "../../../../components/inputs/InputField";
+import SelectField from "../../../../components/inputs/SelectField";
+import UploadField from "../../../../components/inputs/UploadField/Index";
+import RadioGroup from "../../../../components/inputs/radioGroup";
 
 function AccountDetails() {
   const { control } = useFormContext();
 
   return (
     <div className="py-20">
-      
-    <Controller
-      control={control}
-      name="Campaign"
-      render={({ field }) => (
-        <RadioGroup
-          name={"Campaign"}
-          options={[
-            { label: "Self", value: "Self" },
-            { label: "Family/Friends", value: "Family/Friends" },
-            { label: "Charity", value: "Charity" },
-          ]}
-          label="Raising this Campaign for:"
-          {...field}
-        />
-      )}
-    />
-    <Controller
-      control={control}
-      name="HolderName"
-      render={({ field }) => (
-        <InputField
-          name={"HolderName"}
-          label="Account holder Name:"
-          required={true}
-          {...field}
-        />
-      )}
-    />
-
-    <Controller
-      control={control}
-      name="AccountNumber"
-      render={({ field }) => (
-        <InputField
-        required={true}
-          name={"AccountNumber"}
-          label={"Account Number:"}
-          {...field}
-        />
-      )}
-    />
-    <Controller
-      control={control}
-      name="BankName"
-      render={({ field }) => (
-        <InputField
-          name={"BankName"}
-          required={true}
-          label={"Bank Name:"}
-          {...field}
-        />
-      )}
-    />
-
-    <Controller
-      control={control}
-      name="BranchName"
-      render={({ field }) => (
-        <InputField
-          name={"BranchName"}
-          required={true}
-          label={"Branch Name:"}
-          {...field}
-        />
-      )}
-    />
-    <Controller
-      control={control}
-      name="IFSC"
-      render={({ field }) => (
-        <InputField
-        required={true}
-          name={"IFSC"}
-          label={"IFSC:"}
-          {...field}
-        />
-      )}
-    />
-    <Controller
-      control={control}
-      name="UploadBankPassbook/Cheque"
-      render={({ field }) => (
-        <>
-          <UploadField
-            label="Upload Bank Passbook/Cheque:"
-            name="UploadBankPassbook/Cheque"
-            placeholder={
-              "Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
-            }
+      <Controller
+        control={control}
+        name="rasing_for"
+        render={({ field: { onChange, value } }) => (
+          <RadioGroup
+            name={"rasing_for"}
+            options={[
+              { label: "Self", value: "Self" },
+              { label: "Family/Friends", value: "Family/Friends" },
+              { label: "Charity", value: "Charity" },
+            ]}
+            label="Raising this Campaign for:"
+            onChange={onChange}
+            value={value}
+          />
+        )}
+      />
+      <Controller
+        control={control}
+        name="account_holder_name"
+        render={({ field }) => (
+          <InputField
+            name={"account_holder_name"}
+            label="Account holder Name:"
+            required={true}
             {...field}
           />
-        </>
-      )}
-    />
-  </div>
-  )
+        )}
+      />
+
+      <Controller
+        control={control}
+        name="account_number"
+        render={({ field }) => (
+          <InputField
+            required={true}
+            name={"account_number"}
+            label={"Account Number:"}
+            {...field}
+          />
+        )}
+      />
+      <Controller
+        control={control}
+        name="bank_name"
+        render={({ field }) => (
+          <InputField
+            name={"bank_name"}
+            required={true}
+            label={"Bank Name:"}
+            {...field}
+          />
+        )}
+      />
+
+      <Controller
+        control={control}
+        name="branch_name"
+        render={({ field }) => (
+          <InputField
+            name={"branch_name"}
+            required={true}
+            label={"Branch Name:"}
+            {...field}
+          />
+        )}
+      />
+      <Controller
+        control={control}
+        name="ifsc_code"
+        render={({ field }) => (
+          <InputField
+            required={true}
+            name={"ifsc_code"}
+            label={"IFSC:"}
+            {...field}
+          />
+        )}
+      />
+      <Controller
+        control={control}
+        name="passbook_image"
+        render={({ field: { onChange, value } }) => (
+          <>
+            <UploadField
+              label="Upload Bank Passbook/Cheque:"
+              name="passbook_image"
+              placeholder={
+                "Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
+              }
+              onChange={onChange}
+              value={value}
+            />
+          </>
+        )}
+      />
+    </div>
+  );
 }
 
-export default AccountDetails
+export default AccountDetails;

@@ -37,16 +37,16 @@ const dataGridStyles = {
   width: "100%",
   "& .MuiTableHead-root": {
     borderRadius: 0,
-    color: '#000',
+    color: "#000",
     "& .MuiDataGrid-columnHeaderTitleContainer": {
       padding: "2px 8px 2px 6px",
       // padding: "2px 8px 2px 6px",
     },
     "& .MuiTableCell-root.MuiTableCell-head": {
-      backgroundColor: '#e4e4e4',
+      backgroundColor: "#e4e4e4",
       fontWeight: "400",
       fontFamily: "FuturaMedium",
-      color: '#000',
+      color: "#000",
       fontSize: {
         sm: "12px",
         lg: "12.5px",
@@ -101,7 +101,7 @@ const dataGridStyles = {
     },
 
     "& .resizer.isResizing": {
-      background: '#000',
+      background: "#000",
       width: "3px",
     },
   },
@@ -131,7 +131,7 @@ const ReactTable = ({
   const [customPageCount, setCustomPageCount] = useState(1);
   const [tableData, setTableData] = useState(
     // ("rows" in data && data?.rows) || []
-    (data?.products) || []
+    data?.products || []
   );
   const [filters, setFilters] = useState(
     localStorage.getItem(`filters-of-${title_slug}`)
@@ -346,7 +346,6 @@ const ReactTable = ({
     },
   });
 
-
   const handleSortingChange = (accessor, colOrder) => {
     setSortField(accessor);
     setOrder(colOrder);
@@ -421,76 +420,75 @@ const ReactTable = ({
 
   return (
     <Grid
-        container
-        className="flex flex-column gap-2 pt-4"
-        rowSpacing={2}
-        style={{ maxWidth: "100%" }}
+      container
+      className="flex flex-column gap-2 pt-4"
+      rowSpacing={2}
+      style={{ maxWidth: "100%" }}
+    >
+      {/* <div style={{ maxWidth: "100%", overflowX: "auto" }}> */}
+      <Grid
+        item
+        // xs={12}
+        className="d-flex align-items-center justify-content-between flex-wrap w-full"
       >
-        {/* <div style={{ maxWidth: "100%", overflowX: "auto" }}> */}
+        <Grid item xs={12} md={6} display="flex" alignItems={"center"}>
+          {!noSearch ? (
+            <>
+              <Search
+                sx={{ width: { xs: "200px", md: "300px" } }}
+                value={query}
+                onClear={onClear}
+                onChange={onChange}
+              />
+            </>
+          ) : (
+            <div />
+          )}
+          {!noSearch && showFilter && <div className="border  py-3 mx-3"></div>}
+          {showFilter && (
+            <ApplyFilters
+              title={title}
+              allColumns={allColumns}
+              filters={filters}
+              setFilters={setFilters}
+            />
+          )}
+        </Grid>
         <Grid
           item
-          // xs={12}
-          className="d-flex align-items-center justify-content-between flex-wrap w-full"
+          xs={12}
+          md={6}
+          mt={1}
+          display="flex"
+          justifyContent="flex-end"
         >
-          <Grid item xs={12} md={6} display="flex" alignItems={"center"}>
-            {!noSearch ? (
-              <>
-                <Search
-                  sx={{ width: { xs: "200px", md: "300px" } }}
-                  value={query}
-                  onClear={onClear}
-                  onChange={onChange}
-                />
-              </>
-            ) : (
-              <div />
-            )}
-            {!noSearch && showFilter && <div className="border  py-3 mx-3"></div>}
-            {showFilter && (
-          <ApplyFilters
-            title={title}
+          <ManageColumns
             allColumns={allColumns}
-            filters={filters}
-            setFilters={setFilters}
+            setColumnOrder={setColumnOrder}
+            visibleColumns={visibleColumns}
+            toggleHideAllColumns={toggleHideAllColumns}
+            setColumnOrderArr={setColumnOrderArr}
+            mutate={mutate}
+            postTableMetaData={postTableMetaData}
+            isLoading={mutateLoading}
           />
-        )}
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            md={6}
-            mt={1}
-            display="flex"
-            justifyContent="flex-end"
+          <SecondaryButton
+            startIcon={
+              <FilterReset
+                color={colors.primary.dark}
+                size={"20"}
+                className="me-1"
+              />
+            }
           >
-            <ManageColumns
-              allColumns={allColumns}
-              setColumnOrder={setColumnOrder}
-              visibleColumns={visibleColumns}
-              toggleHideAllColumns={toggleHideAllColumns}
-              setColumnOrderArr={setColumnOrderArr}
-              mutate={mutate}
-              postTableMetaData={postTableMetaData}
-              isLoading={mutateLoading}
-            />
-            <SecondaryButton
-                startIcon={
-                  <FilterReset
-                    color={colors.primary.dark}
-                    size={"20"}
-                    className="me-1"
-                  />
-                }
-              >
-                Reset Filters
-              </SecondaryButton>
+            Reset Filters
+          </SecondaryButton>
 
-            {addButton && <div className="border  py-3 mx-3"></div>}
-            {addButton}
-          </Grid>
-       
+          {addButton && <div className="border  py-3 mx-3"></div>}
+          {addButton}
+        </Grid>
       </Grid>
-      <Grid        
+      <Grid
         item
         sx={{
           height: !("rows" in data ? data.rows : data || []).length
@@ -502,7 +500,7 @@ const ReactTable = ({
           overflowX: "auto",
         }}
       >
-        <Table  sx={dataGridStyles} {...getTableProps()}>
+        <Table sx={dataGridStyles} {...getTableProps()}>
           <TableHead>
             {headerGroups.map((headerGroup) => (
               <TableRow

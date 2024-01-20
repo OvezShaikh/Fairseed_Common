@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.cdnfonts.com/css/satoshi');
+@import url("https://fonts.cdnfonts.com/css/satoshi");
 body {
   margin: 0;
   font-family: "FuturaMedium", sans-serif;
@@ -15,7 +15,7 @@ body {
   box-sizing: border-box;
 }
 
- :root {
+:root {
   --primary: #fef0d2bf;
   --sec: #ff832b;
   --sec-ligh: #f9aa56;
@@ -24,14 +24,13 @@ body {
   --blue: rgba(43, 51, 231, 1);
 }
 
-
-.container{
+.container {
   max-width: 1920px;
   margin: auto;
 }
 
 .gradient-button::after {
-  background: linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%);  
+  background: linear-gradient(to right, #ff9f0a 0%, #ff375f 62.9%);
   content: "";
   position: absolute;
   bottom: 0;
@@ -39,7 +38,6 @@ body {
   height: 2px;
   width: 100%;
 }
-
 
 .main-container {
   min-height: calc(100vh - 120px);
@@ -49,12 +47,11 @@ body {
   position: fixed;
 }
 .ql-toolbar.ql-snow {
-  background:#EAECF0
+  background: #eaecf0;
 }
 /* .ql-editor{
   min-height: 150px;
 } */
-
 
 .quill {
   height: 100%;
@@ -66,11 +63,10 @@ body {
 .ql-editor {
   height: 100% !important;
 }
-.ql-toolbar.ql-snow + .ql-container.ql-snow{
+.ql-toolbar.ql-snow + .ql-container.ql-snow {
   border-bottom-left-radius: 10px 10px;
   border-bottom-right-radius: 10px 10px;
 }
-
 
 @media screen and (max-width: 900px) {
   .main-container {
@@ -80,8 +76,6 @@ body {
     padding: 0em 0.4em;
   }
 }
-
-
 
 /* ******************** SCROLLBAR CSS ********************** */
 ::-webkit-scrollbar {
@@ -106,9 +100,6 @@ body {
   /* background: rgba(39, 76, 119, 0.7); */
   background: #d3d3d3;
 }
-
-
-
 
 /* #########################  Normal Table Stylng ############################### */
 
@@ -144,11 +135,11 @@ body {
 }
 
 /* ##############STEPPER###################### */
-.css-n7tliy-MuiStep-root{
+.css-n7tliy-MuiStep-root {
   padding-bottom: 1rem !important;
 }
 .css-1hv8oq8-MuiStepLabel-label.Mui-active {
-  color:'red' !important;
+  color: "red" !important;
 }
 
 /* drag and drop css */
@@ -163,50 +154,50 @@ body {
   justify-content: center;
   align-items: center; */
   display: flex;
-width:  567px;
-height:50vh;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-gap: 16px;
+  width: 567px;
+  height: 50vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
 
-border-radius: var(--Spacing-12, 12px);
-border: 2px dashed #36C;
+  border-radius: var(--Spacing-12, 12px);
+  border: 2px dashed #36c;
 
-background: #F7FAFF;
+  background: #f7faff;
 }
-
 
 /* ###########UPLOAD FIELD########################## */
-.Upload_field{
+.Upload_field {
   border-radius: 4px;
 
-border: 1px solid #DCDFE3;
+  border: 1px solid #dcdfe3;
 }
-.Upload_field:has(.Mui-focused){
+.Upload_field:has(.Mui-focused) {
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.15);
-      border: 1px solid black;
-      height: 74px;
-        }
+  border: 1px solid black;
+  height: 74px;
+}
 
-        
 /* ##########################Header############################### */
-.scrollbar{
+.scrollbar {
   display: none;
 }
-
-
 
 .swiper-pagination-bullet.swiper-pagination-bullet-active {
   background-color: red !important;
 }
 
-.swiper-button-next::after{
+.swiper-button-next::after {
   color: white;
   width: 90px;
   height: 70px;
   backdrop-filter: blur(10px);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.32) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.32) 100%
+  );
   border-radius: 50%;
   padding: 30px;
   overflow: hidden;
@@ -217,17 +208,19 @@ border: 1px solid #DCDFE3;
   margin-right: 40px;
 }
 
-.swiper-button-prev{
+.swiper-button-prev {
   color: black;
   width: 50px;
   margin-left: 20px;
 }
-.swiper-button-prev.swiper-button-disabled{
+.swiper-button-prev.swiper-button-disabled {
   color: black;
-  
-
 }
-.swiper-button-prev:after{
+.swiper-button-prev:after {
   color: black;
-
 }
+
+/* #################LocationButtonCategory#################### */
+/* .css-1wqyk0y-muibuttonbase-root-muibutton-root:hover {
+  background: red !important;
+} */

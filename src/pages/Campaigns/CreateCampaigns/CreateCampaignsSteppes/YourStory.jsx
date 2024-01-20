@@ -3,9 +3,7 @@ import {
   Controller,
   useFormContext,
 } from "react-hook-form";
-import InputField from '../../../../components/inputs/InputField';
 import { useState } from 'react';
-import images from '../../../../constants/images';
 import { FormLabel } from 'react-bootstrap';
 import ReactQuill from "react-quill";
 import { colors } from '../../../../constants/theme';
@@ -21,8 +19,8 @@ function YourStory() {
     <div className="py-20 ">
       <Controller
         control={control}
-        name="Story"
-        render={({ field }) => (
+        name="story"
+        render={({ field:{onChange,value} }) => (
           <div className="pb-[8rem] ">
             <FormLabel
               className="text-capitalize font-medium d-flex align-items-center"
@@ -43,8 +41,8 @@ function YourStory() {
             <div className="h-[250px]">
               <ReactQuill
                 theme="snow"
-                name={"Story"}
-                value={valueText}
+                name={"story"}
+                value={value}
                 placeholder={`Write a story that does justice to your cause and make the supporter click the Donate button.
                 
   Pointers:Explain who you are raising it for.
@@ -52,8 +50,8 @@ function YourStory() {
   Explain why you are raising funds?
                 
   Make an Appeal.`}
-                onChange={setValueText}
-              />
+  onChange={onChange}
+  />
             </div>
           </div>
         )}
@@ -61,8 +59,8 @@ function YourStory() {
       />
       <Controller
         control={control}
-        name="Summary"
-        render={({ field }) => (
+        name="summary"
+        render={({ field:{onChange,value} }) => (
           <div className="pb-[8rem]">
             <FormLabel
               className="text-capitalize font-medium d-flex align-items-center"
@@ -83,11 +81,11 @@ function YourStory() {
             <div className="h-[119px]">
               <ReactQuill
                 theme="snow"
-                name={"Summary"}
-                value={valueText2}
+                // name={"summary"}
+                value={value}
                 placeholder="Summarize in 100 words max."
                 style={{ "& .ql-editor": { minHeight: "50px" } }}
-                onChange={setValueText2}
+                onChange={onChange}
               />
             </div>
           </div>
@@ -95,12 +93,12 @@ function YourStory() {
       />
        <Controller
       control={control}
-      name="Document:"
+      name="document:"
       render={({ field }) => (
         <>
           <UploadField
             label="Document:"
-            name="Document:"
+            name="document:"
             placeholder={
               "Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
             }
