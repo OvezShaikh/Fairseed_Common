@@ -86,7 +86,7 @@ const DropZone = ({
                 ) : isDragActive ? (
                   <Typography color="secondary">Drop here...</Typography>
                 ) : (
-                  <> */}{" "}
+                  <> */}
                 <Button
                   color="warning"
                   sx={{

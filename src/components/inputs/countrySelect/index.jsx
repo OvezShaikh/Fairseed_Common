@@ -17,9 +17,11 @@ const CountrySelect = ({
   countriesList,
   ...otherProps
 }) => {
-  const [field, meta] = useField(name);
+  // const [field, meta] = useField(name);
+  // console.log('Field:---------------->', field);
+  // console.log('Meta:----------------->', meta);
   const configTextfield = {
-    ...field,
+    // ...field,
     ...otherProps,
     name,
     variant: "outlined",
@@ -28,37 +30,45 @@ const CountrySelect = ({
   // if (countriesList) {
   //   configTextfield.countries = countriesList;
   // }
-  if (meta && meta.touched && meta.error) {
-    configTextfield.error = true;
-    configTextfield.helperText = meta.error;
-  }
-  const { setFieldValue, values } = useFormikContext();
+  // if (meta && meta.touched && meta.error) {
+  //   configTextfield.error = true;
+  //   configTextfield.helperText = meta.error;
+  // }
+  // const { setFieldValue, values } = useFormikContext();
 
   return (
     <>
       <FormLabel
-        className="text-capitalize font-medium d-flex mb-1 align-items-center"
-        sx={{ color: colors.text.main, fontSize: "0.8rem" }}
+        className="text-capitalize  d-flex mb-1 ml-2 align-items-center"
+        sx={{ color: "#383A42", fontSize: "20px", fontWeight: 700 }}
       >
-        {label}{" "}
+        {label}
       </FormLabel>
       <ReactFlagsSelect
-        selected={values?.[name]}
+        selected={value}
         onSelect={(value) => {
-          setFieldValue(name, value);
+          // setFieldValue(name, value);
           onChange && onChange(value);
         }}
         searchable
         id="react-flag-select"
-        style={{ "& #rfs-btn": { border: "1px solid #e2e2e2" } }}
+        style={{
+          "& #rfs-btn": {
+            border: "1px solid #e2e2e2",
+            outerHeight: "2rem",
+            borderRadius:'50%',
+            padding: "20px",
+            sx,
+          },
+        }}
         {...configTextfield}
       />
-      <ErrorMessage
+      {/* <ErrorMessage
         name={name}
         render={(msg) => (
           <div style={{ color: "red", fontSize: "0.7rem" }}>{msg}</div>
         )}
-      />
+      /> */}
     </>
   );
 };

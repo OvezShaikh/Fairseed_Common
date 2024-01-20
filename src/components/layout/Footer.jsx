@@ -261,7 +261,7 @@ function Footer() {
                 <input
                   className="text-[15px] pl-4"
                   aria-label="Demo input"
-                  multiline
+                  multiline={'true'}
                   placeholder="Enter your email"
                 />
                 <div

@@ -1,20 +1,17 @@
-import React from 'react'
+import React from "react";
 
-import AdminLayout from '../../components/layout/AdminLayout/Index'
+import AdminLayout from "../../components/layout/AdminLayout/Index";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AdminRoutes from './AdminRoutes'
-import Dashboard from '../../components/AdminPanelPages/Dashboard/Dashboard'
-import Donation from '../../components/AdminPanelPages/Donation/Index'
-import  Categories  from '../../components/AdminPanelPages/Categories/Index';
-
-
+import AdminRoutes from "./AdminRoutes";
+import Dashboard from "../../components/AdminPanelPages/Dashboard/Index";
+import Donation from "../../components/AdminPanelPages/Donation/Index";
+import Categories from "../../components/AdminPanelPages/Categories/Index";
 
 function AdminPage() {
   return (
     <Routes>
-    
-         {/* <Route index element={<AdminPage/>} /> */}
-        {/* <Route path="/AdminPage" element={<AdminPage/>} /> */}
+      {/* <Route index element={<AdminPage/>} /> */}
+      {/* <Route path="/AdminPage" element={<AdminPage/>} /> */}
       <Route
         path="/"
         element={
@@ -28,12 +25,11 @@ function AdminPage() {
         path="/General-Settings/*"
         element={
           <AdminLayout>
-            <AdminRoutes/>
+            <AdminRoutes />
           </AdminLayout>
         }
       />
 
-      
       <Route
         path="/Dashboard"
         element={
@@ -45,7 +41,6 @@ function AdminPage() {
       <Route
         path="/Landing-Page"
         element={
-
           <AdminLayout>
             <h1>Landing Page</h1>
           </AdminLayout>
@@ -55,7 +50,7 @@ function AdminPage() {
         path="/Categories"
         element={
           <AdminLayout>
-            <Categories/>
+            <Categories />
           </AdminLayout>
         }
       />
@@ -111,7 +106,7 @@ function AdminPage() {
         path="/Donations"
         element={
           <AdminLayout>
-            <Donation/>
+            <Donation />
           </AdminLayout>
         }
       />
@@ -149,7 +144,7 @@ function AdminPage() {
         }
       />
     </Routes>
-  )
+  );
 }
 
-export default AdminPage
+export default AdminPage;
