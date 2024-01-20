@@ -25,11 +25,12 @@ function Home() {
       const perPage = 8;
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
-      );
-      const res = response.data;
-      console.log(res, "cards");
-      console.log(res.rows);
-      if (Array.isArray(res.rows)) {
+        );
+        const res = response.data;
+        console.log(res, "cards");
+        console.log(res.rows);
+        // `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
+        if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList([...userList, ...res.rows]);
       } else {
@@ -113,7 +114,7 @@ function Home() {
       <div className="flex pt-[100px] ">
         <div className="w-full flex-wrap flex flex-col items-center mx-10">
           <h1
-            className="text-4xl font-bold pb-4"
+            className="text-4xl font-extrabold pb-4"
             style={{ fontFamily: "Satoshi" }}
           >
             Ongoing Campaigns
@@ -238,6 +239,7 @@ function Home() {
                       fontFamily: "Satoshi",
                       fontWeight: "500",
                       wordWrap: "break-word",
+                      marginTop: 6,
                     }}
                   >
                     Start with the basics
@@ -279,6 +281,7 @@ function Home() {
                       fontFamily: "Satoshi",
                       fontWeight: "500",
                       wordWrap: "break-word",
+                      marginTop: 6,
                     }}
                   >
                     Tell your story
@@ -320,6 +323,7 @@ function Home() {
                       fontFamily: "Satoshi",
                       fontWeight: "500",
                       wordWrap: "break-word",
+                      marginTop: 4,
                     }}
                   >
                     Upload ID and a valid
@@ -341,7 +345,7 @@ function Home() {
               }}
               className="p-2 my-10"
             >
-              <div style={{ width: 32, height: 32, position: "relative" }}>
+              <div className="mr-2" style={{ width: 32, height: 32, position: "relative" }}>
                 <img src={images.RocketLaunch} alt="" />
               </div>
               <div>Launch a Campaign Now !</div>
@@ -357,14 +361,14 @@ function Home() {
           Causes by Category
         </h1>
         <p
-          className="text-black/40 font-bold mt-3 w-[33%]"
+          className="text-black/60 font-bold mt-3 w-[33%]"
           style={{ fontFamily: "Satoshi" }}
         >
           Be it for a personal need, social cause or a creative idea - you can
           count on us for the project that you want to raise funds for.
         </p>
       </div>
-      <div className="flexDirection:'row' mt-[80px] gap-5 px-[50px] ">
+      <div className="flexDirection:'row' w-full justify-center items-center flex mt-[80px] gap-5 px-[50px] ">
         <Slider />
       </div>
       <div className="">

@@ -10,7 +10,6 @@ import CampaignsByCategory from "./pages/Campaigns/CampaignsByCategory/Index";
 import OnGoingCampaigns from "./pages/Campaigns/OnGoingCampaigns/Index";
 
 function App() {
-  console.log("API");
   return (
     <div>
       {/* <OnGoingCampaigns/> */}
