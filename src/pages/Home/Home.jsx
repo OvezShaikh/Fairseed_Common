@@ -368,7 +368,7 @@ function Home() {
           count on us for the project that you want to raise funds for.
         </p>
       </div>
-      <div className="flexDirection:'row' mt-[80px] gap-5 px-[50px] ">
+      <div className="flexDirection:'row' w-full justify-center items-center flex mt-[80px] gap-5 px-[50px] ">
         <Slider />
       </div>
       <div className="">
