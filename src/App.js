@@ -11,7 +11,7 @@ import OnGoingCampaigns from "./pages/Campaigns/OnGoingCampaigns/Index";
 
 
 function App() {
-  console.log(`${process.env.REACT_APP_BE_BASE_URL}`);
+  console.log(`${process.env.REACT_APP_API_URL}`);
   return (
     <div >
       {/* <OnGoingCampaigns/> */}

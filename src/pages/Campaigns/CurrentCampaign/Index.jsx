@@ -372,7 +372,7 @@ function CurrentCampaign({key,username,cardImage,goalAmount,fundRaised,daysLeft,
   // const page=1;
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_BE_BASE_URL}/campaign/campaign-details/${id}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/campaign/campaign-details/${id}`)
       .then((res) => {
         console.log('API Response:', res.data);
         setCardDetails(res.data.data);
@@ -523,9 +523,9 @@ function CurrentCampaign({key,username,cardImage,goalAmount,fundRaised,daysLeft,
             <div className="mb-5 w-3/4">
               {/* <LinearWithValueLabel className='!h-9' height={'30px'} value={30} /> */}
               <LinearProgress
-                color="success"
+                
                 variant="determinate"
-                style={{ height: "30px", borderRadius: "16px" }}
+                sx={{ height: "30px", borderRadius: "16px", background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${((fundRaised / goalAmount) * 100)}%, #e0e0e0 ${((fundRaised / goalAmount) * 100)}%)`, "& .MuiLinearProgress-bar":{  backgroundColor: '#0DC7B1 !important  '} }}
                 value={(cardDetails?.fund_raised / cardDetails?.goal_amount) * 100}
               />
             </div>

@@ -18,7 +18,7 @@ function Card({
   location,
   og_id,
 }) {
-  const image = "{`${process.env.REACT_APP_BE_BASE_URL}`+ cardImage}";
+  const image = process.env.REACT_APP_API_URL + cardImage;
   const [campaignData, setCampaignData] = useState([]);
   console.log(
     "Logging information for Card component:",
@@ -29,7 +29,7 @@ function Card({
     userCount,
     location
   );
-  console.log(image);
+  console.log(image,"imahahgega ");
   return (
     <>
       <div
@@ -44,7 +44,7 @@ function Card({
                  </div>
                  </div>    */}
         <Link to={`/campaign-details/${og_id}`}>
-          {/* <img src={process.env.REACT_APP_BE_BASE_URL + cardImage} className="card-img-top h-80" alt="..."  />  */}
+          {/* <img src={process.env.REACT_APP_API_URL + cardImage} className="card-img-top h-80" alt="..."  />  */}
           <img
             src={`${process.env.REACT_APP_API_URL}` + cardImage}
             className="card-img-top h-80"
@@ -69,10 +69,11 @@ function Card({
           {/* <img className="pt-1 pb-6" src={images?.range2}></img> */}
           <div className="pt-1 pb-4 ">
             <LinearProgress
-              color="success"
-              variant="determinate"
-              style={{ height: "10px", borderRadius: "16px" }}
+              
+              variant="determinate"   
+              sx={{ height: "10px", borderRadius: "16px", background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${((fundRaised / goalAmount) * 100)}%, #e0e0e0 ${((fundRaised / goalAmount) * 100)}%)`, "& .MuiLinearProgress-bar":{  backgroundColor: '#0DC7B1 !important  '} }}
               value={(fundRaised / goalAmount) * 100}
+
             />
             {/* <ProgressBar/> */}
           </div>

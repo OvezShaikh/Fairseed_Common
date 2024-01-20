@@ -15,18 +15,18 @@ const MultipleRows = () => {
   const [page, setPage] = useState(1);
   const limit = 20;
 
-const MultipleRows = () => {
-  const [sliderData, setSliderData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [totalPages, setTotalPages] = useState(1);
-  const [page, setPage] = useState(1);
-  const limit = 20;
+// const MultipleRows = () => {
+//   const [sliderData, setSliderData] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
+//   const [totalPages, setTotalPages] = useState(1);
+//   const [page, setPage] = useState(1);
+//   const limit = 20;
 
   useEffect(() => {
     const fetchSliderData = async () => {
       try {
-        const API_ENDPOINT = `${process.env.REACT_APP_BE_BASE_URL}/campaign/campaign-category?page=${page}&limit=${limit}`;
+        const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/campaign/campaign-category?page=${page}&limit=${limit}`;
         const response = await axios.get(API_ENDPOINT);
         setSliderData(response.data.rows);
         setLoading(false);
@@ -114,7 +114,7 @@ const MultipleRows = () => {
                         "linear-gradient(0deg, #EBEBEB 0%, #EBEBEB 100%)",
                       borderRadius: 12,
                     }}
-                    src={`${process.env.REACT_APP_BE_BASE_URL}` + item.image}
+                    src={`${process.env.REACT_APP_API_URL}` + item.image}
                     alt={`Image ${index + 1}`}
                   />
                 </div>
@@ -136,5 +136,5 @@ const MultipleRows = () => {
   );
 }; 
 
-}
+
 export default MultipleRows;

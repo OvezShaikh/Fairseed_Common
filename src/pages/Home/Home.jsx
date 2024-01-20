@@ -24,7 +24,7 @@ function Home() {
     try {
       const perPage = 8;
       const response = await axios.get(
-        `${process.env.REACT_APP_BE_BASE_URL}/campaign/campaign?page=${page}&limit=${perPage}`
+        `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
         );
         const res = response.data;
         console.log(res, "cards");
@@ -114,7 +114,7 @@ function Home() {
       <div className="flex pt-[100px] ">
         <div className="w-full flex-wrap flex flex-col items-center mx-10">
           <h1
-            className="text-4xl font-bold pb-4"
+            className="text-4xl font-extrabold pb-4"
             style={{ fontFamily: "Satoshi" }}
           >
             Ongoing Campaigns
@@ -239,6 +239,7 @@ function Home() {
                       fontFamily: "Satoshi",
                       fontWeight: "500",
                       wordWrap: "break-word",
+                      marginTop: 6,
                     }}
                   >
                     Start with the basics
@@ -280,6 +281,7 @@ function Home() {
                       fontFamily: "Satoshi",
                       fontWeight: "500",
                       wordWrap: "break-word",
+                      marginTop: 6,
                     }}
                   >
                     Tell your story
@@ -321,6 +323,7 @@ function Home() {
                       fontFamily: "Satoshi",
                       fontWeight: "500",
                       wordWrap: "break-word",
+                      marginTop: 4,
                     }}
                   >
                     Upload ID and a valid
@@ -342,7 +345,7 @@ function Home() {
               }}
               className="p-2 my-10"
             >
-              <div style={{ width: 32, height: 32, position: "relative" }}>
+              <div className="mr-2" style={{ width: 32, height: 32, position: "relative" }}>
                 <img src={images.RocketLaunch} alt="" />
               </div>
               <div>Launch a Campaign Now !</div>
