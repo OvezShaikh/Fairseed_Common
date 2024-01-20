@@ -10,7 +10,11 @@ import CampaignsByCategory from "./pages/Campaigns/CampaignsByCategory/Index";
 import OnGoingCampaigns from "./pages/Campaigns/OnGoingCampaigns/Index";
 
 function App() {
+<<<<<<< HEAD
   console.log("API");
+=======
+  console.log(`${process.env.REACT_APP_API_URL}`);
+>>>>>>> origin/ovez-fe
   return (
     <div>
       {/* <OnGoingCampaigns/> */}

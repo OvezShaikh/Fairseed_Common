@@ -123,7 +123,7 @@ function Footer() {
                     fontWeight: "700",
                   }}
                 >
-                  Quik Link
+                  Quick Link
                 </a>
                 <ul className="mt-3">
                   <li>
@@ -307,7 +307,7 @@ function Footer() {
 
               <p
             
-                className="text-white mt-3 font-bold"
+                className="text-white mt-8 font-bold"
                 style={{
                   fontSize: 16,
                   fontFamily: "Satoshi",

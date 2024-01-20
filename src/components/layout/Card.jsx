@@ -18,7 +18,7 @@ function Card({
   location,
   og_id,
 }) {
-  const image = "{`${process.env.REACT_APP_BE_BASE_URL}`+ cardImage}";
+  const image = process.env.REACT_APP_API_URL + cardImage;
   const [campaignData, setCampaignData] = useState([]);
   console.log(
     "Logging information for Card component:",
@@ -29,7 +29,7 @@ function Card({
     userCount,
     location
   );
-  console.log(image);
+  console.log(image,"imahahgega ");
   return (
     <>
       <div
@@ -44,11 +44,12 @@ function Card({
                  </div>
                  </div>    */}
         <Link to={`/campaign-details/${og_id}`}>
-          {/* <img src={process.env.REACT_APP_BE_BASE_URL + cardImage} className="card-img-top h-80" alt="..."  />  */}
+          {/* <img src={process.env.REACT_APP_API_URL + cardImage} className="card-img-top h-80" alt="..."  />  */}
           <img
             src={`${process.env.REACT_APP_API_URL}` + cardImage}
             className="card-img-top h-80"
             alt="..."
+            
           />
         </Link>
         <div className="card-body">
@@ -63,45 +64,46 @@ function Card({
             {title}
           </p>
           <p className="text-black/40">
-            <span className="font-bold text-black">₹{fundRaised} </span>
+            <span className="font-bold text-black ">₹{fundRaised} </span>
             funded of ₹{goalAmount}
           </p>
           {/* <img className="pt-1 pb-6" src={images?.range2}></img> */}
           <div className="pt-1 pb-4 ">
             <LinearProgress
-              color="success"
-              variant="determinate"
-              style={{ height: "10px", borderRadius: "16px" }}
+              
+              variant="determinate"   
+              sx={{ height: "10px", borderRadius: "16px", background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${((fundRaised / goalAmount) * 100)}%, #e0e0e0 ${((fundRaised / goalAmount) * 100)}%)`, "& .MuiLinearProgress-bar":{  backgroundColor: '#0DC7B1 !important  '} }}
               value={(fundRaised / goalAmount) * 100}
+
             />
             {/* <ProgressBar/> */}
           </div>
           <div className="flex justify-center items-center text-center  overflow-hidden w-full">
             <div className="flex flex-col w-[65%]">
               <div className="flex pl-1  flex-row">
-                <div className="flex justify-center items-center text-center">
+                <div className="flex justify-center items-center text-center ">
                   <img className=" pt-2 " src={icons?.Threeuser} />
                   <p className="text-black/40 pt-2 pl-1 text-[15px]">
                     {userCount}
                   </p>
                 </div>
-                <div className="flex pl-3 justify-center items-center text-center">
+                <div className="flex pl-3 justify-center items-center text-center ">
                   <img className=" pt-2 pl-3  " src={icons?.Clock} />
                 </div>
-                <p className="text-black/40 pt-2 pl-1 text-[15px]">
+                <p className="text-black/40 pt-2 pl-1 text-[15px] ">
                   {daysLeft} days left
                 </p>
                 {/* <p className="text-black/40 pt-1.5 pl-1 text-[15px]">17</p> */}
               </div>
               <div className="flex justify-start">
-                <img className="pt-2 w-7  h-7  " src={images?.MapPin2} />
-                <p className="text-black/40 pt-2  text-[15px]">{location}</p>
+                <img className="pt-2 w-7  h-7 " src={images?.MapPin2} />
+                <p className="text-black/40 pt-2  text-[15px] ">{location}</p>
                 {/* <p className="text-black/40 pt-1.5 pl-1 text-[15px]">Pune,India</p> */}
               </div>
             </div>
             <div className="w-[35%]">
               <button
-                className=" border-2   rounded-lg border-red-400 px-2 py-1"
+                className=" border-2   rounded-lg border-red-400 px-2 py-1 "
                 style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
               >
                 <div className="flex pl-1 pr-2 py-1 ">

@@ -4,6 +4,7 @@ import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Slider.css";
+import images from "../../constants/images";
 import { Link } from "react-router-dom";
 
 const MultipleRows = () => {
@@ -13,6 +14,14 @@ const MultipleRows = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
   const limit = 20;
+
+// const MultipleRows = () => {
+//   const [sliderData, setSliderData] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
+//   const [totalPages, setTotalPages] = useState(1);
+//   const [page, setPage] = useState(1);
+//   const limit = 20;
 
   useEffect(() => {
     const fetchSliderData = async () => {
@@ -40,7 +49,7 @@ const MultipleRows = () => {
 
   const settings = {
     dots: true,
-    className: "center overflow:hidden",
+    className: "center overflow:hidden pb-5",
     centerMode: false,
     infinite: false,
     slidesToShow: 6,
@@ -87,8 +96,8 @@ const MultipleRows = () => {
   };
 
   return (
-    <div className="slider-container">
-      <Slider {...settings}>
+    <div className="slider-container pb-2 w-[90%]">
+      <Slider style={{gap:"30px"}} {...settings}>
         {loading && <div>Loading...</div>}
         {error && <div>Error: {error}</div>}
         {!loading &&
@@ -96,28 +105,30 @@ const MultipleRows = () => {
           sliderData.map((item, index) => (
             <>
               <Link to={`/Home/CampaignsByCategory/${item.id}`}>
+                <div className="pb-5 flex flex-col justify-center items-center text-center mr-2">
                 <div key={index}>
                   <img
                     style={{
-                      width: "250px",
+                      width: "220px",
                       height: "200px",
                       background:
                         "linear-gradient(0deg, #EBEBEB 0%, #EBEBEB 100%)",
                       borderRadius: 12,
                     }}
-                    src={`${process.env.REACT_APP_BE_BASE_URL}` + item.image}
+                    src={`${process.env.REACT_APP_API_URL}` + item.image}
                     alt={`Image ${index + 1}`}
                   />
                 </div>
                 <div
-                  className="p-3 text-xl w-[90%] text-center"
+                  className="py-2 text-xl w-[100%] text-center "
                   style={{
-                    fontFamily: "Satoshi ",
+                    fontFamily: "Satoshi",
                     color: "#383A42",
                     fontWeight: "500",
                   }}
                 >
                   <h3>{item.name}</h3>
+                  </div>
                 </div>
               </Link>
             </>
@@ -125,5 +136,7 @@ const MultipleRows = () => {
       </Slider>
     </div>
   );
-};
+}; 
+
+
 export default MultipleRows;

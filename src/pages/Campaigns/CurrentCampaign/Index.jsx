@@ -33,10 +33,14 @@ function CurrentCampaign({
   // const page=1;
 
   useEffect(() => {
+<<<<<<< HEAD
     axios
       .get(
         `${process.env.REACT_APP_BE_BASE_URL}/campaign/campaign-details/${id}`
       )
+=======
+    axios.get(`${process.env.REACT_APP_API_URL}/campaign/campaign-details/${id}`)
+>>>>>>> origin/ovez-fe
       .then((res) => {
         console.log("API Response:", res.data);
         setCardDetails(res.data.data);
@@ -111,9 +115,9 @@ function CurrentCampaign({
         <div className="w-full h-full  flex  gap-5">
           <img
             className="w-[65%]  rounded-3xl"
-            src={images.sliderimg}
+            src={`${process.env.REACT_APP_API_URL}` + cardDetails?.campaign_image}
             alt="Img"
-          />
+          />+
           <div
             className="flex flex-col rounded-3xl justify-center items-center w-[35%] "
             style={{ border: "1px solid red" }}
@@ -181,12 +185,17 @@ function CurrentCampaign({
             <div className="mb-5 w-3/4">
               {/* <LinearWithValueLabel className='!h-9' height={'30px'} value={30} /> */}
               <LinearProgress
-                color="success"
+                
                 variant="determinate"
+<<<<<<< HEAD
                 style={{ height: "30px", borderRadius: "16px" }}
                 value={
                   (cardDetails?.fund_raised / cardDetails?.goal_amount) * 100
                 }
+=======
+                sx={{ height: "30px", borderRadius: "16px", background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${((fundRaised / goalAmount) * 100)}%, #e0e0e0 ${((fundRaised / goalAmount) * 100)}%)`, "& .MuiLinearProgress-bar":{  backgroundColor: '#0DC7B1 !important  '} }}
+                value={(cardDetails?.fund_raised / cardDetails?.goal_amount) * 100}
+>>>>>>> origin/ovez-fe
               />
             </div>
             <div className="flex  " style={{ display: "inline-flex" }}>
@@ -293,8 +302,14 @@ function CurrentCampaign({
               </div>
             </div>
             <div className="pt-4">
+<<<<<<< HEAD
               <CampaignsTabs />
             </div>
+=======
+            {cardDetails?.story && (
+  <div className="pt-4" dangerouslySetInnerHTML={{ __html: cardDetails.story }} style={{whiteSpace:"pre-line"}}></div>
+)} </div>
+>>>>>>> origin/ovez-fe
           </div>
           <div
             className="w-[37%] flex pt-2 pl-5  pb-12"

@@ -63,7 +63,7 @@ function Index() {
       console.error("Invalid data structure. Expected an array:", res.data);
     }
     // console.log(res.data.rows);
-    // setCategoryCampaignList(res.data.rows)
+    // setCategoryCampaignList(res.data.rows)   
   };
   useEffect(() => {
     fetchCategoryDetail();

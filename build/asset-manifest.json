@@ -1,7 +1,11 @@
 {
   "files": {
+<<<<<<< HEAD
     "main.css": "/static/css/main.aef5735c.css",
     "main.js": "/static/js/main.ebac3cee.js",
+=======
+    "main.css": "/static/css/main.71f71657.css",
+>>>>>>> origin/ovez-fe
     "static/js/787.bcf9f87a.chunk.js": "/static/js/787.bcf9f87a.chunk.js",
     "static/media/HeaderBgImg.png": "/static/media/HeaderBgImg.c2e2e786029fd166348b.png",
     "static/media/sliderimg.png": "/static/media/sliderimg.5b3800bc6b3348e47bc6.png",
