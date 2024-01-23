@@ -18,7 +18,7 @@ const InputField = ({
   ...otherProps
 }) => {
   // const [field, meta] = useField(name);
-  console.log(required,name,otherProps,"reqqq")
+  console.log(required, name, otherProps, "reqqq")
 
   const configTextfield = {
     // ...field,
@@ -93,7 +93,7 @@ const InputField = ({
     },
     ...sx,
   });
-  console.log("End",required)
+  console.log("End", required)
 
   // const tooltipData = localStorage.getItem("tooltipData")
   //   ? JSON.parse(localStorage.getItem("tooltipData"))?.filter(

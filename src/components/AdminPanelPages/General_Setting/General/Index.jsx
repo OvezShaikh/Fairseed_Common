@@ -9,7 +9,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useState } from "react";
 import axios from "axios";
-import serverAPI from "../../../config/serverAPI";
+import serverAPI from "../../../../config/serverAPI";
 import { toast } from "react-toastify";
 
 const styleLabel = {
@@ -28,26 +28,26 @@ const styleInput = {
 function General() {
   const [valueText, setValueText] = useState('');
   const [value, setValue] = React.useState('off');
-  const handleChange = ( e ) => {
+  const handleChange = (e) => {
     setValue(e.target.value);
   };
-  const data = {id:'',title:'',body:'',userId:''};
-  const [inputData,setInputData] = useState(data)
-  const handleData= (e) => {
+  const data = { id: '', title: '', body: '', userId: '' };
+  const [inputData, setInputData] = useState(data)
+  const handleData = (e) => {
 
-    setInputData({...inputData,[e.target.name]:e.target.value})
+    setInputData({ ...inputData, [e.target.name]: e.target.value })
 
   }
   const handleSubmit = (e) => {
     // e.preventDefault();
-    axios.post('https://dummyjson.com/products/add',inputData)
-    .then((response)=>{
-      console.log(response.data)
-    }).then(()=>{
-      setInputData(data)
-    })
-    
-    toast('data has been send');  
+    axios.post('https://dummyjson.com/products/add', inputData)
+      .then((response) => {
+        console.log(response.data)
+      }).then(() => {
+        setInputData(data)
+      })
+
+    toast('data has been send');
   }
 
   return (
@@ -73,16 +73,16 @@ function General() {
       <FormControl className="pt-7">
         <FormLabel style={styleLabel}>Description</FormLabel>
         {/* <TextEditor  /> */}
-        <ReactQuill theme="snow" value={valueText} style={{borderRadius:'20px'}} onChange={setValueText} />
+        <ReactQuill theme="snow" value={valueText} style={{ borderRadius: '20px' }} onChange={setValueText} />
       </FormControl>
       <div className="flex gap-4 pt-8">
         <FormControl className="w-[25%] ">
           <FormLabel style={styleLabel}>Email Admin</FormLabel>
-          <Input size="lg" style={styleInput}   placeholder="Placeholder Text" />
+          <Input size="lg" style={styleInput} placeholder="Placeholder Text" />
         </FormControl>
         <FormControl className="w-[25%] ">
           <FormLabel style={styleLabel}>Link to terms and conditions</FormLabel>
-          <Input size="lg" style={styleInput}   placeholder="Placeholder" />
+          <Input size="lg" style={styleInput} placeholder="Placeholder" />
         </FormControl>
         <FormControl className="w-[25%] ">
           <FormLabel style={styleLabel}>Link to privacy policy</FormLabel>
@@ -158,7 +158,7 @@ function General() {
         </FormControl>
       </div>
       <div className="flex gap-32 pt-7">
-    
+
         <FormControl className="col-span-4 lg:w-[25%] ">
           <FormLabel style={styleLabel}>Captcha</FormLabel>
           <RadioGroup
@@ -211,11 +211,11 @@ function General() {
             <Radio value="off" label="Off" />
           </RadioGroup>
         </FormControl>
-        
+
       </div>
       <div className="flex justify-center items-center pt-8 ">
-            <button className="px-3 rounded-lg" style={{background:'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',fontFamily:'satoshi',color:'white'}} onClick={handleSubmit}>Save</button>
-        </div>
+        <button className="px-3 rounded-lg" style={{ background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)', fontFamily: 'satoshi', color: 'white' }} onClick={handleSubmit}>Save</button>
+      </div>
     </>
   );
 }

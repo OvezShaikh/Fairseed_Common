@@ -16,7 +16,7 @@ function App() {
       {/* <OnGoingCampaigns/> */}
       {/* <CreateCampaigns/> */}
       {/* <BrowserRouter>
-        <AdminPage/>
+        <AdminPage />
       </BrowserRouter> */}
 
       <BrowserRouter>
@@ -25,11 +25,9 @@ function App() {
           <Route path="/Home" element={<HomePage />} />
           <Route path="/Home/Create-Campaign" element={<CreateCampaigns />} />
           <Route path="/Home/AdminPage" element={<AdminPage />} />
-          {/* <Route path='/Home/CurrentCampaign' element={<CurrentCampaign/>}/> */}
-          {/* <Route path='/Home/OnGoingCampaigns' element={<OnGoingCampaigns/>}/> */}
+
           <Route path="/Home/Donate" element={<Donet />} />
           <Route path="/Home/DonateSettings" element={<DonateSettings />} />
-          {/* <Route path='/Home/ReligiousEducationCampaigns/:id' element={<ReligiousEducationCampaigns/>}/>  */}
           <Route
             path="/Home/CampaignsByCategory/:id"
             element={<CampaignsByCategory />}
@@ -43,3 +41,12 @@ function App() {
 }
 
 export default App;
+{
+  /* <Route path='/Home/CurrentCampaign' element={<CurrentCampaign/>}/> */
+}
+{
+  /* <Route path='/Home/OnGoingCampaigns' element={<OnGoingCampaigns/>}/> */
+}
+{
+  /* <Route path='/Home/ReligiousEducationCampaigns/:id' element={<ReligiousEducationCampaigns/>}/>  */
+}

@@ -4,7 +4,7 @@ import "./Home.css";
 import button from "../../constants/button";
 import Slider from "../../components/layout/Slider";
 import Card from "../../components/layout/Card";
-import ScrollableTabsButtonForce from "../../components/layout/ScrollableTabsButtonAuto";
+import ScrollableTabsButtonForce from "../../components/inputs/Filters/Index";
 import Coursal from "../../components/layout/Coursal";
 import Footer from "../../components/layout/Footer";
 import Navbar from "../../components/layout/Navbar";

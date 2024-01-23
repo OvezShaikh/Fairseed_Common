@@ -15,14 +15,28 @@ import { RiArrowRightSFill } from "react-icons/ri";
 import { Link, useLocation } from "react-router-dom";
 import { TbCaretRightFilled } from "react-icons/tb";
 
-// import {
-//   AdminIcon,
-//   BookIcon,
-//   PhoneIcon,
-//   PolicyIcon,
-//   SettingsIcon,
-//   TeamsIcon,
-// } from "../../../utils/Icons";
+import {
+  AdminIcon,
+  BookIcon,
+  PhoneIcon,
+  PolicyIcon,
+  SettingsIcon,
+  TeamsIcon,
+  DashboardIcon,
+  LandingIcon,
+  CategorysIcon,
+  CausesIcon,
+  CausesApprovalIcon,
+  ScholarshipCausesIcon,
+  ReportedIcon,
+  WithdrawalsIcon,
+  CampaignIcon,
+  DonationIcon,
+  UserIcon,
+  ScholarshipsIcon,
+  PagesIcon,
+  PgSettingsIcon
+} from "../../../utils/Icons";
 import { colors } from "../../../constants/theme";
 import SearchIcon from "@mui/icons-material/Search";
 import { TextField } from "@mui/material";
@@ -53,11 +67,32 @@ const activeSubMenuStyles = {
 
 let Icons = {
   TbCaretRightFilled: (isActive) => <TbCaretRightFilled isActive={isActive} />,
-  // PolicyIcon: (isActive) => <PolicyIcon isActive={isActive} />,
-  // PhoneIcon: (isActive) => <PhoneIcon isActive={isActive} />,
-  // SettingsIcon: (isActive) => <SettingsIcon isActive={isActive} />,
-  // BookIcon: (isActive) => <BookIcon isActive={isActive} />,
-  // AdminIcon: (isActive) => <AdminIcon isActive={isActive} />,
+  PolicyIcon: (isActive) => <PolicyIcon isActive={isActive} />,
+  PhoneIcon: (isActive) => <PhoneIcon isActive={isActive} />,
+  SettingsIcon: (isActive) => <SettingsIcon isActive={isActive} />,
+  BookIcon: (isActive) => <BookIcon isActive={isActive} />,
+  AdminIcon: (isActive) => <AdminIcon isActive={isActive} />,
+  TeamsIcon: (isActive) => <TeamsIcon isActive={isActive} />,
+  LandingIcon: (isActive) => <LandingIcon isActive={isActive} />,
+  CategorysIcon: (isActive) => <CategorysIcon isActive={isActive} />,
+  CausesIcon: (isActive) => <CausesIcon isActive={isActive} />,
+  CausesApprovalIcon: (isActive) => <CausesApprovalIcon isActive={isActive} />,
+  ScholarshipCausesIcon: (isActive) => <ScholarshipCausesIcon isActive={isActive} />,
+  ReportedIcon: (isActive) => <ReportedIcon isActive={isActive} />,
+  CampaignIcon: (isActive) => <CampaignIcon isActive={isActive} />,
+  WithdrawalsIcon: (isActive) => <WithdrawalsIcon isActive={isActive} />,
+  DonationIcon: (isActive) => <DonationIcon isActive={isActive} />,
+  UserIcon: (isActive) => <UserIcon isActive={isActive} />,
+  ScholarshipsIcon: (isActive) => <ScholarshipsIcon isActive={isActive} />,
+  PagesIcon: (isActive) => <PagesIcon isActive={isActive} />,
+  PgSettingsIcon: (isActive) => <PgSettingsIcon isActive={isActive} />,
+  DashboardIcon: (isActive) => <DashboardIcon isActive={isActive} />,
+
+
+
+
+
+
 };
 
 const CollapsibleMenuItem = ({
@@ -77,22 +112,18 @@ const CollapsibleMenuItem = ({
           setSelectedMenu((prev) => (prev !== item.path ? item.path : ""))
         }
         key={item.title + index}
-        
+
       >
         <ListItemButton className="pl-8 ">
-          {/* {item.icon && (
+          {item.icon && (
             <ListItemIcon sx={{ minWidth: "40px" }} className="pr-3">
               {item.icon &&
                 (Icons[item.icon]
                   ? Icons[item.icon](selectedPath.startsWith(item.path))
                   : "")}
             </ListItemIcon>
-          )} */}
-          {selectedPath.startsWith(item.path) ? (
-            <KeyboardArrowUpIcon  />
-          ) : (
-            <KeyboardArrowDownIcon />
           )}
+
           <ListItemText
             primary={item.title}
             primaryTypographyProps={{
@@ -100,10 +131,14 @@ const CollapsibleMenuItem = ({
               fontSize: 16,
               color: colors.text.main,
               fontWeight: 500,
-              paddingLeft:'1rem'
             }}
           />
-          
+          {selectedPath.startsWith(item.path) ? (
+            <KeyboardArrowUpIcon />
+          ) : (
+            <KeyboardArrowDownIcon />
+          )}
+
         </ListItemButton>
       </ListItem>
       <Collapse
@@ -148,12 +183,12 @@ const CollapsibleMenuItem = ({
                       />
                     </svg>
                   )}
-                  
 
-                  
+
+
 
                   <ListItemButton className="pl-8">
-                  <RiArrowRightSFill className="text-[#B6BAC3]" />
+                    <RiArrowRightSFill className="text-[#B6BAC3]" />
                     <ListItemText
                       primary={subItem.title}
                       primaryTypographyProps={{
@@ -180,13 +215,13 @@ const DrawerBody = () => {
 
   const menus = [
     {
-      icon: "Dashboard",
+      icon: "DashboardIcon",
       path: "/Dashboard",
       title: "Dashboard",
     },
 
     {
-      icon: "AdminIcon",
+      icon: "SettingsIcon",
       path: "/General-Settings",
       title: "General Settings ",
       children: [
@@ -210,67 +245,67 @@ const DrawerBody = () => {
       ],
     },
     {
-      icon: "TbCaretRightFille",
+      icon: "LandingIcon",
       path: "/Landing-page",
       title: "Landing Page",
     },
     {
-      icon: "PolicyIcon",
+      icon: "CategorysIcon",
       path: "/Categories",
       title: "Categories",
     },
     {
-      icon: "PolicyIcon",
+      icon: "CausesIcon",
       path: "/Causes",
       title: "Causes",
     },
     {
-      icon: "PolicyIcon",
+      icon: "CausesApprovalIcon",
       path: "/Causes-Edit-Approval",
       title: "Cause Edit Approval",
     },
     {
-      icon: "PolicyIcon",
+      icon: "ScholarshipCausesIcon",
       path: "/Scholarship-Cause",
       title: "Scholarship Cause",
     },
     {
-      icon: "PolicyIcon",
+      icon: "ReportedIcon",
       path: "/Reported-Cause",
       title: "Reported Cause",
     },
     {
-      icon: "PolicyIcon",
+      icon: "WithdrawalsIcon",
       path: "/Withdrawals",
       title: "Withdrawals",
     },
     {
-      icon: "PolicyIcon",
+      icon: "CampaignIcon",
       path: "/Cause-KYC",
       title: "Cause KYC",
     },
     {
-      icon: "PolicyIcon",
+      icon: "DonationIcon",
       path: "/Donations",
       title: "Donations",
     },
     {
-      icon: "PolicyIcon",
+      icon: "UserIcon",
       path: "/Users",
       title: "Users",
     },
     {
-      icon: "PolicyIcon",
+      icon: "ScholarshipsIcon",
       path: "/Scholarships",
       title: "Scholarships",
     },
     {
-      icon: "TeamsIcon",
+      icon: "PagesIcon",
       path: "/Pages",
       title: "Pages",
     },
     {
-      icon: "PhoneIcon",
+      icon: "PgSettingsIcon",
       path: "/PG-Settings",
       title: "PG Settings",
     },
