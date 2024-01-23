@@ -2,7 +2,6 @@
   "name": "fairseed",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://143.110.253.227:80",
   "dependencies": {
     "@carbon/icons-react": "^11.33.0",
     "@emotion/react": "^11.11.3",

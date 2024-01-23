@@ -47,7 +47,6 @@ input:checked + .slider:before {
   transform: translateX(20px);
 }
 
-/*------ ADDED CSS ---------*/
 .on {
   display: none;
 }
@@ -84,9 +83,7 @@ input:disabled + .slider {
   background-color: #dfdfdf;
 }
 
-/*--------- END --------*/
 
-/* Rounded sliders */
 .slider.round {
   border-radius: 38px;
 }

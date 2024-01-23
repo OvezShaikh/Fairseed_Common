@@ -49,9 +49,6 @@ body {
 .ql-toolbar.ql-snow {
   background: #eaecf0;
 }
-/* .ql-editor{
-  min-height: 150px;
-} */
 
 .quill {
   height: 100%;
@@ -77,31 +74,24 @@ body {
   }
 }
 
-/* ******************** SCROLLBAR CSS ********************** */
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: rgb(228, 231, 236);
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
-  /* background: rgb(39, 76, 119); */
   background: #c1c1c1;
   border-radius: 3px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  /* background: rgba(39, 76, 119, 0.7); */
   background: #d3d3d3;
 }
 
-/* #########################  Normal Table Stylng ############################### */
 
 .normal-table {
   border: 1px solid #d0e2ff;
@@ -115,7 +105,6 @@ body {
   padding: 8px;
   border: 1px solid #d0e2ff;
 }
-/* ###################### React Table #############33 */
 .sort-container {
   display: "inline-block";
   margin-left: 5px;
@@ -134,7 +123,6 @@ body {
   width: 17px !important;
 }
 
-/* ##############STEPPER###################### */
 .css-n7tliy-MuiStep-root {
   padding-bottom: 1rem !important;
 }
@@ -142,17 +130,7 @@ body {
   color: "red" !important;
 }
 
-/* drag and drop css */
 .drop-zone {
-  /* width: 50%;
-  height: 200px;
-  border: 1.5px dashed #36C;
-  background: #F7FAFF;
-  border-radius: var(--Spacing-12, 12px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
   display: flex;
   width: 567px;
   height: 50vh;
@@ -167,7 +145,6 @@ body {
   background: #f7faff;
 }
 
-/* ###########UPLOAD FIELD########################## */
 .Upload_field {
   border-radius: 4px;
 
@@ -179,7 +156,6 @@ body {
   height: 74px;
 }
 
-/* ##########################Header############################### */
 .scrollbar {
   display: none;
 }
@@ -220,10 +196,7 @@ body {
   color: black;
 }
 
-/* #################LocationButtonCategory#################### */
-/* .css-1wqyk0y-muibuttonbase-root-muibutton-root:hover {
-  background: red !important;
-} */
+
 .reactflagsselect-module_selectbtn__19ww7 {
   padding: 50px;
 }
