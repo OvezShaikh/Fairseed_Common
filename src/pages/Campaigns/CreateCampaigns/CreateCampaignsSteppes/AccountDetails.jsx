@@ -33,6 +33,8 @@ function AccountDetails() {
         render={({ field }) => (
           <InputField
             name={"account_holder_name"}
+            sx={{ padding: '20px' }}
+
             label="Account holder Name:"
             required={true}
             {...field}
@@ -47,6 +49,8 @@ function AccountDetails() {
           <InputField
             required={true}
             name={"account_number"}
+            sx={{ padding: '20px' }}
+
             label={"Account Number:"}
             {...field}
           />
@@ -59,6 +63,8 @@ function AccountDetails() {
           <InputField
             name={"bank_name"}
             required={true}
+            sx={{ padding: '20px' }}
+
             label={"Bank Name:"}
             {...field}
           />
@@ -73,6 +79,8 @@ function AccountDetails() {
             name={"branch_name"}
             required={true}
             label={"Branch Name:"}
+            sx={{ padding: '20px' }}
+
             {...field}
           />
         )}
@@ -84,6 +92,8 @@ function AccountDetails() {
           <InputField
             required={true}
             name={"ifsc_code"}
+            sx={{ padding: '20px' }}
+
             label={"IFSC:"}
             {...field}
           />

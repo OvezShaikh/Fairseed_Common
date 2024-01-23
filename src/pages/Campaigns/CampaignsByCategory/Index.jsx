@@ -77,9 +77,9 @@ function Index() {
           label={"ReligiousEducationCampaigns"}
           heading={categoryDetail?.name}
         />
-        <div className="flex flex-col justify-center pt-32 px-24 items-center ">
+        <div className="flex flex-col justify-center  pt-32 px-24 items-center ">
           {data?.pages_count !== 0 ? (
-            <div>
+            <div className="flex flex-col justify-center items-center " >
               <div className="flex w-[100%]  justify-center items-center text-center ">
                 <div className="flex  gap-3">
                   <SecondaryButton
@@ -153,6 +153,7 @@ function Index() {
                 </div>
               </div>
               <div className="gap-4 pt-[2rem] flex flex-wrap w-full justify-center">
+
                 {categoryCampaignList?.map((item) => {
                   return (
                     <Card
@@ -169,6 +170,7 @@ function Index() {
                     />
                   );
                 })}
+
               </div>
               <button
                 onClick={() => setPage(page + 1)}
@@ -189,10 +191,12 @@ function Index() {
                   "-webkit-text-fill-color": "transparent",
                   textDecoration: "underline",
                   position: "relative",
+                  
                 }}
               >
-                <p className="gradient-button mb-0">Load More</p>
+                <p className="gradient-button mb-0 align-middle">Load More</p>
               </button>
+
             </div>
           ) : (
             <div>

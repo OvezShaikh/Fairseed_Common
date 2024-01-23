@@ -52,7 +52,7 @@ function Card({
             
           />
         </Link>
-        <div className="card-body">
+        <div className="card-body ">
           <div className="flex flex-row">
             <img className="w-[6%] h-[6%]" src={images.Airlogo} />
             <p className="text-black/40 pl-2 text-[15px]">{username}</p>
@@ -63,8 +63,8 @@ function Card({
           >
             {title}
           </p>
-          <p className="text-black/40">
-            <span className="font-bold text-black ">₹{fundRaised} </span>
+          <p className="text-black/40 ">
+            <span className="font-bold text-black">₹{fundRaised} </span>
             funded of ₹{goalAmount}
           </p>
           {/* <img className="pt-1 pb-6" src={images?.range2}></img> */}

@@ -12,6 +12,7 @@ const CountrySelect = ({
   disable,
   onChange,
   info,
+  required,
   label,
   placeholder,
   countriesList,
@@ -43,6 +44,8 @@ const CountrySelect = ({
         sx={{ color: "#383A42", fontSize: "20px", fontWeight: 700 }}
       >
         {label}
+        {required ? <span className="text-red-600">*</span> : ""}
+
       </FormLabel>
       <ReactFlagsSelect
         selected={value}
@@ -53,11 +56,12 @@ const CountrySelect = ({
         searchable
         id="react-flag-select"
         style={{
+
           "& #rfs-btn": {
             border: "1px solid #e2e2e2",
             outerHeight: "2rem",
-            borderRadius:'50%',
-            padding: "20px",
+            borderRadius: '50%',
+            padding: "50px",
             sx,
           },
         }}

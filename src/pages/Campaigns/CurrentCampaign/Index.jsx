@@ -33,7 +33,10 @@ function CurrentCampaign({
   // const page=1;
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/campaign/campaign-details/${id}`)
+    axios
+      .get(
+        `${process.env.REACT_APP_BE_BASE_URL}/campaign/campaign-details/${id}`
+      )
       .then((res) => {
         console.log("API Response:", res.data);
         setCardDetails(res.data.data);
@@ -73,7 +76,7 @@ function CurrentCampaign({
           flexDirection={"column"}
           alignItems="start"
           className="text-capitalize text-truncate"
-          // title={title}
+        // title={title}
         >
           <div className="py-3" onClick={() => navigate(-1)}>
             <img src={images.ArrowBack} alt="" />
@@ -110,14 +113,14 @@ function CurrentCampaign({
             className="w-[65%]  rounded-3xl"
             src={`${process.env.REACT_APP_API_URL}` + cardDetails?.campaign_image}
             alt="Img"
-          />+
+          />
           <div
             className="flex flex-col rounded-3xl justify-center items-center w-[35%] "
             style={{ border: "1px solid red" }}
           >
-            <img className="mt-24" src={images.Logo} alt="Logo" />
+            <img className="mt-16 mb-5" src={images.Logo} alt="Logo" />
             <div
-              className="m-10"
+              className=""
               style={{
                 paddingLeft: 12,
                 paddingRight: 12,
@@ -150,13 +153,14 @@ function CurrentCampaign({
                   fontFamily: "Satoshi ",
                   fontWeight: "700",
                   wordWrap: "break-word",
+                  paddingBottom: 5,
                 }}
               >
                 {cardDetails?.status}
               </div>
             </div>
             <h1
-              className="text-6xl  font-bold"
+              className="text-6xl  font-bold mt-5"
               style={{ fontFamily: "satoshi" }}
             >
               {cardDetails?.fund_raised}
@@ -208,18 +212,18 @@ function CurrentCampaign({
               {cardDetails?.end_date}
             </p>
             <PrimaryButton
-              sx={{ width: "80%", padding: "16px", borderRadius: "8px" }}
+              sx={{ width: "80%", padding: "16px",marginBottom:'20px', borderRadius: "8px" }}
               // style={{
 
-              //   paddingTop: 16,
-              //   paddingBottom: 16,
-              //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
-              //   borderRadius: 8,
-              //   justifyContent: "center",
-              //   alignItems: "center",
-              //   gap: 10,
-              //   display: "inline-flex",
-              // }}
+            //   paddingTop: 16,
+            //   paddingBottom: 16,
+            //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
+            //   borderRadius: 8,
+            //   justifyContent: "center",
+            //   alignItems: "center",
+            //   gap: 10,
+            //   display: "inline-flex",
+            // }}
             >
               <div style={{ width: 38, position: "relative" }}>
                 <img src={images.coins2} alt="" />
@@ -325,18 +329,18 @@ function CurrentCampaign({
       </div>
       <div className="flex justify-center gap-4">
         <PrimaryButton
-          sx={{ padding: "16px", borderRadius: "8px" }}
+          sx={{width:"16%", padding: "16px", borderRadius: "8px" }}
           // style={{
 
-          //   paddingTop: 16,
-          //   paddingBottom: 16,
-          //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
-          //   borderRadius: 8,
-          //   justifyContent: "center",
-          //   alignItems: "center",
-          //   gap: 10,
-          //   display: "inline-flex",
-          // }}
+        //   paddingTop: 16,
+        //   paddingBottom: 16,
+        //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
+        //   borderRadius: 8,
+        //   justifyContent: "center",
+        //   alignItems: "center",
+        //   gap: 10,
+        //   display: "inline-flex",
+        // }}
         >
           <div style={{ width: 38, position: "relative" }}>
             <img src={images.coins2} alt="" />
@@ -355,17 +359,17 @@ function CurrentCampaign({
         </PrimaryButton>
         <SecondaryButton
           sx={{ padding: "16px", borderRadius: "8px", background: "#FFF6F5" }}
-          // style={{
+        // style={{
 
-          //   paddingTop: 16,
-          //   paddingBottom: 16,
-          //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
-          //   borderRadius: 8,
-          //   justifyContent: "center",
-          //   alignItems: "center",
-          //   gap: 10,
-          //   display: "inline-flex",
-          // }}
+        //   paddingTop: 16,
+        //   paddingBottom: 16,
+        //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
+        //   borderRadius: 8,
+        //   justifyContent: "center",
+        //   alignItems: "center",
+        //   gap: 10,
+        //   display: "inline-flex",
+        // }}
         >
           <div style={{ width: 38, position: "relative" }}>
             <img className="text-3xl font-[40px]" src={images?.Coins} alt="" />

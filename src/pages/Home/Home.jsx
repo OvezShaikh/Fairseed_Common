@@ -4,7 +4,7 @@ import "./Home.css";
 import button from "../../constants/button";
 import Slider from "../../components/layout/Slider";
 import Card from "../../components/layout/Card";
-import ScrollableTabsButtonForce from "../../components/layout/ScrollableTabsButtonAuto";
+import ScrollableTabsButtonForce from "../../components/inputs/Filters/Index";
 import Coursal from "../../components/layout/Coursal";
 import Footer from "../../components/layout/Footer";
 import Navbar from "../../components/layout/Navbar";
@@ -210,7 +210,7 @@ function Home() {
           <div className="  grid grid-cols-11  mt-12 place-items-center  w-full ">
             <div className="col-span-3 grid grid-cols-1  place-items-center">
               <div className="">
-                <img className="w-[65%]" src={images.person} alt="" />
+                <img className="w-[80%]" src={images.person} alt="" />
               </div>
               {/* <div className="grid grid-cols-12 mt-4"> */}
               <div className="flex justify-between grid-cols-12 mt-4">
@@ -252,7 +252,7 @@ function Home() {
             <img className="col-span-1 " src={images.Arrow} />
             <div className="col-span-3 grid grid-cols-1 place-items-center">
               <div className="">
-                <img className="w-[65%]" src={images.pencicon} alt="" />
+                <img className="w-[80%]" src={images.pencicon} alt="" />
               </div>
               {/* <div className="grid grid-cols-12 mt-4"> */}
               <div className="flex justify-between grid-cols-12 mt-4">
@@ -293,15 +293,15 @@ function Home() {
             </div>
             <img className="col-span-1" src={images.Arrow} />
             <div className="col-span-3 grid grid-cols-1  place-items-center">
-              <div className="">
-                <img className="w-[65%]" src={images.Home} alt="" />
+              <div className="ml-6">
+                <img className="w-[80%] " src={images.Home} alt="" />
               </div>
               {/* <div className="grid grid-cols-12 mt-4"> */}
               <div className="flex justify-between grid-cols-12 mt-4">
                 <div>
                   <img className="mr-3  col-span-2" src={images.three} alt="" />
                 </div>
-                <div className=" ml-2 col-span-10">
+                <div className=" ml-2 col-span-10 ">
                   <h1
                     className=""
                     style={{
@@ -323,7 +323,7 @@ function Home() {
                       fontFamily: "Satoshi",
                       fontWeight: "500",
                       wordWrap: "break-word",
-                      marginTop: 4,
+                      marginTop: 8,
                     }}
                   >
                     Upload ID and a valid

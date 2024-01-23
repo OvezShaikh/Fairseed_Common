@@ -8,7 +8,7 @@ import SecondaryButton from "../../../components/inputs/secondaryButton";
 import Card from "../../../components/layout/Card";
 import icons from "../../../constants/icons";
 import Navigation from '../../../components/layout/Navigation/Index'
-import ScrollableTabsButtonAuto from "../../../components/layout/ScrollableTabsButtonAuto";
+import ScrollableTabsButtonAuto from "../../../components/inputs/Filters/Index";
 function Index() {
   // const navigate = useNavigate();
   // const { pathname } = useLocation();
@@ -58,65 +58,65 @@ function Index() {
       userCount: "1003",
       daysLeft: "10 Days Left",
     },
-    
+
   ];
   return (
     <div>
       <Navbar />
       <div className="flex flex-col ">
-    
-          <Navigation label={"OnGoingCampaigns"} heading={"Ongoing Campaigns"}/>
+
+        <Navigation label={"OnGoingCampaigns"} heading={"Ongoing Campaigns"} />
 
         <div className="flex flex-col justify-center items-center ">
-        
-        <div className="flex w-[100%] px-24 justify-center items-center text-center pt-32">
-          <div className="flex  gap-3">
-           <ScrollableTabsButtonAuto/>
-           </div>
 
+          <div className="flex w-[100%] px-24 justify-center items-center text-center pt-32">
+            <div className="flex  gap-3">
+              <ScrollableTabsButtonAuto />
+            </div>
+
+            <button
+              className="flex  items-center ml-2 px-3 py-2.5"
+              style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
+            >
+              <img src={images.Funnel} />
+              <img className="pl-2" src={images.Filter} />
+            </button>
+          </div>
+          <div className="gap-4 pt-[2rem] flex flex-wrap w-full justify-center">
+            {bnk?.map((item) => {
+              return (
+                <Card
+                  title={item?.title}
+                  cardImage={item?.img}
+                  actualMoney={item?.actualMoney}
+                  totalMoney={item?.totalMoney}
+                  daysLeft={item?.daysLeft}
+                  userCount={item?.userCount}
+                />
+              );
+            })}
+          </div>
           <button
-            className="flex  items-center ml-2 px-3 py-2.5"
-            style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
+            className="pt-[68px]"
+            style={{
+              width: "fit-content",
+              textAlign: "center",
+              color: "#FF9F0A",
+              fontSize: 24,
+              fontFamily: "Satoshi",
+              fontWeight: "500",
+              textDecoration: "underline",
+              wordWrap: "break-word",
+              background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+              "-webkit-background-clip": "text",
+              "-webkit-text-fill-color": "transparent",
+              textDecoration: "underline",
+              position: "relative",
+            }}
           >
-            <img src={images.Funnel} />
-            <img className="pl-2" src={images.Filter} />
+            <p className="gradient-button mb-0">Load More</p>
           </button>
         </div>
-        <div className="gap-4 pt-[2rem] flex flex-wrap w-full justify-center">
-          {bnk?.map((item) => {
-            return (
-              <Card
-                title={item?.title}
-                cardImage={item?.img}
-                actualMoney={item?.actualMoney}
-                totalMoney={item?.totalMoney}
-                daysLeft={item?.daysLeft}
-                userCount={item?.userCount}
-              />
-            );
-          })}
-        </div>
-        <button
-          className="pt-[68px]"
-          style={{
-            width: "fit-content",
-            textAlign: "center",
-            color: "#FF9F0A",
-            fontSize: 24,
-            fontFamily: "Satoshi",
-            fontWeight: "500",
-            textDecoration: "underline",
-            wordWrap: "break-word",
-            background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
-            "-webkit-background-clip": "text",
-            "-webkit-text-fill-color": "transparent",
-            textDecoration: "underline",
-            position: "relative",
-          }}
-        >
-          <p className="gradient-button mb-0">Load More</p>
-        </button>
-      </div>
       </div>
       <Footer />
     </div>

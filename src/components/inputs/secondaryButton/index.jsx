@@ -5,7 +5,7 @@ import React from "react";
 const SecondaryButton = ({
   children,
   startIcon,
-  // color = "text.primary",
+  color = "text.primary",
   variant = "outlined",
   loaderColor,
   sx,
@@ -15,6 +15,7 @@ const SecondaryButton = ({
   return (
     <Button
       sx={{
+        color: 'black',
         // height: "36px",
         // fontSize: {
         //   xs: "0.6rem",
@@ -28,7 +29,7 @@ const SecondaryButton = ({
         textTransform: "none",
         borderRadius: "3px",
         border: "1px solid var(--Linear-BG, #FF9F0A)",
-        
+
         fontStyle: "normal",
         fontFamily: "satoshi",
         ...sx,
@@ -37,7 +38,7 @@ const SecondaryButton = ({
     >
       {isLoading && (
         <CircularProgress
-          // color={loaderColor ? loaderColor : color}
+          color={loaderColor ? loaderColor : color}
           size={20}
           className="me-2 "
         />

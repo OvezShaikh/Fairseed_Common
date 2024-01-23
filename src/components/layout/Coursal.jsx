@@ -65,7 +65,7 @@ export default () => {
               <h1
                 className="text-4xl"
                 style={{
-                  height: 106,
+                  height: 100,
                   color: "#25272C",
                   fontSize: 46,
                   fontFamily: "Satoshi",

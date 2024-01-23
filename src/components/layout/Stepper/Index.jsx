@@ -13,6 +13,8 @@ import AccountDetails from "../../../pages/Campaigns/CreateCampaigns/CreateCampa
 import YourStory from "../../../pages/Campaigns/CreateCampaigns/CreateCampaignsSteppes/YourStory";
 import CampaignDetails from "../../../pages/Campaigns/CreateCampaigns/CreateCampaignsSteppes/CampaignDetails";
 import { useCreateOrUpdate } from "../../../Hooks/useCreateOrUpdate";
+import { useLocation, useNavigate } from "react-router-dom";
+
 
 const styleStep = {
   "& .MuiStepLabel-label.Mui-active": {
@@ -136,6 +138,9 @@ function getStepContent(step) {
   }
 }
 export default function HorizontalLinearStepper() {
+  const navigate = useNavigate();
+
+
   const methods = useForm({
     defaultValues: {
       // firstName: "",
@@ -269,7 +274,8 @@ export default function HorizontalLinearStepper() {
                 </Button>
               )} */}
             <PrimaryButton
-              sx={stylePrimaryButton} // onClick={() => navigate(-1)}
+              sx={stylePrimaryButton}
+              onClick={() => navigate(-1)}
             >
               Home
             </PrimaryButton>

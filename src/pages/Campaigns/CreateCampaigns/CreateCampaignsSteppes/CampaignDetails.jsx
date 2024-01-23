@@ -47,8 +47,8 @@ const CampaignDetails = () => {
           name="campaign_image"
           acceptedFiles={({ "file/*": [".xlsx"] }, { "file/*": [".png"] })}
           maxFiles={1}
-          // onChange={() => submitForm()}
-          // isLoading={isUploadLoading}
+        // onChange={() => submitForm()}
+        // isLoading={isUploadLoading}
         />
       </Box>
       <Controller
@@ -58,6 +58,8 @@ const CampaignDetails = () => {
           <InputField
             name={"title"}
             required={true}
+            sx={{ padding: '20px' }}
+
             label={"Title of the Campaign:"}
             placeholder={"Title of the Campaign (Max 250 Words)"}
             {...field}
@@ -72,6 +74,8 @@ const CampaignDetails = () => {
             name={"goal_amount"}
             required={true}
             label={"Amount to be raised:"}
+            sx={{ padding: '20px' }}
+
             {...field}
           />
         )}
@@ -84,6 +88,8 @@ const CampaignDetails = () => {
           <InputField
             required={true}
             name={"location"}
+            sx={{ padding: '20px' }}
+
             label={"Location:"}
             // placeholder={"Title of the Campaign (Max 250 Words)"}
             {...field}
@@ -159,6 +165,7 @@ const CampaignDetails = () => {
                   type={"date"}
                   name={"end_date"}
                   label={"Date"}
+                  sx={{ padding: '20px' }}
                   // placeholder={"Title of the Campaign (Max 250 Words)"}
                   {...field}
                 />
