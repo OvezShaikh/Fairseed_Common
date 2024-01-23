@@ -4,13 +4,15 @@ import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import TextEditor from "./TextEditor";
 import Radio from "@mui/joy/Radio";
-import RadioGroup from "@mui/joy/RadioGroup";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useState } from "react";
 import axios from "axios";
 import serverAPI from "../../../../config/serverAPI";
 import { toast } from "react-toastify";
+import InputAdminField from "../../../inputs/InputAdminField/Index"
+import RadioGroup from "../../../inputs/radioGroupAdminPanel/index";
+import PrimaryButton from '../../../inputs/PrimaryButton'
 
 const styleLabel = {
   fontFamily: "satoshi",
@@ -54,43 +56,39 @@ function General() {
     <>
       <div className="flex flex-wrap  justify-between">
         <FormControl className="w-[24%] ">
-          <FormLabel style={styleLabel}>Name Site</FormLabel>
-          <Input size="lg" style={styleInput} name="id" value={inputData.id} onChange={handleData} placeholder="Placeholder Text" />
+          <InputAdminField label={'Name Site'} placeholder={'Placeholder Text'} />
+
         </FormControl>
         <FormControl className="w-[24%] ">
-          <FormLabel style={styleLabel}>Welcome Subtitle</FormLabel>
-          <Input size="lg" style={styleInput} name="title" value={inputData.title} onChange={handleData} placeholder="Placeholder" />
+          <InputAdminField label={'Welcome Subtitle '} placeholder={'Placeholder Text'} />
         </FormControl>
         <FormControl className="w-[24%] ">
-          <FormLabel style={styleLabel}>Keywords</FormLabel>
-          <Input size="lg" style={styleInput} name="body" value={inputData.body} onChange={handleData} placeholder="Placeholder" />
+          <InputAdminField label={'Keywords'} placeholder={'Add Tag'} />
+
         </FormControl>
         <FormControl className="w-[24%] ">
-          <FormLabel style={styleLabel}>Email No-reply</FormLabel>
-          <Input size="lg" style={styleInput} name="userId" value={inputData.userId} onChange={handleData} placeholder="Placeholder" />
+          <InputAdminField label={'Email No-reply'} placeholder={'Placeholder Text'} />
         </FormControl>
-      </div>
-      <FormControl className="pt-7">
+      </div >
+      <FormControl className="pt-7 mb-5 h-[200px]">
         <FormLabel style={styleLabel}>Description</FormLabel>
         {/* <TextEditor  /> */}
         <ReactQuill theme="snow" value={valueText} style={{ borderRadius: '20px' }} onChange={setValueText} />
       </FormControl>
       <div className="flex gap-4 pt-8">
         <FormControl className="w-[25%] ">
-          <FormLabel style={styleLabel}>Email Admin</FormLabel>
-          <Input size="lg" style={styleInput} placeholder="Placeholder Text" />
+          <InputAdminField label={'Email Admin'} placeholder={'Placeholder Text'} />
+
         </FormControl>
         <FormControl className="w-[25%] ">
-          <FormLabel style={styleLabel}>Link to terms and conditions</FormLabel>
-          <Input size="lg" style={styleInput} placeholder="Placeholder" />
+          <InputAdminField label={'Link to terms and conditions'} placeholder={'Placeholder Text'} />
         </FormControl>
         <FormControl className="w-[25%] ">
-          <FormLabel style={styleLabel}>Link to privacy policy</FormLabel>
-          <Input size="lg" style={styleInput} placeholder="Placeholder" />
+          <InputAdminField label={'Link to privacy policy'} placeholder={'Placeholder Text'} />
         </FormControl>
         <FormControl className="w-[25%] ">
-          <FormLabel style={styleLabel}>Date Format</FormLabel>
-          <Input
+          <InputAdminField
+            label={"Date Format"}
             size="lg"
             type="date"
             style={styleInput}
@@ -104,118 +102,112 @@ function General() {
         </FormControl>
       </div>
       <div className="flex gap-32 pt-8">
-        <FormControl className="col-span-4 lg:w-[25%] ">
-          <FormLabel style={styleLabel}>New Registrations</FormLabel>
+        <FormControl className="  lg:w-[25%] ">
           <RadioGroup
-            defaultValue="on"
-            name="controlled-radio-buttons-group"
+
+            name={"New1"}
+            options={[
+              { label: "On", value: "On" },
+              { label: "Off", value: "Off" },
+            ]}
+            label="New Registrations"
+            // onChange={onChange}
             value={value}
-            onChange={handleChange}
-            sx={{ my: 1 }}
-          >
-            <Radio value="on" label="On" />
-            <Radio value="off" label="Off" />
-          </RadioGroup>
+          />
         </FormControl>
-        <FormControl className="col-span-4 lg:w-[25%] ">
-          <FormLabel style={styleLabel}>Auto Approve Causes</FormLabel>
+        <FormControl className=" lg:w-[25%] ">
           <RadioGroup
-            defaultValue="on"
-            name="controlled-radio-buttons-group"
+            name={"New2"}
+            options={[
+              { label: "On", value: "On" },
+              { label: "Off", value: "Off" },
+            ]}
+            label="Auto Approve Causes"
+            // onChange={onChange}
             value={value}
-            onChange={handleChange}
-            sx={{ my: 1 }}
-          >
-            <Radio value="on" label="On" />
-            <Radio value="off" label="Off" />
-          </RadioGroup>
+          />
         </FormControl>
-        <FormControl className="col-span-4 lg:w-[25%] ">
-          <FormLabel style={styleLabel}>Facebook Login</FormLabel>
+        <FormControl className=" lg:w-[25%] ">
           <RadioGroup
-            defaultValue="on"
-            name="controlled-radio-buttons-group"
+            name={"New3"}
+            options={[
+              { label: "On", value: "On" },
+              { label: "Off", value: "Off" },
+            ]}
+            label="Facebook Login"
+            // onChange={onChange}
             value={value}
-            onChange={handleChange}
-            sx={{ my: 1 }}
-          >
-            <Radio value="on" label="On" />
-            <Radio value="off" label="Off" />
-          </RadioGroup>
+          />
         </FormControl>
-        <FormControl className="col-span-4 lg:w-[25%]  ">
-          <FormLabel style={styleLabel}>Google Login</FormLabel>
+        <FormControl className=" lg:w-[25%]  ">
           <RadioGroup
-            defaultValue="on"
-            name="controlled-radio-buttons-group"
+            name={"New4"}
+            options={[
+              { label: "On", value: "On" },
+              { label: "Off", value: "Off" },
+            ]}
+            label="Google Login"
+            // onChange={onChange}
             value={value}
-            onChange={handleChange}
-            sx={{ my: 1 }}
-          >
-            <Radio value="on" label="On" />
-            <Radio value="off" label="Off" />
-          </RadioGroup>
+          />
         </FormControl>
       </div>
       <div className="flex gap-32 pt-7">
 
-        <FormControl className="col-span-4 lg:w-[25%] ">
-          <FormLabel style={styleLabel}>Captcha</FormLabel>
+        <FormControl className=" lg:w-[25%] ">
           <RadioGroup
-            defaultValue="on"
-            name="controlled-radio-buttons-group"
+            name={"New5"}
+            options={[
+              { label: "On", value: "On" },
+              { label: "Off", value: "Off" },
+            ]}
+            label="Captcha"
+            // onChange={onChange}
             value={value}
-            onChange={handleChange}
-            sx={{ my: 1 }}
-          >
-            <Radio value="on" label="On" />
-            <Radio value="off" label="Off" />
-          </RadioGroup>
+          />
         </FormControl>
-        <FormControl className="col-span-4 lg:w-[25%] ">
-          <FormLabel style={styleLabel}>Email Verifications</FormLabel>
+        <FormControl className=" lg:w-[25%] ">
           <RadioGroup
-            defaultValue="on"
-            name="controlled-radio-buttons-group"
+            name={"New6"}
+            options={[
+              { label: "On", value: "On" },
+              { label: "Off", value: "Off" },
+            ]}
+            label="Email Verifications"
+            // onChange={onChange}
             value={value}
-            onChange={handleChange}
-            sx={{ my: 1 }}
-          >
-            <Radio value="on" label="On" />
-            <Radio value="off" label="Off" />
-          </RadioGroup>
+          />
         </FormControl>
-        <FormControl className="col-span-4 lg:w-[25%]  ">
-          <FormLabel style={styleLabel}>Input Field Title</FormLabel>
+        <FormControl className=" lg:w-[25%]  ">
           <RadioGroup
-            defaultValue="on"
-            name="controlled-radio-buttons-group"
+            name={"New7"}
+            options={[
+              { label: "On", value: "On" },
+              { label: "Off", value: "Off" },
+            ]}
+            label="Input Field Title"
+            // onChange={onChange}
             value={value}
-            onChange={handleChange}
-            sx={{ my: 1 }}
-          >
-            <Radio value="on" label="On" />
-            <Radio value="off" label="Off" />
-          </RadioGroup>
+          />
         </FormControl>
-        <FormControl className="col-span-4 lg:w-[25%] ">
-          <FormLabel style={styleLabel}>Input Field Title</FormLabel>
+        <FormControl className=" lg:w-[25%] ">
           <RadioGroup
-            defaultValue="on"
-            name="controlled-radio-buttons-group"
+            name={"New8"}
+            options={[
+              { label: "On", value: "On" },
+              { label: "Off", value: "Off" },
+            ]}
+            label="Input Field Title"
+            // onChange={onChange}
             value={value}
-            onChange={handleChange}
-            sx={{ my: 1 }}
-          >
-            <Radio value="on" label="On" />
-            <Radio value="off" label="Off" />
-          </RadioGroup>
+          />
         </FormControl>
 
       </div>
       <div className="flex justify-center items-center pt-8 ">
-        <button className="px-3 rounded-lg" style={{ background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)', fontFamily: 'satoshi', color: 'white' }} onClick={handleSubmit}>Save</button>
-      </div>
+        <PrimaryButton >
+          <h1 className='text-white font-semibold font-[satoshi]'>Save</h1>
+        </PrimaryButton>      </div>
     </>
   );
 }

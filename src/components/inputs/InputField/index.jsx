@@ -13,6 +13,7 @@ const InputField = ({
   infoText,
   characterCount,
   label,
+  style,
   sx,
   required,
   ...otherProps
@@ -47,7 +48,8 @@ const InputField = ({
       border: "1px solid #e2e2e2",
       fontSize: "20px",
       width: "100%",
-      padding: "20px",
+      // padding: "20px",
+      ...sx,
       transition: theme.transitions.create([
         "border-color",
         "background-color",
@@ -91,7 +93,7 @@ const InputField = ({
       borderTopLeftRadius: theme.shape.borderRadius + "px",
       borderBottomLeftRadius: theme.shape.borderRadius + "px",
     },
-    ...sx,
+    // ...sx,
   });
   console.log("End", required)
 

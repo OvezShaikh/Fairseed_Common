@@ -12,14 +12,16 @@ import OnGoingCampaigns from "./pages/Campaigns/OnGoingCampaigns/Index";
 function App() {
   console.log("API");
   return (
-    <div>
+    <div className="container">
       {/* <OnGoingCampaigns/> */}
       {/* <CreateCampaigns/> */}
-      {/* <BrowserRouter>
-        <AdminPage />
-      </BrowserRouter> */}
-
       <BrowserRouter>
+        <div className="container">
+          <AdminPage />
+        </div>
+      </BrowserRouter>
+
+      {/* <BrowserRouter>
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="/Home" element={<HomePage />} />
@@ -35,7 +37,7 @@ function App() {
 
           <Route path="/campaign-details/:id" element={<CurrentCampaign />} />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
     </div>
   );
 }

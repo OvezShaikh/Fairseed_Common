@@ -18,6 +18,8 @@ function CompleteKYC() {
               required={true}
               name={"adhar_card"}
               label="Enter Aadhar Card Number:"
+              sx={{ padding: '20px' }}
+
               type={"text"}
               placeholder={"xxxx xxxx xxxx"}
               {...field}
@@ -33,6 +35,8 @@ function CompleteKYC() {
             <UploadField
               name={"adhar"}
               label="Upload Aadhar Card (Front and Back):"
+              sx={{ padding: '20px' }}
+
               placeholder={
                 "Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
               }
@@ -53,6 +57,8 @@ function CompleteKYC() {
               type={"password"}
               required={true}
               placeholder={"xxxxxxxxxxx"}
+              sx={{ padding: '20px' }}
+
               {...field}
             />
           </>

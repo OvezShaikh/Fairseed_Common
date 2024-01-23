@@ -76,7 +76,7 @@ function CurrentCampaign({
           flexDirection={"column"}
           alignItems="start"
           className="text-capitalize text-truncate"
-          // title={title}
+        // title={title}
         >
           <div className="py-3" onClick={() => navigate(-1)}>
             <img src={images.ArrowBack} alt="" />
@@ -214,17 +214,17 @@ function CurrentCampaign({
             </p>
             <PrimaryButton
               sx={{ width: "80%", padding: "16px", borderRadius: "8px" }}
-              // style={{
+            // style={{
 
-              //   paddingTop: 16,
-              //   paddingBottom: 16,
-              //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
-              //   borderRadius: 8,
-              //   justifyContent: "center",
-              //   alignItems: "center",
-              //   gap: 10,
-              //   display: "inline-flex",
-              // }}
+            //   paddingTop: 16,
+            //   paddingBottom: 16,
+            //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
+            //   borderRadius: 8,
+            //   justifyContent: "center",
+            //   alignItems: "center",
+            //   gap: 10,
+            //   display: "inline-flex",
+            // }}
             >
               <div style={{ width: 38, position: "relative" }}>
                 <img src={images.coins2} alt="" />
@@ -328,17 +328,17 @@ function CurrentCampaign({
       <div className="flex justify-center gap-4">
         <PrimaryButton
           sx={{ padding: "16px", borderRadius: "8px" }}
-          // style={{
+        // style={{
 
-          //   paddingTop: 16,
-          //   paddingBottom: 16,
-          //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
-          //   borderRadius: 8,
-          //   justifyContent: "center",
-          //   alignItems: "center",
-          //   gap: 10,
-          //   display: "inline-flex",
-          // }}
+        //   paddingTop: 16,
+        //   paddingBottom: 16,
+        //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
+        //   borderRadius: 8,
+        //   justifyContent: "center",
+        //   alignItems: "center",
+        //   gap: 10,
+        //   display: "inline-flex",
+        // }}
         >
           <div style={{ width: 38, position: "relative" }}>
             <img src={images.coins2} alt="" />
@@ -357,17 +357,17 @@ function CurrentCampaign({
         </PrimaryButton>
         <SecondaryButton
           sx={{ padding: "16px", borderRadius: "8px", background: "#FFF6F5" }}
-          // style={{
+        // style={{
 
-          //   paddingTop: 16,
-          //   paddingBottom: 16,
-          //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
-          //   borderRadius: 8,
-          //   justifyContent: "center",
-          //   alignItems: "center",
-          //   gap: 10,
-          //   display: "inline-flex",
-          // }}
+        //   paddingTop: 16,
+        //   paddingBottom: 16,
+        //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
+        //   borderRadius: 8,
+        //   justifyContent: "center",
+        //   alignItems: "center",
+        //   gap: 10,
+        //   display: "inline-flex",
+        // }}
         >
           <div style={{ width: 38, position: "relative" }}>
             <img className="text-3xl font-[40px]" src={images?.Coins} alt="" />

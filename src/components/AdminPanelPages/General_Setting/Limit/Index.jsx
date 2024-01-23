@@ -3,66 +3,69 @@ import Input from "@mui/joy/Input";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import { FormHelperText } from '@mui/material';
+import InputAdminField from '../../../inputs/InputAdminField/Index';
+import PrimaryButton from '../../../inputs/PrimaryButton';
 const styleLabel = {
-    fontFamily: "satoshi",
-    fontSize: 16,
-    fontWeight: 700,
-    color: "#383A42",
-  };
-  const styleInput = {
-    color: "#B6BAC3",
-    fontSize: 16,
-    fontFamily: "Satoshi ",
-    fontWeight: "500",
-  };
+  fontFamily: "satoshi",
+  fontSize: 16,
+  fontWeight: 700,
+  color: "#383A42",
+};
+const styleInput = {
+  color: "#B6BAC3",
+  fontSize: 16,
+  fontFamily: "Satoshi ",
+  fontWeight: "500",
+};
 
-function  Limit() {
+function Limit() {
   return (
-    <>
-      <div className="grid grid-cols-12 gap-4">
-        <FormControl className="col-span-4 ">
-          <FormLabel style={styleLabel}>No. of campaigns to show </FormLabel>
-          <Input size="lg" style={styleInput} placeholder="Placeholder Text" />
+    <div className='flex flex-col justify-center flex-wrap items-center'>
+      <div className="flex w-full gap-4">
+        <FormControl className="w-full ">
+          {/* <FormLabel style={styleLabel}>No. of campaigns to show </FormLabel>
+          <Input size="lg" style={styleInput} placeholder="Placeholder Text" /> */}
+          <InputAdminField style={{ marginBottom: '2rem' }} label={"No. of campaigns to show"} name={"NoOfCampaigns"} />
           {/* <FormHelperText>This is a helper text.</FormHelperText> */}
         </FormControl>
-        <FormControl className="col-span-4 ">
-          <FormLabel style={styleLabel}>File size allowed</FormLabel>
-          <Input size="lg" style={styleInput} placeholder="Placeholder" />
+        <FormControl className="w-full ">
+          <InputAdminField label={"No. of campaigns to show"} name={"NoOfCampaigns"} />
+
           <FormHelperText style={styleInput}>IMPORTANT: Your Server supports upto <span className='text-[#717171]'>100MB</span></FormHelperText>
         </FormControl>
-        <FormControl className="col-span-4 ">
-          <FormLabel style={styleLabel}>Minimum amount for campaign</FormLabel>
-          <Input size="lg" style={styleInput} placeholder="Placeholder" />
+        <FormControl className="w-full ">
+          <InputAdminField label={"No. of campaigns to show"} name={"NoOfCampaigns"} />
+
           {/* <FormHelperText>This is a helper text.</FormHelperText> */}
         </FormControl>
-      
+
       </div>
-      <div className="flex pt-2 gap-4">
+      <div className="flex w-full mb-24 flex-wrap pt-2 gap-4">
         <FormControl className="w-[40%] ">
           <FormLabel style={styleLabel}>No. of campaigns to show </FormLabel>
-          <div className="flex">
-          <Input size="lg" style={styleInput} placeholder="Minimum" />
-          <h1 className='px-2 pt-2.5 ' style={styleLabel}>To</h1>
-          <Input size="lg" style={styleInput} placeholder="Maximum" />
+          <div className="flex justify-center items-center">
+            <InputAdminField label={""} size="lg" style={styleInput} placeholder="Minimum" />
+            <h1 className='px-2  ' style={styleLabel}>To</h1>
+            <InputAdminField size="lg" style={styleInput} placeholder="Maximum" />
 
           </div>
         </FormControl>
         <FormControl className="w-[40%] ">
           <FormLabel style={styleLabel}>Amount for Campaigns</FormLabel>
-          <div className="flex">
-          <Input size="lg" style={styleInput} placeholder="Minimum" />
-          <h1 className='px-2 pt-2.5 ' style={styleLabel}>To</h1>
-          <Input size="lg" style={styleInput} placeholder="Maximum" />
+          <div className="flex justify-center items-center">
+            <InputAdminField size="lg" style={styleInput} placeholder="Minimum" />
+            <h1 className='px-2  ' style={styleLabel}>To</h1>
+            <InputAdminField size="lg" style={styleInput} placeholder="Maximum" />
 
           </div>
         </FormControl>
       </div>
-      <div className="flex justify-center items-center pt-8 ">
-            <button className="px-3 rounded-lg" style={{background:'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',fontFamily:'satoshi',color:'white'}}>Save</button>
-        </div>
-      
-    </>
+      <PrimaryButton >
+        <h1 className='text-white font-semibold font-[satoshi]'>Save</h1>
+      </PrimaryButton>
+
+    </div>
   )
 }
 
-export default  Limit
+export default Limit
