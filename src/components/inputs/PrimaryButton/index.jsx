@@ -21,6 +21,10 @@ const PrimaryButton = ({ children, sx, isLoading, ...otherProps }) => {
         borderRadius: "3px",
         fontStyle: "normal",
         fontFamily: "satoshi",
+        boxShadow: "none",
+        '&:hover': {
+          boxShadow: 'none', 
+        },
         ...sx,
       }}
       {...otherProps}

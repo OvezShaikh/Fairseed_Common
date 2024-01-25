@@ -166,16 +166,16 @@ body {
 
 .swiper-button-next::after {
   color: white;
-  width: 90px;
-  height: 70px;
-  backdrop-filter: blur(10px);
+  width: 250px;
+  height: 90px;
+  backdrop-filter: blur(20px);
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.18) 0%,
     rgba(255, 255, 255, 0.32) 100%
   );
   border-radius: 50%;
-  padding: 30px;
+  padding: 40px;
   overflow: hidden;
   display: inline-flex;
   align-items: center;
@@ -194,9 +194,18 @@ body {
 }
 .swiper-button-prev:after {
   color: black;
+  font-size: 30%;
 }
 
 
 .reactflagsselect-module_selectbtn__19ww7 {
   padding: 50px;
+}
+
+:root {
+  --swiper-navigation-size: 30px;
+}
+
+.swiper-button-prev:after,.swiper-button-next:after {
+ font-size: 15px ;
 }

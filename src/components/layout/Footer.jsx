@@ -100,7 +100,7 @@ function Footer() {
               style={{
                 width: "100%",
                 color: "white",
-                fontSize: 13,
+                fontSize: 16,
                 fontFamily: "Satoshi",
                 fontWeight: "500",
                 textTransform: "capitalize",
@@ -114,7 +114,7 @@ function Footer() {
           </div>
           <div className="col-span-4">
             <div className="grid grid-cols-12">
-              <div className="col-span-4">
+              <div className="col-span-4 pt-3">
                 <a
                   className="text-white font-bold"
                   style={{
@@ -181,7 +181,7 @@ function Footer() {
                 </ul>
               </div>
 
-              <div className="col-span-4">
+              <div className="col-span-4 pt-3">
                 <a
                   className="text-white font-bold"
                   style={{
@@ -221,7 +221,7 @@ function Footer() {
                   </li>
                 </ul>
               </div>
-              <div className="col-span-4">
+              <div className="col-span-4 pt-3">
                 <a
                   className="text-white font-bold"
                   style={{
@@ -245,7 +245,7 @@ function Footer() {
               </div>
             </div>
           </div>
-          <div className="col-span-4 flex justify-end">
+          <div className="col-span-4 flex justify-end pt-3">
             <div className="w-fit ">
               <a
                 className="text-white  font-bold"
@@ -259,7 +259,7 @@ function Footer() {
               </a>
               <div className="flex mt-3 flex-row rounded-lg w-[40%] h-10">
                 <input
-                  className="text-[15px] pl-4"
+                  className="text-[15px] pl-4 pr-8"
                   aria-label="Demo input"
                   multiline={'true'}
                   placeholder="Enter your email"
@@ -277,6 +277,7 @@ function Footer() {
                     alignItems: "center",
                     gap: 10,
                     display: "inline-flex",
+                    
                   }}
                 >
                   <button
@@ -288,21 +289,21 @@ function Footer() {
                       textTransform: "capitalize",
                       wordWrap: "break-word",
                     }}
-                    className="pt-2"
+                    className="pt-2 "
                   >
                     Subscribe
                   </button>
                 </div>
               </div>
               <p
-                className="text-white/80 mt-2 w-full"
+                className="text-white/90 mt-2 w-full"
                 style={{
                   fontFamily: "Satoshi",
                   fontWeight: "400",
-                  textTransform: "capitalize",
+                  wordSpacing: "1px",
                 }}
               >
-                Your email is safe with us,we don’t spam.
+                Your email is safe with us, we don’t spam.
               </p>
 
               <p

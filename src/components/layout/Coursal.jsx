@@ -92,7 +92,7 @@ export default () => {
                 style={{ borderRadius: 8 }}
                 
               >
-                <h1 className="text-[20px] font-[satoshi] " style={{fontWeight:900}}>
+                <h1 className="text-[20px] font-[satoshi] p-1" style={{fontWeight:900}}>
                 Donate for the Cause
                 </h1>
               </PrimaryButton>

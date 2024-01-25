@@ -4,7 +4,7 @@ import images from "../../constants/images";
 
 
 
-const Dashboard = () => {
+const Dashboard = ({ onTotalCampaignChange }) => {
   const [dashboardData, setDashboardData] = useState({
     totalCampaign: 0,
     totalDonation: 0,
@@ -26,12 +26,13 @@ const Dashboard = () => {
           successfulCampaign: responseData.successfull_campaign || 0,
           studentBenefited: responseData.student_benifited || 0,
         });
+        onTotalCampaignChange(responseData?.total_campaign);
         console.log(responseData ,"Dashboard");
       })
       .catch(error => {
         console.error('Error fetching dashboard data:', error);
       });
-  }, []);
+  }, [onTotalCampaignChange]);
 
   const dashboards = [
     {
@@ -39,23 +40,24 @@ const Dashboard = () => {
       DashBoardTotal: dashboardData.totalCampaign,
       DashBoardText: "Causes Raised",
     },
+  
     {
-      DashBoardImg: images.UsersThree,
+      DashBoardImg: images.HandCoins,
       DashBoardTotal: dashboardData.totalDonation,
       DashBoardText: "Funds Raised",
     },
     {
-      DashBoardImg: images.Student,
+      DashBoardImg: images.UsersThree,
       DashBoardTotal: dashboardData.donorCount,
       DashBoardText: "Donors",
     },
     {
-      DashBoardImg: images.HandCoins,
+      DashBoardImg: images.SedalCheck,
       DashBoardTotal: dashboardData.successfulCampaign,
       DashBoardText: "Successful Campaigns",
     },
     {
-      DashBoardImg: images.SedalCheck,
+      DashBoardImg: images.Student,
       DashBoardTotal: dashboardData.studentBenefited,
       DashBoardText: "Student Benefitted",
     },

@@ -121,7 +121,7 @@ export default function Example() {
           </div>
           <Popover.Group className="hidden lg:flex lg:gap-x-12">
             <Popover className="relative" >
-              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium   text-[#40444C]"
+              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium font-[satoshi]  text-[#40444C]"
               onclick="this.style.backgroundColor = (this.style.backgroundColor === '#40444C') ? 'blue' : '#40444C';"
 
               >
@@ -191,7 +191,7 @@ export default function Example() {
             {/*  second button */}
 
             <Popover className="relative">
-              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium  text-[#40444C]">
+              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium font-[satoshi] text-[#40444C]">
                 Our impact
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -258,7 +258,7 @@ export default function Example() {
 
             {/* third button */}
             <Popover className="relative">
-              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium   text-[#40444C]">
+              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium  font-[satoshi] text-[#40444C]">
                 About us
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -301,7 +301,7 @@ export default function Example() {
                     {AboutUs.map((item) => (
                       <div
                         key={item.name}
-                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[Satoshi-Variable] text-[#333] hover:bg-gray-50"
                         style={{fontWeight:400}}
                       >
                         

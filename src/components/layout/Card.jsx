@@ -19,6 +19,20 @@ function Card({
   og_id,
 }) {
   const image = process.env.REACT_APP_API_URL + cardImage;
+
+  const [titleLines, setTitleLines] = useState(1);
+
+  useEffect(() => {
+    // Count the number of lines in the title
+    const lines = title.split(" ").length;
+    setTitleLines(lines);
+  }, [title]);
+
+  const marginBottom = title.length > 41 ? "2em" : "3.3em";
+  
+
+  
+
   const [campaignData, setCampaignData] = useState([]);
   console.log(
     "Logging information for Card component:",
@@ -27,7 +41,8 @@ function Card({
     title,
     daysLeft,
     userCount,
-    location
+    location,
+    
   );
   console.log(image,"imahahgega ");
   return (
@@ -37,12 +52,7 @@ function Card({
         className="card rounded-xl font-bold"
         style={{ width: "23rem", fontFamily: "satoshi" }}
       >
-        {/* <div style={{backgroundImage:'url{blob:https://www.figma.com/23aaba04-b230-4e67-98b4-b1e815583174}'}} className="card-img-top" alt="..." >
-                 <div className=' flex m-3 bg-transparent'>
-                     <img src={images.TrendUp}/>
-                     <p>Trending</p>
-                 </div>
-                 </div>    */}
+        
         <Link to={`/campaign-details/${og_id}`}>
           {/* <img src={process.env.REACT_APP_API_URL + cardImage} className="card-img-top h-80" alt="..."  />  */}
           <img
@@ -58,8 +68,8 @@ function Card({
             <p className="text-black/40 pl-2 text-[15px]">{username}</p>
           </div>
           <p
-            className="card-text w-full pt-2 pb-4  text-1xl font-bold"
-            style={{ fontWeight: "700", fontSize: 20 }}
+            className="card-text w-full pt-2   text-1xl font-bold"
+            style={{ fontWeight: "700", fontSize: 20, marginBottom }}
           >
             {title}
           </p>
@@ -67,7 +77,6 @@ function Card({
             <span className="font-bold text-black">₹{fundRaised} </span>
             funded of ₹{goalAmount}
           </p>
-          {/* <img className="pt-1 pb-6" src={images?.range2}></img> */}
           <div className="pt-1 pb-4 ">
             <LinearProgress
               
@@ -76,9 +85,9 @@ function Card({
               value={(fundRaised / goalAmount) * 100}
 
             />
-            {/* <ProgressBar/> */}
+           
           </div>
-          <div className="flex justify-center items-center text-center  overflow-hidden w-full">
+          <div className="flex justify-center items-center text-center  overflow-hidden w-full" >
             <div className="flex flex-col w-[65%]">
               <div className="flex pl-1  flex-row">
                 <div className="flex justify-center items-center text-center ">
@@ -103,12 +112,12 @@ function Card({
             </div>
             <div className="w-[35%]">
               <button
-                className=" border-2   rounded-lg border-red-400 px-2 py-1 "
+                className=" border-1   rounded-lg border-red-400 px-2 py-1 "
                 style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
               >
                 <div className="flex pl-1 pr-2 py-1 ">
-                  <img className="" src={images?.Coins} />
-                  <p className="pl-1   text-[17px] ">Donate</p>
+                  <img className="pr-1 pl-0" src={images?.Coins} />
+                  <p className="pl-2   text-[17px] ">Donate</p>
                 </div>
               </button>
             </div>

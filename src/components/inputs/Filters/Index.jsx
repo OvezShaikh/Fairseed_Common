@@ -4,13 +4,13 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import {
   PiTrendUpDuotone,
-  PiStudent,
-  PiHandCoins,
-  PiGenderFemale,
-  PiMegaphone,
-  PiMosque,
-  PiAlarm,
-  PiHeart,
+  PiStudentDuotone,
+  PiHandCoinsDuotone,
+  PiGenderFemaleDuotone,
+  PiMegaphoneSimpleDuotone,
+  PiMosqueDuotone,
+  PiAlarmDuotone,
+   PiHeartDuotone ,
 } from "react-icons/pi";
 
 export default function ScrollableTabsButtonForce({
@@ -85,7 +85,7 @@ export default function ScrollableTabsButtonForce({
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiStudent
+              <PiStudentDuotone
                 style={{ color: "red" }}
                 className="icon pr-2 w-7 h-7"
               />
@@ -105,8 +105,8 @@ export default function ScrollableTabsButtonForce({
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiHandCoins
-                style={{ color: "red" }}
+              <PiHandCoinsDuotone
+                style={{ color: "red"}}
                 className="icon pr-2 w-7 h-7"
               />
               Most Supported
@@ -125,7 +125,7 @@ export default function ScrollableTabsButtonForce({
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiGenderFemale
+              <PiGenderFemaleDuotone
                 style={{ color: "red" }}
                 className="icon pr-2 w-7 h-7"
               />
@@ -145,7 +145,7 @@ export default function ScrollableTabsButtonForce({
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiMegaphone
+              <PiMegaphoneSimpleDuotone
                 style={{ color: "red" }}
                 className="icon pr-2 w-7 h-7"
               />
@@ -165,7 +165,7 @@ export default function ScrollableTabsButtonForce({
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiMosque
+              <PiMosqueDuotone
                 style={{ color: "red" }}
                 className="icon pr-2 w-7 h-7"
               />
@@ -185,7 +185,7 @@ export default function ScrollableTabsButtonForce({
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiAlarm style={{ color: "red" }} className="icon pr-2 w-7 h-7" />
+              <PiAlarmDuotone style={{ color: "red" }} className="icon pr-2 w-7 h-7" />
               Expiring Soon
             </Box>
           }
@@ -202,7 +202,7 @@ export default function ScrollableTabsButtonForce({
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiHeart style={{ color: "red" }} className="icon pr-2 w-7 h-7" />
+              < PiHeartDuotone  style={{ color: "red" }} className="icon pr-2 w-7 h-7" />
               Needs Love
             </Box>
           }

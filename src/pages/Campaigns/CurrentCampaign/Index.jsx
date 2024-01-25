@@ -65,7 +65,8 @@ function CurrentCampaign({
   return (
     <>
       <Navbar />
-      <Grid sx={{ padding: "100px 45px 0px 45px" }}>
+      <Grid sx={{ padding: "100px 25px 0px 25px" }}>
+      <Grid >
         <Typography
           variant="h6"
           noWrap
@@ -78,11 +79,11 @@ function CurrentCampaign({
           className="text-capitalize text-truncate"
         // title={title}
         >
-          <div className="py-3" onClick={() => navigate(-1)}>
+          <div className="py-3 px-1 mb-4" onClick={() => navigate(-1)}>
             <img src={images.ArrowBack} alt="" />
           </div>
           <div
-            className="flex flex-col text-black/70 "
+            className="flex flex-col text-black/70 ml-1 mb-12 font-extrabold"
             style={{ fontFamily: "satoshi", fontSize: 20, fontWeight: 600 }}
           >
             {title ? <>{title.split("/")[0]}</> : "Create Campaigns"}
@@ -90,7 +91,6 @@ function CurrentCampaign({
         </Typography>
       </Grid>
       <div
-        className="px-5 py-5"
         style={{
           width: "100%",
           height: "100%",
@@ -163,7 +163,7 @@ function CurrentCampaign({
               className="text-6xl  font-bold mt-5"
               style={{ fontFamily: "satoshi" }}
             >
-              {cardDetails?.fund_raised}
+             ₹ {cardDetails?.fund_raised.toLocaleString()}
             </h1>
             <p
               className="m-3"
@@ -176,7 +176,7 @@ function CurrentCampaign({
                 fontWeight: "500",
               }}
             >
-              funded of ₹ {cardDetails?.goal_amount}
+              funded of ₹ {cardDetails?.goal_amount.toLocaleString()}
             </p>
 
             <div className="mb-5 w-3/4">
@@ -253,14 +253,14 @@ function CurrentCampaign({
                     sx={{ width: 100, height: 100 }}
                   />
                   <h1
-                    className="col-span-7 text-5xl flex items-center font-bold"
+                    className="col-span-7 text-5xl flex items-center font-bold ml-3"
                     style={{ fontFamily: "satoshi" }}
                   >
                     {cardDetails?.user}
                   </h1>
                 </div>
               </div>
-              <div className="col-span-2 flex justify-center items-center ">
+              <div className="col-span-2 flex justify-center items-center mr-3">
                 <button
                   className="justify-center items-center  px-4 py-2"
                   style={{
@@ -327,7 +327,7 @@ function CurrentCampaign({
           </div>
         </div>
       </div>
-      <div className="flex justify-center gap-4">
+      <div className="flex justify-center gap-4 mr-24">
         <PrimaryButton
           sx={{width:"16%", padding: "16px", borderRadius: "8px" }}
           // style={{
@@ -358,6 +358,7 @@ function CurrentCampaign({
           </h1>
         </PrimaryButton>
         <SecondaryButton
+          className = "mr-5"
           sx={{ padding: "16px", borderRadius: "8px", background: "#FFF6F5" }}
         // style={{
 
@@ -388,6 +389,7 @@ function CurrentCampaign({
           </h1>
         </SecondaryButton>
       </div>
+      </Grid>
       <Footer />
     </>
   );

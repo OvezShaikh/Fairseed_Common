@@ -2,7 +2,7 @@
 .slick-next {
     font-size: 0;
     color: #080505; 
-  background-color: #fff; 
+    background-color: #fff; 
  
   
 }
@@ -35,7 +35,8 @@
   }
 
   .swiper-button-next::after{
-    height: 60px;
+    /* height: 48px; */
+    /* width: 150px; */
     margin-right: 250px;
     align-items: center;
   }

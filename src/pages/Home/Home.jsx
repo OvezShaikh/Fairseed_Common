@@ -16,6 +16,11 @@ import axios from "axios";
 import images from "../../constants/images";
 
 function Home() {
+  const [total_campaign, setTotalCampaign] = useState(0);
+
+  const handleTotalCampaignChange = (value) => {
+    setTotalCampaign(value);
+  };
   const [userList, setUserList] = useState([]);
   const [visibleCards, setVisibleCards] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -137,7 +142,7 @@ function Home() {
               }}
             >
               <p className="gradient-button mb-0">
-                See all 724 active campaigns
+                See all {total_campaign} active campaigns
               </p>
             </button>
           </div>
@@ -151,7 +156,7 @@ function Home() {
             className="flex items-center ml-2 px-3 py-1.5"
             style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
           >
-            <img src={images.Funnel} />
+            <img src={images.Funnel} className="mr-2"/>
             <img src={images.Filter} />
           </button>
         </div>
@@ -169,6 +174,7 @@ function Home() {
                 daysLeft={item.days_left}
                 userCount={item.donor_count}
                 location={item.location}
+
               />
             );
           })}
@@ -190,6 +196,7 @@ function Home() {
             "-webkit-background-clip": "text",
             "-webkit-text-fill-color": "transparent",
             textDecoration: "underline",
+            display: page >= totalPages ? "none" : "block",
             position: "relative",
           }}
         >
@@ -202,7 +209,7 @@ function Home() {
           style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
         >
           <h1
-            className="font-bold pt-[4rem] text-4xl"
+            className="font-bold pt-[4rem] text-5xl"
             style={{ fontFamily: "Satoshi", fontWeight: 800 }}
           >
             How it Works
@@ -226,6 +233,7 @@ function Home() {
                       fontFamily: "Satoshi",
                       fontWeight: "900",
                       wordWrap: "break-word",
+                      marginBottom: 15,
                     }}
                   >
                     Create your Profile
@@ -268,6 +276,7 @@ function Home() {
                       fontFamily: "Satoshi ",
                       fontWeight: "900",
                       wordWrap: "break-word",
+                      marginBottom: 15,
                     }}
                   >
                     Fill Cause Information
@@ -310,6 +319,7 @@ function Home() {
                       fontFamily: "Satoshi",
                       fontWeight: "900",
                       wordWrap: "break-word",
+                      marginBottom: 15,
                     }}
                   >
                     Update Acc details
@@ -340,10 +350,10 @@ function Home() {
                 borderRadius: "var(--Pixels-8, 8px)",
                 fontSize: 20,
                 fontWeight: "900",
-                padding: "8px",
+                padding: "10px",
                 margin: "50px 0px 50px 0px",
               }}
-              className="p-2 my-10"
+              className="p-3 my-10"
             >
               <div className="mr-2" style={{ width: 32, height: 32, position: "relative" }}>
                 <img src={images.RocketLaunch} alt="" />
@@ -355,7 +365,7 @@ function Home() {
       </section>
       <div className="flex-col pt-[60px] pb-[50px] flex-wrap container flex w-full text-center items-center">
         <h1
-          className="text-4xl font-bold"
+          className="text-5xl font-bold"
           style={{ fontFamily: "Satoshi", fontWeight: 800 }}
         >
           Causes by Category
