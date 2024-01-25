@@ -184,7 +184,7 @@ function CurrentCampaign({
               <LinearProgress
                 
                 variant="determinate"
-                sx={{ height: "30px", borderRadius: "16px", background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${((fundRaised / goalAmount) * 100)}%, #e0e0e0 ${((fundRaised / goalAmount) * 100)}%)`, "& .MuiLinearProgress-bar":{  backgroundColor: '#0DC7B1 !important  '} }}
+                sx={{ height: "30px", borderRadius: "16px", background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${((fundRaised / goalAmount) * 100)}%, #EDEEF1 ${((fundRaised / goalAmount) * 100)}%)`, "& .MuiLinearProgress-bar":{  backgroundColor: '#0DC7B1 !important  '} }}
                 value={(cardDetails?.fund_raised / cardDetails?.goal_amount) * 100}
               />
             </div>
@@ -260,7 +260,7 @@ function CurrentCampaign({
                   </h1>
                 </div>
               </div>
-              <div className="col-span-2 flex justify-center items-center mr-3">
+              <div className="col-span-2 flex justify-center items-center ml-2">
                 <button
                   className="justify-center items-center  px-4 py-2"
                   style={{
@@ -327,7 +327,7 @@ function CurrentCampaign({
           </div>
         </div>
       </div>
-      <div className="flex justify-center gap-4 mr-24">
+      <div className="flex justify-center gap-4 mr-[73px] mt-5">
         <PrimaryButton
           sx={{width:"16%", padding: "16px", borderRadius: "8px" }}
           // style={{

@@ -25,6 +25,7 @@ function Home() {
   const [visibleCards, setVisibleCards] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
+  const [campaignCount,setCampaignCount] = useState('');
   const fetchUserList = async () => {
     try {
       const perPage = 8;
@@ -38,6 +39,7 @@ function Home() {
         if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList([...userList, ...res.rows]);
+        setCampaignCount(res.count)
       } else {
         console.error("Invalid data structure. Expected an array:", res.data);
       }
@@ -58,39 +60,6 @@ function Home() {
       daysLeft: "10 Days Left",
     },
   ];
-
-  // {images: [{name:'',src:'..///'},{name:'',src:'.//'}] }
-  // "https://wallpapercave.com/wp/wp3386769.jpg",
-  // "https://wallpaperaccess.com/full/809523.jpg",
-  // "https://getwallpapers.com/wallpaper/full/5/c/0/606489.jpg",
-
-  // let Dboard = [
-  //   {
-  //     DashBoardImg: images.HandShake,
-  //     DashBoardTotal: 4,
-  //     DashBoardText: "Causes Raised",
-  //   },
-  //   {
-  //     DashBoardImg: images.UsersThree,
-  //     DashBoardTotal: "27 Lacs",
-  //     DashBoardText: "Funds Raised",
-  //   },
-  //   {
-  //     DashBoardImg: images.Student,
-  //     DashBoardTotal: "3000+",
-  //     DashBoardText: "Donors",
-  //   },
-  //   {
-  //     DashBoardImg: images.HandCoins,
-  //     DashBoardTotal: 4,
-  //     DashBoardText: "Successful Campaigns",
-  //   },
-  //   {
-  //     DashBoardImg: images.SedalCheck,
-  //     DashBoardTotal: 3,
-  //     DashBoardText: "Student Benefitted",
-  //   },
-  // ];
 
   return (
     <>
@@ -142,7 +111,7 @@ function Home() {
               }}
             >
               <p className="gradient-button mb-0">
-                See all {total_campaign} active campaigns
+                See all {campaignCount} active campaigns
               </p>
             </button>
           </div>
