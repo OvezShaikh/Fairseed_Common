@@ -14,6 +14,12 @@ import YourStory from "../../../pages/Campaigns/CreateCampaigns/CreateCampaignsS
 import CampaignDetails from "../../../pages/Campaigns/CreateCampaigns/CreateCampaignsSteppes/CampaignDetails";
 import { useCreateOrUpdate } from "../../../Hooks/useCreateOrUpdate";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Formik } from "formik";
+import Test from "../../../pages/Campaigns/CreateCampaigns/CreateCampaignsSteppes/test";
+import Test2 from "../../../pages/Campaigns/CreateCampaigns/CreateCampaignsSteppes/test2";
+import Test3 from "../../../pages/Campaigns/CreateCampaigns/CreateCampaignsSteppes/test3";
+import Test4 from "../../../pages/Campaigns/CreateCampaigns/CreateCampaignsSteppes/test4";
+
 
 
 const styleStep = {
@@ -99,64 +105,52 @@ const stylePrimaryButton = {
   fontWeight: 700,
   borderRadius: "12px",
 };
-
-function getSteps() {
-  return ["Campaign Details", "Your Story", "Account Details", "Complete KYC"];
+const initialValues = {
+  campaign_image: null,
+  title: "",
+  goal_amount: "",
+  location: "",
+  category: "",
+  zakat_eligible: false,
+  end_date: "",
+  story: '',
+  summary: '',
+  document: null,
+  rasing_for: "",
+  account_holder_name: "",
+  account_number: "",
+  bank_name: "",
+  branch_name: "",
+  ifsc_code: "",
+  passbook_image: null,
+  adhar_card: "",
+  adhar: null,
+  pan_card: "",
+  pan_card_image: null,
 }
-const BasicForm = () => {
-  const { control } = useFormContext();
-  return <CampaignDetails />;
-};
-const SecondStep = () => {
-  return (
-    //
-    <YourStory />
-  );
-};
-const ContactForm = () => {
-  const { control } = useFormContext();
-  return <AccountDetails />;
-};
-const PersonalForm = () => {
-  const { control } = useFormContext();
-  return <CompleteKYC />;
-};
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <BasicForm />;
+// const BasicForm = () => {
+//   return <Test />;
+// };
+// const SecondStep = () => {
+//   return <Test2 />;
 
-    case 1:
-      return <SecondStep />;
-    case 2:
-      return <ContactForm />;
-    case 3:
-      return <PersonalForm />;
-    default:
-      return "unknown step";
-  }
-}
+// };
+// const ContactForm = () => {
+//   return <Test3 />;
+// };
+// const PersonalForm = () => {
+//   return <Test4 />;
+// };
+
+
 export default function HorizontalLinearStepper() {
   const navigate = useNavigate();
 
 
-  const methods = useForm({
-    defaultValues: {
-      // firstName: "",
-      // lastName: "",
-      // nickName: "",
-      // emailAddress: "",
-      // phoneNumber: "",
-      // alternatePhone: "",
-      // address1: "",
-      // address2: "",
-      // country: "",
-      // cardNumber: "",
-      // cardMonth: "",
-      // cardYear: "",
-    },
-  });
+
+
+
   // const formData = new FormData();
   // formData.append("file", data.files);
 
@@ -165,6 +159,25 @@ export default function HorizontalLinearStepper() {
   //   setActiveStep(0);
   // };
   const [skippedSteps, setSkippedSteps] = useState([]);
+  const getSteps = () => {
+    return ["Campaign Details", "Your Story", "Account Details", "Complete KYC"];
+  }
+
+  const getStepContent = (step) => {
+    switch (step) {
+      case 0:
+        return <Test handleBack={handleBack} handleNext={handleNext} />;
+
+      case 1:
+        return <Test2 handleBack={handleBack} handleNext={handleNext} />;
+      case 2:
+        return <Test3 handleBack={handleBack} handleNext={handleNext} />;
+      case 3:
+        return <Test4 handleBack={handleBack} handleNext={handleNext} />;
+      default:
+        return "unknown step";
+    }
+  }
   const steps = getSteps();
 
   const isStepOptional = (step) => {
@@ -175,31 +188,38 @@ export default function HorizontalLinearStepper() {
     return skippedSteps.includes(step);
   };
 
-  const { mutate } = useCreateOrUpdate({ url: "http://143.110.253.227:8000/campaign/add-campaign" });
+  const { mutate } = useCreateOrUpdate({ url: '/campaign/add-campaign/ffff7c4f-5cce-40cd-a09c-804364afa615' });
 
-  const handleNext = (data) => {
-    console.log(data, "======formdata");
-    if (activeStep == steps.length - 1) {
-      // console.log(getValues(),"<=====>uuuhhuuhhu")
-      // mutate(getValues())
+  // const onSubmit = (values) => {
+  //   console.log(values, "======formdata");
+  //   if (activeStep == steps.length - 1) {
 
-      // fetch("https://jsonplaceholder.typicode.com/comments")
-      //   .then((data) => data.json())
-      //   .then((res) => {
-      console.log(data, "======formdata");
+  //     console.log(values, "======formdata");
+  //     mutate(values)
 
-      //   });
-      setActiveStep(activeStep + 1);
-    } else {
-      setActiveStep(activeStep + 1);
-      setSkippedSteps(
-        skippedSteps.filter((skipItem) => skipItem !== activeStep)
-      );
-    }
-  };
+  //     setActiveStep(activeStep + 1);
+  //   } else {
+  //     setActiveStep(activeStep + 1);
+  //     setSkippedSteps(
+  //       skippedSteps.filter((skipItem) => skipItem !== activeStep)
+  //     );
+  //   }
+  // };
+
+
+
+  const onSubmit = (Values) => {
+
+    mutate(Values);
+
+  }
 
   const handleBack = () => {
-    setActiveStep(activeStep - 1);
+    setActiveStep((prev) => prev - 1);
+  };
+
+  const handleNext = () => {
+    setActiveStep((prev) => prev + 1);
   };
 
   const handleSkip = () => {
@@ -209,8 +229,9 @@ export default function HorizontalLinearStepper() {
     setActiveStep(activeStep + 1);
   };
 
+
   return (
-    <Box sx={{ width: "60%" }}>
+    <Box sx={{ width: "100%" }}>
       <Stepper activeStep={activeStep} sx={styleStep}>
         {steps.map((step, index) => {
           const stepProps = {};
@@ -283,22 +304,23 @@ export default function HorizontalLinearStepper() {
         </React.Fragment>
       ) : (
         <React.Fragment>
-          <FormProvider {...methods}>
-            <Form
-              sx={{ display: "flex", gap: "20px" }}
-              onSubmit={methods.handleSubmit(handleNext)}
-            >
+          <Formik
+            initialValues={initialValues}
+            // validationSchema
+            onSubmit={(Values) => onSubmit(Values)}
+          >
+            <>
               {getStepContent(activeStep)}
 
-              <div className="flex  gap-3">
+              {/* <div className="flex mt-4 gap-5">
                 <SecondaryButton
                   disabled={activeStep === 0}
                   onClick={handleBack}
                   sx={styleSecondaryButton}
                 >
                   Back
-                </SecondaryButton>
-                {/* {isStepOptional(activeStep) && (
+                </SecondaryButton> */}
+              {/* {isStepOptional(activeStep) && (
                 <Button
                   // className={classes.button}
                   variant="contained"
@@ -308,12 +330,12 @@ export default function HorizontalLinearStepper() {
                   skip
                 </Button>
               )} */}
-                <PrimaryButton sx={stylePrimaryButton} type="submit">
+              {/* <PrimaryButton onClick={onSubmit} sx={stylePrimaryButton} type="submit">
                   {activeStep === steps.length - 1 ? "Submit" : "Next"}
                 </PrimaryButton>
-              </div>
-            </Form>
-          </FormProvider>
+              </div> */}
+            </>
+          </Formik>
         </React.Fragment>
       )}
     </Box>

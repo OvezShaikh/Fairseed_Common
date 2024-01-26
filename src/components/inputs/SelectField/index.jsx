@@ -62,12 +62,66 @@ const SelectField = ({
 }) => {
   // const [field, meta] = useField(name);
   const { textField, root } = useStyles();
-  const configTextfield = {
-    // ...field,
+
+  let textFieldConfig = {
+    fullWidth: true,
+    sx: {
+      "& .MuiInputBase-root": {
+        padding: "7px 10px",
+      },
+      ...otherProps.sx,
+    },
     ...otherProps,
-    name,
-    variant: "outlined",
   };
+  let setFieldTouched = (field, isTouched, shouldValidate = true) => { }
+  let setFieldValue = (name, value, shouldValidate = true) => { }
+
+  if (name) {
+    //eslint-disable-next-line
+    const [field, meta] = useField(name || "");
+    //eslint-disable-next-line
+    const ctx = useFormikContext();
+    console.log(ctx, "ctx");
+
+    setFieldValue = ctx.setFieldValue;
+    setFieldTouched = ctx.setFieldTouched;
+    textFieldConfig = {
+      ...field,
+      ...textFieldConfig,
+    };
+    if (meta && meta.touched && meta.error) {
+      textFieldConfig.error = true;
+      textFieldConfig.helperText = meta.error;
+    }
+  }
+  const onChangeInner = (e, value, option) => {
+    if (onChange) {
+      return onChange(e, value, option);
+    }
+    if (name && setFieldValue) {
+      setFieldValue(name, value);
+      setFieldTouched(name, true, true);
+    }
+  }
+
+  // const configTextfield = {
+  //   // ...field,
+  //   ...otherProps,
+  //   name,
+  //   variant: "outlined",
+  // };
+
+  // let textFieldConfig = {
+  //   fullWidth: true,
+  //   sx: {
+  //     "& .MuiInputBase-root": {
+  //       padding: "7px 10px",
+  //     },
+  //     ...otherProps.sx,
+  //   },
+  //   ...otherProps,
+  // };
+
 
   // if (meta && meta.touched && meta.error) {
   //   configTextfield.error = true;
@@ -86,28 +140,28 @@ const SelectField = ({
   return (
     <>
       <Autocomplete
-        {...configTextfield}
+        {...textFieldConfig}
         value={value}
         sx={{
           ...sx,
           width: "100%",
           pb: "2rem",
           "&.Mui-focused .MuiFormControl-root .MuiOutlinedInput-notchedOutline":
-            {
-              boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);
+          {
+            boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);
           `,
-              borderColor: "black",
-            },
+            borderColor: "black",
+          },
         }}
         options={options ? options : []}
         disabled={disable}
         // getOptionLabel={(option) => option?.location}
         className={root}
         isOptionEqualToValue={(option, value) => option?.id === value?.id}
-        // onChange={(_, value, reason) => {
-        //   onChange ? onChange(value, reason) : setFieldValue(name, value);
-        // }}
-        // onBlur={() => setTouched({ ...touched, [name]: true })}
+        onChange={(_, value, reason) => {
+          onChange ? onChange(value, reason) : setFieldValue(name, value);
+        }}
+        onBlur={() => setFieldValue(name, true)}
 
         renderInput={(props) => (
           <>
@@ -134,24 +188,25 @@ const SelectField = ({
               className={textField}
               variant="outlined"
               {...props}
-              onChange={(e) => {
-                props?.onChange && props?.onChange(e);
-                onInputChange && onInputChange(e);
-              }}
+              onChange={onChangeInner}
+              // onChange={(e) => {
+              //   props?.onChange && props?.onChange(e);
+              //   onInputChange && onInputChange(e);
+              // }}
               placeholder={placeholder}
             />
           </>
         )}
       />
 
-      {/* <ErrorMessage
+      <ErrorMessage
         name={name}
         render={(msg) => (
           <div style={{ color: "red", fontSize: "0.7rem" }}>
             {typeof msg === "object" ? Object?.values(msg)[0] : msg}
           </div>
         )}
-      /> */}
+      />
     </>
   );
 };

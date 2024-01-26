@@ -20,7 +20,7 @@ const CampaignDetails = () => {
   const page = 1;
   const limit = 20;
   // getValues()
-  // const{mutate}=  useCreateOrUpdate({url:''});
+  // const { mutate } = useCreateOrUpdate({ url: '' });
 
   // mutate(getValues())
 
@@ -43,13 +43,21 @@ const CampaignDetails = () => {
   return (
     <div className="pb-20">
       <Box className="flex py-20 justify-center items-center">
-        <DropZone
+        <Controller
+          control={control}
           name="campaign_image"
-          acceptedFiles={({ "file/*": [".xlsx"] }, { "file/*": [".png"] })}
-          maxFiles={1}
-        // onChange={() => submitForm()}
-        // isLoading={isUploadLoading}
+          render={({ field }) => (
+            <>
+              <DropZone
+                name="campaign_image"
+                acceptedFiles={({ "file/*": [".png"] })}
+                maxFiles={1}
+                {...field}
+              ></DropZone>
+            </>
+          )}
         />
+
       </Box>
       <Controller
         control={control}
@@ -59,6 +67,7 @@ const CampaignDetails = () => {
             name={"title"}
             required={true}
             sx={{ padding: '20px' }}
+            type={"text"}
 
             label={"Title of the Campaign:"}
             placeholder={"Title of the Campaign (Max 250 Words)"}
@@ -72,6 +81,8 @@ const CampaignDetails = () => {
         render={({ field }) => (
           <InputField
             name={"goal_amount"}
+            type={'number'}
+
             required={true}
             label={"Amount to be raised:"}
             sx={{ padding: '20px' }}
@@ -89,6 +100,7 @@ const CampaignDetails = () => {
             required={true}
             name={"location"}
             sx={{ padding: '20px' }}
+            type={"text"}
 
             label={"Location:"}
             // placeholder={"Title of the Campaign (Max 250 Words)"}
@@ -125,9 +137,8 @@ const CampaignDetails = () => {
           <Controller
             control={control}
             name="zakat_eligible"
-            render={({ field: { onChange, value } }) => (
+            render={({ field }) => (
               <>
-                {console.log(value, "<==checkbox valuerurru")}
                 <FormLabel
                   className="text-capitalize font-medium d-flex align-items-center"
                   style={{
@@ -147,8 +158,8 @@ const CampaignDetails = () => {
                 <CheckBox
                   name={"zakat_eligible"}
                   label={"Yes"}
-                  checked={value}
-                  onChange={onChange}
+                  checked={field.value}
+                  onChange={field.onChange}
                 />
               </>
             )}
@@ -174,7 +185,7 @@ const CampaignDetails = () => {
           />
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

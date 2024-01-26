@@ -2,8 +2,11 @@ import { Grid, Typography } from "@mui/material";
 import React, { useContext, useMemo } from "react";
 import images from "../../../constants/images";
 import { useLocation, useNavigate } from "react-router-dom";
-import Stepper from '../../../components/layout/Stepper/Index'
+// import IndexNew from '../../../components/layout/Stepper/IndexNew'
 import Navigation from '../../../components/layout/Navigation/Index'
+import StepperSteps from '../../../components/layout/StepperSteps'
+import Stepper from '../../../components/layout/Stepper/Index'
+
 
 function CreateCampaigns() {
   const navigate = useNavigate();
@@ -11,27 +14,28 @@ function CreateCampaigns() {
   const title = useMemo(
     () =>
       `${pathname
-        // .replace("/", "")
-        // .replace(/\/*\[[^\]]*]/g, "")
-        // .replace(/-/g, " ")
-        // .replace(/\//g, "  ")
-        // .replace("General Settings"," ")
+      // .replace("/", "")
+      // .replace(/\/*\[[^\]]*]/g, "")
+      // .replace(/-/g, " ")
+      // .replace(/\//g, "  ")
+      // .replace("General Settings"," ")
       }`,
 
     [pathname]
   );
   return (
-    <>
-      <Navigation label={'createCampaign'} heading={'Create Campaign'}/>
+    <div className="w-full justify-center items-center">
+      <Navigation label={'createCampaign'} heading={'Create Campaign'} />
       <Grid
         display={"flex"}
         justifyItems={"center"}
         justifyContent={"center"}
         className="pt-32 "
-      >
-        <Stepper/>
+      ><div className="w-[60%] flex justify-center items-center">
+          <Stepper />
+        </div>
       </Grid>
-    </>
+    </div>
   );
 }
 

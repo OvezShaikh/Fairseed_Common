@@ -34,27 +34,27 @@ const CheckBox = ({
   onChange,
   ...otherProps
 }) => {
-  // const { setFieldValue } = useFormikContext();
-  // const [field, meta] = useField(name);
+  const { setFieldValue } = useFormikContext();
+  const [field, meta] = useField(name);
 
   const { root } = useStyles();
 
   const handleChange = (evt) => {
 
-    // const { checked } = evt.target;
-    // setFieldValue(name, checked);
+    const { checked } = evt.target;
+    setFieldValue(name, checked);
   };
 
-  // const configCheckbox = {
-  //   ...field,
-  //   ...otherProps,
-  //   onChange: onChange || handleChange,
-  // };
+  const configCheckbox = {
+    ...field,
+    ...otherProps,
+    onChange: onChange || handleChange,
+  };
 
-  // const configFormControl = {};
-  // if (meta && meta.touched && meta.error) {
-  //   configFormControl.error = true;
-  // }
+  const configFormControl = {};
+  if (meta && meta.touched && meta.error) {
+    configFormControl.error = true;
+  }
 
   console.log(checked, "<======cjheckckckckck");
   return (
@@ -82,8 +82,11 @@ const CheckBox = ({
                 },
               }}
               checked={checked}
+              {...configCheckbox}
+            // onChange={(_, checked) => onChange(checked)}
             />
           }
+
           className={root}
         />
       </FormGroup>

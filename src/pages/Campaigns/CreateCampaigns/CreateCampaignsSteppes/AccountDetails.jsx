@@ -34,6 +34,7 @@ function AccountDetails() {
           <InputField
             name={"account_holder_name"}
             sx={{ padding: '20px' }}
+            type={"text"}
 
             label="Account holder Name:"
             required={true}
@@ -50,7 +51,7 @@ function AccountDetails() {
             required={true}
             name={"account_number"}
             sx={{ padding: '20px' }}
-
+            type={'number'}
             label={"Account Number:"}
             {...field}
           />
@@ -64,7 +65,7 @@ function AccountDetails() {
             name={"bank_name"}
             required={true}
             sx={{ padding: '20px' }}
-
+            type={'text'}
             label={"Bank Name:"}
             {...field}
           />
@@ -78,6 +79,7 @@ function AccountDetails() {
           <InputField
             name={"branch_name"}
             required={true}
+            type={'text'}
             label={"Branch Name:"}
             sx={{ padding: '20px' }}
 
@@ -91,6 +93,7 @@ function AccountDetails() {
         render={({ field }) => (
           <InputField
             required={true}
+            type={'number'}
             name={"ifsc_code"}
             sx={{ padding: '20px' }}
 
@@ -102,7 +105,7 @@ function AccountDetails() {
       <Controller
         control={control}
         name="passbook_image"
-        render={({ field: { onChange, value } }) => (
+        render={({ field }) => (
           <>
             <UploadField
               label="Upload Bank Passbook/Cheque:"
@@ -110,8 +113,7 @@ function AccountDetails() {
               placeholder={
                 "Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
               }
-              onChange={onChange}
-              value={value}
+              {...field}
             />
           </>
         )}

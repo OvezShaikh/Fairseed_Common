@@ -9,13 +9,14 @@ import SecondaryButton from "../inputs/secondaryButton";
 import SelectField from "../inputs/SelectField";
 import { Dialog } from "../layout/dialogBox";
 import * as yup from "yup";
+import InputAdminField from '../inputs/InputAdminField/Index'
 import MultipleSelectField from "../inputs/MultipleSelectField";
 import OperatorSelectField from '../inputs/operatorSelectField'
 
-const InputStyle = {
-  width: '350px',
-padding: '0px 20px 0px 12px'
-}
+// const InputStyle = {
+//   width: '350px',
+//   padding: '0px 0px 0px 2px'
+// }
 
 const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
   const validationSchema = yup.object().shape({
@@ -30,7 +31,7 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
         operator: yup
           .object({
             label: yup.string()
-            .required("Operator is required!"),
+              .required("Operator is required!"),
           })
           .nullable(),
       })
@@ -74,13 +75,13 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                   filters?.length > 0
                     ? filters
                     : [
-                        {
-                          column: {},
-                          operator: {},
-                          value: [],
-                          id: Date.now(),
-                        },
-                      ],
+                      {
+                        column: {},
+                        operator: {},
+                        value: [],
+                        id: Date.now(),
+                      },
+                    ],
               }}
               enableReinitialize={true}
               validationSchema={validationSchema}
@@ -131,20 +132,20 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                                   options={
                                     allColumns
                                       ? allColumns
-                                          ?.filter((item) => !item?.nofilter)
-                                          ?.map((item) =>
-                                            item?.Header === "Range Start"
-                                              ? { ...item, Header: "Range" }
-                                              : item
-                                          )
-                                          ?.filter(
-                                            (item) =>
-                                              !values?.filters?.some(
-                                                (i) =>
-                                                  i?.column?.Header ===
-                                                  item?.Header
-                                              )
-                                          )
+                                        ?.filter((item) => !item?.nofilter)
+                                        ?.map((item) =>
+                                          item?.Header === "Range Start"
+                                            ? { ...item, Header: "Range" }
+                                            : item
+                                        )
+                                        ?.filter(
+                                          (item) =>
+                                            !values?.filters?.some(
+                                              (i) =>
+                                                i?.column?.Header ===
+                                                item?.Header
+                                            )
+                                        )
                                       : []
                                   }
                                 />
@@ -164,7 +165,7 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
 
                               <Grid item xs={5}>
                                 {values?.filters[index]?.column?.apiURL ||
-                                values?.filters[index]?.column?.options ? (
+                                  values?.filters[index]?.column?.options ? (
                                   <MultipleSelectField
                                     name={`filters[${index}].value`}
                                     id={`value${index}`}
@@ -172,7 +173,7 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                                     options={
                                       values?.filters[index]?.column?.options
                                         ? values?.filters[index]?.column
-                                            ?.options
+                                          ?.options
                                         : []
                                     }
                                     url={values?.filters[index]?.column?.apiURL}
@@ -182,22 +183,22 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                                         (item) =>
                                           item?.column?.Header === "Location"
                                       ) &&
-                                      values?.filters[index]?.column?.Header ===
+                                        values?.filters[index]?.column?.Header ===
                                         "Range"
                                         ? {
-                                            ...values?.filters[index]?.column
-                                              ?.apiParams,
-                                            location_id: values?.filters
-                                              ?.filter(
-                                                (item) =>
-                                                  item?.column?.Header ===
-                                                  "Location"
-                                              )?.[0]
-                                              ?.value?.map((item) => item?.id),
-                                            location_type: "multiple",
-                                          }
+                                          ...values?.filters[index]?.column
+                                            ?.apiParams,
+                                          location_id: values?.filters
+                                            ?.filter(
+                                              (item) =>
+                                                item?.column?.Header ===
+                                                "Location"
+                                            )?.[0]
+                                            ?.value?.map((item) => item?.id),
+                                          location_type: "multiple",
+                                        }
                                         : values?.filters[index]?.column
-                                            ?.apiParams
+                                          ?.apiParams
                                     }
                                     value={values?.filters[index]?.value}
                                     getOptionLabel={(option) =>
@@ -207,24 +208,24 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                                       ]
                                         ? `${option?.range_from} - ${option?.range_to}`
                                         : option[
-                                            values?.filters[index]?.column
-                                              ?.label
-                                          ] ||
-                                          option[
-                                            values?.filters[
-                                              index
-                                            ]?.column?.Header?.toLowerCase()
-                                          ] ||
-                                          option[
-                                            values?.filters[index]?.column?.id
-                                          ] ||
-                                          option ||
-                                          ""
+                                        values?.filters[index]?.column
+                                          ?.label
+                                        ] ||
+                                        option[
+                                        values?.filters[
+                                          index
+                                        ]?.column?.Header?.toLowerCase()
+                                        ] ||
+                                        option[
+                                        values?.filters[index]?.column?.id
+                                        ] ||
+                                        option ||
+                                        ""
                                     }
                                   />
                                 ) : (
-                                  <InputField
-                                    sx={InputStyle}
+                                  <InputAdminField
+                                    sx={{ padding: '20px 10px' }}
                                     label="value"
                                     name={`filters[${index}].value`}
                                   />

@@ -115,9 +115,9 @@ export const LocationConfigurationDialog = ({
               "VoiceRoutingPolicy.policy"
             ]
               ? {
-                  id: data?.["Policy.id"],
-                  policy: data?.["VoiceRoutingPolicy.policy"],
-                }
+                id: data?.["Policy.id"],
+                policy: data?.["VoiceRoutingPolicy.policy"],
+              }
               : {},
             default_dial_plan_policy_id: data?.["DialPlan.policy"]
               ? { id: data?.["Policy.id"], policy: data?.["DialPlan.policy"] }
@@ -172,8 +172,8 @@ export const LocationConfigurationDialog = ({
                         option.country && option?.dial
                           ? `${option.country} (${option?.dial}) `
                           : option?.country
-                          ? option.country
-                          : ""
+                            ? option.country
+                            : ""
                       }
                       renderOption={(props, option) => (
                         <Box
@@ -194,7 +194,7 @@ export const LocationConfigurationDialog = ({
                       label={"Country Name"}
                       value={values?.country_id}
                       disable={isUpdate}
-                      // onInputChange={(e) => setSearch(e.target.value)}
+                    // onInputChange={(e) => setSearch(e.target.value)}
                     />
                   </Grid>
                   <Grid md={6} xs={12} item>

@@ -20,7 +20,7 @@ function CompleteKYC() {
               label="Enter Aadhar Card Number:"
               sx={{ padding: '20px' }}
 
-              type={"text"}
+              type={"number"}
               placeholder={"xxxx xxxx xxxx"}
               {...field}
             />
@@ -30,17 +30,20 @@ function CompleteKYC() {
       <Controller
         control={control}
         name="adhar"
-        render={({ field }) => (
+
+        render={({ field: { onChange, value } }) => (
           <>
             <UploadField
-              name={"adhar"}
+              onChange={onChange}
+              value={value}
+              // name={"adhar"}
               label="Upload Aadhar Card (Front and Back):"
               sx={{ padding: '20px' }}
 
               placeholder={
                 "Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
               }
-              {...field}
+            // {...field}
             />
           </>
         )}
@@ -56,6 +59,7 @@ function CompleteKYC() {
               label={"Enter PAN Card Number:"}
               type={"password"}
               required={true}
+
               placeholder={"xxxxxxxxxxx"}
               sx={{ padding: '20px' }}
 
@@ -67,15 +71,17 @@ function CompleteKYC() {
       <Controller
         control={control}
         name="pan_card_image"
-        render={({ field }) => (
+        render={({ field: { onChange, value } }) => (
           <>
             <UploadField
-              name={"pan_card_image"}
+              onChange={onChange}
+              value={value}
+              // name={"pan_card_image"}
               label="Upload PAN Card:"
               placeholder={
                 "Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
               }
-              {...field}
+            // {...field}
             />
           </>
         )}

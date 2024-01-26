@@ -20,7 +20,7 @@ function YourStory() {
       <Controller
         control={control}
         name="story"
-        render={({ field:{onChange,value} }) => (
+        render={({ field: { onChange, value } }) => (
           <div className="pb-[8rem] ">
             <FormLabel
               className="text-capitalize font-medium d-flex align-items-center"
@@ -33,7 +33,7 @@ function YourStory() {
                 fontStyle: "normal",
                 height: "22px",
               }}
-              // sx={{ padding:'4px 8px 8px 8px',color: colors.text.main, fontSize: "20px", fontWeight:700,fontFamily:'satoshi',fontStyle:"normal",height: "22px" }}
+            // sx={{ padding:'4px 8px 8px 8px',color: colors.text.main, fontSize: "20px", fontWeight:700,fontFamily:'satoshi',fontStyle:"normal",height: "22px" }}
             >
               Tell us your Story:
               <span className="text-red-600">*</span>
@@ -50,17 +50,17 @@ function YourStory() {
   Explain why you are raising funds?
                 
   Make an Appeal.`}
-  onChange={onChange}
-  />
+                onChange={onChange}
+              />
             </div>
           </div>
         )}
-        
+
       />
       <Controller
         control={control}
         name="summary"
-        render={({ field:{onChange,value} }) => (
+        render={({ field: { onChange, value } }) => (
           <div className="pb-[8rem]">
             <FormLabel
               className="text-capitalize font-medium d-flex align-items-center"
@@ -73,7 +73,7 @@ function YourStory() {
                 fontStyle: "normal",
                 height: "22px",
               }}
-              // sx={{ padding:'4px 8px 8px 8px',color: colors.text.main, fontSize: "20px", fontWeight:700,fontFamily:'satoshi',fontStyle:"normal",height: "22px" }}
+            // sx={{ padding:'4px 8px 8px 8px',color: colors.text.main, fontSize: "20px", fontWeight:700,fontFamily:'satoshi',fontStyle:"normal",height: "22px" }}
             >
               Summary:
               <span className="text-red-600">*</span>
@@ -91,22 +91,24 @@ function YourStory() {
           </div>
         )}
       />
-       <Controller
-      control={control}
-      name="document:"
-      render={({ field }) => (
-        <>
-          <UploadField
-            label="Document:"
-            name="document:"
-            placeholder={
-              "Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
-            }
-            {...field}
-          />
-        </>
-      )}
-    />
+      <Controller
+        control={control}
+        name="document"
+        render={({ field }) => (
+          <>
+
+            {console.log(field, "fieldfieldfieldfieldfieldfieldfield")}
+            <UploadField
+              label="Document:"
+              name="document"
+              placeholder={
+                "Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
+              }
+              {...field}
+            />
+          </>
+        )}
+      />
     </div>
   );
 };

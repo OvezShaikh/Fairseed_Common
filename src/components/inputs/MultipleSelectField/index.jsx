@@ -31,7 +31,7 @@ const useStyles = makeStyles({
   root: {
     "& .MuiInputBase-root.MuiOutlinedInput-root": {
       padding: "3px 10px",
-      marginTop: "5px",
+      marginTop: "10px",
     },
     "& .MuiOutlinedInput-notchedOutline": {
       border: `1px solid #e2e2e2`,
@@ -121,7 +121,7 @@ const MultipleSelectField = ({
           className="text-capitalize font-medium d-flex align-items-center"
           sx={{ color: colors.text.main, fontSize: "0.8rem", height: "22px" }}
         >
-          {configTextfield?.label}{" "}
+          {configTextfield?.label}
         </FormLabel>
       )}
       <Autocomplete

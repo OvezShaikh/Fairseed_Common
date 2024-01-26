@@ -15,13 +15,13 @@ function App() {
     <div className="container">
       {/* <OnGoingCampaigns/> */}
       {/* <CreateCampaigns/> */}
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <div className="container">
           <AdminPage />
         </div>
-      </BrowserRouter>
+      </BrowserRouter> */}
 
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="/Home" element={<HomePage />} />
@@ -37,7 +37,7 @@ function App() {
 
           <Route path="/campaign-details/:id" element={<CurrentCampaign />} />
         </Routes>
-      </BrowserRouter> */}
+      </BrowserRouter>
     </div>
   );
 }
