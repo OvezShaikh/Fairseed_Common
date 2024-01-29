@@ -82,12 +82,12 @@ function CurrentCampaign({
           <div className="py-3 px-1 mb-4" onClick={() => navigate(-1)}>
             <img src={images.ArrowBack} alt="" />
           </div>
-          <div
+          {/* <div
             className="flex flex-col text-black/70 ml-1 mb-12 font-extrabold"
             style={{ fontFamily: "satoshi", fontSize: 20, fontWeight: 600 }}
           >
             {title ? <>{title.split("/")[0]}</> : "Create Campaigns"}
-          </div>
+          </div> */}
         </Typography>
       </Grid>
       <div
@@ -110,7 +110,7 @@ function CurrentCampaign({
         </h1>
         <div className="w-full h-full  flex  gap-5">
           <img
-            className="w-[65%]  rounded-3xl"
+            className="w-[1170.5px] h-[835.750px] rounded-3xl"
             src={`${process.env.REACT_APP_API_URL}` + cardDetails?.campaign_image}
             alt="Img"
           />
@@ -118,7 +118,7 @@ function CurrentCampaign({
             className="flex flex-col rounded-3xl justify-center items-center w-[35%] "
             style={{ border: "1px solid red" }}
           >
-            <img className="mt-16 mb-5" src={images.Logo} alt="Logo" />
+            <img className="mt-16 mb-16" src={images.Logo} alt="Logo" />
             <div
               className=""
               style={{
@@ -160,7 +160,7 @@ function CurrentCampaign({
               </div>
             </div>
             <h1
-              className="text-6xl  font-bold mt-5"
+              className="text-6xl  font-bold mt-8"
               style={{ fontFamily: "satoshi" }}
             >
              ₹ {cardDetails?.fund_raised.toLocaleString()}
@@ -179,7 +179,7 @@ function CurrentCampaign({
               funded of ₹ {cardDetails?.goal_amount.toLocaleString()}
             </p>
 
-            <div className="mb-5 w-3/4">
+            <div className="mb-8 mt-8 w-3/4">
               {/* <LinearWithValueLabel className='!h-9' height={'30px'} value={30} /> */}
               <LinearProgress
                 
@@ -202,7 +202,7 @@ function CurrentCampaign({
               </h1>
             </div>
             <p
-              className="text-black/40 w-[60%] text-2xl text-center py-10"
+              className="text-black/40 w-[60%] text-2xl text-center pt-[72px] pb-[64px]"
               style={{ fontFamily: "satoshi" }}
             >
               <span className="font-bold " style={{ color: " #25272C" }}>
@@ -293,7 +293,7 @@ function CurrentCampaign({
             </div>
             <div className="pt-4">
             {cardDetails?.story && (
-  <div className="pt-4" dangerouslySetInnerHTML={{ __html: cardDetails.story }} style={{whiteSpace:"pre-line"}}></div>
+  <div className="pt-4" dangerouslySetInnerHTML={{ __html: cardDetails.story }} style={{whiteSpace:"pre-line", fontSize:28, color: '#5E5E5E',}}></div>
 )}
              
             </div>

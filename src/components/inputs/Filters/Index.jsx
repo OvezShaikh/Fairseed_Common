@@ -29,7 +29,9 @@ export default function ScrollableTabsButtonForce({
   // };
 
   return (
-    <Box sx={{ maxWidth: { xs: 620, sm: 1440 }, bgcolor: "background.paper" }}>
+    <Box sx={{ maxWidth: { xs: 620, sm: 1440, lg:1608 }, bgcolor: "background.paper","& .css-145v6pe-MuiButtonBase-root-MuiTabScrollButton-root.Mui-disabled " : {
+      display: "none",} , "& .css-ptiqhd-MuiSvgIcon-root" :{ width: 32,height: 32}}}
+     >
       <Tabs
         value={value}
         sx={{
@@ -37,7 +39,7 @@ export default function ScrollableTabsButtonForce({
             background: "linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)",
             color: "white !important",
             textTransform: "capitalize",
-            fontSize: "18px !important",
+            fontSize: "20px !important",
 
             "& .icon": {
               color: "white !important",
@@ -80,7 +82,7 @@ export default function ScrollableTabsButtonForce({
             border: "1.5px solid rgb(248, 85, 85)",
             fontFamily: "Satoshi",
             fontSize: "18px",
-            marginLeft: "0.5rem",
+            marginLeft: "12px",
             fontStyle: "normal",
           }}
           label={
@@ -100,7 +102,7 @@ export default function ScrollableTabsButtonForce({
             border: "1.5px solid rgb(248, 85, 85)",
             fontFamily: "Satoshi",
             fontSize: "18px",
-            marginLeft: "0.5rem",
+            marginLeft: "12px",
             fontStyle: "normal",
           }}
           label={
@@ -119,7 +121,7 @@ export default function ScrollableTabsButtonForce({
             borderRadius: "var(--Spacing-24, 50px)",
             border: "1.5px solid rgb(248, 85, 85)",
             fontFamily: "Satoshi",
-            marginLeft: "0.5rem",
+            marginLeft: "12px",
             fontSize: "18px",
             fontStyle: "normal",
           }}
@@ -138,7 +140,7 @@ export default function ScrollableTabsButtonForce({
             color: "var(--cool-grey-cool-grey-10, #383A42)",
             borderRadius: "var(--Spacing-24, 50px)",
             border: "1.5px solid rgb(248, 85, 85)",
-            marginLeft: "0.5rem",
+            marginLeft: "12px",
             fontFamily: "Satoshi",
             fontSize: "18px",
             fontStyle: "normal",
@@ -158,7 +160,7 @@ export default function ScrollableTabsButtonForce({
             color: "var(--cool-grey-cool-grey-10, #383A42)",
             borderRadius: "var(--Spacing-24, 50px)",
             border: "1.5px solid rgb(248, 85, 85)",
-            marginLeft: "0.5rem",
+            marginLeft: "12px",
             fontFamily: "Satoshi",
             fontSize: "18px",
             fontStyle: "normal",
@@ -178,7 +180,7 @@ export default function ScrollableTabsButtonForce({
             color: "var(--cool-grey-cool-grey-10, #383A42)",
             borderRadius: "var(--Spacing-24, 50px)",
             border: "1.5px solid rgb(248, 85, 85)",
-            marginLeft: "0.5rem",
+            marginLeft: "12px",
             fontFamily: "Satoshi",
             fontSize: "18px",
             fontStyle: "normal",
@@ -195,7 +197,7 @@ export default function ScrollableTabsButtonForce({
             color: "var(--cool-grey-cool-grey-10, #383A42)",
             borderRadius: "var(--Spacing-24, 50px)",
             border: "1.5px solid rgb(248, 85, 85)",
-            marginLeft: "0.5rem",
+            marginLeft: "12px",
             fontFamily: "Satoshi",
             fontSize: "18px",
             fontStyle: "normal",
@@ -212,7 +214,7 @@ export default function ScrollableTabsButtonForce({
             color: "var(--cool-grey-cool-grey-10, #383A42)",
             borderRadius: "var(--Spacing-24, 50px)",
             border: "1.5px solid rgb(248, 85, 85)",
-            marginLeft: "0.5rem",
+            marginLeft: "12px",
             fontSize: "18px",
             fontFamily: "Satoshi",
             fontStyle: "normal",
@@ -232,7 +234,7 @@ export default function ScrollableTabsButtonForce({
             color: "var(--cool-grey-cool-grey-10, #383A42)",
             borderRadius: "var(--Spacing-24, 50px)",
             border: "1.5px solid rgb(248, 85, 85)",
-            marginLeft: "0.5rem",
+            marginLeft: "12px",
             fontFamily: "Satoshi",
             fontSize: "18px",
             fontStyle: "normal",
@@ -252,7 +254,7 @@ export default function ScrollableTabsButtonForce({
             color: "var(--cool-grey-cool-grey-10, #383A42)",
             borderRadius: "var(--Spacing-24, 50px)",
             border: "1.5px solid rgb(248, 85, 85)",
-            marginLeft: "0.5rem",
+            marginLeft: "12px",
             fontFamily: "Satoshi",
             fontSize: "18px",
             fontStyle: "normal",

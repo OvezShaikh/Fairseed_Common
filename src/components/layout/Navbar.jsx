@@ -120,7 +120,7 @@ export default function Example() {
             </button>
           </div>
           <Popover.Group className="hidden lg:flex lg:gap-x-12">
-            <Popover className="relative" >
+            <Popover className="relative mt-1" >
               <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium font-[satoshi]  text-[#40444C]"
               onclick="this.style.backgroundColor = (this.style.backgroundColor === '#40444C') ? 'blue' : '#40444C';"
 
@@ -190,9 +190,9 @@ export default function Example() {
             </Popover>
             {/*  second button */}
 
-            <Popover className="relative">
+            <Popover className="relative mt-1">
               <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium font-[satoshi] text-[#40444C]">
-                Our impact
+                Our Impact
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -257,7 +257,7 @@ export default function Example() {
             </Popover>
 
             {/* third button */}
-            <Popover className="relative">
+            <Popover className="relative mt-1">
               <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium  font-[satoshi] text-[#40444C]">
                 About us
                 <svg
@@ -301,7 +301,7 @@ export default function Example() {
                     {AboutUs.map((item) => (
                       <div
                         key={item.name}
-                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[Satoshi-Variable] text-[#333] hover:bg-gray-50"
+                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[Satoshi] text-[#333] hover:bg-gray-50"
                         style={{fontWeight:400}}
                       >
                         
@@ -325,7 +325,7 @@ export default function Example() {
 
             {/* Fourth button */}
             <PrimaryButton
-            sx={{borderRadius:'var(--Pixels-8, 8px)',fontWeight:700,fontSize:'18px'}}>
+            sx={{borderRadius:'var(--Pixels-8, 8px)',fontWeight:700,fontSize:'18px', padding: '12px 20px',}}>
               
                 <a href="/Home/Create-Campaign">
                   Start a Campaign

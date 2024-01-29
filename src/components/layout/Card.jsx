@@ -28,7 +28,7 @@ function Card({
     setTitleLines(lines);
   }, [title]);
 
-  const marginBottom = title.length > 41 ? "2em" : "3.3em";
+  const marginBottom = title.length > 41 ? "2.5em" : "3.8em";
   
 
   
@@ -50,14 +50,15 @@ function Card({
       <div
         key={key}
         className="card rounded-xl font-bold"
-        style={{ width: "23rem", fontFamily: "satoshi" }}
+        style={{ width: "25.5rem", height:"36.625rem" ,fontFamily: "satoshi",boxShadow: "0px 1px 8px 0px rgba(16, 24, 40, 0.10), 0px 1px 6px -1px rgba(16, 24, 40, 0.10)" }}
+        
       >
         
         <Link to={`/campaign-details/${og_id}`}>
           {/* <img src={process.env.REACT_APP_API_URL + cardImage} className="card-img-top h-80" alt="..."  />  */}
           <img
             src={`${process.env.REACT_APP_API_URL}` + cardImage}
-            className="card-img-top h-80"
+            className="card-img-top h-[265px] w-[483.351px]"
             alt="..."
             
           />
@@ -77,7 +78,7 @@ function Card({
             <span className="font-bold text-black">₹{fundRaised} </span>
             funded of ₹{goalAmount}
           </p>
-          <div className="pt-1 pb-4 ">
+          <div className="pt-1 pb-10 ">
             <LinearProgress
               
               variant="determinate"   
@@ -116,8 +117,8 @@ function Card({
                 style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
               >
                 <div className="flex pl-1 pr-2 py-1 ">
-                  <img className="pr-1 pl-0" src={images?.Coins} />
-                  <p className="pl-2   text-[17px] ">Donate</p>
+                  <img className="pr-1 pl-1" src={images?.Coins} />
+                  <p className="pl-1  text-[17px] ">Donate</p>
                 </div>
               </button>
             </div>

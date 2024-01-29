@@ -105,7 +105,7 @@ const MultipleRows = () => {
           sliderData.map((item, index) => (
             <>
               <Link to={`/Home/CampaignsByCategory/${item.id}`}>
-                <div className="pb-5 flex flex-col justify-center items-center text-center mr-2">
+                <div className="pb-5 flex flex-col justify-center items-center text-center mr-12">
                 <div key={index}>
                   <img
                     style={{

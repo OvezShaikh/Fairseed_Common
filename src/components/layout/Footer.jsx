@@ -25,10 +25,10 @@ function Footer() {
       >
         <div className="flex mt-[140px] justify-center absolute  -top-[50%] left-[50%] -translate-x-[50%]">
           <div className="footer  text-center">
-            <p className="footer_text w-[80%] ml-28 text-[56px]" style={{fontWeight:700}}>
+            <p className="footer_text w-[80%] ml-28 text-[56px] " style={{fontWeight:700, marginBottom:64}}>
               Ready to make an Impact? Join thousands of others today
             </p>
-            <div className="flex justify-center my-10 gap-4">
+            <div className="flex justify-center gap-4">
               <button
                 style={{
                   paddingLeft: 28,
@@ -102,7 +102,7 @@ function Footer() {
                 color: "white",
                 fontSize: 16,
                 fontFamily: "Satoshi",
-                fontWeight: "500",
+                fontWeight: "400",
                 textTransform: "capitalize",
                 wordWrap: "break-word",
               }}
