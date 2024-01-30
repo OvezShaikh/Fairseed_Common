@@ -323,7 +323,15 @@ export default function Example() {
               </Transition>
             </Popover>
 
+                         
             {/* Fourth button */}
+            <button
+              className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
+              >How it Works</button>
+
+
+
+            {/* Fifth button */}
             <PrimaryButton
             sx={{borderRadius:'var(--Pixels-8, 8px)',fontWeight:700,fontSize:'18px', padding: '12px 20px',}}>
               

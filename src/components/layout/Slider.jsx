@@ -6,6 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 import "./Slider.css";
 import images from "../../constants/images";
 import { Link } from "react-router-dom";
+import { PiCaretLeft,PiCaretRight } from "react-icons/pi";
+import { fontSize, width } from "@mui/system";
 
 const MultipleRows = () => {
   const [sliderData, setSliderData] = useState([]);
@@ -14,7 +16,7 @@ const MultipleRows = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
   const limit = 20;
-
+  const arrowStyles = { width: "48px", height: "48px" };
 // const MultipleRows = () => {
 //   const [sliderData, setSliderData] = useState([]);
 //   const [loading, setLoading] = useState(true);
@@ -56,6 +58,8 @@ const MultipleRows = () => {
     speed: 1000,
     rows: 2,
     slidesPerRow: 1,
+    prevArrow: <PiCaretLeft style={arrowStyles} />,
+    nextArrow: <PiCaretRight style={arrowStyles} />,
     responsive: [
       {
         breakpoint: 600,

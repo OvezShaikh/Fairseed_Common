@@ -12,7 +12,7 @@ import OnGoingCampaigns from "./pages/Campaigns/OnGoingCampaigns/Index";
 
 function App() {
   return (
-    <div className="container">
+    <div className="container p-0">
       {/* <OnGoingCampaigns/> */}
       {/* <CreateCampaigns/> */}
       {/* <BrowserRouter>

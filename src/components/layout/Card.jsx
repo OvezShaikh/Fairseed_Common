@@ -28,7 +28,7 @@ function Card({
     setTitleLines(lines);
   }, [title]);
 
-  const marginBottom = title.length > 41 ? "2.5em" : "3.8em";
+  const marginBottom = title.length > 41 ? "2.5rem" : "4.3rem";
   
 
   

@@ -17,7 +17,9 @@
 
 .slick-prev:before, .slick-next:before {
   color: #080505;
-  font-size: 35px;
+  /* font-size: 35px; */
+  align-items: start;
+   
   
 }
 
@@ -31,12 +33,26 @@
   }
 
   .slick-prev{
-    left: -30px;
+    left: -80px;
+    top: 260px;
   }
 
-  .swiper-button-next::after{
+  /* .swiper-button-next::after{
     /* height: 48px; */
     /* width: 150px; */
-    margin-right: 250px;
+    /* margin-right: 250px;
     align-items: center;
+  } */ 
+
+  .slick-prev, .slick-next {
+    width: 48px;
+    height: 48px;
+    
+  }
+
+
+  .slick-next{
+    margin-left: 50px;
+    right: -60px;
+    top: 260px;
   }
