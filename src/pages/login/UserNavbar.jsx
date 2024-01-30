@@ -2,30 +2,17 @@ import * as React from "react";
 import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import {
-  ArrowPathIcon,
   Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import {
   ChevronDownIcon,
-  PhoneIcon,
-  PlayCircleIcon,
 } from "@heroicons/react/20/solid";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
-// import someImage from "../../constants/images";
-// import { OutlineIconName } from "@heroicons/react/outline";
-import PrimaryButton from "../inputs/PrimaryButton";
 import images from "../../constants/images";
-import UserLogin from '../../pages/login /Login_page/Index'
-import { color } from "@mui/system";
-import LoginFrom from "../../pages/login/Login_page/Login";
-// import UserLogin from "../../pages/login/Login_page/Index";
-import UserSignUp_02 from "../../pages/login/Sign_Up/Index";
+import ProfileAvatar from "./ProfileAvatar";
+import PrimaryButton from "../../components/inputs/PrimaryButton";
 const styleButton ={
   color:'red'
 }
@@ -40,11 +27,11 @@ const GetInvolved = [
   },
   {
     name: "Internship",
-    href: '/Home/Create-Campaign',
+    href:'/Home/Create-Campaign',
   },
   {
     name: "Create a campaign",
-    href: '/Home/Create-Campaign',
+    href:'/Home/Create-Campaign',
   },
   {
     name: "Support a campaign",
@@ -66,13 +53,13 @@ const OurImpact = [
   },
   {
     name: "Stories of Change",
-    href: '/Home/Create-Campaign',
+    href:'/Home/Create-Campaign',
   },
   {
     name: "Reports",
-    href: '/Home/Create-Campaign',
+    href:'/Home/Create-Campaign',
   },
-
+ 
 ];
 const AboutUs = [
   {
@@ -85,10 +72,10 @@ const AboutUs = [
   },
   {
     name: "Our Mission",
-    href: '/Home/Create-Campaign',
+    href:'/Home/Create-Campaign',
   },
-
-
+ 
+ 
 ];
 
 function classNames(...classes) {
@@ -101,12 +88,11 @@ export default function Example() {
 
  
   return (
-    <header className="absolute top-0 left-0 right-0 bg-transparent z-10 container" style={{
-      backgroundColor: '#8EC5FC', backdropFilter: 'blur(10px)'
+<header className="absolute top-0 left-0 right-0 bg-transparent z-10 container" style={{ backgroundColor: '#8EC5FC',backdropFilter:'blur(10px)'
     }}>      <nav
-      className="mx-auto flex max-w-9xl items-center justify-between p-6 lg:px-8"
-      aria-label="Global"
-    >
+        className="mx-auto flex max-w-9xl items-center justify-between p-6 lg:px-8"
+        aria-label="Global"
+      >
         <div className="flex lg:flex ">
           <a href="#">
             <span className="sr-only">FairSeed </span>
@@ -128,7 +114,7 @@ export default function Example() {
           <Popover.Group className="hidden lg:flex lg:gap-x-12">
             <Popover className="relative" >
               <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium   text-[#40444C]"
-                onclick="this.style.backgroundColor = (this.style.backgroundColor === '#40444C') ? 'blue' : '#40444C';"
+              onclick="this.style.backgroundColor = (this.style.backgroundColor === '#40444C') ? 'blue' : '#40444C';"
 
               >
                 Get Involved
@@ -170,13 +156,13 @@ export default function Example() {
               >
                 <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-[250px] max-w-md overflow-hidden rounded bg-white shadow-lg ring-1 ring-gray-900/5">
                   <div className="pl-3 pb-4">
-                    {GetInvolved.map((item) => (
+                    { GetInvolved.map((item) => (
                       <div
                         key={item.name}
                         className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
-                        style={{ fontWeight: 400 }}
+                        style={{fontWeight:400}}
                       >
-
+                        
                         <div className="flex-auto">
                           <a
                             href={item.href}
@@ -185,12 +171,12 @@ export default function Example() {
                             {item.name}
                             <span className="absolute inset-0" />
                           </a>
-
+      
                         </div>
                       </div>
                     ))}
                   </div>
-
+                
                 </Popover.Panel>
               </Transition>
             </Popover>
@@ -241,9 +227,9 @@ export default function Example() {
                       <div
                         key={item.name}
                         className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
-                        style={{ fontWeight: 400 }}
+                        style={{fontWeight:400}}
                       >
-
+                        
                         <div className="flex-auto">
                           <a
                             href={item.href}
@@ -252,12 +238,12 @@ export default function Example() {
                             {item.name}
                             <span className="absolute inset-0" />
                           </a>
-
+      
                         </div>
                       </div>
                     ))}
                   </div>
-
+                
                 </Popover.Panel>
               </Transition>
             </Popover>
@@ -308,9 +294,9 @@ export default function Example() {
                       <div
                         key={item.name}
                         className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
-                        style={{ fontWeight: 400 }}
+                        style={{fontWeight:400}}
                       >
-
+                        
                         <div className="flex-auto">
                           <a
                             href={item.href}
@@ -319,25 +305,25 @@ export default function Example() {
                             {item.name}
                             <span className="absolute inset-0" />
                           </a>
-
+      
                         </div>
                       </div>
                     ))}
                   </div>
-
+                
                 </Popover.Panel>
               </Transition>
             </Popover>
-
-            {/* Fourth button */}
             <button
               className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
-            >
+              > 
+             How it Works 
+                </button>
 
-              How it Works
-            </button>
+            {/* Fourth button */}
             <PrimaryButton
             sx={{borderRadius:'var(--Pixels-8, 8px)',fontWeight:700,fontSize:'18px'}}>
+              
                 <a href="/Home/Create-Campaign">
                   Start a Campaign
                   </a>
@@ -365,13 +351,8 @@ export default function Example() {
               <button
               className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
               > 
-              Login
-              {/* <UserLogin/> */}
-              {/* <UserSignUp_02/> */}
+              <ProfileAvatar/>
                 </button>
-              {/* <Box sx={{ display: "flex", }}>
-                <Avatar alt="Remy Sharp" src={images.Avatar} />
-              </Box> */}
             </div>
           </Popover.Group>
         </div>

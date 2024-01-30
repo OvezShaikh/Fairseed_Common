@@ -1,30 +1,40 @@
 import * as Yup from "yup";
-import serverAPI from "../config/serverAPI";
-import { toast } from "react-toastify";
+import React from "react";
+import serverAPI from '../config/serverAPI'
+import { toast } from 'react-toastify'
 
 const useLogin = () => {
+
+ 
+
   const Initial_value = {
     email: "",
     password: "",
-  };
+  } ;
 
   const formValidation = Yup.object().shape({
     email: Yup.string()
       .email("invalid email! please enter correct email")
-      .required("email is required")
-      .nullable(),
+      .required("email is required").nullable(),
     password: Yup.string().required("password is required").nullable(),
   });
 
   const loginData = async (data) => {
+    console.log(data,"dadata")
     try {
-      const res = await serverAPI.post("/accounts/login/nt/", data);
-      console.log("response Login ", data);
+      const res = await serverAPI.post(
+        "/accounts/login/nt/",
+        data
+      );
+      // console.log("response Login ",data);
+      alert("Successful")
       localStorage.setItem("token", res.data.token);
-      localStorage.setItem("userRole", res.data.user_info.user_role);
-      toast.success("Success Notification !", {
-        position: toast.POSITION.TOP_RIGHT,
-      });
+      localStorage.setItem("user_role", res.data.user_info.user_role);
+      window.location.href = '/Home';
+      // toast.success("Success Notification !", {
+      //   position: toast.POSITION.TOP_RIGHT,
+      // });
+     
       console.log(localStorage.getItem("token"));
       console.log(localStorage.getItem("userRole"));
     } catch (error) {
@@ -36,6 +46,7 @@ const useLogin = () => {
     loginData,
     Initial_value,
     formValidation,
+    
   };
 };
 

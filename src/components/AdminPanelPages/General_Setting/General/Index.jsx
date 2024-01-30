@@ -1,9 +1,6 @@
 import React from "react";
-import Input from "@mui/joy/Input";
-import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import TextEditor from "./TextEditor";
-import Radio from "@mui/joy/Radio";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useState } from "react";
@@ -28,13 +25,19 @@ const styleInput = {
 };
 
 function General() {
+
   const [valueText, setValueText] = useState('');
+  
   const [value, setValue] = React.useState('off');
+
   const handleChange = (e) => {
     setValue(e.target.value);
   };
+
   const data = { id: '', title: '', body: '', userId: '' };
+
   const [inputData, setInputData] = useState(data)
+
   const handleData = (e) => {
 
     setInputData({ ...inputData, [e.target.name]: e.target.value })
@@ -55,38 +58,38 @@ function General() {
   return (
     <>
       <div className="flex flex-wrap  justify-between">
-        <FormControl className="w-[24%] ">
+        <div className="w-[24%] ">
           <InputAdminField label={'Name Site'} placeholder={'Placeholder Text'} />
 
-        </FormControl>
-        <FormControl className="w-[24%] ">
+        </div>
+        <div className="w-[24%] ">
           <InputAdminField label={'Welcome Subtitle '} placeholder={'Placeholder Text'} />
-        </FormControl>
-        <FormControl className="w-[24%] ">
+        </div>
+        <div className="w-[24%] ">
           <InputAdminField label={'Keywords'} placeholder={'Add Tag'} />
 
-        </FormControl>
-        <FormControl className="w-[24%] ">
+        </div>
+        <div className="w-[24%] ">
           <InputAdminField label={'Email No-reply'} placeholder={'Placeholder Text'} />
-        </FormControl>
+        </div>
       </div >
-      <FormControl className="pt-7 mb-5 h-[200px]">
+      <div className="pt-7 mb-5 h-[200px]">
         <FormLabel style={styleLabel}>Description</FormLabel>
         {/* <TextEditor  /> */}
         <ReactQuill theme="snow" value={valueText} style={{ borderRadius: '20px' }} onChange={setValueText} />
-      </FormControl>
+      </div>
       <div className="flex gap-4 pt-8">
-        <FormControl className="w-[25%] ">
+        <div className="w-[25%] ">
           <InputAdminField label={'Email Admin'} placeholder={'Placeholder Text'} />
 
-        </FormControl>
-        <FormControl className="w-[25%] ">
+        </div>
+        <div className="w-[25%] ">
           <InputAdminField label={'Link to terms and conditions'} placeholder={'Placeholder Text'} />
-        </FormControl>
-        <FormControl className="w-[25%] ">
+        </div>
+        <div className="w-[25%] ">
           <InputAdminField label={'Link to privacy policy'} placeholder={'Placeholder Text'} />
-        </FormControl>
-        <FormControl className="w-[25%] ">
+        </div>
+        <div className="w-[25%] ">
           <InputAdminField
             label={"Date Format"}
             size="lg"
@@ -99,10 +102,10 @@ function General() {
               },
             }}
           />
-        </FormControl>
+        </div>
       </div>
       <div className="flex gap-32 pt-8">
-        <FormControl className="  lg:w-[25%] ">
+        <div className="  lg:w-[25%] ">
           <RadioGroup
 
             name={"New1"}
@@ -114,8 +117,8 @@ function General() {
             // onChange={onChange}
             value={value}
           />
-        </FormControl>
-        <FormControl className=" lg:w-[25%] ">
+        </div>
+        <div className="lg:w-[25%]">
           <RadioGroup
             name={"New2"}
             options={[
@@ -126,8 +129,8 @@ function General() {
             // onChange={onChange}
             value={value}
           />
-        </FormControl>
-        <FormControl className=" lg:w-[25%] ">
+        </div>
+        <div className=" lg:w-[25%] ">
           <RadioGroup
             name={"New3"}
             options={[
@@ -138,8 +141,8 @@ function General() {
             // onChange={onChange}
             value={value}
           />
-        </FormControl>
-        <FormControl className=" lg:w-[25%]  ">
+        </div>
+        <div className=" lg:w-[25%]  ">
           <RadioGroup
             name={"New4"}
             options={[
@@ -150,11 +153,11 @@ function General() {
             // onChange={onChange}
             value={value}
           />
-        </FormControl>
+        </div>
       </div>
       <div className="flex gap-32 pt-7">
 
-        <FormControl className=" lg:w-[25%] ">
+        <div className=" lg:w-[25%] ">
           <RadioGroup
             name={"New5"}
             options={[
@@ -165,8 +168,8 @@ function General() {
             // onChange={onChange}
             value={value}
           />
-        </FormControl>
-        <FormControl className=" lg:w-[25%] ">
+        </div>
+        <div className=" lg:w-[25%] ">
           <RadioGroup
             name={"New6"}
             options={[
@@ -177,8 +180,8 @@ function General() {
             // onChange={onChange}
             value={value}
           />
-        </FormControl>
-        <FormControl className=" lg:w-[25%]  ">
+        </div>
+        <div className=" lg:w-[25%]  ">
           <RadioGroup
             name={"New7"}
             options={[
@@ -189,8 +192,8 @@ function General() {
             // onChange={onChange}
             value={value}
           />
-        </FormControl>
-        <FormControl className=" lg:w-[25%] ">
+        </div>
+        <div className=" lg:w-[25%] ">
           <RadioGroup
             name={"New8"}
             options={[
@@ -201,7 +204,7 @@ function General() {
             // onChange={onChange}
             value={value}
           />
-        </FormControl>
+        </div>
 
       </div>
       <div className="flex justify-center items-center pt-8 ">

@@ -198,7 +198,6 @@ const UploadField = ({
           <input
             type="file"
             ref={ref}
-            multiple={multiple}
             style={{ display: "none" }}
             id={`file - input - ${name}`} // Unique ID for each input
             onChange={handleFileChange}

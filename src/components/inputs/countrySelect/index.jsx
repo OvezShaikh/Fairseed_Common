@@ -18,11 +18,11 @@ const CountrySelect = ({
   countriesList,
   ...otherProps
 }) => {
-  // const [field, meta] = useField(name);
+  const [field, meta] = useField(name);
   // console.log('Field:---------------->', field);
   // console.log('Meta:----------------->', meta);
   const configTextfield = {
-    // ...field,
+    ...field,
     ...otherProps,
     name,
     variant: "outlined",
@@ -35,7 +35,7 @@ const CountrySelect = ({
   //   configTextfield.error = true;
   //   configTextfield.helperText = meta.error;
   // }
-  // const { setFieldValue, values } = useFormikContext();
+  const { setFieldValue, values } = useFormikContext();
 
   return (
     <>
@@ -48,11 +48,11 @@ const CountrySelect = ({
 
       </FormLabel>
       <ReactFlagsSelect
-        selected={value}
-        onSelect={(value) => {
-          // setFieldValue(name, value);
-          onChange && onChange(value);
-        }}
+         selected={field.value}  
+         onSelect={(value) => {
+           setFieldValue(name, value);
+           onChange && onChange(value);
+         }}
         searchable
         id="react-flag-select"
         style={{
@@ -67,12 +67,12 @@ const CountrySelect = ({
         }}
         {...configTextfield}
       />
-      {/* <ErrorMessage
+      <ErrorMessage
         name={name}
         render={(msg) => (
           <div style={{ color: "red", fontSize: "0.7rem" }}>{msg}</div>
         )}
-      /> */}
+      />
     </>
   );
 };

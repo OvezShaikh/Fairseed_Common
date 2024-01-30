@@ -9,7 +9,7 @@ const useStyles = makeStyles({
     "& .MuiInput-root": {
       margin: "0px",
       fontSize: "20px",
-      border: `1px solid #E2E2E2`,
+      border:' 1px solid #E2E2E2',
       background: "#fff",
       "&::before": {
         display: "none",
@@ -32,14 +32,14 @@ const useStyles = makeStyles({
       fontSize: "20px",
       // marginTop: "5px",
       //   "&:focus": {
-      //     boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
+      //     boxShadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.15);,
       //   borderColor: 'black',
 
       // },
     },
 
     "& .MuiOutlinedInput-notchedOutline": {
-      border: `1px solid #e2e2e2`,
+      border:" 1px solid #e2e2e2",
     },
   },
 });
