@@ -1,47 +1,42 @@
-import React, { useRef, useState } from "react";
-import images from "../../../constants/images";
+import React, { useRef } from "react";
 import { FormLabel, InputBase } from "@mui/material";
 import { colors } from "../../../constants/theme";
 import { RxCross2 } from "react-icons/rx";
 import { useField } from "formik";
+import images from "../../../constants/images";
 
 const UploadField = ({
   variant,
   label = "",
   name,
   placeholder,
-  multiple = true,
-  // onChange,
-  // value,
+onChange,
   ...otherProps
 }) => {
-  // const [selectedFile, setSelectedFile] = useState([]);
+  const ref = useRef(null);
+  const [field, meta, handlers] = useField(name);
 
-  const ref = useRef()
-
-  const [field, meta, handlers] = useField(name)
-  console.log("logggggggggggggggggggg", field.value, field.name);
   const handleFileChange = (event) => {
-    const files = event.target.files;
-    // Handle the selected file as needed
-    // setSelectedFile(files);
-    console.log(files, "names");
-    // onChange(files)
-    handlers.setValue(files)
-    handlers.setTouched(true)
+    const file = event.target.files[0]; // Only take the first file if multiple files are selected
+  
+    if (file) {
+      handlers.setValue(file);
+      handlers.setTouched(true);
+    }
   };
+
   const configTextfield = {
-    // ...field,
+    ...field,
     ...otherProps,
     fullWidth: true,
     variant: variant ? variant : "outlined",
   };
-  // console.log("selected", selectedFile);
+
   return (
     <div className="pb-[2rem]">
       {label && (
         <FormLabel
-          className="text-capitalize  font-medium d-flex align-items-center"
+          className="text-capitalize font-medium d-flex align-items-center"
           sx={{
             padding: "4px 8px 12px 8px",
             color: colors.text.main,
@@ -52,39 +47,24 @@ const UploadField = ({
             height: "32px",
           }}
         >
-          {label + " "
-            + name}
+          {label + " " + name}
           <span className="text-red-600">*</span>
         </FormLabel>
       )}
 
-      <div
-        className="flex w-full h-[72px]  Upload_field"
-      // style={{border:'1px solid #DCDFE3',borderRadius:'4px'}}
-      >
+      <div className="flex w-full h-[72px] Upload_field">
         <InputBase
-          value={field.value && field.value.length
-            ? Object.keys(field.value)
-              .map((key) => field.value[key].name)
-              .join(", ")
-            : ''}
-          placeholder={
-            field.value && field.value.length
-              ? Object.keys(field.value)
-                .map((key) => field.value[key].name)
-                .join(", ")
-              : placeholder
-          }
+          value={field.value ? field.value.name : ""}
+          placeholder={placeholder}
           label={label + " " + name}
           sx={{
             "& .MuiInputBase-input": {
               padding: "10px",
               fontSize: "20px",
             },
-
           }}
           fullWidth
-          inputprops={{
+          inputProps={{
             readOnly: true,
           }}
           {...configTextfield}
@@ -94,28 +74,38 @@ const UploadField = ({
           <input
             type="file"
             ref={ref}
-            multiple={multiple}
             style={{ display: "none" }}
-            id="file-input"
+            id={`file-input-${name}`} // Unique ID for each input
             onChange={handleFileChange}
           />
 
           <label
-            htmlFor="file-input"
+            htmlFor={`file-input-${name}`} // Matching ID for the corresponding input
             className="flex justify-center gap-2 items-center"
           >
-            {field.value && field.value.length ? (
-              <RxCross2 size={25} color="gray"
-                onClick={() => { handlers.setValue([]) }}
+            {field.value ? (
+              <RxCross2
+                size={25}
+                color="gray"
+                onClick={() => {
+                  handlers.setValue(null);
+                }}
               />
             ) : (
               ""
             )}
-            <img width={77} src={images.UploadFile} alt="" onClick={() => ref?.current?.focus()} />
+            {/* You may want to add onClick for focusing on the input */}
+            <img
+              width={77}
+              src={images.UploadFile}
+              alt=""
+              onClick={() => ref?.current?.focus()}
+            />
           </label>
         </>
       </div>
     </div>
   );
 };
+
 export default UploadField;

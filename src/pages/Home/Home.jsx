@@ -12,6 +12,7 @@ import DashBoard from "../../components/layout/DashBoard";
 import PrimaryButton from "../../components/inputs/PrimaryButton";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import UserNavbar from '../login/UserNavbar'
 
 import images from "../../constants/images";
 
@@ -53,43 +54,20 @@ function Home() {
     },
   ];
 
-  // {images: [{name:'',src:'..///'},{name:'',src:'.//'}] }
-  // "https://wallpapercave.com/wp/wp3386769.jpg",
-  // "https://wallpaperaccess.com/full/809523.jpg",
-  // "https://getwallpapers.com/wallpaper/full/5/c/0/606489.jpg",
-
-  // let Dboard = [
-  //   {
-  //     DashBoardImg: images.HandShake,
-  //     DashBoardTotal: 4,
-  //     DashBoardText: "Causes Raised",
-  //   },
-  //   {
-  //     DashBoardImg: images.UsersThree,
-  //     DashBoardTotal: "27 Lacs",
-  //     DashBoardText: "Funds Raised",
-  //   },
-  //   {
-  //     DashBoardImg: images.Student,
-  //     DashBoardTotal: "3000+",
-  //     DashBoardText: "Donors",
-  //   },
-  //   {
-  //     DashBoardImg: images.HandCoins,
-  //     DashBoardTotal: 4,
-  //     DashBoardText: "Successful Campaigns",
-  //   },
-  //   {
-  //     DashBoardImg: images.SedalCheck,
-  //     DashBoardTotal: 3,
-  //     DashBoardText: "Student Benefitted",
-  //   },
-  // ];
-
+ 
   return (
     <>
       <div className="">
-        <Navbar />
+        {
+          (localStorage.getItem('user_role')==='Normal')
+           ? 
+           (
+            <UserNavbar/>
+          ) :
+            (
+              <Navbar/>
+              )
+          }
       </div>
       <div>
         <Coursal />

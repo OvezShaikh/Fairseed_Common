@@ -2,29 +2,17 @@ import * as React from "react";
 import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import {
-  ArrowPathIcon,
   Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import {
   ChevronDownIcon,
-  PhoneIcon,
-  PlayCircleIcon,
 } from "@heroicons/react/20/solid";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
-// import someImage from "../../constants/images";
-// import { OutlineIconName } from "@heroicons/react/outline";
-import PrimaryButton from "../inputs/PrimaryButton";
 import images from "../../constants/images";
-import { color } from "@mui/system";
-import LoginFrom from "../../pages/login/Login_page/Login";
-import UserLogin from "../../pages/login/Login_page/Index";
-import UserSignUp_02 from "../../pages/login/Sign_Up/Index";
+import ProfileAvatar from "./ProfileAvatar";
+import PrimaryButton from "../../components/inputs/PrimaryButton";
 const styleButton ={
   color:'red'
 }
@@ -326,10 +314,16 @@ export default function Example() {
                 </Popover.Panel>
               </Transition>
             </Popover>
+            <button
+              className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
+              > 
+             How it Works 
+                </button>
 
             {/* Fourth button */}
             <PrimaryButton
             sx={{borderRadius:'var(--Pixels-8, 8px)',fontWeight:700,fontSize:'18px'}}>
+              
                 <a href="/Home/Create-Campaign">
                   Start a Campaign
                   </a>
@@ -357,12 +351,8 @@ export default function Example() {
               <button
               className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
               > 
-              <UserLogin/>
-              {/* <UserSignUp_02/> */}
+              <ProfileAvatar/>
                 </button>
-              {/* <Box sx={{ display: "flex", }}>
-                <Avatar alt="Remy Sharp" src={images.Avatar} />
-              </Box> */}
             </div>
           </Popover.Group>
         </div>

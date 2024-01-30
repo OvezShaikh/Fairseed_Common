@@ -32,7 +32,7 @@ const stylePrimaryButton = {
     borderRadius: "12px",
 };
 function AccountDetails({ handleBack, handleNext }) {
-    const { submitForm } = useFormikContext();
+    const { submitForm , setFieldValue , values } = useFormikContext();
     //   const formik = useFormik({
     //     initialValues,
     //     onSubmit: (values) => {
@@ -40,6 +40,12 @@ function AccountDetails({ handleBack, handleNext }) {
     //       console.log(values);
     //     },
     //   });
+
+    const handleFileChange = (files) => {
+        // Assuming 'campaign_image' is the field name in your Formik form
+        // setFieldValue("passbook_image", files);
+        console.log("Files in Test component:", files);
+      };
 
     return (
         <Form>
@@ -101,6 +107,8 @@ function AccountDetails({ handleBack, handleNext }) {
                     label="Upload Bank Passbook/Cheque:"
                     name="passbook_image"
                     placeholder="Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
+                    onChange={(files) => handleFileChange('document', files)}
+                    onFileChange={handleFileChange}
                 // {...formik.getFieldProps("passbook_image")}
                 />
 
@@ -114,7 +122,7 @@ function AccountDetails({ handleBack, handleNext }) {
                     Back
                 </SecondaryButton>
 
-                <PrimaryButton sx={stylePrimaryButton} onClick={() => { submitForm() && handleNext() }} >
+                <PrimaryButton sx={stylePrimaryButton} onClick={() => { handleNext() }} >
                     Next
                 </PrimaryButton>
             </div>

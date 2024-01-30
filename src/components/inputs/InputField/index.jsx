@@ -26,7 +26,7 @@ const InputField = ({
     minHeight: "43.95px",
     "label + &": {
       marginTop: "0.3rem",
-      marginBottom: "2rem",
+      // marginBottom: "2rem",
     },
     "& .MuiInputBase-input": {
       borderRadius: "3px",
@@ -46,8 +46,7 @@ const InputField = ({
       // ]),
       // fontFamily: ["FuturaLight"].join(","),
       "&:focus": {
-        boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);
-        `,
+        boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
         borderColor: "black",
       },
 

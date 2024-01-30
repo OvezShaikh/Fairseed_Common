@@ -1,6 +1,7 @@
 import { ErrorMessage, useField, useFormikContext } from "formik";
 import React from "react";
 import { Autocomplete, FormLabel, TextField, Tooltip } from "@mui/material";
+import InfoIcon from "@mui/icons-material/Info";
 import { makeStyles } from "@mui/styles";
 import { colors } from "../../../constants/theme";
 
@@ -8,7 +9,7 @@ const useStyles = makeStyles({
   textField: {
     "& .MuiInput-root": {
       margin: "0px",
-      fontSize: "20px",
+      fontSize: "0.9rem",
       border: `1px solid #E2E2E2`,
       background: "#fff",
       "&::before": {
@@ -20,24 +21,18 @@ const useStyles = makeStyles({
     },
 
     "& input::placeholder": {
-      fontSize: "20px",
+      fontSize: "0.9rem",
     },
     "& .Mui-disabled": {
-      fontSize: "20px !important",
+      fontSize: "0.9rem !important",
     },
   },
   root: {
     "& .MuiInputBase-root.MuiOutlinedInput-root": {
-      padding: "15px 15px",
-      fontSize: "20px",
+      padding: "3px 6px",
+      fontSize: "0.9rem",
       // marginTop: "5px",
-      //   "&:focus": {
-      //     boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
-      //   borderColor: 'black',
-
-      // },
     },
-
     "& .MuiOutlinedInput-notchedOutline": {
       border: `1px solid #e2e2e2`,
     },
@@ -51,108 +46,75 @@ const SelectField = ({
   sx,
   disable,
   onChange,
-  required = false,
   info,
   placeholder,
   onInputChange,
   noLabel,
   sideBarSelectfield,
-  label,
   ...otherProps
 }) => {
-  // const [field, meta] = useField(name);
+  const [field, meta] = useField(name);
   const { textField, root } = useStyles();
-
-  let textFieldConfig = {
-    fullWidth: true,
-    sx: {
-      "& .MuiInputBase-root": {
-        padding: "7px 10px",
-      },
-      ...otherProps.sx,
-    },
+  const configTextfield = {
+    ...field,
     ...otherProps,
+    name,
+    variant: "outlined",
   };
-  let setFieldTouched = (field, isTouched, shouldValidate = true) => { }
-  let setFieldValue = (name, value, shouldValidate = true) => { }
 
-  if (name) {
-    //eslint-disable-next-line
-    const [field, meta] = useField(name || "");
-    //eslint-disable-next-line
-    const ctx = useFormikContext();
-    console.log(ctx, "ctx");
-
-    setFieldValue = ctx.setFieldValue;
-    setFieldTouched = ctx.setFieldTouched;
-    textFieldConfig = {
-      ...field,
-      ...textFieldConfig,
-    };
-    if (meta && meta.touched && meta.error) {
-      textFieldConfig.error = true;
-      textFieldConfig.helperText = meta.error;
-    }
+  if (meta && meta.touched && meta.error) {
+    configTextfield.error = true;
+    configTextfield.helperText = meta.error;
   }
-  const onChangeInner = (e, value, option) => {
-    if (onChange) {
-      return onChange(e, value, option);
-    }
-    if (name && setFieldValue) {
-      setFieldValue(name, value);
-      setFieldTouched(name, true, true);
-    }
-  }
+  const { setFieldValue, setTouched, touched } = useFormikContext();
 
-  // const configTextfield = {
-  //   // ...field,
-  //   ...otherProps,
-  //   name,
-  //   variant: "outlined",
-  // };
-
-  // let textFieldConfig = {
-  //   fullWidth: true,
-  //   sx: {
-  //     "& .MuiInputBase-root": {
-  //       padding: "7px 10px",
-  //     },
-  //     ...otherProps.sx,
-  //   },
-  //   ...otherProps,
-  // };
-
-
-  // if (meta && meta.touched && meta.error) {
-  //   configTextfield.error = true;
-  //   configTextfield.helperText = meta.error;
-  // }
-  // const { setFieldValue, setTouched, touched } = useFormikContext();
-
-  // const tooltipData = localStorage.getItem("tooltipData")
-  //   ? JSON.parse(localStorage.getItem("tooltipData"))?.filter(
-  //       (item) =>
-  //         item?.field_name?.toLowerCase() ===
-  //         configTextfield?.label?.toLowerCase()
-  //     )
-  //   : null;
+  const tooltipData = localStorage.getItem("tooltipData")
+    ? JSON.parse(localStorage.getItem("tooltipData"))?.filter(
+        (item) =>
+          item?.field_name?.toLowerCase() ===
+          configTextfield?.label?.toLowerCase()
+      )
+    : null;
 
   return (
     <>
+      {!noLabel && (
+        <FormLabel
+          className="text-capitalize font-medium d-flex align-items-center mb-1"
+          sx={{ color: colors.text.main, fontSize: "0.8rem", height: "22px" }}
+        >
+          {configTextfield?.label}{" "}
+          {info && (
+            <Tooltip
+              placement="right-start"
+              title={
+                tooltipData ? (
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: tooltipData?.[0]?.description,
+                    }}
+                  ></div>
+                ) : (
+                  "lorem ipsum dolor 20"
+                )
+              }
+            >
+              <InfoIcon
+                className="ms-1"
+                style={{
+                  color: colors.primary.dark,
+                  cursor: "pointer",
+                  height: "22px",
+                }}
+              />
+            </Tooltip>
+          )}
+        </FormLabel>
+      )}
       <Autocomplete
-        {...textFieldConfig}
+        {...configTextfield}
         value={value}
-        sx={{
-          ...sx,
-          width: "100%",
-          pb: "2rem",
-          "&.Mui-focused .MuiFormControl-root .MuiOutlinedInput-notchedOutline":
-          {
-            boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);
-          `,
-            borderColor: "black",
-          },
-        }}
+        sx={{ ...sx, width: "100%" }}
         options={options ? options : []}
         disabled={disable}
         // getOptionLabel={(option) => option?.location}
@@ -161,44 +123,20 @@ const SelectField = ({
         onChange={(_, value, reason) => {
           onChange ? onChange(value, reason) : setFieldValue(name, value);
         }}
-        onBlur={() => setFieldValue(name, true)}
-
+        onBlur={() => setTouched({ ...touched, [name]: true })}
         renderInput={(props) => (
-          <>
-            {label && (
-              <FormLabel
-                className="text-capitalize font-medium d-flex align-items-center"
-                sx={{
-                  padding: "8px 8px 16px 8px",
-                  color: colors.text.main,
-                  fontSize: "20px",
-                  fontWeight: 700,
-                  fontFamily: "satoshi",
-                  fontStyle: "normal",
-                  height: "22px",
-                }}
-              >
-                {label}
-                {/* <RiStarSFill style={{fill:'var(--Status-Error, #E00000)',}} /> */}
-                {required ? <span className="text-red-600">*</span> : ""}
-              </FormLabel>
-            )}
-
-            <TextField
-              className={textField}
-              variant="outlined"
-              {...props}
-              onChange={onChangeInner}
-              // onChange={(e) => {
-              //   props?.onChange && props?.onChange(e);
-              //   onInputChange && onInputChange(e);
-              // }}
-              placeholder={placeholder}
-            />
-          </>
+          <TextField
+            className={textField}
+            variant="outlined"
+            {...props}
+            onChange={(e) => {
+              props?.onChange && props?.onChange(e);
+              onInputChange && onInputChange(e);
+            }}
+            placeholder={placeholder}
+          />
         )}
       />
-
       <ErrorMessage
         name={name}
         render={(msg) => (

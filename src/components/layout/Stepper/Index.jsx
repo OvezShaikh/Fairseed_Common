@@ -151,8 +151,7 @@ export default function HorizontalLinearStepper() {
 
 
 
-  // const formData = new FormData();
-  // formData.append("file", data.files);
+
 
   const [activeStep, setActiveStep] = useState(0);
   // const handleReset = () => {
@@ -188,7 +187,7 @@ export default function HorizontalLinearStepper() {
     return skippedSteps.includes(step);
   };
 
-  const { mutate } = useCreateOrUpdate({ url: '/campaign/add-campaign/ffff7c4f-5cce-40cd-a09c-804364afa615' });
+  const { mutate } = useCreateOrUpdate({ url: '/campaign/add_campaign' });
 
   // const onSubmit = (values) => {
   //   console.log(values, "======formdata");
@@ -209,9 +208,14 @@ export default function HorizontalLinearStepper() {
 
 
   const onSubmit = (Values) => {
-
-    mutate(Values);
-
+    // const files = Values.target.files;
+  const formData = new FormData();
+  formData.append("file", Values.adhar);
+  formData.append("file", Values.pan_card_image);
+  formData.append("file", Values.document);
+  formData.append("file", Values.passbook_image);
+  formData.append("file", Values.campaign_image);
+      mutate(formData);
   }
 
   const handleBack = () => {

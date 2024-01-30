@@ -29,7 +29,7 @@ const stylePrimaryButton = {
 // };
 
 function CompleteKYC({ handleBack, handleNext }) {
-    const { submitForm } = useFormikContext();
+    const { submitForm , setFieldValue ,values } = useFormikContext();
     // const formik = useFormik({
     //     initialValues,
     //     onSubmit: (values) => {
@@ -37,6 +37,12 @@ function CompleteKYC({ handleBack, handleNext }) {
     //         console.log(values);
     //     },
     // });
+
+    const handleFileChange = (files) => {
+        // Set the form field with the selected files
+        // setFieldValue("adhar", files);
+        // setFieldValue("pan_card_image", files);
+      };
 
     return (
         <form >
@@ -50,14 +56,15 @@ function CompleteKYC({ handleBack, handleNext }) {
                     sx={{ padding: '20px' }}
                 // {...formik.getFieldProps("adhar_card")}
                 />
-
                 <UploadField
-                    name={'adhar'}
-                    // onChange={(file) => formik.setFieldValue("adhar", file)}
+                    name="adhar"  // Ensure this matches your form data field name
                     label="Upload Aadhar Card (Front and Back):"
-                    placeholder="Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
+                    placeholder="Allowed format: JPEG, PDF, and PNG. Maximum size: 5 MB."
                     sx={{ padding: '20px' }}
+                    onChange={(files) => handleFileChange('document', files)}
+                    onFileChange={handleFileChange}
                 />
+
 
                 <InputField
                     name="pan_card"
@@ -70,10 +77,11 @@ function CompleteKYC({ handleBack, handleNext }) {
                 />
 
                 <UploadField
-                    // onChange={(file) => formik.setFieldValue("pan_card_image", file)}
-                    name={'pan_card_image'}
+                    name="pan_card_image"  // Ensure this matches your form data field name
                     label="Upload PAN Card:"
-                    placeholder="Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
+                    placeholder="Allowed format: JPEG, PDF, and PNG. Maximum size: 5 MB."
+                    onChange={(files) => handleFileChange('document', files)}
+                    onFileChange={handleFileChange}
                 />
 
 

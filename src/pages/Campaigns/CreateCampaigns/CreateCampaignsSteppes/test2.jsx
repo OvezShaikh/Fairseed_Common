@@ -27,17 +27,11 @@ const stylePrimaryButton = {
 function Test2({ handleBack, handleNext }) {
     const { submitForm, setFieldValue, values, } = useFormikContext();
 
-    // const formik = useFormik({
-    //     initialValues: {
-    //         story: '',
-    //         summary: '',
-    //         document: null,
-    //     },
-    //     onSubmit: (values) => {
-    //         // Handle form submission here
-    //         console.log('Form Values:', values);
-    //     },
-    // });
+ const handleFileChange = (files) => {
+        // Assuming 'campaign_image' is the field name in your Formik form
+        // setFieldValue("document", files);
+        console.log("Files in Test component:", files);
+      };
 
     return (
         <form className="py-20">
@@ -64,11 +58,11 @@ function Test2({ handleBack, handleNext }) {
                         value={values.story}
                         placeholder={`Write a story that does justice to your cause and make the supporter click the Donate button.
                 
-Pointers: Explain who you are raising it for.
+                                                Pointers: Explain who you are raising it for.
 
-Explain why you are raising funds?
+                                                Explain why you are raising funds?
 
-Make an Appeal.`}
+                                                Make an Appeal.`}
                         onChange={(value) => setFieldValue('story', value)}
                     />
                 </div>
@@ -103,18 +97,13 @@ Make an Appeal.`}
             </div>
 
             <div>
-                <Field
+
+                <UploadField
+                    label="Document:"
                     name="document"
-                    render={({ field }) => (
-                        <>
-                            {console.log(field, 'fieldfieldfieldfieldfieldfieldfield')}
-                            <UploadField
-                                label="Document:"
-                                name="document"
-                                placeholder="Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
-                            />
-                        </>
-                    )}
+                    placeholder="Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
+                    onChange={(files) => handleFileChange('document', files)}
+                    // onFileChange={handleFileChange}
                 />
             </div>
             <div className="flex mt-4 gap-5">
@@ -126,7 +115,7 @@ Make an Appeal.`}
                     Back
                 </SecondaryButton>
 
-                <PrimaryButton sx={stylePrimaryButton} onClick={() => { submitForm() && handleNext() }} >
+                <PrimaryButton sx={stylePrimaryButton} onClick={() => { handleNext() }} >
                     Next
                 </PrimaryButton>
             </div>

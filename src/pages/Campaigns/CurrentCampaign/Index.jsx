@@ -34,9 +34,7 @@ function CurrentCampaign({
 
   useEffect(() => {
     axios
-      .get(
-        `${process.env.REACT_APP_BE_BASE_URL}/campaign/campaign-details/${id}`
-      )
+      .get(`${process.env.REACT_APP_BE_BASE_URL}/campaign/campaign-details/${id}`)
       .then((res) => {
         console.log("API Response:", res.data);
         setCardDetails(res.data.data);
