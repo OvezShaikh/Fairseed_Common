@@ -9,8 +9,9 @@ import React from "react";
 import { pink, red } from "@mui/material/colors";
 
 import { colors } from "../../../constants/theme";
+import { ErrorMessage } from "formik";
 
-const RadioGroup = ({ label, options, onChange, ...otherProps }) => {
+const RadioGroup = ({ label, options, onChange, required, name, ...otherProps }) => {
   return (
     <FormControl
       sx={{
@@ -35,6 +36,8 @@ const RadioGroup = ({ label, options, onChange, ...otherProps }) => {
         id={`demo-radio-buttons-group-label-${label}`}
       >
         {label}
+        {required ? <span className="text-red-600">*</span> : ""}
+
       </FormLabel>
       <MuiRadioGroup
         sx={{ display: "flex", flexDirection: "row", pl: "10px", pb: "1rem" }}
@@ -78,6 +81,12 @@ const RadioGroup = ({ label, options, onChange, ...otherProps }) => {
           />
         ))}
       </MuiRadioGroup>
+      <ErrorMessage
+        name={name}
+        render={(msg) => (
+          <div style={{ fontFamily: 'satoshi', color: "red", fontSize: "1rem", paddingLeft: '5px' }}>{msg}</div>
+        )}
+      />
     </FormControl>
   );
 };

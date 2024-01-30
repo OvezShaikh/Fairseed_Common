@@ -9,6 +9,7 @@ import { useField, useFormikContext } from "formik";
 import { pink, red } from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
 import { colors } from "../../../constants/theme";
+import { ErrorMessage } from "formik";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,7 +57,6 @@ const CheckBox = ({
     configFormControl.error = true;
   }
 
-  console.log(checked, "<======cjheckckckckck");
   return (
     <FormControl>
       <FormGroup>
@@ -90,6 +90,11 @@ const CheckBox = ({
           className={root}
         />
       </FormGroup>
+      <ErrorMessage
+        name={name}
+        render={(msg) => (
+          <div style={{ fontFamily: 'satoshi', color: "red", fontSize: "1rem", paddingLeft: '5px' }}>{msg}</div>
+        )} />
     </FormControl>
   );
 };

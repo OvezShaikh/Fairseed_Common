@@ -4,7 +4,6 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import { Typography } from "@mui/material";
-import { useForm, FormProvider, useFormContext, Form } from "react-hook-form";
 import images from "../../../constants/images";
 import PrimaryButton from "../../inputs/PrimaryButton";
 import SecondaryButton from "../../inputs/secondaryButton";
@@ -13,12 +12,10 @@ import AccountDetails from "../../../pages/Campaigns/CreateCampaigns/CreateCampa
 import YourStory from "../../../pages/Campaigns/CreateCampaigns/CreateCampaignsSteppes/YourStory";
 import CampaignDetails from "../../../pages/Campaigns/CreateCampaigns/CreateCampaignsSteppes/CampaignDetails";
 import { useCreateOrUpdate } from "../../../Hooks/useCreateOrUpdate";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Formik } from "formik";
-import Test from "../../../pages/Campaigns/CreateCampaigns/CreateCampaignsSteppes/test";
-import Test2 from "../../../pages/Campaigns/CreateCampaigns/CreateCampaignsSteppes/test2";
-import Test3 from "../../../pages/Campaigns/CreateCampaigns/CreateCampaignsSteppes/test3";
-import Test4 from "../../../pages/Campaigns/CreateCampaigns/CreateCampaignsSteppes/test4";
+import * as yup from 'yup';
+
 
 
 
@@ -106,7 +103,7 @@ const stylePrimaryButton = {
   borderRadius: "12px",
 };
 const initialValues = {
-  campaign_image: null,
+  // campaign_image: "",
   title: "",
   goal_amount: "",
   location: "",
@@ -115,50 +112,102 @@ const initialValues = {
   end_date: "",
   story: '',
   summary: '',
-  document: null,
+  document: "",
   rasing_for: "",
   account_holder_name: "",
   account_number: "",
   bank_name: "",
   branch_name: "",
   ifsc_code: "",
-  passbook_image: null,
+  passbook_image: "",
   adhar_card: "",
-  adhar: null,
+  adhar_card_image: "",
   pan_card: "",
-  pan_card_image: null,
+  pan_card_image: ""
 }
 
-// const BasicForm = () => {
-//   return <Test />;
-// };
-// const SecondStep = () => {
-//   return <Test2 />;
+const validations = [yup.object({
+  campaign_image: yup.mixed()
+    .required('Image is required')
+    .test(
+      'fileSize',
+      'The image must be less than 5 MB',
+      (value) => value && value.size <= 5 * 1024 * 1024
+    )
+    .test(
+      'fileDimensions',
+      'Recommended size is 850x550. Minimum height is 550 and minimum width is 850',
+      (value) => {
+        if (!value) return false;
 
-// };
-// const ContactForm = () => {
-//   return <Test3 />;
-// };
-// const PersonalForm = () => {
-//   return <Test4 />;
-// };
+        const image = new Image();
+        image.src = URL.createObjectURL(value);
+
+        const minHeight = 550;
+        const minWidth = 850;
+
+        return (
+          image.height >= minHeight &&
+          image.width >= minWidth &&
+          value.width >= minWidth &&
+          value.height >= minHeight
+        );
+      }
+    ),
+  title: yup.string().required("title is required"),
+  goal_amount: yup.number()
+    .max(100000, 'Amount must be less than or equal to 100,000')
+    .required('Amount is required'),
+  location: yup.string().required("location is required"),
+  category: yup
+    .object({
+      value: yup.string().required("Category is required!"),
+      label: yup.string().required("Category is required!"),
+    })
+    .nullable()
+    .required("Category is required!"),
+  zakat_eligible: yup.boolean()
+    .oneOf([true], 'You must agree to the terms and conditions')
+    .required('You must agree to the terms and conditions'),
+  end_date: yup.string().required("End date is required"),
+}),
+yup.object({
+  story: yup.string().required("Story is required"),
+  summary: yup.string().required("Summary is required"),
+  // document: yup.mixed()
+  //   .required('Campaign image is required')
+  //   .test('fileSize', 'File size is too large', (value) => {
+  //     // Check if the file size is less than or equal to a specific limit (e.g., 5 MB)
+  //     return value && value.size <= 5 * 1024 * 1024; // 5 MB in bytes
+  //   })
+  //   .test('fileType', 'Invalid file type. Only PNG files are allowed', (value) => {
+  //     // Check if the file type is valid (e.g., only allow PNG files)
+  //     return value && value.type === 'image/png';
+  //   }),
+  // document: yup.,
+
+}),
+yup.object({
+  rasing_for: yup.string().required(" is required"),
+  account_holder_name: yup.string().required("account holder name is required"),
+  account_number: yup.string().required("Account number is required"),
+  bank_name: yup.string().required("Bank name is required"),
+  branch_name: yup.string().required("Branch name is required"),
+  ifsc_code: yup.string().required("IFSC Code is required"),
+  // passbook_image: yup.string().required("Passbook Image is required"),
+}),
+yup.object({
+  adhar_card: yup.string().required("Adhar Card number is required").max(12, 'Maximum 12 Number allowed'),
+  // adhar: yup.string().required("Adhar card Image is required"),x
+  pan_card: yup.string().required("Pan Card number is required").max(10, 'Maximum 10 Character allowed'),
+  // pan_card_image: yup.string().required("Pan Card Image is required"),
+
+}),]
 
 
 export default function HorizontalLinearStepper() {
   const navigate = useNavigate();
-
-
-
-
-
-  // const formData = new FormData();
-  // formData.append("file", data.files);
-
   const [activeStep, setActiveStep] = useState(0);
-  // const handleReset = () => {
-  //   setActiveStep(0);
-  // };
-  const [skippedSteps, setSkippedSteps] = useState([]);
   const getSteps = () => {
     return ["Campaign Details", "Your Story", "Account Details", "Complete KYC"];
   }
@@ -166,53 +215,19 @@ export default function HorizontalLinearStepper() {
   const getStepContent = (step) => {
     switch (step) {
       case 0:
-        return <Test handleBack={handleBack} handleNext={handleNext} />;
+        return <CampaignDetails handleBack={handleBack} handleNext={handleNext} />;
 
       case 1:
-        return <Test2 handleBack={handleBack} handleNext={handleNext} />;
+        return <YourStory handleBack={handleBack} handleNext={handleNext} />;
       case 2:
-        return <Test3 handleBack={handleBack} handleNext={handleNext} />;
+        return <AccountDetails handleBack={handleBack} handleNext={handleNext} />;
       case 3:
-        return <Test4 handleBack={handleBack} handleNext={handleNext} />;
+        return <CompleteKYC handleBack={handleBack} handleNext={handleNext} />;
       default:
         return "unknown step";
     }
   }
   const steps = getSteps();
-
-  const isStepOptional = (step) => {
-    return step === 1 || step === 2;
-  };
-
-  const isStepSkipped = (step) => {
-    return skippedSteps.includes(step);
-  };
-
-  const { mutate } = useCreateOrUpdate({ url: '/campaign/add-campaign/ffff7c4f-5cce-40cd-a09c-804364afa615' });
-
-  // const onSubmit = (values) => {
-  //   console.log(values, "======formdata");
-  //   if (activeStep == steps.length - 1) {
-
-  //     console.log(values, "======formdata");
-  //     mutate(values)
-
-  //     setActiveStep(activeStep + 1);
-  //   } else {
-  //     setActiveStep(activeStep + 1);
-  //     setSkippedSteps(
-  //       skippedSteps.filter((skipItem) => skipItem !== activeStep)
-  //     );
-  //   }
-  // };
-
-
-
-  const onSubmit = (Values) => {
-
-    mutate(Values);
-
-  }
 
   const handleBack = () => {
     setActiveStep((prev) => prev - 1);
@@ -222,12 +237,35 @@ export default function HorizontalLinearStepper() {
     setActiveStep((prev) => prev + 1);
   };
 
-  const handleSkip = () => {
-    if (!isStepSkipped(activeStep)) {
-      setSkippedSteps([...skippedSteps, activeStep]);
+  const { mutate } = useCreateOrUpdate({
+    url: '/campaign/add-campaign',
+    onSuccess: async (data, Values) => {
+      handleNext()
+    },
+    onError: (data) => {
+      console.log(data)
     }
-    setActiveStep(activeStep + 1);
-  };
+  });
+
+
+  const onSubmit = (Values) => {
+    console.log('Values', Values)
+    const formData = new FormData();
+
+    for (const key in Values) {
+      if (key == 'category') {
+        formData.append('category', Values['category']['value'])
+
+      }
+      else {
+
+        formData.append(key, Values[key]);
+      }
+    }
+    mutate(formData);
+  }
+
+
 
 
   return (
@@ -306,7 +344,7 @@ export default function HorizontalLinearStepper() {
         <React.Fragment>
           <Formik
             initialValues={initialValues}
-            // validationSchema
+            validationSchema={validations[activeStep]}
             onSubmit={(Values) => onSubmit(Values)}
           >
             <>

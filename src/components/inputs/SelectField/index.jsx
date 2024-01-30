@@ -60,7 +60,7 @@ const SelectField = ({
   label,
   ...otherProps
 }) => {
-  // const [field, meta] = useField(name);
+  const [field, meta] = useField(name);
   const { textField, root } = useStyles();
 
   let textFieldConfig = {
@@ -81,7 +81,6 @@ const SelectField = ({
     const [field, meta] = useField(name || "");
     //eslint-disable-next-line
     const ctx = useFormikContext();
-    console.log(ctx, "ctx");
 
     setFieldValue = ctx.setFieldValue;
     setFieldTouched = ctx.setFieldTouched;
@@ -95,14 +94,18 @@ const SelectField = ({
     }
   }
   const onChangeInner = (e, value, option) => {
-    if (onChange) {
-      return onChange(e, value, option);
-    }
     if (name && setFieldValue) {
       setFieldValue(name, value);
       setFieldTouched(name, true, true);
     }
+    if (onChange) {
+      return onChange(e, value, option);
+    }
+
   }
+
+  const { values } = useFormikContext();
+
 
   // const configTextfield = {
   //   // ...field,
@@ -145,7 +148,6 @@ const SelectField = ({
         sx={{
           ...sx,
           width: "100%",
-          pb: "2rem",
           "&.Mui-focused .MuiFormControl-root .MuiOutlinedInput-notchedOutline":
           {
             boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);
@@ -159,9 +161,10 @@ const SelectField = ({
         className={root}
         isOptionEqualToValue={(option, value) => option?.id === value?.id}
         onChange={(_, value, reason) => {
+
           onChange ? onChange(value, reason) : setFieldValue(name, value);
         }}
-        onBlur={() => setFieldValue(name, true)}
+        onBlur={() => setFieldTouched(name, true)}
 
         renderInput={(props) => (
           <>
@@ -179,7 +182,6 @@ const SelectField = ({
                 }}
               >
                 {label}
-                {/* <RiStarSFill style={{fill:'var(--Status-Error, #E00000)',}} /> */}
                 {required ? <span className="text-red-600">*</span> : ""}
               </FormLabel>
             )}
@@ -202,7 +204,7 @@ const SelectField = ({
       <ErrorMessage
         name={name}
         render={(msg) => (
-          <div style={{ color: "red", fontSize: "0.7rem" }}>
+          <div style={{ color: "red", fontSize: "1rem", paddingLeft: '5px', fontFamily: 'satoshi' }}>
             {typeof msg === "object" ? Object?.values(msg)[0] : msg}
           </div>
         )}

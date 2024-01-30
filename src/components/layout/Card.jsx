@@ -20,16 +20,7 @@ function Card({
 }) {
   const image = "{`${process.env.REACT_APP_BE_BASE_URL}`+ cardImage}";
   const [campaignData, setCampaignData] = useState([]);
-  console.log(
-    "Logging information for Card component:",
-    key,
-    cardImage,
-    title,
-    daysLeft,
-    userCount,
-    location
-  );
-  console.log(image);
+
   return (
     <>
       <div

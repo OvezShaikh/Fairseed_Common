@@ -47,7 +47,6 @@ function Index() {
   useEffect(() => {
     fetchUserList();
   }, [page]);
-  console.log("idididid", id);
 
   const fetchCategoryDetail = async () => {
     const perPage = 4;
@@ -58,7 +57,6 @@ function Index() {
       setTotalPages(res.pages_count);
       setCategoryCampaignList([...categoryCampaignList, ...res.data.rows]);
       setCategoryDetail(res.data.category_data);
-      console.log("----------------------->", data);
     } else {
       console.error("Invalid data structure. Expected an array:", res.data);
     }
@@ -69,6 +67,7 @@ function Index() {
     fetchCategoryDetail();
   }, [page]);
 
+  console.log(data, ",================dstatatatatata ")
   return (
     <div>
       <Navbar />
@@ -78,7 +77,7 @@ function Index() {
           heading={categoryDetail?.name}
         />
         <div className="flex flex-col justify-center  pt-32 px-24 items-center ">
-          {data?.pages_count !== 0 ? (
+          {categoryCampaignList?.length > 0 ? (
             <div className="flex flex-col justify-center items-center " >
               <div className="flex w-[100%]  justify-center items-center text-center ">
                 <div className="flex  gap-3">

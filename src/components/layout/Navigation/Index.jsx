@@ -31,7 +31,7 @@ function Index({ label, heading }) {
           flexDirection={"column"}
           alignItems="start"
           className="text-capitalize text-truncate"
-          // title={title}
+        // title={title}
         >
           <div className="py-3" onClick={() => navigate(-1)}>
             <img src={images.ArrowBack} alt="" />
@@ -40,7 +40,7 @@ function Index({ label, heading }) {
             className="flex flex-col "
             style={{ fontFamily: "satoshi", fontSize: "28px", fontWeight: 500 }}
           >
-            {title ? <>{title.split("/")[1]}</> : { label }}
+            {title ? <>{title}</> : { label }}
           </div>
         </Typography>
       </Grid>

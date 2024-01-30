@@ -12,7 +12,7 @@ import OnGoingCampaigns from "./pages/Campaigns/OnGoingCampaigns/Index";
 function App() {
   console.log("API");
   return (
-    <div className="container">
+    <div className="">
       {/* <OnGoingCampaigns/> */}
       {/* <CreateCampaigns/> */}
       {/* <BrowserRouter>
@@ -27,6 +27,7 @@ function App() {
           <Route path="/Home" element={<HomePage />} />
           <Route path="/Home/Create-Campaign" element={<CreateCampaigns />} />
           <Route path="/Home/AdminPage" element={<AdminPage />} />
+          <Route path="/Home/OnGoingCampaigns" element={<OnGoingCampaigns />} />
 
           <Route path="/Home/Donate" element={<Donet />} />
           <Route path="/Home/DonateSettings" element={<DonateSettings />} />
@@ -46,9 +47,7 @@ export default App;
 {
   /* <Route path='/Home/CurrentCampaign' element={<CurrentCampaign/>}/> */
 }
-{
-  /* <Route path='/Home/OnGoingCampaigns' element={<OnGoingCampaigns/>}/> */
-}
+
 {
   /* <Route path='/Home/ReligiousEducationCampaigns/:id' element={<ReligiousEducationCampaigns/>}/>  */
 }

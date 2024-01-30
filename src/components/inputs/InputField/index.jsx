@@ -19,14 +19,12 @@ const InputField = ({
   ...otherProps
 }) => {
   // const [field, meta] = useField(name);
-  console.log(required, name, otherProps, "reqqq")
 
   const styles = {
 
     minHeight: "43.95px",
     "label + &": {
       marginTop: "0.3rem",
-      marginBottom: "2rem",
     },
     "& .MuiInputBase-input": {
       borderRadius: "3px",
@@ -121,7 +119,6 @@ const InputField = ({
 
 
 
-  console.log("End", required)
 
   // const tooltipData = localStorage.getItem("tooltipData")
   //   ? JSON.parse(localStorage.getItem("tooltipData"))?.filter(
@@ -164,7 +161,7 @@ const InputField = ({
       <ErrorMessage
         name={name}
         render={(msg) => (
-          <div style={{ color: "red", fontSize: "0.7rem" }}>{msg}</div>
+          <div style={{ fontFamily: 'satoshi', color: "red", fontSize: "1rem", paddingLeft: '5px' }}>{msg}</div>
         )}
       />
     </>

@@ -28,11 +28,11 @@ const DropZone = ({
   return (
     <ReactDropZone
       minSize={0}
-      accept={
-        acceptedFiles
-          ? acceptedFiles
-          : { "image/*": [".png", ".gif", ".jpeg", ".jpg"] }
-      }
+      accept={{
+        'image/png': ['.png'],
+        'image/jpg': ['.jpg'],
+        'image/jpeg': ['.jpeg'],
+      }}
       onDrop={(acceptedFiles, rejectedFiles) => {
         if (!acceptedFiles.length) {
           let err = [];
@@ -42,14 +42,16 @@ const DropZone = ({
           setError(err);
         }
         if (otherProps.multiple) {
-          // setFieldValue(name, acceptedFiles);
+          setFieldValue(name, acceptedFiles);
         } else {
-          // setFieldValue(name, acceptedFiles[0]);
+          setFieldValue(name, acceptedFiles[0]);
         }
         if (acceptedFiles.length) {
-          onChange && onChange(acceptedFiles, rejectedFiles);
+          setFieldValue(acceptedFiles)
+          // onChange && onChange(acceptedFiles, rejectedFiles);
           setError([]);
         }
+        console.log(values);
       }}
       {...otherProps}
     >
@@ -78,7 +80,7 @@ const DropZone = ({
             ) : (
               <>
                 {" "}
-                <input {...getInputProps()} />
+                <input {...getInputProps()} name="campaign_image" />
                 {/* {Array.isArray(values[name]) || values[name] ? (
                     <Typography color="primary">
                       {Array.isArray(values[name]) ? values[name].length : 1} file
@@ -118,7 +120,7 @@ const DropZone = ({
           )}
         </div>
       )}
-    </ReactDropZone>
+    </ReactDropZone >
   );
 };
 
