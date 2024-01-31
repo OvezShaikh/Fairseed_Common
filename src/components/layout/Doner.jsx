@@ -9,8 +9,8 @@ function Doner({ data }) {
       {data !== null && data !== undefined
         ? data?.map((items) => {
             return (
-              <div className="grid grid-cols-10 pt-3">
-                <div className="col-span-8 pb-2">
+              <div className="grid grid-cols-10 pt-4">
+                <div className="col-span-7 pb-3">
                   <div className="grid grid-cols-7">
                     <Avatar
                       alt="Remy Sharp"
@@ -29,12 +29,16 @@ function Doner({ data }) {
                     </h1>
                   </div>
                 </div>
-                <div className="col-span-2">
-                  <div className="grid grid-cols-2">
-                    <h1 className="text-xl font-semibold font-[satoshi] text-[#1ABD54] col-span-2">
-                      + {items?.amount}
-                    </h1>
-                    <p className="text-black/40 font-[satoshi] col-span-2">{items.date}</p>{" "}
+                <div className="col-span-3">
+                  <div className="flex flex-col">
+                    <div className="flex">
+                  <h1 className="text-xl font-semibold font-[satoshi] text-[#1ABD54] ">
+                     +
+                   </h1>
+                  <h1 className="text-xl font-semibold font-[satoshi] text-[#1ABD54] ml-3">
+                    {items?.amount}
+                   </h1></div>
+                    <p className="text-black/40 pl-5 font-[satoshi] col-span-2 ml-1">{items.date}</p>{" "}
                     {/* Assuming it's 'donationDate' */}
                   </div>
                 </div>

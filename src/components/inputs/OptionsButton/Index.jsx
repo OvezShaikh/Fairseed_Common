@@ -11,7 +11,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 const StyledMenu = styled((props) => (
   <Menu
-    sx={{ paddingLeft: "20px" }}
+    sx={{ paddingLeft: "20px",  }}
     elevation={0}
     anchorOrigin={{
       vertical: "bottom",
@@ -75,23 +75,23 @@ export default function CustomizedMenus() {
         disableElevation
         onClick={handleClick}
         endIcon={
-          <ArrowDropDownIcon
-            sx={{
+          <ArrowDropDownIcon  
+            style={{
               width: "30px",
               color: "#7C7D80",
               height: "30px",
             }}
-          />
+              />
         }
-        sx={{
+        style={{
           background: "transparent",
-          color: "rgba(37, 39, 44, 0.60)",
+          color: "linear-gradient(71deg, #FF9F0A 0%, #FF375F 62.9%)",
           fontWeight: 700,
           fontSize: "18px",
           fontFamily: "satoshi",
           border: "1px solid #B0B0B0",
           padding: "7px 30px",
-          borderRadius: "50px",
+          borderRadius: "5px",
           textTransform: "capitalize",
         }}
       >

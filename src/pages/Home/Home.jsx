@@ -17,22 +17,30 @@ import UserNavbar from '../login/UserNavbar'
 import images from "../../constants/images";
 
 function Home() {
+  const [total_campaign, setTotalCampaign] = useState(0);
+
+  const handleTotalCampaignChange = (value) => {
+    setTotalCampaign(value);
+  };
   const [userList, setUserList] = useState([]);
   const [visibleCards, setVisibleCards] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
+  const [campaignCount,setCampaignCount] = useState('');
   const fetchUserList = async () => {
     try {
       const perPage = 8;
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
-      );
-      const res = response.data;
-      console.log(res, "cards");
-      console.log(res.rows);
-      if (Array.isArray(res.rows)) {
+        );
+        const res = response.data;
+        console.log(res, "cards");
+        console.log(res.rows);
+        // `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
+        if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList([...userList, ...res.rows]);
+        setCampaignCount(res.count)
       } else {
         console.error("Invalid data structure. Expected an array:", res.data);
       }
@@ -55,6 +63,7 @@ function Home() {
   ];
 
  
+
   return (
     <>
       <div className="">
@@ -88,11 +97,11 @@ function Home() {
       >
         <DashBoard />
       </div>
-      <div className="flex pt-[100px] ">
-        <div className="w-full flex-wrap flex flex-col items-center mx-10">
+      <div className="flex pt-[128px] ">
+        <div className="w-full flex-wrap flex flex-col items-center mx-[90px]">
           <h1
-            className="text-4xl font-bold pb-4"
-            style={{ fontFamily: "Satoshi" }}
+            className="text-4xl font-extrabold pb-[24px]"
+            style={{ fontFamily: "Satoshi" ,fontSize: "48px" }}
           >
             Ongoing Campaigns
           </h1>
@@ -114,25 +123,25 @@ function Home() {
               }}
             >
               <p className="gradient-button mb-0">
-                See all 724 active campaigns
+                See all {campaignCount} active campaigns
               </p>
             </button>
           </div>
         </div>
       </div>
 
-      <div className="flex flex-col flex-wrap w-full   py-6  mb-11 items-center">
-        <div className="flex  pt-[20px] ">
+      <div className="flex flex-col flex-wrap w-full   py-[64px]  mb-11 items-center">
+        <div className="flex  pt-[20px] pb-[48px] ">
           <ScrollableTabsButtonForce />
           <button
-            className="flex items-center ml-2 px-3 py-1.5"
+            className="flex items-center ml-4 px-3 py-1.5"
             style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
           >
-            <img src={images.Funnel} />
+            <img src={images.Funnel} className="mr-2"/>
             <img src={images.Filter} />
           </button>
         </div>
-        <div className="gap-4 mt-4  flex flex-wrap w-full justify-center">
+        <div className="gap-[36px]  flex flex-wrap w-full justify-center px-[54px]">
           {userList?.map((item) => {
             return (
               <Card
@@ -146,6 +155,7 @@ function Home() {
                 daysLeft={item.days_left}
                 userCount={item.donor_count}
                 location={item.location}
+
               />
             );
           })}
@@ -167,6 +177,7 @@ function Home() {
             "-webkit-background-clip": "text",
             "-webkit-text-fill-color": "transparent",
             textDecoration: "underline",
+            display: page >= totalPages ? "none" : "block",
             position: "relative",
           }}
         >
@@ -175,24 +186,24 @@ function Home() {
       </div>
       <section className="bg-[#FFF6F5]">
         <div
-          className="flex flex-col flex-wrap w-full   py-8 px-7  items-center"
+          className="flex flex-col flex-wrap w-full   py-[28px] px-7  items-center"
           style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
         >
           <h1
-            className="font-bold pt-[4rem] text-4xl"
+            className="font-bold pt-[100px] text-5xl"
             style={{ fontFamily: "Satoshi", fontWeight: 800 }}
           >
             How it Works
           </h1>
-          <div className="  grid grid-cols-11  mt-12 place-items-center  w-full ">
+          <div className="  grid grid-cols-11  mt-24 place-items-center  w-full pb-[96px]">
             <div className="col-span-3 grid grid-cols-1  place-items-center">
-              <div className="">
-                <img className="w-[65%]" src={images.person} alt="" />
+              <div className="mb-[48px]">
+                <img className="w-[120px] h-[120px]" src={images.person} alt="" />
               </div>
               {/* <div className="grid grid-cols-12 mt-4"> */}
               <div className="flex justify-between grid-cols-12 mt-4">
                 <div>
-                  <img className="mr-3 col-span-2" src={images.one} alt="" />
+                  <img className="mr-[20px] col-span-2" src={images.one} alt="" />
                 </div>
                 <div className=" ml-2 col-span-10">
                   <h1
@@ -203,6 +214,7 @@ function Home() {
                       fontFamily: "Satoshi",
                       fontWeight: "900",
                       wordWrap: "break-word",
+                      marginBottom: 12,
                     }}
                   >
                     Create your Profile
@@ -212,10 +224,11 @@ function Home() {
                     style={{
                       width: "100%",
                       color: "#6B7280",
-                      fontSize: 20,
+                      fontSize: 24,
                       fontFamily: "Satoshi",
                       fontWeight: "500",
                       wordWrap: "break-word",
+                      marginTop: 6,
                     }}
                   >
                     Start with the basics
@@ -227,13 +240,13 @@ function Home() {
             </div>
             <img className="col-span-1 " src={images.Arrow} />
             <div className="col-span-3 grid grid-cols-1 place-items-center">
-              <div className="">
-                <img className="w-[65%]" src={images.pencicon} alt="" />
+              <div className="mb-[48px]">
+                <img className="w-[120px] h-[120px]" src={images.pencicon} alt="" />
               </div>
               {/* <div className="grid grid-cols-12 mt-4"> */}
               <div className="flex justify-between grid-cols-12 mt-4">
                 <div>
-                  <img className=" mr-3 col-span-2" src={images.two} alt="" />
+                  <img className=" mr-[20px] col-span-2" src={images.two} alt="" />
                 </div>
                 <div className=" ml-2 col-span-10">
                   <h1
@@ -244,6 +257,7 @@ function Home() {
                       fontFamily: "Satoshi ",
                       fontWeight: "900",
                       wordWrap: "break-word",
+                      marginBottom: 12,
                     }}
                   >
                     Fill Cause Information
@@ -253,10 +267,11 @@ function Home() {
                     style={{
                       width: "100%",
                       color: "#6B7280",
-                      fontSize: 20,
+                      fontSize: 24,
                       fontFamily: "Satoshi",
                       fontWeight: "500",
                       wordWrap: "break-word",
+                      marginTop: 6,
                     }}
                   >
                     Tell your story
@@ -267,16 +282,16 @@ function Home() {
               </div>
             </div>
             <img className="col-span-1" src={images.Arrow} />
-            <div className="col-span-3 grid grid-cols-1  place-items-center">
-              <div className="">
-                <img className="w-[65%]" src={images.Home} alt="" />
+            <div className="col-span-3 grid grid-cols-1 place-items-center">
+              <div className="ml-6 mb-[48px]">
+                <img className="w-[120px] h-[120px]" src={images.Home} alt="" />
               </div>
               {/* <div className="grid grid-cols-12 mt-4"> */}
               <div className="flex justify-between grid-cols-12 mt-4">
                 <div>
-                  <img className="mr-3  col-span-2" src={images.three} alt="" />
+                  <img className="mr-[20px]  col-span-2" src={images.three} alt="" />
                 </div>
-                <div className=" ml-2 col-span-10">
+                <div className=" ml-2 col-span-10 ">
                   <h1
                     className=""
                     style={{
@@ -285,6 +300,7 @@ function Home() {
                       fontFamily: "Satoshi",
                       fontWeight: "900",
                       wordWrap: "break-word",
+                      marginBottom: 12,
                     }}
                   >
                     Update Acc details
@@ -294,10 +310,11 @@ function Home() {
                     style={{
                       width: "100%",
                       color: "#6B7280",
-                      fontSize: 20,
+                      fontSize: 24,
                       fontFamily: "Satoshi",
                       fontWeight: "500",
                       wordWrap: "break-word",
+                      marginTop: 8,
                     }}
                   >
                     Upload ID and a valid
@@ -314,12 +331,12 @@ function Home() {
                 borderRadius: "var(--Pixels-8, 8px)",
                 fontSize: 20,
                 fontWeight: "900",
-                padding: "8px",
+                padding: "10px",
                 margin: "50px 0px 50px 0px",
               }}
-              className="p-2 my-10"
+              className="p-3 my-10"
             >
-              <div style={{ width: 32, height: 32, position: "relative" }}>
+              <div className="mr-2" style={{ width: 32, height: 32, position: "relative" }}>
                 <img src={images.RocketLaunch} alt="" />
               </div>
               <div>Launch a Campaign Now !</div>
@@ -327,22 +344,22 @@ function Home() {
           </a>
         </div>
       </section>
-      <div className="flex-col pt-[60px] pb-[50px] flex-wrap container flex w-full text-center items-center">
+      <div className="flex-col pt-[128px] pb-[96px] flex-wrap container flex w-full text-center items-center">
         <h1
-          className="text-4xl font-bold"
+          className="text-5xl font-bold"
           style={{ fontFamily: "Satoshi", fontWeight: 800 }}
         >
           Causes by Category
         </h1>
         <p
-          className="text-black/40 font-bold mt-3 w-[33%]"
-          style={{ fontFamily: "Satoshi" }}
+          className="text-black/60 font-bold mt-[24px] w-[974px]"
+          style={{ fontFamily: "Satoshi", fontSize: "24px",}}
         >
           Be it for a personal need, social cause or a creative idea - you can
           count on us for the project that you want to raise funds for.
         </p>
       </div>
-      <div className="flexDirection:'row' mt-[80px] gap-5 px-[50px] ">
+      <div className="flexDirection:'row' w-full justify-center items-center flex  gap-5 px-[96px] ">
         <Slider />
       </div>
       <div className="">

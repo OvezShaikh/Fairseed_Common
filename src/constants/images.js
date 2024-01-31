@@ -68,7 +68,12 @@ import HandCoins2 from "../assets/HandCoins2.svg";
 import MapPin2 from "../assets/MapPin.svg";
 import Vector from "../assets/Vector.svg";
 import LoginSideImg from "../assets/LoginSideImg.svg";
-import EditIcon from '../assets/EditIcon.svg'
+import EditIcon from '../assets/EditIcon.svg';
+import MapPin from '../assets/MapPin.png';
+import MegaphoneSimple from '../assets/MegaphoneSimple.png';
+import WarningCircle from '../assets/WarningCircle.svg';
+import HandCoins2  from'../assets/HandCoins2.svg';
+import MapPin2 from '../assets/MapPin.svg';
 
 
 export default {
@@ -142,4 +147,9 @@ export default {
   Vector,
   LoginSideImg,
   EditIcon,
+  MapPin,
+  MegaphoneSimple,
+  WarningCircle, 
+  HandCoins2,
+
 };

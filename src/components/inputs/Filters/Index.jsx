@@ -4,13 +4,13 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import {
   PiTrendUpDuotone,
-  PiStudent,
-  PiHandCoins,
-  PiGenderFemale,
-  PiMegaphone,
-  PiMosque,
-  PiAlarm,
-  PiHeart,
+  PiStudentDuotone,
+  PiHandCoinsDuotone,
+  PiGenderFemaleDuotone,
+  PiMegaphoneSimpleDuotone,
+  PiMosqueDuotone,
+  PiAlarmDuotone,
+   PiHeartDuotone ,
 } from "react-icons/pi";
 
 export default function ScrollableTabsButtonForce({
@@ -29,7 +29,9 @@ export default function ScrollableTabsButtonForce({
   // };
 
   return (
-    <Box sx={{ maxWidth: { xs: 620, sm: 1440 }, bgcolor: "background.paper" }}>
+    <Box sx={{ maxWidth: { xs: 620, sm: 1440, lg:1608 }, bgcolor: "background.paper","& .css-145v6pe-MuiButtonBase-root-MuiTabScrollButton-root.Mui-disabled " : {
+      display: "none",} , "& .css-ptiqhd-MuiSvgIcon-root" :{ width: 32,height: 32}}}
+     >
       <Tabs
         value={value}
         sx={{
@@ -37,7 +39,7 @@ export default function ScrollableTabsButtonForce({
             background: "linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)",
             color: "white !important",
             textTransform: "capitalize",
-            fontSize: "18px !important",
+            fontSize: "20px !important",
 
             "& .icon": {
               color: "white !important",
@@ -80,12 +82,12 @@ export default function ScrollableTabsButtonForce({
             border: "1.5px solid rgb(248, 85, 85)",
             fontFamily: "Satoshi",
             fontSize: "18px",
-            marginLeft: "0.5rem",
+            marginLeft: "12px",
             fontStyle: "normal",
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiStudent
+              <PiStudentDuotone
                 style={{ color: "red" }}
                 className="icon pr-2 w-7 h-7"
               />
@@ -100,13 +102,13 @@ export default function ScrollableTabsButtonForce({
             border: "1.5px solid rgb(248, 85, 85)",
             fontFamily: "Satoshi",
             fontSize: "18px",
-            marginLeft: "0.5rem",
+            marginLeft: "12px",
             fontStyle: "normal",
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiHandCoins
-                style={{ color: "red" }}
+              <PiHandCoinsDuotone
+                style={{ color: "red"}}
                 className="icon pr-2 w-7 h-7"
               />
               Most Supported
@@ -119,13 +121,13 @@ export default function ScrollableTabsButtonForce({
             borderRadius: "var(--Spacing-24, 50px)",
             border: "1.5px solid rgb(248, 85, 85)",
             fontFamily: "Satoshi",
-            marginLeft: "0.5rem",
+            marginLeft: "12px",
             fontSize: "18px",
             fontStyle: "normal",
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiGenderFemale
+              <PiGenderFemaleDuotone
                 style={{ color: "red" }}
                 className="icon pr-2 w-7 h-7"
               />
@@ -138,14 +140,14 @@ export default function ScrollableTabsButtonForce({
             color: "var(--cool-grey-cool-grey-10, #383A42)",
             borderRadius: "var(--Spacing-24, 50px)",
             border: "1.5px solid rgb(248, 85, 85)",
-            marginLeft: "0.5rem",
+            marginLeft: "12px",
             fontFamily: "Satoshi",
             fontSize: "18px",
             fontStyle: "normal",
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiMegaphone
+              <PiMegaphoneSimpleDuotone
                 style={{ color: "red" }}
                 className="icon pr-2 w-7 h-7"
               />
@@ -158,14 +160,14 @@ export default function ScrollableTabsButtonForce({
             color: "var(--cool-grey-cool-grey-10, #383A42)",
             borderRadius: "var(--Spacing-24, 50px)",
             border: "1.5px solid rgb(248, 85, 85)",
-            marginLeft: "0.5rem",
+            marginLeft: "12px",
             fontFamily: "Satoshi",
             fontSize: "18px",
             fontStyle: "normal",
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiMosque
+              <PiMosqueDuotone
                 style={{ color: "red" }}
                 className="icon pr-2 w-7 h-7"
               />
@@ -178,14 +180,14 @@ export default function ScrollableTabsButtonForce({
             color: "var(--cool-grey-cool-grey-10, #383A42)",
             borderRadius: "var(--Spacing-24, 50px)",
             border: "1.5px solid rgb(248, 85, 85)",
-            marginLeft: "0.5rem",
+            marginLeft: "12px",
             fontFamily: "Satoshi",
             fontSize: "18px",
             fontStyle: "normal",
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiAlarm style={{ color: "red" }} className="icon pr-2 w-7 h-7" />
+              <PiAlarmDuotone style={{ color: "red" }} className="icon pr-2 w-7 h-7" />
               Expiring Soon
             </Box>
           }
@@ -195,14 +197,14 @@ export default function ScrollableTabsButtonForce({
             color: "var(--cool-grey-cool-grey-10, #383A42)",
             borderRadius: "var(--Spacing-24, 50px)",
             border: "1.5px solid rgb(248, 85, 85)",
-            marginLeft: "0.5rem",
+            marginLeft: "12px",
             fontFamily: "Satoshi",
             fontSize: "18px",
             fontStyle: "normal",
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiHeart style={{ color: "red" }} className="icon pr-2 w-7 h-7" />
+              < PiHeartDuotone  style={{ color: "red" }} className="icon pr-2 w-7 h-7" />
               Needs Love
             </Box>
           }
@@ -212,7 +214,7 @@ export default function ScrollableTabsButtonForce({
             color: "var(--cool-grey-cool-grey-10, #383A42)",
             borderRadius: "var(--Spacing-24, 50px)",
             border: "1.5px solid rgb(248, 85, 85)",
-            marginLeft: "0.5rem",
+            marginLeft: "12px",
             fontSize: "18px",
             fontFamily: "Satoshi",
             fontStyle: "normal",
@@ -232,7 +234,7 @@ export default function ScrollableTabsButtonForce({
             color: "var(--cool-grey-cool-grey-10, #383A42)",
             borderRadius: "var(--Spacing-24, 50px)",
             border: "1.5px solid rgb(248, 85, 85)",
-            marginLeft: "0.5rem",
+            marginLeft: "12px",
             fontFamily: "Satoshi",
             fontSize: "18px",
             fontStyle: "normal",
@@ -252,7 +254,7 @@ export default function ScrollableTabsButtonForce({
             color: "var(--cool-grey-cool-grey-10, #383A42)",
             borderRadius: "var(--Spacing-24, 50px)",
             border: "1.5px solid rgb(248, 85, 85)",
-            marginLeft: "0.5rem",
+            marginLeft: "12px",
             fontFamily: "Satoshi",
             fontSize: "18px",
             fontStyle: "normal",

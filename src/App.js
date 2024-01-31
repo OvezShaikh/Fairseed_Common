@@ -1,6 +1,7 @@
 import "./App.css";
 import AdminPage from "../src/pages/AdminPanel/AdminPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import HomePage from "./pages/LandingPage/index";
 import CreateCampaigns from "./pages/Campaigns/CreateCampaigns/Index";
 import CurrentCampaign from "./pages/Campaigns/CurrentCampaign/Index";
@@ -10,9 +11,8 @@ import CampaignsByCategory from "./pages/Campaigns/CampaignsByCategory/Index";
 import OnGoingCampaigns from "./pages/Campaigns/OnGoingCampaigns/Index";
 
 function App() {
-  console.log("API");
   return (
-    <div className="">
+    <div className="container p-0">
       {/* <OnGoingCampaigns/> */}
       {/* <CreateCampaigns/> */}
       {/* <BrowserRouter>
@@ -20,7 +20,6 @@ function App() {
           <AdminPage />
         </div>
       </BrowserRouter> */}
- 
 
       <BrowserRouter>
         <Routes>

@@ -61,12 +61,11 @@ function Index() {
       console.error("Invalid data structure. Expected an array:", res.data);
     }
     // console.log(res.data.rows);
-    // setCategoryCampaignList(res.data.rows)
+    // setCategoryCampaignList(res.data.rows)   
   };
   useEffect(() => {
     fetchCategoryDetail();
   }, [page]);
-
   console.log(data, ",================dstatatatatata ")
   return (
     <div>
@@ -79,11 +78,11 @@ function Index() {
         <div className="flex flex-col justify-center  pt-32 px-24 items-center ">
           {categoryCampaignList?.length > 0 ? (
             <div className="flex flex-col justify-center items-center " >
-              <div className="flex w-[100%]  justify-center items-center text-center ">
+              <div className="flex w-[100%]  justify-start items-center text-center pl-3">
                 <div className="flex  gap-3">
                   <SecondaryButton
                     sx={{
-                      padding: "0px 30px",
+                      padding: "12px 24px",
                       borderRadius: "40px",
                     }}
                   >
@@ -94,7 +93,7 @@ function Index() {
                   </SecondaryButton>
                   <SecondaryButton
                     sx={{
-                      padding: "0px 30px",
+                      padding: "12px 24px",
                       borderRadius: "40px",
                     }}
                   >
@@ -105,7 +104,7 @@ function Index() {
                   </SecondaryButton>
                   <SecondaryButton
                     sx={{
-                      padding: "0px 30px",
+                      padding: "12px 24px",
                       borderRadius: "40px",
                     }}
                   >
@@ -116,7 +115,7 @@ function Index() {
                   </SecondaryButton>
                   <SecondaryButton
                     sx={{
-                      padding: "0px 30px",
+                      padding: "12px 24px",
                       borderRadius: "40px",
                     }}
                   >
@@ -127,7 +126,7 @@ function Index() {
                   </SecondaryButton>
                   <SecondaryButton
                     sx={{
-                      padding: "0px 30px",
+                      padding: "12px 24px",
                       borderRadius: "40px",
                     }}
                   >
@@ -138,7 +137,7 @@ function Index() {
                   </SecondaryButton>
                   <SecondaryButton
                     sx={{
-                      padding: "0px 30px",
+                      padding: "12px 24px",
                       borderRadius: "40px",
                     }}
                   >
@@ -147,8 +146,21 @@ function Index() {
                       Zakat Eligible
                     </h1>
                   </SecondaryButton>
-
+                  <div className="flex pl-[125px]">
+                  <SecondaryButton
+                    sx={{
+                      padding: "0px 12px 0px 30px",
+                      border: "none"
+                      
+                    }}
+                  >
+                    
+                    <h1 className=" font-[satoshi] text-[18px] text-[#25272C] font-bold ">
+                      Location : 
+                    </h1>
+                  </SecondaryButton>
                   <OptionsButton />
+                  </div>
                 </div>
               </div>
               <div className="gap-4 pt-[2rem] flex flex-wrap w-full justify-center">
@@ -190,9 +202,10 @@ function Index() {
                   "-webkit-text-fill-color": "transparent",
                   textDecoration: "underline",
                   position: "relative",
+                  
                 }}
               >
-                <p className="gradient-button mb-0">Load More</p>
+                <p className="gradient-button mb-0 align-middle">Load More</p>
               </button>
 
             </div>
