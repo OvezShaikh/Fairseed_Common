@@ -16,6 +16,7 @@ import { Container } from '@mui/system';
 const Formcom = ({ Initial_value, formValidation, loginData }) => {
 
   
+  console.log({Initial_value,formValidation,loginData})
 
   return (
     <>
@@ -33,7 +34,7 @@ const Formcom = ({ Initial_value, formValidation, loginData }) => {
         <Grid item xs={12}>
             <InputField
               label="Email"
-              name={"email"}
+              name="email"
               placeholder="enter your email"
             />
           </Grid>
@@ -41,13 +42,13 @@ const Formcom = ({ Initial_value, formValidation, loginData }) => {
             <InputField
               label="Password"
               type='password'
-              name={"password"}
+              name="password"
               placeholder="************"
             />
           </Grid>
           <Grid item xs={12} container alignItems="center" justifyContent="space-between">
-                <CheckBox label="Remember Me" />
-                {/* Add some space between the "Remember Me" checkbox and the "Forgot Password" link */}
+                <CheckBox label="Remember Me" name={"remember_me"} />
+                
                 <div style={{ width: '20px' }}></div>
                 <Link
                   href="#"

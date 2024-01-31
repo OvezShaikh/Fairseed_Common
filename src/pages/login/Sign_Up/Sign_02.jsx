@@ -92,7 +92,7 @@ const Sign_02 = ({ handleBack, handleNext }) => {
             ]}
           />
           <Grid item xs={12}  alignItems="center" justifyContent="space-between"  >
-              <CheckBox label="I agree with the"  />
+              <CheckBox label="I agree with the"  name={"Policy_privacy"}/>
               <Link
                 href="#"
                 underline="always"

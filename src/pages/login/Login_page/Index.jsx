@@ -25,7 +25,7 @@ const StyledTypography = styled(Typography)({
 
 const UserLogin = () => {
 
-  const { Initial_value, formValidation , loginData ,snackbar } = useLogin();
+  const { Initial_value, formValidation , loginData  } = useLogin();
 
 
   const theme = createTheme();

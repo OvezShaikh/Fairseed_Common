@@ -21,7 +21,7 @@ import Box from "@mui/material/Box";
 // import { OutlineIconName } from "@heroicons/react/outline";
 import PrimaryButton from "../inputs/PrimaryButton";
 import images from "../../constants/images";
-import UserLogin from '../../pages/login /Login_page/Index'
+import UserLogin from '../../pages/login/Login_page/Index'
 import { color } from "@mui/system";
 import LoginFrom from "../../pages/login/Login_page/Login";
 // import UserLogin from "../../pages/login/Login_page/Index";
@@ -368,8 +368,8 @@ export default function Example() {
               <button
               className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
               > 
-              Login
-              {/* <UserLogin/> */}
+              {/* Login */}
+              <UserLogin/>
               {/* <UserSignUp_02/> */}
                 </button>
               {/* <Box sx={{ display: "flex", }}>
