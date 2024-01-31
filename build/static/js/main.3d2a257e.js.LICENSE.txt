@@ -85,7 +85,11 @@ PERFORMANCE OF THIS SOFTWARE.
  */
 
 /**
+<<<<<<<< HEAD:build/static/js/main.3d2a257e.js.LICENSE.txt
  * @mui/styled-engine v5.15.5
+========
+ * @mui/styled-engine v5.15.4
+>>>>>>>> d87a2bb (Added build):build/static/js/main.3f28f95b.js.LICENSE.txt
  *
  * @license MIT
  * This source code is licensed under the MIT license found in the
@@ -112,7 +116,7 @@ PERFORMANCE OF THIS SOFTWARE.
  */
 
 /**
- * React Router DOM v6.21.3
+ * React Router DOM v6.21.2
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -123,7 +127,7 @@ PERFORMANCE OF THIS SOFTWARE.
  */
 
 /**
- * React Router v6.21.3
+ * React Router v6.21.2
  *
  * Copyright (c) Remix Software Inc.
  *
