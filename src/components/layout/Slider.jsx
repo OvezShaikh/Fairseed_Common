@@ -6,8 +6,6 @@ import "slick-carousel/slick/slick-theme.css";
 import "./Slider.css";
 import images from "../../constants/images";
 import { Link } from "react-router-dom";
-import { PiCaretLeft,PiCaretRight } from "react-icons/pi";
-import { fontSize, width } from "@mui/system";
 
 const MultipleRows = () => {
   const [sliderData, setSliderData] = useState([]);
@@ -16,7 +14,7 @@ const MultipleRows = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
   const limit = 20;
-  const arrowStyles = { width: "48px", height: "48px" };
+
 // const MultipleRows = () => {
 //   const [sliderData, setSliderData] = useState([]);
 //   const [loading, setLoading] = useState(true);
@@ -58,28 +56,27 @@ const MultipleRows = () => {
     speed: 1000,
     rows: 2,
     slidesPerRow: 1,
-    prevArrow: <PiCaretLeft style={arrowStyles} />,
-    nextArrow: <PiCaretRight style={arrowStyles} />,
+    
     responsive: [
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 1,
-          rows: 1,
+          slidesToShow: 2,
+          rows: 6,
         },
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
-          rows: 4,
+          slidesToShow: 3,
+          rows: 2,
         },
       },
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 4,
-          rows: 4,
+          slidesToShow: 3,
+          rows: 2,
         },
       },
       {
@@ -96,6 +93,13 @@ const MultipleRows = () => {
           rows: 2,
         },
       },
+      {
+        breakpoint: 1700,
+        settings: {
+          slidesToShow: 3,
+          rows: 2,
+        },
+      },
     ],
   };
 
@@ -109,12 +113,12 @@ const MultipleRows = () => {
           sliderData.map((item, index) => (
             <>
               <Link to={`/Home/CampaignsByCategory/${item.id}`}>
-                <div className="pb-5 flex flex-col justify-center items-center text-center mr-12">
-                <div key={index}>
+                <div className="pb-5 flex flex-col justify-center items-center text-center mr-2">
+                <div key={index} className="mb-[20px] desktop:w-[220px] desktop:h-[220px] max-desktop:max-w-[170px] max-desktop:h-[170px]">
                   <img
                     style={{
-                      width: "220px",
-                      height: "200px",
+                      width:'100%',
+                      height:'100%',
                       background:
                         "linear-gradient(0deg, #EBEBEB 0%, #EBEBEB 100%)",
                       borderRadius: 12,
@@ -124,7 +128,7 @@ const MultipleRows = () => {
                   />
                 </div>
                 <div
-                  className="py-2 text-xl w-[100%] text-center "
+                  className="py-2 text-[24px] w-[100%] text-center "
                   style={{
                     fontFamily: "Satoshi",
                     color: "#383A42",

@@ -48,7 +48,6 @@ const Formcom = ({ Initial_value, formValidation, loginData }) => {
           </Grid>
           <Grid item xs={12} container alignItems="center" justifyContent="space-between">
                 <CheckBox label="Remember Me" name={"remember_me"} />
-                
                 <div style={{ width: '20px' }}></div>
                 <Link
                   href="#"
@@ -62,7 +61,6 @@ const Formcom = ({ Initial_value, formValidation, loginData }) => {
                 </Link>
               </Grid>
           <Grid item xs={12} >
-
           <PrimaryButton
               sx={{ width: '100%', padding: '12px 40px'}}
                type='submit'
@@ -79,7 +77,6 @@ const Formcom = ({ Initial_value, formValidation, loginData }) => {
              >
               <UserSignUp_02/>
             </SecondaryButton>
-
           </Grid>
         </Grid>
       </Container>

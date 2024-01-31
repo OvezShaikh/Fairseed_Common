@@ -4,7 +4,7 @@ import images from "../../constants/images";
 
 
 
-const Dashboard = ({ onTotalCampaignChange }) => {
+const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState({
     totalCampaign: 0,
     totalDonation: 0,
@@ -26,13 +26,12 @@ const Dashboard = ({ onTotalCampaignChange }) => {
           successfulCampaign: responseData.successfull_campaign || 0,
           studentBenefited: responseData.student_benifited || 0,
         });
-        onTotalCampaignChange(responseData?.total_campaign);
         console.log(responseData ,"Dashboard");
       })
       .catch(error => {
         console.error('Error fetching dashboard data:', error);
       });
-  }, [onTotalCampaignChange]);
+  }, []);
 
   const dashboards = [
     {
@@ -40,9 +39,8 @@ const Dashboard = ({ onTotalCampaignChange }) => {
       DashBoardTotal: dashboardData.totalCampaign,
       DashBoardText: "Causes Raised",
     },
-  
     {
-      DashBoardImg: images.HandCoins,
+      DashBoardImg:  images.HandCoins,
       DashBoardTotal: dashboardData.totalDonation,
       DashBoardText: "Funds Raised",
     },
@@ -68,15 +66,15 @@ const Dashboard = ({ onTotalCampaignChange }) => {
   return (
     <>
         {dashboards.map((data, index) => (
-        <div  key={index} style={{width: 235, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', display: 'inline-flex'}}>
+        <div key={index} style={{width: 235, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', gap: 24, display: 'inline-flex'}}>
           <div
             style={{ width: 56, height: 56, position: 'relative' }}
           >
             <img src={data.DashBoardImg} alt={`dashboard-${index}`} />
           </div>
-          <h1 style={{ textAlign: 'center', color: '#25272C', fontSize: 36, fontWeight: '900',fontFamily:'satoshi'  ,wordWrap: 'break-word' ,marginTop:'24px'}}>{data.DashBoardTotal}</h1>
-          <p style={{flex: '1 0 0 ', alignSelf: 'stretch', textAlign: 'center', color: '#8E95A2', fontSize: 17, fontWeight: '500', fontFamily:'satoshi' ,wordWrap: 'break-word',marginTop:'4px'}}>{data.DashBoardText}</p>
-          </div>
+          <h1 style={{ textAlign: 'center', color: '#25272C', fontSize: 36, fontWeight: '900',fontFamily:'satoshi'  ,wordWrap: 'break-word'}}>{data.DashBoardTotal}</h1>
+          <p className='text-[20px]' style={{flex: '1 1 0', alignSelf: 'stretch', textAlign: 'center', color: '#8E95A2',  fontWeight: '500', fontFamily:'satoshi' ,wordWrap: 'break-word'}}>{data.DashBoardText}</p>
+        </div>
 
       ))}
 

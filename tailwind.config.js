@@ -1,10 +1,16 @@
  /** @type {import('tailwindcss').Config} */
-  module.exports = {
+ module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        'desktop': '1366px',
+        'max-desktop': {'max': '1365px'},
+        'max-tablet': {'max': '751px'},
+      },
+    },
   },
   plugins: [],
 }
