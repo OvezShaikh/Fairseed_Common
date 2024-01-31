@@ -99,6 +99,7 @@ function classNames(...classes) {
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+
  
   return (
     <header className="absolute top-0 left-0 right-0 bg-transparent z-10 container" style={{
@@ -338,15 +339,27 @@ export default function Example() {
 
 
             {/* Fifth button */}
-            <PrimaryButton
-            sx={{borderRadius:'var(--Pixels-8, 8px)',fontWeight:700,fontSize:'18px', padding: '12px 20px',}}>
-              
-                <a href="/Home/Create-Campaign">
-                  Start a Campaign
-                  </a>
-                {/* </div>
-              </div> */}
-            </PrimaryButton>
+                      {
+                       (localStorage.getItem('userToken'))  ? (
+                          <PrimaryButton
+                          sx={{borderRadius:'var(--Pixels-8, 8px)',fontWeight:700,fontSize:'18px', padding: '12px 20px',}}>
+                              <a href="/Home/Create-Campaign">
+                                Start a Campaign
+                                </a>
+                          </PrimaryButton>
+
+                        ) : (
+                          <PrimaryButton
+                          onClick={()=>{
+                            alert("Please Login to Create Campaign");
+                          }}
+                          sx={{borderRadius:'var(--Pixels-8, 8px)',fontWeight:700,fontSize:'18px', padding: '12px 20px',}}>
+                            Start a Campaign
+                            </PrimaryButton>
+
+                        )
+                      }
+           
 
             <div className="flex space-x-8">
               <button className=" text-black bg-transparent rounded-full ">

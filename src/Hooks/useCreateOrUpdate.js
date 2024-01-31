@@ -11,14 +11,16 @@ export function useCreateOrUpdate({
   function sendData(data) {
     return serverAPI[method](url, data, {});
   }
+  // Object.assign(headers, customHeaders);
 
   return useMutation(sendData, {
     onSuccess: (response, variables, context) => {
       onSuccess && onSuccess(response, variables, context);
       refetch && refetch();
+      // console.log(Headers,"<------------------>");
     },
     onError: (data) => {
       // errorHandle(data);
-    },
-  });
-}
+    }
+  }
+);}

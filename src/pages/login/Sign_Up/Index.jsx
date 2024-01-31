@@ -63,7 +63,6 @@ const UserSignUp_02 = () => {
             right: 16,
             top: 16,
             zIndex: 1,
-            // color: '#0000001a',
             backgroundColor: '#0000001a'
           }}
         >

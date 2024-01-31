@@ -202,6 +202,8 @@ const Sign_Stepper = () => {
     formData.append('country' , values.country);
     // formData.append('image' , values.image);
       mutate(formData);
+      alert("Signed Up Successfully !")
+      window.location.href = '/Home';
       console.log(formData);
 
   }
@@ -253,7 +255,7 @@ const Sign_Stepper = () => {
               </h6>
             </div>
           </Typography>
-          <div className="flex gap-3">
+          {/* <div className="flex gap-3">
             <StyledButton_2
               disabled={activeStep === 0}
               onClick={handleBack}
@@ -264,7 +266,7 @@ const Sign_Stepper = () => {
             <StyledButton_1>
               Home
             </StyledButton_1>
-          </div>
+          </div> */}
         </React.Fragment>
       ) : (
         <React.Fragment>

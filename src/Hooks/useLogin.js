@@ -24,19 +24,16 @@ const useLogin = () => {
     try {
       const res = await serverAPI.post(
         "/accounts/login/nt/",
-        data
+        data, 
       );
       // console.log("response Login ",data);
-      alert("Successful")
+      alert("Login Successful")
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user_role", res.data.user_info.user_role);
       window.location.href = '/Home';
-      // toast.success("Success Notification !", {
-      //   position: toast.POSITION.TOP_RIGHT,
-      // });
-     
       console.log(localStorage.getItem("token"));
       console.log(localStorage.getItem("userRole"));
+
     } catch (error) {
       console.log(error, "error from catch");
     }
