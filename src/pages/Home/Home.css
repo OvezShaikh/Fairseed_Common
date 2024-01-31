@@ -1,9 +1,10 @@
 .footer{
-width: 1472px;
-padding: 90px;
+  max-width: 1473px;
+width: 100%;
+/* padding: 90px; */
 flex-direction: column;
 align-items: center;
-border-radius: var(--pixels-20, 20px);
+/* border-radius: var(--pixels-20, 20px); */
 background: var(--Linear-BG, linear-gradient(71deg, #FF9F0A 0%, #FF375F 62.9%));
 }
   
@@ -11,8 +12,8 @@ background: var(--Linear-BG, linear-gradient(71deg, #FF9F0A 0%, #FF375F 62.9%));
 .footer_text{
   color: #FFF;
 text-align: center;
-font-size: 46px;
+/* font-size: 46px; */
 font-style: normal;
 font-weight: 500;
-line-height: 130%; 
+line-height: 130%; /* 72.8px */
 }

@@ -67,6 +67,9 @@ import MegaphoneSimple from '../assets/MegaphoneSimple.png'
 import WarningCircle from '../assets/WarningCircle.svg'
 import HandCoins2  from'../assets/HandCoins2.svg'
 import MapPin2 from '../assets/MapPin.svg'
+import HomePageHero from '../assets/HomePageHero.png'
+import HomePageHeroTab from '../assets/HomePageHeroTab.png'
+
 
 
 
@@ -138,5 +141,8 @@ export default  {
     MegaphoneSimple,
     WarningCircle, 
     HandCoins2,
-    MapPin2
+    MapPin2,
+    HomePageHero,
+    HomePageHeroTab
+    
 }

@@ -10,29 +10,26 @@ function Footer() {
   return (
     <>
       <div
-        className="flex flex-col  relative mt-[20rem]"
+        className="flex flex-col relative mt-[20rem] desktop:pt-[300px] desktop:px-[90px] max-desktop:pt-[240px] max-desktop:px-[48px] max-tablet:px-[17px] gap-[100px] max-tablet:gap-[20px] max-tablet:pt-[220px] desktop:pb-[60px] max-desktop:pb-[60px] max-tablet:pb-[12px]"
         style={{
           width: "100%",
           height: "100%",
-          paddingTop: 300,
-          paddingBottom: 60,
-          paddingLeft: 90,
-          paddingRight: 90,
+         
+         
           background: "#22262F",
-          gap: 100,
-          fontFamily:'satoshi'
+          
+          fontFamily: 'satoshi'
         }}
       >
-        <div className="flex mt-[140px] justify-center absolute  -top-[50%] left-[50%] -translate-x-[50%]">
-          <div className="footer  text-center">
-            <p className="footer_text w-[80%] ml-28 text-[56px] " style={{fontWeight:700, marginBottom:64}}>
+        <div className="flex mt-[140px] max-desktop:mt-[305px] desktop:max-w-[79%] desktop:w-full justify-center absolute -top-[50%] left-[50%] -translate-x-[50%] max-desktop:w-[81%] max-tablet:mt-[300px]">
+          <div className="rounded-lg footer text-center desktop:p-[90px] max-desktop:px-[48px] max-desktop:py-[85px] max-tablet:px-[23px] max-tablet:py-[33px]">
+            <p className="footer_text w-[100%] mx-auto text-[56px] max-desktop:text-[36px] max-tablet:text-[22px]" style={{ fontWeight: 700 }}>
               Ready to make an Impact? Join thousands of others today
             </p>
-            <div className="flex justify-center gap-4">
-              <button
+            <div className="flex justify-center my-10 mb-0 desktop:mt-[64px] gap-4 max-tablet:flex-col">
+              <button className="px-[28px] max-desktop:px-[15px]"
                 style={{
-                  paddingLeft: 28,
-                  paddingRight: 28,
+
                   paddingTop: 16,
                   paddingBottom: 16,
                   background: "rgba(194.44, 51.85, 51.85, 0.90)",
@@ -46,10 +43,10 @@ function Footer() {
                 <div style={{ width: 32, position: "relative" }}>
                   <img src={images.coins2} alt="" />
                 </div>
-                <div
+                <div className="text-[20px] max-tablet:text-[16px]"
                   style={{
                     color: "rgba(255, 255, 255, 0.90)",
-                    fontSize: 20,
+                    
                     fontFamily: "Satoshi ",
                     fontWeight: "700",
                     wordWrap: "break-word",
@@ -60,9 +57,9 @@ function Footer() {
               </button>
               <a
                 href="/Home/Create-Campaign"
-                className="px-3"
+                className="px-3 gap-[10px] max-tablet:gap-[0px]"
                 style={{
-                 
+
                   background:
                     "linear-gradient(93deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.50) 100%)",
                   borderRadius: 8,
@@ -70,17 +67,17 @@ function Footer() {
                   backdropFilter: "blur(24px)",
                   justifyContent: "center",
                   alignItems: "center",
-                  gap: 10,
+                  
                   display: "inline-flex",
                 }}
               >
-                <div  style={{ width: 32, height: 32, position: "relative" }}>
-                  <img src={images.RocketLaunch2} alt=""/>
+                <div style={{ width: 32, height: 32, position: "relative" }}>
+                  <img src={images.RocketLaunch2} alt="" />
                 </div>
-                <div
+                <div className="text-[20px] max-tablet:text-[16px] max-tablet:p-[16px] max-tablet:pl-[10px]"
                   style={{
                     color: "#383A42",
-                    fontSize: 20,
+                   
                     fontFamily: "Satoshi",
                     fontWeight: "700",
                     wordWrap: "break-word",
@@ -93,160 +90,174 @@ function Footer() {
           </div>
         </div>
 
-        <div className="grid grid-cols-12 justify-between">
-          <div className="col-span-4">
-            <img className="  w-[25%] pb-3" src={images.FooterLogo} />
-            <p
+        <div className="flex justify-between max-desktop:flex-wrap max-tablet:justify-start desktop:max-w-[1628px] desktop:m-auto">
+
+          <div className="w-[34%] max-desktop:w-[100%] max-desktop:mb-[48px] max-tablet:mb-[20px] max-tablet:w-[100%]">
+            <img className="desktop:w-[118px] pb-[16px]" src={images.FooterLogo} />
+            <p className="desktop:w-[79%] desktop:text-[16px] max-tablet:text-[14px] max-desktop:w-[59%] max-tablet:w-[100%]"
               style={{
-                width: "100%",
+                
                 color: "white",
-                fontSize: 16,
+                
                 fontFamily: "Satoshi",
-                fontWeight: "400",
+                fontWeight: "500",
                 textTransform: "capitalize",
                 wordWrap: "break-word",
               }}
             >
               Be it for a personal need, social cause or a creative idea -
-              <br></br> you can count on us for the project that you want to{" "}
-              <br></br>raise funds for.
+              you can count on us for the project that you want to
+              raise funds for.
             </p>
           </div>
-          <div className="col-span-4">
-            <div className="grid grid-cols-12">
-              <div className="col-span-4 pt-3">
-                <a
-                  className="text-white font-bold"
-                  style={{
-                    fontSize: 16,
-                    fontFamily: "Satoshi",
-                    fontWeight: "700",
-                  }}
-                >
-                  Quick Link
-                </a>
-                <ul className="mt-3">
-                  <li>
-                    <a
-                      className="text-white/80"
-                      style={{
-                        fontFamily: "Satoshi",
-                        fontWeight: "400",
-                        textTransform: "capitalize",
-                      }}
-                      href="#"
-                    >
-                      Home
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="text-white/80"
-                      style={{
-                        fontFamily: "Satoshi",
-                        fontWeight: "400",
-                        textTransform: "capitalize",
-                      }}
-                      href="#"
-                    >
-                      About Us
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="text-white/80"
-                      style={{
-                        fontFamily: "Satoshi",
-                        fontWeight: "400",
-                        textTransform: "capitalize",
-                      }}
-                      href="#"
-                    >
-                      Blog Post
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="text-white/80"
-                      style={{
-                        fontFamily: "Satoshi",
-                        fontWeight: "400",
-                        textTransform: "capitalize",
-                      }}
-                      href="#"
-                    >
-                      Photo Gallery
-                    </a>
-                  </li>
-                </ul>
-              </div>
 
-              <div className="col-span-4 pt-3">
+
+
+
+          <div className="w-[11%] max-desktop:w-[30%] max-desktop:mb-[48px] max-tablet:w-[36%] max-tablet:mb-[12px]">
+            <a
+              className="text-white font-bold"
+              style={{
+                fontSize: 16,
+                fontFamily: "Satoshi",
+                fontWeight: "700",
+              }}
+            >
+              Quick Link
+            </a>
+            <ul className="mt-3">
+              <li>
                 <a
-                  className="text-white font-bold"
-                  style={{
-                    fontSize: 16,
-                    fontFamily: "Satoshi",
-                    fontWeight: "700",
-                  }}
-                >
-                  Get In Touch
-                </a>
-                <ul className="mt-3">
-                  <li>
-                    <a
-                      className="text-white/80"
-                      style={{
-                        fontFamily: "Satoshi",
-                        fontWeight: "400",
-                        textTransform: "capitalize",
-                      }}
-                      href="#"
-                    >
-                      Contact us
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="text-white/80"
-                      style={{
-                        fontFamily: "Satoshi",
-                        fontWeight: "400",
-                        textTransform: "capitalize",
-                      }}
-                      href="#"
-                    >
-                      Our services
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div className="col-span-4 pt-3">
-                <a
-                  className="text-white font-bold"
-                  style={{
-                    fontSize: 16,
-                    fontFamily: "Satoshi",
-                    fontWeight: "700",
-                  }}
-                >
-                  Address
-                </a>
-                <p
-                  className="text-white/80 mt-3 w-[70%]"
+                  className="text-white/80"
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
+                  href="#"
                 >
-                  2464 Royal Ln. Mesa, New Jersey 45463
-                </p>
-              </div>
-            </div>
+                  Home
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-white/80"
+                  style={{
+                    fontFamily: "Satoshi",
+                    fontWeight: "400",
+                    textTransform: "capitalize",
+                  }}
+                  href="#"
+                >
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-white/80"
+                  style={{
+                    fontFamily: "Satoshi",
+                    fontWeight: "400",
+                    textTransform: "capitalize",
+                  }}
+                  href="#"
+                >
+                  Blog Post
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-white/80"
+                  style={{
+                    fontFamily: "Satoshi",
+                    fontWeight: "400",
+                    textTransform: "capitalize",
+                  }}
+                  href="#"
+                >
+                  Photo Gallery
+                </a>
+              </li>
+            </ul>
           </div>
-          <div className="col-span-4 flex justify-end pt-3">
-            <div className="w-fit ">
+
+
+
+
+          <div className="w-[11%] max-desktop:w-[30%] max-tablet:w-[36%]">
+            <a
+              className="text-white font-bold"
+              style={{
+                fontSize: 16,
+                fontFamily: "Satoshi",
+                fontWeight: "700",
+              }}
+            >
+              Get In Touch
+            </a>
+            <ul className="mt-3">
+              <li>
+                <a
+                  className="text-white/80"
+                  style={{
+                    fontFamily: "Satoshi",
+                    fontWeight: "400",
+                    textTransform: "capitalize",
+                  }}
+                  href="#"
+                >
+                  Contact us
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-white/80"
+                  style={{
+                    fontFamily: "Satoshi",
+                    fontWeight: "400",
+                    textTransform: "capitalize",
+                  }}
+                  href="#"
+                >
+                  Our services
+                </a>
+              </li>
+            </ul>
+          </div>
+
+
+
+
+
+          <div className="w-[17%] max-desktop:w-[40%] max-tablet:w-[90%] max-tablet:mb-[20px]">
+            <a
+              className="text-white font-bold"
+              style={{
+                fontSize: 16,
+                fontFamily: "Satoshi",
+                fontWeight: "700",
+              }}
+            >
+              Address
+            </a>
+            <p
+              className="text-white/80 mt-3 w-[70%]"
+              style={{
+                fontFamily: "Satoshi",
+                fontWeight: "400",
+                textTransform: "capitalize",
+              }}
+            >
+              2464 Royal Ln. Mesa, New Jersey 45463
+            </p>
+          </div>
+
+
+
+
+
+          <div className="flex justify-end w-[24.5%] max-desktop:w-[54%] max-tablet:w-full">
+            <div className="w-full ">
               <a
                 className="text-white  font-bold"
                 style={{
@@ -257,17 +268,16 @@ function Footer() {
               >
                 Newsletter
               </a>
-              <div className="flex mt-3 flex-row rounded-lg w-[40%] h-10">
+              <div className="flex mt-3 flex-row rounded-lg w-full h-[48px]">
                 <input
-                  className="text-[15px] pl-4 pr-8"
+                  className="text-[15px] pl-4 w-full"
                   aria-label="Demo input"
                   multiline={'true'}
                   placeholder="Enter your email"
                 />
-                <div
+                <div className="max-w-[122px] w-full"
                   style={{
-                    width: "100%",
-                    height: "100%",
+                    
                     paddingLeft: 24,
                     paddingRight: 24,
                     paddingTop: 1,
@@ -277,7 +287,6 @@ function Footer() {
                     alignItems: "center",
                     gap: 10,
                     display: "inline-flex",
-                    
                   }}
                 >
                   <button
@@ -289,25 +298,25 @@ function Footer() {
                       textTransform: "capitalize",
                       wordWrap: "break-word",
                     }}
-                    className="pt-2 "
+                    className="pt-2"
                   >
                     Subscribe
                   </button>
                 </div>
               </div>
               <p
-                className="text-white/90 mt-2 w-full"
+                className="text-white/80 mt-2 w-full text-[14px]"
                 style={{
                   fontFamily: "Satoshi",
                   fontWeight: "400",
-                  wordSpacing: "1px",
+                  textTransform: "capitalize",
                 }}
               >
                 Your email is safe with us, we don’t spam.
               </p>
 
               <p
-            
+
                 className="text-white mt-8 font-bold"
                 style={{
                   fontSize: 16,
@@ -366,9 +375,13 @@ function Footer() {
             </div>
           </div>
         </div>
+
+
+
+
         <div>
           <hr className="text-white/50 pb-2"></hr>
-          <p className="text-white/40 text-1xl">Copyright © Fairseed 2023</p>
+          <p className="text-white/40 text-1xl max-tablet:text-center">Copyright © Fairseed 2023</p>
         </div>
       </div>
     </>
