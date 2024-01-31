@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import url("https://fonts.cdnfonts.com/css/satoshi");
+
 body {
   margin: 0;
   font-family: "FuturaMedium", sans-serif;
@@ -22,7 +23,6 @@ body {
   --dark: #dfdfdf;
   --light: #efefef;
   --blue: rgba(43, 51, 231, 1);
-  
 }
 
 .container {
@@ -47,6 +47,7 @@ body {
   padding: 0em 1em 0em 2.2em;
   position: fixed;
 }
+
 .ql-toolbar.ql-snow {
   background: #eaecf0;
 }
@@ -54,6 +55,7 @@ body {
 .quill {
   height: 100%;
 }
+
 .ql-container {
   height: 100% !important;
 }
@@ -61,7 +63,8 @@ body {
 .ql-editor {
   height: 100% !important;
 }
-.ql-toolbar.ql-snow + .ql-container.ql-snow {
+
+.ql-toolbar.ql-snow+.ql-container.ql-snow {
   border-bottom-left-radius: 10px 10px;
   border-bottom-right-radius: 10px 10px;
 }
@@ -93,7 +96,6 @@ body {
   background: #d3d3d3;
 }
 
-
 .normal-table {
   border: 1px solid #d0e2ff;
 }
@@ -102,10 +104,11 @@ body {
   padding: 8px;
 }
 
-.normal-table > tbody > tr > td {
+.normal-table>tbody>tr>td {
   padding: 8px;
   border: 1px solid #d0e2ff;
 }
+
 .sort-container {
   display: "inline-block";
   margin-left: 5px;
@@ -127,6 +130,7 @@ body {
 .css-n7tliy-MuiStep-root {
   padding-bottom: 1rem !important;
 }
+
 .css-1hv8oq8-MuiStepLabel-label.Mui-active {
   color: "red" !important;
 }
@@ -153,6 +157,7 @@ body {
   border-top: 1px solid #dcdfe3;
   border-bottom: 1px solid #dcdfe3;
 }
+
 .Upload_field:has(.Mui-focused) {
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.15);
   border: 1px solid black;
@@ -172,11 +177,9 @@ body {
   width: 48px;
   height: 48px;
   backdrop-filter: blur(20px);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.18) 0%,
-    rgba(255, 255, 255, 0.32) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0.32) 100%);
   border-radius: 50%;
   padding: 40px;
   overflow: hidden;
@@ -192,14 +195,15 @@ body {
   width: 50px;
   margin-left: 20px;
 }
+
 .swiper-button-prev.swiper-button-disabled {
   color: black;
 }
+
 .swiper-button-prev:after {
   color: black;
   font-size: 30%;
 }
-
 
 .reactflagsselect-module_selectbtn__19ww7 {
   padding: 50px;
@@ -210,9 +214,22 @@ body {
 }
 
 .swiper-button-next:after {
- font-size: 10px ;
+  font-size: 10px;
 }
 
-.swiper-button-prev:after{
-  font-size: 10px ;
+.swiper-button-prev:after {
+  font-size: 10px;
+}
+
+/* ##############CountrySelect########################### */
+#react-flag-select button {
+  border: 2px solid var(--Linear-BG, #ff9f0a);
+  border-image: linear-gradient(#FF9F0A, red) 20;
+  /* border-width: 3px; */  border-style: solid;
+  /* border-width: 3px;
+    border-style: solid; */
+  /* border-image: linear-gradient(to top, red, rgba(0, 0, 0, 0)) 5 100%; */
+
+  border-radius: 5px;
+  height: 70px;
 }

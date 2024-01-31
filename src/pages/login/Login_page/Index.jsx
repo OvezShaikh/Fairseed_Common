@@ -1,6 +1,6 @@
 import React from 'react';
 import FormSlider from '../FormSlider';
-import { Dialog, Button, Grid, DialogContent , DialogTitle ,Typography } from '@mui/material/';
+import { Dialog, Button, Grid, DialogContent, DialogTitle, Typography } from '@mui/material/';
 import { useState } from 'react';
 import { createTheme } from '@mui/system';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import styled from '@emotion/styled';
 import useLogin from '../../../Hooks/useLogin'
-import Formcom from './Login' 
+import Formcom from './Login'
 
 
 const StyledTypography = styled(Typography)({
@@ -25,7 +25,7 @@ const StyledTypography = styled(Typography)({
 
 const UserLogin = () => {
 
-  const { Initial_value, formValidation , loginData  } = useLogin();
+  const { Initial_value, formValidation, loginData } = useLogin();
 
 
   const theme = createTheme();
@@ -39,19 +39,19 @@ const UserLogin = () => {
     setOpen(false);
   };
 
-  
-  
+
+
   const isSmallScreen = useMediaQuery('(max-width:600px)');
 
- 
 
-  console.log(Initial_value,"inissisi ")
+
+  console.log(Initial_value, "inissisi ")
 
   return (
     <>
       <button className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
-               onClick={handleClickOpen}>
-       Login
+        onClick={handleClickOpen}>
+        Login
       </button>
       <Dialog
         onClose={handleClose}
@@ -60,22 +60,22 @@ const UserLogin = () => {
         fullScreen={isSmallScreen}
         maxWidth='xl'
       >
-         <IconButton
+        <IconButton
           aria-label="close"
           onClick={handleClose}
           sx={{
             position: 'absolute',
             right: 16,
             top: 16,
-            zIndex:1,
-            backgroundColor:'#0000001a'
+            zIndex: 1,
+            backgroundColor: '#0000001a'
           }}
         >
           <CloseIcon />
         </IconButton>
 
 
-        <DialogContent style={{ overflowY: 'hidden', overflowX: 'hidden' , padding: '0px' }}>
+        <DialogContent style={{ overflowY: 'hidden', overflowX: 'hidden', padding: '0px' }}>
           <Grid container >
             <Grid item xs={12} sm={8} md={6} >
               <Grid item xs={12}>
@@ -83,28 +83,28 @@ const UserLogin = () => {
                   <StyledTypography
                     component="h4"
                     variant="h4"
-                    sx={{marginTop: '48px', marginLeft: '142px',}}
+                    sx={{ marginTop: '48px', marginLeft: '142px', }}
                   >
-                  Login
+                    Login
                   </StyledTypography>
                 </DialogTitle>
               </Grid>
               <Grid item xs={12}>
-              <DialogTitle style={{marginLeft: '142px', }} >
-              Welcome Back! Please enter you details
-              </DialogTitle>
+                <DialogTitle style={{ marginLeft: '142px', fontSize: '22px', fontWeight: 500, color: 'var(--Neutral-Neutral-7, #717171)', fontFamily: 'satoshi', letterSpacing: '0.88px' }} >
+                  Welcome Back! Please enter you details
+                </DialogTitle>
 
               </Grid>
-              <Grid item xs={12} sx={{ padding: '48px 142px' }} >
-              <Formcom  Initial_value={ Initial_value } formValidation={ formValidation } loginData={ loginData }/>
-          </Grid>
-          </Grid>
-          {!isSmallScreen && (
-            <Grid item xs={12} sm={isSmallScreen ? 12 : 8} md={6} >
-                <FormSlider isSmallScreen={isSmallScreen} />
+              <Grid item xs={12} sx={{ padding: '40px 142px' }} >
+                <Formcom Initial_value={Initial_value} formValidation={formValidation} loginData={loginData} />
+              </Grid>
             </Grid>
-          )}
-        </Grid>
+            {!isSmallScreen && (
+              <Grid item xs={12} sm={isSmallScreen ? 12 : 8} md={6} >
+                <FormSlider isSmallScreen={isSmallScreen} />
+              </Grid>
+            )}
+          </Grid>
         </DialogContent>
       </Dialog>
     </>

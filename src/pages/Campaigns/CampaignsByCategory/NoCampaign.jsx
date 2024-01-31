@@ -16,7 +16,8 @@ function NoCampaign() {
       <p className="text-[ var(--Neutral-Neutral-7, #717171)] w-[50%] font-[satoshi] text-[44px] font-semibold">
         Sorry! No campaigns found for this category. Please try again later.
       </p>
-      <PrimaryButton sx={style}>Back</PrimaryButton>
+      <a href="/"><PrimaryButton sx={style}>Back</PrimaryButton></a>
+
     </div>
   );
 }

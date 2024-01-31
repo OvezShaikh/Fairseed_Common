@@ -4,6 +4,14 @@ import InputField from "../../../../components/inputs/InputField";
 import UploadField from "../../../../components/inputs/UploadField/Index";
 import SecondaryButton from "../../../../components/inputs/secondaryButton"
 import PrimaryButton from "../../../../components/inputs/PrimaryButton"
+const InputStyle = {
+    padding: '20px', border: "1px solid #e2e2e2",
+    // },
+    "&:focus-within": {
+        boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
+        borderColor: "black",
+    },
+}
 const styleSecondaryButton = {
     width: "100%",
     height: "100%",
@@ -49,7 +57,8 @@ function CompleteKYC({ handleBack, handleNext }) {
                         label="Enter Aadhar Card Number:"
                         type="number"
                         placeholder="xxxx xxxx xxxx"
-                        sx={{ padding: '20px' }}
+                        sx={InputStyle}
+
                     // {...formik.getFieldProps("adhar_card")}
                     />
                 </div>
@@ -71,8 +80,9 @@ function CompleteKYC({ handleBack, handleNext }) {
                         label="Enter PAN Card Number:"
                         type="password"
                         required
+                        sx={InputStyle}
+
                         placeholder="xxxxxxxxxxx"
-                        sx={{ padding: '20px' }}
                     // {...formik.getFieldProps("pan_card")}
                     /></div>
 

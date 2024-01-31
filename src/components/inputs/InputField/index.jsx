@@ -32,21 +32,20 @@ const InputField = ({
       // borderBottomLeftRadius: configTextfield?.startAdornment ? "0px" : "4px",
       position: "relative",
       backgroundColor: "#fff",
-      border: "1px solid #e2e2e2",
+      // border: "1px solid #e2e2e2",
       fontSize: "20px",
       width: "100%",
-      padding: "20px",
-      ...sx,
+      // ...sx,
       // transition: theme.transitions.create([
       //   "border-color",
       //   "background-color",
       //   "box-shadow",
       // ]),
       // fontFamily: ["FuturaLight"].join(","),
-      "&:focus": {
-        boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
-        borderColor: "black",
-      },
+      // "&:focus": {
+      //   boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
+      //   borderColor: "black",
+      // },
 
       // "&.Mui-disabled": {
       //   backgroundColor: configTextfield?.disabledBgColor
@@ -57,6 +56,7 @@ const InputField = ({
     },
     "& input::placeholder": {
       fontSize: "20px",
+      fontStyle: 'satoshi'
     },
     // "& .MuiInputBase-input.Mui-disabled": {
     //   WebkitTextFillColor: configTextfield?.disabledColor
@@ -79,7 +79,7 @@ const InputField = ({
       borderTopLeftRadius: theme.shape.borderRadius + "px",
       borderBottomLeftRadius: theme.shape.borderRadius + "px",
     },
-    // ...sx,
+    ...sx,
   }
 
 
@@ -101,7 +101,7 @@ const InputField = ({
     ...otherProps,
     sx: { ...styles, ...otherProps.sx },
   };
-
+  console.log(styles);
   if (name) {
     //eslint-disable-next-line
     const [field, meta] = useField(name || "");
