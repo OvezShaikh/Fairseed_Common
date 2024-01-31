@@ -39,8 +39,12 @@ const UserSignUp_02 = () => {
       <button
         onClick={handleOpen}
       >
-        <span style={{fontSize:'22px' ,fontWeight:500}}> Register </span>
-        
+        <span style={{
+          fontSize: '22px', fontWeight: 500, background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+          "-webkit-background-clip": "text",
+          "-webkit-text-fill-color": "transparent"
+        }}> Register </span>
+
       </button>
 
       <Dialog
@@ -71,19 +75,19 @@ const UserSignUp_02 = () => {
 
         <DialogContent style={{ overflowY: 'hidden', overflowX: 'hidden' }}>
           <Grid container >
-            <Grid item xs={12} sm={8} md={6} >
+            <Grid item xs={16} sm={8} md={6} >
               <Grid item xs={12}>
                 <DialogTitle >
                   <StyledTypography
                     component="h4"
                     variant="h4"
-                    sx={{ marginTop: '48px', marginLeft: '142px', padding: '0px' }}
+                    sx={{ marginTop: '18px', marginLeft: '102px', paddingBottom: '10px' }}
                   >
                     Sign Up
                   </StyledTypography>
                 </DialogTitle>
               </Grid>
-              <Grid item xs={12} sx={{ padding: '0px 142px 48px 142px' }} >
+              <Grid item sx={{ width: '100%', padding: '0px 142px 48px 142px' }} >
                 <Sign_Stepper />
               </Grid>
             </Grid>

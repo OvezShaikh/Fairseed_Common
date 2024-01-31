@@ -55,16 +55,16 @@ const CountrySelect = ({
          }}
         searchable
         id="react-flag-select"
-        style={{
+        style={{ border:'1px solid red' }}
 
-          "& #rfs-btn": {
-            border: "1px solid #e2e2e2",
-            outerHeight: "2rem",
-            borderRadius: '50%',
-            padding: "50px",
-            sx,
-          },
-        }}
+        //   "& #rfs-btn": {
+        //     border: "1px solid #e2e2e2",
+        //     outerHeight: "5rem",
+        //     borderRadius: '50%',
+        //     padding: "50px",
+        //     sx,
+        //   },
+        // }}
         {...configTextfield}
       />
       <ErrorMessage

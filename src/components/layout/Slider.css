@@ -13,18 +13,7 @@
   
 }
 
-/* .slick-prev {
-/* background: url('../../assets/reshot-icon-arrow-left-4NA6KJF8CU.svg') no-repeat center center;
-fill: rgb(1, 1, 12); */
 
-
-/* } */ */
-
-/* .slick-next{
-    /* background: url('../../assets/reshot-icon-arrow-right-ZP2WDL9B8N.svg');
-    
-    background-color: white; */
-/* } */ */
 
 
 .slick-prev:before, .slick-next:before {
@@ -36,10 +25,10 @@ fill: rgb(1, 1, 12); */
 
 
 .slick-slider .slick-track {
-    margin: 0; /* Adjust the value to set the desired space between rows */
+    margin: 0; 
   }
   .slick-slide {
-    height: auto !important; /* Set the height to auto to accommodate variable content */
+    height: auto !important; 
   }
 
   .slick-prev{

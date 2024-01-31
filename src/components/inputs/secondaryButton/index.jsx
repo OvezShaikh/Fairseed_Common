@@ -27,11 +27,12 @@ const SecondaryButton = ({
         display: "flex",
         alignitems: "flex-start",
         textTransform: "none",
-        borderRadius: "3px",
+        // borderRadius: "px",
         border: "1px solid var(--Linear-BG, #FF9F0A)",
+        // borderImage: 'linear-gradient(#FF9F0A, red) 20',
+        // borderWidth: '3px',
+        position: "realtive",
 
-        fontStyle: "normal",
-        fontFamily: "satoshi",
         ...sx,
       }}
       {...otherProps}
@@ -42,10 +43,12 @@ const SecondaryButton = ({
           size={20}
           className="me-2 "
         />
-      )}{" "}
+      )}
       {startIcon} {children}
     </Button>
   );
 };
 
 export default SecondaryButton;
+
+// s

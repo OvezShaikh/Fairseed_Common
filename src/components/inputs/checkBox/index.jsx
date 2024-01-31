@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
       fontWeight: "300",
       fontSize: "0.8rem",
     },
-    margin: "0 !important",
+    // margin: "0 !important",
   },
 }));
 

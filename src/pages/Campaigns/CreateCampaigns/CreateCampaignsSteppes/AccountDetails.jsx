@@ -5,7 +5,15 @@ import UploadField from "../../../../components/inputs/UploadField/Index";
 import RadioGroup from "../../../../components/inputs/radioGroup";
 import SecondaryButton from "../../../../components/inputs/secondaryButton"
 import PrimaryButton from "../../../../components/inputs/PrimaryButton"
-
+const InputStyle =
+{
+    padding: '20px', border: "1px solid #e2e2e2",
+    // },
+    "&:focus-within": {
+        boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
+        borderColor: "black",
+    },
+}
 // const initialValues = {
 //   rasing_for: "",
 //   account_holder_name: "",
@@ -59,6 +67,7 @@ function AccountDetails({ handleBack, handleNext }) {
                 <div>
                     <InputField
                         label="Account holder Name:"
+                        sx={InputStyle}
                         name="account_holder_name"
                         type="text"
                         required={true}
@@ -69,6 +78,8 @@ function AccountDetails({ handleBack, handleNext }) {
                     <InputField
                         label="Account Number:"
                         name="account_number"
+                        sx={InputStyle}
+
                         type="number"
                         required={true}
                     // {...formik.getFieldProps("account_number")}
@@ -77,6 +88,8 @@ function AccountDetails({ handleBack, handleNext }) {
                     <InputField
                         label="Bank Name:"
                         name="bank_name"
+                        sx={InputStyle}
+
                         type="text"
                         required={true}
 
@@ -87,6 +100,8 @@ function AccountDetails({ handleBack, handleNext }) {
                     <InputField
                         label="Branch Name:"
                         name="branch_name"
+                        sx={InputStyle}
+
                         type="text"
                         required={true}
                     // {...formik.getFieldProps("branch_name")}
@@ -97,6 +112,7 @@ function AccountDetails({ handleBack, handleNext }) {
                     <InputField
                         label="IFSC:"
                         name="ifsc_code"
+                        sx={InputStyle}
 
                         required={true}
                     // {...formik.getFieldProps("ifsc_code")}

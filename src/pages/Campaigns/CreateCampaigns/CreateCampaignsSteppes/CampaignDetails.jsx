@@ -11,8 +11,20 @@ import { useCreateOrUpdate } from "../../../../Hooks/useCreateOrUpdate";
 import CountrySelect from "../../../../components/inputs/countrySelect";
 import SecondaryButton from "../../../../components/inputs/secondaryButton"
 import PrimaryButton from "../../../../components/inputs/PrimaryButton"
+import moment from 'moment';
+
 import axios from "axios";
 import { Next } from "react-bootstrap/esm/PageItem";
+const InputStyle =
+{
+    padding: '20px', border: "1px solid #e2e2e2",
+    // },
+    "&:focus-within": {
+        boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
+        borderColor: "black",
+    },
+}
+
 const styleSecondaryButton = {
     width: "100%",
     height: "100%",
@@ -64,6 +76,8 @@ const Test = ({ handleBack, handleNext }) => {
             <div>
                 <InputField
                     name="title"
+                    sx={InputStyle}
+
                     required={true}
                     label="Title of the Campaign:"
                     placeholder="Title of the Campaign (Max 250 Words)"
@@ -74,6 +88,8 @@ const Test = ({ handleBack, handleNext }) => {
                 <InputField
                     name="goal_amount"
                     type="number"
+                    sx={InputStyle}
+
                     required={true}
                     label="Amount to be raised:"
 
@@ -82,6 +98,8 @@ const Test = ({ handleBack, handleNext }) => {
             <div>
                 <InputField
                     name="location"
+                    sx={InputStyle}
+
                     required={true}
                     label="Location:"
 
@@ -109,6 +127,7 @@ const Test = ({ handleBack, handleNext }) => {
                         Is the Campaign Zakaat eligible?<span className="text-red-600">*</span>
                     </FormLabel>
                     <CheckBox
+                        sx={{ paddingLeft: '15px' }}
                         name="zakat_eligible"
                         label={'Yes'}
 
@@ -118,6 +137,9 @@ const Test = ({ handleBack, handleNext }) => {
                     <InputField
                         type="date"
                         name="end_date"
+                        sx={InputStyle}
+                        inputProps={{ min: moment().format('YYYY-MM-DD') }}
+
                         required={true}
                         label="Date:"
                     />
@@ -125,12 +147,14 @@ const Test = ({ handleBack, handleNext }) => {
 
             </div>
             <div className="flex mt-4 gap-5">
+
                 <SecondaryButton
-                    disabled
-                    onClick={handleBack}
+
                     sx={styleSecondaryButton}
-                >
-                    Back
+                ><a href="/">
+                        Back
+                    </a>s
+
                 </SecondaryButton>
 
                 <PrimaryButton sx={stylePrimaryButton}

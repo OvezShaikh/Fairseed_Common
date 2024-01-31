@@ -188,7 +188,10 @@ function CurrentCampaign({
             <div className="flex" style={{ display: "inline-flex" }}>
               <img className="w-[17%] pr-2 max-tablet:w-[20%]" src={images.SedalCheck} alt="" />
               <h1
+                className="text-3xl w-[80%] flex justify-items-start  pb-2  "
                 style={{
+                  fontFamily: "satoshi",
+                  fontWeight: 700,
                   background:
                     "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
                   "-webkit-background-clip": "text",
