@@ -226,8 +226,6 @@ body {
   border: 2px solid var(--Linear-BG, #ff9f0a);
   border-image: linear-gradient(#FF9F0A, red) 20;
   border-style: solid;
- 
-
   border-radius: 5px;
   height: 70px;
 }
