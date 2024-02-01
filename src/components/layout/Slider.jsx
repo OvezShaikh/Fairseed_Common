@@ -6,6 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 import "./Slider.css";
 import images from "../../constants/images";
 import { Link } from "react-router-dom";
+import { PiCaretLeft,PiCaretRight } from "react-icons/pi";
+import { fontSize, width } from "@mui/system";
 
 const MultipleRows = () => {
   const [sliderData, setSliderData] = useState([]);
@@ -14,7 +16,8 @@ const MultipleRows = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
   const limit = 20;
-
+  const arrowStyles = { width: "48px", height: "48px" };
+  
 // const MultipleRows = () => {
 //   const [sliderData, setSliderData] = useState([]);
 //   const [loading, setLoading] = useState(true);
@@ -40,7 +43,7 @@ const MultipleRows = () => {
   }, []);
 
   //  useEffect (()=>{
-  //   axios.get(`${process.env.REACT_APP_API_URL}/campaign/campaign-category?page=${page}&limit=${limit}`).then((response)=>{
+  //   axios.get(${process.env.REACT_APP_API_URL}/campaign/campaign-category?page=${page}&limit=${limit}).then((response)=>{
   //     setSliderData(response.data.rows);
   //   setLoading(false);
   //   })
@@ -56,27 +59,28 @@ const MultipleRows = () => {
     speed: 1000,
     rows: 2,
     slidesPerRow: 1,
-    
+    prevArrow: <PiCaretLeft style={arrowStyles} />,
+    nextArrow: <PiCaretRight style={arrowStyles} />,
     responsive: [
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          rows: 6,
+          rows:7,
         },
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 3,
-          rows: 2,
+          slidesToShow: 2,
+          rows: 7,
         },
       },
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-          rows: 2,
+          slidesToShow: 4,
+          rows: 4,
         },
       },
       {
@@ -93,13 +97,6 @@ const MultipleRows = () => {
           rows: 2,
         },
       },
-      {
-        breakpoint: 1700,
-        settings: {
-          slidesToShow: 3,
-          rows: 2,
-        },
-      },
     ],
   };
 
@@ -113,12 +110,13 @@ const MultipleRows = () => {
           sliderData.map((item, index) => (
             <>
               <Link to={`/Home/CampaignsByCategory/${item.id}`}>
-                <div className="pb-5 flex flex-col justify-center items-center text-center mr-2">
-                <div key={index} className="mb-[20px] desktop:w-[220px] desktop:h-[220px] max-desktop:max-w-[170px] max-desktop:h-[170px]">
+                <div className="pb-5 flex flex-col justify-center items-center text-center mr-12">
+                <div key={index}>
                   <img
                     style={{
-                      width:'100%',
-                      height:'100%',
+                      width: "220px",
+                      
+                      aspectRatio:"1/1",
                       background:
                         "linear-gradient(0deg, #EBEBEB 0%, #EBEBEB 100%)",
                       borderRadius: 12,
@@ -128,7 +126,7 @@ const MultipleRows = () => {
                   />
                 </div>
                 <div
-                  className="py-2 text-[24px] w-[100%] text-center "
+                  className="py-2 text-xl w-[100%] text-center "
                   style={{
                     fontFamily: "Satoshi",
                     color: "#383A42",
