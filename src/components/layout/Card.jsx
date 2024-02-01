@@ -20,6 +20,7 @@ function Card({
 }) {
   const image = process.env.REACT_APP_API_URL + cardImage;
   const [campaignData, setCampaignData] = useState([]);
+  const marginBottom = title.length > 41 ? "2.5rem" : "4.3rem";
   return (
     <>
       <div
@@ -48,8 +49,8 @@ function Card({
             <p className="text-black/40 pl-2 text-[15px]">{username}</p>
           </div>
           <p
-            className="card-text w-full pt-2 pb-4  text-1xl font-bold"
-            style={{ fontWeight: "700", fontSize: 20 }}
+            className="card-text w-full pt-2   text-1xl font-bold"
+            style={{ fontWeight: "700", fontSize: 20, marginBottom }}
           >
             {title}
           </p>

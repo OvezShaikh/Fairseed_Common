@@ -21,6 +21,7 @@ function Home() {
   const [visibleCards, setVisibleCards] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
+  const [campaignCount,setCampaignCount] = useState('');
   const fetchUserList = async () => {
     try {
       const perPage = 8;
@@ -112,7 +113,7 @@ function Home() {
               }}
             >
               <p className="gradient-button mb-0 underline max-tablet:text-[16px]">
-                See all 724 active campaigns
+              See all {campaignCount} active campaigns
               </p>
             </button>
           </div>
