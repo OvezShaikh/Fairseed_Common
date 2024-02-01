@@ -21,7 +21,7 @@ function Home() {
   const [visibleCards, setVisibleCards] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
-  const [campaignCount,setCampaignCount] = useState('');
+  const [campaignCount,setCampaignCount] = useState(0);
   const fetchUserList = async () => {
     try {
       const perPage = 8;
@@ -35,6 +35,7 @@ function Home() {
         if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList([...userList, ...res.rows]);
+        setCampaignCount(res.count);
       } else {
         console.error("Invalid data structure. Expected an array:", res.data);
       }
