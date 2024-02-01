@@ -12,6 +12,7 @@ import React, { useContext, useMemo } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Avatar } from "@mui/material";
+import UserNavbar from '../../login/UserNavbar'
 
 function CurrentCampaign({
   key,
@@ -61,8 +62,14 @@ function CurrentCampaign({
   );
 
   return (
-    <>
-      <Navbar />
+    <>{
+      (localStorage.getItem('token')) ? (
+        <UserNavbar/>
+      ) : (
+        <Navbar/>
+      )
+    }
+      {/* <Navbar /> */}
       <Grid sx={{ padding: "100px 45px 0px 45px" }}>
         <Typography
           variant="h6"

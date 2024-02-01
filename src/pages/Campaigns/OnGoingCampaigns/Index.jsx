@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { Grid, Typography } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../../../components/layout/Footer";
@@ -9,6 +9,10 @@ import Card from "../../../components/layout/Card";
 import icons from "../../../constants/icons";
 import Navigation from '../../../components/layout/Navigation/Index'
 import ScrollableTabsButtonAuto from "../../../components/inputs/Filters/Index";
+import UserNavbar from '../../login/UserNavbar'
+import axios from "axios";
+
+
 function Index() {
   // const navigate = useNavigate();
   // const { pathname } = useLocation();
@@ -25,6 +29,7 @@ function Index() {
 
   //   [pathname]
   // );
+
   let bnk = [
     {
       title: "Help me fund my College Fees for Harvard University",
@@ -58,11 +63,20 @@ function Index() {
       userCount: "1003",
       daysLeft: "10 Days Left",
     },
+  
 
   ];
+  const page = 4;
+  const totalPages=4;
   return (
     <div>
-      <Navbar />
+      {
+        localStorage.getItem('token') ? (
+          <UserNavbar/>
+        ):(
+          <Navbar />
+        )
+      }
       <div className="flex flex-col ">
 
         <Navigation label={"OnGoingCampaigns"} heading={"Ongoing Campaigns"} />
@@ -112,6 +126,7 @@ function Index() {
               "-webkit-text-fill-color": "transparent",
               textDecoration: "underline",
               position: "relative",
+              display: page >= totalPages ? "none" : "block",
             }}
           >
             <p className="gradient-button mb-0">Load More</p>

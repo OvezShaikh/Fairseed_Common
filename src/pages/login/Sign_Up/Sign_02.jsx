@@ -61,6 +61,7 @@ const Sign_02 = ({ handleBack, handleNext }) => {
               }}
 
               name={"password"}
+              type="password"
               placeholder="************"
             />
           </Grid>
@@ -76,6 +77,7 @@ const Sign_02 = ({ handleBack, handleNext }) => {
               }}
 
               name={"password2"}
+              type="password"
               placeholder="************"
             />
           </Grid>

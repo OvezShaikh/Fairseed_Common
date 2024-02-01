@@ -190,7 +190,7 @@ yup.object({
 yup.object({
   rasing_for: yup.string().required(" is required"),
   account_holder_name: yup.string().required("account holder name is required"),
-  account_number: yup.string().required("Account number is required"),
+  account_number: yup.string().required("Account number is required").min(11).max(16),
   bank_name: yup.string().required("Bank name is required"),
   branch_name: yup.string().required("Branch name is required"),
   ifsc_code: yup.string().required("IFSC Code is required"),

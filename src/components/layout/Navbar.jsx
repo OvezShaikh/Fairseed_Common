@@ -109,7 +109,7 @@ export default function Example() {
       aria-label="Global"
     >
         <div className="flex lg:flex ">
-          <a href="#">
+          <a href="/Home">
             <span className="sr-only">FairSeed </span>
             <img className="" src={images.Logo} alt="FairSeed" title="FairSeed" />
           </a>

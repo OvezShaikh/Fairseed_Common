@@ -169,6 +169,7 @@ function Home() {
             "-webkit-background-clip": "text",
             "-webkit-text-fill-color": "transparent",
             textDecoration: "underline",
+            display: page >= totalPages ? "none" : "block",
             position: "relative",
           }}
         >

@@ -153,7 +153,7 @@ const Test = ({ handleBack, handleNext }) => {
                     sx={styleSecondaryButton}
                 ><a href="/">
                         Back
-                    </a>s
+                    </a>
 
                 </SecondaryButton>
 

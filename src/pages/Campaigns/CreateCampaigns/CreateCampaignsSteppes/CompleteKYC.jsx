@@ -78,7 +78,7 @@ function CompleteKYC({ handleBack, handleNext }) {
                     <InputField
                         name="pan_card"
                         label="Enter PAN Card Number:"
-                        type="password"
+                        type="text"
                         required
                         sx={InputStyle}
 

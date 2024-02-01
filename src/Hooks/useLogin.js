@@ -36,6 +36,7 @@ const useLogin = () => {
 
     } catch (error) {
       console.log(error, "error from catch");
+      alert('please enter valid credentials');
     }
   };
 

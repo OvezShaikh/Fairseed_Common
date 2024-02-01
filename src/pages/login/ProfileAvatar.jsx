@@ -17,11 +17,10 @@ export default function ProfileAvatar() {
 
   function logout() {
     // Remove the 'token' item from localStorage
+    localStorage.removeItem('token');
+
     localStorage.removeItem('user_role');
   
-    // Optionally, perform any other logout-related tasks
-  
-    // Redirect to the login page or another appropriate page
     window.location.href = '/Home';
   }
   

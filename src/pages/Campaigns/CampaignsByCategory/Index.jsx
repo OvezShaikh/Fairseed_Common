@@ -202,6 +202,7 @@ function Index() {
                   "-webkit-text-fill-color": "transparent",
                   textDecoration: "underline",
                   position: "relative",
+                  display: page >= totalPages ? "none" : "block",
                   
                 }}
               >

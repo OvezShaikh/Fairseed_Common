@@ -158,7 +158,11 @@ const formValidation = [
     email: Yup.string().email('Invalid Email! please enter correct email ').required('Email is Required!'),
     username: Yup.string().required('Name is Required!'),
     // role:Yup.string().required('Role is Required!'),
-    mobile_number: Yup.string().matches(phoneRegExp, 'Phone number is not valid'),
+    mobile_number: Yup.string()
+    .required("required")
+    .matches(phoneRegExp, 'Phone number is not valid')
+    .min(10, "too short")
+    .max(10, "too long"),
   }),
   Yup.object().shape({
     password: Yup.string().required('Password is required!'),
