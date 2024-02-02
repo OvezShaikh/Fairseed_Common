@@ -10,6 +10,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import images from "../../constants/images";
 import "./Homestyles.css";
+import { Link } from "react-router-dom";
 
 
 
@@ -22,397 +23,397 @@ export default () => {
       spaceBetween={50}
       slidesPerView={1}
       navigation
-      pagination={{ clickable: true}}
+      pagination={{ clickable: true }}
 
-      
+
       scrollbar={{ draggable: true }}
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log("slide change")}
     >
       <SwiperSlide>
-        
 
 
 
-        <div className="home-hero-desktop hero-slider slide-container grid grid-cols-1 max-desktop:grid-cols-2 place-content-center desktop:h-[750px] desktop:bg-right pl-[10%] bg-cover bg-no-repeat" style={{backgroundImage:`url(${images.HomePageHero})`}}>
-          
+
+        <div className="home-hero-desktop hero-slider slide-container grid grid-cols-1 max-desktop:grid-cols-2 place-content-center desktop:h-[750px] desktop:bg-right pl-[10%] bg-cover bg-no-repeat" style={{ backgroundImage: `url(${images.HomePageHero})` }}>
+
           <div className="max-w-[646px]">
-          <h1
-                className="max-[999px]:text-center text-4xl mx-auto min-[1000px]:text-left"
-                style={{
-                  color: "#25272C",
-                  fontSize: 46,
-                  fontFamily: "Satoshi",
-                  fontWeight: "900",
-                  lineHeight:"64px",
-                }}
-              >
-                Help rebuild earthquake hit schools in Morocco!
-              </h1>
-              <p
-                className="max-[999px]:text-center text-4xl  mx-auto min-[1000px]:text-left"
-                style={{
-                  color: "#8E95A2",
-                  fontSize: 24,
-                  fontFamily: "Satoshi",
-                  fontWeight: "500",
-                }}
-              >
-                Schools in Morocco are damaged severely with the recent
-                earthquake. Help us rebuilt schools and get children back to
-                School
-              </p>
-              <div className="mx-auto max-[999px]:text-center">
-              <a href="/Home/OnGoingCampaigns" className="mx-auto">
-              <PrimaryButton
-                className="p-3 text-white mt-4 font-bold text-xl max-[999px]:mx-auto"
-                style={{ borderRadius: 8 }}
-                
-              >
-                <h1 className="text-[20px] font-[satoshi]" style={{fontWeight:900}}>
-                Donate for the Cause
-                </h1>
-              </PrimaryButton>
-              </a>
-              </div>
-           
+            <h1
+              className="max-[999px]:text-center text-4xl mx-auto min-[1000px]:text-left"
+              style={{
+                color: "#25272C",
+                fontSize: 46,
+                fontFamily: "Satoshi",
+                fontWeight: "900",
+                lineHeight: "64px",
+              }}
+            >
+              Help rebuild earthquake hit schools in Morocco!
+            </h1>
+            <p
+              className="max-[999px]:text-center text-4xl  mx-auto min-[1000px]:text-left"
+              style={{
+                color: "#8E95A2",
+                fontSize: 24,
+                fontFamily: "Satoshi",
+                fontWeight: "500",
+              }}
+            >
+              Schools in Morocco are damaged severely with the recent
+              earthquake. Help us rebuilt schools and get children back to
+              School
+            </p>
+            <div className="mx-auto max-[999px]:text-center">
+              <Link to="/Home/OnGoingCampaigns" className="mx-auto">
+                <PrimaryButton
+                  className="p-3 text-white mt-4 font-bold text-xl max-[999px]:mx-auto"
+                  style={{ borderRadius: 8 }}
 
+                >
+                  <h1 className="text-[20px] font-[satoshi]" style={{ fontWeight: 900 }}>
+                    Donate for the Cause
+                  </h1>
+                </PrimaryButton>
+              </Link>
             </div>
+
+
+          </div>
         </div>
 
-        
-        
-        <div className="slide-container homeHerotab max-tablet:px-[15px] max-tablet:bg-right" style={{backgroundImage:`url(${images.HomePageHeroTab})`}}>
-          
-          <div className="max-w-[646px] mx-auto">
-          <h1
-                className="text-center max-desktop:text-[56px] max-desktop:max-w-[630px] mx-auto mb-[38px] max-tablet:text-[28px] max-tablet:leading-[36px]"
-                style={{
-                  color: "#25272C",
-                  
-                  fontFamily: "Satoshi",
-                  fontWeight: "900",
-                  
-                }}
-              >
-                Help rebuild earthquake hit school in Morocco!
-              </h1>
-              <p
-                className="text-center max-desktop:text-[28px] mx-auto mb-[28px] max-tablet:text-[18px] max-tablet:px-[60px] max-tablet:mb-0 max-desktop:max-w-[630px]"
-                style={{
-                  color: "#8E95A2",
-                 
-                  fontFamily: "Satoshi",
-                  fontWeight: "500",
-                }}
-              >
-                Schools in Morocco are damaged severely with the recent
-                earthquake. Help us rebuilt schools and get children back to
-                School
-              </p>
-              <div className="mx-auto text-center">
-              <a href="/Home/OnGoingCampaigns" className="mx-auto">
-              <PrimaryButton
-                className="p-3 text-white mt-4 font-bold text-xl mx-auto"
-                style={{ borderRadius: 8 }}
-                
-              >
-                <h1 className="text-[20px] font-[satoshi]" style={{fontWeight:900}}>
-                Donate for the Cause
-                </h1>
-              </PrimaryButton>
-              </a>
-              </div>
-           
 
+
+        <div className="slide-container homeHerotab max-tablet:px-[15px] max-tablet:bg-right" style={{ backgroundImage: `url(${images.HomePageHeroTab})` }}>
+
+          <div className="max-w-[646px] mx-auto">
+            <h1
+              className="text-center max-desktop:text-[56px] max-desktop:max-w-[630px] mx-auto mb-[38px] max-tablet:text-[28px] max-tablet:leading-[36px]"
+              style={{
+                color: "#25272C",
+
+                fontFamily: "Satoshi",
+                fontWeight: "900",
+
+              }}
+            >
+              Help rebuild earthquake hit school in Morocco!
+            </h1>
+            <p
+              className="text-center max-desktop:text-[28px] mx-auto mb-[28px] max-tablet:text-[18px] max-tablet:px-[60px] max-tablet:mb-0 max-desktop:max-w-[630px]"
+              style={{
+                color: "#8E95A2",
+
+                fontFamily: "Satoshi",
+                fontWeight: "500",
+              }}
+            >
+              Schools in Morocco are damaged severely with the recent
+              earthquake. Help us rebuilt schools and get children back to
+              School
+            </p>
+            <div className="mx-auto text-center">
+              <Link to="/Home/OnGoingCampaigns" className="mx-auto">
+                <PrimaryButton
+                  className="p-3 text-white mt-4 font-bold text-xl mx-auto"
+                  style={{ borderRadius: 8 }}
+
+                >
+                  <h1 className="text-[20px] font-[satoshi]" style={{ fontWeight: 900 }}>
+                    Donate for the Cause
+                  </h1>
+                </PrimaryButton>
+              </Link>
             </div>
+
+
+          </div>
         </div>
 
 
       </SwiperSlide>
       <SwiperSlide>
-      <div className="home-hero-desktop hero-slider slide-container grid grid-cols-1 max-desktop:grid-cols-2 place-content-center desktop:h-[750px] desktop:bg-right pl-[10%] bg-cover bg-no-repeat" style={{backgroundImage:`url(${images.HomePageHero})`}}>
-          
-          <div className="max-w-[646px]">
-          <h1
-                className="max-[999px]:text-center text-4xl mx-auto min-[1000px]:text-left"
-                style={{
-                  color: "#25272C",
-                  fontSize: 46,
-                  fontFamily: "Satoshi",
-                  fontWeight: "900",
-                  lineHeight:"64px",
-                }}
-              >
-                Help rebuild earthquake hit schools in Morocco!
-              </h1>
-              <p
-                className="max-[999px]:text-center text-4xl  mx-auto min-[1000px]:text-left"
-                style={{
-                  color: "#8E95A2",
-                  fontSize: 24,
-                  fontFamily: "Satoshi",
-                  fontWeight: "500",
-                }}
-              >
-                Schools in Morocco are damaged severely with the recent
-                earthquake. Help us rebuilt schools and get children back to
-                School
-              </p>
-              <div className="mx-auto max-[999px]:text-center">
-              <a href="/Home/OnGoingCampaigns" className="mx-auto">
-              <PrimaryButton
-                className="p-3 text-white mt-4 font-bold text-xl max-[999px]:mx-auto"
-                style={{ borderRadius: 8 }}
-                
-              >
-                <h1 className="text-[20px] font-[satoshi]" style={{fontWeight:900}}>
-                Donate for the Cause
-                </h1>
-              </PrimaryButton>
-              </a>
-              </div>
-           
+        <div className="home-hero-desktop hero-slider slide-container grid grid-cols-1 max-desktop:grid-cols-2 place-content-center desktop:h-[750px] desktop:bg-right pl-[10%] bg-cover bg-no-repeat" style={{ backgroundImage: `url(${images.HomePageHero})` }}>
 
+          <div className="max-w-[646px]">
+            <h1
+              className="max-[999px]:text-center text-4xl mx-auto min-[1000px]:text-left"
+              style={{
+                color: "#25272C",
+                fontSize: 46,
+                fontFamily: "Satoshi",
+                fontWeight: "900",
+                lineHeight: "64px",
+              }}
+            >
+              Help rebuild earthquake hit schools in Morocco!
+            </h1>
+            <p
+              className="max-[999px]:text-center text-4xl  mx-auto min-[1000px]:text-left"
+              style={{
+                color: "#8E95A2",
+                fontSize: 24,
+                fontFamily: "Satoshi",
+                fontWeight: "500",
+              }}
+            >
+              Schools in Morocco are damaged severely with the recent
+              earthquake. Help us rebuilt schools and get children back to
+              School
+            </p>
+            <div className="mx-auto max-[999px]:text-center">
+              <Link to="/Home/OnGoingCampaigns" className="mx-auto">
+                <PrimaryButton
+                  className="p-3 text-white mt-4 font-bold text-xl max-[999px]:mx-auto"
+                  style={{ borderRadius: 8 }}
+
+                >
+                  <h1 className="text-[20px] font-[satoshi]" style={{ fontWeight: 900 }}>
+                    Donate for the Cause
+                  </h1>
+                </PrimaryButton>
+              </Link>
             </div>
+
+
+          </div>
         </div>
 
-        
-        
-        <div className="slide-container homeHerotab max-tablet:px-[15px] max-tablet:bg-right" style={{backgroundImage:`url(${images.HomePageHeroTab})`}}>
-          
-          <div className="max-w-[646px] mx-auto">
-          <h1
-                className="text-center max-desktop:text-[56px] max-desktop:max-w-[630px] mx-auto mb-[38px] max-tablet:text-[28px] max-tablet:leading-[36px]"
-                style={{
-                  color: "#25272C",
-                  
-                  fontFamily: "Satoshi",
-                  fontWeight: "900",
-                  
-                }}
-              >
-                Help rebuild earthquake hit school in Morocco!
-              </h1>
-              <p
-                className="text-center max-desktop:text-[28px] mx-auto mb-[28px] max-tablet:text-[18px] max-tablet:px-[60px] max-tablet:mb-0 max-desktop:max-w-[630px]"
-                style={{
-                  color: "#8E95A2",
-                 
-                  fontFamily: "Satoshi",
-                  fontWeight: "500",
-                }}
-              >
-                Schools in Morocco are damaged severely with the recent
-                earthquake. Help us rebuilt schools and get children back to
-                School
-              </p>
-              <div className="mx-auto text-center">
-              <a href="/Home/OnGoingCampaigns" className="mx-auto">
-              <PrimaryButton
-                className="p-3 text-white mt-4 font-bold text-xl mx-auto"
-                style={{ borderRadius: 8 }}
-                
-              >
-                <h1 className="text-[20px] font-[satoshi]" style={{fontWeight:900}}>
-                Donate for the Cause
-                </h1>
-              </PrimaryButton>
-              </a>
-              </div>
-           
 
+
+        <div className="slide-container homeHerotab max-tablet:px-[15px] max-tablet:bg-right" style={{ backgroundImage: `url(${images.HomePageHeroTab})` }}>
+
+          <div className="max-w-[646px] mx-auto">
+            <h1
+              className="text-center max-desktop:text-[56px] max-desktop:max-w-[630px] mx-auto mb-[38px] max-tablet:text-[28px] max-tablet:leading-[36px]"
+              style={{
+                color: "#25272C",
+
+                fontFamily: "Satoshi",
+                fontWeight: "900",
+
+              }}
+            >
+              Help rebuild earthquake hit school in Morocco!
+            </h1>
+            <p
+              className="text-center max-desktop:text-[28px] mx-auto mb-[28px] max-tablet:text-[18px] max-tablet:px-[60px] max-tablet:mb-0 max-desktop:max-w-[630px]"
+              style={{
+                color: "#8E95A2",
+
+                fontFamily: "Satoshi",
+                fontWeight: "500",
+              }}
+            >
+              Schools in Morocco are damaged severely with the recent
+              earthquake. Help us rebuilt schools and get children back to
+              School
+            </p>
+            <div className="mx-auto text-center">
+              <Link to="/Home/OnGoingCampaigns" className="mx-auto">
+                <PrimaryButton
+                  className="p-3 text-white mt-4 font-bold text-xl mx-auto"
+                  style={{ borderRadius: 8 }}
+
+                >
+                  <h1 className="text-[20px] font-[satoshi]" style={{ fontWeight: 900 }}>
+                    Donate for the Cause
+                  </h1>
+                </PrimaryButton>
+              </Link>
             </div>
+
+
+          </div>
         </div>
       </SwiperSlide>
       <SwiperSlide>
-      <div className="home-hero-desktop hero-slider slide-container grid grid-cols-1 max-desktop:grid-cols-2 place-content-center desktop:h-[750px] desktop:bg-right pl-[10%] bg-cover bg-no-repeat" style={{backgroundImage:`url(${images.HomePageHero})`}}>
-          
-          <div className="max-w-[646px]">
-          <h1
-                className="max-[999px]:text-center text-4xl mx-auto min-[1000px]:text-left"
-                style={{
-                  color: "#25272C",
-                  fontSize: 46,
-                  fontFamily: "Satoshi",
-                  fontWeight: "900",
-                  lineHeight:"64px",
-                }}
-              >
-                Help rebuild earthquake hit schools in Morocco!
-              </h1>
-              <p
-                className="max-[999px]:text-center text-4xl  mx-auto min-[1000px]:text-left"
-                style={{
-                  color: "#8E95A2",
-                  fontSize: 24,
-                  fontFamily: "Satoshi",
-                  fontWeight: "500",
-                }}
-              >
-                Schools in Morocco are damaged severely with the recent
-                earthquake. Help us rebuilt schools and get children back to
-                School
-              </p>
-              <div className="mx-auto max-[999px]:text-center">
-              <a href="/Home/OnGoingCampaigns" className="mx-auto">
-              <PrimaryButton
-                className="p-3 text-white mt-4 font-bold text-xl max-[999px]:mx-auto"
-                style={{ borderRadius: 8 }}
-                
-              >
-                <h1 className="text-[20px] font-[satoshi]" style={{fontWeight:900}}>
-                Donate for the Cause
-                </h1>
-              </PrimaryButton>
-              </a>
-              </div>
-           
+        <div className="home-hero-desktop hero-slider slide-container grid grid-cols-1 max-desktop:grid-cols-2 place-content-center desktop:h-[750px] desktop:bg-right pl-[10%] bg-cover bg-no-repeat" style={{ backgroundImage: `url(${images.HomePageHero})` }}>
 
+          <div className="max-w-[646px]">
+            <h1
+              className="max-[999px]:text-center text-4xl mx-auto min-[1000px]:text-left"
+              style={{
+                color: "#25272C",
+                fontSize: 46,
+                fontFamily: "Satoshi",
+                fontWeight: "900",
+                lineHeight: "64px",
+              }}
+            >
+              Help rebuild earthquake hit schools in Morocco!
+            </h1>
+            <p
+              className="max-[999px]:text-center text-4xl  mx-auto min-[1000px]:text-left"
+              style={{
+                color: "#8E95A2",
+                fontSize: 24,
+                fontFamily: "Satoshi",
+                fontWeight: "500",
+              }}
+            >
+              Schools in Morocco are damaged severely with the recent
+              earthquake. Help us rebuilt schools and get children back to
+              School
+            </p>
+            <div className="mx-auto max-[999px]:text-center">
+              <Link to="/Home/OnGoingCampaigns" className="mx-auto">
+                <PrimaryButton
+                  className="p-3 text-white mt-4 font-bold text-xl max-[999px]:mx-auto"
+                  style={{ borderRadius: 8 }}
+
+                >
+                  <h1 className="text-[20px] font-[satoshi]" style={{ fontWeight: 900 }}>
+                    Donate for the Cause
+                  </h1>
+                </PrimaryButton>
+              </Link>
             </div>
+
+
+          </div>
         </div>
 
-        
-        
-        <div className="slide-container homeHerotab max-tablet:px-[15px] max-tablet:bg-right" style={{backgroundImage:`url(${images.HomePageHeroTab})`}}>
-          
-          <div className="max-w-[646px] mx-auto">
-          <h1
-                className="text-center max-desktop:text-[56px] max-desktop:max-w-[630px] mx-auto mb-[38px] max-tablet:text-[28px] max-tablet:leading-[36px]"
-                style={{
-                  color: "#25272C",
-                  
-                  fontFamily: "Satoshi",
-                  fontWeight: "900",
-                  
-                }}
-              >
-                Help rebuild earthquake hit school in Morocco!
-              </h1>
-              <p
-                className="text-center max-desktop:text-[28px] mx-auto mb-[28px] max-tablet:text-[18px] max-tablet:px-[60px] max-tablet:mb-0 max-desktop:max-w-[630px]"
-                style={{
-                  color: "#8E95A2",
-                 
-                  fontFamily: "Satoshi",
-                  fontWeight: "500",
-                }}
-              >
-                Schools in Morocco are damaged severely with the recent
-                earthquake. Help us rebuilt schools and get children back to
-                School
-              </p>
-              <div className="mx-auto text-center">
-              <a href="/Home/OnGoingCampaigns" className="mx-auto">
-              <PrimaryButton
-                className="p-3 text-white mt-4 font-bold text-xl mx-auto"
-                style={{ borderRadius: 8 }}
-                
-              >
-                <h1 className="text-[20px] font-[satoshi]" style={{fontWeight:900}}>
-                Donate for the Cause
-                </h1>
-              </PrimaryButton>
-              </a>
-              </div>
-           
 
+
+        <div className="slide-container homeHerotab max-tablet:px-[15px] max-tablet:bg-right" style={{ backgroundImage: `url(${images.HomePageHeroTab})` }}>
+
+          <div className="max-w-[646px] mx-auto">
+            <h1
+              className="text-center max-desktop:text-[56px] max-desktop:max-w-[630px] mx-auto mb-[38px] max-tablet:text-[28px] max-tablet:leading-[36px]"
+              style={{
+                color: "#25272C",
+
+                fontFamily: "Satoshi",
+                fontWeight: "900",
+
+              }}
+            >
+              Help rebuild earthquake hit school in Morocco!
+            </h1>
+            <p
+              className="text-center max-desktop:text-[28px] mx-auto mb-[28px] max-tablet:text-[18px] max-tablet:px-[60px] max-tablet:mb-0 max-desktop:max-w-[630px]"
+              style={{
+                color: "#8E95A2",
+
+                fontFamily: "Satoshi",
+                fontWeight: "500",
+              }}
+            >
+              Schools in Morocco are damaged severely with the recent
+              earthquake. Help us rebuilt schools and get children back to
+              School
+            </p>
+            <div className="mx-auto text-center">
+              <Link to="/Home/OnGoingCampaigns" className="mx-auto">
+                <PrimaryButton
+                  className="p-3 text-white mt-4 font-bold text-xl mx-auto"
+                  style={{ borderRadius: 8 }}
+
+                >
+                  <h1 className="text-[20px] font-[satoshi]" style={{ fontWeight: 900 }}>
+                    Donate for the Cause
+                  </h1>
+                </PrimaryButton>
+              </Link>
             </div>
+
+
+          </div>
         </div>
       </SwiperSlide>
       <SwiperSlide>
-      <div className="home-hero-desktop hero-slider slide-container grid grid-cols-1 max-desktop:grid-cols-2 place-content-center desktop:h-[750px] desktop:bg-right pl-[10%] bg-cover bg-no-repeat" style={{backgroundImage:`url(${images.HomePageHero})`}}>
-          
-          <div className="max-w-[646px]">
-          <h1
-                className="max-[999px]:text-center text-4xl mx-auto min-[1000px]:text-left"
-                style={{
-                  color: "#25272C",
-                  fontSize: 46,
-                  fontFamily: "Satoshi",
-                  fontWeight: "900",
-                  lineHeight:"64px",
-                }}
-              >
-                Help rebuild earthquake hit schools in Morocco!
-              </h1>
-              <p
-                className="max-[999px]:text-center text-4xl  mx-auto min-[1000px]:text-left"
-                style={{
-                  color: "#8E95A2",
-                  fontSize: 24,
-                  fontFamily: "Satoshi",
-                  fontWeight: "500",
-                }}
-              >
-                Schools in Morocco are damaged severely with the recent
-                earthquake. Help us rebuilt schools and get children back to
-                School
-              </p>
-              <div className="mx-auto max-[999px]:text-center">
-              <a href="/Home/OnGoingCampaigns" className="mx-auto">
-              <PrimaryButton
-                className="p-3 text-white mt-4 font-bold text-xl max-[999px]:mx-auto"
-                style={{ borderRadius: 8 }}
-                
-              >
-                <h1 className="text-[20px] font-[satoshi]" style={{fontWeight:900}}>
-                Donate for the Cause
-                </h1>
-              </PrimaryButton>
-              </a>
-              </div>
-           
+        <div className="home-hero-desktop hero-slider slide-container grid grid-cols-1 max-desktop:grid-cols-2 place-content-center desktop:h-[750px] desktop:bg-right pl-[10%] bg-cover bg-no-repeat" style={{ backgroundImage: `url(${images.HomePageHero})` }}>
 
+          <div className="max-w-[646px]">
+            <h1
+              className="max-[999px]:text-center text-4xl mx-auto min-[1000px]:text-left"
+              style={{
+                color: "#25272C",
+                fontSize: 46,
+                fontFamily: "Satoshi",
+                fontWeight: "900",
+                lineHeight: "64px",
+              }}
+            >
+              Help rebuild earthquake hit schools in Morocco!
+            </h1>
+            <p
+              className="max-[999px]:text-center text-4xl  mx-auto min-[1000px]:text-left"
+              style={{
+                color: "#8E95A2",
+                fontSize: 24,
+                fontFamily: "Satoshi",
+                fontWeight: "500",
+              }}
+            >
+              Schools in Morocco are damaged severely with the recent
+              earthquake. Help us rebuilt schools and get children back to
+              School
+            </p>
+            <div className="mx-auto max-[999px]:text-center">
+              <Link to="/Home/OnGoingCampaigns" className="mx-auto">
+                <PrimaryButton
+                  className="p-3 text-white mt-4 font-bold text-xl max-[999px]:mx-auto"
+                  style={{ borderRadius: 8 }}
+
+                >
+                  <h1 className="text-[20px] font-[satoshi]" style={{ fontWeight: 900 }}>
+                    Donate for the Cause
+                  </h1>
+                </PrimaryButton>
+              </Link>
             </div>
+
+
+          </div>
         </div>
 
-        
-        
-        <div className="slide-container homeHerotab max-tablet:px-[15px] max-tablet:bg-right" style={{backgroundImage:`url(${images.HomePageHeroTab})`}}>
-          
-          <div className="max-w-[646px] mx-auto">
-          <h1
-                className="text-center max-desktop:text-[56px] max-desktop:max-w-[630px] mx-auto mb-[38px] max-tablet:text-[28px] max-tablet:leading-[36px]"
-                style={{
-                  color: "#25272C",
-                  
-                  fontFamily: "Satoshi",
-                  fontWeight: "900",
-                  
-                }}
-              >
-                Help rebuild earthquake hit school in Morocco!
-              </h1>
-              <p
-                className="text-center max-desktop:text-[28px] mx-auto mb-[28px] max-tablet:text-[18px] max-tablet:px-[60px] max-tablet:mb-0 max-desktop:max-w-[630px]"
-                style={{
-                  color: "#8E95A2",
-                 
-                  fontFamily: "Satoshi",
-                  fontWeight: "500",
-                }}
-              >
-                Schools in Morocco are damaged severely with the recent
-                earthquake. Help us rebuilt schools and get children back to
-                School
-              </p>
-              <div className="mx-auto text-center">
-              <a href="/Home/OnGoingCampaigns" className="mx-auto">
-              <PrimaryButton
-                className="p-3 text-white mt-4 font-bold text-xl mx-auto"
-                style={{ borderRadius: 8 }}
-                
-              >
-                <h1 className="text-[20px] font-[satoshi]" style={{fontWeight:900}}>
-                Donate for the Cause
-                </h1>
-              </PrimaryButton>
-              </a>
-              </div>
-           
 
+
+        <div className="slide-container homeHerotab max-tablet:px-[15px] max-tablet:bg-right" style={{ backgroundImage: `url(${images.HomePageHeroTab})` }}>
+
+          <div className="max-w-[646px] mx-auto">
+            <h1
+              className="text-center max-desktop:text-[56px] max-desktop:max-w-[630px] mx-auto mb-[38px] max-tablet:text-[28px] max-tablet:leading-[36px]"
+              style={{
+                color: "#25272C",
+
+                fontFamily: "Satoshi",
+                fontWeight: "900",
+
+              }}
+            >
+              Help rebuild earthquake hit school in Morocco!
+            </h1>
+            <p
+              className="text-center max-desktop:text-[28px] mx-auto mb-[28px] max-tablet:text-[18px] max-tablet:px-[60px] max-tablet:mb-0 max-desktop:max-w-[630px]"
+              style={{
+                color: "#8E95A2",
+
+                fontFamily: "Satoshi",
+                fontWeight: "500",
+              }}
+            >
+              Schools in Morocco are damaged severely with the recent
+              earthquake. Help us rebuilt schools and get children back to
+              School
+            </p>
+            <div className="mx-auto text-center">
+              <Link to="/Home/OnGoingCampaigns" className="mx-auto">
+                <PrimaryButton
+                  className="p-3 text-white mt-4 font-bold text-xl mx-auto"
+                  style={{ borderRadius: 8 }}
+
+                >
+                  <h1 className="text-[20px] font-[satoshi]" style={{ fontWeight: 900 }}>
+                    Donate for the Cause
+                  </h1>
+                </PrimaryButton>
+              </Link>
             </div>
+
+
+          </div>
         </div>
       </SwiperSlide>
     </Swiper>

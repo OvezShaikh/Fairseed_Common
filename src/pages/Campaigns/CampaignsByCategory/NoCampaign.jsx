@@ -1,6 +1,7 @@
 import React from "react";
 import images from "../../../constants/images";
 import PrimaryButton from "../../../components/inputs/PrimaryButton";
+import { Link } from "react-router-dom";
 const style = {
   borderRadius: "",
   padding: "0px 84px",
@@ -16,7 +17,7 @@ function NoCampaign() {
       <p className="text-[ var(--Neutral-Neutral-7, #717171)] w-[50%] font-[satoshi] text-[44px] font-semibold">
         Sorry! No campaigns found for this category. Please try again later.
       </p>
-      <a href="/"><PrimaryButton sx={style}>Back</PrimaryButton></a>
+      <Link to="/"><PrimaryButton sx={style}>Back</PrimaryButton></Link>
 
     </div>
   );

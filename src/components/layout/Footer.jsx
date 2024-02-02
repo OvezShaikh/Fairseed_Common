@@ -5,6 +5,7 @@ import { FiInstagram } from "react-icons/fi";
 import { RiPinterestLine } from "react-icons/ri";
 import { RiYoutubeLine } from "react-icons/ri";
 import icons from "../../constants/icons";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -14,10 +15,10 @@ function Footer() {
         style={{
           width: "100%",
           height: "100%",
-         
-         
+
+
           background: "#22262F",
-          
+
           fontFamily: 'satoshi'
         }}
       >
@@ -46,7 +47,7 @@ function Footer() {
                 <div className="text-[20px] max-tablet:text-[16px]"
                   style={{
                     color: "rgba(255, 255, 255, 0.90)",
-                    
+
                     fontFamily: "Satoshi ",
                     fontWeight: "700",
                     wordWrap: "break-word",
@@ -55,8 +56,8 @@ function Footer() {
                   Support a Cause
                 </div>
               </button>
-              <a
-                href="/Home/Create-Campaign"
+              <Link
+                to="/Home/Create-Campaign"
                 className="px-3 gap-[10px] max-tablet:gap-[0px]"
                 style={{
 
@@ -67,7 +68,7 @@ function Footer() {
                   backdropFilter: "blur(24px)",
                   justifyContent: "center",
                   alignItems: "center",
-                  
+
                   display: "inline-flex",
                 }}
               >
@@ -77,7 +78,7 @@ function Footer() {
                 <div className="text-[20px] max-tablet:text-[16px] max-tablet:p-[16px] max-tablet:pl-[10px]"
                   style={{
                     color: "#383A42",
-                   
+
                     fontFamily: "Satoshi",
                     fontWeight: "700",
                     wordWrap: "break-word",
@@ -85,7 +86,7 @@ function Footer() {
                 >
                   Launch a Campaign
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -96,9 +97,9 @@ function Footer() {
             <img className="desktop:w-[118px] pb-[16px]" src={images.FooterLogo} />
             <p className="desktop:w-[79%] desktop:text-[16px] max-tablet:text-[14px] max-desktop:w-[59%] max-tablet:w-[100%]"
               style={{
-                
+
                 color: "white",
-                
+
                 fontFamily: "Satoshi",
                 fontWeight: "500",
                 textTransform: "capitalize",
@@ -115,7 +116,7 @@ function Footer() {
 
 
           <div className="w-[11%] max-desktop:w-[30%] max-desktop:mb-[48px] max-tablet:w-[36%] max-tablet:mb-[12px]">
-            <a
+            <Link
               className="text-white font-bold"
               style={{
                 fontSize: 16,
@@ -124,59 +125,59 @@ function Footer() {
               }}
             >
               Quick Link
-            </a>
+            </Link>
             <ul className="mt-3">
               <li>
-                <a
+                <Link
                   className="text-white/80"
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  href="#"
+                  to="#"
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   className="text-white/80"
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  href="#"
+                  to="#"
                 >
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   className="text-white/80"
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  href="#"
+                  to="#"
                 >
                   Blog Post
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   className="text-white/80"
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  href="#"
+                  to="#"
                 >
                   Photo Gallery
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -185,7 +186,7 @@ function Footer() {
 
 
           <div className="w-[11%] max-desktop:w-[30%] max-tablet:w-[36%]">
-            <a
+            <Link
               className="text-white font-bold"
               style={{
                 fontSize: 16,
@@ -194,33 +195,33 @@ function Footer() {
               }}
             >
               Get In Touch
-            </a>
+            </Link>
             <ul className="mt-3">
               <li>
-                <a
+                <Link
                   className="text-white/80"
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  href="#"
+                  to="#"
                 >
                   Contact us
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   className="text-white/80"
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  href="#"
+                  to="#"
                 >
                   Our services
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -230,7 +231,7 @@ function Footer() {
 
 
           <div className="w-[17%] max-desktop:w-[40%] max-tablet:w-[90%] max-tablet:mb-[20px]">
-            <a
+            <Link
               className="text-white font-bold"
               style={{
                 fontSize: 16,
@@ -239,7 +240,7 @@ function Footer() {
               }}
             >
               Address
-            </a>
+            </Link>
             <p
               className="text-white/80 mt-3 w-[70%]"
               style={{
@@ -258,7 +259,7 @@ function Footer() {
 
           <div className="flex justify-end w-[24.5%] max-desktop:w-[54%] max-tablet:w-full">
             <div className="w-full ">
-              <a
+              <Link
                 className="text-white  font-bold"
                 style={{
                   fontSize: 16,
@@ -267,7 +268,7 @@ function Footer() {
                 }}
               >
                 Newsletter
-              </a>
+              </Link>
               <div className="flex mt-3 flex-row rounded-lg w-full h-[48px]">
                 <input
                   className="text-[15px] pl-4 w-full"
@@ -277,7 +278,7 @@ function Footer() {
                 />
                 <div className="max-w-[122px] w-full"
                   style={{
-                    
+
                     paddingLeft: 24,
                     paddingRight: 24,
                     paddingTop: 1,
@@ -327,50 +328,50 @@ function Footer() {
                 Follow Us
               </p>
               <div className="flex mt-2 flex-row">
-                <a
+                <Link
                   className="text-white/80 text-3xl"
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  href="#"
+                  to="#"
                 >
                   <img src={icons.FooterIconTw} />
-                </a>
-                <a
+                </Link>
+                <Link
                   className="text-white/80 ml-3 text-2xl"
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  href="#"
+                  to="#"
                 >
                   <img src={icons.FooterIconIn} />
-                </a>
-                <a
+                </Link>
+                <Link
                   className="text-white/80 ml-3  text-3xl"
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  href="#"
+                  to="#"
                 >
                   <img src={icons.FooterIconPi} />
-                </a>
-                <a
+                </Link>
+                <Link
                   className="text-white/80 ml-3 text-3xl"
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  href="#"
+                  to="#"
                 >
                   <img src={icons.FooterIconYo} />
-                </a>
+                </Link>
               </div>
             </div>
           </div>

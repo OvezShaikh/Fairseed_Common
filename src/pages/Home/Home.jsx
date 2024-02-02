@@ -15,24 +15,27 @@ import axios from "axios";
 import UserNavbar from '../login/UserNavbar'
 
 import images from "../../constants/images";
+import { color } from "@mui/system";
+import { Link } from "react-router-dom";
+
 
 function Home() {
   const [userList, setUserList] = useState([]);
   const [visibleCards, setVisibleCards] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
-  const [campaignCount,setCampaignCount] = useState(0);
+  const [campaignCount, setCampaignCount] = useState(0);
   const fetchUserList = async () => {
     try {
       const perPage = 8;
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
-        );
-        const res = response.data;
-        console.log(res, "cards");
-        console.log(res.rows);
-        // `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
-        if (Array.isArray(res.rows)) {
+      );
+      const res = response.data;
+      console.log(res, "cards");
+      console.log(res.rows);
+      // `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
+      if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList([...userList, ...res.rows]);
         setCampaignCount(res.count);
@@ -60,15 +63,15 @@ function Home() {
     <>
       <div className="">
         {
-          (localStorage.getItem('user_role')==='Normal')
-           ? 
-           (
-            <UserNavbar/>
-          ) :
+          (localStorage.getItem('user_role') === 'Normal')
+            ?
             (
-              <Navbar/>
-              )
-          }
+              <UserNavbar />
+            ) :
+            (
+              <Navbar />
+            )
+        }
       </div>
       <div>
         <Coursal />
@@ -78,10 +81,10 @@ function Home() {
         style={{
           width: "100%",
           height: "100%",
-        
+
           paddingTop: 48,
           paddingBottom: 48,
-          
+
           alignItems: "flex-start",
           display: "flex",
         }}
@@ -91,14 +94,16 @@ function Home() {
       <div className="flex pt-[100px] ">
         <div className="w-full flex-wrap flex flex-col items-center mx-10">
           <h1
-            className="font-extrabold pb-4 desktop:text-[48px] max-desktop:text-[36px] max-tablet:text-[24px]" 
+            className="font-extrabold pb-4 desktop:text-[48px] max-desktop:text-[36px] max-tablet:text-[24px]"
             style={{ fontFamily: "Satoshi" }}
           >
-            Ongoing Campaigns 
+            Ongoing Campaigns
           </h1>
           <div className="flex flex-col  text-center text-black/100 mb-6">
-            <button
+            <Link
+              to='/Home/OnGoingCampaigns'
               style={{
+
                 width: "100%",
                 textAlign: "center",
                 fontSize: 24,
@@ -114,9 +119,9 @@ function Home() {
               }}
             >
               <p className="gradient-button mb-0 underline max-tablet:text-[16px]">
-              See all {campaignCount} active campaigns
+                See all {campaignCount} active campaigns
               </p>
-            </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -130,10 +135,12 @@ function Home() {
           >
             <img src={images.Funnel} />
             {/* <img src={images.Filter} /> */}
-            <p style={{background:
-                    "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
-                  "-webkit-background-clip": "text",
-                  "-webkit-text-fill-color": "transparent",}}>Filter</p>
+            <p style={{
+              background:
+                "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+              "-webkit-background-clip": "text",
+              "-webkit-text-fill-color": "transparent",
+            }}>Filter</p>
           </button>
         </div>
         <div className="gap-4 mt-4  flex flex-wrap w-full justify-center desktop:max-w-[1740px]">
@@ -204,7 +211,7 @@ function Home() {
                     className="text-[28px] max-tablet:text-[24px]"
                     style={{
                       color: "#4A4E5A",
-                     
+
                       fontFamily: "Satoshi",
                       fontWeight: "900",
                       wordWrap: "break-word",
@@ -217,7 +224,7 @@ function Home() {
                     style={{
                       width: "100%",
                       color: "#6B7280",
-                      
+
                       fontFamily: "Satoshi",
                       fontWeight: "500",
                       wordWrap: "break-word",
@@ -243,10 +250,10 @@ function Home() {
                 </div>
                 <div className=" ml-2 col-span-10">
                   <h1 className="text-[28px] max-tablet:text-[24px]"
-                    
+
                     style={{
                       color: "#4A4E5A",
-                      
+
                       fontFamily: "Satoshi ",
                       fontWeight: "900",
                       wordWrap: "break-word",
@@ -259,7 +266,7 @@ function Home() {
                     style={{
                       width: "100%",
                       color: "#6B7280",
-                      
+
                       fontFamily: "Satoshi",
                       fontWeight: "500",
                       wordWrap: "break-word",
@@ -288,7 +295,7 @@ function Home() {
                     className="text-[28px] max-tablet:text-[24px]"
                     style={{
                       color: "#4A4E5A",
-                      
+
                       fontFamily: "Satoshi",
                       fontWeight: "900",
                       wordWrap: "break-word",
@@ -301,7 +308,7 @@ function Home() {
                     style={{
                       width: "100%",
                       color: "#6B7280",
-                     
+
                       fontFamily: "Satoshi",
                       fontWeight: "500",
                       wordWrap: "break-word",

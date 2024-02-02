@@ -13,8 +13,9 @@ import Box from "@mui/material/Box";
 import images from "../../constants/images";
 import ProfileAvatar from "./ProfileAvatar";
 import PrimaryButton from "../../components/inputs/PrimaryButton";
-const styleButton ={
-  color:'red'
+import { NavLink, Link } from "react-router-dom";
+const styleButton = {
+  color: 'red'
 }
 const GetInvolved = [
   {
@@ -27,11 +28,11 @@ const GetInvolved = [
   },
   {
     name: "Internship",
-    href:'/Home/Create-Campaign',
+    href: '/Home/Create-Campaign',
   },
   {
     name: "Create a campaign",
-    href:'/Home/Create-Campaign',
+    href: '/Home/Create-Campaign',
   },
   {
     name: "Support a campaign",
@@ -53,13 +54,13 @@ const OurImpact = [
   },
   {
     name: "Stories of Change",
-    href:'/Home/Create-Campaign',
+    href: '/Home/Create-Campaign',
   },
   {
     name: "Reports",
-    href:'/Home/Create-Campaign',
+    href: '/Home/Create-Campaign',
   },
- 
+
 ];
 const AboutUs = [
   {
@@ -72,10 +73,10 @@ const AboutUs = [
   },
   {
     name: "Our Mission",
-    href:'/Home/Create-Campaign',
+    href: '/Home/Create-Campaign',
   },
- 
- 
+
+
 ];
 
 function classNames(...classes) {
@@ -86,18 +87,19 @@ function classNames(...classes) {
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
- 
+
   return (
-<header className="absolute top-0 left-0 right-0 bg-transparent z-10 container" style={{ backgroundColor: '#8EC5FC',backdropFilter:'blur(10px)'
+    <header className="absolute top-0 left-0 right-0 bg-transparent z-10 container" style={{
+      backgroundColor: '#8EC5FC', backdropFilter: 'blur(10px)'
     }}>      <nav
-        className="mx-auto flex max-w-9xl items-center justify-between p-6 lg:px-8"
-        aria-label="Global"
-      >
+      className="mx-auto flex max-w-9xl items-center justify-between p-6 lg:px-8"
+      aria-label="Global"
+    >
         <div className="flex lg:flex ">
-          <a href="/Home">
+          <NavLink to="/Home">
             <span className="sr-only">FairSeed </span>
             <img className="" src={images.Logo} alt="FairSeed" title="FairSeed" />
-          </a>
+          </NavLink>
         </div>
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end ">
@@ -114,7 +116,7 @@ export default function Example() {
           <Popover.Group className="hidden lg:flex lg:gap-x-12">
             <Popover className="relative" >
               <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium   text-[#40444C]"
-              onclick="this.style.backgroundColor = (this.style.backgroundColor === '#40444C') ? 'blue' : '#40444C';"
+                onclick="this.style.backgroundColor = (this.style.backgroundColor === '#40444C') ? 'blue' : '#40444C';"
 
               >
                 Get Involved
@@ -156,27 +158,27 @@ export default function Example() {
               >
                 <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-[250px] max-w-md overflow-hidden rounded bg-white shadow-lg ring-1 ring-gray-900/5">
                   <div className="pl-3 pb-4">
-                    { GetInvolved.map((item) => (
+                    {GetInvolved.map((item) => (
                       <div
                         key={item.name}
                         className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
-                        style={{fontWeight:400}}
+                        style={{ fontWeight: 400 }}
                       >
-                        
+
                         <div className="flex-auto">
-                          <a
-                            href={item.href}
+                          <NavLink
+                            to={item.href}
                             className="block font-semibold text-gray-900"
                           >
                             {item.name}
                             <span className="absolute inset-0" />
-                          </a>
-      
+                          </NavLink>
+
                         </div>
                       </div>
                     ))}
                   </div>
-                
+
                 </Popover.Panel>
               </Transition>
             </Popover>
@@ -227,23 +229,23 @@ export default function Example() {
                       <div
                         key={item.name}
                         className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
-                        style={{fontWeight:400}}
+                        style={{ fontWeight: 400 }}
                       >
-                        
+
                         <div className="flex-auto">
-                          <a
-                            href={item.href}
+                          <NavLink
+                            to={item.href}
                             className="block font-semibold text-gray-900"
                           >
                             {item.name}
                             <span className="absolute inset-0" />
-                          </a>
-      
+                          </NavLink>
+
                         </div>
                       </div>
                     ))}
                   </div>
-                
+
                 </Popover.Panel>
               </Transition>
             </Popover>
@@ -294,40 +296,40 @@ export default function Example() {
                       <div
                         key={item.name}
                         className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
-                        style={{fontWeight:400}}
+                        style={{ fontWeight: 400 }}
                       >
-                        
+
                         <div className="flex-auto">
-                          <a
-                            href={item.href}
+                          <NavLink
+                            to={item.href}
                             className="block font-semibold text-gray-900"
                           >
                             {item.name}
                             <span className="absolute inset-0" />
-                          </a>
-      
+                          </NavLink>
+
                         </div>
                       </div>
                     ))}
                   </div>
-                
+
                 </Popover.Panel>
               </Transition>
             </Popover>
             <button
               className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
-              > 
-             How it Works 
-                </button>
+            >
+              How it Works
+            </button>
 
             {/* Fourth button */}
             <PrimaryButton
-            sx={{borderRadius:'var(--Pixels-8, 8px)',fontWeight:700,fontSize:'18px'}}>
-              
-                <a href="/Home/Create-Campaign">
-                  Start a Campaign
-                  </a>
-                {/* </div>
+              sx={{ borderRadius: 'var(--Pixels-8, 8px)', fontWeight: 700, fontSize: '18px' }}>
+
+              <NavLink to="/Home/Create-Campaign">
+                Start a Campaign
+              </NavLink>
+              {/* </div>
               </div> */}
             </PrimaryButton>
 
@@ -349,10 +351,10 @@ export default function Example() {
                 </svg>
               </button>
               <button
-              className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
-              > 
-              <ProfileAvatar/>
-                </button>
+                className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
+              >
+                <ProfileAvatar />
+              </button>
             </div>
           </Popover.Group>
         </div>
@@ -366,7 +368,7 @@ export default function Example() {
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
+            <NavLink to="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img
                 className="h-20% w-20% py-0.1em px-0.1em"
@@ -374,7 +376,7 @@ export default function Example() {
                 alt="FairSeed"
                 title="FairSeed"
               />
-            </a>
+            </NavLink>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -403,19 +405,19 @@ export default function Example() {
                     </>
                   )}
                 </Disclosure>
-                <a
-                  href="#"
+                <NavLink
+                  to="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Features
-                </a>
+                </NavLink>
 
-                <a
-                  href="#"
+                <NavLink
+                  to="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Company
-                </a>
+                </NavLink>
               </div>
               <div
                 className="py-2"
@@ -427,12 +429,12 @@ export default function Example() {
                   width: "20px",
                 }}
               >
-                <a
-                  href="#"
+                <NavLink
+                  to="#"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 "
                 >
                   Log in
-                </a>
+                </NavLink>
               </div>
             </div>
           </div>

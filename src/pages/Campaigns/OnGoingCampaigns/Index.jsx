@@ -11,6 +11,7 @@ import Navigation from '../../../components/layout/Navigation/Index'
 import ScrollableTabsButtonAuto from "../../../components/inputs/Filters/Index";
 import UserNavbar from '../../login/UserNavbar'
 import axios from "axios";
+import ScrollableTabsButtonForce from '../../../components/layout/ScrollableTabsButtonAuto'
 
 
 function Index() {
@@ -63,17 +64,17 @@ function Index() {
       userCount: "1003",
       daysLeft: "10 Days Left",
     },
-  
+
 
   ];
   const page = 4;
-  const totalPages=4;
+  const totalPages = 4;
   return (
     <div>
       {
         localStorage.getItem('token') ? (
-          <UserNavbar/>
-        ):(
+          <UserNavbar />
+        ) : (
           <Navbar />
         )
       }
@@ -83,18 +84,23 @@ function Index() {
 
         <div className="flex flex-col justify-center items-center ">
 
-          <div className="flex w-[100%] px-24 justify-center items-center text-center pt-32">
-            <div className="flex  gap-3">
-              <ScrollableTabsButtonAuto />
+          <div className="flex w-[100%]  justify-center items-center text-center pt-32">
+            <div className="flex  pt-[20px] desktop:ml-[-37px] desktop:max-w-[1740px] desktop:w-full desktop:justify-end max-desktop:w-[90%]">
+              <ScrollableTabsButtonForce />
+              <button
+                className="flex items-center ml-2 px-3 py-1.5 max-w-[115px]"
+                style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
+              >
+                <img src={images.Funnel} />
+                {/* <img src={images.Filter} /> */}
+                <p style={{
+                  background:
+                    "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+                  "-webkit-background-clip": "text",
+                  "-webkit-text-fill-color": "transparent",
+                }}>Filter</p>
+              </button>
             </div>
-
-            <button
-              className="flex  items-center ml-2 px-3 py-2.5"
-              style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
-            >
-              <img src={images.Funnel} />
-              <img className="pl-2" src={images.Filter} />
-            </button>
           </div>
           <div className="gap-4 pt-[2rem] flex flex-wrap w-full justify-center">
             {bnk?.map((item) => {
