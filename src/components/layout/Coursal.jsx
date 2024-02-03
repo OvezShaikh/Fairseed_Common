@@ -21,8 +21,38 @@ export default () => {
       modules={[Navigation, Pagination, A11y]}
       spaceBetween={50}
       slidesPerView={1}
-      navigation
-      pagination={{ clickable: true}}
+      
+      pagination={{ 
+        el: '.swiper-pagination',
+        
+        type:'custom',
+        
+        clickable: true,
+
+
+        renderCustom: function (swiper,current, total) {
+
+          const bullets = [];
+        for (let i = 1; i <= total; i++) {
+          const isActive = i === current ? 'active' : '';
+          const bulletContent = isActive ? `${i}/${total}` : '';
+          bullets.push(
+            `<li class="bullet ${isActive}" data-index="${i}">${bulletContent}</li>`
+          );
+        }
+
+        return `<ul class="custom-pagination">${bullets.join('')}</ul>`;
+      
+
+
+         // return `<div class="custom-pagination">${current} / ${total}</div>`;
+        },}
+      
+      }
+
+        navigation
+        
+      
 
       
       scrollbar={{ draggable: true }}
@@ -69,7 +99,7 @@ export default () => {
                 style={{ borderRadius: 8 }}
                 
               >
-                <h1 className="text-[20px] font-[satoshi]" style={{fontWeight:900}}>
+                <h1 className="text-[24px] font-[satoshi] font-black max-tablet:text-[16px] max-tablet:font-bold" >
                 Donate for the Cause
                 </h1>
               </PrimaryButton>
@@ -117,7 +147,7 @@ export default () => {
                 style={{ borderRadius: 8 }}
                 
               >
-                <h1 className="text-[20px] font-[satoshi]" style={{fontWeight:900}}>
+                <h1 className="text-[24px] font-[satoshi] font-black max-tablet:text-[16px] max-tablet:font-bold" >
                 Donate for the Cause
                 </h1>
               </PrimaryButton>
@@ -166,7 +196,7 @@ export default () => {
                 style={{ borderRadius: 8 }}
                 
               >
-                <h1 className="text-[20px] font-[satoshi]" style={{fontWeight:900}}>
+                <h1 className="text-[24px] font-[satoshi] font-black max-tablet:text-[16px] max-tablet:font-bold" >
                 Donate for the Cause
                 </h1>
               </PrimaryButton>
@@ -214,7 +244,7 @@ export default () => {
                 style={{ borderRadius: 8 }}
                 
               >
-                <h1 className="text-[20px] font-[satoshi]" style={{fontWeight:900}}>
+                <h1 className="text-[24px] font-[satoshi] font-black max-tablet:text-[16px] max-tablet:font-bold" >
                 Donate for the Cause
                 </h1>
               </PrimaryButton>
@@ -261,7 +291,7 @@ export default () => {
                 style={{ borderRadius: 8 }}
                 
               >
-                <h1 className="text-[20px] font-[satoshi]" style={{fontWeight:900}}>
+                <h1 className="text-[24px] font-[satoshi] font-black max-tablet:text-[16px] max-tablet:font-bold" >
                 Donate for the Cause
                 </h1>
               </PrimaryButton>
@@ -309,7 +339,7 @@ export default () => {
                 style={{ borderRadius: 8 }}
                 
               >
-                <h1 className="text-[20px] font-[satoshi]" style={{fontWeight:900}}>
+                <h1 className="text-[24px] font-[satoshi] font-black max-tablet:text-[16px] max-tablet:font-bold" >
                 Donate for the Cause
                 </h1>
               </PrimaryButton>
@@ -356,7 +386,7 @@ export default () => {
                 style={{ borderRadius: 8 }}
                 
               >
-                <h1 className="text-[20px] font-[satoshi]" style={{fontWeight:900}}>
+                <h1 className="text-[24px] font-[satoshi] font-black max-tablet:text-[16px] max-tablet:font-bold" >
                 Donate for the Cause
                 </h1>
               </PrimaryButton>
@@ -404,7 +434,7 @@ export default () => {
                 style={{ borderRadius: 8 }}
                 
               >
-                <h1 className="text-[20px] font-[satoshi]" style={{fontWeight:900}}>
+                <h1 className="text-[24px] font-[satoshi] font-black max-tablet:text-[16px] max-tablet:font-bold" >
                 Donate for the Cause
                 </h1>
               </PrimaryButton>
@@ -415,6 +445,10 @@ export default () => {
             </div>
         </div>
       </SwiperSlide>
+
+      <div className="swiper-pagination"></div>
+
+      
     </Swiper>
   );
 };

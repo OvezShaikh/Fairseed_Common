@@ -45,12 +45,12 @@ function Card({
         </Link>
         <div className="card-body">
           <div className="flex flex-row">
-            <img className="w-[6%] h-[6%]" src={images.Airlogo} />
-            <p className="text-black/40 pl-2 text-[15px]">{username}</p>
+            <img className="w-[32px] h-[32px]" src={images.Airlogo} />
+            <p className="text-black/40 pl-2 text-[16px] max-desktop:text-[14px]">{username}</p>
           </div>
           <p
-            className="card-text w-full pt-2   text-1xl font-bold"
-            style={{ fontWeight: "700", fontSize: 20, marginBottom }}
+            className="card-text w-full pt-2 text-[24px] font-bold max-desktop:text-[20px] max-tablet:text-[18px]"
+            style={{ fontWeight: "700", marginBottom }}
           >
             {title}
           </p>
@@ -88,7 +88,7 @@ function Card({
               </div>
               <div className="flex justify-start max-desktop:justify-center">
                 <img className="pt-2 w-7  h-7 " src={images?.MapPin2} />
-                <p className="text-black/40 pt-2  text-[15px] ">{location}</p>
+                <p className="text-black/40 pt-2  text-[16px] ">{location}</p>
                 {/* <p className="text-black/40 pt-1.5 pl-1 text-[15px]">Pune,India</p> */}
               </div>
             </div>
@@ -99,7 +99,7 @@ function Card({
               >
                 <div className="flex pl-1 pr-2 py-1 max-desktop:justify-center">
                   <img className="" src={images?.Coins} />
-                  <p className="pl-1   text-[17px] ">Donate</p>
+                  <p className="pl-1   text-[18px] max-tablet:text-[16px]">Donate</p>
                 </div>
               </button>
             </div>

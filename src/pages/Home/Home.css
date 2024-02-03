@@ -17,3 +17,20 @@ font-style: normal;
 font-weight: 500;
 line-height: 130%;
 }
+
+
+@media only screen and (max-width: 1900px) {
+  .scrollable-tabs-class {
+    max-width: 94%;
+  }
+}
+
+
+@media only screen and (min-width: 1366px) and (max-width: 1814px) {
+  .bottom-slider h3{
+    font-size: 14px;
+  }
+  .bottom-slider-div{
+    margin-right: 15px;
+  }
+}

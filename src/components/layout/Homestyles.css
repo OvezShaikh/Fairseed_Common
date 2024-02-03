@@ -39,6 +39,12 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active{
     background: linear-gradient(to right, rgba(255, 159, 10, 1),rgba(255, 55, 95, 1)) !important;
 }
 
+.swiper-pagination{
+    bottom: 40px !important;
+}
+
+
+
 
 
 @media only screen and (max-width: 1365px) {
@@ -77,3 +83,40 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active{
     }
 
 }
+
+
+.custom-pagination{
+    display: flex;
+    column-gap: 12px;
+    align-items: center;
+    font-family: 'satoshi';
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.custom-pagination li.bullet{
+    background: linear-gradient(90deg,#ff9f0a66,#ff375f66);
+    opacity: 1;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    color: white; 
+   
+}
+
+
+.custom-pagination li.bullet.active{
+    width: 50px;
+    height: 23px;
+    background: linear-gradient(71.48deg, #FF9F0A 0%, #FF375F 62.9%);
+    border-radius: 19px;
+    opacity: 1;
+    padding-top: 2px;
+}
+
+
+.swiper-pagination.swiper-pagination-custom.swiper-pagination-horizontal{
+    display: flex;
+    justify-content: center;
+}
+

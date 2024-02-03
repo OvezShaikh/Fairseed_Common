@@ -17,6 +17,7 @@ const MultipleRows = () => {
   const [page, setPage] = useState(1);
   const limit = 20;
   const arrowStyles = { width: "48px", height: "48px" };
+ 
   
 // const MultipleRows = () => {
 //   const [sliderData, setSliderData] = useState([]);
@@ -72,15 +73,15 @@ const MultipleRows = () => {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
-          rows: 7,
+          slidesToShow: 3,
+          rows: 2,
         },
       },
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 4,
-          rows: 4,
+          rows: 2,
         },
       },
       {
@@ -110,7 +111,7 @@ const MultipleRows = () => {
           sliderData.map((item, index) => (
             <>
               <Link to={`/Home/CampaignsByCategory/${item.id}`}>
-                <div className="pb-5 flex flex-col justify-center items-center text-center mr-12">
+                <div className="pb-5 flex flex-col justify-center items-center text-center mr-12 bottom-slider-div">
                 <div key={index}>
                   <img
                     style={{
@@ -126,7 +127,7 @@ const MultipleRows = () => {
                   />
                 </div>
                 <div
-                  className="py-2 text-xl w-[100%] text-center "
+                  className="py-2 text-xl w-[100%] text-center bottom-slider"
                   style={{
                     fontFamily: "Satoshi",
                     color: "#383A42",
