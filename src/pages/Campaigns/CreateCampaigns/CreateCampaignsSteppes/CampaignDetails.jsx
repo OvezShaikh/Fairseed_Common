@@ -15,6 +15,7 @@ import moment from 'moment';
 
 import axios from "axios";
 import { Next } from "react-bootstrap/esm/PageItem";
+import { Link } from "react-router-dom";
 const InputStyle =
 {
     padding: '20px', border: "1px solid #e2e2e2",
@@ -151,9 +152,9 @@ const Test = ({ handleBack, handleNext }) => {
                 <SecondaryButton
 
                     sx={styleSecondaryButton}
-                ><a href="/">
+                ><Link to="/">
                         Back
-                    </a>
+                    </Link>
 
                 </SecondaryButton>
 
