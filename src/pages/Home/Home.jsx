@@ -2,7 +2,6 @@ import React from "react";
 import "./Home.css";
 // import icons from "../constants/icons";
 import button from "../../constants/button";
-import Slider from "../../components/layout/Slider";
 import Card from "../../components/layout/Card";
 import ScrollableTabsButtonForce from "../../components/layout/ScrollableTabsButtonAuto";
 import Coursal from "../../components/layout/Coursal";
@@ -17,6 +16,11 @@ import UserNavbar from '../login/UserNavbar'
 import images from "../../constants/images";
 import { color } from "@mui/system";
 import { Link } from "react-router-dom";
+
+
+
+import BottomSlider from "../../components/layout/BottomSlider/Index";
+
 
 
 function Home() {
@@ -77,13 +81,11 @@ function Home() {
         <Coursal />
       </div>
       <div
-        className="bg-[#FFF6F5] desktop:justify-between max-desktop:flex-wrap max-desktop:justify-center max-desktop:gap-y-[64px] desktop:px-[48px]"
+        className="bg-[#FFF6F5] desktop:justify-between max-desktop:flex-wrap max-desktop:justify-center max-desktop:gap-y-[64px] desktop:px-[48px] desktop:py-[48px] max-desktop:py-[80px] max-tablet:py-[60px] max-tablet:gap-y-[32px]"
         style={{
           width: "100%",
           height: "100%",
 
-          paddingTop: 48,
-          paddingBottom: 48,
 
           alignItems: "flex-start",
           display: "flex",
@@ -91,17 +93,16 @@ function Home() {
       >
         <DashBoard />
       </div>
-      <div className="flex pt-[100px] ">
+      <div className="flex pt-[128px] ">
         <div className="w-full flex-wrap flex flex-col items-center mx-10">
           <h1
-            className="font-extrabold pb-4 desktop:text-[48px] max-desktop:text-[36px] max-tablet:text-[24px]"
+            className="font-extrabold pb-[24px] desktop:text-[48px] max-desktop:text-[36px] max-tablet:text-[24px] max-tablet:pb-[20px]"
             style={{ fontFamily: "Satoshi" }}
           >
             Ongoing Campaigns
           </h1>
-          <div className="flex flex-col  text-center text-black/100 mb-6">
+          <div className="flex flex-col  text-center text-black/100 mb-[64px] max-tablet:mb-[52px]">
             <Link
-              to='/Home/OnGoingCampaigns'
               style={{
 
                 width: "100%",
@@ -126,24 +127,27 @@ function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col flex-wrap w-full   py-6  mb-11 items-center">
-        <div className="flex  pt-[20px] desktop:ml-[-37px] desktop:max-w-[1740px] desktop:w-full desktop:justify-end max-desktop:w-[90%]">
+      <div className="flex flex-col flex-wrap w-full mb-[128px] items-center max-tablet:mb-[48px]">
+        <div className="flex  desktop:ml-[-30px] desktop:max-w-[1760px] desktop:w-full desktop:justify-end max-desktop:w-[90%] max-desktop:flex-col max-desktop:items-end max-desktop:gap-y-[48px] max-tablet:mb-[50px] max-tablet:gap-y-[20px] scrollable-tabs-class ">
           <ScrollableTabsButtonForce />
           <button
-            className="flex items-center ml-2 px-3 py-1.5 max-w-[115px]"
+            className="flex items-center ml-2 px-3 py-1.5 max-w-[115px] gap-x-[12px] max-desktop:px-[20px] max-desktop:py-[17px] max-tablet:py-[6px]"
             style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
           >
             <img src={images.Funnel} />
             {/* <img src={images.Filter} /> */}
-            <p style={{
+            <p className="text-[18px]" style={{
               background:
                 "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
               "-webkit-background-clip": "text",
               "-webkit-text-fill-color": "transparent",
-            }}>Filter</p>
+              "font-family": 'Satoshi',
+              "font-weight": "700",
+            }
+            }>Filter</p>
           </button>
         </div>
-        <div className="gap-4 mt-4  flex flex-wrap w-full justify-center desktop:max-w-[1740px]">
+        <div className="desktop:gap-x-[36px] desktop:gap-y-[48px] mt-[48px]  flex flex-wrap w-full justify-center desktop:max-w-[1740px] max-desktop:gap-x-[16px]  max-desktop:gap-y-[24px] max-tablet:gap-y-[48px]">
           {userList?.map((item) => {
             return (
               <Card
@@ -162,7 +166,7 @@ function Home() {
           })}
         </div>
         <button
-          className="pt-[68px]"
+          className="pt-[64px] max-tablet:pt-[24px]"
           onClick={() => setPage(page + 1)}
           disabled={page >= totalPages}
           style={{
@@ -187,46 +191,46 @@ function Home() {
       </div>
       <section className="bg-[#FFF6F5]">
         <div
-          className="flex flex-col flex-wrap w-full   py-8 px-7  items-center"
+          className="flex flex-col flex-wrap w-full   desktop:py-[128px] px-7  items-center max-desktop:py-[80px] max-tablet:py-[64px]"
           style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
         >
           <h1
-            className="font-bold pt-[4rem] text-[48px]"
+            className="font-bold pb-[96px] text-[48px] max-desktop:pb-[48px] max-tablet:pb-[28px] max-tablet:text-[24px]"
             style={{ fontFamily: "Satoshi", fontWeight: 900 }}
           >
             How it Works
           </h1>
-          <div className="flex desktop:max-w-[94%] desktop:justify-between mt-12 place-items-center w-full max-desktop:flex-col max-desktop:gap-y-[40px]">
+          <div className="flex desktop:max-w-[94%] desktop:justify-between mt-0 place-items-center w-full max-desktop:flex-col max-desktop:gap-y-[40px] desktop:mb-[96px] max-desktop:mb-[48px]">
             <div className="place-items-center">
               <div className="max-w-[120px] mx-auto max-tablet:max-w-[75px]">
                 <img className="" src={images.person} alt="" />
               </div>
               {/* <div className="grid grid-cols-12 mt-4"> */}
-              <div className="flex justify-between mt-4 gap-x-[30px]">
+              <div className="flex justify-between mt-[48px] gap-x-[20px]">
                 <div>
                   <img className="mr-3 col-span-2" src={images.one} alt="" />
                 </div>
                 <div className=" ml-2 col-span-10">
                   <h1
-                    className="text-[28px] max-tablet:text-[24px]"
+                    className="text-[28px] font-black max-tablet:text-[24px] max-tablet:font-bold"
                     style={{
                       color: "#4A4E5A",
 
                       fontFamily: "Satoshi",
-                      fontWeight: "900",
+
                       wordWrap: "break-word",
                     }}
                   >
                     Create your Profile
                   </h1>
                   <p
-                    className="text-[24px]"
+                    className="text-[24px] max-tablet:text-[18px] max-tablet:font-normal"
                     style={{
                       width: "100%",
                       color: "#6B7280",
 
                       fontFamily: "Satoshi",
-                      fontWeight: "500",
+
                       wordWrap: "break-word",
                       marginTop: 6,
                     }}
@@ -244,31 +248,31 @@ function Home() {
                 <img className="" src={images.pencicon} alt="" />
               </div>
               {/* <div className="grid grid-cols-12 mt-4"> */}
-              <div className="flex justify-between grid-cols-12 mt-4 gap-x-[30px]">
+              <div className="flex justify-between grid-cols-12 mt-[48px] gap-x-[20px]">
                 <div>
                   <img className=" mr-3 col-span-2" src={images.two} alt="" />
                 </div>
                 <div className=" ml-2 col-span-10">
-                  <h1 className="text-[28px] max-tablet:text-[24px]"
+                  <h1 className="text-[28px] font-black max-tablet:text-[24px] max-tablet:font-bold"
 
                     style={{
                       color: "#4A4E5A",
 
                       fontFamily: "Satoshi ",
-                      fontWeight: "900",
+
                       wordWrap: "break-word",
                     }}
                   >
                     Fill Cause Information
                   </h1>
                   <p
-                    className="text-[24px]"
+                    className="text-[24px] max-tablet:text-[18px] max-tablet:font-normal"
                     style={{
                       width: "100%",
                       color: "#6B7280",
 
                       fontFamily: "Satoshi",
-                      fontWeight: "500",
+
                       wordWrap: "break-word",
                       marginTop: 6,
                     }}
@@ -286,31 +290,31 @@ function Home() {
                 <img className="" src={images.Home} alt="" />
               </div>
               {/* <div className="grid grid-cols-12 mt-4"> */}
-              <div className="flex justify-between grid-cols-12 mt-4 gap-x-[30px]">
+              <div className="flex justify-between grid-cols-12 mt-[48px] gap-x-[20px]">
                 <div className="desktop:max-w-[120px]">
                   <img className="" src={images.three} alt="" />
                 </div>
                 <div className=" ml-2 col-span-10">
                   <h1
-                    className="text-[28px] max-tablet:text-[24px]"
+                    className="text-[28px] font-black max-tablet:text-[24px] max-tablet:font-bold"
                     style={{
                       color: "#4A4E5A",
 
                       fontFamily: "Satoshi",
-                      fontWeight: "900",
+
                       wordWrap: "break-word",
                     }}
                   >
                     Update Acc details
                   </h1>
                   <p
-                    className="text-[24px]"
+                    className="text-[24px] max-tablet:text-[18px] max-tablet:font-normal"
                     style={{
                       width: "100%",
                       color: "#6B7280",
 
                       fontFamily: "Satoshi",
-                      fontWeight: "500",
+
                       wordWrap: "break-word",
                       marginTop: 4,
                     }}
@@ -323,26 +327,26 @@ function Home() {
               </div>
             </div>
           </div>
-          <a href="/Home/Create-Campaign">
+          <Link to="/Home/Create-Campaign">
             <PrimaryButton
               sx={{
                 borderRadius: "var(--Pixels-8, 8px)",
                 fontSize: 20,
                 fontWeight: "900",
-                padding: "8px",
-                margin: "50px 0px 50px 0px",
+                padding: "15px 28px 15px 28px",
+
               }}
-              className="p-2 my-10"
+              className="py-[15px] px-[28px] my-10"
             >
               <div className="mr-2" style={{ width: 32, height: 32, position: "relative" }}>
                 <img src={images.RocketLaunch} alt="" />
               </div>
               <div className="max-tablet:text-[16px]">Launch a Campaign Now !</div>
             </PrimaryButton>
-          </a>
+          </Link>
         </div>
       </section>
-      <div className="flex-col pt-[60px] pb-[50px] flex-wrap container flex w-full text-center items-center">
+      <div className="flex-col pt-[60px] pb-[50px] flex-wrap container flex w-full text-center items-center max-tablet:pb-[24px]">
         <h1
           className="desktop:text-[48px] font-bold max-desktop:text-[36px] max-tablet:text-[24px]"
           style={{ fontFamily: "Satoshi", fontWeight: 900 }}
@@ -350,19 +354,29 @@ function Home() {
           Causes by Category
         </h1>
         <p
-          className="text-black/60 font-bold mt-3 max-w-[974px] desktop:text-[24px] desktop:font-bold capitalize text-[#8E95A2] max-desktop:text-[20px] max-tablet:text-[16px]"
+          className="text-black/60 font-medium mt-3 max-w-[974px] desktop:text-[24px] desktop:font-bold capitalize text-[#8E95A2] max-desktop:text-[20px] max-tablet:text-[16px] max-tablet:mt-[24px] max-tablet:font-normal"
           style={{ fontFamily: "Satoshi" }}
         >
           Be it for a personal need, social cause or a creative idea - you can
           count on us for the project that you want to raise funds for.
         </p>
       </div>
-      <div className="flexDirection:'row' w-full justify-center items-center flex mt-[80px] gap-5 px-[50px] ">
-        <Slider />
+      <div className="flexDirection:'row' w-full justify-center items-center flex mt-[80px] gap-5 px-[50px] max-desktop:px-0 max-tablet:mt-0">
+        <div className="bottom-slider-div">
+          <BottomSlider />
+
+          <i className="icon-arrow-long-right review-swiper-button-next"></i>
+          <i className="icon-arrow-long-left review-swiper-button-prev"></i>
+        </div>
       </div>
       <div className="">
         <Footer />
       </div>
+
+
+
+
+
     </>
   );
 }

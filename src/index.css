@@ -247,13 +247,3 @@ body {
   right: -60px;
   top: 260px;
 }
-
-.nav_button:hover {
-  color: linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%);
-  /*  colo
-  background:
-    "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
-  "-webkit-background-clip": "text",
-  "-webkit-text-fill-color": "transparent"; */
-
-}
