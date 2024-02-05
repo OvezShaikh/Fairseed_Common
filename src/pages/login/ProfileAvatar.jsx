@@ -11,6 +11,7 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+import { Link } from 'react-router-dom';
 
 export default function ProfileAvatar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -20,22 +21,22 @@ export default function ProfileAvatar() {
     localStorage.removeItem('token');
 
     localStorage.removeItem('user_role');
-  
+
     window.location.href = '/Home';
   }
-  
-  
+
+
 
   const open = Boolean(anchorEl);
-  
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  
+
   const handleClose = () => {
     setAnchorEl(null);
   };
-  
+
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -91,19 +92,22 @@ export default function ProfileAvatar() {
           <Avatar /> Dashboard
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
+          <Link to={"/Home/AdminPanel"}>
+            <ListItemIcon>
+              <Settings fontSize="small" />
+            </ListItemIcon>
+
+            Settings
+          </Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          <button 
-          onClick={()=>logout()}
+          <button
+            onClick={() => logout()}
           >
-          Logout
+            Logout
           </button>
         </MenuItem>
       </Menu>

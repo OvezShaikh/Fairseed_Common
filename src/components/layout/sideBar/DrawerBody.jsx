@@ -216,22 +216,22 @@ const DrawerBody = () => {
   const menus = [
     {
       icon: "DashboardIcon",
-      path: "/Dashboard",
+      path: "/AdminPanel/",
       title: "Dashboard",
     },
 
     {
       icon: "SettingsIcon",
-      path: "/General-Settings",
+      path: "/AdminPanel/General-Settings",
       title: "General Settings ",
       children: [
         {
           icon: "TbCaretRightFilled",
-          path: "/General-Settings/General",
+          path: "/AdminPanel/General-Settings/General",
           title: "General",
         },
         {
-          path: "/General-Settings/Limits",
+          path: "/AdminPanel/General-Settings/Limits",
           title: "Limits",
         },
         // {
@@ -239,74 +239,74 @@ const DrawerBody = () => {
         //   title: "Reports",
         // },
         {
-          path: "/General-Settings/Profiles-Social",
+          path: "/AdminPanel/General-Settings/Profiles-Social",
           title: "Profiles Social",
         },
       ],
     },
     {
       icon: "LandingIcon",
-      path: "/Landing-page",
+      path: "/AdminPanel/Landing-page",
       title: "Landing Page",
     },
     {
       icon: "CategorysIcon",
-      path: "/Categories",
+      path: "/AdminPanel/Categories",
       title: "Categories",
     },
     {
       icon: "CausesIcon",
-      path: "/Causes",
+      path: "/AdminPanel/Causes",
       title: "Causes",
     },
     {
       icon: "CausesApprovalIcon",
-      path: "/Causes-Edit-Approval",
+      path: "/AdminPanel/Causes-Edit-Approval",
       title: "Cause Edit Approval",
     },
     {
       icon: "ScholarshipCausesIcon",
-      path: "/Scholarship-Cause",
+      path: "/AdminPanel/Scholarship-Cause",
       title: "Scholarship Cause",
     },
     {
       icon: "ReportedIcon",
-      path: "/Reported-Cause",
+      path: "/AdminPanel/Reported-Cause",
       title: "Reported Cause",
     },
     {
       icon: "WithdrawalsIcon",
-      path: "/Withdrawals",
+      path: "/AdminPanel/Withdrawals",
       title: "Withdrawals",
     },
     {
       icon: "CampaignIcon",
-      path: "/Cause-KYC",
+      path: "/AdminPanel/Cause-KYC",
       title: "Cause KYC",
     },
     {
       icon: "DonationIcon",
-      path: "/Donations",
+      path: "/AdminPanel/Donations",
       title: "Donations",
     },
     {
       icon: "UserIcon",
-      path: "/Users",
+      path: "/AdminPanel/Users",
       title: "Users",
     },
     {
       icon: "ScholarshipsIcon",
-      path: "/Scholarships",
+      path: "/AdminPanel/Scholarships",
       title: "Scholarships",
     },
     {
       icon: "PagesIcon",
-      path: "/Pages",
+      path: "/AdminPanel/Pages",
       title: "Pages",
     },
     {
       icon: "PgSettingsIcon",
-      path: "/PG-Settings",
+      path: "/AdminPanel/PG-Settings",
       title: "PG Settings",
     },
   ];

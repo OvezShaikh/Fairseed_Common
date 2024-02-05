@@ -20,7 +20,17 @@ function Index({ label, heading }) {
   );
   return (
     <div>
-      <Grid sx={{ padding: "100px 45px 40px 45px" }}>
+      <div
+        className="pl-[48px] gap-[48px] max-tablet:gap-[28px] pt-[100px] max-desktop:w-full max-desktop:px-[28px] max-desktop:place-content-center max-tablet:px-[16px]"
+        style={{
+          width: "100%",
+          height: "100%",
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
+
+          display: "inline-flex",
+        }}>
         <Typography
           variant="h6"
           noWrap
@@ -33,17 +43,20 @@ function Index({ label, heading }) {
           className="text-capitalize text-truncate"
         // title={title}
         >
-          <div className="py-3" onClick={() => navigate(-1)}>
-            <img src={images.ArrowBack} alt="" />
-          </div>
-          <div
-            className="flex flex-col "
-            style={{ fontFamily: "satoshi", fontSize: "28px", fontWeight: 500 }}
-          >
-            {title ? <>{title}</> : { label }}
+          <div className="text-capitalize text-truncate max-tablet:flex max-tablet:flex-col-reverse max-desktop:flex max-desktop:flex-col-reverse">
+            <div className=" pb-4 max-desktop:pt-0 max-tablet:pt-0" onClick={() => navigate(-1)}>
+              <img src={images.ArrowBack} alt="" />
+            </div>
+            <div
+              className="flex flex-col text-black/70 max-desktop:pb-0 max-tablet:pb-0 "
+              style={{ fontFamily: "satoshi", fontSize: 20, fontWeight: 700, paddingBottom: '30px' }}
+            >
+              {title ? <>{title}</> : { label }}
+
+            </div>
           </div>
         </Typography>
-      </Grid>
+      </div>
       <Grid
         className="bg-[#FFF6F5] w-full h-[100px]"
         display={"flex"}
@@ -51,10 +64,9 @@ function Index({ label, heading }) {
         alignItems={"center"}
       >
         <h1
+          className="max-tablet:text-[24px] max-desktop:text-[34px] font-[satoshi] text-[48px] font-bold "
           style={{
-            fontFamily: "satoshi",
-            fontWeight: 900,
-            fontSize: "48px",
+
             background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
             "-webkit-background-clip": "text",
             "-webkit-text-fill-color": "transparent",
@@ -68,3 +80,4 @@ function Index({ label, heading }) {
 }
 
 export default Index;
+

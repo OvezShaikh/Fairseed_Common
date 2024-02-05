@@ -2,34 +2,26 @@ import * as React from "react";
 import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import {
-  ArrowPathIcon,
   Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
+
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import {
   ChevronDownIcon,
-  PhoneIcon,
-  PlayCircleIcon,
+
 } from "@heroicons/react/20/solid";
-import Avatar from "@mui/material/Avatar";
-import Box from "@mui/material/Box";
 // import someImage from "../../constants/images";
 // import { OutlineIconName } from "@heroicons/react/outline";
 import PrimaryButton from "../inputs/PrimaryButton";
 import images from "../../constants/images";
 import UserLogin from '../../pages/login/Login_page/Index'
-import { color } from "@mui/system";
-import LoginFrom from "../../pages/login/Login_page/Login";
 // import UserLogin from "../../pages/login/Login_page/Index";
 import UserSignUp_02 from "../../pages/login/Sign_Up/Index";
 import { Link, NavLink } from "react-router-dom";
 const styleButton = {
   color: 'red'
 }
+
 const GetInvolved = [
   {
     name: "Associateship",
@@ -99,6 +91,17 @@ function classNames(...classes) {
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // const [isClicked, setIsClicked] = useState(false);
+
+  // const handleButtonClick = () => {
+  //   setIsClicked(!isClicked);
+  // };
+
+  // const buttonStyles = {
+  //   color: isClicked
+  //     ? 'linear-gradient(45deg, #FF9F0A, #FF375F)'
+  //     : '#40444C',
+  // };
 
 
 
@@ -111,16 +114,16 @@ export default function Example() {
     >
         <div className="flex lg:flex ">
           <NavLink to="/Home">
-            <span className="sr-only">FairSeed </span>
+            {/* <span className="sr-only">FairSeed </span> */}
             <img src={images.Logo} alt="FairSeed" title="FairSeed" />
           </NavLink>
         </div>
 
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end ">
+        <div className=" lg:flex lg:flex-1 lg:justify-end ">
           <div className="flex lg:hidden">
             <button
               type="button"
-              className="m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
               onClick={() => setMobileMenuOpen(true)}
             >
               <span className="sr-only">Open main menu</span>
@@ -131,7 +134,8 @@ export default function Example() {
             <Popover className="relative mt-1" >
               <Popover.Button className="flex pt-2 nav_button items-center gap-x-1 text-[18px] font-medium font-[satoshi]  text-[#40444C]"
                 onclick="this.style.backgroundColor = (this.style.backgroundColor === '#40444C') ? 'blue' : '#40444C';"
-
+              // style={buttonStyles}
+              // onClick={handleButtonClick}
               >
                 Get Involved
                 <svg
@@ -170,7 +174,7 @@ export default function Example() {
                 leaveFrom="opacity-100 translate-y-0"
                 leaveTo="opacity-0 translate-y-1"
               >
-                <Popover.Panel className="absolute left-8 top-full z-10 mt-3 w-[250px] max-w-md overflow-hidden rounded bg-white shadow-lg ring-1 ring-gray-900/5">
+                <Popover.Panel className="absolute left-0 top-full z-10 mt-3 w-[250px] max-w-md overflow-hidden rounded bg-white shadow-lg ring-1 ring-gray-900/5">
                   <div className="pl-3 pb-4">
                     {GetInvolved.map((item) => (
                       <div
@@ -237,7 +241,7 @@ export default function Example() {
                 leaveFrom="opacity-100 translate-y-0"
                 leaveTo="opacity-0 translate-y-1"
               >
-                <Popover.Panel className="absolute left-8 top-full z-10 mt-3 w-[250px] max-w-md overflow-hidden rounded bg-white shadow-lg ring-1 ring-gray-900/5">
+                <Popover.Panel className="absolute left-0 top-full z-10 mt-3 w-[250px] max-w-md overflow-hidden rounded bg-white shadow-lg ring-1 ring-gray-900/5">
                   <div className="pl-3 pb-4">
                     {OurImpact.map((item) => (
                       <div
@@ -304,7 +308,7 @@ export default function Example() {
                 leaveFrom="opacity-100 translate-y-0"
                 leaveTo="opacity-0 translate-y-1"
               >
-                <Popover.Panel className="absolute left-8 top-full z-10 mt-3 w-[250px] max-w-md overflow-hidden rounded bg-white shadow-lg ring-1 ring-gray-900/5">
+                <Popover.Panel className="absolute left-0 top-full z-10 mt-3 w-[250px] max-w-md overflow-hidden rounded bg-white shadow-lg ring-1 ring-gray-900/5">
                   <div className="pl-3 pb-4">
                     {AboutUs.map((item) => (
                       <div
@@ -382,13 +386,9 @@ export default function Example() {
               <button
                 className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
               >
-                {/* Login */}
                 <UserLogin />
-                {/* <UserSignUp_02/> */}
               </button>
-              {/* <Box sx={{ display: "flex", }}>
-                <NavLinkvatar alt="Remy Sharp" src={images.Avatar} />
-              </Box> */}
+
             </div>
           </Popover.Group>
         </div>
@@ -397,14 +397,14 @@ export default function Example() {
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <NavLink to="#" className="m-1.5 p-1.5">
+            <Link to="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img
                 className="h-8 w-auto"
                 src={images.Logo}
                 alt=""
               />
-            </NavLink>
+            </Link>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -415,15 +415,15 @@ export default function Example() {
             </button>
           </div>
           <div className="mt-6 flow-root">
-            <div className="my-6 divide-y divide-gray-500/10">
+            <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
-                <Disclosure as="div" className="mx-3">
+                <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                        Product
+                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
+                        Get Involved
                         <ChevronDownIcon
-                          className={classNames(open ? 'rotate-180' : '', 'h-5 w-5 flex-none')}
+                          className={classNames(open ? 'rotate-180' : '', 'h-6 w-6 flex-none')}
                           aria-hidden="true"
                         />
                       </Disclosure.Button>
@@ -432,8 +432,8 @@ export default function Example() {
                           <Disclosure.Button
                             key={item.name}
                             as="a"
-                            to={item.href}
-                            className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                            href={item.href}
+                            className="block rounded-lg py-2 pl-6 pr-3 text-lg font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -442,32 +442,69 @@ export default function Example() {
                     </>
                   )}
                 </Disclosure>
-                <NavLink
-                  to="#"
-                  className="mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                <Disclosure as="div" className="-mx-3">
+                  {({ open }) => (
+                    <>
+                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
+                        Our Impact
+                        <ChevronDownIcon
+                          className={classNames(open ? 'rotate-180' : '', 'h-6 w-6 flex-none')}
+                          aria-hidden="true"
+                        />
+                      </Disclosure.Button>
+                      <Disclosure.Panel className="mt-2 space-y-2">
+                        {[...OurImpact].map((item) => (
+                          <Disclosure.Button
+                            key={item.name}
+                            as="a"
+                            href={item.href}
+                            className="block rounded-lg py-2 pl-6 pr-3 text-lg font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                          >
+                            {item.name}
+                          </Disclosure.Button>
+                        ))}
+                      </Disclosure.Panel>
+                    </>
+                  )}
+                </Disclosure>
+
+                <Disclosure as="div" className="-mx-3">
+                  {({ open }) => (
+                    <>
+                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
+                        About Us
+                        <ChevronDownIcon
+                          className={classNames(open ? 'rotate-180' : '', 'h-6 w-6 flex-none')}
+                          aria-hidden="true"
+                        />
+                      </Disclosure.Button>
+                      <Disclosure.Panel className="mt-2 space-y-2">
+                        {[...AboutUs].map((item) => (
+                          <Disclosure.Button
+                            key={item.name}
+                            as="a"
+                            href={item.href}
+                            className="block rounded-lg py-2 pl-6 pr-3 text-lg font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                          >
+                            {item.name}
+                          </Disclosure.Button>
+                        ))}
+                      </Disclosure.Panel>
+                    </>
+                  )}
+                </Disclosure>
+                <Link to="/login"
+                  className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Features
-                </NavLink>
-                <NavLink
-                  to="#"
-                  className="mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Marketplace
-                </NavLink>
-                <NavLink
-                  to="#"
-                  className="mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Company
-                </NavLink>
+                  How It works
+                </Link>
               </div>
               <div className="py-6">
-                <NavLink
-                  to="#"
-                  className="mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                <p
+                  className="-mx-3 block rounded-lg px-3 py-2.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Log in
-                </NavLink>
+                  <UserLogin />
+                </p>
               </div>
             </div>
           </div>

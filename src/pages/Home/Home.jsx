@@ -1,6 +1,6 @@
 import React from "react";
 import "./Home.css";
-// import icons from "../constants/icons";
+
 import button from "../../constants/button";
 import Card from "../../components/layout/Card";
 import ScrollableTabsButtonForce from "../../components/layout/ScrollableTabsButtonAuto";

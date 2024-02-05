@@ -187,7 +187,7 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  margin-right: 40px;
+  margin-right: 200px;
 }
 
 .swiper-button-prev {
@@ -246,4 +246,9 @@ body {
   margin-left: 50px;
   right: -60px;
   top: 260px;
+}
+
+.breadcrumbs_title>ol>.MuiBreadcrumbs-li:last-child {
+  color: #3366CC;
+  text-decoration: underline;
 }

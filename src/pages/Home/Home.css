@@ -1,21 +1,21 @@
-.footer{
+.footer {
   max-width: 1473px;
-width: 100%;
+  width: 100%;
 
-flex-direction: column;
-align-items: center;
+  flex-direction: column;
+  align-items: center;
 
-background: var(--Linear-BG, linear-gradient(71deg, #FF9F0A 0%, #FF375F 62.9%));
+  background: var(--Linear-BG, linear-gradient(71deg, #FF9F0A 0%, #FF375F 62.9%)) !important;
 }
-  
-  
-.footer_text{
-  color: #FFF;
-text-align: center;
 
-font-style: normal;
-font-weight: 500;
-line-height: 130%;
+
+.footer_text {
+  color: #FFF;
+  text-align: center;
+
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%;
 }
 
 

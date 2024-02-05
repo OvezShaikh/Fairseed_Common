@@ -1,4 +1,4 @@
-import React, { useContext, useMemo , } from "react";
+import React, { useContext, useMemo, } from "react";
 import images from "../../../constants/images";
 import { Navbar } from "react-bootstrap";
 import {
@@ -41,50 +41,29 @@ const NavbarContainer = ({ handleDrawerToggle }) => {
   };
 
 
-function handleClick(event,path) {
-  navigate(`/${path}`)
-  event.preventDefault();
-  console.info("You clicked a breadcrumb.");
-  
-}
-  const breadcrumbs = [
-    <Link
-      underline="hover"
-      style={{cursor:'pointer'}}
-      key="1"
-      color="inherit"
-      path="/Dashboard"
-      onClick={handleClick}
-    >
-      Dashboard
-    </Link>,
-    <Link
-      underline="hover"
-      style={{cursor:'pointer'}}
-      key="2"
-      color="inherit"
-      path="/General-Setting"
-      onClick={handleClick}
-    >
-      General Setting
-    </Link>,
-    <Typography key="3" color="text.primary">
-      Breadcrumb
-    </Typography>,
-  ];
+  function handleClick(event, path) {
+    navigate(`/${path}`)
+    event.preventDefault();
+    console.info("You clicked a breadcrumb.");
+
+  }
 
 
-  const title = useMemo(
+
+  let title = useMemo(
     () =>
       `${pathname
         .replace("/", "")
         .replace(/\/*\[[^\]]*]/g, "")
         .replace(/-/g, " ")
         .replace(/\//g, "  ")
-        .replace("General Settings"," ")}`, 
-        
+        .replace("General Settings", " ")}`,
+
     [pathname]
   );
+
+
+  title = title?.split("AdminPanel").reverse()[0]
 
   return (
     <Navbar
@@ -96,7 +75,7 @@ function handleClick(event,path) {
         right: 0,
         top: '58px',
         zIndex: "99",
-        padding:'16px 16px  ',
+        padding: '16px 16px  ',
         width: `${sideBar ? "100vw" : "calc(100vw - 273px)"}`,
         height: "77px",
         backgroundColor: `${sideBar ? "rgba(255, 235, 209, 1)" : "#fff"}`,
@@ -104,17 +83,16 @@ function handleClick(event,path) {
         borderBottom: `1px solid #E2E2E2`,
 
       }}
-    > 
+    >
       <Grid
         container
-        className={`${
-          sideBar
-            ? "d-flex justify-content-between pe-1"
-            : "d-flex justify-content-between"
-        }`}
+        className={`${sideBar
+          ? "d-flex justify-content-between pe-1"
+          : "d-flex justify-content-between"
+          }`}
       >
         <Grid item xs={3} md={7}>
-          <Toolbar sx={{ minHeight: "60px !important", width: "100%" ,padding:0,}}>
+          <Toolbar sx={{ minHeight: "60px !important", width: "100%", padding: 0, }}>
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -141,37 +119,41 @@ function handleClick(event,path) {
                     className="me-3"
                     onClick={() => navigate(-1)}
                   >
-                   <img src={images.account} alt="" />
+                    <img src={images.account} alt="" />
                   </div>
-                  <div className="flex flex-col " style={{fontFamily:'satoshi' ,fontSize:20, fontWeight:600}} >
-                  {title ? <>{title}</> : "dashboard"}
-                  <Breadcrumbs
-                  sx={{color: '#B6BAC3',
-                  fontSize: 16,
-                  fontFamily: 'Satoshi',
-                  fontWeight: 500}}
-                  separator={<NavigateNextIcon aria-label="breadcrumb"/>}
-                  aria-label="breadcrumb"
-                >
-                  {/* {breadcrumbs} */}
-                  {pathname?.substr(1)?.split('/')?.map((item,i )=> {
-                    return (
-                      <Link
-                      underline="hover"
-                      style={{cursor:'pointer'}}
-                      key={i}
-                      color="inherit"
-                      onClick={(e)=>handleClick(e,item)}
+                  <div className="flex flex-col " style={{ fontFamily: 'satoshi', fontSize: 20, fontWeight: 600 }} >
+                    {title ? <>{title}</> : "dashboard"}
+                    <Breadcrumbs
+
+                      className="breadcrumbs_title"
+                      sx={{
+                        color: '#B6BAC3',
+                        fontSize: 16,
+                        fontFamily: 'Satoshi',
+                        fontWeight: 500
+                      }}
+                      separator={<NavigateNextIcon aria-label="breadcrumb" />}
+                      aria-label="breadcrumb"
                     >
-                      {item}
-                    </Link>
-                    )
-                  })}
-                </Breadcrumbs>
-                </div>
+                      {/* {breadcrumbs} */}
+                      {pathname?.substr(1)?.split('/')?.map((item, i) => {
+                        return (
+                          <Link
+                            underline="hover"
+                            style={{ cursor: 'pointer' }}
+                            key={i}
+                            color="inherit"
+                            onClick={(e) => handleClick(e, item)}
+                          >
+                            {item}
+                          </Link>
+                        )
+                      })}
+                    </Breadcrumbs>
+                  </div>
                 </Typography>
               </Box>
-              
+
             )}
           </Toolbar>
         </Grid>
@@ -216,27 +198,27 @@ function handleClick(event,path) {
             />
           </Dropdown> */}
           <ToggleButtonGroup
-              
-              size="small"
-              color="primary"
-              value={alignment}
-              exclusive
-              onChange={handleChange}
-              aria-label="Platform"
-            >
-              <ToggleButton value="web" aria-label="color">
-                <SettingsIcon />
-                <ArrowDropDownIcon />
-              </ToggleButton>
 
-              <ToggleButton value="underlined" aria-label="underlined">
-                <LuPanelRight style={{ fontSize: 27 }} />
-              </ToggleButton>
-            </ToggleButtonGroup>
-          
+            size="small"
+            color="primary"
+            value={alignment}
+            exclusive
+            onChange={handleChange}
+            aria-label="Platform"
+          >
+            <ToggleButton value="web" aria-label="color">
+              <SettingsIcon />
+              <ArrowDropDownIcon />
+            </ToggleButton>
+
+            <ToggleButton value="underlined" aria-label="underlined">
+              <LuPanelRight style={{ fontSize: 27 }} />
+            </ToggleButton>
+          </ToggleButtonGroup>
+
         </Grid>
-        
-        
+
+
       </Grid>
     </Navbar>
   );

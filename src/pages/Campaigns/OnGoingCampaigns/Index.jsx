@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useState } from "react";
+import React, { useContext, useMemo, useState, useEffect } from "react";
 import { Grid, Typography } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../../../components/layout/Footer";
@@ -15,21 +15,36 @@ import ScrollableTabsButtonForce from '../../../components/layout/ScrollableTabs
 
 
 function Index() {
-  // const navigate = useNavigate();
-  // const { pathname } = useLocation();
-  // const title = useMemo(
-  //   () =>
-  //     `${
-  //       pathname
-  //       //   .replace("/", "")
-  //       //   .replace(/\/*\[[^\]]*]/g, "")
-  //       //   .replace(/-/g, " ")
-  //       //   .replace(/\//g, "  ")
-  //       // .replace("General Settings"," ")
-  //     }`,
+  const [userList, setUserList] = useState([]);
+  const [visibleCards, setVisibleCards] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [page, setPage] = useState(1);
+  const [campaignCount, setCampaignCount] = useState(0);
+  const fetchUserList = async () => {
+    try {
+      const perPage = 8;
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
+      );
+      const res = response.data;
+      console.log(res, "cards");
+      console.log(res.rows);
+      // `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
+      if (Array.isArray(res.rows)) {
+        setTotalPages(res.pages_count);
+        setUserList([...userList, ...res.rows]);
+        setCampaignCount(res.count);
+      } else {
+        console.error("Invalid data structure. Expected an array:", res.data);
+      }
+    } catch (error) {
+      console.error("Error fetching user list:", error);
+    }
+  };
+  useEffect(() => {
+    fetchUserList();
+  }, [page]);
 
-  //   [pathname]
-  // );
 
   let bnk = [
     {
@@ -67,8 +82,7 @@ function Index() {
 
 
   ];
-  const page = 4;
-  const totalPages = 4;
+
   return (
     <div>
       {
@@ -84,40 +98,47 @@ function Index() {
 
         <div className="flex flex-col justify-center items-center ">
 
-          <div className="flex w-[100%]  justify-center items-center text-center pt-32">
-            <div className="flex  pt-[20px] desktop:ml-[-37px] desktop:max-w-[1740px] desktop:w-full desktop:justify-end max-desktop:w-[90%]">
-              <ScrollableTabsButtonForce />
-              <button
-                className="flex items-center ml-2 px-3 py-1.5 max-w-[115px]"
-                style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
-              >
-                <img src={images.Funnel} />
-                {/* <img src={images.Filter} /> */}
-                <p style={{
-                  background:
-                    "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
-                  "-webkit-background-clip": "text",
-                  "-webkit-text-fill-color": "transparent",
-                }}>Filter</p>
-              </button>
-            </div>
+          <div className="flex pt-28  desktop:ml-[-30px] desktop:max-w-[1760px] desktop:w-full desktop:justify-end max-desktop:w-[90%] max-desktop:flex-col max-desktop:items-end max-desktop:gap-y-[48px] max-tablet:mb-[50px] max-tablet:gap-y-[20px] max-desktop:pt-20 max-tablet:pt-16 scrollable-tabs-class ">
+            <ScrollableTabsButtonForce />
+            <button
+              className="flex items-center ml-2 px-3 py-1.5 max-w-[115px] gap-x-[12px] max-desktop:px-[20px] max-desktop:py-[17px] max-tablet:py-[6px]"
+              style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
+            >
+              <img src={images.Funnel} />
+              {/* <img src={images.Filter} /> */}
+              <p className="text-[18px]" style={{
+                background:
+                  "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+                "-webkit-background-clip": "text",
+                "-webkit-text-fill-color": "transparent",
+                "font-family": 'Satoshi',
+                "font-weight": "700",
+              }
+              }>Filter</p>
+            </button>
           </div>
           <div className="gap-4 pt-[2rem] flex flex-wrap w-full justify-center">
-            {bnk?.map((item) => {
+            {userList?.map((item) => {
               return (
                 <Card
-                  title={item?.title}
-                  cardImage={item?.img}
-                  actualMoney={item?.actualMoney}
-                  totalMoney={item?.totalMoney}
-                  daysLeft={item?.daysLeft}
-                  userCount={item?.userCount}
+                  key={item.id}
+                  username={item.user.username}
+                  title={item.title}
+                  og_id={item.id}
+                  cardImage={item.campaign_image}
+                  goalAmount={item.goal_amount}
+                  fundRaised={item.fund_raised}
+                  daysLeft={item.days_left}
+                  userCount={item.donor_count}
+                  location={item.location}
                 />
               );
             })}
           </div>
           <button
-            className="pt-[68px]"
+            className="pt-[64px] max-tablet:pt-[24px]"
+            onClick={() => setPage(page + 1)}
+            disabled={page >= totalPages}
             style={{
               width: "fit-content",
               textAlign: "center",
@@ -131,8 +152,8 @@ function Index() {
               "-webkit-background-clip": "text",
               "-webkit-text-fill-color": "transparent",
               textDecoration: "underline",
-              position: "relative",
               display: page >= totalPages ? "none" : "block",
+              position: "relative",
             }}
           >
             <p className="gradient-button mb-0">Load More</p>

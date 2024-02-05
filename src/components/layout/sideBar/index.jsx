@@ -4,7 +4,8 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 // import Navbar from "./Navbar";
 import DrawerBody from "./DrawerBody";
-import Navbar from "../Navbar";
+import Navbar from "../navbar";
+import AdminNavbar from '../AdminNavbar'
 
 
 export function SideBar() {
@@ -52,7 +53,7 @@ export function SideBar() {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: `273px`,
-              top:'58px'
+              top: '58px'
             },
           }}
           open
