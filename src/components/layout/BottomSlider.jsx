@@ -61,7 +61,7 @@ const MultipleRows = () => {
     <Swiper
       // install Swiper modules
       modules={[Grid,Navigation, Pagination, A11y]}
-      spaceBetween={50}
+      //spaceBetween={50}
      
       
       pagination={{ 
@@ -106,7 +106,8 @@ const MultipleRows = () => {
             rows: 6,
             
             fill: 'row',
-          }
+          },
+          spaceBetween:16,
         },
         700: {
           slidesPerView: 3,
@@ -116,7 +117,8 @@ const MultipleRows = () => {
             rows: 2,
             
             fill: 'row',
-          }
+          },
+          spaceBetween:40,
         },
 
 
@@ -128,7 +130,8 @@ const MultipleRows = () => {
             rows: 2,
             
             fill: 'row',
-          }
+          },
+          spaceBetween:48,
           
         },
         
