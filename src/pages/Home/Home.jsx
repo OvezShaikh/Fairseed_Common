@@ -16,23 +16,28 @@ import UserNavbar from '../login/UserNavbar'
 
 import images from "../../constants/images";
 
+
+import BottomSlider from "../../components/layout/BottomSlider";
+
+
+
 function Home() {
   const [userList, setUserList] = useState([]);
   const [visibleCards, setVisibleCards] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
-  const [campaignCount,setCampaignCount] = useState(0);
+  const [campaignCount, setCampaignCount] = useState(0);
   const fetchUserList = async () => {
     try {
       const perPage = 8;
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
-        );
-        const res = response.data;
-        console.log(res, "cards");
-        console.log(res.rows);
-        // `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
-        if (Array.isArray(res.rows)) {
+      );
+      const res = response.data;
+      console.log(res, "cards");
+      console.log(res.rows);
+      // `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
+      if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList([...userList, ...res.rows]);
         setCampaignCount(res.count);
@@ -60,15 +65,15 @@ function Home() {
     <>
       <div className="">
         {
-          (localStorage.getItem('user_role')==='Normal')
-           ? 
-           (
-            <UserNavbar/>
-          ) :
+          (localStorage.getItem('user_role') === 'Normal')
+            ?
             (
-              <Navbar/>
-              )
-          }
+              <UserNavbar />
+            ) :
+            (
+              <Navbar />
+            )
+        }
       </div>
       <div>
         <Coursal />
@@ -78,9 +83,9 @@ function Home() {
         style={{
           width: "100%",
           height: "100%",
-        
-          
-          
+
+
+
           alignItems: "flex-start",
           display: "flex",
         }}
@@ -90,10 +95,10 @@ function Home() {
       <div className="flex pt-[128px] ">
         <div className="w-full flex-wrap flex flex-col items-center mx-10">
           <h1
-            className="font-extrabold pb-[24px] desktop:text-[48px] max-desktop:text-[36px] max-tablet:text-[24px] max-tablet:pb-[20px]" 
+            className="font-extrabold pb-[24px] desktop:text-[48px] max-desktop:text-[36px] max-tablet:text-[24px] max-tablet:pb-[20px]"
             style={{ fontFamily: "Satoshi" }}
           >
-            Ongoing Campaigns 
+            Ongoing Campaigns
           </h1>
           <div className="flex flex-col  text-center text-black/100 mb-[64px] max-tablet:mb-[52px]">
             <button
@@ -113,7 +118,7 @@ function Home() {
               }}
             >
               <p className="gradient-button mb-0 underline max-tablet:text-[16px]">
-              See all {campaignCount} active campaigns
+                See all {campaignCount} active campaigns
               </p>
             </button>
           </div>
@@ -129,13 +134,15 @@ function Home() {
           >
             <img src={images.Funnel} />
             {/* <img src={images.Filter} /> */}
-            <p className="text-[18px]" style={{background:
-                    "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
-                  "-webkit-background-clip": "text",
-                  "-webkit-text-fill-color": "transparent",
-                  "font-family": 'Satoshi',
-                "font-weight":"700",}
-                  }>Filter</p>
+            <p className="text-[18px]" style={{
+              background:
+                "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+              "-webkit-background-clip": "text",
+              "-webkit-text-fill-color": "transparent",
+              "font-family": 'Satoshi',
+              "font-weight": "700",
+            }
+            }>Filter</p>
           </button>
         </div>
         <div className="desktop:gap-x-[36px] desktop:gap-y-[48px] mt-[48px]  flex flex-wrap w-full justify-center desktop:max-w-[1740px] max-desktop:gap-x-[16px]  max-desktop:gap-y-[24px] max-tablet:gap-y-[48px]">
@@ -205,9 +212,9 @@ function Home() {
                     className="text-[28px] font-black max-tablet:text-[24px] max-tablet:font-bold"
                     style={{
                       color: "#4A4E5A",
-                     
+
                       fontFamily: "Satoshi",
-                      
+
                       wordWrap: "break-word",
                     }}
                   >
@@ -218,9 +225,9 @@ function Home() {
                     style={{
                       width: "100%",
                       color: "#6B7280",
-                      
+
                       fontFamily: "Satoshi",
-                      
+
                       wordWrap: "break-word",
                       marginTop: 6,
                     }}
@@ -244,25 +251,25 @@ function Home() {
                 </div>
                 <div className=" ml-2 col-span-10">
                   <h1 className="text-[28px] font-black max-tablet:text-[24px] max-tablet:font-bold"
-                    
+
                     style={{
                       color: "#4A4E5A",
-                      
+
                       fontFamily: "Satoshi ",
-                     
+
                       wordWrap: "break-word",
                     }}
                   >
                     Fill Cause Information
                   </h1>
                   <p
-                      className="text-[24px] max-tablet:text-[18px] max-tablet:font-normal"
+                    className="text-[24px] max-tablet:text-[18px] max-tablet:font-normal"
                     style={{
                       width: "100%",
                       color: "#6B7280",
-                      
+
                       fontFamily: "Satoshi",
-                      
+
                       wordWrap: "break-word",
                       marginTop: 6,
                     }}
@@ -289,22 +296,22 @@ function Home() {
                     className="text-[28px] font-black max-tablet:text-[24px] max-tablet:font-bold"
                     style={{
                       color: "#4A4E5A",
-                      
+
                       fontFamily: "Satoshi",
-                      
+
                       wordWrap: "break-word",
                     }}
                   >
                     Update Acc details
                   </h1>
                   <p
-                      className="text-[24px] max-tablet:text-[18px] max-tablet:font-normal"
+                    className="text-[24px] max-tablet:text-[18px] max-tablet:font-normal"
                     style={{
                       width: "100%",
                       color: "#6B7280",
-                     
+
                       fontFamily: "Satoshi",
-                   
+
                       wordWrap: "break-word",
                       marginTop: 4,
                     }}
@@ -324,7 +331,7 @@ function Home() {
                 fontSize: 20,
                 fontWeight: "900",
                 padding: "15px 28px 15px 28px",
-                
+
               }}
               className="py-[15px] px-[28px] my-10"
             >
@@ -352,11 +359,21 @@ function Home() {
         </p>
       </div>
       <div className="flexDirection:'row' w-full justify-center items-center flex mt-[80px] gap-5 px-[50px] max-desktop:px-0 max-tablet:mt-0">
-        <Slider />
+      <div className="bottom-slider-div">
+        <BottomSlider />
+
+        <i className="icon-arrow-long-right review-swiper-button-next"></i>
+        <i className="icon-arrow-long-left review-swiper-button-prev"></i>
+      </div>
       </div>
       <div className="">
         <Footer />
       </div>
+
+      
+
+
+
     </>
   );
 }
