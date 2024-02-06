@@ -6,6 +6,7 @@ import AdminRoutes from "./AdminRoutes";
 import Dashboard from "../../components/AdminPanelPages/Dashboard/Index";
 import Donation from "../../components/AdminPanelPages/Donation/Index";
 import Categories from "../../components/AdminPanelPages/Categories/Index";
+import Pages from "../../components/AdminPanelPages/Pages/Index"
 
 function AdminPage() {
   return (
@@ -130,7 +131,7 @@ function AdminPage() {
         path="/Pages"
         element={
           <AdminLayout>
-            <h1>Pages</h1>
+            <Pages />
           </AdminLayout>
         }
       />

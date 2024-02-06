@@ -89,16 +89,18 @@ export default function ProfileAvatar() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem onClick={handleClose}>
-          <Avatar /> Dashboard
+          <Link to={"/AdminPanel"}>
+            <Avatar /> Dashboard
+          </Link>
+
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Link to={"/Home/AdminPanel"}>
-            <ListItemIcon>
-              <Settings fontSize="small" />
-            </ListItemIcon>
 
-            Settings
-          </Link>
+          <ListItemIcon>
+            <Settings fontSize="small" />
+          </ListItemIcon>
+
+          Settings
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>

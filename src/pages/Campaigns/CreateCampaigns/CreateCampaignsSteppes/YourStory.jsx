@@ -2,7 +2,7 @@ import React from 'react';
 import { useFormik, Field, useFormikContext } from 'formik';
 import { FormLabel } from 'react-bootstrap';
 import ReactQuill from 'react-quill';
-import ReactQuilTextField from '../../../../components/inputs/ReactQuilTextField.jsx/Index';
+import ReactQuilTextField from '../../../../components/inputs/ReactQuilTextField/Index';
 import { colors } from '../../../../constants/theme';
 import UploadField from '../../../../components/inputs/UploadField/Index';
 import SecondaryButton from "../../../../components/inputs/secondaryButton"
