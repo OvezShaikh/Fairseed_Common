@@ -8,6 +8,7 @@ import Searchbar from "./Searchbar";
 import DropDown from "./navbar/DropDown";
 import { useMediaQuery } from "@mui/material";
 import Badge from "@mui/material/Badge";
+import ProfileAvatar from '../../pages/login/ProfileAvatar'
 
 import { Avatar, Grid, Stack } from "@mui/material";
 
@@ -28,7 +29,7 @@ const Navbar = () => {
           {/* <input className=' bg-gray-100 p-2 relative  ' placeholder='Search' /> */}
           <Searchbar />
           <div className="flex-row ps-2 justify-start items-center inline-flex ">
-            <Badge badgeContent={17} style={{cursor:'pointer'}} color="error">
+            <Badge badgeContent={17} style={{ cursor: 'pointer' }} color="error">
               <NotificationsIcon />
             </Badge>
             <button className="w-6 h-6 flex-1  ml-3">
@@ -74,6 +75,7 @@ const Navbar = () => {
                   }}
                   className="my-auto"
                 />
+                {/* <ProfileAvatar /> */}
               </DropDown>
             </Grid>
           </div>

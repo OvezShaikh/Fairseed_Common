@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { Menu, MenuItem, Box } from "@mui/material";
-import AuthContext from "../../../authContext/AuthContext";
 import { LogoutOutlined } from "@mui/icons-material";
+import AuthContext from "../../../authContext/AuthContext"
 
 const DropDown = ({ children }) => {
-  const authContext = useContext(AuthContext);
+  // const authContext = useContext(AuthContext);
   // const { Logout } = authContext;
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -39,7 +39,7 @@ const DropDown = ({ children }) => {
           "aria-labelledby": "basic-button",
         }}
         transformOrigin={{ horizontal: "center", vertical: "top" }}
-        PaperProps  ={{
+        PaperProps={{
           elevation: 0,
           sx: {
             // backgroundColor: "#fff2d8e6",
@@ -74,12 +74,12 @@ const DropDown = ({ children }) => {
               backgroundColor: "#F0D780",
             },
           }}
-          onClick={()=>{}}
+          onClick={() => { }}
         >
           <LogoutOutlined />
           &nbsp; Logout
         </MenuItem>
-      </Menu>
+      </Menu >
     </>
   );
 };
