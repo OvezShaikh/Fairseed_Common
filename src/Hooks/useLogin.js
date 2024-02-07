@@ -27,7 +27,10 @@ const useLogin = () => {
         data, 
       );
       // console.log("response Login ",data);
-      alert("Login Successful")
+      // alert("Login Successful")
+      toast.success("Login Successful", {
+        position: "top-center"
+      });
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user_role", res.data.user_info.user_role);
       window.location.href = '/Home';

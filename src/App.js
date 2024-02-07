@@ -10,7 +10,11 @@ import DonateSettings from "./pages/Campaigns/Donet/DonateSettings/Index";
 import CampaignsByCategory from "./pages/Campaigns/CampaignsByCategory/Index";
 import OnGoingCampaigns from "./pages/Campaigns/OnGoingCampaigns/Index";
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
+  
   return (
     <div className="container p-0">
       {/* <OnGoingCampaigns/> */}
@@ -38,6 +42,8 @@ function App() {
           <Route path="/campaign-details/:id" element={<CurrentCampaign />} />
         </Routes>
       </BrowserRouter>
+      <ToastContainer 
+      />
     </div>
   );
 }

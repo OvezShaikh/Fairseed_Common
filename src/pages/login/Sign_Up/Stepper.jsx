@@ -15,7 +15,7 @@ import styled from '@emotion/styled';
 import { useCreateOrUpdate } from '../../../Hooks/useCreateOrUpdate'
 import SignUp from "./SignUp";
 import Sign_02 from "./Sign_02";
-
+import { toast } from 'react-toastify'
 
 const styleStep = {
   "  .MuiStep-root .MuiStepLabel-root ": {
@@ -209,7 +209,10 @@ const Sign_Stepper = () => {
     formData.append('country', values.country);
     // formData.append('image' , values.image);
       mutate(formData);
-      alert("Signed Up Successfully !")
+      // alert("Signed Up Successfully !")
+      toast.success("Signup Successful !!", {
+        position: "top-center"
+      });
       window.location.href = '/Home';
       console.log(formData);
 
