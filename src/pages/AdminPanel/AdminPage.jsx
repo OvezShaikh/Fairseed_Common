@@ -7,7 +7,6 @@ import Dashboard from "../../components/AdminPanelPages/Dashboard/Index";
 import Donation from "../../components/AdminPanelPages/Donation/Index";
 import Categories from "../../components/AdminPanelPages/Categories/Index";
 import Pages from "../../components/AdminPanelPages/Pages/Index"
-import AddNew from "../../components/AdminPanelPages/Categories/AddNew"
 
 function AdminPage() {
   return (
@@ -124,7 +123,7 @@ function AdminPage() {
         path="/Scholarships"
         element={
           <AdminLayout>
-            <AddNew />
+            <h1>Scholarships</h1>
           </AdminLayout>
         }
       />

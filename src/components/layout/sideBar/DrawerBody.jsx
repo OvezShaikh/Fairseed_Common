@@ -216,7 +216,7 @@ const DrawerBody = () => {
   const menus = [
     {
       icon: "DashboardIcon",
-      path: "/AdminPanel",
+      path: "/AdminPanel/",
       title: "Dashboard",
     },
 

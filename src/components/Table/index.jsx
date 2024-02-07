@@ -43,7 +43,7 @@ const dataGridStyles = {
       // padding: "2px 8px 2px 6px",
     },
     "& .MuiTableCell-root.MuiTableCell-head": {
-      backgroundColor: "#FFF4EB",
+      backgroundColor: "#e4e4e4",
       fontWeight: "400",
       fontFamily: "FuturaMedium",
       color: "#000",
@@ -116,7 +116,7 @@ const ReactTable = ({
   refetchInside = false,
   rowHeight,
   isLoading,
-  // downloadExcel,
+  downloadExcel,
   extraQuery,
   showFilter = true,
   title,
@@ -130,8 +130,8 @@ const ReactTable = ({
   const [queryKey, setQueryKey] = useState("");
   const [customPageCount, setCustomPageCount] = useState(1);
   const [tableData, setTableData] = useState(
-    ("rows" in data && data?.rows) || []
-    // data?.products || []
+    // ("rows" in data && data?.rows) || []
+    data?.products || []
   );
   const [filters, setFilters] = useState(
     localStorage.getItem(`filters-of-${title_slug}`)
@@ -142,18 +142,18 @@ const ReactTable = ({
   const [sortField, setSortField] = useState();
   const [tableColumns, setTableColumns] = useState(columns || []);
   const [columnOrderArr, setColumnOrderArr] = useState(
-    // JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
-    //   ? JSON.parse(
-    //     JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
-    //       .columnOrder
-    //   )
-    //   : []
+    JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
+      ? JSON.parse(
+          JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
+            .columnOrder
+        )
+      : []
   );
 
   useEffect(() => {
     if (data) {
-      setTableData(("rows" in data && data?.rows) || []);
-      // setTableData(data?.products || []);
+      // setTableData(("rows" in data && data?.rows) || []);
+      setTableData(data?.products || []);
     }
   }, [data]);
 
@@ -208,13 +208,13 @@ const ReactTable = ({
         columnOrder: columnOrderArr,
         hiddenColumns: JSON.parse(localStorage.getItem(`columns-of-${title}`))
           ? JSON.parse(
-            JSON.parse(localStorage.getItem(`columns-of-${title}`))
-              .hiddenColumns
-          )
+              JSON.parse(localStorage.getItem(`columns-of-${title}`))
+                .hiddenColumns
+            )
           : columns.reduce(
-            (prev, curr) => (curr.hidden ? [...prev, curr.accessor] : prev),
-            []
-          ),
+              (prev, curr) => (curr.hidden ? [...prev, curr.accessor] : prev),
+              []
+            ),
       },
 
       ...clientPaginationOptions,
@@ -322,23 +322,23 @@ const ReactTable = ({
     key: url,
     params: manualPagination
       ? {
-        page: pagination.page,
-        limit: pagination.limit,
-        search: search,
-        ...extraQuery,
-        filters: filters?.map((item) => ({
-          column: item?.column?.id,
-          operator: item?.operator?.value,
-          value: Array.isArray(item?.value)
-            ? item?.value?.map(
-              (item) =>
-                item?.mail || item?.userPrincipalName || item?.id || item
-            )
-            : item?.value,
-        })),
-        order,
-        sortField,
-      }
+          page: pagination.page,
+          limit: pagination.limit,
+          search: search,
+          ...extraQuery,
+          filters: filters?.map((item) => ({
+            column: item?.column?.id,
+            operator: item?.operator?.value,
+            value: Array.isArray(item?.value)
+              ? item?.value?.map(
+                  (item) =>
+                    item?.mail || item?.userPrincipalName || item?.id || item
+                )
+              : item?.value,
+          })),
+          order,
+          sortField,
+        }
       : { ...extraQuery },
     enabled: refetchInside || Boolean(queryKey),
     onSuccess(data) {
@@ -407,10 +407,9 @@ const ReactTable = ({
   };
 
   useGetAll({
-
     key: `/table-metadata/${title_slug}`,
     enabled: false,
-    // enabled: !localStorage.getItem(`columns-of-${title}`),
+    enabled: !localStorage.getItem(`columns-of-${title}`),
     select: (data) => {
       return data.data;
     },
@@ -530,8 +529,9 @@ const ReactTable = ({
 
                     <div
                       {...column.getResizerProps()}
-                      className={`resizer ${column.isResizing ? "isResizing" : ""
-                        }`}
+                      className={`resizer ${
+                        column.isResizing ? "isResizing" : ""
+                      }`}
                     />
                   </TableCell>
                 ))}
