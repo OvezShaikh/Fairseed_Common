@@ -1,0 +1,249 @@
+.campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-cbr7g4-MuiFormLabel-root , .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-vs7jcg-MuiFormLabel-root , .campagin-form label.text-capitalize.font-medium.d-flex.align-items-center.form-label , .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-cbr7g4-MuiFormLabel-root{
+    text-transform: none !important;
+}
+
+form.flex.flex-col.gap-4.campagin-form{
+    row-gap: 40px !important;
+}
+
+
+.campagin-form input[type="date"]::-webkit-calendar-picker-indicator {
+    
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: block;
+    background: url(../../../assets/calendarIcon.png) no-repeat;
+    background-size: 100% 100%;
+    width: 64px;
+    height: 64px;
+    border-width: thin;
+   
+}
+
+
+
+
+
+/* All input feilds */
+.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.css-159ib15-MuiInputBase-root {
+
+    padding: 12px 16px;
+
+}
+
+/* Dropdown input feilds */
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiInputBase-adornedEnd.MuiAutocomplete-inputRoot.css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root{
+    padding: 11px 16px;
+}
+
+
+
+/* Date input field only */
+.campaign-date-div .MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.css-159ib15-MuiInputBase-root{
+    
+    padding: 0px;
+}
+
+
+
+
+.campaign-date-div input.MuiInputBase-input.css-yz9k0d-MuiInputBase-input{
+    padding: 18px 0px;
+    padding-left: 16px;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+@media only screen and (max-width: 1800px) {
+
+    .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-cbr7g4-MuiFormLabel-root, .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-vs7jcg-MuiFormLabel-root, .campagin-form label.text-capitalize.font-medium.d-flex.align-items-center.form-label, .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-cbr7g4-MuiFormLabel-root , label.text-capitalize.font-medium.d-flex.align-items-center.form-label , span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label.css-ahj2mt-MuiTypography-root , label.MuiFormLabel-root.MuiFormLabel-colorPrimary.font-medium.d-flex.align-items-center.css-cbr7g4-MuiFormLabel-root{
+    font-size: 18px !important;
+}
+
+}
+
+@media only screen and (max-width: 1366px) {
+
+    .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-cbr7g4-MuiFormLabel-root, .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-vs7jcg-MuiFormLabel-root, .campagin-form label.text-capitalize.font-medium.d-flex.align-items-center.form-label, .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-cbr7g4-MuiFormLabel-root , label.text-capitalize.font-medium.d-flex.align-items-center.form-label , input.MuiInputBase-input.css-yz9k0d-MuiInputBase-input::placeholder , span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label.css-ahj2mt-MuiTypography-root{
+    font-size: 16px !important;
+}
+
+.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.css-159ib15-MuiInputBase-root {
+    padding: 5px 16px;
+}
+
+
+
+
+
+
+/* Dropdown input feilds */
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiInputBase-adornedEnd.MuiAutocomplete-inputRoot.css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root{
+    padding: 2px 16px;
+}
+
+
+.campaign-date-div input.MuiInputBase-input.css-yz9k0d-MuiInputBase-input{
+    padding: 10px 0px;
+    padding-left: 16px;
+}
+
+
+.campagin-form input[type="date"]::-webkit-calendar-picker-indicator {
+    
+   
+    width: 48px;
+    height: 48px;
+   
+   
+}
+
+.campaign-header{
+    font-size: 32px !important;
+}
+
+}
+
+
+@media only screen and (max-width: 751px) {
+
+    .campaign-header{
+        font-size: 24px !important;
+    }
+    
+}
+
+
+/* Your Story CSS */
+
+.story-div .ql-editor.ql-blank::before , .summary-div .ql-editor.ql-blank::before , input.MuiInputBase-input.Mui-disabled.css-yz9k0d-MuiInputBase-input , .css-159ib15-MuiInputBase-root .MuiInputBase-input{
+    color: rgba(136, 136, 136, 0.3);
+    font-style: normal;
+    font-family: 'Satoshi';
+    font-size: 20px;
+    -webkit-text-fill-color: rgba(0, 0, 0, 0.38);
+}
+
+@media only screen and (max-width:1365px) {
+.document-upload-div{
+    font-size: 16px;
+}
+
+
+
+
+.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.css-159ib15-MuiInputBase-root{
+        padding: 13px 16px;
+    }
+    
+
+    label.MuiFormLabel-root.MuiFormLabel-colorPrimary.font-medium.d-flex.align-items-center.css-cbr7g4-MuiFormLabel-root , label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-1ou9gtc-MuiFormLabel-root{
+    font-size: 16px;
+    }
+
+}
+
+
+
+@media only screen and (max-width: 751px) {
+
+    .Upload_field img{
+        height: 48px;
+    }
+    
+
+    .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-cbr7g4-MuiFormLabel-root, .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-vs7jcg-MuiFormLabel-root, .campagin-form label.text-capitalize.font-medium.d-flex.align-items-center.form-label, .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-cbr7g4-MuiFormLabel-root, label.text-capitalize.font-medium.d-flex.align-items-center.form-label, span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label.css-ahj2mt-MuiTypography-root, label.MuiFormLabel-root.MuiFormLabel-colorPrimary.font-medium.d-flex.align-items-center.css-cbr7g4-MuiFormLabel-root , label#demo-radio-buttons-group-label-Raising\ this\ Campaign\ for\:{
+        font-size: 16px !important;
+    }
+
+
+}
+
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.css-gtn9ef-MuiButtonBase-root-MuiButton-root a{
+    font-family: 'Satoshi';
+    font-weight: 500;
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.css-gtn9ef-MuiButtonBase-root-MuiButton-root , button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.css-1ecsdgq-MuiButtonBase-root-MuiButton-root{
+    padding: 14px;
+}   
+
+
+@media only screen and (max-width: 1365px) {
+
+    button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.css-gtn9ef-MuiButtonBase-root-MuiButton-root , button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.css-1ecsdgq-MuiButtonBase-root-MuiButton-root{
+        padding: 14px;
+    }   
+
+    button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.css-gtn9ef-MuiButtonBase-root-MuiButton-root a , button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.css-1ecsdgq-MuiButtonBase-root-MuiButton-root , button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.css-gtn9ef-MuiButtonBase-root-MuiButton-root{
+        font-size: 18px !important;
+        font-family: 'Satoshi';
+        font-weight: 500;
+    }
+    
+}
+
+@media only screen and (max-width:751px) {
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.css-gtn9ef-MuiButtonBase-root-MuiButton-root , button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.css-1ecsdgq-MuiButtonBase-root-MuiButton-root{
+    padding: 20px;
+}  
+}
+
+
+
+.story-div .ql-editor.ql-blank::before, .summary-div .ql-editor.ql-blank::before, input.MuiInputBase-input.Mui-disabled.css-yz9k0d-MuiInputBase-input, .css-159ib15-MuiInputBase-root .MuiInputBase-input{
+    -webkit-text-fill-color: black;
+}
+
+
+.story-div .ql-editor.ql-blank::before, .summary-div .ql-editor.ql-blank::before{
+    -webkit-text-fill-color: rgba(0, 0, 0, 0.38);
+}
+
+
+.ql-editor p{
+    font-size: 20px;
+}
+
+
+
+
+.css-1hxu6me-MuiButtonBase-root-MuiCheckbox-root.Mui-checked, .css-1hxu6me-MuiButtonBase-root-MuiCheckbox-root.MuiCheckbox-indeterminate{
+    color: rgba(255, 87, 51, 1) !important;
+}
+
+.bread-crumbs-div li{
+    font-family:'Satoshi';
+font-size: 28px;
+font-weight: 500;
+color: rgba(149, 153, 157, 1);
+
+}
+
+.breadcrumbs_navigation>ol>.MuiBreadcrumbs-li:last-child {
+    font-weight: 700;
+    color: rgba(97, 101, 106, 1);
+  }
+
+
+  
+@media only screen and (max-width:1365px) {
+
+    .bread-crumbs-div li{
+
+        font-size: 22px;
+    }
+
+}
+
+
+  
+@media only screen and (max-width:751px) {
+
+    .bread-crumbs-div li{
+
+        font-size:18px;
+    }
+
+}

@@ -176,7 +176,7 @@ const UploadField = ({
         </FormLabel>
       )}
 
-      <div className="flex w-full h-[72px] Upload_field">
+      <div className="flex w-full desktop:h-[64px] max-desktop:h-[64px] max-tablet:h-[48px] Upload_field">
         <InputBase
           value={field.value ? field.value.name : ""}
           placeholder={placeholder}
@@ -220,8 +220,8 @@ const UploadField = ({
             )}
             {/* You may want to add onClick for focusing on the input */}
             <img
-              width={79}
-              height={77}
+              width={64}
+              height={64}
               className="flex justify-stretch ml-1"
               src={images.UploadFile}
               alt=""
