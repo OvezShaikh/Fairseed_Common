@@ -51,7 +51,7 @@ function AccountDetails({ handleBack, handleNext }) {
 
     return (
         <Form className="">
-            <div className="py-20 flex flex-col gap-4 ">
+            <div className="py-[80px] flex flex-col gap-[40px] ">
                 <RadioGroup onChange={(e) => { setFieldValue("rasing_for", e.target.value) }}
                     name="rasing_for"
                     required={true}
@@ -130,7 +130,7 @@ function AccountDetails({ handleBack, handleNext }) {
                 />
 
 
-            </div><div className="flex mt-4 gap-5">
+            </div><div className="flex mt-4 desktop:gap-x-[40px] max-desktop:gap-x-[24px]">
                 <SecondaryButton
                     // disabled={activeStep === 0}
                     onClick={handleBack}

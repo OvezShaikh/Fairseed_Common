@@ -159,7 +159,7 @@ const ReactTable = ({
 
   const [pagination, setPagination] = useState({
     page: 0,
-    limit: 25,
+    limit: 10,
   });
 
   let clientPaginationOptions = manualPagination
@@ -227,11 +227,10 @@ const ReactTable = ({
     // useExpanded,
     usePagination
   );
-
   const setTableMetaData = (data) => {
     if (data) {
-      let newHiddenColumns = [];
-      let newColumns = [];
+      const newHiddenColumns = [];
+      const newColumns = [];
       for (const column of columns) {
         if (column.hidden) {
           newHiddenColumns.push(column.accessor);
@@ -244,15 +243,45 @@ const ReactTable = ({
       setTableColumns(newColumns);
 
       setTimeout(() => {
-        setHiddenColumns(
-          JSON.parse(data.hiddenColumns).length
-            ? JSON.parse(data.hiddenColumns)
-            : newHiddenColumns
-        );
-        setColumnOrder(JSON.parse(data.columnOrder));
+        if (data.hiddenColumns) {
+          setHiddenColumns(
+            JSON.parse(data.hiddenColumns).length
+              ? JSON.parse(data.hiddenColumns)
+              : newHiddenColumns
+          );
+        }
+        if (data.columnOrder) {
+          setColumnOrder(JSON.parse(data.columnOrder));
+        }
       }, 500);
     }
   };
+
+  // const setTableMetaData = (data) => {
+  //   if (data) {
+  //     let newHiddenColumns = [];
+  //     let newColumns = [];
+  //     for (const column of columns) {
+  //       if (column.hidden) {
+  //         newHiddenColumns.push(column.accessor);
+  //       }
+  //       newColumns.push({
+  //         ...column,
+  //       });
+  //     }
+  //     localStorage.setItem(`columns-of-${title_slug}`, JSON.stringify(data));
+  //     setTableColumns(newColumns);
+
+  //     setTimeout(() => {
+  //       setHiddenColumns(
+  //         JSON.parse(data.hiddenColumns).length
+  //           ? JSON.parse(data.hiddenColumns)
+  //           : newHiddenColumns
+  //       );
+  //       setColumnOrder(JSON.parse(data.columnOrder));
+  //     }, 500);
+  //   }
+  // };
 
   useEffect(() => {
     if (pageIndex === 0 && tableData?.length > 0) {

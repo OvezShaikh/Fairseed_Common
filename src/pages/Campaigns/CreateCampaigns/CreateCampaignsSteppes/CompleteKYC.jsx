@@ -4,6 +4,7 @@ import InputField from "../../../../components/inputs/InputField";
 import UploadField from "../../../../components/inputs/UploadField/Index";
 import SecondaryButton from "../../../../components/inputs/secondaryButton"
 import PrimaryButton from "../../../../components/inputs/PrimaryButton"
+import CheckBox from "../../../../components/inputs/checkBox";
 const InputStyle = {
     padding: '20px', border: "1px solid #e2e2e2",
     // },
@@ -95,9 +96,15 @@ function CompleteKYC({ handleBack, handleNext }) {
                     multiple={false}
                 />
 
+<CheckBox
+                        sx={{ paddingLeft: '15px' }}
+                        name="declaration"
+                        label={'I, hereby declare that I accept the above conditions'}
+
+                    />
 
             </div>
-            <div className="flex mt-4 gap-5">
+            <div className="flex mt-4 desktop:gap-x-[40px] max-desktop:gap-x-[24px]">
                 <SecondaryButton
                     // disabled={activeStep === 0}
                     onClick={handleBack}
@@ -106,7 +113,7 @@ function CompleteKYC({ handleBack, handleNext }) {
                     Back
                 </SecondaryButton>
 
-                <PrimaryButton sx={stylePrimaryButton} onClick={() => { submitForm() }} >
+                <PrimaryButton  sx={stylePrimaryButton} onClick={() => { submitForm() }} >
                     Submit
                 </PrimaryButton>
             </div>

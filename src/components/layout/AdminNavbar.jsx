@@ -4,13 +4,12 @@ import TuneIcon from "@mui/icons-material/Tune";
 import HelpIcon from "@mui/icons-material/Help";
 import images from "../../constants/images";
 // import Logo from '../images/Logo.png'
-import Searchbar from "./Searchbar";
 import DropDown from "./navbar/DropDown";
 import { useMediaQuery } from "@mui/material";
 import Badge from "@mui/material/Badge";
-import ProfileAvatar from '../../pages/login/ProfileAvatar'
 
 import { Avatar, Grid, Stack } from "@mui/material";
+import { Search } from "../inputs/Search";
 
 const Navbar = () => {
   const isTab = useMediaQuery("(max-width: 1100px)");
@@ -27,7 +26,17 @@ const Navbar = () => {
         </div>
         <div className="w-auto self-stretch   pb-2 pt-2 rounded justify-start items-center flex">
           {/* <input className=' bg-gray-100 p-2 relative  ' placeholder='Search' /> */}
-          <Searchbar />
+          {/* <Searchbar /> */}
+          <Search sx={{
+            width: '362px',
+            background: '#F7F8F8',
+            "& .MuiInputBase-root .MuiOutlinedInput-notchedOutline": {
+              border: `none`,
+            },
+            "& .MuiInputBase-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              border: `none`,
+            },
+          }} />
           <div className="flex-row ps-2 justify-start items-center inline-flex ">
             <Badge badgeContent={17} style={{ cursor: 'pointer' }} color="error">
               <NotificationsIcon />

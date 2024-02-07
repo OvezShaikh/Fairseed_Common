@@ -17,6 +17,15 @@ import OperatorSelectField from '../inputs/operatorSelectField'
 //   width: '350px',
 //   padding: '0px 0px 0px 2px'
 // }
+const InputStyle =
+{
+  padding: '16px', border: "1px solid #e2e2e2",
+  // },
+  "&:focus-within": {
+    boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
+    borderColor: "black",
+  },
+}
 
 const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
   const validationSchema = yup.object().shape({
@@ -163,7 +172,7 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                                 </Grid>
                               )}
 
-                              <Grid item xs={5}>
+                              <Grid item xs={5} paddingTop={5}>
                                 {values?.filters[index]?.column?.apiURL ||
                                   values?.filters[index]?.column?.options ? (
                                   <MultipleSelectField
@@ -224,8 +233,9 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                                     }
                                   />
                                 ) : (
-                                  <InputAdminField
-                                    sx={{ padding: '20px 10px' }}
+                                  <InputField
+                                    // sx={{ padding: '20px 10px' }}
+                                    sx={InputStyle}
                                     label="value"
                                     name={`filters[${index}].value`}
                                   />

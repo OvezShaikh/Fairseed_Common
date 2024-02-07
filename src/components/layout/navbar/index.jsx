@@ -73,7 +73,7 @@ const NavbarContainer = ({ handleDrawerToggle }) => {
         display: "inline-block",
         position: "fixed",
         right: 0,
-        top: '58px',
+        top: '54px',
         zIndex: "99",
         padding: '16px 16px  ',
         width: `${sideBar ? "100vw" : "calc(100vw - 273px)"}`,

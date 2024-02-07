@@ -23,7 +23,7 @@ const RadioGroup = ({ label, options, onChange, required, name, ...otherProps })
       }}
     >
       <FormLabel
-        className="text-capitalize font-medium d-flex align-items-center mb-1 me-4"
+        className="font-medium d-flex align-items-center mb-1 me-4"
         sx={{
           padding: "4px 8px 0px 8px",
           color: colors.text.main,

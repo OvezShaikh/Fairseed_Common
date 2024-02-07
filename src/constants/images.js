@@ -70,6 +70,8 @@ import MapPin2 from "../assets/MapPin.svg";
 import HomePageHero from "../assets/HomePageHero.png";
 import HomePageHeroTab from "../assets/HomePageHeroTab.png";
 import LeftArrowBottomSlider from "../assets/leftarrowbs.png";
+import DashedImageUpload from "../assets/Dashed Image Upload.png";
+import UploadIcon from "../assets/UploadIcon.png"
 
 export default {
   SedalCheck,
@@ -143,4 +145,6 @@ export default {
   HomePageHero,
   HomePageHeroTab,
   LeftArrowBottomSlider,
+  DashedImageUpload,
+  UploadIcon,
 };

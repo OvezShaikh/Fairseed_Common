@@ -53,7 +53,7 @@ export function SideBar() {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: `273px`,
-              top: '58px'
+              top: '54px'
             },
           }}
           open
