@@ -6,12 +6,7 @@ import moment from 'moment';
 import "../../../pages/Campaigns/CreateCampaigns/CreateCampaigns.css"
 import { FormLabel } from '@mui/material';
 import images from '../../../constants/images';
-import dayjs from 'dayjs';
-
-
-
-
-
+// import dayjs from 'dayjs';
 
 const styleLabel = {
     fontFamily: "satoshi",
@@ -28,7 +23,7 @@ const initialValues = {
 }
 
 function Index() {
-    const yesterday = dayjs().subtract(1, 'day');
+    // const yesterday = dayjs().subtract(1, 'day');
 
     return (
         <Formik>
