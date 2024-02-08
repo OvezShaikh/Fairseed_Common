@@ -4,8 +4,7 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 // import Navbar from "./Navbar";
 import DrawerBody from "./DrawerBody";
-import Navbar from "../navbar";
-import AdminNavbar from '../AdminNavbar'
+import Navbar from "../navbar/index";
 
 
 export function SideBar() {

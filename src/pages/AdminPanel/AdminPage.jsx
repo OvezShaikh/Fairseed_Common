@@ -8,6 +8,7 @@ import Donation from "../../components/AdminPanelPages/Donation/Index";
 import Categories from "../../components/AdminPanelPages/Categories/Index";
 import Pages from "../../components/AdminPanelPages/Pages/Index"
 import AddNew from "../../components/AdminPanelPages/Categories/AddNew"
+import PaymentGateway from "../../components/AdminPanelPages/PaymentGateway/Index"
 
 function AdminPage() {
   return (
@@ -138,10 +139,10 @@ function AdminPage() {
       />
 
       <Route
-        path="/PG-Settings"
+        path="/Payment-Gateway"
         element={
           <AdminLayout>
-            <h1>PG-Settings</h1>
+            <PaymentGateway />
           </AdminLayout>
         }
       />

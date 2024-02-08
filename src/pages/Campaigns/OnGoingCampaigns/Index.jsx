@@ -1,17 +1,22 @@
 import React, { useContext, useMemo, useState, useEffect } from "react";
-import { Grid, Typography } from "@mui/material";
-import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../../../components/layout/Footer";
 import Navbar from "../../../components/layout/Navbar";
 import images from "../../../constants/images";
-import SecondaryButton from "../../../components/inputs/secondaryButton";
 import Card from "../../../components/layout/Card";
-import icons from "../../../constants/icons";
 import Navigation from '../../../components/layout/Navigation/Index'
-import ScrollableTabsButtonAuto from "../../../components/inputs/Filters/Index";
 import UserNavbar from '../../login/UserNavbar'
 import axios from "axios";
 import ScrollableTabsButtonForce from '../../../components/layout/ScrollableTabsButtonAuto'
+// import {
+//   PiTrendUpDuotone,
+//   PiStudentDuotone,
+//   PiHandCoinsDuotone,
+//   PiGenderFemaleDuotone,
+//   PiMegaphoneSimpleDuotone,
+//   PiMosqueDuotone,
+//   PiAlarmDuotone,
+//   PiHeartDuotone,
+// } from "react-icons/pi";
 
 
 function Index() {
@@ -46,42 +51,13 @@ function Index() {
   }, [page]);
 
 
-  let bnk = [
-    {
-      title: "Help me fund my College Fees for Harvard University",
-      img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-      actualMoney: 6700,
-      totalMoney: 64000,
-      userCount: "1003",
-      daysLeft: "10 Days Left",
-    },
-    {
-      title: "Help me fund my College Fees for Harvard University",
-      img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-      actualMoney: " 2700 ",
-      totalMoney: " 64,000",
-      userCount: "1003",
-      daysLeft: "10 Days Left",
-    },
-    {
-      title: "Help me fund my College Fees for Harvard University",
-      img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-      actualMoney: " 2700 ",
-      totalMoney: " 64,000",
-      userCount: "1003",
-      daysLeft: "10 Days Left",
-    },
-    {
-      title: "Help me fund my College Fees for Harvard University",
-      img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-      actualMoney: " 2700 ",
-      totalMoney: " 64,000",
-      userCount: "1003",
-      daysLeft: "10 Days Left",
-    },
 
-
-  ];
+  // let Filter = [
+  //   {
+  //     name: 'needs love',
+  //     icon: 'sjdfhjdskhf',
+  //   }
+  // ]
 
   return (
     <div>
@@ -99,6 +75,11 @@ function Index() {
         <div className="flex flex-col justify-center items-center ">
 
           <div className="flex pt-28  desktop:ml-[-30px] desktop:max-w-[1760px] desktop:w-full desktop:justify-end max-desktop:w-[90%] max-desktop:flex-col max-desktop:items-end max-desktop:gap-y-[48px] max-tablet:mb-[50px] max-tablet:gap-y-[20px] max-desktop:pt-20 max-tablet:pt-16 scrollable-tabs-class ">
+            {/* {Filter?.map((item) => {
+              return (
+                <ScrollableTabsButtonForce name={item?.name} icon={item?.icon} />
+              )
+            })} */}
             <ScrollableTabsButtonForce />
             <button
               className="flex items-center ml-2 px-3 py-1.5 max-w-[115px] gap-x-[12px] max-desktop:px-[20px] max-desktop:py-[17px] max-tablet:py-[6px]"

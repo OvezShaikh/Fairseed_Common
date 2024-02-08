@@ -194,8 +194,6 @@ const ReactTable = ({
     setColumnOrder,
     toggleHideAllColumns,
     setHiddenColumns,
-    useRowSelect,
-
     columns: updatedColumns,
     state: { pageIndex, pageSize },
   } = useTable(
@@ -225,7 +223,8 @@ const ReactTable = ({
     useFlexLayout,
     useResizeColumns,
     // useExpanded,
-    usePagination
+    usePagination,
+    useRowSelect
   );
   const setTableMetaData = (data) => {
     if (data) {
@@ -437,7 +436,7 @@ const ReactTable = ({
 
   useGetAll({
 
-    key: `/table-metadata/${title_slug}`,
+    key: `/admin-dashboard/${title_slug}`,
     enabled: false,
     // enabled: !localStorage.getItem(`columns-of-${title}`),
     select: (data) => {
@@ -503,6 +502,7 @@ const ReactTable = ({
             isLoading={mutateLoading}
           />
           <SecondaryButton
+            onCick={() => localStorage.removeItem(`filters-of-${title_slug}`)}
             startIcon={
               <FilterReset
                 color={colors.primary.dark}
@@ -536,6 +536,7 @@ const ReactTable = ({
               <TableRow
                 style={{
                   width: "100%",
+
                 }}
                 {...headerGroup.getHeaderGroupProps()}
                 key={headerGroup.id}
@@ -562,6 +563,7 @@ const ReactTable = ({
                       className={`resizer ${column.isResizing ? "isResizing" : ""
                         }`}
                     />
+                    <input></input>
                   </TableCell>
                 ))}
               </TableRow>
@@ -595,6 +597,7 @@ const ReactTable = ({
                               minWidth: cell.column.minWidth,
                               width: cell.column.width,
                               height: rowHeight ? rowHeight : "40px",
+
                             },
                           })}
                           key={`${cell?.value}${index}`}

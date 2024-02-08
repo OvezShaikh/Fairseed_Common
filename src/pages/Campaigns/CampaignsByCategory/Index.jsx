@@ -147,18 +147,18 @@ function Index() {
                     </h1>
                   </SecondaryButton>
                   <div className="flex pl-[125px]">
-                  <SecondaryButton
-                    sx={{
-                      padding: "0px 12px 0px 30px",
-                      border: "none"
-                      
-                    }}
-                  >
-                    
-                    <h1 className=" font-[satoshi] text-[18px] text-[#25272C] font-bold ">
-                      Location : 
-                    </h1>
-                  </SecondaryButton>
+                    <SecondaryButton
+                      sx={{
+                        padding: "0px 12px 0px 30px",
+                        border: "none"
+
+                      }}
+                    >
+
+                      <h1 className=" font-[satoshi] text-[18px] text-[#25272C] font-bold ">
+                        Location :
+                      </h1>
+                    </SecondaryButton>
                   <OptionsButton />
                   </div>
                 </div>
