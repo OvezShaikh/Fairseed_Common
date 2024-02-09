@@ -1,8 +1,8 @@
-.campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-cbr7g4-MuiFormLabel-root , .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-vs7jcg-MuiFormLabel-root , .campagin-form label.text-capitalize.font-medium.d-flex.align-items-center.form-label , .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-cbr7g4-MuiFormLabel-root{
+.campagin-form label.MuiFormLabel-root , .campagin-form label.MuiFormLabel-root , .campagin-form label.form-label , .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary{
     text-transform: none !important;
 }
 
-form.flex.flex-col.gap-4.campagin-form{
+form.campagin-form{
     row-gap: 40px !important;
 }
 
@@ -25,21 +25,21 @@ form.flex.flex-col.gap-4.campagin-form{
 
 
 /* All input feilds */
-.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.css-159ib15-MuiInputBase-root {
+.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth {
 
     padding: 12px 16px;
 
 }
 
 /* Dropdown input feilds */
-.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiInputBase-adornedEnd.MuiAutocomplete-inputRoot.css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root{
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiInputBase-adornedEnd.MuiAutocomplete-inputRoot{
     padding: 11px 16px;
 }
 
 
 
 /* Date input field only */
-.campaign-date-div .MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.css-159ib15-MuiInputBase-root{
+.campaign-date-div .MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth{
     
     padding: 0px;
 }
@@ -47,7 +47,7 @@ form.flex.flex-col.gap-4.campagin-form{
 
 
 
-.campaign-date-div input.MuiInputBase-input.css-yz9k0d-MuiInputBase-input{
+.campaign-date-div input.MuiInputBase-input{
     padding: 18px 0px;
     padding-left: 16px;
     color: rgba(0, 0, 0, 0.3);
@@ -55,7 +55,7 @@ form.flex.flex-col.gap-4.campagin-form{
 
 @media only screen and (max-width: 1800px) {
 
-    .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-cbr7g4-MuiFormLabel-root, .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-vs7jcg-MuiFormLabel-root, .campagin-form label.text-capitalize.font-medium.d-flex.align-items-center.form-label, .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-cbr7g4-MuiFormLabel-root , label.text-capitalize.font-medium.d-flex.align-items-center.form-label , span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label.css-ahj2mt-MuiTypography-root , label.MuiFormLabel-root.MuiFormLabel-colorPrimary.font-medium.d-flex.align-items-center.css-cbr7g4-MuiFormLabel-root{
+    .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary , .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary, .campagin-form label, .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary , label.form-label , span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label , label.MuiFormLabel-root.MuiFormLabel-colorPrimary{
     font-size: 18px !important;
 }
 
@@ -63,11 +63,11 @@ form.flex.flex-col.gap-4.campagin-form{
 
 @media only screen and (max-width: 1366px) {
 
-    .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-cbr7g4-MuiFormLabel-root, .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-vs7jcg-MuiFormLabel-root, .campagin-form label.text-capitalize.font-medium.d-flex.align-items-center.form-label, .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-cbr7g4-MuiFormLabel-root , label.text-capitalize.font-medium.d-flex.align-items-center.form-label , input.MuiInputBase-input.css-yz9k0d-MuiInputBase-input::placeholder , span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label.css-ahj2mt-MuiTypography-root{
+    .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary, .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary , .campagin-form label, .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary , label.form-label , input.MuiInputBase-input::placeholder , span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label{
     font-size: 16px !important;
 }
 
-.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.css-159ib15-MuiInputBase-root {
+.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth {
     padding: 5px 16px;
 }
 
@@ -77,12 +77,12 @@ form.flex.flex-col.gap-4.campagin-form{
 
 
 /* Dropdown input feilds */
-.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiInputBase-adornedEnd.MuiAutocomplete-inputRoot.css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root{
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiInputBase-adornedEnd.MuiAutocomplete-inputRoot{
     padding: 2px 16px;
 }
 
 
-.campaign-date-div input.MuiInputBase-input.css-yz9k0d-MuiInputBase-input{
+.campaign-date-div input.MuiInputBase-input{
     padding: 10px 0px;
     padding-left: 16px;
 }
@@ -115,7 +115,7 @@ form.flex.flex-col.gap-4.campagin-form{
 
 /* Your Story CSS */
 
-.story-div .ql-editor.ql-blank::before , .summary-div .ql-editor.ql-blank::before , input.MuiInputBase-input.Mui-disabled.css-yz9k0d-MuiInputBase-input , .css-159ib15-MuiInputBase-root .MuiInputBase-input{
+.story-div .ql-editor.ql-blank::before , .summary-div .ql-editor.ql-blank::before , input.MuiInputBase-input.Mui-disabled , .MuiInputBase-input{
     color: rgba(136, 136, 136, 0.3);
     font-style: normal;
     font-family: 'Satoshi';
@@ -131,12 +131,12 @@ form.flex.flex-col.gap-4.campagin-form{
 
 
 
-.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.css-159ib15-MuiInputBase-root{
+.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth{
         padding: 13px 16px;
     }
     
 
-    label.MuiFormLabel-root.MuiFormLabel-colorPrimary.font-medium.d-flex.align-items-center.css-cbr7g4-MuiFormLabel-root , label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-1ou9gtc-MuiFormLabel-root{
+    label.MuiFormLabel-root.MuiFormLabel-colorPrimary , label.MuiFormLabel-root.MuiFormLabel-colorPrimary{
     font-size: 16px;
     }
 
@@ -151,7 +151,7 @@ form.flex.flex-col.gap-4.campagin-form{
     }
     
 
-    .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-cbr7g4-MuiFormLabel-root, .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-vs7jcg-MuiFormLabel-root, .campagin-form label.text-capitalize.font-medium.d-flex.align-items-center.form-label, .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary.text-capitalize.font-medium.d-flex.align-items-center.css-cbr7g4-MuiFormLabel-root, label.text-capitalize.font-medium.d-flex.align-items-center.form-label, span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label.css-ahj2mt-MuiTypography-root, label.MuiFormLabel-root.MuiFormLabel-colorPrimary.font-medium.d-flex.align-items-center.css-cbr7g4-MuiFormLabel-root , label#demo-radio-buttons-group-label-Raising\ this\ Campaign\ for\:{
+    .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary, .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary, .campagin-form label.form-label, .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary, label.form-label, span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label , label.MuiFormLabel-root.MuiFormLabel-colorPrimary, label#demo-radio-buttons-group-label-Raising\ this\ Campaign\ for\:{
         font-size: 16px !important;
     }
 
@@ -159,23 +159,23 @@ form.flex.flex-col.gap-4.campagin-form{
 }
 
 
-button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.css-gtn9ef-MuiButtonBase-root-MuiButton-root a{
+button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium a{
     font-family: 'Satoshi';
     font-weight: 500;
 }
 
-button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.css-gtn9ef-MuiButtonBase-root-MuiButton-root , button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.css-1ecsdgq-MuiButtonBase-root-MuiButton-root{
+button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium , button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium{
     padding: 14px;
 }   
 
 
 @media only screen and (max-width: 1365px) {
 
-    button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.css-gtn9ef-MuiButtonBase-root-MuiButton-root , button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.css-1ecsdgq-MuiButtonBase-root-MuiButton-root{
+    button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium , button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium{
         padding: 14px;
     }   
 
-    button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.css-gtn9ef-MuiButtonBase-root-MuiButton-root a , button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.css-1ecsdgq-MuiButtonBase-root-MuiButton-root , button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.css-gtn9ef-MuiButtonBase-root-MuiButton-root{
+    button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium a , button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium , button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium{
         font-size: 18px !important;
         font-family: 'Satoshi';
         font-weight: 500;
@@ -185,14 +185,14 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.Mu
 
 @media only screen and (max-width:751px) {
 
-button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.css-gtn9ef-MuiButtonBase-root-MuiButton-root , button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.css-1ecsdgq-MuiButtonBase-root-MuiButton-root{
+button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium , button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium{
     padding: 20px;
 }  
 }
 
 
 
-.story-div .ql-editor.ql-blank::before, .summary-div .ql-editor.ql-blank::before, input.MuiInputBase-input.Mui-disabled.css-yz9k0d-MuiInputBase-input, .css-159ib15-MuiInputBase-root .MuiInputBase-input{
+.story-div .ql-editor.ql-blank::before, .summary-div .ql-editor.ql-blank::before, input.MuiInputBase-input.Mui-disabled,  .MuiInputBase-input{
     -webkit-text-fill-color: black;
 }
 
@@ -209,7 +209,7 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.Mu
 
 
 
-.css-1hxu6me-MuiButtonBase-root-MuiCheckbox-root.Mui-checked, .css-1hxu6me-MuiButtonBase-root-MuiCheckbox-root.MuiCheckbox-indeterminate{
+.Mui-checked, .MuiCheckbox-indeterminate{
     color: rgba(255, 87, 51, 1) !important;
 }
 
@@ -244,6 +244,11 @@ color: rgba(149, 153, 157, 1);
     .bread-crumbs-div li{
 
         font-size:18px;
+    }
+
+
+    input.MuiInputBase-input.Mui-disabled {
+        padding: 0px;
     }
 
 }
