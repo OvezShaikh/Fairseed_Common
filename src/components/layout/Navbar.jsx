@@ -18,6 +18,7 @@ import UserLogin from '../../pages/login/Login_page/Index'
 // import UserLogin from "../../pages/login/Login_page/Index";
 import UserSignUp_02 from "../../pages/login/Sign_Up/Index";
 import { Link, NavLink } from "react-router-dom";
+import ProfileAvatar from "../../pages/login/ProfileAvatar";
 const styleButton = {
   color: 'red'
 }
@@ -345,7 +346,7 @@ export default function Example() {
 
             {/* Fifth button */}
             {
-              (localStorage.getItem('userToken')) ? (
+              (localStorage.getItem('token')) ? (
                 <PrimaryButton
                   sx={{ borderRadius: 'var(--Pixels-8, 8px)', fontWeight: 700, fontSize: '18px', padding: '12px 20px', }}>
                   <NavLink to="/Home/Create-Campaign">
@@ -383,11 +384,16 @@ export default function Example() {
                   />
                 </svg>
               </button>
-              <button
-                className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
-              >
-                <UserLogin />
-              </button>
+              {
+                (localStorage.getItem('token')) ?
+                  (<ProfileAvatar />)
+                  : (<button
+                    className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
+                  >
+                    <UserLogin />
+                  </button>)
+              }
+
 
             </div>
           </Popover.Group>

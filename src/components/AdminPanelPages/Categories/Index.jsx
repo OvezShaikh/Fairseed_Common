@@ -29,7 +29,10 @@ const Index = () => {
             />
           );
         },
+        search: false
+
       },
+
       {
         Header: 'Id',
         accessor: 'id',

@@ -61,13 +61,9 @@ function Index() {
 
   return (
     <div>
-      {
-        localStorage.getItem('token') ? (
-          <UserNavbar />
-        ) : (
-          <Navbar />
-        )
-      }
+
+      <Navbar />
+
       <div className="flex flex-col ">
 
         <Navigation label={"OnGoingCampaigns"} heading={"Ongoing Campaigns"} />

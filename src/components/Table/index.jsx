@@ -6,6 +6,7 @@ import {
   TableCell,
   TableHead,
   TableRow,
+  TextField,
 } from "@mui/material";
 import {
   useTable,
@@ -13,6 +14,7 @@ import {
   usePagination,
   useColumnOrder,
   useFlexLayout,
+  useFilters,
   useRowSelect,
 } from "react-table";
 import CustomPagination from "./CustomPagination";
@@ -30,6 +32,7 @@ import ManageColumns from "./ManageColumns";
 import ApplyFilters from "./ApplyFilters";
 import Sorting from "./Sorting";
 import { FilterReset } from "@carbon/icons-react";
+import Columnfilter from "./Columnfilter";
 
 const dataGridStyles = {
   borderRadius: 0,
@@ -179,6 +182,7 @@ const ReactTable = ({
     getTableBodyProps,
     headerGroups,
     prepareRow,
+    state,
     page,
     //pagination options
     canPreviousPage,
@@ -220,6 +224,7 @@ const ReactTable = ({
     },
     useColumnOrder,
     // useBlockLayout,
+    useFilters,
     useFlexLayout,
     useResizeColumns,
     // useExpanded,
@@ -537,18 +542,38 @@ const ReactTable = ({
                 style={{
                   width: "100%",
 
+
                 }}
                 {...headerGroup.getHeaderGroupProps()}
                 key={headerGroup.id}
               >
                 {headerGroup.headers.map((column) => (
                   <TableCell
+                    // style={{
+                    //   color: 'red'
+                    // }}
                     {...column.getHeaderProps({
-                      // style: { minWidth: column.minWidth, width: column.width },
+                      style: {
+                        minWidth: column.minWidth, width: column.width, color: '#484649',
+                        fontSize: '14px',
+                        // flex: '75 0 auto',
+
+                        // flex: 150,
+                        fontFamily: 'satoshi',
+                        height: '70px',
+                        alignItems: 'start',
+                        fontWeight: 500,
+                        flexDirection: 'column',
+                        padding: '5px 10px',
+
+
+                      },
                     })}
                     key={column?.id}
+
                   >
                     {column.render("Header")}
+                    {<Columnfilter column={column} />}
                     {column?.sortable !== false && (
                       <Sorting
                         column={column}
@@ -563,7 +588,21 @@ const ReactTable = ({
                       className={`resizer ${column.isResizing ? "isResizing" : ""
                         }`}
                     />
-                    <input></input>
+                    {/* {column?.search !== false && (
+                      <TextField
+                        sx={{
+                          "& .MuiInputBase-root .MuiInputBase-input ": {
+                            height: '0px',
+                            background: 'white',
+                            width: "126px",
+                            borderRadius: '4px',
+                            // flex: '75 0 auto',
+
+                            border: '1px solid pink'
+                          },
+                        }}
+                      />
+                    )} */}
                   </TableCell>
                 ))}
               </TableRow>
@@ -597,6 +636,11 @@ const ReactTable = ({
                               minWidth: cell.column.minWidth,
                               width: cell.column.width,
                               height: rowHeight ? rowHeight : "40px",
+                              color: '#717171',
+                              fontSize: '14px',
+                              // flex: 150,
+                              fontFamily: 'satoshi',
+                              fontWeight: 500,
 
                             },
                           })}

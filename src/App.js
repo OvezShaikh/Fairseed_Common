@@ -1,6 +1,7 @@
+import React, { useEffect } from "react";
 import "./App.css";
 import AdminPage from "../src/pages/AdminPanel/AdminPage";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 
 import HomePage from "./pages/LandingPage/index";
 import CreateCampaigns from "./pages/Campaigns/CreateCampaigns/Index";
@@ -9,6 +10,18 @@ import Donet from "./pages/Campaigns/Donet/Index";
 import DonateSettings from "./pages/Campaigns/Donet/DonateSettings/Index";
 import CampaignsByCategory from "./pages/Campaigns/CampaignsByCategory/Index";
 import OnGoingCampaigns from "./pages/Campaigns/OnGoingCampaigns/Index";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 function App() {
   return (
@@ -22,6 +35,7 @@ function App() {
       </BrowserRouter> */}
 
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="/Home" element={<HomePage />} />
@@ -38,6 +52,7 @@ function App() {
           <Route path="/campaign-details/:id" element={<CurrentCampaign />} />
         </Routes>
       </BrowserRouter>
+      <ToastContainer />
     </div>
   );
 }
