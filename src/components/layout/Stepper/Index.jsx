@@ -283,7 +283,7 @@ export default function HorizontalLinearStepper() {
      
       </div>
 
-      <Stepper activeStep={activeStep} sx={styleStep}>
+      <Stepper activeStep={activeStep} sx={styleStep} className="stepper-div">
 
       
 
@@ -299,13 +299,13 @@ export default function HorizontalLinearStepper() {
 
 
 
-            <Step {...stepProps} key={index}>
+            <Step {...stepProps} key={index} className="step-div">
 
             
 
 
 
-              <StepLabel {...labelProps}>{step}</StepLabel>
+              <StepLabel className="step-label" {...labelProps}>{step}</StepLabel>
             </Step>
             
           );

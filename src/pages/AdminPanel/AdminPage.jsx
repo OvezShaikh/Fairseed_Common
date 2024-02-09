@@ -8,7 +8,7 @@ import Donation from "../../components/AdminPanelPages/Donation/Index";
 import Categories from "../../components/AdminPanelPages/Categories/Index";
 import Pages from "../../components/AdminPanelPages/Pages/Index"
 import AddNew from "../../components/AdminPanelPages/Categories/AddNew"
-import PaymentGateway from "../../components/AdminPanelPages/PaymentGateway/Index"
+import ReportedCauses from "../../components/AdminPanelPages/ReportedCauses/index";
 
 function AdminPage() {
   return (
@@ -85,7 +85,7 @@ function AdminPage() {
         path="/Reported-Cause"
         element={
           <AdminLayout>
-            <h1>Reported-Cause</h1>
+            <ReportedCauses />
           </AdminLayout>
         }
       />
