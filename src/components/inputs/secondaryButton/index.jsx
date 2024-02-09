@@ -14,7 +14,6 @@ const SecondaryButton = ({
 }) => {
   return (
     <Button
-      className="max-tablet:text-red-500!"
       sx={{
         color: 'black',
         // height: "36px",

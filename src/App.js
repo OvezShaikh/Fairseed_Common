@@ -10,8 +10,10 @@ import Donet from "./pages/Campaigns/Donet/Index";
 import DonateSettings from "./pages/Campaigns/Donet/DonateSettings/Index";
 import CampaignsByCategory from "./pages/Campaigns/CampaignsByCategory/Index";
 import OnGoingCampaigns from "./pages/Campaigns/OnGoingCampaigns/Index";
+import LoginOnSmallScreen from "./pages/login/Login_page/LoginOnSmallScreen";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import RegisterSmallScreen from "./pages/login/Sign_Up/RegisterSmallScreen";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -47,6 +49,14 @@ function App() {
           <Route
             path="/Home/CampaignsByCategory/:id"
             element={<CampaignsByCategory />}
+          />
+          <Route
+            path="/Home/LoginOnSmallScreen"
+            element={<LoginOnSmallScreen />}
+          />
+          <Route
+            path="/Home/RegisterSmallScreen"
+            element={<RegisterSmallScreen />}
           />
 
           <Route path="/campaign-details/:id" element={<CurrentCampaign />} />

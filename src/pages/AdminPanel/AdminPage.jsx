@@ -9,6 +9,7 @@ import Categories from "../../components/AdminPanelPages/Categories/Index";
 import Pages from "../../components/AdminPanelPages/Pages/Index"
 import AddNew from "../../components/AdminPanelPages/Categories/AddNew"
 import ReportedCauses from "../../components/AdminPanelPages/ReportedCauses/index";
+import PaymentGateway from "../../components/AdminPanelPages/PaymentGateway/Index"
 
 function AdminPage() {
   return (

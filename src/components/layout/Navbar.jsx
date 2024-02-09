@@ -506,17 +506,22 @@ export default function Example() {
                 </Link>
               </div>
               <div className="py-6">
-                <p
-                  className="-mx-3 block rounded-lg px-3 py-2.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  <UserLogin />
-                </p>
+
+                {
+                  (localStorage.getItem('token')) ?
+                    (<ProfileAvatar />)
+                    : (<Link to='/Home/LoginOnSmallScreen'><button
+                      className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
+                    >
+                      Log In
+                    </button></Link>)
+                }
               </div>
             </div>
           </div>
         </Dialog.Panel>
       </Dialog>
 
-    </header>
+    </header >
   );
 }

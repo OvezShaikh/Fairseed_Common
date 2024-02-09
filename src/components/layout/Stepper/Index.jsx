@@ -270,7 +270,7 @@ export default function HorizontalLinearStepper() {
 
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%" }} className="stepper-box">
       <div className="steps-counter-div">
 
 
