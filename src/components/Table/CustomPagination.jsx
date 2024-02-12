@@ -82,7 +82,7 @@ const CustomPagination = ({
         <span className="border-r-2 px-2  text-black/40">
           Showing {" "}
           <strong>
-          {(pageIndex*pageSize) + 1}</strong> to <strong>{((pageIndex+1)*pageSize)}</strong> of <strong>{pageOptions.length}
+          {(pageIndex*pageSize) + 1}</strong> to <strong>{((pageIndex+1)*pageSize)}</strong> of <strong>{(pageOptions.length)*(pageSize)}
           </strong>
         </span>
         <Grid

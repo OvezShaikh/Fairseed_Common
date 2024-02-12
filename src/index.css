@@ -45,7 +45,7 @@ body {
   width: calc(100vw - 290px);
   margin: 148px 0px 20px 270px;
   padding: 0em 1em 0em 2.2em;
-  position: fixed;
+  /* position: fixed; */
 }
 
 .ql-toolbar.ql-snow {

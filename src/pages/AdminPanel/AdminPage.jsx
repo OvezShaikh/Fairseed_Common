@@ -7,6 +7,7 @@ import Dashboard from "../../components/AdminPanelPages/Dashboard/Index";
 import Donation from "../../components/AdminPanelPages/Donation/Index";
 import Categories from "../../components/AdminPanelPages/Categories/Index";
 import Pages from "../../components/AdminPanelPages/Pages/Index"
+import Campaign from "../../components/AdminPanelPages/Campaign/Campaign";
 
 function AdminPage() {
   return (
@@ -59,7 +60,7 @@ function AdminPage() {
         path="/Causes"
         element={
           <AdminLayout>
-            <h1>Causes</h1>
+            <h1><Campaign/></h1>
           </AdminLayout>
         }
       />

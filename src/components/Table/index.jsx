@@ -14,6 +14,8 @@ import {
   useColumnOrder,
   useFlexLayout,
   useRowSelect,
+  useFilters,
+  useGlobalFilter,
 } from "react-table";
 import CustomPagination from "./CustomPagination";
 import {
@@ -30,6 +32,10 @@ import ManageColumns from "./ManageColumns";
 import ApplyFilters from "./ApplyFilters";
 import Sorting from "./Sorting";
 import { FilterReset } from "@carbon/icons-react";
+import { GlobalFilter } from "../inputs/Filters/Index";
+import Globalfilter from "./GlobalFilter";
+import Columnfilter from "./Columnfilter";
+
 
 const dataGridStyles = {
   borderRadius: 0,
@@ -130,8 +136,8 @@ const ReactTable = ({
   const [queryKey, setQueryKey] = useState("");
   const [customPageCount, setCustomPageCount] = useState(1);
   const [tableData, setTableData] = useState(
-    // ("rows" in data && data?.rows) || []
-    data?.products || []
+    ("rows" in data && data?.rows) || []
+
   );
   const [filters, setFilters] = useState(
     localStorage.getItem(`filters-of-${title_slug}`)
@@ -144,22 +150,22 @@ const ReactTable = ({
   const [columnOrderArr, setColumnOrderArr] = useState(
     JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
       ? JSON.parse(
-          JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
-            .columnOrder
-        )
+        JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
+          .columnOrder
+      )
       : []
   );
 
   useEffect(() => {
     if (data) {
-      // setTableData(("rows" in data && data?.rows) || []);
-      setTableData(data?.products || []);
+      setTableData(("rows" in data && data?.rows) || []);
+
     }
   }, [data]);
 
   const [pagination, setPagination] = useState({
     page: 0,
-    limit: 25,
+    limit: 10,
   });
 
   let clientPaginationOptions = manualPagination
@@ -179,6 +185,7 @@ const ReactTable = ({
     getTableBodyProps,
     headerGroups,
     prepareRow,
+    state,
     page,
     //pagination options
     canPreviousPage,
@@ -194,8 +201,8 @@ const ReactTable = ({
     setColumnOrder,
     toggleHideAllColumns,
     setHiddenColumns,
+    setGlobalFilter,
     useRowSelect,
-
     columns: updatedColumns,
     state: { pageIndex, pageSize },
   } = useTable(
@@ -204,27 +211,27 @@ const ReactTable = ({
       data: tableData,
       initialState: {
         pageIndex: 0,
-        pageSize: 25,
+        pageSize: 10,
         columnOrder: columnOrderArr,
         hiddenColumns: JSON.parse(localStorage.getItem(`columns-of-${title}`))
           ? JSON.parse(
-              JSON.parse(localStorage.getItem(`columns-of-${title}`))
-                .hiddenColumns
-            )
+            JSON.parse(localStorage.getItem(`columns-of-${title}`))
+              .hiddenColumns
+          )
           : columns.reduce(
-              (prev, curr) => (curr.hidden ? [...prev, curr.accessor] : prev),
-              []
-            ),
+            (prev, curr) => (curr.hidden ? [...prev, curr.accessor] : prev),
+            []
+          ),
       },
 
       ...clientPaginationOptions,
       getRowId: React.useCallback((row) => row.id, []),
     },
     useColumnOrder,
-    // useBlockLayout,
     useFlexLayout,
     useResizeColumns,
-    // useExpanded,
+    useFilters,
+    useGlobalFilter,
     usePagination
   );
 
@@ -282,7 +289,7 @@ const ReactTable = ({
   }, [refetchInside, url]);
 
   const { mutate, isLoading: mutateLoading } = useCreateOrUpdate({
-    url: `/admin/user/preference`,
+    url: `/admin-dashboard/campaign`,
   });
 
   const postTableMetaData = () => {
@@ -322,23 +329,23 @@ const ReactTable = ({
     key: url,
     params: manualPagination
       ? {
-          page: pagination.page,
-          limit: pagination.limit,
-          search: search,
-          ...extraQuery,
-          filters: filters?.map((item) => ({
-            column: item?.column?.id,
-            operator: item?.operator?.value,
-            value: Array.isArray(item?.value)
-              ? item?.value?.map(
-                  (item) =>
-                    item?.mail || item?.userPrincipalName || item?.id || item
-                )
-              : item?.value,
-          })),
-          order,
-          sortField,
-        }
+        page: pagination.page,
+        limit: pagination.limit,
+        search: search,
+        ...extraQuery,
+        filters: filters?.map((item) => ({
+          column: item?.column?.id,
+          operator: item?.operator?.value,
+          value: Array.isArray(item?.value)
+            ? item?.value?.map(
+              (item) =>
+                item?.mail || item?.userPrincipalName || item?.id || item
+            )
+            : item?.value,
+        })),
+        order,
+        sortField,
+      }
       : { ...extraQuery },
     enabled: refetchInside || Boolean(queryKey),
     onSuccess(data) {
@@ -418,6 +425,9 @@ const ReactTable = ({
     },
   });
 
+
+  const { globalFilter } = state
+
   return (
     <Grid
       container
@@ -434,11 +444,16 @@ const ReactTable = ({
         <Grid item xs={12} md={6} display="flex" alignItems={"center"}>
           {!noSearch ? (
             <>
-              <Search
+              {/* <Search
                 sx={{ width: { xs: "200px", md: "300px" } }}
                 value={query}
                 onClear={onClear}
                 onChange={onChange}
+              /> */}
+              <Globalfilter
+                filter={globalFilter}
+                setFilter={setGlobalFilter}
+                sx={{ width: { xs: "200px", md: "300px" } }}
               />
             </>
           ) : (
@@ -513,11 +528,21 @@ const ReactTable = ({
                 {headerGroup.headers.map((column) => (
                   <TableCell
                     {...column.getHeaderProps({
-                      // style: { minWidth: column.minWidth, width: column.width },
+                      style: {
+                        minWidth: column.minWidth, width: column.width, color: '#484649',
+                        fontSize: '14px',
+                        fontFamily: 'satoshi',
+                        height: '58px',
+                        alignItems: 'start',
+                        fontWeight: 500,
+                        flexDirection: 'column',
+                        padding: '5px 10px',
+                      },
                     })}
                     key={column?.id}
                   >
                     {column.render("Header")}
+                    {<Columnfilter column={column} />}
                     {column?.sortable !== false && (
                       <Sorting
                         column={column}
@@ -529,9 +554,8 @@ const ReactTable = ({
 
                     <div
                       {...column.getResizerProps()}
-                      className={`resizer ${
-                        column.isResizing ? "isResizing" : ""
-                      }`}
+                      className={`resizer ${column.isResizing ? "isResizing" : ""
+                        }`}
                     />
                   </TableCell>
                 ))}
@@ -566,7 +590,13 @@ const ReactTable = ({
                               minWidth: cell.column.minWidth,
                               width: cell.column.width,
                               height: rowHeight ? rowHeight : "40px",
+                              color: '#717171',
+                              fontSize: '14px',
+                              fontFamily: 'satoshi',
+                              fontWeight: 500,
+
                             },
+
                           })}
                           key={`${cell?.value}${index}`}
                           className="text-truncate"
