@@ -266,3 +266,24 @@ body {
   color: #3366CC;
   text-decoration: underline;
 }
+
+.one-row-table {
+  border-collapse: collapse;
+  width: 100%;
+
+}
+
+.one-row-table td {
+  border: 1px solid black;
+  height: 70px;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 8px;
+  text-align: left;
+}
+
+.one-row-table th {
+  border: 1px solid #0000;
+  padding: 8px;
+  text-align: left;
+}

@@ -206,7 +206,7 @@ const ReactTable = ({
       data: tableData,
       initialState: {
         pageIndex: 0,
-        pageSize: 25,
+        pageSize: 10,
         columnOrder: columnOrderArr,
         hiddenColumns: JSON.parse(localStorage.getItem(`columns-of-${title}`))
           ? JSON.parse(
