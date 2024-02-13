@@ -137,7 +137,7 @@ const InputField = ({
     <>
       {label && (
         <FormLabel
-          className="text-capitalize font-medium d-flex align-items-center"
+          className="font-medium d-flex align-items-center"
           sx={{
             padding: "4px 8px 8px 8px",
             color: colors.text.main,

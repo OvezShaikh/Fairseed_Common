@@ -41,7 +41,7 @@ const ManageColumns = ({
       title={`Manage Columns`}
       button={
         <SecondaryButton
-          className="me-2"
+          className="me-2 max-tablet:text-[4px]"
           startIcon={
             <Column color={colors.primary.dark} size={"20"} className="me-1" />
           }
@@ -63,7 +63,7 @@ const ManageColumns = ({
                     color={colors.primary.dark}
                   />
                 }
-                className="me-2"
+                className="me-2 max-tablet:text-red-200"
                 onClick={() => toggleHideAllColumns(false)}
               >
                 Show All Columns

@@ -6,6 +6,7 @@ import {
   TableCell,
   TableHead,
   TableRow,
+  TextField,
 } from "@mui/material";
 import {
   useTable,
@@ -13,8 +14,8 @@ import {
   usePagination,
   useColumnOrder,
   useFlexLayout,
-  useRowSelect,
   useFilters,
+  useRowSelect,
   useGlobalFilter,
 } from "react-table";
 import CustomPagination from "./CustomPagination";
@@ -202,7 +203,6 @@ const ReactTable = ({
     toggleHideAllColumns,
     setHiddenColumns,
     setGlobalFilter,
-    useRowSelect,
     columns: updatedColumns,
     state: { pageIndex, pageSize },
   } = useTable(
@@ -228,17 +228,21 @@ const ReactTable = ({
       getRowId: React.useCallback((row) => row.id, []),
     },
     useColumnOrder,
+    // useBlockLayout,
+    useFilters,
     useFlexLayout,
     useResizeColumns,
-    useFilters,
     useGlobalFilter,
-    usePagination
-  );
+    // useExpanded,
+    usePagination,
+    useRowSelect,
 
+
+  );
   const setTableMetaData = (data) => {
     if (data) {
-      let newHiddenColumns = [];
-      let newColumns = [];
+      const newHiddenColumns = [];
+      const newColumns = [];
       for (const column of columns) {
         if (column.hidden) {
           newHiddenColumns.push(column.accessor);
@@ -251,15 +255,45 @@ const ReactTable = ({
       setTableColumns(newColumns);
 
       setTimeout(() => {
-        setHiddenColumns(
-          JSON.parse(data.hiddenColumns).length
-            ? JSON.parse(data.hiddenColumns)
-            : newHiddenColumns
-        );
-        setColumnOrder(JSON.parse(data.columnOrder));
+        if (data.hiddenColumns) {
+          setHiddenColumns(
+            JSON.parse(data.hiddenColumns).length
+              ? JSON.parse(data.hiddenColumns)
+              : newHiddenColumns
+          );
+        }
+        if (data.columnOrder) {
+          setColumnOrder(JSON.parse(data.columnOrder));
+        }
       }, 500);
     }
   };
+
+  // const setTableMetaData = (data) => {
+  //   if (data) {
+  //     let newHiddenColumns = [];
+  //     let newColumns = [];
+  //     for (const column of columns) {
+  //       if (column.hidden) {
+  //         newHiddenColumns.push(column.accessor);
+  //       }
+  //       newColumns.push({
+  //         ...column,
+  //       });
+  //     }
+  //     localStorage.setItem(`columns-of-${title_slug}`, JSON.stringify(data));
+  //     setTableColumns(newColumns);
+
+  //     setTimeout(() => {
+  //       setHiddenColumns(
+  //         JSON.parse(data.hiddenColumns).length
+  //           ? JSON.parse(data.hiddenColumns)
+  //           : newHiddenColumns
+  //       );
+  //       setColumnOrder(JSON.parse(data.columnOrder));
+  //     }, 500);
+  //   }
+  // };
 
   useEffect(() => {
     if (pageIndex === 0 && tableData?.length > 0) {
@@ -488,6 +522,7 @@ const ReactTable = ({
             isLoading={mutateLoading}
           />
           <SecondaryButton
+            onCick={() => localStorage.removeItem(`filters-of-${title_slug}`)}
             startIcon={
               <FilterReset
                 color={colors.primary.dark}
@@ -521,25 +556,33 @@ const ReactTable = ({
               <TableRow
                 style={{
                   width: "100%",
+
+
                 }}
                 {...headerGroup.getHeaderGroupProps()}
                 key={headerGroup.id}
               >
                 {headerGroup.headers.map((column) => (
                   <TableCell
+                    // style={{
+                    //   color: 'red'
+                    // }}
                     {...column.getHeaderProps({
                       style: {
                         minWidth: column.minWidth, width: column.width, color: '#484649',
                         fontSize: '14px',
+                        // flex: '75 0 auto',
+                        // flex: 150,
                         fontFamily: 'satoshi',
-                        height: '58px',
+                        height: '70px',
                         alignItems: 'start',
                         fontWeight: 500,
                         flexDirection: 'column',
                         padding: '5px 10px',
-                      },
+                      },
                     })}
                     key={column?.id}
+
                   >
                     {column.render("Header")}
                     {<Columnfilter column={column} />}
@@ -557,6 +600,21 @@ const ReactTable = ({
                       className={`resizer ${column.isResizing ? "isResizing" : ""
                         }`}
                     />
+                    {/* {column?.search !== false && (
+                      <TextField
+                        sx={{
+                          "& .MuiInputBase-root .MuiInputBase-input ": {
+                            height: '0px',
+                            background: 'white',
+                            width: "126px",
+                            borderRadius: '4px',
+                            // flex: '75 0 auto',
+
+                            border: '1px solid pink'
+                          },
+                        }}
+                      />
+                    )} */}
                   </TableCell>
                 ))}
               </TableRow>
@@ -594,17 +652,16 @@ const ReactTable = ({
                               fontSize: '14px',
                               fontFamily: 'satoshi',
                               fontWeight: 500,
-
                             },
-
                           })}
                           key={`${cell?.value}${index}`}
                           className="text-truncate"
                         >
-                          {cell.render("Cell")}
+                                {cell.render("Cell")}                     
                         </TableCell>
                       );
                     })}
+
                   </TableRow>
                 );
               })}

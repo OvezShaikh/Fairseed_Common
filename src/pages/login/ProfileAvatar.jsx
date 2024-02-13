@@ -12,6 +12,9 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 export default function ProfileAvatar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -19,9 +22,10 @@ export default function ProfileAvatar() {
   function logout() {
     // Remove the 'token' item from localStorage
     localStorage.removeItem('token');
-
     localStorage.removeItem('user_role');
-
+    toast.success('Logged Out Successfully', {
+      position: "top-center"
+    })
     window.location.href = '/Home';
   }
 

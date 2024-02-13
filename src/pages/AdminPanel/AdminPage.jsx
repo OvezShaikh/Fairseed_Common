@@ -8,6 +8,9 @@ import Donation from "../../components/AdminPanelPages/Donation/Index";
 import Categories from "../../components/AdminPanelPages/Categories/Index";
 import Pages from "../../components/AdminPanelPages/Pages/Index"
 import Campaign from "../../components/AdminPanelPages/Campaign/Campaign";
+// import AddNew from "../../components/AdminPanelPages/Categories/AddNew"
+import ReportedCauses from "../../components/AdminPanelPages/ReportedCauses/index";
+import PaymentGateway from "../../components/AdminPanelPages/PaymentGateway/Index"
 
 function AdminPage() {
   return (
@@ -84,7 +87,7 @@ function AdminPage() {
         path="/Reported-Cause"
         element={
           <AdminLayout>
-            <h1>Reported-Cause</h1>
+            <ReportedCauses />
           </AdminLayout>
         }
       />
@@ -138,10 +141,10 @@ function AdminPage() {
       />
 
       <Route
-        path="/PG-Settings"
+        path="/Payment-Gateway"
         element={
           <AdminLayout>
-            <h1>PG-Settings</h1>
+            <PaymentGateway />
           </AdminLayout>
         }
       />

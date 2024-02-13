@@ -33,7 +33,7 @@ const CustomPagination = ({
         container
         className="d-flex align-items-center justify-content-start"
       >
-        
+
         <Button
           variant="contained"
           color="warning"
@@ -49,7 +49,7 @@ const CustomPagination = ({
           variant="contained"
           color="warning"
           size="small"
-          className="text-light"
+          className="text-light "
           sx={PaginationButtonStyling}
           onClick={() => previousPage()}
           disabled={!canPreviousPage}
@@ -65,7 +65,7 @@ const CustomPagination = ({
           onClick={() => nextPage()}
           disabled={!canNextPage}
         >
-          
+
           <ChevronRight />
         </Button>
         <Button
@@ -82,7 +82,7 @@ const CustomPagination = ({
         <span className="border-r-2 px-2  text-black/40">
           Showing {" "}
           <strong>
-          {(pageIndex*pageSize) + 1}</strong> to <strong>{((pageIndex+1)*pageSize)}</strong> of <strong>{(pageOptions.length)*(pageSize)}
+            {(pageIndex * pageSize) + 1}</strong> to <strong>{((pageIndex + 1) * pageSize)}</strong> of <strong>{pageOptions.length}
           </strong>
         </span>
         <Grid
@@ -90,9 +90,9 @@ const CustomPagination = ({
           xs={12}
           md={6}
           className="p-2 d-flex align-items-center text-black/40"
-          // style={{
-          //   color: "#333333",
-          // }}
+        // style={{
+        //   color: "#333333",
+        // }}
         >
           Show &nbsp;
           <Select
