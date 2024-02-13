@@ -8,7 +8,7 @@ import PrimaryButton from '../../inputs/PrimaryButton'
 function View() {
     return (
         <Formik>
-            <Form className='flex flex-col items-center gap-4'>
+            <Form className='flex flex-col items-center '>
                 <div className="flex gap-4 w-full">
                     <div className="w-full">
                         .<InputField name={"id"} placeholder={"Placeholder Text"} label={"ID:"} />
@@ -35,7 +35,7 @@ function View() {
                     </div>
 
                 </div>
-                <div className="w-full ">
+                <div className="w-full pt-5 ">
                     <table className='one-row-table'>
                         <tbody>
                             <tr>
@@ -60,15 +60,15 @@ function View() {
                     </table>
                 </div>
 
-                <div className="w-full ">
+                <div className="w-full pt-5">
                     <InputField name={"transfer"} sx={{ "& input": { height: '170px' } }} label={"Transfer Details"} />
                 </div>
-                <div className="flex gap-3">
-                    <button className='w-[69px] h-[32px] bg-[#F7F7F7]'>
+                <div className="flex gap-3 pt-5">
+                    <button onClick={() => { }} className='w-[69px] content-stretch h-[32px] bg-[#F7F7F7]'>
                         <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
                     </button>
                     <SuccessButton text={"Mark as Paid"} />
-                    <PrimaryButton >
+                    <PrimaryButton onClick={() => { }}  >
                         <h1 className='text-white font-semibold font-[satoshi]'>Reject</h1>
                     </PrimaryButton>
 

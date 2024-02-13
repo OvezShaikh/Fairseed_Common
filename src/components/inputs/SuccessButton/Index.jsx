@@ -3,8 +3,11 @@ import React from 'react'
 
 function Index({ text }) {
     return (
-        <Button
-            sx={{
+        <button
+            // variant="text"
+            style={{
+                padding: '7px',
+                borderRadius: '4px',
                 background: '#219D80',
                 color: "#FFFFFF",
                 fontSize: "14px",
@@ -12,9 +15,12 @@ function Index({ text }) {
                 fontWeight: 500,
                 textTransform: 'capitalize'
 
+
+
+
             }}
 
-        >{text}</Button>
+        >{text}</button>
     )
 }
 

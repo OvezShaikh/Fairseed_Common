@@ -12,6 +12,8 @@ import Campaign from "../../components/AdminPanelPages/Campaign/Campaign";
 import ReportedCauses from "../../components/AdminPanelPages/ReportedCauses/index";
 import PaymentGateway from "../../components/AdminPanelPages/PaymentGateway/Index"
 import Withdrawals from "../../components/AdminPanelPages/Withdrawals/View"
+import Users from "../../components/AdminPanelPages/Users/Index"
+import AddNew from "../../components/AdminPanelPages/Categories/AddNew";
 
 function AdminPage() {
   return (
@@ -61,10 +63,10 @@ function AdminPage() {
         }
       />
       <Route
-        path="/Causes"
+        path="/Campaign"
         element={
           <AdminLayout>
-            <h1><Campaign/></h1>
+            <Campaign />
           </AdminLayout>
         }
       />
@@ -80,7 +82,7 @@ function AdminPage() {
         path="/Scholarship-Cause"
         element={
           <AdminLayout>
-            <h1>Scholarship Cause</h1>
+            <AddNew />
           </AdminLayout>
         }
       />
@@ -120,7 +122,7 @@ function AdminPage() {
         path="/Users"
         element={
           <AdminLayout>
-            <h1>Users</h1>
+            <Users />
           </AdminLayout>
         }
       />
@@ -128,7 +130,7 @@ function AdminPage() {
         path="/Scholarships"
         element={
           <AdminLayout>
-            <h1>Scholarships</h1>
+            <AddNew />
           </AdminLayout>
         }
       />

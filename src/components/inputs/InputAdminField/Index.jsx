@@ -274,6 +274,8 @@ const InputField = ({
                         fontWeight: 700,
                         fontFamily: "satoshi",
                         fontStyle: "normal",
+                        width: '100%'
+
                     }}
                 >
                     {label}
