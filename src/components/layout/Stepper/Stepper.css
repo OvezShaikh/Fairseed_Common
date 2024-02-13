@@ -1,54 +1,54 @@
-.stepper-div .MuiStep-horizontal .MuiStepLabel-horizontal{
+.stepper-box .stepper-div .MuiStep-horizontal .MuiStepLabel-horizontal{
     flex-direction: row-reverse;
     column-gap: 10px;
 }
 
-.step-div {
+.stepper-box .step-div {
     margin-left: 10px;
 }
 
 
 
-.steps-counter-div{
+.stepper-box .steps-counter-div{
     display: none;
 }
 
 
 @media only screen and (min-width: 1366px) and (max-width: 1800px) {
-    .stepper-div , .stepper-div .Mui-disabled .MuiStepLabel-label , span.MuiStepLabel-label {
+    .stepper-box .stepper-div ,.stepper-box  .stepper-div .Mui-disabled .MuiStepLabel-label ,.stepper-box  span.MuiStepLabel-label {
         font-size: 17px !important;
         }
 }
 
 @media only screen and (min-width: 700px) and (max-width: 1365px) {
-    .stepper-div , .stepper-div .Mui-disabled .MuiStepLabel-label , span.MuiStepLabel-label {
+    .stepper-box .stepper-div ,.stepper-box  .stepper-div .Mui-disabled .MuiStepLabel-label ,.stepper-box  span.MuiStepLabel-label {
         font-size: 18px !important;
         }
 
         /* Pending */
 
-        .stepper-div svg{
+        .stepper-box .stepper-div svg{
             width: 16px;
             height: 16px;
             padding: 3px !important;
         }
 
 
-        .stepper-div .MuiStep-horizontal .MuiStepLabel-horizontal{
+        .stepper-box .stepper-div .MuiStep-horizontal .MuiStepLabel-horizontal{
             column-gap: 4px;
             padding: 0px 5px;
         }
 
-        .step-div{
+        .stepper-box .step-div{
             margin-left: 0px;
         }
 
             /* Pending */
-        span.MuiStepLabel-iconContainer.Mui-active , span.MuiStepLabel-iconContainer.Mui-disabled , span.MuiStepLabel-iconContainer.Mui-completed{
+            .stepper-box .stepper-box span.MuiStepLabel-iconContainer.Mui-active ,.stepper-box  span.MuiStepLabel-iconContainer.Mui-disabled ,.stepper-box  span.MuiStepLabel-iconContainer.Mui-completed{
             padding-right: 0px;
         }
 
-        .MuiStep-root.MuiStep-horizontal{
+        .stepper-box .MuiStep-root.MuiStep-horizontal{
             padding: 0px;
         }
 
@@ -57,13 +57,13 @@
 
 @media only screen and (max-width: 751px) {
 
-    .steps-counter-div{
+    .stepper-box .steps-counter-div{
         display: flex;
     justify-content: center;
     }
 
 
-    .steps-counter-div span{
+    .stepper-box .steps-counter-div span{
         font-family: 'Satoshi';
         font-size: 16px;
         font-weight: 500;
@@ -75,7 +75,7 @@
 
    
 
-    .step-div svg text.MuiStepIcon-text{
+    .stepper-box .step-div svg text.MuiStepIcon-text{
         fill : rgba(0, 0, 0, 0.8) !important;
         font-family: "Roboto","Helvetica","Arial",sans-serif;
 font-size: 15px !important;
@@ -86,41 +86,41 @@ text-align: left;
 
     }
 
-    .steps-counter-div svg text.MuiStepIcon-text , .Mui-active .MuiStepIcon-root .MuiStepIcon-text{
+    .stepper-box .steps-counter-div svg text.MuiStepIcon-text ,.stepper-box  .Mui-active .MuiStepIcon-root .MuiStepIcon-text{
         fill: #06B217 !important;
     }
 
-    span.MuiStepLabel-label.Mui-active , span.MuiStepLabel-label.Mui-disabled , span.MuiStepLabel-label.Mui-completed{
+    .stepper-box span.MuiStepLabel-label.Mui-active ,.stepper-box  span.MuiStepLabel-label.Mui-disabled ,.stepper-box  span.MuiStepLabel-label.Mui-completed{
         display: none;
     }
 
-    .steps-counter-div {
+    .stepper-box .steps-counter-div {
         margin-bottom: 18px;
     }
-    .MuiStepConnector-lineHorizontal{
+    .stepper-box .MuiStepConnector-lineHorizontal{
         border-top-style: dotted !important;
         border-top-width: 7px !important;
         border-color: rgba(0, 0, 0, 0.1) !important;
 
     }
 
-    span.MuiStepLabel-root.MuiStepLabel-horizontal{
+    .stepper-box span.MuiStepLabel-root.MuiStepLabel-horizontal{
         column-gap: 0px !important;
     }
 
 
-    .MuiStep-root.MuiStep-horizontal{
+    .stepper-box .MuiStep-root.MuiStep-horizontal{
         margin-left: 0px;
     }
 
-    .step-div , .MuiStepLabel-iconContainer.Mui-active , .MuiStepLabel-iconContainer{
+    .stepper-box .step-div ,.stepper-box  .MuiStepLabel-iconContainer.Mui-active ,.stepper-box  .MuiStepLabel-iconContainer{
         padding-left: 2px !important;
         padding-right: 2px !important;
     }
     
 
 
-    .MuiStepper-root.MuiStepper-horizontal{
+    .stepper-box .MuiStepper-root.MuiStepper-horizontal{
         width: 225px;
         margin: auto;
     }

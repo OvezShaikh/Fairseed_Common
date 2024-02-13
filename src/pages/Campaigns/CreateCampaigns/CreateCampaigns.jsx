@@ -23,7 +23,7 @@ function CreateCampaigns() {
   //   [pathname]
   // );
   return (
-    <div className="w-full justify-center items-center">
+    <div className="w-full justify-center items-center create-campaign-page">
       <Navigation label={'createCampaign'} heading={'Create a Campaign'} />
       <Grid
         display={"flex"}
