@@ -15,7 +15,8 @@ import styled from '@emotion/styled';
 import { useCreateOrUpdate } from '../../../Hooks/useCreateOrUpdate'
 import SignUp from "./SignUp";
 import Sign_02 from "./Sign_02";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const styleStep = {
   "  .MuiStep-root .MuiStepLabel-root ": {
@@ -159,10 +160,10 @@ const formValidation = [
     username: Yup.string().required('Name is Required!'),
     // role:Yup.string().required('Role is Required!'),
     mobile_number: Yup.string()
-    .required("required")
-    .matches(phoneRegExp, 'Phone number is not valid')
-    .min(10, "too short")
-    .max(10, "too long"),
+      .required("required")
+      .matches(phoneRegExp, 'Phone number is not valid')
+      .min(10, "too short")
+      .max(10, "too long"),
   }),
   Yup.object().shape({
     password: Yup.string().required('Password is required!'),
@@ -208,10 +209,12 @@ const Sign_Stepper = () => {
     formData.append('user_type', values.user_type);
     formData.append('country', values.country);
     // formData.append('image' , values.image);
-      mutate(formData);
-      alert("Signed Up Successfully !")
-      window.location.href = '/Home';
-      console.log(formData);
+    mutate(formData);
+    toast.success("user ceated successfully ! ", {
+      position: 'top-center'
+    })
+    window.location.href = '/Home';
+    console.log(formData);
 
   }
   const getStepContent = (step) => {

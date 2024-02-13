@@ -1,8 +1,7 @@
 import { useState } from "react";
 
 import ReactQuill from "react-quill";
-import { SketchPicker } from 'react-color';
-
+// import { SketchPicker } from 'react-color';
 import "react-quill/dist/quill.snow.css";
 import { ErrorMessage } from "formik";
 

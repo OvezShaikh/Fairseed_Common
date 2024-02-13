@@ -10,7 +10,7 @@ import {
   PiMegaphoneSimpleDuotone,
   PiMosqueDuotone,
   PiAlarmDuotone,
-   PiHeartDuotone ,
+  PiHeartDuotone,
 } from "react-icons/pi";
 
 export default function ScrollableTabsButtonForce({
@@ -29,9 +29,12 @@ export default function ScrollableTabsButtonForce({
   // };
 
   return (
-    <Box sx={{ maxWidth: { xs: "100%", sm: "100%", lg:'92%' }, bgcolor: "background.paper","& .css-145v6pe-MuiButtonBase-root-MuiTabScrollButton-root.Mui-disabled " : {
-      display: "none",} , "& .css-ptiqhd-MuiSvgIcon-root" :{ width: 32,height: 32}}}
-     >
+    <Box sx={{
+      maxWidth: { xs: "100%", sm: "100%", lg: '92%' }, bgcolor: "background.paper", "& .css-145v6pe-MuiButtonBase-root-MuiTabScrollButton-root.Mui-disabled ": {
+        display: "none",
+      }, "& .css-ptiqhd-MuiSvgIcon-root": { width: 32, height: 32 }
+    }}
+    >
       <Tabs
         value={value}
         sx={{
@@ -108,7 +111,7 @@ export default function ScrollableTabsButtonForce({
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <PiHandCoinsDuotone
-                style={{ color: "red"}}
+                style={{ color: "red" }}
                 className="icon pr-2 w-7 h-7"
               />
               Most Supported
@@ -204,7 +207,7 @@ export default function ScrollableTabsButtonForce({
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              < PiHeartDuotone  style={{ color: "red" }} className="icon pr-2 w-7 h-7" />
+              < PiHeartDuotone style={{ color: "red" }} className="icon pr-2 w-7 h-7" />
               Needs Love
             </Box>
           }

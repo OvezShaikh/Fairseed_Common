@@ -66,16 +66,10 @@ function Home() {
   return (
     <>
       <div className="">
-        {
-          (localStorage.getItem('user_role') === 'Normal')
-            ?
-            (
-              <UserNavbar />
-            ) :
-            (
-              <Navbar />
-            )
-        }
+
+
+        <Navbar />
+
       </div>
       <div>
         <Coursal />

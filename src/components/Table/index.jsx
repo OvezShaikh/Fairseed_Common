@@ -6,6 +6,7 @@ import {
   TableCell,
   TableHead,
   TableRow,
+  TextField,
 } from "@mui/material";
 import {
   useTable,
@@ -13,7 +14,9 @@ import {
   usePagination,
   useColumnOrder,
   useFlexLayout,
+  useFilters,
   useRowSelect,
+  useGlobalFilter,
 } from "react-table";
 import CustomPagination from "./CustomPagination";
 import {
@@ -30,6 +33,10 @@ import ManageColumns from "./ManageColumns";
 import ApplyFilters from "./ApplyFilters";
 import Sorting from "./Sorting";
 import { FilterReset } from "@carbon/icons-react";
+import { GlobalFilter } from "../inputs/Filters/Index";
+import Globalfilter from "./GlobalFilter";
+import Columnfilter from "./Columnfilter";
+
 
 const dataGridStyles = {
   borderRadius: 0,
@@ -43,7 +50,7 @@ const dataGridStyles = {
       // padding: "2px 8px 2px 6px",
     },
     "& .MuiTableCell-root.MuiTableCell-head": {
-      backgroundColor: "#FFF4EB",
+      backgroundColor: "#e4e4e4",
       fontWeight: "400",
       fontFamily: "FuturaMedium",
       color: "#000",
@@ -116,7 +123,7 @@ const ReactTable = ({
   refetchInside = false,
   rowHeight,
   isLoading,
-  // downloadExcel,
+  downloadExcel,
   extraQuery,
   showFilter = true,
   title,
@@ -131,7 +138,7 @@ const ReactTable = ({
   const [customPageCount, setCustomPageCount] = useState(1);
   const [tableData, setTableData] = useState(
     ("rows" in data && data?.rows) || []
-    // data?.products || []
+
   );
   const [filters, setFilters] = useState(
     localStorage.getItem(`filters-of-${title_slug}`)
@@ -142,18 +149,18 @@ const ReactTable = ({
   const [sortField, setSortField] = useState();
   const [tableColumns, setTableColumns] = useState(columns || []);
   const [columnOrderArr, setColumnOrderArr] = useState(
-    // JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
-    //   ? JSON.parse(
-    //     JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
-    //       .columnOrder
-    //   )
-    //   : []
+    JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
+      ? JSON.parse(
+        JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
+          .columnOrder
+      )
+      : []
   );
 
   useEffect(() => {
     if (data) {
       setTableData(("rows" in data && data?.rows) || []);
-      // setTableData(data?.products || []);
+
     }
   }, [data]);
 
@@ -179,6 +186,7 @@ const ReactTable = ({
     getTableBodyProps,
     headerGroups,
     prepareRow,
+    state,
     page,
     //pagination options
     canPreviousPage,
@@ -194,8 +202,7 @@ const ReactTable = ({
     setColumnOrder,
     toggleHideAllColumns,
     setHiddenColumns,
-    useRowSelect,
-
+    setGlobalFilter,
     columns: updatedColumns,
     state: { pageIndex, pageSize },
   } = useTable(
@@ -204,7 +211,7 @@ const ReactTable = ({
       data: tableData,
       initialState: {
         pageIndex: 0,
-        pageSize: 25,
+        pageSize: 10,
         columnOrder: columnOrderArr,
         hiddenColumns: JSON.parse(localStorage.getItem(`columns-of-${title}`))
           ? JSON.parse(
@@ -222,10 +229,15 @@ const ReactTable = ({
     },
     useColumnOrder,
     // useBlockLayout,
+    useFilters,
     useFlexLayout,
     useResizeColumns,
+    useGlobalFilter,
     // useExpanded,
-    usePagination
+    usePagination,
+    useRowSelect,
+
+
   );
   const setTableMetaData = (data) => {
     if (data) {
@@ -311,7 +323,7 @@ const ReactTable = ({
   }, [refetchInside, url]);
 
   const { mutate, isLoading: mutateLoading } = useCreateOrUpdate({
-    url: `/admin/user/preference`,
+    url: `/admin-dashboard/campaign`,
   });
 
   const postTableMetaData = () => {
@@ -436,10 +448,9 @@ const ReactTable = ({
   };
 
   useGetAll({
-
     key: `/table-metadata/${title_slug}`,
     enabled: false,
-    // enabled: !localStorage.getItem(`columns-of-${title}`),
+    enabled: !localStorage.getItem(`columns-of-${title}`),
     select: (data) => {
       return data.data;
     },
@@ -447,6 +458,9 @@ const ReactTable = ({
       setTableMetaData(data);
     },
   });
+
+
+  const { globalFilter } = state
 
   return (
     <Grid
@@ -464,11 +478,16 @@ const ReactTable = ({
         <Grid item xs={12} md={6} display="flex" alignItems={"center"}>
           {!noSearch ? (
             <>
-              <Search
+              {/* <Search
                 sx={{ width: { xs: "200px", md: "300px" } }}
                 value={query}
                 onClear={onClear}
                 onChange={onChange}
+              /> */}
+              <Globalfilter
+                filter={globalFilter}
+                setFilter={setGlobalFilter}
+                sx={{ width: { xs: "200px", md: "300px" } }}
               />
             </>
           ) : (
@@ -503,6 +522,7 @@ const ReactTable = ({
             isLoading={mutateLoading}
           />
           <SecondaryButton
+            onCick={() => localStorage.removeItem(`filters-of-${title_slug}`)}
             startIcon={
               <FilterReset
                 color={colors.primary.dark}
@@ -536,18 +556,36 @@ const ReactTable = ({
               <TableRow
                 style={{
                   width: "100%",
+
+
                 }}
                 {...headerGroup.getHeaderGroupProps()}
                 key={headerGroup.id}
               >
                 {headerGroup.headers.map((column) => (
                   <TableCell
+                    // style={{
+                    //   color: 'red'
+                    // }}
                     {...column.getHeaderProps({
-                      // style: { minWidth: column.minWidth, width: column.width },
+                      style: {
+                        minWidth: column.minWidth, width: column.width, color: '#484649',
+                        fontSize: '14px',
+                        // flex: '75 0 auto',
+                        // flex: 150,
+                        fontFamily: 'satoshi',
+                        height: '70px',
+                        alignItems: 'start',
+                        fontWeight: 500,
+                        flexDirection: 'column',
+                        padding: '5px 10px',
+                      },
                     })}
                     key={column?.id}
+
                   >
                     {column.render("Header")}
+                    {<Columnfilter column={column} />}
                     {column?.sortable !== false && (
                       <Sorting
                         column={column}
@@ -562,6 +600,21 @@ const ReactTable = ({
                       className={`resizer ${column.isResizing ? "isResizing" : ""
                         }`}
                     />
+                    {/* {column?.search !== false && (
+                      <TextField
+                        sx={{
+                          "& .MuiInputBase-root .MuiInputBase-input ": {
+                            height: '0px',
+                            background: 'white',
+                            width: "126px",
+                            borderRadius: '4px',
+                            // flex: '75 0 auto',
+
+                            border: '1px solid pink'
+                          },
+                        }}
+                      />
+                    )} */}
                   </TableCell>
                 ))}
               </TableRow>
@@ -595,15 +648,20 @@ const ReactTable = ({
                               minWidth: cell.column.minWidth,
                               width: cell.column.width,
                               height: rowHeight ? rowHeight : "40px",
+                              color: '#717171',
+                              fontSize: '14px',
+                              fontFamily: 'satoshi',
+                              fontWeight: 500,
                             },
                           })}
                           key={`${cell?.value}${index}`}
                           className="text-truncate"
                         >
-                          {cell.render("Cell")}
+                                {cell.render("Cell")}                     
                         </TableCell>
                       );
                     })}
+
                   </TableRow>
                 );
               })}

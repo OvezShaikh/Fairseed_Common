@@ -1,73 +1,124 @@
 import React from 'react'
 import ReactTable from '../../Table/index'
 import { useState } from 'react';
-import { Button, Checkbox } from '@mui/material';
+import { Button, Checkbox, TextField } from '@mui/material';
+// import CheckBox from "../../../components/inputs/checkBox"
 import { LocationConfigurationDialog } from '../../admin-console/LocationConfigurationDialog';
+import { Formik } from 'formik';
+import images from '../../../constants/images';
+
 
 const Index = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
   const columns = React.useMemo(
     () => [
-      // {
-      //   // Header: (params)=>(<Checkbox label='' name='test'/>),
-      //   Header: '-',
-      //   accessor: "category",
-      //   minWidth: 100,
-      //   width: 100,       
-      //   // cell: (params)=>(<Checkbox label='' name='test'/>),
-      //   // Cell: ({ row }) => {
-      //   //   return (<Checkbox/>);
-      //   // },
-      // },
+      {
+        id: "selection",
+
+        Header: ({ getToggleAllRowsSelectedProps }) => (
+          <Checkbox
+            color="warning"
+            {...getToggleAllRowsSelectedProps()}
+          />
+        ),
+        width: 60,
+        sortable: false,
+        Cell: ({ row }) => {
+          return (
+            <Checkbox
+              color="warning"
+              {...row.getToggleRowSelectedProps()}
+            />
+          );
+        },
+        search: false
+
+      },
+
       {
         Header: 'Id',
-        accessor: 'id'
+        accessor: 'id',
+        sortable: false,
       },
       {
         Header: 'Title',
-        accessor: 'title'
+        accessor: 'title',
+        sortable: false,
+
       },
       {
         Header: 'User',
-        accessor: 'username'
+        accessor: 'username',
+        sortable: false,
+
       },
       {
         Header: 'Email',
-        accessor: 'email'
+        accessor: 'email',
+        sortable: false,
+
       },
       {
         Header: 'Mobile',
-        accessor: 'mobile_number'
+        accessor: 'mobile_number',
+        sortable: false,
+
       },
       {
         Header: 'Goal',
-        accessor: 'goal_amount'
+        accessor: 'goal_amount',
+        sortable: false,
+
       },
       {
         Header: 'Funds Raised',
-        accessor: 'fund_raised'
+        accessor: 'fund_raised',
+        sortable: false,
+
       },
       {
         Header: 'Status',
-        accessor: 'status'
+        accessor: 'status',
+        sortable: false,
+        Cell: ({ row }) => {
+          const stat = row.status;
+          return (
+            <span style={{ color: stat === 'Rejected' ? 'red' : stat === 'Approved' ? 'green' : 'gray' }}>
+              {row?.original?.status} 
+            </span>
+          );
+        },
       },
       {
         Header: 'Date',
         accessor: 'end_date'
+        , sortable: false,
+
+      }, {
+        Header: 'Causes',
+        accessor: 'causes',
+        sortable: false,
+        Cell: ({ row }) => {
+          return (
+          <div className='flex  '>
+            <div className="w-[80px] truncate">
+            {row?.original?.title}
+            </div>
+              <a href={`/campaign-details/${row.id}`}>
+          <img className='ml-2' src={images.CausesDetails} alt="CausesDetails" />
+          </a>
+          </div>
+          );
+        },
+
       },
-      // {
-      //     Header:'Deadline',
-      //     accessor:'end_date'
-      // },
-      // {
-      //     Header:'Actions',
-      // },
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
   return (
     <div>
+
       <ReactTable
         rows={[]}
         columns={columns}
@@ -78,6 +129,7 @@ const Index = () => {
         addButton={<LocationConfigurationDialog />}
         // addButton={<Button>HElloooooo</Button>}
         selectedRowID={selectedRowID}
+        checkboxSelection={true}
       />
     </div>
   )
