@@ -254,3 +254,6 @@ color: rgba(149, 153, 157, 1);
 }
 
 
+.create-campaign-page .MuiInputBase-input{
+    -webkit-text-fill-color: rgba(0, 0, 0, 1);
+}

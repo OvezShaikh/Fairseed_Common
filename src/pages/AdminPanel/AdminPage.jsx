@@ -11,6 +11,7 @@ import Campaign from "../../components/AdminPanelPages/Campaign/Campaign";
 // import AddNew from "../../components/AdminPanelPages/Categories/AddNew"
 import ReportedCauses from "../../components/AdminPanelPages/ReportedCauses/index";
 import PaymentGateway from "../../components/AdminPanelPages/PaymentGateway/Index"
+import Withdrawals from "../../components/AdminPanelPages/Withdrawals/View"
 
 function AdminPage() {
   return (
@@ -95,7 +96,7 @@ function AdminPage() {
         path="/Withdrawals"
         element={
           <AdminLayout>
-            <h1>Withdrawals</h1>
+            <Withdrawals />
           </AdminLayout>
         }
       />

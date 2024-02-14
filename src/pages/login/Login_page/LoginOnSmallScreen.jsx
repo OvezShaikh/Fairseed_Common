@@ -4,7 +4,8 @@ import Navbar from '../../../components/layout/Navbar'
 import { Formik, Form } from 'formik';
 import styled from '@emotion/styled';
 import CheckBox from '../../../components/inputs/checkBox';
-import { Grid, Link, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 import InputField from '../../../components/inputs/InputField';
 import SecondaryButton from '../../../components/inputs/secondaryButton';
 import PrimaryButton from '../../../components/inputs/PrimaryButton'
