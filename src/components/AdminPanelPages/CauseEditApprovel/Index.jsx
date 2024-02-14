@@ -14,6 +14,8 @@ import { PiCheckFat } from "react-icons/pi";
 import { pink, red } from "@mui/material/colors";
 import UploadField from '../../inputs/UploadField/Index'
 import RadioGroup from '../../inputs/radioGroup/index'
+import ErrorIcon from "@mui/icons-material/Error";
+
 
 
 
@@ -66,7 +68,7 @@ function Index() {
                                     fontWeight: 700,
                                     fontFamily: 'satoshi',
                                     fontStyle: 'normal',
-                                    height: '22px',
+                                    fontSize: '18px',
                                 }}
                             >
                                 About the Campaign:
@@ -84,14 +86,31 @@ function Index() {
                             </div>
                         </div>
                         <div className="w-full mt-5">
-                            <InputField name={'summery'} label={"Summary"} required={"true"} sx={{
-                                padding: '20px', border: "1px solid #e2e2e2",
-                                // },
-                                "&:focus-within": {
-                                    boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
-                                    borderColor: "black",
-                                }, "& input": { height: '100px' }
-                            }} />
+                            <InputField name={'summery'} label={"Summary"} required={"true"}
+
+                                multiline
+                                info
+                                CustomInfoIcon={
+                                    <ErrorIcon
+                                        className="ms-1"
+                                        style={{
+                                            color: "red",
+                                            cursor: "pointer",
+                                            height: "18px",
+                                        }}
+                                    />
+                                }
+                                infoText={"Please be careful while adding AD Path."}
+                                rows={5}
+                                placeholder="Placeholder text"
+                                sx={{
+                                    padding: '20px', border: "1px solid #e2e2e2",
+                                    // },
+                                    "&:focus-within": {
+                                        boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
+                                        borderColor: "black",
+                                    }, "& input": { height: '100px' }
+                                }} />
                         </div>
                         <div className="w-full flex flex-col">
                             <FormLabel
@@ -118,24 +137,22 @@ function Index() {
 
                         </div>
                         <div className="flex w-[100%] gap-4">
-                            <div className="w-[50%] pt-2">
+                            <div className="w-[50%] pt-1.5">
                                 <InputField type={"date"} sx={InputStyleDate} name={"raised"} label={"Accept Donations until (Select end date):"} placeholder={"Minimum 50 INR"} />
                             </div>
 
                             <div className='w-[50%]  document-upload-div'>
-                                <Field
+
+                                <UploadField
+                                    label="Upload Attachment:"
                                     name="document"
-                                    render={({ field }) => (
-                                        <>
-                                            <UploadField
-                                                label="Document:"
-                                                name="document"
-                                                placeholder="Upload marksheets, Medical records, Fees Structure etc."
-                                            // onChange={(value) => setFieldValue('document', value)}
-                                            />
-                                        </>
-                                    )}
+                                    placeholder="Upload marksheets, Medical records, Fees Structure etc."
+                                    sx={{ padding: '20px' }}
+                                    multiple={false}
+                                // onChange={(value) => setFieldValue('adhar_front', value)}
+
                                 />
+
                             </div>
 
 
@@ -143,7 +160,7 @@ function Index() {
                         </div>
                         <div className="flex w-[100%] gap-4">
                             <div className="w-[50%]">
-                                <SelectField name={"raised"} label={"Accept Donations until (Select end date):"} placeholder={"Minimum 50 INR"} />
+                                <SelectField name={"raised"} label={"Status:"} placeholder={"Minimum 50 INR"} />
                             </div>
                             <div className="w-[50%] checkmark-div max-desktop:w-[46%] max-tablet:w-[100%]">
                                 <FormLabel className="text-capitalize mb-4 font-medium d-flex align-items-center" style={{ padding: "4px 8px 8px 8px", color: colors.text.main, fontSize: "20px", fontWeight: 700, fontFamily: "satoshi", fontStyle: "normal", height: "22px" }}>

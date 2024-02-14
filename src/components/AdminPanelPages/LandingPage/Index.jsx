@@ -12,6 +12,8 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import SuccessButton from '../../inputs/SuccessButton/Index'
 import { PiCheckFat } from "react-icons/pi";
 import { pink, red } from "@mui/material/colors";
+import ErrorIcon from "@mui/icons-material/Error";
+
 
 
 
@@ -79,7 +81,8 @@ function Index() {
                                     fontWeight: 700,
                                     fontFamily: 'satoshi',
                                     fontStyle: 'normal',
-                                    height: '22px',
+                                    // height: '22px',
+                                    fontSize: '18px'
                                 }}
                             >
                                 About the Campaign:
@@ -97,14 +100,30 @@ function Index() {
                             </div>
                         </div>
                         <div className="w-full mt-5">
-                            <InputField name={'summery'} label={"Summary"} required={"true"} sx={{
-                                padding: '20px', border: "1px solid #e2e2e2",
-                                // },
-                                "&:focus-within": {
-                                    boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
-                                    borderColor: "black",
-                                }, "& input": { height: '100px' }
-                            }} />
+                            <InputField name={'summery'} label={"Summary"} required={"true"}
+                                multiline
+                                info
+                                CustomInfoIcon={
+                                    <ErrorIcon
+                                        className="ms-1"
+                                        style={{
+                                            color: "red",
+                                            cursor: "pointer",
+                                            height: "18px",
+                                        }}
+                                    />
+                                }
+                                infoText={"Please be careful while adding AD Path."}
+                                rows={5}
+                                placeholder="Placeholder text"
+                                sx={{
+                                    padding: '20px', border: "1px solid #e2e2e2",
+                                    // },
+                                    "&:focus-within": {
+                                        boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
+                                        borderColor: "black",
+                                    }, "& input": { height: '100px' }
+                                }} />
                         </div>
                         <div className="w-full flex flex-col">
                             <FormLabel

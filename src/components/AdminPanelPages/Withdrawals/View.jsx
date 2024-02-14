@@ -4,6 +4,8 @@ import InputField from '../../inputs/InputAdminField/Index'
 import AdminSelectField from '../../inputs/AdminSelectField/Index'
 import SuccessButton from '../../inputs/SuccessButton/Index'
 import PrimaryButton from '../../inputs/PrimaryButton'
+import ErrorIcon from "@mui/icons-material/Error";
+
 
 function View() {
     return (
@@ -61,7 +63,21 @@ function View() {
                 </div>
 
                 <div className="w-full pt-5">
-                    <InputField name={"transfer"} sx={{ "& input": { height: '170px' } }} label={"Transfer Details"} />
+                    <InputField name={"transfer"} multiline
+                        info
+                        CustomInfoIcon={
+                            <ErrorIcon
+                                className="ms-1"
+                                style={{
+                                    color: "red",
+                                    cursor: "pointer",
+                                    height: "18px",
+                                }}
+                            />
+                        }
+                        infoText={"Please be careful while adding AD Path."}
+                        rows={5}
+                        placeholder="Placeholder text" label={"Transfer Details"} />
                 </div>
                 <div className="flex gap-3 pt-5">
                     <button onClick={() => { }} className='w-[69px] content-stretch h-[32px] bg-[#F7F7F7]'>
