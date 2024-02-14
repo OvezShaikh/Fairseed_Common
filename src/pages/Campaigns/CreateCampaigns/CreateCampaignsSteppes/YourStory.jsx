@@ -51,7 +51,7 @@ function YourStory({ handleBack, handleNext }) {
                     style={{
                         padding: '4px 8px 8px 8px',
                         color: colors.text.main,
-                        
+
                         fontWeight: 700,
                         fontFamily: 'satoshi',
                         fontStyle: 'normal',
@@ -87,7 +87,7 @@ Make an Appeal.`}
                     style={{
                         padding: '4px 8px 8px 8px',
                         color: colors.text.main,
-                        
+
                         fontWeight: 700,
                         fontFamily: 'satoshi',
                         fontStyle: 'normal',
@@ -110,18 +110,25 @@ Make an Appeal.`}
             </div>
 
             <div className='document-upload-div'>
-                <Field
+                {/* <Field
                     name="document"
                     render={({ field }) => (
                         <>
                             <UploadField
-                                label="Document:"
-                                name="document"
-                                placeholder="Upload marksheets, Medical records, Fees Structure etc."
                                 onChange={(value) => setFieldValue('document', value)}
                             />
                         </>
                     )}
+                /> */}
+                <UploadField
+                    label="Document:"
+                    // onChange={(file) => formik.setFieldValue("adhar", file)}
+                    name="document"
+                    placeholder="Upload marksheets, Medical records, Fees Structure etc."
+                    sx={{ padding: '20px' }}
+                    multiple={false}
+                    onChange={(value) => setFieldValue('adhar_front', value)}
+
                 />
             </div>
             <div className="flex mt-4 desktop:gap-x-[40px] max-desktop:gap-x-[24px]">

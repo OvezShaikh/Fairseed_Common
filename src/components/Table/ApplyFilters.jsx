@@ -204,7 +204,7 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                                                 "Location"
                                             )?.[0]
                                             ?.value?.map((item) => item?.id),
-                                          location_type: "multiple",
+                                          // location_type: "multiple",
                                         }
                                         : values?.filters[index]?.column
                                           ?.apiParams

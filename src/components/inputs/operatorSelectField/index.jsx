@@ -75,7 +75,7 @@ const OperatorSelectField = ({
       {!noLabel && (
         <FormLabel
           className="text-capitalize font-medium d-flex align-items-center"
-          sx={{ color: colors.text.main, fontSize: "0.8rem", height: "22px" }}
+          sx={{ color: colors.text.main, fontSize: "20px", fontFamily: 'satoshi', height: "22px", fontWeight: 700 }}
         >
           {configTextfield?.label}{" "}
         </FormLabel>
@@ -83,7 +83,12 @@ const OperatorSelectField = ({
       <Autocomplete
         {...configTextfield}
         value={value}
-        sx={{ ...sx, width: "100%" }}
+        sx={{
+          ...sx, width: "100%", "& .MuiFormControl-root .MuiInputBase-root ": {
+            height: 70,
+            // width: 300
+          }
+        }}
         options={options}
         disabled={disable}
         className={root}

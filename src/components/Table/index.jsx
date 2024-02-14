@@ -16,7 +16,6 @@ import {
   useFlexLayout,
   useFilters,
   useRowSelect,
-  useGlobalFilter,
 } from "react-table";
 import CustomPagination from "./CustomPagination";
 import {
@@ -33,10 +32,7 @@ import ManageColumns from "./ManageColumns";
 import ApplyFilters from "./ApplyFilters";
 import Sorting from "./Sorting";
 import { FilterReset } from "@carbon/icons-react";
-import { GlobalFilter } from "../inputs/Filters/Index";
-import Globalfilter from "./GlobalFilter";
 import Columnfilter from "./Columnfilter";
-
 
 const dataGridStyles = {
   borderRadius: 0,
@@ -50,7 +46,7 @@ const dataGridStyles = {
       // padding: "2px 8px 2px 6px",
     },
     "& .MuiTableCell-root.MuiTableCell-head": {
-      backgroundColor: "#e4e4e4",
+      backgroundColor: "#FFF4EB",
       fontWeight: "400",
       fontFamily: "FuturaMedium",
       color: "#000",
@@ -123,7 +119,7 @@ const ReactTable = ({
   refetchInside = false,
   rowHeight,
   isLoading,
-  downloadExcel,
+  // downloadExcel,
   extraQuery,
   showFilter = true,
   title,
@@ -138,7 +134,7 @@ const ReactTable = ({
   const [customPageCount, setCustomPageCount] = useState(1);
   const [tableData, setTableData] = useState(
     ("rows" in data && data?.rows) || []
-
+    // data?.products || []
   );
   const [filters, setFilters] = useState(
     localStorage.getItem(`filters-of-${title_slug}`)
@@ -149,18 +145,18 @@ const ReactTable = ({
   const [sortField, setSortField] = useState();
   const [tableColumns, setTableColumns] = useState(columns || []);
   const [columnOrderArr, setColumnOrderArr] = useState(
-    JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
-      ? JSON.parse(
-        JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
-          .columnOrder
-      )
-      : []
+    // JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
+    //   ? JSON.parse(
+    //     JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
+    //       .columnOrder
+    //   )
+    //   : []
   );
 
   useEffect(() => {
     if (data) {
       setTableData(("rows" in data && data?.rows) || []);
-
+      // setTableData(data?.products || []);
     }
   }, [data]);
 
@@ -202,7 +198,6 @@ const ReactTable = ({
     setColumnOrder,
     toggleHideAllColumns,
     setHiddenColumns,
-    setGlobalFilter,
     columns: updatedColumns,
     state: { pageIndex, pageSize },
   } = useTable(
@@ -232,12 +227,9 @@ const ReactTable = ({
     useFilters,
     useFlexLayout,
     useResizeColumns,
-    useGlobalFilter,
     // useExpanded,
     usePagination,
-    useRowSelect,
-
-
+    useRowSelect
   );
   const setTableMetaData = (data) => {
     if (data) {
@@ -323,7 +315,7 @@ const ReactTable = ({
   }, [refetchInside, url]);
 
   const { mutate, isLoading: mutateLoading } = useCreateOrUpdate({
-    url: `/admin-dashboard/campaign`,
+    url: `/admin/user/preference`,
   });
 
   const postTableMetaData = () => {
@@ -373,7 +365,7 @@ const ReactTable = ({
           value: Array.isArray(item?.value)
             ? item?.value?.map(
               (item) =>
-                item?.mail || item?.userPrincipalName || item?.id || item
+                item?.user?.email || item?.user?.username || item?.id || item
             )
             : item?.value,
         })),
@@ -448,9 +440,10 @@ const ReactTable = ({
   };
 
   useGetAll({
-    key: `/table-metadata/${title_slug}`,
+
+    key: `/admin-dashboard/${title_slug}`,
     enabled: false,
-    enabled: !localStorage.getItem(`columns-of-${title}`),
+    // enabled: !localStorage.getItem(`columns-of-${title}`),
     select: (data) => {
       return data.data;
     },
@@ -458,9 +451,6 @@ const ReactTable = ({
       setTableMetaData(data);
     },
   });
-
-
-  const { globalFilter } = state
 
   return (
     <Grid
@@ -478,16 +468,11 @@ const ReactTable = ({
         <Grid item xs={12} md={6} display="flex" alignItems={"center"}>
           {!noSearch ? (
             <>
-              {/* <Search
+              <Search
                 sx={{ width: { xs: "200px", md: "300px" } }}
                 value={query}
                 onClear={onClear}
                 onChange={onChange}
-              /> */}
-              <Globalfilter
-                filter={globalFilter}
-                setFilter={setGlobalFilter}
-                sx={{ width: { xs: "200px", md: "300px" } }}
               />
             </>
           ) : (
@@ -572,6 +557,7 @@ const ReactTable = ({
                         minWidth: column.minWidth, width: column.width, color: '#484649',
                         fontSize: '14px',
                         // flex: '75 0 auto',
+
                         // flex: 150,
                         fontFamily: 'satoshi',
                         height: '70px',
@@ -579,6 +565,8 @@ const ReactTable = ({
                         fontWeight: 500,
                         flexDirection: 'column',
                         padding: '5px 10px',
+
+
                       },
                     })}
                     key={column?.id}
@@ -650,18 +638,19 @@ const ReactTable = ({
                               height: rowHeight ? rowHeight : "40px",
                               color: '#717171',
                               fontSize: '14px',
+                              // flex: 150,
                               fontFamily: 'satoshi',
                               fontWeight: 500,
+
                             },
                           })}
                           key={`${cell?.value}${index}`}
                           className="text-truncate"
                         >
-                                {cell.render("Cell")}                     
+                          {cell.render("Cell")}
                         </TableCell>
                       );
                     })}
-
                   </TableRow>
                 );
               })}

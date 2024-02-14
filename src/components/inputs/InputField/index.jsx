@@ -14,6 +14,7 @@ const InputField = ({
   characterCount,
   label,
   style,
+  // multiple = false,
   sx,
   required,
   ...otherProps
@@ -146,6 +147,7 @@ const InputField = ({
             fontFamily: "satoshi",
             fontStyle: "normal",
             height: "22px",
+            width: '100%'
           }}
         >
           {label}
@@ -154,6 +156,7 @@ const InputField = ({
       )}
       <InputBase
         sx={styles}
+        // multiple={multiple}
         // style={{ ...configTextfield?.style }}
         {...textFieldConfig}
       />

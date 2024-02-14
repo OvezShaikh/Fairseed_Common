@@ -273,3 +273,17 @@ body {
   padding: 8px;
   text-align: left;
 }
+
+.Upload_admin_field {
+  border-radius: 4px;
+
+  border-left: 1px solid #dcdfe3;
+  border-top: 1px solid #dcdfe3;
+  border-bottom: 1px solid #dcdfe3;
+}
+
+.Upload_admin_field:has(.Mui-focused) {
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.15);
+  border: 1px solid black;
+  height: 7px;
+}

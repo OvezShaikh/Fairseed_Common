@@ -9,12 +9,15 @@ import SecondaryButton from '../../inputs/secondaryButton';
 
 const Campaign = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
+  
   const columns = React.useMemo(
       () => [
         {
           Header: "ID",
           accessor: "id",
+          apiURL:`/admin-dashboard/campaign`,
           sortable: false,
+          filter:'text',
           minWidth: 100,
           width: 100,
           
@@ -22,6 +25,7 @@ const Campaign = () => {
         {
           Header: "Name",
           accessor: "title", 
+          apiURL:`/admin-dashboard/campaign`,
           sortable: false,
           minWidth: 100,
           width: 100,
@@ -31,6 +35,7 @@ const Campaign = () => {
         {
           Header: "User",
           accessor: "user.username",
+          apiURL:`/admin-dashboard/campaign`,
           sortable: false,
           minWidth: 100,
           width: 100,
@@ -39,6 +44,7 @@ const Campaign = () => {
         {
           Header: "Email",
           accessor: "user.email",
+          apiURL:`/admin-dashboard/campaign`,
           sortable: false,
           minWidth: 100,
           width: 100,
@@ -47,6 +53,7 @@ const Campaign = () => {
         {
           Header: "Mobile",
           accessor: "user.mobile_number",
+          apiURL:`/admin-dashboard/campaign`,
           sortable: false,
           minWidth: 100,
           width: 100,
@@ -55,6 +62,7 @@ const Campaign = () => {
         {
           Header: "Goal",
           accessor: "goal_amount",
+          apiURL:`/admin-dashboard/campaign`,
           sortable: false,
           minWidth: 100,
           width: 100,
@@ -63,6 +71,7 @@ const Campaign = () => {
         {
           Header: "Status",
           accessor: "status",
+          apiURL:`/admin-dashboard/campaign`,
           sortable: false,
           minWidth: 100,
           width: 100,
@@ -70,14 +79,16 @@ const Campaign = () => {
         {
           Header: "Date",
           accessor: "end_date",
+          apiURL:`/admin-dashboard/campaign`,
           sortable: false,
           minWidth: 100,
           width: 100,
         },
         {
           Header: 'Actions',
-          accessor: 'actions'
-          ,sortable: false,
+          accessor: 'actions',
+          sortable: false,
+          nofilter: true,
           minWidth: 100,
           width: 100,
           Cell: ({row})=>{
@@ -102,7 +113,7 @@ return (
     manualPagination
     title={"Campaign"}
     checkboxComponent={IndeterminateCheckbox}
-    url="/admin-dashboard/campaign"
+    url={`/admin-dashboard/campaign`}
     extraQuery={{ inactive: true }}
      addButton={<LocationConfigurationDialog />}
     // addButton={<Button>HElloooooo</Button>}

@@ -1,20 +1,30 @@
 import { Button } from '@mui/material'
 import React from 'react'
 
-function Index({ text }) {
+function Index({ text, icon }) {
     return (
-        <Button
-            sx={{
+        <button
+            // variant="text"
+            style={{
+                padding: '7px',
+                borderRadius: '4px',
                 background: '#219D80',
                 color: "#FFFFFF",
                 fontSize: "14px",
                 fontFamily: 'satoshi',
                 fontWeight: 500,
-                textTransform: 'capitalize'
+                textTransform: 'capitalize',
+                display: 'flex',
+                gap: 4,
+                justifyItems: 'center',
+                justifyContent: 'center'
+
+
+
 
             }}
 
-        >{text}</Button>
+        >{icon}{" "}{text}</button>
     )
 }
 

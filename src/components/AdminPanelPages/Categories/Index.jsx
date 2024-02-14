@@ -85,7 +85,7 @@ const Index = () => {
           const stat = row.status;
           return (
             <span style={{ color: stat === 'Rejected' ? 'red' : stat === 'Approved' ? 'green' : 'gray' }}>
-              {row?.original?.status} 
+              {row?.original?.status}
             </span>
           );
         },
@@ -102,14 +102,14 @@ const Index = () => {
         sortable: false,
         Cell: ({ row }) => {
           return (
-          <div className='flex  '>
-            <div className="w-[80px] truncate">
-            {row?.original?.title}
-            </div>
+            <div className='flex  '>
+              <div className="w-[80px] truncate">
+                {row?.original?.title}
+              </div>
               <a href={`/campaign-details/${row.id}`}>
-          <img className='ml-2' src={images.CausesDetails} alt="CausesDetails" />
-          </a>
-          </div>
+                <img className='ml-2' src={images.CausesDetails} alt="CausesDetails" />
+              </a>
+            </div>
           );
         },
 
@@ -119,6 +119,8 @@ const Index = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
+
+
   return (
     <div>
 
