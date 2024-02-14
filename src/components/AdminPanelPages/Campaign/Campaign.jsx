@@ -5,6 +5,7 @@ import { Button, Checkbox } from '@mui/material';
 import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
 import { LocationConfigurationDialog } from '../../admin-console/LocationConfigurationDialog';
 import  Columnfilter  from '../../Table/Columnfilter'
+import SecondaryButton from '../../inputs/secondaryButton';
 
 const Campaign = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
@@ -13,43 +14,84 @@ const Campaign = () => {
         {
           Header: "ID",
           accessor: "id",
+          sortable: false,
+          minWidth: 100,
+          width: 100,
+          
         },
         {
           Header: "Name",
           accessor: "title", 
+          sortable: false,
+          minWidth: 100,
+          width: 100,
+          
         
         },
         {
           Header: "User",
-          accessor: "username",
+          accessor: "user.username",
+          sortable: false,
+          minWidth: 100,
+          width: 100,
       
         },
         {
           Header: "Email",
-          accessor: "email",
+          accessor: "user.email",
+          sortable: false,
+          minWidth: 100,
+          width: 100,
          
         },
         {
           Header: "Mobile",
-          accessor: "mobile",
+          accessor: "user.mobile_number",
+          sortable: false,
+          minWidth: 100,
+          width: 100,
          
         },
         {
           Header: "Goal",
           accessor: "goal_amount",
+          sortable: false,
+          minWidth: 100,
+          width: 100,
           
         },
         {
           Header: "Status",
           accessor: "status",
+          sortable: false,
+          minWidth: 100,
+          width: 100,
         },
         {
           Header: "Date",
           accessor: "end_date",
+          sortable: false,
+          minWidth: 100,
+          width: 100,
         },
-        
+        {
+          Header: 'Actions',
+          accessor: 'actions'
+          ,sortable: false,
+          minWidth: 100,
+          width: 100,
+          Cell: ({row})=>{
+            return (
+              <div className='flex'>
+                <SecondaryButton>Edit</SecondaryButton>
+                <SecondaryButton>Finalize your Campaign</SecondaryButton>
+                <SecondaryButton>Edit Bank and KYC</SecondaryButton>
+              </div>
+            )
+          }
+        }
       ],
-      []
+
     );
 return (
   <div>

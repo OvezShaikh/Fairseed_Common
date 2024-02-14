@@ -61,7 +61,7 @@ function AdminPage() {
         }
       />
       <Route
-        path="/Causes"
+        path="/Campaigns"
         element={
           <AdminLayout>
             <h1><Campaign/></h1>
