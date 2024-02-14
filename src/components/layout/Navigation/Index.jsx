@@ -11,7 +11,7 @@ function Index({ label, heading }) {
       `${pathname
         //   .replace("/", "")
         //   .replace(/\/*\[[^\]]*]/g, "")
-        //   .replace(/-/g, " ")
+          .replace(/-/g, " ")
         //   .replace(/\//g, "  ")
         // .replace("General Settings"," ")
         .slice(1)}`,
@@ -48,8 +48,8 @@ function Index({ label, heading }) {
               <img src={images.ArrowBack} alt="" />
             </div>
             <div
-              className="flex flex-col text-black/70 max-desktop:pb-0 max-tablet:pb-0 "
-              style={{ fontFamily: "satoshi", fontSize: 20, fontWeight: 700, paddingBottom: '30px' }}
+              className="flex flex-col text-black/70 max-desktop:pb-0 max-tablet:pb-0 "  
+              style={{ fontFamily: "satoshi", fontSize: 20, fontWeight: 700, paddingBottom: '30px', whiteSpace: "pre-line"}}
             >
               {title ? <>{title}</> : { label }}
 

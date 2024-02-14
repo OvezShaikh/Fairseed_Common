@@ -9,6 +9,10 @@ import Donet from "./pages/Campaigns/Donet/Index";
 import DonateSettings from "./pages/Campaigns/Donet/DonateSettings/Index";
 import CampaignsByCategory from "./pages/Campaigns/CampaignsByCategory/Index";
 import OnGoingCampaigns from "./pages/Campaigns/OnGoingCampaigns/Index";
+import StoriesOfChange from "./pages/StaticPages/StoriesOfChange/Index";
+import Associateship from "./pages/GetInvolved/Associateship";
+import Supportacampaign from "./pages/GetInvolved/Supportacampaign";
+import Internship from "./pages/GetInvolved/Intership";
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -40,6 +44,14 @@ function App() {
           />
 
           <Route path="/campaign-details/:id" element={<CurrentCampaign />} />
+
+          <Route path="/Home/Impact/StoriesOfChange" element={<StoriesOfChange />} />
+
+          <Route path="/Home/GetInvolved/Associateship" element={<Associateship />} />
+          
+          <Route path="/Home/GetInvolved/Support-a-campaign" element={<Supportacampaign />} />
+
+          <Route path="/Home/GetInvolved/Internship" element={<Internship />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer 
