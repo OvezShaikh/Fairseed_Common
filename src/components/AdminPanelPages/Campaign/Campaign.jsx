@@ -83,7 +83,7 @@ const Campaign = () => {
           Cell: ({row})=>{
             return (
               <div className='flex'>
-                <SecondaryButton>Edit</SecondaryButton>
+                <SecondaryButton >Edit</SecondaryButton>
                 <SecondaryButton>Finalize your Campaign</SecondaryButton>
                 <SecondaryButton>Edit Bank and KYC</SecondaryButton>
               </div>
