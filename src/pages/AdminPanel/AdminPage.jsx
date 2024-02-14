@@ -14,6 +14,8 @@ import PaymentGateway from "../../components/AdminPanelPages/PaymentGateway/Inde
 import Withdrawals from "../../components/AdminPanelPages/Withdrawals/View"
 import Users from "../../components/AdminPanelPages/Users/Index"
 import AddNew from "../../components/AdminPanelPages/Categories/AddNew";
+import LandingPage from "../../components/AdminPanelPages/LandingPage/Index"
+import CauseEditApprovel from "../../components/AdminPanelPages/CauseEditApprovel/Index"
 
 function AdminPage() {
   return (
@@ -50,7 +52,7 @@ function AdminPage() {
         path="/Landing-Page"
         element={
           <AdminLayout>
-            <h1>Landing Page</h1>
+            <LandingPage />
           </AdminLayout>
         }
       />
@@ -74,7 +76,7 @@ function AdminPage() {
         path="/Causes-Edit-Approval"
         element={
           <AdminLayout>
-            <h1>Causes Edit Approval</h1>
+            <CauseEditApprovel />
           </AdminLayout>
         }
       />

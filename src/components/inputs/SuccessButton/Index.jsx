@@ -1,7 +1,7 @@
 import { Button } from '@mui/material'
 import React from 'react'
 
-function Index({ text }) {
+function Index({ text, icon }) {
     return (
         <button
             // variant="text"
@@ -13,14 +13,18 @@ function Index({ text }) {
                 fontSize: "14px",
                 fontFamily: 'satoshi',
                 fontWeight: 500,
-                textTransform: 'capitalize'
+                textTransform: 'capitalize',
+                display: 'flex',
+                gap: 4,
+                justifyItems: 'center',
+                justifyContent: 'center'
 
 
 
 
             }}
 
-        >{text}</button>
+        >{icon}{" "}{text}</button>
     )
 }
 

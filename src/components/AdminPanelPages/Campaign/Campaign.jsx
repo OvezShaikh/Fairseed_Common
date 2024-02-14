@@ -24,20 +24,20 @@ const Campaign = () => {
       },
       {
         Header: "User",
-        accessor: "username",
+        accessor: "user.username",
         sortable: false,
 
 
       },
       {
         Header: "Email",
-        accessor: "email",
+        accessor: "user.email",
         sortable: false,
 
       },
       {
         Header: "Mobile",
-        accessor: "mobile",
+        accessor: "user.mobile_number",
         sortable: false,
 
       },
