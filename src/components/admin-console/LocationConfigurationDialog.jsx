@@ -14,15 +14,7 @@ import CustomSwitch from "../inputs/customSwitch";
 import SelectField from "../inputs/SelectField";
 import { toast } from "react-toastify";
 import ErrorIcon from "@mui/icons-material/Error";
-const InputStyle =
-{
-  padding: '20px', border: "1px solid #e2e2e2",
-  // },
-  "&:focus-within": {
-    boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
-    borderColor: "black",
-  },
-}
+
 
 const initialState = {
   location: "",
@@ -32,6 +24,16 @@ const initialState = {
   ad_path: "",
   active: true,
 };
+const InputStyle =
+{
+  padding: '16px', border: "1px solid #e2e2e2"
+  , borderRadius: '5px',
+  // },
+  "&:focus-within": {
+    boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
+    borderColor: " black",
+  },
+}
 
 const validations = yup.object({
   location: yup
@@ -81,7 +83,7 @@ export const LocationConfigurationDialog = ({
 
   return (
     <Dialog
-      title={`${isUpdate ? "Update" : "Add"}  Location`}
+      title={`${isUpdate ? "Update" : "Add"}  Category`}
       onClose={() => onClose && onClose()}
       button={
         isUpdate ? (
