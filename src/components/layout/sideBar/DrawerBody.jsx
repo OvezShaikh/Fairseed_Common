@@ -256,8 +256,8 @@ const DrawerBody = () => {
     },
     {
       icon: "CausesIcon",
-      path: "/AdminPanel/Causes",
-      title: "Causes",
+      path: "/AdminPanel/Campaign",
+      title: "Campaign",
     },
     {
       icon: "CausesApprovalIcon",

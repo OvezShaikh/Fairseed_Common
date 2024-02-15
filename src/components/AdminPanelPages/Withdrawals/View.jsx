@@ -4,11 +4,13 @@ import InputField from '../../inputs/InputAdminField/Index'
 import AdminSelectField from '../../inputs/AdminSelectField/Index'
 import SuccessButton from '../../inputs/SuccessButton/Index'
 import PrimaryButton from '../../inputs/PrimaryButton'
+import ErrorIcon from "@mui/icons-material/Error";
+
 
 function View() {
     return (
         <Formik>
-            <Form className='flex flex-col items-center gap-4'>
+            <Form className='flex flex-col items-center '>
                 <div className="flex gap-4 w-full">
                     <div className="w-full">
                         .<InputField name={"id"} placeholder={"Placeholder Text"} label={"ID:"} />
@@ -35,7 +37,7 @@ function View() {
                     </div>
 
                 </div>
-                <div className="w-full ">
+                <div className="w-full pt-5 ">
                     <table className='one-row-table'>
                         <tbody>
                             <tr>
@@ -60,15 +62,29 @@ function View() {
                     </table>
                 </div>
 
-                <div className="w-full ">
-                    <InputField name={"transfer"} sx={{ "& input": { height: '170px' } }} label={"Transfer Details"} />
+                <div className="w-full pt-5">
+                    <InputField name={"transfer"} multiline
+                        info
+                        CustomInfoIcon={
+                            <ErrorIcon
+                                className="ms-1"
+                                style={{
+                                    color: "red",
+                                    cursor: "pointer",
+                                    height: "18px",
+                                }}
+                            />
+                        }
+                        infoText={"Please be careful while adding AD Path."}
+                        rows={5}
+                        placeholder="Placeholder text" label={"Transfer Details"} />
                 </div>
-                <div className="flex gap-3">
-                    <button className='w-[69px] h-[32px] bg-[#F7F7F7]'>
+                <div className="flex gap-3 pt-5">
+                    <button onClick={() => { }} className='w-[69px] content-stretch h-[32px] bg-[#F7F7F7]'>
                         <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
                     </button>
-                    <SuccessButton text={"Mark as Paid"} />
-                    <PrimaryButton >
+                    <SuccessButton onClick={() => { }} text={"Mark as Paid"} />
+                    <PrimaryButton onClick={() => { }}  >
                         <h1 className='text-white font-semibold font-[satoshi]'>Reject</h1>
                     </PrimaryButton>
 
