@@ -56,7 +56,7 @@ function Index() {
       `${process.env.REACT_APP_API_URL}/campaign/category?category=${id}&page=${page}&limit=${perPage}`
     );
     if (Array.isArray(res.data.rows)) {
-      setTotalPages(res.pages_count);
+      setTotalPages(res.data.pages_count);
       setCategoryCampaignList([...categoryCampaignList, ...res.data.rows]);
       setCategoryDetail(res.data.category_data);
     } else {
