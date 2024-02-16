@@ -79,15 +79,12 @@ function General() {
     New7: "",
     New8: "",
 
-
-
-
-
   }
 
   return (
     <Formik
       initialValues={initialValues}
+      // onSubmit={handleSubmit}
     >
       <Form>
         <div className="flex flex-wrap  justify-between">

@@ -58,7 +58,6 @@ function App() {
             path="/Home/RegisterSmallScreen"
             element={<RegisterSmallScreen />}
           />
-
           <Route path="/campaign-details/:id" element={<CurrentCampaign />} />
         </Routes>
       </BrowserRouter>

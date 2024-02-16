@@ -16,6 +16,7 @@ import Users from "../../components/AdminPanelPages/Users/Index"
 import AddNew from "../../components/AdminPanelPages/Categories/AddNew";
 import LandingPage from "../../components/AdminPanelPages/LandingPage/Index"
 import CauseEditApprovel from "../../components/AdminPanelPages/CauseEditApprovel/Index"
+import CauseEdit from "../../components/AdminPanelPages/CauseEditApprovel/Index";
 
 function AdminPage() {
   return (
@@ -65,7 +66,7 @@ function AdminPage() {
         }
       />
       <Route
-        path="/Campaigns"
+        path="/Campaigns/*"
         element={
           <AdminLayout>
             <Campaign />
@@ -153,7 +154,15 @@ function AdminPage() {
           </AdminLayout>
         }
       />
-    </Routes>
+    <Route
+    path="/Edit"
+    element={
+      <AdminLayout>
+        <CauseEdit />
+      </AdminLayout>
+    }
+  />
+</Routes>
   );
 }
 

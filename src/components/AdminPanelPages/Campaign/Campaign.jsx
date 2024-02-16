@@ -6,10 +6,12 @@ import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
 import { LocationConfigurationDialog } from '../../admin-console/LocationConfigurationDialog';
 import  Columnfilter  from '../../Table/Columnfilter'
 import SecondaryButton from '../../inputs/secondaryButton';
+import CauseEdit from '../CauseEditApprovel/Index';
+import { Link } from 'react-router-dom';
 
 const Campaign = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
-  
+ 
   const columns = React.useMemo(
       () => [
         {
@@ -94,7 +96,7 @@ const Campaign = () => {
           Cell: ({row})=>{
             return (
               <div className='flex'>
-                <SecondaryButton >Edit</SecondaryButton>
+                 <Link to={'/Edit'} target={<CauseEdit id={row?.id}/>}><SecondaryButton >Edit</SecondaryButton></Link> 
                 <SecondaryButton>Finalize your Campaign</SecondaryButton>
                 <SecondaryButton>Edit Bank and KYC</SecondaryButton>
               </div>
