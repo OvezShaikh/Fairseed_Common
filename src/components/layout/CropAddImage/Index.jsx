@@ -1,6 +1,7 @@
 import React from 'react';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import PrimaryButton from '../../inputs/PrimaryButton';
+import SuccessButton from '../../inputs/SuccessButton/Index'
 
 function ImageBackgroundWithDeleteButton({ imageUrl, onDelete }) {
     const backgroundStyle = {
@@ -25,8 +26,14 @@ function ImageBackgroundWithDeleteButton({ imageUrl, onDelete }) {
                             Delete
                         </h1>
                     </PrimaryButton>
+
                 </>
-            ) : null}
+            ) : (<SuccessButton onClick={() => { }} text={"Add and Crop Image"} sx={{
+                width: '180 px',
+                height: ' 32px',
+                margin: '4px ',
+                paddingTop: '4px'
+            }} />)}
         </div>
     );
 }
