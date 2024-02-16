@@ -73,6 +73,8 @@ import LeftArrowBottomSlider from "../assets/leftarrowbs.png";
 import DashedImageUpload from "../assets/Dashed Image Upload.png";
 import UploadIcon from "../assets/UploadIcon.png";
 import CausesDetails from "../assets/CausesDetails.svg";
+import ColorFullDownArrow from "../assets/ColorfulDownArrow.png";
+import CheckBoxGradient from "../assets/CheckBoxGradient.png";
 
 export default {
   SedalCheck,
@@ -149,4 +151,6 @@ export default {
   DashedImageUpload,
   UploadIcon,
   CausesDetails,
+  ColorFullDownArrow,
+  CheckBoxGradient,
 };

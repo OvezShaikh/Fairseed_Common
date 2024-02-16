@@ -22,6 +22,10 @@ import { Link } from "react-router-dom";
 import BottomSlider from "../../components/layout/BottomSlider/Index";
 
 
+import FilterField from "../../components/inputs/FilterField/Index";
+
+
+
 
 function Home() {
   const [userList, setUserList] = useState([]);
@@ -29,6 +33,15 @@ function Home() {
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
   const [campaignCount, setCampaignCount] = useState(0);
+  const [showOptions, setShowOptions] = useState(false);
+
+
+  const filterToggle = () => {
+    // Toggle the state when the button is clicked
+    setShowOptions(!showOptions);
+  };
+
+
   const fetchUserList = async () => {
     try {
       const perPage = 8;
@@ -120,13 +133,16 @@ function Home() {
           </div>
         </div>
       </div>
-
+              
       <div className="flex flex-col flex-wrap w-full mb-[128px] items-center max-tablet:mb-[48px]">
         <div className="flex  desktop:ml-[-30px] desktop:max-w-[1760px] desktop:w-full desktop:justify-end max-desktop:w-[90%] max-desktop:flex-col max-desktop:items-end max-desktop:gap-y-[48px] max-tablet:mb-[50px] max-tablet:gap-y-[20px] scrollable-tabs-class ">
           <ScrollableTabsButtonForce />
           <button
             className="flex items-center ml-2 px-3 py-1.5 max-w-[115px] gap-x-[12px] max-desktop:px-[20px] max-desktop:py-[17px] max-tablet:py-[6px]"
             style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
+
+            onClick={filterToggle}
+
           >
             <img src={images.Funnel} />
             {/* <img src={images.Filter} /> */}
@@ -140,7 +156,15 @@ function Home() {
             }
             }>Filter</p>
           </button>
+          
         </div>
+        {showOptions && (
+       
+          <FilterField/>
+          
+        
+      )}
+      
         <div className="desktop:gap-x-[36px] desktop:gap-y-[48px] mt-[48px]  flex flex-wrap w-full justify-center desktop:max-w-[1740px] max-desktop:gap-x-[16px]  max-desktop:gap-y-[24px] max-tablet:gap-y-[48px]">
           {userList?.map((item) => {
             return (
