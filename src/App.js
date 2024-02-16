@@ -13,6 +13,11 @@ import StoriesOfChange from "./pages/StaticPages/StoriesOfChange/Index";
 import Associateship from "./pages/GetInvolved/Associateship";
 import Supportacampaign from "./pages/GetInvolved/Supportacampaign";
 import Internship from "./pages/GetInvolved/Intership";
+import Careers from "./pages/GetInvolved/Careers";
+import Partnerwithus from "./pages/GetInvolved/Partnerwithus";
+import Reports from "./pages/Our Impact/Reports";
+import KnowingFairseed from "./pages/AboutUs/KnowingFairseed";
+
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -52,6 +57,16 @@ function App() {
           <Route path="/Home/GetInvolved/Support-a-campaign" element={<Supportacampaign />} />
 
           <Route path="/Home/GetInvolved/Internship" element={<Internship />} />
+
+          <Route path="/Home/GetInvolved/Careers" element={<Careers />} />
+
+          <Route path="/Home/GetInvolved/Partner-with-us" element={<Partnerwithus />} />
+
+          <Route path="/Home/Impact/Reports" element={<Reports />} />
+
+          <Route path="/Home/About-Us/Knowing-Fairseed" element={<KnowingFairseed />} />
+
+
         </Routes>
       </BrowserRouter>
       <ToastContainer 

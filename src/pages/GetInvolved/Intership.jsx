@@ -18,7 +18,7 @@ function Internship() {
         <div className='flex flex-col justify-center items-center'>
             <Navbar />
             <div className="w-full pb-10">
-                <Navigation label={"Support a campaign"} heading={"Support a campaign"} />
+                <Navigation label={"Internship"} heading={"Internship"} />
             </div>
 
             <div className=' flex-row text-left  max-w:[1920px] max-desktop:w-[718px] max-tablet:w-[400px] gap-[10px] px-10 max-desktop:px-2 max-tablet:px-6' style={{ whiteSpace: "pre-line", fontFamily: "satoshi" }}><br />

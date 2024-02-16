@@ -39,3 +39,13 @@
 .Active {
     color: red;
 }
+
+
+
+
+.bullet-point::before {
+    content: '\2022'; /* Unicode for bullet point */
+    display: inline-block;
+    margin-right: 4px; /* Adjust the spacing between the bullet point and text */
+
+ }

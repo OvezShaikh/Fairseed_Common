@@ -71,7 +71,7 @@ import HomePageHero from "../assets/HomePageHero.png";
 import HomePageHeroTab from "../assets/HomePageHeroTab.png";
 import LeftArrowBottomSlider from "../assets/leftarrowbs.png";
 import sliderimg2 from "../assets/sliderimg2.png";
-
+import Knowingfairseed from "../assets/Knowingfairseed.png"
 
 export default {
   SedalCheck,
@@ -146,4 +146,5 @@ export default {
   HomePageHeroTab,
   LeftArrowBottomSlider,
   sliderimg2,
+  Knowingfairseed,
 };
