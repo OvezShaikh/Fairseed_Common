@@ -154,14 +154,6 @@ function AdminPage() {
           </AdminLayout>
         }
       />
-    <Route
-    path="/Edit"
-    element={
-      <AdminLayout>
-        <CauseEdit />
-      </AdminLayout>
-    }
-  />
 </Routes>
   );
 }

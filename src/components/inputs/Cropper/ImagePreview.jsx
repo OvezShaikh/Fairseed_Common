@@ -2,10 +2,9 @@ import React from "react";
 import { Dialog } from "../../layout/dialogBox";
 import PrimaryButton from "../PrimaryButton";
 
-
-const ImagePreviewDialog = ({ croppedImage }) => {
+const ImagePreviewDialog = ({ croppedImage, setOpenCrop }) => {
   return (
-    <Dialog maxWidth='sm' title={"Preview Image"}>
+    <Dialog maxWidth='sm' title={"Preview Image"} onClose={() => setOpenCrop(false)}>
       {() => (
         <>
           {/* eslint-disable-next-line */}
@@ -13,8 +12,9 @@ const ImagePreviewDialog = ({ croppedImage }) => {
           <PrimaryButton
             className={`mt-4 capitalize xl:text-sm 2xl:text-semi-base`}
             variant={"contained"}
+            onClick={() => setOpenCrop(false)}
           >
-            View Logo
+            Close
           </PrimaryButton>
         </>
       )}

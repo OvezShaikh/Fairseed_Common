@@ -12,6 +12,7 @@ import RadioGroup from "../../../inputs/radioGroupAdminPanel/index";
 import PrimaryButton from '../../../inputs/PrimaryButton'
 import ReactQuilTextField from '../../../inputs/ReactQuilTextField/Index.jsx'
 import { Form, Formik, useFormikContext, values } from "formik";
+import { useCreateOrUpdate } from "../../../../Hooks/useCreateOrUpdate.js";
 
 const styleLabel = {
   fontFamily: "satoshi",
@@ -27,38 +28,9 @@ const styleInput = {
 };
 
 function General() {
-  // const { setFieldValue, values } = useFormikContext();
+    
 
 
-  // const [valueText, setValueText] = useState('');
-
-  // const [value, setValue] = React.useState('off');
-
-  // const handleChange = (e) => {
-  //   setValue(e.target.value);
-  // };
-
-  // const data = { id: '', title: '', body: '', userId: '' };
-
-  // const [inputData, setInputData] = useState(data)
-
-  // const handleData = (e) => {
-
-  //   setInputData({ ...inputData, [e.target.name]: e.target.value })
-
-  // }
-  // const handleSubmit = (e) => {
-  //   // e.preventDefault();
-  //   axios.post('https://dummyjson.com/products/add', inputData)
-  //     .then((response) => {
-  //       console.log(response.data)
-  //     }).then(() => {
-  //       setInputData(data)
-  //     })
-
-  //   toast('data has been send');
-
-  // }
 
   const initialValues = {
     name: "",
@@ -78,13 +50,21 @@ function General() {
     New6: "",
     New7: "",
     New8: "",
-
   }
+  const { mutate } = useCreateOrUpdate({
+    url:`/admin-dashboard/gs`
+  })
 
   return (
     <Formik
       initialValues={initialValues}
-      // onSubmit={handleSubmit}
+      onSubmit={(values)=>{
+        mutate(values,{
+          onSuccess:(data)=>{
+            console.log(data);
+          }
+        })
+      }}
     >
       <Form>
         <div className="flex flex-wrap  justify-between">
@@ -145,7 +125,6 @@ function General() {
         <div className="flex gap-32 pt-8">
           <div className="  lg:w-[25%] ">
             <RadioGroup
-
               name={"New1"}
               options={[
                 { label: "On", value: "On" },
@@ -153,7 +132,6 @@ function General() {
               ]}
               label="New Registrations"
             // onChange={onChange}
-
             />
           </div>
           <div className="lg:w-[25%]">
@@ -165,7 +143,6 @@ function General() {
               ]}
               label="Auto Approve Causes"
             // onChange={onChange}
-
             />
           </div>
           <div className=" lg:w-[25%] ">
@@ -177,7 +154,6 @@ function General() {
               ]}
               label="Facebook Login"
             // onChange={onChange}
-
             />
           </div>
           <div className=" lg:w-[25%]  ">
@@ -189,7 +165,6 @@ function General() {
               ]}
               label="Google Login"
             // onChange={onChange}
-
             />
           </div>
         </div>
@@ -204,7 +179,6 @@ function General() {
               ]}
               label="Captcha"
             // onChange={onChange}
-
             />
           </div>
           <div className=" lg:w-[25%] ">
@@ -216,7 +190,6 @@ function General() {
               ]}
               label="Email Verifications"
             // onChange={onChange}
-
             />
           </div>
           <div className=" lg:w-[25%]  ">
@@ -228,7 +201,6 @@ function General() {
               ]}
               label="Input Field Title"
             // onChange={onChange}
-
             />
           </div>
           <div className=" lg:w-[25%] ">
@@ -240,7 +212,6 @@ function General() {
               ]}
               label="Input Field Title"
             // onChange={onChange}
-
             />
           </div>
 
