@@ -72,6 +72,9 @@ import HomePageHeroTab from "../assets/HomePageHeroTab.png";
 import LeftArrowBottomSlider from "../assets/leftarrowbs.png";
 import sliderimg2 from "../assets/sliderimg2.png";
 import Knowingfairseed from "../assets/Knowingfairseed.png"
+import VissionMission from "../assets/VissionMission.png"
+import valuepage from "../assets/valuepage.png"
+import ourteam from "../assets/ourteam.png"
 
 export default {
   SedalCheck,
@@ -147,4 +150,7 @@ export default {
   LeftArrowBottomSlider,
   sliderimg2,
   Knowingfairseed,
+  VissionMission,
+  valuepage,
+  ourteam
 };

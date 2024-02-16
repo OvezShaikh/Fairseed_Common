@@ -17,7 +17,10 @@ import Careers from "./pages/GetInvolved/Careers";
 import Partnerwithus from "./pages/GetInvolved/Partnerwithus";
 import Reports from "./pages/Our Impact/Reports";
 import KnowingFairseed from "./pages/AboutUs/KnowingFairseed";
-
+import VisionMission from "./pages/AboutUs/Vision&mission";
+import Objectivesandvalues from "./pages/AboutUs/Objectives&values";
+import OurTeam from "./pages/AboutUs/OurTeam";
+import HowItWorks from "./pages/HowItWorks/HowItWorks";
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -66,6 +69,13 @@ function App() {
 
           <Route path="/Home/About-Us/Knowing-Fairseed" element={<KnowingFairseed />} />
 
+          <Route path="/Home/About-Us/Vision-&-Mission" element={<VisionMission />} />
+
+          <Route path="/Home/About-Us/Objectives-&-values" element={<Objectivesandvalues />} />
+
+          <Route path="/Home/About-Us/Our-Team" element={<OurTeam />} />
+
+          <Route path="/Home/How-It-Works" element={<HowItWorks />} />
 
         </Routes>
       </BrowserRouter>

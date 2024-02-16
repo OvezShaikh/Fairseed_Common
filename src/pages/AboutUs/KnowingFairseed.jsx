@@ -6,7 +6,7 @@ import images from "../../constants/images";
 import Knowingfairseed from "../../assets/Knowingfairseed.png";
 import Navigation from "../../components/layout/Navigation/Index"
 import Footer from '../../../src/components/layout/Footer';
-import "../../App.css"
+
 
 
 function KnowingFairseed() {
