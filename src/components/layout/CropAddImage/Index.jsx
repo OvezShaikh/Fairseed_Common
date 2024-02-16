@@ -2,8 +2,14 @@ import React from 'react';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import PrimaryButton from '../../inputs/PrimaryButton';
 import SuccessButton from '../../inputs/SuccessButton/Index'
+import { ImageCropper } from '../../inputs/Cropper/ImageCropper';
+import { ImagePreviewDialog } from '../../inputs/PreviewImage/PreviewImage';
+import { useState } from 'react';
+import DropZone from '../../inputs/dragAndDrop/index';
 
 function ImageBackgroundWithDeleteButton({ imageUrl, onDelete }) {
+    const [srcImg, setSrcImg] = useState("");
+    const [openCrop, setOpenCrop] = useState(false);
     const backgroundStyle = {
         backgroundImage: `url(${imageUrl})`,
         backgroundSize: 'cover',
@@ -14,6 +20,20 @@ function ImageBackgroundWithDeleteButton({ imageUrl, onDelete }) {
         border: '2px dashed blue',
         display: 'flex',
         justifyContent: 'end',
+    };
+    const onChange = (e) => {
+        let files;
+
+        if (e) {
+            files = e;
+        }
+        const reader = new FileReader();
+        reader.onload = () => {
+            setSrcImg(reader.result);
+        };
+        reader.readAsDataURL(files[0]);
+
+        setOpenCrop(true);
     };
 
     return (
@@ -28,12 +48,42 @@ function ImageBackgroundWithDeleteButton({ imageUrl, onDelete }) {
                     </PrimaryButton>
 
                 </>
-            ) : (<SuccessButton onClick={() => { }} text={"Add and Crop Image"} sx={{
-                width: '180 px',
-                height: ' 32px',
-                margin: '4px ',
-                paddingTop: '4px'
-            }} />)}
+            ) : (
+                <>
+                    {/* <SuccessButton onClick={() => { }} text={"Add and Crop Image"} sx={{
+                        width: '180 px',
+                        height: ' 32px',
+                        margin: '4px ',
+                        paddingTop: '4px'
+                    }} /> */}
+
+                    <div className="flex flex-col text-center items-center justify-center">
+                        <img src="" alt="" />
+                        <h1 className=' text-[20px] font-bold font-[satoshi]'>Click to select image</h1>
+                        <p className='text-[#00000066] text-[16px] font-normal   font-[satoshi] w-[70%]'>The Image must be less than 5 MB. Recommended size is 850x550.
+                            Minimum height is 550 and minimum width is 850. </p>
+                    </div>
+
+                    {/* <>
+                        <DropZone
+                            onChange={onChange}
+                        >
+                            <ImageCropper
+                                srcImg={imageUrl}
+                                setOpenCrop={setOpenCrop}
+                                setsrcImg={setSrcImg}
+                            />
+
+                            <ImagePreviewDialog croppedImage={imageUrl} />
+                        </DropZone>
+                    </> */}
+
+
+
+                </>)
+
+
+            }
         </div>
     );
 }

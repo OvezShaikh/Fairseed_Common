@@ -73,6 +73,7 @@ import LeftArrowBottomSlider from "../assets/leftarrowbs.png";
 import DashedImageUpload from "../assets/Dashed Image Upload.png";
 import UploadIcon from "../assets/UploadIcon.png";
 import CausesDetails from "../assets/CausesDetails.svg";
+import Vector from "../assets/Vector.svg";
 
 export default {
   SedalCheck,
@@ -149,4 +150,5 @@ export default {
   DashedImageUpload,
   UploadIcon,
   CausesDetails,
+  Vector,
 };

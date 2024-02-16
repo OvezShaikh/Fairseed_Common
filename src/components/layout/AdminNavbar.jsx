@@ -27,7 +27,7 @@ const Navbar = () => {
         <div className="w-auto self-stretch    pb-2 pt-2 rounded justify-start items-center flex">
           {/* <input className=' bg-gray-100 p-2 relative  ' placeholder='Search' /> */}
           {/* <Searchbar /> */}
-          <div className="max-tablet:hidden max-desktop:hidden">
+          <div className="mr-3 max-tablet:hidden">
             <Search
               sx={{
                 width: '362px',
@@ -41,7 +41,7 @@ const Navbar = () => {
               }} />
           </div>
           <div className="flex-row ps-2 justify-start items-center inline-flex ">
-            <div className="flex max-tablet:hidden">
+            {/* <div className=" flex max-tablet:hidden">
               <Badge badgeContent={17} style={{ cursor: 'pointer' }} color="error">
                 <NotificationsIcon />
               </Badge>
@@ -51,7 +51,7 @@ const Navbar = () => {
               <button className="w-6 h-6 flex-1 mx-3">
                 <HelpIcon />
               </button>
-            </div>
+            </div> */}
 
             <Grid
               item

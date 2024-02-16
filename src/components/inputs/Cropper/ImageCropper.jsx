@@ -1,96 +1,95 @@
-import React, { useState, useRef } from "react";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  Grid,
+} from "@mui/material";
+
 import Cropper from "react-cropper";
+import "cropperjs/dist/cropper.css";
+import { useState } from "react";
+import { useFormikContext } from "formik";
 
-const defaultSrc =
-  "https://raw.githubusercontent.com/roadmanfong/react-cropper/master/example/img/child.jpg";
+export const ImageCropper = ({
+  srcImg,
+  setOpenCrop,
+  setsrcImg,
+}) => {
+  const [_, setCropData] = useState("#");
+  const [cropper, setCropper] = useState();
+  const { setFieldValue, values } = useFormikContext();
 
-const ImageCropper = () => {
-  // State to manage the selected image
-  const [image, setImage] = useState(defaultSrc);
-  // State to store cropped data
-  const [cropData, setCropData] = useState("#");
-  // Ref for accessing Cropper instance
-  const cropperRef = useRef(null);
-
-  // Function to handle image selection from input file
-  const onChange = (e) => {
-    e.preventDefault();
-    let files;
-    if (e.dataTransfer) {
-      files = e.dataTransfer.files;
-    } else if (e.target) {
-      files = e.target.files;
-    }
-    const reader = new FileReader();
-    reader.onload = () => {
-      // Set the selected image in the state
-      setImage(reader.result);
-    };
-    reader.readAsDataURL(files[0]);
-  };
-
-  // Function to get cropped data from the Cropper instance
   const getCropData = () => {
-    if (typeof cropperRef.current?.cropper !== "undefined") {
-      // Set the cropped data in the state
-      setCropData(cropperRef.current?.cropper.getCroppedCanvas().toDataURL());
+    if (typeof cropper !== "undefined") {
+      setCropData(cropper.getCroppedCanvas().toDataURL());
+      setsrcImg(cropper.getCroppedCanvas().toDataURL());
+      setOpenCrop(false);
+
+      var arr = cropper.getCroppedCanvas().toDataURL().split(",");
+      let mime = arr[0].match(/:(.*?);/)[1];
+      let bstr = atob(arr[1]);
+      let n = bstr.length;
+      let u8arr = new Uint8Array(n);
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+      let img = new File([u8arr], values.tenant_pic.name, { type: mime });
+      setFieldValue("tenant_pic", img);
     }
   };
 
   return (
-    <div>
-      <div style={{ width: "100%" }}>
-        {/* Input for selecting an image */}
-        <input type="file" onChange={onChange} />
-        {/* Button to use default image */}
-        <button>Use default img</button>
-        <br />
-        <br />
-        {/* Cropper component for image cropping */}
-        <Cropper
-          style={{ height: 400, width: "100%" }}
-          initialAspectRatio={1}
-          preview=".img-preview"
-          src={image}
-          ref={cropperRef}
-          viewMode={1}
-          guides={true}
-          minCropBoxHeight={10}
-          minCropBoxWidth={10}
-          background={false}
-          responsive={true}
-          checkOrientation={false}
-        />
-      </div>
-      <div>
-        {/* Preview box for the cropped image */}
-        <div className="box" style={{ width: "50%", float: "right" }}>
-          <h1>Preview</h1>
-          <div
-            className="img-preview"
-            style={{ width: "100%", float: "left", height: "300px" }}
-          />
-        </div>
-        {/* Box for displaying the cropped image */}
-        <div
-          className="box"
-          style={{ width: "50%", float: "right", height: "300px" }}
-        >
-          <h1>
-            <span>Crop</span>
-            {/* Button to trigger cropping and update state */}
-            <button style={{ float: "right" }} onClick={getCropData}>
-              Crop Image
-            </button>
-          </h1>
-          {/* Display the cropped image */}
-          <img style={{ width: "100%" }} src={cropData} alt="cropped" />
-        </div>
-      </div>
-      {/* Clear float */}
-      <br style={{ clear: "both" }} />
-    </div>
+    <>
+      <Dialog open={true}>
+        <Grid item xs={8} className='justify-content-center'>
+          <DialogContent
+            dividers
+            sx={{
+              background: "#333",
+              position: "relative",
+              height: 350,
+              width: "auto",
+              minWidth: { sm: 500 },
+            }}
+          >
+            <Cropper
+              style={{ height: 400, width: "100%" }}
+              zoomTo={0.5}
+              aspectRatio={3}
+              initialAspectRatio={3}
+              preview='.img-preview'
+              src={srcImg}
+              viewMode={1}
+              minCropBoxHeight={10}
+              minCropBoxWidth={10}
+              background={true}
+              responsive={true}
+              autoCropArea={1}
+              checkOrientation={false}
+              onInitialized={(instance) => {
+                setCropper(instance);
+              }}
+              guides={true}
+            />
+          </DialogContent>
+          <DialogActions
+            className='d-flex justify-content-center align-items-center'
+            style={{ width: "100%", marginLeft: " " }}
+            sx={{ flexDirection: "column", mx: 3, my: 2 }}
+          >
+            <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
+              <Button variant='outlined' onClick={() => setOpenCrop(false)}>
+                Cancel
+              </Button>
+              <Button variant='contained' onClick={() => getCropData()}>
+                Crop
+              </Button>
+            </Box>
+          </DialogActions>
+        </Grid>
+      </Dialog>
+    </>
   );
 };
-
-export default ImageCropper;
