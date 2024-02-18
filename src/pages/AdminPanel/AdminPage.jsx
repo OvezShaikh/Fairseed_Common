@@ -16,6 +16,7 @@ import Users from "../../components/AdminPanelPages/Users/Index"
 import AddNew from "../../components/AdminPanelPages/Categories/AddNew";
 import LandingPage from "../../components/AdminPanelPages/LandingPage/Index"
 import CauseEditApprovel from "../../components/AdminPanelPages/CauseEditApprovel/Index"
+import CauseKYC from '../../components/AdminPanelPages/CauseKYC/Index'
 
 function AdminPage() {
   return (
@@ -108,7 +109,7 @@ function AdminPage() {
         path="/Cause-KYC"
         element={
           <AdminLayout>
-            <h1>Cause-KYC</h1>
+            <CauseKYC />
           </AdminLayout>
         }
       />
