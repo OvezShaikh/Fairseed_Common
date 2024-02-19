@@ -53,7 +53,7 @@ const Index = () => {
         title={"Donations"}
         url="/admin-dashboard/donation-api"
         extraQuery={{ inactive: true }}
-        addButton={<LocationConfigurationDialog />}
+        // addButton={<LocationConfigurationDialog />}
         // addButton={<Button>HElloooooo</Button>}
         selectedRowID={selectedRowID}
         checkboxSelection={true}

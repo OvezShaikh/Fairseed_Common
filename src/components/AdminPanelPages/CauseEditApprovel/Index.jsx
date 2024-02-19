@@ -46,7 +46,7 @@ const CauseEdit = () => {
   const [srcImg, setSrcImg] = useState("")
   const [category, setCategory] = useState([]);
 
-  const { data, isSuccess } = useGetAll({
+  const {  isSuccess } = useGetAll({
     key: `/admin-dashboard/campaign/68f60765-fa19-4019-8252-c74942c07cfe
     `,
     enabled: true,
@@ -61,7 +61,7 @@ const CauseEdit = () => {
   });
   console.log(user);
 
-  const { catdata } = useGetAll({
+  useGetAll({
     key: `/campaign/campaign-category?page=1&limit=20`,
     enabled: true,
     select: (data) => {
@@ -125,7 +125,7 @@ const CauseEdit = () => {
         }
       )}
     >
-      {({ values , submitForm , handleChange}) => (
+      {({ values,handleChange}) => (
 
         <Form className='flex flex-col items-center'>
           <div className="flex w-[100%] mt-2 gap-14">
@@ -162,9 +162,9 @@ const CauseEdit = () => {
                 }))}
               />
               <div className="w-full">
-                <InputField value={values?.amount} sx={InputStyle} name={"Amount to be raised:"} label={"Amount to be raised:"} placeholder={"Minimum 50 INR"} />
+                <InputField  onChange={handleChange}  value={values?.amount} sx={InputStyle} name={"Amount to be raised:"} label={"Amount to be raised:"} placeholder={"Minimum 50 INR"} />
               </div>
-              <SelectField value={values?.location} name={"Location:"} label={"Location:"} />
+              <SelectField  onChange={handleChange}  value={values?.location} name={"Location:"} label={"Location:"} />
 
               <div className="w-full">
                 <FormLabel
@@ -186,6 +186,7 @@ const CauseEdit = () => {
                     theme="snow"
                     name='summary'
                     value={values?.summary}
+                    onChange={handleChange} 
                   />
                 </div>
               </div>
@@ -205,7 +206,7 @@ const CauseEdit = () => {
             <button onClick={() => { }} className='w-[69px] content-stretch h-[32px] bg-[#F7F7F7]'>
               <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
             </button>
-            <SuccessButton onClick={() => submitForm()} text={"Save & Approve"} icon={<PiCheckFat className='w-4 h-4 mt-1' />} />
+            <SuccessButton  type="submit" text={"Save & Approve"} icon={<PiCheckFat className='w-4 h-4 mt-1' />} />
             <PrimaryButton onClick={() => { }}  >
               <h1 className='text-white font-semibold font-[satoshi]'>Reject Modification Request</h1>
             </PrimaryButton>
