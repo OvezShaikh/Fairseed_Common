@@ -67,6 +67,7 @@ const DropZone = ({
               backgroundImage: isDragActive ? "images.DashedImageUpload" : "images.DashedImageUpload",
             }}
           >
+            
             {isLoading ? (
               <>
                 <CircularProgress
@@ -74,7 +75,6 @@ const DropZone = ({
                   variant="indeterminate"
                   className="me-2"
                 />
-
                 <Typography color={colors.secondary.dark}>
                   Uploading...
                 </Typography>

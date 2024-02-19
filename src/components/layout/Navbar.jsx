@@ -386,7 +386,7 @@ export default function Example() {
               </button>
               {
                 (localStorage.getItem('token')) ?
-                  (<ProfileAvatar />)
+                 (<ProfileAvatar />)
                   : (<button
                     className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
                   >

@@ -9,7 +9,7 @@ import SecondaryButton from '../../inputs/secondaryButton';
 import CauseEdit from '../CauseEditApprovel/Index';
 import { Link } from 'react-router-dom';
 
-const Reported_Causes = () => {
+const Reported_Campaign = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
  
   const columns = React.useMemo(
@@ -125,4 +125,4 @@ return (
 )
 }
 
-export default Reported_Causes
+export default Reported_Campaign

@@ -9,6 +9,7 @@ import images from '../../../constants/images';
 import { GoDotFill } from "react-icons/go";
 
 
+
 const Index = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
   const getStatusCellStyle = (status) => {
@@ -126,9 +127,10 @@ const Index = () => {
       {
         Header: 'Date',
         accessor: 'end_date'
-        , sortable: false,
+        ,sortable: false,
 
-      }, {
+      }, 
+      {
         Header: 'Causes',
         accessor: 'causes',
         sortable: false,
@@ -146,6 +148,7 @@ const Index = () => {
         },
 
       },
+     
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
@@ -160,7 +163,7 @@ const Index = () => {
         columns={columns}
         manualPagination
         title={"Categories"}
-        url="/admin-dashboard/campaign"
+        url="/admin-dashboard/category"
         extraQuery={{ inactive: true }}
         addButton={<LocationConfigurationDialog />}
         // addButton={<Button>HElloooooo</Button>}

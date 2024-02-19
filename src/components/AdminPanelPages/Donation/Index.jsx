@@ -9,17 +9,6 @@ const Index = () => {
     const columns = React.useMemo(
         () => [
           {
-            // Header: (params)=>(<Checkbox label='' name='test'/>),
-            Header: '-',
-            accessor: "category",
-            minWidth: 100,
-            width: 100,       
-            // cell: (params)=>(<Checkbox label='' name='test'/>),
-            // Cell: ({ row }) => {
-            //   return (<Checkbox/>);
-            // },
-          },
-          {
             Header: "ID",
             accessor: "id",
             minWidth: 100,
@@ -29,39 +18,32 @@ const Index = () => {
           {
             Header: "Name",
             accessor: "title",
-            minWidth: 150,
-            width: 200,
+            // minWidth: 150,
+            // width: 200,
             nofilter: true,
             
           },
           {
             Header: "Action",
             accessor: "description",
-            minWidth: 200,
-            width: 280,
+            // minWidth: 200,
+            // width: 280,
           
           },
           {
             Header: "Status",
             accessor: "price",
-            minWidth: 200,
-            width: 280,
+            // minWidth: 200,
+            // width: 280,
             nofilter: true,
             
           },
-          // {
-          //   Header: "city",
-          //   accessor: "city",
-          //   nofilter: true,
-          //   minWidth: 200,
-          //   width: 480,
-          //   sortable: false,
-          // },
+         
         ],
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+      
         []
       );
-      // console.log('REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
+ 
   return (
     <div>
       <ReactTable
@@ -69,9 +51,9 @@ const Index = () => {
         columns={columns}
         manualPagination
         title={"Donations"}
-        url="/products"
+        url="/admin-dashboard/donation-api"
         extraQuery={{ inactive: true }}
-        addButton={<LocationConfigurationDialog />}
+        // addButton={<LocationConfigurationDialog />}
         // addButton={<Button>HElloooooo</Button>}
         selectedRowID={selectedRowID}
         checkboxSelection={true}

@@ -11,12 +11,14 @@ import Campaign from "../../components/AdminPanelPages/Campaign/Campaign";
 // import AddNew from "../../components/AdminPanelPages/Categories/AddNew"
 import ReportedCauses from "../../components/AdminPanelPages/ReportedCauses/index";
 import PaymentGateway from "../../components/AdminPanelPages/PaymentGateway/Index"
-import Withdrawals from "../../components/AdminPanelPages/Withdrawals/View"
+import Withdrawals from "../../components/AdminPanelPages/Withdrawals/Index"
 import Users from "../../components/AdminPanelPages/Users/Index"
 import AddNew from "../../components/AdminPanelPages/Categories/AddNew";
 import LandingPage from "../../components/AdminPanelPages/LandingPage/Index"
 import CauseEditApprovel from "../../components/AdminPanelPages/CauseEditApprovel/Index"
-import CauseKYC from '../../components/AdminPanelPages/CauseKYC/Index'
+import CauseEdit from "../../components/AdminPanelPages/CauseEditApprovel/Index";
+import Scholarship from "../../components/AdminPanelPages/Scholarship Cause/Index";
+import Campaign_Kyc from "../../components/AdminPanelPages/Campaign_kyc/Index";
 
 function AdminPage() {
   return (
@@ -66,7 +68,7 @@ function AdminPage() {
         }
       />
       <Route
-        path="/Campaign"
+        path="/Campaigns/*"
         element={
           <AdminLayout>
             <Campaign />
@@ -85,7 +87,7 @@ function AdminPage() {
         path="/Scholarship-Cause"
         element={
           <AdminLayout>
-            <AddNew />
+            <Scholarship />
           </AdminLayout>
         }
       />
@@ -101,7 +103,7 @@ function AdminPage() {
         path="/Withdrawals"
         element={
           <AdminLayout>
-            <Withdrawals />
+            <Withdrawals/>
           </AdminLayout>
         }
       />
@@ -109,7 +111,7 @@ function AdminPage() {
         path="/Cause-KYC"
         element={
           <AdminLayout>
-            <CauseKYC />
+            <Campaign_Kyc/>
           </AdminLayout>
         }
       />
@@ -133,7 +135,7 @@ function AdminPage() {
         path="/Scholarships"
         element={
           <AdminLayout>
-            <AddNew />
+            <Scholarship />
           </AdminLayout>
         }
       />
@@ -154,7 +156,7 @@ function AdminPage() {
           </AdminLayout>
         }
       />
-    </Routes>
+</Routes>
   );
 }
 
