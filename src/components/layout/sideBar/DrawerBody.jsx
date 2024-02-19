@@ -256,8 +256,13 @@ const DrawerBody = () => {
     },
     {
       icon: "CausesIcon",
+<<<<<<< Updated upstream
       path: "/AdminPanel/Campaigns",
       title: "Campaigns",
+=======
+      path: "/AdminPanel/Campaign",
+      title: "Campaign",
+>>>>>>> Stashed changes
     },
     {
       icon: "CausesApprovalIcon",

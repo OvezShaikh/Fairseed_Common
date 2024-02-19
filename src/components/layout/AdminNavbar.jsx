@@ -10,7 +10,10 @@ import Badge from "@mui/material/Badge";
 
 import { Avatar, Grid, Stack } from "@mui/material";
 import { Search } from "../inputs/Search";
+<<<<<<< Updated upstream
 import { Link } from "react-router-dom";
+=======
+>>>>>>> Stashed changes
 
 const Navbar = () => {
   const isTab = useMediaQuery("(max-width: 1100px)");
@@ -30,6 +33,7 @@ const Navbar = () => {
         <div className="w-auto self-stretch    pb-2 pt-2 rounded justify-start items-center flex">
           {/* <input className=' bg-gray-100 p-2 relative  ' placeholder='Search' /> */}
           {/* <Searchbar /> */}
+<<<<<<< Updated upstream
           <div className="mr-3 max-tablet:hidden">
             <Search
               sx={{
@@ -43,6 +47,18 @@ const Navbar = () => {
                 },
               }} />
           </div>
+=======
+          <Search sx={{
+            width: '362px',
+            background: '#F7F8F8',
+            "& .MuiInputBase-root .MuiOutlinedInput-notchedOutline": {
+              border: `none`,
+            },
+            "& .MuiInputBase-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              border: `none`,
+            },
+          }} />
+>>>>>>> Stashed changes
           <div className="flex-row ps-2 justify-start items-center inline-flex ">
             {/* <div className=" flex max-tablet:hidden">
               <Badge badgeContent={17} style={{ cursor: 'pointer' }} color="error">

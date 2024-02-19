@@ -68,10 +68,17 @@ function AdminPage() {
         }
       />
       <Route
+<<<<<<< Updated upstream
         path="/Campaigns/*"
         element={
           <AdminLayout>
             <Campaign />
+=======
+        path="/Campaign"
+        element={
+          <AdminLayout>
+            <h1>Campaign</h1>
+>>>>>>> Stashed changes
           </AdminLayout>
         }
       />
