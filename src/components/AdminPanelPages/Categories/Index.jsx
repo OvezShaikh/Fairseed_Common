@@ -6,10 +6,50 @@ import { Button, Checkbox, TextField } from '@mui/material';
 import { LocationConfigurationDialog } from '../../admin-console/LocationConfigurationDialog';
 import { Formik } from 'formik';
 import images from '../../../constants/images';
+import { GoDotFill } from "react-icons/go";
 
 
 const Index = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
+  const getStatusCellStyle = (status) => {
+    console.log('Status:', status);
+    if (status === 'Pending') {
+      return {
+        background: '#EBF0ED',
+        color: '#717171'
+      };
+    } else if (status === 'Active') {
+      return {
+        background: '#ECFDF3  ',
+
+        color: '#037847',
+      };
+    }
+    return {
+      color: 'gray'
+    };
+  };
+  // const Status = ({ values }) => {
+  //   // Loop through the array and create a badge-like component instead of a comma-separated string
+  //   return (
+  //     <>
+  //       {values.map((Status, idx) => {
+  //         return (
+  //           <span key={idx} className="badge">
+  //             {Status}
+  //           </span>
+  //         );
+  //       })}
+  //     </>
+  //   );
+  // };
+
+  const StatusCell = ({ value }) => (
+    <div className=' flex justify-center gap-1  items-center w-[81px] h-[22px] rounded-3xl' style={getStatusCellStyle(value)}>
+      <span className='' style={getStatusCellStyle(value)}><GoDotFill /></span>
+      <span className='' style={getStatusCellStyle(value)}>{value}</span>
+    </div>
+  );
   const columns = React.useMemo(
     () => [
       {
@@ -80,14 +120,8 @@ const Index = () => {
         Header: 'Status',
         accessor: 'status',
         sortable: false,
-        Cell: ({ row }) => {
-          const stat = row.status;
-          return (
-            <span style={{ color: stat === 'Rejected' ? 'red' : stat === 'Approved' ? 'green' : 'gray' }}>
-              {row?.original?.status}
-            </span>
-          );
-        },
+        Cell: StatusCell,
+
       },
       {
         Header: 'Date',

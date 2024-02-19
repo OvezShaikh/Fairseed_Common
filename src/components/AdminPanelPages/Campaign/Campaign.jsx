@@ -44,7 +44,7 @@ const Campaign = () => {
   // };
 
   const StatusCell = ({ value }) => (
-    <div className=' flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl' style={getStatusCellStyle(value)}>
+    <div className=' flex justify-center gap-1  items-center w-[81px] h-[22px] rounded-3xl' style={getStatusCellStyle(value)}>
       <span className='' style={getStatusCellStyle(value)}><GoDotFill /></span>
       <span className='' style={getStatusCellStyle(value)}>{value}</span>
     </div>
