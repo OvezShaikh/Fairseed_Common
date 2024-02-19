@@ -65,9 +65,9 @@ function ImageBackgroundWithDeleteButton({ imageUrl, onDelete }) {
                     </div>
 
                     {/* <>
-                        <DropZone
-                            onChange={onChange}
-                        >
+                            <DropZone
+                                onChange={onChange}
+                            >
                             <ImageCropper
                                 srcImg={imageUrl}
                                 setOpenCrop={setOpenCrop}

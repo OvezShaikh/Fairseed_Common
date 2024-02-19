@@ -10,6 +10,7 @@ import Badge from "@mui/material/Badge";
 
 import { Avatar, Grid, Stack } from "@mui/material";
 import { Search } from "../inputs/Search";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const isTab = useMediaQuery("(max-width: 1100px)");
@@ -21,7 +22,9 @@ const Navbar = () => {
       <nav className=" fixed top-0 left-0 right-0 z-10 pl-5 pr-5 bg-white border-b-2 border-[#D8DBDF] max-tablet:pl-2 border-solid justify-between  items-center inline-flex">
         <div className="w-[815.56px] self-stretch pt-2 pb-2 justify-start items-center gap-4 max-tablet:pl-0 flex">
           <div className="w-24 h-9 relative">
-            <img src={images.Logo} alt="" />
+            <Link to={'/Home'} >
+              <img src={images.Logo} alt="" />
+            </Link>
           </div>
         </div>
         <div className="w-auto self-stretch    pb-2 pt-2 rounded justify-start items-center flex">

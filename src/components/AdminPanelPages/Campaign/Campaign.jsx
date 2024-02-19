@@ -8,6 +8,18 @@ import Columnfilter from '../../Table/Columnfilter'
 
 const Campaign = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
+  const getStatusCellStyle = (status) => {
+    // Define styles for different statuses
+    if (status === 'pending') {
+      return { color: 'red' }; // Set color to red for pending status
+    } else if (status === 'active') {
+      return { color: 'green' }; // Set color to green for active status
+    }
+    return {}; // Default style
+  };
+  const StatusCell = ({ value }) => (
+    <span style={getStatusCellStyle(value)}>{value}</span>
+  );
   const columns = React.useMemo(
     () => [
       {
@@ -48,10 +60,11 @@ const Campaign = () => {
 
       },
       {
-        Header: "Status",
-        accessor: "status",
-
+        Header: 'Status',
+        accessor: 'status',
         sortable: false,
+        Cell: StatusCell,
+
       },
       {
         Header: "Date",
