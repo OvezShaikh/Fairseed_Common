@@ -12,7 +12,7 @@ function YourComponent({ imageUrl, sx }) {
     return (
         <div className="w-[100%]">
             {!isFullScreen && (
-                <div className=" w-full " style={{ ...sx, border: "2px dashed blue", borderRadius: '12px', backgroundColor: imageUrl ? 'transparent' : '#F7FAFF', position: 'relative' }}>
+                <div className=" w-full max-desktop:w-[100%]" style={{ ...sx, border: "2px dashed blue", borderRadius: '12px', backgroundColor: imageUrl ? 'transparent' : '#F7FAFF', position: 'relative' }}>
                     {imageUrl ? (
                         <img src={imageUrl} alt="Your Image" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0, cursor: 'pointer' }} onClick={toggleFullScreen} />
                     ) : null}
