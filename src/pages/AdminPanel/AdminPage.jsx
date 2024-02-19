@@ -68,17 +68,10 @@ function AdminPage() {
         }
       />
       <Route
-<<<<<<< Updated upstream
-        path="/Campaigns/*"
-        element={
-          <AdminLayout>
-            <Campaign />
-=======
         path="/Campaign"
         element={
           <AdminLayout>
             <h1>Campaign</h1>
->>>>>>> Stashed changes
           </AdminLayout>
         }
       />
@@ -110,7 +103,7 @@ function AdminPage() {
         path="/Withdrawals"
         element={
           <AdminLayout>
-            <Withdrawals/>
+            <Withdrawals />
           </AdminLayout>
         }
       />
@@ -118,7 +111,7 @@ function AdminPage() {
         path="/Cause-KYC"
         element={
           <AdminLayout>
-            <Campaign_Kyc/>
+            <Campaign_Kyc />
           </AdminLayout>
         }
       />
@@ -163,7 +156,7 @@ function AdminPage() {
           </AdminLayout>
         }
       />
-</Routes>
+    </Routes>
   );
 }
 
