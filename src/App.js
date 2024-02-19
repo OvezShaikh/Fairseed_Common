@@ -58,6 +58,7 @@ function App() {
             path="/Home/RegisterSmallScreen"
             element={<RegisterSmallScreen />}
           />
+
           <Route path="/campaign-details/:id" element={<CurrentCampaign />} />
         </Routes>
       </BrowserRouter>
@@ -68,11 +69,9 @@ function App() {
 
 export default App;
 {
-  /* <Route  
-  path='/Home/CurrentCampaign' element={<CurrentCampaign/>}/> */
+  /* <Route path='/Home/CurrentCampaign' element={<CurrentCampaign/>}/> */
 }
 
 {
-  /* <Route  
-  path='/Home/ReligiousEducationCampaigns/:id' element={<ReligiousEducationCampaigns/>}/>  */
+  /* <Route path='/Home/ReligiousEducationCampaigns/:id' element={<ReligiousEducationCampaigns/>}/>  */
 }

@@ -11,14 +11,12 @@ import Campaign from "../../components/AdminPanelPages/Campaign/Campaign";
 // import AddNew from "../../components/AdminPanelPages/Categories/AddNew"
 import ReportedCauses from "../../components/AdminPanelPages/ReportedCauses/index";
 import PaymentGateway from "../../components/AdminPanelPages/PaymentGateway/Index"
-import Withdrawals from "../../components/AdminPanelPages/Withdrawals/Index"
+import Withdrawals from "../../components/AdminPanelPages/Withdrawals/View"
 import Users from "../../components/AdminPanelPages/Users/Index"
 import AddNew from "../../components/AdminPanelPages/Categories/AddNew";
 import LandingPage from "../../components/AdminPanelPages/LandingPage/Index"
 import CauseEditApprovel from "../../components/AdminPanelPages/CauseEditApprovel/Index"
-import CauseEdit from "../../components/AdminPanelPages/CauseEditApprovel/Index";
-import Scholarship from "../../components/AdminPanelPages/Scholarship Cause/Index";
-import Campaign_Kyc from "../../components/AdminPanelPages/Campaign_kyc/Index";
+import CauseKYC from '../../components/AdminPanelPages/CauseKYC/Index'
 
 function AdminPage() {
   return (
@@ -71,7 +69,7 @@ function AdminPage() {
         path="/Campaign"
         element={
           <AdminLayout>
-            <h1>Campaign</h1>
+            <Campaign />
           </AdminLayout>
         }
       />
@@ -87,7 +85,7 @@ function AdminPage() {
         path="/Scholarship-Cause"
         element={
           <AdminLayout>
-            <Scholarship />
+            <AddNew />
           </AdminLayout>
         }
       />
@@ -111,7 +109,7 @@ function AdminPage() {
         path="/Cause-KYC"
         element={
           <AdminLayout>
-            <Campaign_Kyc />
+            <CauseKYC />
           </AdminLayout>
         }
       />
@@ -135,7 +133,7 @@ function AdminPage() {
         path="/Scholarships"
         element={
           <AdminLayout>
-            <Scholarship />
+            <AddNew />
           </AdminLayout>
         }
       />

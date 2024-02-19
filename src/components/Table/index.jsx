@@ -365,7 +365,7 @@ const ReactTable = ({
           value: Array.isArray(item?.value)
             ? item?.value?.map(
               (item) =>
-                item?.user?.email || item?.user?.username || item?.id || item
+                item?.mail || item?.userPrincipalName || item?.id || item
             )
             : item?.value,
         })),

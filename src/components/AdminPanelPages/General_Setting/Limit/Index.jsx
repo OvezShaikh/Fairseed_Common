@@ -1,7 +1,9 @@
 import React from 'react'
+import Input from "@mui/joy/Input";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import { FormHelperText } from '@mui/material';
+import InputField from '../../../inputs/InputField';
 import PrimaryButton from '../../../inputs/PrimaryButton';
 import { Form, Formik } from 'formik';
 import InputAdminField from "../../../inputs/InputAdminField/Index"
@@ -67,7 +69,7 @@ function Limit() {
             </div>
           </FormControl>
         </div>
-        <PrimaryButton type="submit" >
+        <PrimaryButton >
           <h1 className='text-white font-semibold font-[satoshi]'>Save</h1>
         </PrimaryButton>
       </Form>

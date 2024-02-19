@@ -253,7 +253,6 @@ body {
   text-decoration: underline;
 }
 
-<<<<<<< Updated upstream
 .one-row-table {
   border-collapse: collapse;
   width: 100%;
@@ -289,8 +288,6 @@ body {
   height: 7px;
 }
 
-=======
->>>>>>> Stashed changes
 .breadcrumbs_navigation>ol>.MuiBreadcrumbs-li:last-child {
   color: black;
 }
