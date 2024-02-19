@@ -7,10 +7,42 @@ import { LocationConfigurationDialog } from '../../admin-console/LocationConfigu
 import { Formik } from 'formik';
 import images from '../../../constants/images';
 
+import { GoDotFill } from "react-icons/go";
+import CauseEdit from '../CauseEditApprovel/Index';
+import SecondaryButton from '../../inputs/secondaryButton';
+import { Link } from 'react-router-dom';
+
+
 
 
 const Index = () => {
+
   const [selectedRowID, setSelectedRowID] = useState(null);
+
+  const getStatusCellStyle = (value) => {
+    console.log('Status:', value);
+    if (value === true) {
+      return {
+        background: '#ECFDF3',
+        color: '#037847'
+      };
+    } else if (value === false ) {
+      return {
+        background: '#f5d0d0',
+        color: '#f03c24',
+      };
+    }
+  };
+ 
+
+  const StatusCell = ({ value }) => (
+    <div className=' flex justify-center gap-1  items-center w-[60px] h-[22px] rounded-3xl' style={getStatusCellStyle(value)}>
+      <span className='' style={getStatusCellStyle(value)}><GoDotFill /></span>
+      <span className='' style={getStatusCellStyle(value)}>{
+      value ? ("on") : ("off")
+      }</span>
+    </div>
+  );
   const columns = React.useMemo(
     () => [
       {
@@ -42,78 +74,38 @@ const Index = () => {
         sortable: false,
       },
       {
-        Header: 'Title',
-        accessor: 'title',
-        sortable: false,
-
-      },
-      {
         Header: 'User',
         accessor: 'username',
         sortable: false,
 
       },
-      {
-        Header: 'Email',
-        accessor: 'email',
-        sortable: false,
-
-      },
-      {
-        Header: 'Mobile',
-        accessor: 'mobile_number',
-        sortable: false,
-
-      },
-      {
-        Header: 'Goal',
-        accessor: 'goal_amount',
-        sortable: false,
-
-      },
-      {
-        Header: 'Funds Raised',
-        accessor: 'fund_raised',
-        sortable: false,
-
-      },
+    
       {
         Header: 'Status',
-        accessor: 'status',
+        accessor: 'is_active',
         sortable: false,
-        Cell: ({ row }) => {
-          const stat = row.status;
-          return (
-            <span style={{ color: stat === 'Rejected' ? 'red' : stat === 'Approved' ? 'green' : 'gray' }}>
-              {row?.original?.status}
-            </span>
-          );
-        },
+       Cell:StatusCell,
       },
-      {
-        Header: 'Date',
-        accessor: 'end_date'
-        ,sortable: false,
 
-      }, 
       {
-        Header: 'Causes',
-        accessor: 'causes',
+        Header: 'Actions',
+        accessor: 'actions',
         sortable: false,
-        Cell: ({ row }) => {
+        nofilter: true,
+        minWidth: 100,
+        width: 200,
+        Cell: ({row})=>{
           return (
-            <div className='flex  '>
-              <div className="w-[80px] truncate">
-                {row?.original?.title}
-              </div>
-              <a href={`/campaign-details/${row.id}`}>
-                <img className='ml-2' src={images.CausesDetails} alt="CausesDetails" />
-              </a>
+            <div className='flex'>
+               <Link to={'/Edit'} target={<CauseEdit id={row?.id}/>}><SecondaryButton >Edit</SecondaryButton></Link> 
+              <SecondaryButton>Finalize your Campaign</SecondaryButton>
+              <SecondaryButton>Edit Bank and KYC</SecondaryButton>
             </div>
-          );
-        },
-
-      },
+          )
+        }
+      }
+     
+     
      
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -129,7 +121,7 @@ const Index = () => {
         columns={columns}
         manualPagination
         title={"Categories"}
-        url="/admin-dashboard/category"
+        url="/admin-dashboard/category?page=1&limit=10"
         extraQuery={{ inactive: true }}
         addButton={<LocationConfigurationDialog />}
         // addButton={<Button>HElloooooo</Button>}

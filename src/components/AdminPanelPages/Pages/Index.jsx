@@ -66,67 +66,13 @@ const Page = () => {
           
         },
         {
-          Header: "Name",
+          Header: "Title",
           accessor: "title", 
           apiURL:`/admin-dashboard/campaign`,
           sortable: false,
           minWidth: 100,
           width: 100,
           
-        
-        },
-        {
-          Header: "User",
-          accessor: "user.username",
-          apiURL:`/admin-dashboard/campaign`,
-          sortable: false,
-          minWidth: 100,
-          width: 100,
-      
-        },
-        {
-          Header: "Email",
-          accessor: "user.email",
-          apiURL:`/admin-dashboard/campaign`,
-          sortable: false,
-          minWidth: 100,
-          width: 100,
-         
-        },
-        {
-          Header: "Mobile",
-          accessor: "user.mobile_number",
-          apiURL:`/admin-dashboard/campaign`,
-          sortable: false,
-          minWidth: 100,
-          width: 100,
-         
-        },
-        {
-          Header: "Goal",
-          accessor: "goal_amount",
-          apiURL:`/admin-dashboard/campaign`,
-          sortable: false,
-          minWidth: 100,
-          width: 100,
-          
-        },
-        {
-          Header: "Status",
-          accessor: "status",
-          apiURL:`/admin-dashboard/campaign`,
-          sortable: false,
-          minWidth: 100,
-          width: 100,
-          Cell: StatusCell,
-        },
-        {
-          Header: "Date",
-          accessor: "end_date",
-          apiURL:`/admin-dashboard/campaign`,
-          sortable: false,
-          minWidth: 100,
-          width: 100,
         },
         {
           Header: 'Actions',

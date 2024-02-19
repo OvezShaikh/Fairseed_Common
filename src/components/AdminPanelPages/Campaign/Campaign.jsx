@@ -31,20 +31,7 @@ const Campaign = () => {
       color: 'gray'
     };
   };
-  // const Status = ({ values }) => {
-  //   // Loop through the array and create a badge-like component instead of a comma-separated string
-  //   return (
-  //     <>
-  //       {values.map((Status, idx) => {
-  //         return (
-  //           <span key={idx} className="badge">
-  //             {Status}
-  //           </span>
-  //         );
-  //       })}
-  //     </>
-  //   );
-  // };
+ 
 
   const StatusCell = ({ value }) => (
     <div className=' flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl' style={getStatusCellStyle(value)}>
@@ -66,7 +53,7 @@ const Campaign = () => {
           
         },
         {
-          Header: "Name",
+          Header: "Title",
           accessor: "title", 
           apiURL:`/admin-dashboard/campaign`,
           sortable: false,
@@ -121,7 +108,7 @@ const Campaign = () => {
           Cell:StatusCell,
         },
         {
-          Header: "Date",
+          Header: "Deadline",
           accessor: "end_date",
           apiURL:`/admin-dashboard/campaign`,
           sortable: false,
@@ -134,7 +121,7 @@ const Campaign = () => {
           sortable: false,
           nofilter: true,
           minWidth: 100,
-          width: 100,
+          width: 250,
           Cell: ({row})=>{
             return (
               <div className='flex'>
