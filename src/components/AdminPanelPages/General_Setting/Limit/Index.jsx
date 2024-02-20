@@ -15,13 +15,13 @@ const styleLabel = {
 
 
 const initialValues = {
-  NoOfCampaigns: "",
-  File: "",
+  num_campaigns: 0,
+  max_file_size: "",
   amount: "",
   Minimum: "",
   Maximum: "",
-  MinimumCampaign: "",
-  MaximumCampaign: ""
+  campaign_min_amount: "",
+  campaign_max_amount: ""
 
 }
 

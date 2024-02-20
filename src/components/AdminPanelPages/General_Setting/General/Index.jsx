@@ -23,6 +23,7 @@ const styleInput = {
 const initialValues = {
   namesite: "",
   welcome_subtitle: "",
+  welcome_text: "welcome text",
   description: "",
   email_admin: "",
   tandc_url: "",
@@ -30,14 +31,11 @@ const initialValues = {
   keywords_data: "",
   privacy_policy_url: "",
   date_time: "",
-  new_registration_enabled: "",
-  auto_approve_enabled: "",
-  email_verification_enabled: "",
-  facebook_login_enabled: "",
-  google_login_enabled: "",
-  New6: "",
-  New7: "",
-  New8: "",
+  new_registration_enabled: false,
+  auto_approve_enabled: false,
+  email_verification_enabled: false,
+  facebook_login_enabled: false,
+  google_login_enabled: false,
 }
 
 function General() {
@@ -61,6 +59,8 @@ function General() {
         });
       }}
     >
+      {({values ,setFieldValue })=>(
+     
       <Form>
         <div className="flex flex-wrap  justify-between">
           <div className="w-[24%] ">
@@ -82,12 +82,12 @@ function General() {
           <FormLabel style={styleLabel}>Description</FormLabel>
           {/* <TextEditor  /> */}
           <ReactQuilTextField
-            theme="snow"
-            name='description'
-            // value={values.summary}
+            theme={"snow"}
+            name={'description'}
+            value={values.description}
             placeholder="Summarize in 100 words max."
             style={{ '& .ql-editor': { minHeight: '50px' } }}
-          // onChange={(value) => setFieldValue('summary', value)}
+          onChange={(value) => setFieldValue('description', value)}
           />
         </div>
         <div className="flex gap-4 pt-8">
@@ -122,8 +122,8 @@ function General() {
             <RadioGroup
               name={"new_registration_enabled"}
               options={[
-                { label: "On", value: 'true' },
-                { label: "Off", value:'false' },
+                { label: "On", value: true },
+                { label: "Off", value:false },
               ]}
               label="New Registrations"
             // onChange={onChange}
@@ -133,8 +133,8 @@ function General() {
             <RadioGroup
               name={"auto_approve_enabled"}
               options={[
-                { label: "On", value: 'true' },
-                { label: "Off", value: 'false' },
+                { label: "On", value: true },
+                { label: "Off", value: false },
               ]}
               label="Auto Approve Causes"
             // onChange={onChange}
@@ -144,8 +144,8 @@ function General() {
             <RadioGroup
               name={"facebook_login_enabled"}
               options={[
-                { label: "On", value:'true' },
-                { label: "Off", value: 'false' },
+                { label: "On", value:true },
+                { label: "Off", value: false },
               ]}
               label="Facebook Login"
             // onChange={onChange}
@@ -155,8 +155,8 @@ function General() {
             <RadioGroup
               name={"google_login_enabled"}
               options={[
-                { label: "On", value: 'true' },
-                { label: "Off", value: 'false' },
+                { label: "On", value: true },
+                { label: "Off", value: false },
               ]}
               label="Google Login"
             // onChange={onChange}
@@ -169,8 +169,8 @@ function General() {
             <RadioGroup
               name={"New5"}
               options={[
-                { label: "On", value: 'true' },
-                { label: "Off", value: 'false' },
+                { label: "On", value: true },
+                { label: "Off", value: false },
               ]}
               label="Captcha"
             // onChange={onChange}
@@ -180,8 +180,8 @@ function General() {
             <RadioGroup
               name={"email_verification_enabled"}
               options={[
-                { label: "On", value: 'true' },
-                { label: "Off", value: 'false' },
+                { label: "On", value: true },
+                { label: "Off", value: false },
               ]}
               label="Email Verifications"
             // onChange={onChange}
@@ -197,6 +197,7 @@ function General() {
           </PrimaryButton>
         </div>
       </Form>
+       )}
     </Formik>
   );
 }

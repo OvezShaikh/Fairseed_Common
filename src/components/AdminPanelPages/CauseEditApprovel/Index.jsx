@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import InputField from '../../inputs/InputField/index'
 import SelectField from "../../inputs/SelectField/index"
 import PrimaryButton from '../../inputs/PrimaryButton'
@@ -15,206 +15,318 @@ import { pink, red } from "@mui/material/colors";
 import UploadField from '../../inputs/UploadField/Index'
 import RadioGroup from '../../inputs/radioGroup/index'
 import ErrorIcon from "@mui/icons-material/Error";
-import { height } from '@mui/system'
+import ImageEditor from '../../layout/ImageEditor/Index'
+import ImageDisplay from '../../layout/CropAddImage/Index'
+import { useState } from 'react'
+import ImageBackgroundWithDeleteButton from '../../layout/CropAddImage/Index';
+import Attachments from '../../layout/Attachments/Index'
 import { useCreateOrUpdate, useGetAll } from '../../../Hooks'
-import ImageCropper from '../../inputs/Cropper/ImageCropper'
-import ImagePreviewDialog from '../../inputs/Cropper/ImagePreview'
-import DropZone from '../../inputs/dragAndDrop'
 
 
-const InputStyle = {
-  padding: '20px',
-  border: "1px solid #e2e2e2",
-  "&:focus-within": {
-    boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15)`,
-    borderColor: "black",
-  },
+
+
+
+
+import { height } from '@mui/system'
+const InputStyle =
+{
+    padding: '20px', border: "1px solid #e2e2e2",
+    // },
+    "&:focus-within": {
+        boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
+        borderColor: "black",
+    },
+}
+const InputStyleDate =
+{
+    padding: '12px', border: "1px solid #e2e2e2",
+    // },
+    "&:focus-within": {
+        boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
+        borderColor: "black",
+    },
 }
 
-const InputStyleDate = {
-  padding: '12px',
-  border: "1px solid #e2e2e2",
-  "&:focus-within": {
-    boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15)`,
-    borderColor: "black",
-  },
+const initialValues = {
+
+    TitleofCampaign: '',
+    document: '',
 }
 
-const CauseEdit = () => {
-  const [user, setUser] = useState({})
-  const [OpenCrop, setOpenCrop] = useState(false);
-  const [srcImg, setSrcImg] = useState("")
-  const [category, setCategory] = useState([]);
+function Index() {
+    const imageUrlFromBackend = 'https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'
+    const [documents, setDocuments] = useState([]);
+    const [category, setCategory] = useState([]);
 
-  const {  isSuccess } = useGetAll({
-    key: `/admin-dashboard/campaign/68f60765-fa19-4019-8252-c74942c07cfe
-    `,
-    enabled: true,
-    select: (data) => {
-      console.log(data.data.data);
-      return data.data.data;
-    },
-    onSuccess: (data) => {
-      setUser(data);
+    const handleDocumentUpload = (documentUrl) => {
+        setDocuments([...documents, documentUrl]);
+        console.log(setDocuments, '================>docs');
+    };
 
-    },
-  });
-  console.log(user);
+    const [user, setUser] = useState({})
 
-  useGetAll({
-    key: `/campaign/campaign-category?page=1&limit=20`,
-    enabled: true,
-    select: (data) => {
-      console.log(data.data.rows);
-      return data.data.rows;
-    },
-    onSuccess: (data) => {
-      setCategory(data);
-    },
-  });
+    const { submitForm } = useFormikContext
 
-  const { mutate } = useCreateOrUpdate(
-    {
-      url:'/admin-dashboard/campaign/68f60765-fa19-4019-8252-c74942c07cfe'
+    const [imageUrl, setImageUrl] = useState('https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'); // State to store the image URL
+
+    const handleDelete = () => {
+        // Logic to delete the image from the backend goes here
+        // After successful deletion, update the imageUrl state
+        setImageUrl('');
+    };
+
+    const img = [
+        "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+        "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+        "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+
+    ]
+    const { data, isSuccess } = useGetAll({
+        key: `/admin-dashboard/campaign/16399639-ba2c-44e4-94a6-294e11cb06a3
+        `,
+        enabled: true,
+        select: (data) => {
+            console.log(data.data.data);
+            return data.data.data;
+        },
+        onSuccess: (data) => {
+            setUser(data);
+
+        },
+    });
+    const initial_values = {
+        title: user.title || "",
+        amount: user.goal_amount || "",
+        location: user.location || "",
+        summary: user.summary || "",
+        status: user.status || "",
+        cpg_image: user.campaign_image || "",
+        init_category: user?.category?.name || "",
+    };
+
+    if (!isSuccess) {
+        return <div>Loading...</div>;
     }
-  )
+    console.log(initial_values);
 
-  //   const handleDelete = () => {
-  //     // Logic to delete the image from the backend goes here
-  //     // After successful deletion, update the imageUrl state
-  //     setImageUrl('');
-  //     };
+    return (
+        <Formik
+            initialValues={initial_values}
+            enableReinitialize={true}
 
-  const initial_values = {
-    title: user.title || "",
-    amount: user.goal_amount || "",
-    location: user.location || "",
-    summary: user.summary || "",
-    status: user.status || "",
-    image: user.campaign_image || "",
-    init_category: user?.category?.name || ""
-  };
+        >
+            {({ values }) => (
 
-  if (!isSuccess) {
-    return <div>Loading...</div>;
-  }
-  console.log(initial_values);
+                <Form className='flex flex-col items-center'>
+                    <div className="flex w-[100%] mt-2 gap-14 max-tablet:flex-col max-desktop:flex-col">
+                        <div className="flex flex-col w-[70%] max-tablet:w-[100%] max-desktop:w-[100%] gap-10 items-center">
 
-  const onChange = (e) => {
-    if (e) {
-      const files = e.target.files;
-      const reader = new FileReader();
-      reader.onload = () => {
-        setSrcImg(reader.result);
-        console.log("inside onchange block");
-      };
-      reader.readAsDataURL(files[0]);
-      setOpenCrop(true);
-    }
-  };
+                            <ImageBackgroundWithDeleteButton imageUrl={URL.createObjectURL(cpg_image)} onDelete={handleDelete} />
 
-  return (
-    <Formik
-      initialValues={initial_values}
-      enableReinitialize={true}
-      onSubmit={(values)=> mutate(
-        values,{
-          onSuccess:()=>{
-            console.log("successful");
-          }
-        }
-      )}
-    >
-      {({ values,handleChange}) => (
 
-        <Form className='flex flex-col items-center'>
-          <div className="flex w-[100%] mt-2 gap-14">
-            <div className="flex flex-col w-[70%] gap-10 items-center">
-            <DropZone
-                name={'campaign image'}
-                label={'campaign image'}
-                onChange={ onChange}
-                // value={user?.image}
-              />
-              {
-                OpenCrop && (
-                  <ImageCropper
-                    srcImg={srcImg}
-                    setOpenCrop={setOpenCrop}
-                    setsrcImg={setSrcImg}
-                  />
-                )
-              }
-              {srcImg && <ImagePreviewDialog croppedImage={srcImg} setOpenCrop={setOpenCrop} />}
-              
-              <div className="w-full">
-                <InputField onChange={handleChange} value={values?.title} sx={InputStyle} name={"Title of Campaign:"} label={"Title of Campaign:"} required={"true"} placeholder={"Minimum 50 INR"} />
-              </div>
-              <SelectField
-                name="category"
-                required={true}
-                label="Choose a Category:"
-                value={values?.init_category}
-                onChange={handleChange} 
-                options={category.map((item) => ({
-                  label: item.name,
-                  value: item.id,
-                }))}
-              />
-              <div className="w-full">
-                <InputField  onChange={handleChange}  value={values?.amount} sx={InputStyle} name={"Amount to be raised:"} label={"Amount to be raised:"} placeholder={"Minimum 50 INR"} />
-              </div>
-              <SelectField  onChange={handleChange}  value={values?.location} name={"Location:"} label={"Location:"} />
+                            <div className="w-full">
+                                <InputField value={values?.title} sx={InputStyle} name={"Title of Campaign:"} label={"Title of Campaign:"} required={"true"} placeholder={"Minimum 50 INR"} />
+                            </div>
+                            <SelectField
+                                name="category"
+                                required={true}
+                                label="Choose a Category:"
+                                value={values?.init_category}
 
-              <div className="w-full">
-                <FormLabel
-                  className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
-                  style={{
-                    padding: '4px 8px 8px 8px',
-                    color: colors.text.main,
-                    fontWeight: 700,
-                    fontFamily: 'satoshi',
-                    fontStyle: 'normal',
-                    fontSize: '18px',
-                  }}
-                >
-                  About the Campaign:
-                  <span className="text-red-600">*</span>
-                </FormLabel>
-                <div className="h-[332px] summary-div">
-                  <ReactQuilTextField
-                    theme="snow"
-                    name='summary'
-                    value={values?.summary}
-                    onChange={handleChange} 
-                  />
-                </div>
-              </div>
-              {/* Add other form fields here... */}
-            </div>
-            <div className="w-[30%] flex flex-col items-center gap-8">
-              <div className="max-w-[400px] w-full min-h-[600px] bg-[#F7FAFF]" style={{ border: "2px dashed blue", borderRadius: '12px' }}>
-              </div>
-              <div className="">
-                <PrimaryButton sx={{ borderRadius: '12px' }}>
-                  <h1 className='text-white font-medium py-2.5 text-[18px]  px-16 font-[satoshi]'>View Revision History</h1>
-                </PrimaryButton>
-              </div>
-            </div>
-          </div>
-          <div className="flex gap-3 pt-5">
-            <button onClick={() => { }} className='w-[69px] content-stretch h-[32px] bg-[#F7F7F7]'>
-              <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
-            </button>
-            <SuccessButton  type="submit" text={"Save & Approve"} icon={<PiCheckFat className='w-4 h-4 mt-1' />} />
-            <PrimaryButton onClick={() => { }}  >
-              <h1 className='text-white font-semibold font-[satoshi]'>Reject Modification Request</h1>
-            </PrimaryButton>
-          </div>
-        </Form>
-      )}
-    </Formik>
-  )
+                                // onChange={Formik.value.category}
+                                options={category.map((item) => ({
+                                    label: item.name,
+                                    value: item.id,
+                                }))}
+
+                            />
+                            <div className="w-full">
+                                <InputField value={values?.amount} sx={InputStyle} name={"Amount to be raised:"} label={"Amount to be raised:"} placeholder={"Minimum 50 INR"} />
+                            </div>
+                            <SelectField value={values?.location} name={"Location:"} label={"Location:"} />
+
+                            <div className="w-full">
+                                <FormLabel
+                                    className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
+                                    style={{
+                                        padding: '4px 8px 8px 8px',
+                                        color: colors.text.main,
+                                        fontWeight: 700,
+                                        fontFamily: 'satoshi',
+                                        fontStyle: 'normal',
+                                        fontSize: '18px',
+                                    }}
+                                >
+                                    About the Campaign:
+                                    <span className="text-red-600">*</span>
+                                </FormLabel>
+                                <div className="h-[332px] summary-div">
+                                    <ReactQuilTextField
+                                        theme="snow"
+                                        name='summary'
+                                        value={values?.summary}
+                                    />
+                                </div>
+                            </div>
+                            <div className="w-full mt-5">
+                                <InputField name={'summery'} label={"Summary"} required={"true"}
+
+                                    multiline
+                                    info
+                                    CustomInfoIcon={
+                                        <ErrorIcon
+                                            className="ms-1"
+                                            style={{
+                                                color: "red",
+                                                cursor: "pointer",
+                                                height: "18px",
+                                            }}
+                                        />
+                                    }
+                                    infoText={"Please be careful while adding AD Path."}
+                                    rows={5}
+                                    placeholder="Placeholder text"
+                                    sx={{
+                                        padding: '20px', border: "1px solid #e2e2e2",
+                                        // },
+                                        "&:focus-within": {
+                                            boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
+                                            borderColor: "black",
+                                        }, "& input": { height: '100px' }
+                                    }} />
+                            </div>
+                            <div className="w-full flex flex-col">
+                                <FormLabel
+                                    className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
+                                    style={{
+                                        padding: '4px 8px 16px 8px',
+                                        color: colors.text.main,
+
+                                        fontWeight: 700,
+                                        fontFamily: 'satoshi',
+                                        fontStyle: 'normal',
+                                        height: '22px',
+                                    }}
+                                >
+                                    Attachments:
+                                    <span className="text-red-600">*</span>
+                                </FormLabel>
+                                <div className="flex gap-4">
+
+                                    {img.map((imageUrl, index) => (
+                                        <Attachments key={index} imageUrl={imageUrl} />
+                                    ))}
+
+                                </div>
+
+                            </div>
+                            <div className="flex max-tablet:flex-col  w-[100%] gap-4">
+                                <div className="w-[50%] max-tablet:w-full pt-1.5">
+                                    <InputField type={"date"} sx={InputStyleDate} name={"raised"} label={"Accept Donations until (Select end date):"} placeholder={"Minimum 50 INR"} />
+                                </div>
+
+                                <div className='w-[50%] max-tablet:w-full document-upload-div'>
+
+                                    <UploadField
+                                        label="Upload Attachment:"
+                                        onDocumentUpload={handleDocumentUpload}
+                                        name="document"
+                                        placeholder="Upload marksheets, Medical records, Fees Structure etc."
+                                        sx={{ padding: '20px' }}
+                                        multiple={false}
+                                        onChange={(value) => Formik.setFieldValue('document', value)}
+
+                                    />
+
+
+                                </div>
+
+
+
+                            </div>
+                            <div className="flex w-[100%] max-tablet:flex-col gap-4">
+                                <div className="w-[50%] max-tablet:w-full">
+                                    <SelectField name={"raised"} label={"Status:"} placeholder={"Minimum 50 INR"} />
+                                </div>
+                                <div className="w-[50%] checkmark-div max-desktop:w-[46%] max-tablet:w-[100%]">
+                                    <FormLabel className="text-capitalize mb-4 font-medium d-flex align-items-center" style={{ padding: "4px 8px 8px 8px", color: colors.text.main, fontSize: "20px", fontWeight: 700, fontFamily: "satoshi", fontStyle: "normal", height: "22px" }}>
+                                        Is the Campaign Zakaat eligible?<span className="text-red-600">*</span>
+                                    </FormLabel>
+                                    <CheckBox
+                                        sx={{
+                                            paddingLeft: '15px', "&.Mui-checked": {
+                                                color: red[500],
+                                            },
+                                        }}
+                                        name="zakat_eligible"
+                                        label={'Yes'}
+
+                                    />
+                                </div>
+
+
+                            </div>
+                            <div className="w-full ">
+                                <InputField name={'Notes/Comments:'} label={"Notes/Comments:"} required={"true"}
+                                    multiline
+                                    rows={5}
+                                    sx={{
+                                        padding: '20px', border: "1px solid #e2e2e2",
+                                        // },
+                                        "&:focus-within": {
+                                            boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
+                                            borderColor: "black",
+                                        }, "& input": { height: '100px' }
+                                    }} />
+                            </div>
+                            <div className=" w-full ">
+                                <RadioGroup
+                                    name={"New8"}
+                                    sx={{ flexDirection: 'column' }}
+                                    options={[
+                                        { label: "On", value: "On" },
+                                        { label: "Off", value: "Off" },
+                                    ]}
+                                    label="Featured:"
+                                    style={{ fontSize: '18px', fontWeight: 500 }}
+                                // onChange={onChange}
+
+                                />
+                            </div>
+
+
+
+                        </div>
+                        <div className="w-[30%] max-tablet:w-[100%] max-desktop:w-[100%] flex flex-col max-desktop:items-center  gap-8">
+                            <div className=" w-[100%] max-desktop:w-[100%]">
+                                <ImageEditor
+                                    sx={{ maxWidth: '400px', minHeight: '600px' }}
+                                    imageUrl={imageUrlFromBackend}
+
+                                />
+                            </div>
+
+                            <PrimaryButton sx={{ borderRadius: '12px', width: '90%' }}>
+                                <h1 className='text-white font-medium py-2.5 text-[18px]   font-[satoshi]'>View Revision History</h1>
+
+                            </PrimaryButton>
+                        </div>
+                    </div>
+                    <div className="flex gap-3 max-tablet:flex-col  max-tablet:items-center pt-5">
+                        <button onClick={() => { }} className='w-[69px] content-stretch h-[32px] bg-[#F7F7F7]'>
+                            <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
+                        </button>
+                        <SuccessButton onClick={() => { }} text={"Save & Approve"} icon={<PiCheckFat className='w-4 h-4 mt-1' />} />
+                        <PrimaryButton onClick={() => { submitForm() }}  >
+                            <h1 className='text-white font-semibold font-[satoshi]'>Reject Modification Request</h1>
+                        </PrimaryButton>
+
+                    </div>
+                </Form>
+            )}
+
+        </Formik>
+    )
 }
 
-export default CauseEdit;
+export default Index
