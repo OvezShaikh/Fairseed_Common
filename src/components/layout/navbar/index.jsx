@@ -206,10 +206,7 @@ const NavbarContainer = ({ handleDrawerToggle }) => {
             onChange={handleChange}
             aria-label="Platform"
           >
-            <ToggleButton value="web" aria-label="color">
-              <SettingsIcon />
-              <ArrowDropDownIcon />
-            </ToggleButton>
+           
 
             <ToggleButton value="underlined" aria-label="underlined">
               <LuPanelRight style={{ fontSize: 27 }} />

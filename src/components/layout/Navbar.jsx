@@ -19,6 +19,7 @@ import UserLogin from '../../pages/login/Login_page/Index'
 import UserSignUp_02 from "../../pages/login/Sign_Up/Index";
 import { Link, NavLink } from "react-router-dom";
 import ProfileAvatar from "../../pages/login/ProfileAvatar";
+import { toast } from "react-toastify";
 const styleButton = {
   color: 'red'
 }
@@ -335,15 +336,10 @@ export default function Example() {
                 </Popover.Panel>
               </Transition>
             </Popover>
-
-
             {/* Fourth button */}
             <button
               className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
             >How it Works</button>
-
-
-
             {/* Fifth button */}
             {
               (localStorage.getItem('token')) ? (
@@ -357,7 +353,9 @@ export default function Example() {
               ) : (
                 <PrimaryButton
                   onClick={() => {
-                    alert("Please Login to Create Campaign");
+                    toast.error("please login First !!! ",{
+                      position:'top-center'
+                    })
                   }}
                   sx={{ borderRadius: 'var(--Pixels-8, 8px)', fontWeight: 700, fontSize: '18px', padding: '12px 20px', }}>
                   Start a Campaign
