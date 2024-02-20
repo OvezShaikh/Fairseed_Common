@@ -27,10 +27,12 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 
 
-const NavbarContainer = ({ handleDrawerToggle }) => {
+const NavbarContainer = ({ handleDrawerToggle, handleHide }) => {
 
   // const { user } = useContext(AuthContext);
   const sideBar = useMediaQuery("(max-width: 900px)");
+  const sideHide = useMediaQuery("(max-width:1920)")
+
   const [alignment, setAlignment] = React.useState("web");
 
   const navigate = useNavigate();
@@ -47,6 +49,8 @@ const NavbarContainer = ({ handleDrawerToggle }) => {
     console.info("You clicked a breadcrumb.");
 
   }
+
+
 
 
 
@@ -76,9 +80,9 @@ const NavbarContainer = ({ handleDrawerToggle }) => {
         top: '54px',
         zIndex: "99",
         padding: '16px 16px  ',
-        width: `${sideBar ? "100vw" : "calc(100vw - 273px)"}`,
+        width: `${sideBar, sideHide ? "100vw" : "calc(100vw - 273px)"}`,
         height: "77px",
-        backgroundColor: `${sideBar ? "rgba(255, 235, 209, 1)" : "#fff"}`,
+        backgroundColor: `${sideBar, sideHide ? "rgba(255, 235, 209, 1)" : "#fff"}`,
         backgroundColor: "#fff",
         borderBottom: `1px solid #E2E2E2`,
 
@@ -206,12 +210,15 @@ const NavbarContainer = ({ handleDrawerToggle }) => {
             onChange={handleChange}
             aria-label="Platform"
           >
-            <ToggleButton value="web" aria-label="color">
+            {/* <ToggleButton value="web" aria-label="color">
               <SettingsIcon />
               <ArrowDropDownIcon />
-            </ToggleButton>
+            </ToggleButton> */}
 
-            <ToggleButton value="underlined" aria-label="underlined">
+            <ToggleButton
+              onClick={handleHide}
+
+              value="underlined" aria-label="underlined">
               <LuPanelRight style={{ fontSize: 27 }} />
             </ToggleButton>
           </ToggleButtonGroup>
