@@ -1,32 +1,33 @@
 import React from 'react'
-// import InputField from '../../inputs/InputField/index'
-import SelectField from "../../../inputs/SelectField/index"
-import PrimaryButton from '../../../inputs/PrimaryButton'
-import CheckBox from '../../../inputs/checkBox'
+import InputField from '../../inputs/InputField/index'
+import SelectField from "../../inputs/SelectField/index"
+import PrimaryButton from '../../inputs/PrimaryButton'
+import CheckBox from '../../inputs/checkBox'
 import { FormLabel } from '@mui/material'
-import { colors } from '../../../../constants/theme'
+import { colors } from '../../../constants/theme'
 import { Formik, Form, Field, useFormikContext } from 'formik'
-import images from '../../../../constants/images'
-import ReactQuilTextField from '../../../inputs/ReactQuilTextField/Index'
-import SuccessButton from '../../../inputs/SuccessButton/Index'
+import images from '../../../constants/images'
+import ReactQuilTextField from '../../inputs/ReactQuilTextField/Index'
+import { RiDeleteBin6Line } from "react-icons/ri";
+import SuccessButton from '../../inputs/SuccessButton/Index'
 import { PiCheckFat } from "react-icons/pi";
 import { pink, red } from "@mui/material/colors";
-import UploadField from '../../../inputs/UploadField/Index'
-import RadioGroup from '../../../inputs/radioGroup/index'
+import UploadField from '../../inputs/UploadField/Index'
+import RadioGroup from '../../inputs/radioGroup/index'
 import ErrorIcon from "@mui/icons-material/Error";
-import ImageEditor from '../../../layout/ImageEditor/Index'
-import ImageDisplay from '../../../layout/CropAddImage/Index'
+import ImageEditor from '../../layout/ImageEditor/Index'
+import ImageDisplay from '../../layout/CropAddImage/Index'
 import { useState } from 'react'
-import Attachments from '../../../layout/Attachments/Index'
-import { useCreateOrUpdate, useGetAll } from '../../../../Hooks'
+import ImageBackgroundWithDeleteButton from '../../layout/CropAddImage/Index';
+import Attachments from '../../layout/Attachments/Index'
+import { useCreateOrUpdate, useGetAll } from '../../../Hooks'
 
 
 
 
 
 
-import InputField from '../../../inputs/InputField'
-import { Outlet } from 'react-router-dom'
+import { height } from '@mui/system'
 const InputStyle =
 {
     padding: '20px', border: "1px solid #e2e2e2",
@@ -46,7 +47,11 @@ const InputStyleDate =
     },
 }
 
+const initialValues = {
 
+    TitleofCampaign: '',
+    document: '',
+}
 
 function Index() {
     const imageUrlFromBackend = 'https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'
@@ -116,7 +121,7 @@ function Index() {
                     <div className="flex w-[100%] mt-2 gap-14 max-tablet:flex-col max-desktop:flex-col">
                         <div className="flex flex-col w-[70%] max-tablet:w-[100%] max-desktop:w-[100%] gap-10 items-center">
 
-                            {/* <ImageBackgroundWithDeleteButton imageUrl={imageUrl} onDelete={handleDelete} /> */}
+                            <ImageBackgroundWithDeleteButton imageUrl={imageUrl} onDelete={handleDelete} />
 
 
                             <div className="w-full">
@@ -319,7 +324,6 @@ function Index() {
                     </div>
                 </Form>
             )}
-            <Outlet />
 
         </Formik>
     )

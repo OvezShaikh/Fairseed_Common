@@ -7,52 +7,11 @@ import { LocationConfigurationDialog } from '../../admin-console/LocationConfigu
 import  Columnfilter  from '../../Table/Columnfilter'
 import SecondaryButton from '../../inputs/secondaryButton';
 import CauseEdit from '../CauseEditApprovel/Index';
-import { GoDotFill } from "react-icons/go";
 import { Link } from 'react-router-dom';
 
-const Page = () => {
+const Campaign_Kyc = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
  
-
-  const getStatusCellStyle = (status) => {
-    console.log('Status:', status);
-    if (status === 'Pending') {
-      return {
-        background: '#EBF0ED',
-        color: '#717171'
-      };
-    } else if (status === 'Active') {
-      return {
-        background: '#ECFDF3  ',
-
-        color: '#037847',
-      };
-    }
-    return {
-      color: 'gray'
-    };
-  };
-  // const Status = ({ values }) => {
-  //   // Loop through the array and create a badge-like component instead of a comma-separated string
-  //   return (
-  //     <>
-  //       {values.map((Status, idx) => {
-  //         return (
-  //           <span key={idx} className="badge">
-  //             {Status}
-  //           </span>
-  //         );
-  //       })}
-  //     </>
-  //   );
-  // };
-
-  const StatusCell = ({ value }) => (
-    <div className=' flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl' style={getStatusCellStyle(value)}>
-      <span className='' style={getStatusCellStyle(value)}><GoDotFill /></span>
-      <span className='' style={getStatusCellStyle(value)}>{value}</span>
-    </div>
-  );
   const columns = React.useMemo(
       () => [
         {
@@ -66,13 +25,66 @@ const Page = () => {
           
         },
         {
-          Header: "Title",
+          Header: "Name",
           accessor: "title", 
           apiURL:`/admin-dashboard/campaign`,
           sortable: false,
           minWidth: 100,
           width: 100,
           
+        
+        },
+        {
+          Header: "User",
+          accessor: "user.username",
+          apiURL:`/admin-dashboard/campaign`,
+          sortable: false,
+          minWidth: 100,
+          width: 100,
+      
+        },
+        {
+          Header: "Email",
+          accessor: "user.email",
+          apiURL:`/admin-dashboard/campaign`,
+          sortable: false,
+          minWidth: 100,
+          width: 100,
+         
+        },
+        {
+          Header: "Mobile",
+          accessor: "user.mobile_number",
+          apiURL:`/admin-dashboard/campaign`,
+          sortable: false,
+          minWidth: 100,
+          width: 100,
+         
+        },
+        {
+          Header: "Goal",
+          accessor: "goal_amount",
+          apiURL:`/admin-dashboard/campaign`,
+          sortable: false,
+          minWidth: 100,
+          width: 100,
+          
+        },
+        {
+          Header: "Status",
+          accessor: "status",
+          apiURL:`/admin-dashboard/campaign`,
+          sortable: false,
+          minWidth: 100,
+          width: 100,
+        },
+        {
+          Header: "Date",
+          accessor: "end_date",
+          apiURL:`/admin-dashboard/campaign`,
+          sortable: false,
+          minWidth: 100,
+          width: 100,
         },
         {
           Header: 'Actions',
@@ -113,5 +125,4 @@ return (
 )
 }
 
-export default Page
-
+export default Campaign_Kyc
