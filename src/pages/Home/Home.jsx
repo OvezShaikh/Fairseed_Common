@@ -29,14 +29,19 @@ import FilterField from "../../components/inputs/FilterField/Index";
 
 function Home() {
   const [userList, setUserList] = useState([]);
-  const [visibleCards, setVisibleCards] = useState(1);
+  
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
   const [campaignCount, setCampaignCount] = useState(0);
   const [showOptions, setShowOptions] = useState(false);
-  const [perPage,setPerPage] = useState(8);
+  const [perPage,setPerPage] = useState(100);
 
   const [dataFromChild, setDataFromChild] = useState('');
+
+
+  const [visibleCards, setVisibleCards] = useState(8);
+
+  
 
   const receiveDataFromChild = (data) => {
     
@@ -72,13 +77,14 @@ function Home() {
 
     if (filteredCardCount<=8){
       console.log("Less than 8");
-      setPerPage(20);
-      fetchUserList();
-      
+      //setPerPage([perPage+12]);
+     // fetchUserList();
+     
+     
    }
-   else{
-    setPerPage(8);
-   }
+  //  else{
+  //   setPerPage(8);
+  //  }
 
 
   }, [dataFromChild]);
@@ -89,10 +95,24 @@ function Home() {
     setShowOptions(!showOptions);
   };
 
+  const loadMore = () => {
+    
+    setVisibleCards((prevVisibleCards) => prevVisibleCards + 4);
+    
+    if (page < totalPages) {
+      setPage(page + 1);
+    }
+
+    if (visibleCards >= perPage ){
+      setPerPage(perPage+100)
+    }
+
+
+  };
 
   const fetchUserList = async () => {
     try {
-      // const perPage = 8;
+     // const perPage = 100;
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
       );
@@ -104,6 +124,10 @@ function Home() {
         setTotalPages(res.pages_count);
         setUserList([...userList, ...res.rows]);
         setCampaignCount(res.count);
+
+
+        
+
       } else {
         console.error("Invalid data structure. Expected an array:", res.data);
       }
@@ -217,7 +241,7 @@ function Home() {
     
       
         <div className="desktop:gap-x-[36px] desktop:gap-y-[48px] mt-[48px]  flex flex-wrap w-full justify-center desktop:max-w-[1740px] max-desktop:gap-x-[16px]  max-desktop:gap-y-[24px] max-tablet:gap-y-[48px]">
-          {filteredUserList?.map((item) => {
+          {filteredUserList?.slice(0, visibleCards).map((item) => {
             return (
               <Card
                 key={item.id}
@@ -236,8 +260,9 @@ function Home() {
         </div>
         <button
           className="pt-[64px] max-tablet:pt-[24px]"
-          onClick={() => setPage(page + 1)}
-          disabled={page >= totalPages}
+          onClick={() => loadMore()}
+          disabled={visibleCards >= campaignCount}
+          id="loadmorebutton"
           style={{
             width: "fit-content",
             textAlign: "center",
@@ -251,12 +276,14 @@ function Home() {
             "-webkit-background-clip": "text",
             "-webkit-text-fill-color": "transparent",
             textDecoration: "underline",
-            display: page >= totalPages ? "none" : "block",
+            display: ((visibleCards >= campaignCount)||(filteredCardCount<8) ? "none" : "block"),
             position: "relative",
+            
           }}
         >
           <p className="gradient-button mb-0">Load More</p>
         </button>
+        
       </div>
       <section className="bg-[#FFF6F5]">
         <div
