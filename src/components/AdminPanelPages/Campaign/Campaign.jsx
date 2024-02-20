@@ -8,10 +8,12 @@ import Columnfilter from '../../Table/Columnfilter'
 import SecondaryButton from '../../inputs/secondaryButton';
 import CauseEdit from '../CauseEditApprovel/Index';
 import { GoDotFill } from "react-icons/go";
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 const Campaign = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
+
+  const navigate = useNavigate()
 
   const getStatusCellStyle = (status) => {
     console.log('Status:', status);
@@ -133,14 +135,14 @@ const Campaign = () => {
         accessor: 'actions',
         sortable: false,
         nofilter: true,
-        minWidth: 100,
-        width: 100,
+        minWidth: 350,
+        width: 350,
         Cell: ({ row }) => {
           return (
-            <div className='flex'>
-              <Link to={'/Edit'} target={<CauseEdit id={row?.id} />}><SecondaryButton >Edit</SecondaryButton></Link>
-              <SecondaryButton>Finalize your Campaign</SecondaryButton>
-              <SecondaryButton>Edit Bank and KYC</SecondaryButton>
+            <div className='flex items-center gap-2'>
+              <SecondaryButton sx={{ height: '30px', }} onClick={() => navigate('/Edit')} >Edit</SecondaryButton>
+              <SecondaryButton sx={{ height: '30px', }}>Finalize your Campaign</SecondaryButton>
+              <SecondaryButton sx={{ height: '30px', }}>Edit Bank and KYC</SecondaryButton>
             </div>
           )
         }

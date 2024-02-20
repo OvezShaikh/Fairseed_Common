@@ -17,12 +17,13 @@ import AddNew from "../../components/AdminPanelPages/Categories/AddNew";
 import LandingPage from "../../components/AdminPanelPages/LandingPage/Index"
 import CauseEditApprovel from "../../components/AdminPanelPages/CauseEditApprovel/Index"
 import CauseKYC from '../../components/AdminPanelPages/CauseKYC/Index'
+import UserEdit from '../../components/AdminPanelPages/Froms/UserEdit/Index'
+import CampaignEdits from '../../components/AdminPanelPages/Froms/CampaignEdits/Index'
+
 
 function AdminPage() {
   return (
     <Routes>
-      {/* <Route index element={<AdminPage/>} /> */}
-      {/* <Route path="/AdminPage" element={<AdminPage/>} /> */}
       <Route
         path="/"
         element={
@@ -64,9 +65,15 @@ function AdminPage() {
             <Categories />
           </AdminLayout>
         }
-      />
+      >
+        <Route path="Campaign-Edits" element={
+          <AdminLayout>
+            <CampaignEdits />
+          </AdminLayout>
+        } />
+      </Route>
       <Route
-        path="/Campaign"
+        path="/Campaign/*"
         element={
           <AdminLayout>
             <Campaign />

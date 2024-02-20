@@ -92,12 +92,12 @@ const Index = () => {
         accessor: 'actions',
         sortable: false,
         nofilter: true,
-        minWidth: 100,
-        width: 200,
+        minWidth: 200,
+        width: 300,
         Cell: ({ row }) => {
           return (
             <div className='flex'>
-              <Link to={'/Edit'} target={<CauseEdit id={row?.id} />}><SecondaryButton >Edit</SecondaryButton></Link>
+              <Link to={'Campaign-Edits'} target={<CauseEdit id={row?.id} />}><SecondaryButton >Edit</SecondaryButton></Link>
               <SecondaryButton>Finalize your Campaign</SecondaryButton>
               <SecondaryButton>Edit Bank and KYC</SecondaryButton>
             </div>

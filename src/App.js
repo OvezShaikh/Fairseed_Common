@@ -14,6 +14,8 @@ import LoginOnSmallScreen from "./pages/login/Login_page/LoginOnSmallScreen";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RegisterSmallScreen from "./pages/login/Sign_Up/RegisterSmallScreen";
+import UserEdit from "../src/components/AdminPanelPages/Froms/UserEdit/Index";
+import AdminLayout from "./components/layout/AdminLayout/Index";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -57,6 +59,14 @@ function App() {
           <Route
             path="/Home/RegisterSmallScreen"
             element={<RegisterSmallScreen />}
+          />
+          <Route
+            path="/Edit"
+            element={
+              <AdminLayout>
+                <UserEdit />
+              </AdminLayout>
+            }
           />
 
           <Route path="/campaign-details/:id" element={<CurrentCampaign />} />

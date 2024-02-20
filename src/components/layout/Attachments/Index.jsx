@@ -21,10 +21,22 @@ function YourComponent({ imageUrl }) {
     const cancelDelete = () => {
         setShowDeleteConfirmation(false);
     };
-
     const toggleFullScreen = () => {
-        setIsFullScreen(!isFullScreen);
+        // Check if the element with the class 'small-screen' exists
+        const isSmallScreen = document.documentElement.classList.contains('small-screen');
+
+        // Toggle full screen based on screen size
+        if (isSmallScreen) {
+            setIsFullScreen(!isFullScreen);
+        } else {
+            // Handle full screen toggling for large screens as before
+            // For example:
+            // setIsFullScreen(!isFullScreen);
+            setIsFullScreen(!isFullScreen);
+
+        }
     };
+
 
     const downloadImage = () => {
         // Create a temporary anchor element

@@ -1,9 +1,10 @@
 import { Form, Formik } from 'formik'
 import React from 'react'
-import InputField from '../../inputs/InputField/index'
-import SelectField from "../../inputs/SelectField/index"
-import PrimaryButton from '../../inputs/PrimaryButton'
+import InputField from '../../../inputs/InputField/index'
+import SelectField from "../../../inputs/SelectField/index"
+import PrimaryButton from '../../../inputs/PrimaryButton'
 import { borderRadius } from '@mui/system'
+import { Outlet } from 'react-router-dom'
 const InputStyle =
 {
     padding: '20px', border: "1px solid #e2e2e2",
@@ -80,8 +81,11 @@ function Index() {
                     </Form>
                 </Formik>
             </div>
+            {/* <Outlet /> */}
+
         </div>
     )
 }
+
 
 export default Index
