@@ -23,10 +23,10 @@ export default function ProfileAvatar() {
     // Remove the 'token' item from localStorage
     localStorage.removeItem('token');
     localStorage.removeItem('user_role');
-    toast.success('Logged Out Successfully', {
+    window.location.href = '/Home';
+    toast.error("Logout Successful !",{
       position: "top-center"
     })
-    window.location.href = '/Home';
   }
 
 

@@ -124,10 +124,10 @@ const Campaign = () => {
           width: 250,
           Cell: ({row})=>{
             return (
-              <div className='flex'>
-                 <Link to={'/Edit'} target={<CauseEdit id={row?.id}/>}><SecondaryButton >Edit</SecondaryButton></Link> 
-                <SecondaryButton>Finalize your Campaign</SecondaryButton>
-                <SecondaryButton>Edit Bank and KYC</SecondaryButton>
+              <div className='flex items-center gap-2 '>
+                 <Link to={'/Edit'} target={<CauseEdit id={row?.id}/>}><SecondaryButton sx={{height:'30px'}} >Edit</SecondaryButton></Link> 
+                <SecondaryButton  sx={{height:'30px'}}>Finalize your Campaign</SecondaryButton>
+                <SecondaryButton  sx={{height:'30px'}}>Edit Bank and KYC</SecondaryButton>
               </div>
             )
           }

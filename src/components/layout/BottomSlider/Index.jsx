@@ -165,8 +165,8 @@ const MultipleRows = () => {
             
             <SwiperSlide>
               <Link to={`/Home/CampaignsByCategory/${item.id}`}>
-                <div className="max-w-[220px]">
-                <div key={index}>
+                <div className="max-w-[220px]]">
+                <div key={index} className="mb-[20px]">
                   <img
                     style={{
                       width: "100%",

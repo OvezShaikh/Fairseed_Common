@@ -35,7 +35,9 @@ function App() {
           <AdminPage />
         </div>
       </BrowserRouter> */}
-
+ <ToastContainer
+      autoClose={5000}
+      />
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
@@ -61,7 +63,7 @@ function App() {
           <Route path="/campaign-details/:id" element={<CurrentCampaign />} />
         </Routes>
       </BrowserRouter>
-      <ToastContainer />
+     
     </div>
   );
 }

@@ -56,7 +56,7 @@ const initialValues = {
 function Index() {
     const imageUrlFromBackend = 'https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'
     const [documents, setDocuments] = useState([]);
-    const [category, setCategory] = useState([]);
+    const [Category, setCategory] = useState([]);
 
     const handleDocumentUpload = (documentUrl) => {
         setDocuments([...documents, documentUrl]);
@@ -82,7 +82,8 @@ function Index() {
 
     ]
     const { data, isSuccess } = useGetAll({
-        key: `/admin-dashboard/campaign/16399639-ba2c-44e4-94a6-294e11cb06a3
+        key: `/admin-dashboard/campaign/05509b62-5f51-4dfa-b5da-4596103da36b
+
         `,
         enabled: true,
         select: (data) => {
@@ -110,7 +111,8 @@ function Index() {
     });
 
     const { mutate } = useCreateOrUpdate({
-        url:'/admin-dashboard/campaign/68f60765-fa19-4019-8252-c74942c07cfe'
+        url:'/admin-dashboard/campaign/05509b62-5f51-4dfa-b5da-4596103da36b',
+        method: "put",
     })
 
 
@@ -119,11 +121,11 @@ function Index() {
         title: user.title || "",
         amount: user.goal_amount || "",
         location: user.location || "",
-        cpg_image: user.campaign_image || "",
+        // cpg_image: user.campaign_image || "",
         category: user?.category?.name || "",
         is_featured:user?.is_featured || false,
         summary:user?.summary || "",
-        zakat_eligible:user?.zakat_eligible||"",
+        zakat_eligible:user?.zakat_eligible||false,
         end_date:user?.end_date||"",
         status:user?.status|| "",
         story:user?.story||"",
@@ -166,12 +168,11 @@ function Index() {
                                     label={"Title of Campaign:"} required={"true"} placeholder={"Minimum 50 INR"} />
                             </div>
                             <SelectField
-                                name={"init_category"}
+                                name={"category"}
                                 required={true}
                                 label="Choose a Category:"
-                                value={values?.init_category}
-                               
-                                options={category.map((item) => ({
+                                value={values?.category}
+                                options={Category.map((item) => ({
                                     label: item.name,
                                     value: item.id,
                                 }))}
@@ -179,9 +180,11 @@ function Index() {
                             <div className="w-full">
                                 <InputField type={'number'}  onChange={handleChange} value={values?.amount} sx={InputStyle} name={"amount"} label={"Amount to be raised:"} placeholder={"Minimum 50 INR"} />
                             </div>
+
                             <div className="w-full">
                             <InputField  sx={ InputStyle } onChange={handleChange} value={values?.location} name={"location"} label={"Location:"} />
                           </div>
+
                             <div className="w-full">
                                 <FormLabel
                                     className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
@@ -197,17 +200,19 @@ function Index() {
                                     About the Campaign:
                                     <span className="text-red-600">*</span>
                                 </FormLabel>
+
                                 <div className="h-[332px] summary-div">
                                     <ReactQuilTextField
                                         theme="snow"
-                                        name='summary'
+                                        name='story'
                                         value={values?.story}
                                          onChange={(value) => setFieldValue('story', value)}
                                     />
                                 </div>
                             </div>
+
                             <div className="w-full mt-5">
-                                <InputField    value={values?.summary} name={'summery'} label={"Summary"} required={"true"}
+                                <InputField   onChange={handleChange} value={values?.summary} name={'summary'} label={"Summary"} required={"true"}
                                     multiline
                                     info
                                     CustomInfoIcon={
@@ -232,6 +237,8 @@ function Index() {
                                         }, "& input": { height: '100px' }
                                     }} />
                             </div>
+
+
                             <div className="w-full flex flex-col">
                                 <FormLabel
                                     className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
@@ -247,6 +254,8 @@ function Index() {
                                     Attachments:
                                     <span className="text-red-600">*</span>
                                 </FormLabel>
+
+            
                                 <div className="flex gap-4">
 
                                     {img.map((imageUrl, index) => (
@@ -256,6 +265,8 @@ function Index() {
                                 </div>
 
                             </div>
+
+
                             <div className="flex max-tablet:flex-col  w-[100%] gap-4">
                                 <div className="w-[50%] max-tablet:w-full pt-1.5">
                                     <InputField
@@ -280,6 +291,8 @@ function Index() {
                                     />
                                 </div>
                             </div>
+
+
                             <div className="flex w-[100%] max-tablet:flex-col gap-4">
                                 <div className="w-[50%] max-tablet:w-full">
                                     <SelectField 
@@ -293,6 +306,7 @@ function Index() {
                                         ]}
                                         />
                                 </div>
+
                                 <div className="w-[50%] checkmark-div max-desktop:w-[46%] max-tablet:w-[100%]">
                                     <FormLabel className="text-capitalize mb-4 font-medium d-flex align-items-center" style={{ padding: "4px 8px 8px 8px", color: colors.text.main, fontSize: "20px", fontWeight: 700, fontFamily: "satoshi", fontStyle: "normal", height: "22px" }}>
                                         Is the Campaign Zakaat eligible?<span className="text-red-600">*</span>
@@ -324,6 +338,7 @@ function Index() {
                                         }, "& input": { height: '100px' }
                                     }} />
                             </div>
+
                             <div className=" w-full ">
                                 <RadioGroup
                                     name={"is_featured"}
@@ -338,15 +353,12 @@ function Index() {
 
                                 />
                             </div>
-
-
-
                         </div>
                         <div className="w-[30%] max-tablet:w-[100%] max-desktop:w-[100%] flex flex-col max-desktop:items-center  gap-8">
                             <div className=" w-[100%] max-desktop:w-[100%]">
                                 <ImageEditor
                                     sx={{ maxWidth: '400px', minHeight: '600px' }}
-                                    imageUrl={values?.cpg_image}
+                                    imageUrl={imageUrl}
                                 />
                                 {console.log(values?.cpg_image)}
                             </div>
@@ -357,6 +369,9 @@ function Index() {
                             </PrimaryButton>
                         </div>
                     </div>
+
+
+
                     <div className="flex gap-3 max-tablet:flex-col  max-tablet:items-center pt-5">
                         <button onClick={() => { }} className='w-[69px] content-stretch h-[32px] bg-[#F7F7F7]'>
                             <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
