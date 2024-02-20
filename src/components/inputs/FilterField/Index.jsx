@@ -34,7 +34,7 @@ const MenuProps = {
 
 
 
-function Index({ sendDataToParent }) {
+function Index({ sendCategoryToParent,sendLocationToParent }) {
 
 
   const [CategoryList, setCategoryList] = useState([]);
@@ -57,13 +57,13 @@ function Index({ sendDataToParent }) {
         
       console.log("CATEGORY VALUES ", event.target.value);
 
-        sendDataToParent(event.target.value);
+      sendCategoryToParent(event.target.value);
         
       };
     
       const handleLocationChange = (event) => {
         setSelectedLocations(event.target.value);
-        sendDataToParent(event.target.value);
+        sendLocationToParent(event.target.value);
 
       };
 
@@ -100,7 +100,7 @@ function Index({ sendDataToParent }) {
 
       const fetchCategoryList = async () => {
         try {
-          const perPage = 8;
+          const perPage = 100;
           const response = await axios.get(
             `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
           );
