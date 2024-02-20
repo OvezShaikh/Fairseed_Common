@@ -30,25 +30,25 @@ function Limit() {
     <Formik
       initialValues={initialValues}
     >
-      <Form className='flex flex-col justify-center flex-wrap items-center'>
-        <div className="flex w-full gap-4">
-          <FormControl className="w-full ">
+      <Form className='flex flex-col justify-center flex-wrap items-center max-desktop:pt-5 max-tablet:pt-5'>
+        <div className="flex w-full max-desktop:flex-col max-tablet:flex-col gap-4">
+          <FormControl className="w-full max-desktop:w-[80%] max-tablet:w-full ">
 
             <InputAdminField style={{ marginBottom: '2rem' }} placeholder={"Placeholder Text"} label={"No. of campaigns to show"} name={"NoOfCampaigns"} />
           </FormControl>
-          <FormControl className="w-full ">
+          <FormControl className="w-full max-desktop:w-[80%] max-tablet:w-full ">
             <InputAdminField label={"File size allowed"} placeholder={"Placeholder Text"} name={"File"} />
 
             <FormHelperText sx={{ fontWeight: 500, fontFamily: 'satoshi', fontSize: 16, }} >IMPORTANT: Your Server supports upto <span className='text-[#717171]'>100MB</span></FormHelperText>
           </FormControl>
-          <FormControl className="w-full ">
+          <FormControl className="w-full max-desktop:w-[80%] max-tablet:w-full ">
             <InputAdminField placeholder={"Placeholder Text"} label={"Minimum amount for campaign"} name={"amount"} />
 
           </FormControl>
 
         </div>
-        <div className="flex w-full mb-24 flex-wrap pt-2 gap-4">
-          <FormControl className="w-[40%] ">
+        <div className="flex w-full mb-24 max-desktop:flex-col max-tablet:flex-col flex-wrap pt-2 gap-4">
+          <FormControl className="w-[40%] max-desktop:w-[80%] max-tablet:w-full">
             <FormLabel style={styleLabel}>Amount for Donations</FormLabel>
             <div className="flex justify-center items-center">
               <InputAdminField label={""} size="lg" name={'Minimum'} placeholder="Minimum" />
@@ -57,7 +57,7 @@ function Limit() {
 
             </div>
           </FormControl>
-          <FormControl className="w-[40%] ">
+          <FormControl className="w-[40%] max-desktop:w-[80%] max-tablet:w-full">
             <FormLabel style={styleLabel}>Amount for Campaigns</FormLabel>
             <div className="flex justify-center items-center">
               <InputAdminField size="lg" name={'MinimumCampaign'} placeholder="Minimum" />

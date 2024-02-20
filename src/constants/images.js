@@ -75,6 +75,8 @@ import UploadIcon from "../assets/UploadIcon.png";
 import CausesDetails from "../assets/CausesDetails.svg";
 import Vector from "../assets/Vector.svg";
 import done from "../assets/done.gif";
+import ColorFullDownArrow from "../assets/ColorfulDownArrow.png";
+import CheckBoxGradient from "../assets/CheckBoxGradient.png";
 
 export default {
   SedalCheck,
@@ -153,4 +155,6 @@ export default {
   CausesDetails,
   Vector,
   done,
+  ColorFullDownArrow,
+  CheckBoxGradient,
 };
