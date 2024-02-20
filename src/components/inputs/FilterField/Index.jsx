@@ -24,18 +24,7 @@ const MenuProps = {
 };
 
 
-const names = [
-    'Oliver Hansen',
-    'Van Henry',
-    'April Tucker',
-    'Ralph Hubbard',
-    'Omar Alexander',
-    'Carlos Abbott',
-    'Miriam Wagner',
-    'Bradley Wilkerson',
-    'Virginia Andrews',
-    'Kelly Snyder',
-  ];
+
   
 
 
@@ -45,27 +34,38 @@ const names = [
 
 
 
-function Index() {
+function Index({ sendDataToParent }) {
 
 
-  const [userList, setUserList] = useState([]);
-  const [sliderData, setSliderData] = useState([]);
-const [loading, setLoading] = useState(true);
-const [error, setError] = useState(null);
-const [page, setPage] = useState(1);
-const limit = 20;
+  const [CategoryList, setCategoryList] = useState([]);
+  const [LocationList, setLocationList] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [page, setPage] = useState(1);
+  const limit = 20;
 
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [selectedLocations, setSelectedLocations] = useState([]);
 
+
+
+
+
+
     const handleCategoryChange = (event) => {
         setSelectedCategories(event.target.value);
+        
+      console.log("CATEGORY VALUES ", event.target.value);
+
+        sendDataToParent(event.target.value);
+        
       };
     
       const handleLocationChange = (event) => {
         setSelectedLocations(event.target.value);
-      };
+        sendDataToParent(event.target.value);
 
+      };
 
       const CustomIcon = () => (
         <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -80,11 +80,11 @@ const limit = 20;
         
       );
       useEffect(() => {
-        const fetchSliderData = async () => {
+        const fetchLocationList = async () => {
           try {
             const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/campaign/campaign-category?page=${page}&limit=${limit}`;
             const response = await axios.get(API_ENDPOINT);
-            setSliderData(response.data.rows);
+            setLocationList(response.data.rows);
             setLoading(false);
           } catch (error) {
             setError(error.message);
@@ -92,13 +92,13 @@ const limit = 20;
           }
         };
     
-        fetchSliderData();
+        fetchLocationList();
       }, []);
 
 
 
 
-      const fetchUserList = async () => {
+      const fetchCategoryList = async () => {
         try {
           const perPage = 8;
           const response = await axios.get(
@@ -109,7 +109,7 @@ const limit = 20;
           
           if (Array.isArray(res.rows)) {
             
-            setUserList([...userList, ...res.rows]);
+            setCategoryList([...CategoryList, ...res.rows]);
             
           } else {
             console.error("Invalid data structure. Expected an array:", res.data);
@@ -119,12 +119,12 @@ const limit = 20;
         }
       };
       useEffect(() => {
-        fetchUserList();
+        fetchCategoryList();
       }, [page]);
 
 
-      const uniqueCategory = Array.from(new Set(sliderData.map((item) => item.name)));
-      const uniqueLocations = Array.from(new Set(userList.map((item) => item.location)));
+      const uniqueCategory = Array.from(new Set(LocationList.map((item) => item.name)));
+      const uniqueLocations = Array.from(new Set(CategoryList.map((item) => item.location)));
 
 
 
@@ -139,6 +139,7 @@ const limit = 20;
         id="demo-multiple-checkbox"
         multiple
         value={selectedCategories}
+
         onChange={handleCategoryChange}
         input={<OutlinedInput label="Select Location" />}
         IconComponent={CustomIcon}
@@ -166,24 +167,24 @@ const limit = 20;
               fontSize:"18px",
               fontWeight:"400",
                marginRight: '17px',
-    color: '#d8dde6',
-    width:"14px",
-    height:"14px",
-    
-    '&.Mui-checked': {
-      width:"14px",
-      height:"14px",
-        color: 'transparent', // Set the color to transparent for the checked state
-       
-        backgroundImage:  `url(${images.CheckBoxGradient})`, // Add the path to your image
-        backgroundSize: 'cover', // Adjust this property based on your image requirements
-        backgroundRepeat: 'no-repeat', // Set to 'repeat' if needed
-        borderRadius: '4px',
-        '&:hover': {
-          backgroundImage:  `url(${images.CheckBoxGradient})`, // Add the path to your image
-          backgroundSize: 'cover', // Adjust this property based on your image requirements
-          backgroundRepeat: 'no-repeat', // Set to 'repeat' if needed
-          borderRadius: '4px',
+                color: '#d8dde6',
+                width:"14px",
+                height:"14px",
+                
+                '&.Mui-checked': {
+                  width:"14px",
+                  height:"14px",
+                    color: 'transparent', // Set the color to transparent for the checked state
+                  
+                    backgroundImage:  `url(${images.CheckBoxGradient})`, // Add the path to your image
+                    backgroundSize: 'cover', // Adjust this property based on your image requirements
+                    backgroundRepeat: 'no-repeat', // Set to 'repeat' if needed
+                    borderRadius: '4px',
+                    '&:hover': {
+                      backgroundImage:  `url(${images.CheckBoxGradient})`, // Add the path to your image
+                      backgroundSize: 'cover', // Adjust this property based on your image requirements
+                      backgroundRepeat: 'no-repeat', // Set to 'repeat' if needed
+                      borderRadius: '4px',
         },
       },
   }} />
@@ -199,6 +200,7 @@ const limit = 20;
       <Select
         labelId="demo-multiple-checkbox-label"
         id="demo-multiple-checkbox"
+        name = "Select Category"
         multiple
         value={selectedLocations}
         onChange={handleLocationChange}

@@ -34,17 +34,65 @@ function Home() {
   const [page, setPage] = useState(1);
   const [campaignCount, setCampaignCount] = useState(0);
   const [showOptions, setShowOptions] = useState(false);
+  const [perPage,setPerPage] = useState(8);
+
+  const [dataFromChild, setDataFromChild] = useState('');
+
+  const receiveDataFromChild = (data) => {
+    
+    setDataFromChild(data);
+    
+    
+  };
+
+
+
+  const filteredUserList = Array.from(
+    new Set(
+      userList.filter((item) => {
+        const isCategoryMatch =
+          dataFromChild.length === 0 || dataFromChild.includes(item.category.name);
+        const isLocationMatch =
+          dataFromChild.length === 0 || dataFromChild.includes(item.location);
+  
+        // Display the card if either category or location matches
+        return isCategoryMatch || isLocationMatch;
+      }).map((item) => item.id)
+    )
+  ).map((id) => userList.find((item) => item.id === id));
+
+  const filteredCardCount = filteredUserList.length;
+
+ 
+  
+
+  useEffect(() => {
+    
+    console.log("DATA FROM CHILD ", dataFromChild)
+
+    if (filteredCardCount<=8){
+      console.log("Less than 8");
+      setPerPage(20);
+      fetchUserList();
+      
+   }
+   else{
+    setPerPage(8);
+   }
+
+
+  }, [dataFromChild]);
 
 
   const filterToggle = () => {
-    // Toggle the state when the button is clicked
+    
     setShowOptions(!showOptions);
   };
 
 
   const fetchUserList = async () => {
     try {
-      const perPage = 8;
+      // const perPage = 8;
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
       );
@@ -65,6 +113,7 @@ function Home() {
   };
   useEffect(() => {
     fetchUserList();
+    
   }, [page]);
   let bnk = [
     {
@@ -160,13 +209,15 @@ function Home() {
         </div>
         {showOptions && (
        
-          <FilterField/>
+          <FilterField sendDataToParent={receiveDataFromChild}/>
           
         
       )}
+  
+    
       
         <div className="desktop:gap-x-[36px] desktop:gap-y-[48px] mt-[48px]  flex flex-wrap w-full justify-center desktop:max-w-[1740px] max-desktop:gap-x-[16px]  max-desktop:gap-y-[24px] max-tablet:gap-y-[48px]">
-          {userList?.map((item) => {
+          {filteredUserList?.map((item) => {
             return (
               <Card
                 key={item.id}
