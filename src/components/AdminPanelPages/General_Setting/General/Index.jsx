@@ -62,7 +62,7 @@ function General() {
       {({values ,setFieldValue })=>(
      
       <Form>
-        <div className="flex flex-wrap  justify-between">
+        <div className="flex flex-wrap justify-between">
           <div className="w-[24%] ">
             <InputAdminField label={'Name Site'} name={"namesite"} placeholder={'Placeholder Text'} />
 
