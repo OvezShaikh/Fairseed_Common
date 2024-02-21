@@ -261,31 +261,7 @@ const ReactTable = ({
     }
   };
 
-  // const setTableMetaData = (data) => {
-  //   if (data) {
-  //     let newHiddenColumns = [];
-  //     let newColumns = [];
-  //     for (const column of columns) {
-  //       if (column.hidden) {
-  //         newHiddenColumns.push(column.accessor);
-  //       }
-  //       newColumns.push({
-  //         ...column,
-  //       });
-  //     }
-  //     localStorage.setItem(`columns-of-${title_slug}`, JSON.stringify(data));
-  //     setTableColumns(newColumns);
-
-  //     setTimeout(() => {
-  //       setHiddenColumns(
-  //         JSON.parse(data.hiddenColumns).length
-  //           ? JSON.parse(data.hiddenColumns)
-  //           : newHiddenColumns
-  //       );
-  //       setColumnOrder(JSON.parse(data.columnOrder));
-  //     }, 500);
-  //   }
-  // };
+ 
 
   useEffect(() => {
     if (pageIndex === 0 && tableData?.length > 0) {

@@ -82,9 +82,7 @@ function Index() {
 
     ]
     const { data, isSuccess } = useGetAll({
-        key: `/admin-dashboard/campaign/05509b62-5f51-4dfa-b5da-4596103da36b
-
-        `,
+        key: `/admin-dashboard/campaign/89d98974-c372-4118-a3bc-f6ea76a48ad1`,
         enabled: true,
         select: (data) => {
             console.log(data.data.data);
@@ -111,7 +109,7 @@ function Index() {
     });
 
     const { mutate } = useCreateOrUpdate({
-        url:'/admin-dashboard/campaign/05509b62-5f51-4dfa-b5da-4596103da36b',
+        url:'/admin-dashboard/campaign/89d98974-c372-4118-a3bc-f6ea76a48ad1',
         method: "put",
     })
 

@@ -115,23 +115,23 @@ const Campaign = () => {
           minWidth: 100,
           width: 100,
         },
-        {
-          Header: 'Actions',
-          accessor: 'actions',
-          sortable: false,
-          nofilter: true,
-          minWidth: 100,
-          width: 250,
-          Cell: ({row})=>{
-            return (
-              <div className='flex items-center gap-2 '>
-                 <Link to={'/Edit'} target={<CauseEdit id={row?.id}/>}><SecondaryButton sx={{height:'30px'}} >Edit</SecondaryButton></Link> 
-                <SecondaryButton  sx={{height:'30px'}}>Finalize your Campaign</SecondaryButton>
-                <SecondaryButton  sx={{height:'30px'}}>Edit Bank and KYC</SecondaryButton>
-              </div>
-            )
-          }
-        }
+        // {
+        //   Header: 'Actions',
+        //   accessor: 'actions',
+        //   sortable: false,
+        //   nofilter: true,
+        //   minWidth: 100,
+        //   width: 250,
+        //   Cell: ({row})=>{
+        //     return (
+        //       <div className='flex items-center gap-2 '>
+        //          <Link to={'/Edit'} target={<CauseEdit id={row?.id}/>}><SecondaryButton sx={{height:'30px'}} >Edit</SecondaryButton></Link> 
+        //         <SecondaryButton  sx={{height:'30px'}}>Finalize your Campaign</SecondaryButton>
+        //         <SecondaryButton  sx={{height:'30px'}}>Edit Bank and KYC</SecondaryButton>
+        //       </div>
+        //     )
+        //   }
+        // }
       ],
 
     );
