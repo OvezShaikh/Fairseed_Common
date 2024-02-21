@@ -28,7 +28,7 @@ import { useCreateOrUpdate, useGetAll } from '../../../Hooks'
 
 
 import { height } from '@mui/system'
-import { useLocation, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 const InputStyle =
 {
     padding: '20px', border: "1px solid #e2e2e2",
@@ -48,13 +48,11 @@ const InputStyleDate =
     },
 }
 
-const initialValues = {
 
-    TitleofCampaign: '',
-    document: '',
-}
 
 function Index() {
+    const navigate = useNavigate();
+
     let { state } = useLocation(); let { id } = state;
     console.log(id, "=====<id")
     const imageUrlFromBackend = 'https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'
@@ -363,18 +361,19 @@ function Index() {
                                 />
                                 {console.log(values?.cpg_image)}
                             </div>
+                            <Link to="Revision-History" state={{ id }} >
+                                <PrimaryButton sx={{ borderRadius: '12px', width: '90%' }} >
+                                    <h1 className='text-white font-medium py-2.5 text-[18px]   font-[satoshi]'>View Revision History</h1>
 
-                            <PrimaryButton sx={{ borderRadius: '12px', width: '90%' }}>
-                                <h1 className='text-white font-medium py-2.5 text-[18px]   font-[satoshi]'>View Revision History</h1>
-
-                            </PrimaryButton>
+                                </PrimaryButton>
+                            </Link>
                         </div>
                     </div>
 
 
 
                     <div className="flex gap-3 max-tablet:flex-col  max-tablet:items-center pt-5">
-                        <button onClick={() => { }} className='w-[69px] content-stretch h-[32px] bg-[#F7F7F7]'>
+                        <button onClick={() => navigate(-1)} className='w-[69px] content-stretch h-[32px] bg-[#F7F7F7]'>
                             <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
                         </button>
                         <SuccessButton type='submit' text={"Save & Approve"} icon={<PiCheckFat className='w-4 h-4 mt-1' />} />

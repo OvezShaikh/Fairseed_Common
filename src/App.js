@@ -60,14 +60,6 @@ function App() {
             path="/Home/RegisterSmallScreen"
             element={<RegisterSmallScreen />}
           />
-          <Route
-            path="/Edit"
-            element={
-              <AdminLayout>
-                <UserEdit />
-              </AdminLayout>
-            }
-          />
 
           <Route path="/campaign-details/:id" element={<CurrentCampaign />} />
         </Routes>

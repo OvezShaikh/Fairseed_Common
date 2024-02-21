@@ -136,7 +136,7 @@ const Campaign = () => {
         width: 100,
         Cell: ({ row }) => {
           return (
-            <div className='flex items-center justify-center pl-6`'>
+            <div className='flex items-center justify-center pl-6'>
               <Link to="Edit" state={{ id: row?.id }} ><SecondaryButton sx={{ height: '30px' }} >Edit</SecondaryButton></Link>
               {/* <SecondaryButton sx={{ height: '30px' }}>Finalize your Campaign</SecondaryButton> */}
               {/* <SecondaryButton sx={{ height: '30px' }}>Edit Bank and KYC</SecondaryButton> */}

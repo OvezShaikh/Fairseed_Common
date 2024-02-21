@@ -57,7 +57,10 @@ const NavbarContainer = ({ handleDrawerToggle }) => {
         .replace(/\/*\[[^\]]*]/g, "")
         .replace(/-/g, " ")
         .replace(/\//g, "  ")
-        .replace("General Settings", " ")}`,
+        .replace("General Settings", " ")
+        .replace("CampaignsEdit", "")
+      }`,
+
 
     [pathname]
   );

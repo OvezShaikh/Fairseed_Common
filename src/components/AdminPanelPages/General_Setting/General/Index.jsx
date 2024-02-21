@@ -88,7 +88,7 @@ function General() {
             </div>
           </div >
           <div className="w-[50%] max-desktop:w-full max-tablet:w-full pt-2">
-            <MultiKeyTextField label={'Keywords'} name={"keywords_data"} placeholder={'Add Tag'} />
+            <InputAdminField label={'Keywords'} name={"keywords_data"} placeholder={'Add Tag'} />
 
           </div>
           <div className="pt-7 mb-5 h-[200px]">

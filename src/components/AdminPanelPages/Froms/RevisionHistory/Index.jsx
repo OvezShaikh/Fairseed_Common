@@ -1,5 +1,5 @@
 import React from 'react';
-import SuccessButton from '../../inputs/SuccessButton/Index'
+import SuccessButton from '../../../inputs/SuccessButton/Index'
 
 function ModificationLogTable() {
     return (

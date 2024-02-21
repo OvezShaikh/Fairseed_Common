@@ -17,7 +17,9 @@ import AddNew from "../../components/AdminPanelPages/Categories/AddNew";
 import LandingPage from "../../components/AdminPanelPages/LandingPage/Index"
 import CauseEditApprovel from "../../components/AdminPanelPages/CauseEditApprovel/Index"
 import CauseEdit from "../../components/AdminPanelPages/CauseEditApprovel/Index";
+import CampaignAddNew from '../../components/AdminPanelPages/Froms/CampaignAddNew/Index'
 import Scholarship from "../../components/AdminPanelPages/Scholarship Cause/Index";
+import RevisionHistory from "../../components/AdminPanelPages/Froms/RevisionHistory/Index"
 import Campaign_Kyc from "../../components/AdminPanelPages/Campaign_kyc/Index";
 
 
@@ -69,6 +71,14 @@ function AdminPage() {
         }
       />
       <Route
+        path="/Categories/Edit"
+        element={
+          <AdminLayout>
+            <CampaignAddNew />
+          </AdminLayout>
+        }
+      />
+      <Route
         path="/Campaigns"
         element={
           <AdminLayout>
@@ -81,6 +91,14 @@ function AdminPage() {
         element={
           <AdminLayout>
             <CauseEdit />
+          </AdminLayout>
+        }
+      />
+      <Route
+        path="/Campaigns/Edit/Revision-History"
+        element={
+          <AdminLayout>
+            <RevisionHistory />
           </AdminLayout>
         }
       />
