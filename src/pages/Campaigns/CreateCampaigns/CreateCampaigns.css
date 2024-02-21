@@ -1,14 +1,17 @@
-.campagin-form label.MuiFormLabel-root , .campagin-form label.MuiFormLabel-root , .campagin-form label.form-label , .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary{
+.campagin-form label.MuiFormLabel-root,
+.campagin-form label.MuiFormLabel-root,
+.campagin-form label.form-label,
+.campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary {
     text-transform: none !important;
 }
 
-.create-campaign-page form.campagin-form{
+.create-campaign-page form.campagin-form {
     row-gap: 40px !important;
 }
 
 
 .create-campaign-page .campagin-form input[type="date"]::-webkit-calendar-picker-indicator {
-    
+
     color: rgba(0, 0, 0, 0);
     opacity: 1;
     display: block;
@@ -17,7 +20,7 @@
     width: 64px;
     height: 64px;
     border-width: thin;
-   
+
 }
 
 
@@ -32,22 +35,22 @@
 }
 
 /* Dropdown input feilds */
-.create-campaign-page .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiInputBase-adornedEnd.MuiAutocomplete-inputRoot{
+.create-campaign-page .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiInputBase-adornedEnd.MuiAutocomplete-inputRoot {
     padding: 11px 16px;
 }
 
 
 
 /* Date input field only */
-.create-campaign-page .campaign-date-div .MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth{
-    
+.create-campaign-page .campaign-date-div .MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth {
+
     padding: 0px;
 }
 
 
 
 
-.create-campaign-page .campaign-date-div input.MuiInputBase-input{
+.create-campaign-page .campaign-date-div input.MuiInputBase-input {
     padding: 18px 0px;
     padding-left: 16px;
     color: rgba(0, 0, 0, 0.3);
@@ -55,67 +58,82 @@
 
 @media only screen and (max-width: 1800px) {
 
-    .create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary ,.create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary,.create-campaign-page .campagin-form label,.create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary ,.create-campaign-page label.form-label ,.create-campaign-page span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label , label.MuiFormLabel-root.MuiFormLabel-colorPrimary{
-    font-size: 18px !important;
-}
+    .create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary,
+    .create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary,
+    .create-campaign-page .campagin-form label,
+    .create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary,
+    .create-campaign-page label.form-label,
+    .create-campaign-page span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label,
+    label.MuiFormLabel-root.MuiFormLabel-colorPrimary {
+        font-size: 18px !important;
+    }
 
 }
 
 @media only screen and (max-width: 1366px) {
 
-    .create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary,.create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary ,.create-campaign-page .campagin-form label,.create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary ,.create-campaign-page label.form-label ,.create-campaign-page input.MuiInputBase-input::placeholder ,.create-campaign-page span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label{
-    font-size: 16px !important;
-}
+    .create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary,
+    .create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary,
+    .create-campaign-page .campagin-form label,
+    .create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary,
+    .create-campaign-page label.form-label,
+    .create-campaign-page input.MuiInputBase-input::placeholder,
+    .create-campaign-page span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label {
+        font-size: 16px !important;
+    }
 
-.create-campaign-page .MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth {
-    padding: 5px 16px;
-}
-
-
-
-
-
-
-/* Dropdown input feilds */
-.create-campaign-page .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiInputBase-adornedEnd.MuiAutocomplete-inputRoot{
-    padding: 2px 16px;
-}
+    .create-campaign-page .MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth {
+        padding: 5px 16px;
+    }
 
 
-.create-campaign-page .campaign-date-div input.MuiInputBase-input{
-    padding: 10px 0px;
-    padding-left: 16px;
-}
 
 
-.create-campaign-page .campagin-form input[type="date"]::-webkit-calendar-picker-indicator {
-    
-   
-    width: 48px;
-    height: 48px;
-   
-   
-}
 
-.create-campaign-page .campaign-header{
-    font-size: 32px !important;
-}
+
+    /* Dropdown input feilds */
+    /* .create-campaign-page .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiInputBase-adornedEnd.MuiAutocomplete-inputRoot {
+        padding: 2px 16px;
+    } */
+
+
+    .create-campaign-page .campaign-date-div input.MuiInputBase-input {
+        padding: 10px 0px;
+        padding-left: 16px;
+    }
+
+
+    .create-campaign-page .campagin-form input[type="date"]::-webkit-calendar-picker-indicator {
+
+
+        width: 48px;
+        height: 48px;
+
+
+    }
+
+    .create-campaign-page .campaign-header {
+        font-size: 32px !important;
+    }
 
 }
 
 
 @media only screen and (max-width: 751px) {
 
-    .create-campaign-page .campaign-header{
+    .create-campaign-page .campaign-header {
         font-size: 24px !important;
     }
-    
+
 }
 
 
 /* Your Story CSS */
 
-.create-campaign-page .story-div .ql-editor.ql-blank::before ,.create-campaign-page .summary-div .ql-editor.ql-blank::before ,.create-campaign-page input.MuiInputBase-input.Mui-disabled ,.create-campaign-page .MuiInputBase-input{
+.create-campaign-page .story-div .ql-editor.ql-blank::before,
+.create-campaign-page .summary-div .ql-editor.ql-blank::before,
+.create-campaign-page input.MuiInputBase-input.Mui-disabled,
+.create-campaign-page .MuiInputBase-input {
     color: rgba(136, 136, 136, 0.3);
     font-style: normal;
     font-family: 'Satoshi';
@@ -124,20 +142,21 @@
 }
 
 @media only screen and (max-width:1365px) {
-    .create-campaign-page .document-upload-div{
-    font-size: 16px;
-}
+    .create-campaign-page .document-upload-div {
+        font-size: 16px;
+    }
 
 
 
 
-.create-campaign-page .MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth{
+    .create-campaign-page .MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth {
         padding: 13px 16px;
     }
-    
 
-    .create-campaign-page label.MuiFormLabel-root.MuiFormLabel-colorPrimary ,.create-campaign-page label.MuiFormLabel-root.MuiFormLabel-colorPrimary{
-    font-size: 16px;
+
+    .create-campaign-page label.MuiFormLabel-root.MuiFormLabel-colorPrimary,
+    .create-campaign-page label.MuiFormLabel-root.MuiFormLabel-colorPrimary {
+        font-size: 16px;
     }
 
 }
@@ -146,12 +165,19 @@
 
 @media only screen and (max-width: 751px) {
 
-    .create-campaign-page .Upload_field img{
+    .create-campaign-page .Upload_field img {
         height: 48px;
     }
-    
 
-    .create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary,.create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary,.create-campaign-page .campagin-form label.form-label,.create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary,.create-campaign-page label.form-label,.create-campaign-page span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label ,.create-campaign-page label.MuiFormLabel-root.MuiFormLabel-colorPrimary,.create-campaign-page label#demo-radio-buttons-group-label-Raising\ this\ Campaign\ for\:{
+
+    .create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary,
+    .create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary,
+    .create-campaign-page .campagin-form label.form-label,
+    .create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary,
+    .create-campaign-page label.form-label,
+    .create-campaign-page span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label,
+    .create-campaign-page label.MuiFormLabel-root.MuiFormLabel-colorPrimary,
+    .create-campaign-page label#demo-radio-buttons-group-label-Raising\ this\ Campaign\ for\: {
         font-size: 16px !important;
     }
 
@@ -159,78 +185,88 @@
 }
 
 
-.create-campaign-page button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium a{
+.create-campaign-page button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium a {
     font-family: 'Satoshi';
     font-weight: 500;
 }
 
-.create-campaign-page button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium ,.create-campaign-page button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium{
+.create-campaign-page button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium,
+.create-campaign-page button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium {
     padding: 14px;
-}   
+}
 
 
 @media only screen and (max-width: 1365px) {
 
-    .create-campaign-page button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium ,.create-campaign-page button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium{
+    .create-campaign-page button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium,
+    .create-campaign-page button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium {
         padding: 14px;
-    }   
+    }
 
-    .create-campaign-page button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium a , .create-campaign-page button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium ,.create-campaign-page button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium{
+    .create-campaign-page button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium a,
+    .create-campaign-page button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium,
+    .create-campaign-page button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium {
         font-size: 18px !important;
         font-family: 'Satoshi';
         font-weight: 500;
     }
-    
+
 }
 
 @media only screen and (max-width:751px) {
 
-    .create-campaign-page button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium ,.create-campaign-page button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium{
-    padding: 20px;
-}  
+    .create-campaign-page button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium,
+    .create-campaign-page button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedWarning.MuiButton-sizeMedium.MuiButton-containedSizeMedium {
+        padding: 20px;
+    }
 }
 
 
 
-.create-campaign-page .story-div .ql-editor.ql-blank::before,.create-campaign-page .summary-div .ql-editor.ql-blank::before,.create-campaign-page input.MuiInputBase-input.Mui-disabled,  .MuiInputBase-input{
+.create-campaign-page .story-div .ql-editor.ql-blank::before,
+.create-campaign-page .summary-div .ql-editor.ql-blank::before,
+.create-campaign-page input.MuiInputBase-input.Mui-disabled,
+.MuiInputBase-input {
     -webkit-text-fill-color: black;
 }
 
 
-.create-campaign-page .story-div .ql-editor.ql-blank::before,.create-campaign-page .summary-div .ql-editor.ql-blank::before{
+.create-campaign-page .story-div .ql-editor.ql-blank::before,
+.create-campaign-page .summary-div .ql-editor.ql-blank::before {
     -webkit-text-fill-color: rgba(0, 0, 0, 0.38);
 }
 
 
-.create-campaign-page .ql-editor p{
+.create-campaign-page .ql-editor p {
     font-size: 20px;
 }
 
 
 
 
-.create-campaign-page .Mui-checked,.create-campaign-page .MuiCheckbox-indeterminate{
+.create-campaign-page .Mui-checked,
+.create-campaign-page .MuiCheckbox-indeterminate {
     color: rgba(255, 87, 51, 1) !important;
 }
 
-.bread-crumbs-div li{
-    font-family:'Satoshi';
-font-size: 28px;
-font-weight: 500;
-color: rgba(149, 153, 157, 1);
+.bread-crumbs-div li {
+    font-family: 'Satoshi';
+    font-size: 28px;
+    font-weight: 500;
+    color: rgba(149, 153, 157, 1);
 
 }
 
 .breadcrumbs_navigation>ol>.MuiBreadcrumbs-li:last-child {
     font-weight: 700;
     color: rgba(97, 101, 106, 1);
-  }
+}
 
 
-  
+
 @media only screen and (max-width:1365px) {
 
-    .bread-crumbs-div li{
+    .bread-crumbs-div li {
 
         font-size: 22px;
     }
@@ -238,12 +274,12 @@ color: rgba(149, 153, 157, 1);
 }
 
 
-  
+
 @media only screen and (max-width:751px) {
 
-    .bread-crumbs-div li{
+    .bread-crumbs-div li {
 
-        font-size:18px;
+        font-size: 18px;
     }
 
 
@@ -254,6 +290,6 @@ color: rgba(149, 153, 157, 1);
 }
 
 
-.create-campaign-page .MuiInputBase-input{
+.create-campaign-page .MuiInputBase-input {
     -webkit-text-fill-color: rgba(0, 0, 0, 1);
 }

@@ -28,14 +28,8 @@ function Card({
         className="card rounded-xl font-bold desktop:max-w-[408px] w-full max-desktop:max-w-[355px]"
         style={{ fontFamily: "satoshi" }}
       >
-        {/* <div style={{backgroundImage:'url{blob:https://www.figma.com/23aaba04-b230-4e67-98b4-b1e815583174}'}} className="card-img-top" alt="..." >
-                 <div className=' flex m-3 bg-transparent'>
-                     <img src={images.TrendUp}/>
-                     <p>Trending</p>
-                 </div>
-                 </div>    */}
+
         <Link to={`/campaign-details/${og_id}`}>
-          {/* <img src={process.env.REACT_APP_API_URL + cardImage} className="card-img-top h-80" alt="..."  />  */}
           <img
             src={`${process.env.REACT_APP_API_URL}` + cardImage}
             className="card-img-top h-80"

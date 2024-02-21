@@ -13,7 +13,8 @@ const styleLabel = {
     fontSize: 16,
     fontWeight: 700,
     color: "#383A42",
-    marginTop: '4px'
+    marginTop: '4px',
+    paddingLeft: '5px'
 };
 
 const initialValues = {
@@ -27,110 +28,136 @@ function Index() {
 
     return (
         <Formik>
-            <Form className='flex flex-col items-center gap-[30px]'>
+            <Form className='flex flex-col items-center gap-[30px] max-desktop:pt-4 max-tablet:4'>
 
-                <div className="flex flex-wrap w-full justify-between">
-                    <div className="w-[24%]">
-                        <FormLabel sx={styleLabel}>Campaign:</FormLabel>
-                        <div className="flex">
-                            <h1 className='text-[16px] font-[satoshi] pt-3 font-medium'>Causes</h1>
-                            <img className='pt-3 pl-2' src={images.CausesDetails} alt="" />
+                <div className="flex max-desktop:flex-col max-tablet:flex-col w-full gap-3">
+                    <div className="flex justify-between w-[50%] max-desktop:w-full max-tablet:flex-col ">
+
+                        <div className="w-[49%] max-tablet:w-full">
+                            <FormLabel sx={styleLabel}>Campaign:</FormLabel>
+                            <div className="flex">
+                                <h1 className='text-[16px] font-[satoshi] pt-3  font-medium max-tablet:pl-2 max-tablet:pb-2'>Causes</h1>
+                                <img className='pt-2 pl-2' src={images.CausesDetails} alt="" />
+                            </div>
+                        </div>
+                        <div className="w-[49%] max-tablet:w-full">
+                            <InputField name={"transaction"} label={"Transaction ID:"} placeholder={'Placeholder Text'} />
                         </div>
                     </div>
-                    <div className="w-[24%]">
-                        <InputField name={"transaction"} label={"Transaction ID:"} placeholder={'Placeholder Text'} />
-                    </div>
-                    <div className="w-[24%]">
-                        <InputField name={"FullName"} label={"Full Name:"} placeholder={'Placeholder Text'} />
-                    </div>
-                    <div className="w-[24%]">
-                        <InputField name={"Email"} label={"Email:"} placeholder={'Placeholder Text'} />
+                    <div className="flex justify-between w-[50%] max-desktop:w-full max-tablet:flex-col max-tablet:gap-3">
+
+                        <div className="w-[49%] max-tablet:w-full">
+                            <InputField name={"FullName"} label={"Full Name:"} placeholder={'Placeholder Text'} />
+                        </div>
+                        <div className="w-[49%] max-tablet:w-full">
+                            <InputField name={"Email"} label={"Email:"} placeholder={'Placeholder Text'} />
+                        </div>
                     </div>
                 </div>
-                <div className="flex flex-wrap w-full justify-between">
-                    <div className="w-[24%]">
-                        <InputField name={"id"} label={"ID:"} placeholder={'Placeholder Text'} />
+                <div className="flex  w-full max-desktop:flex-col max-tablet:flex-col gap-3">
+                    <div className="flex justify-between w-[50%]     max-desktop:w-full max-tablet:flex-col max-tablet:gap-3">
+
+                        <div className="w-[49%] max-tablet:w-full">
+                            <InputField name={"id"} label={"ID:"} placeholder={'Placeholder Text'} />
+                        </div>
+                        <div className="w-[49%] max-tablet:w-full">
+                            <InputField name={"Donation"} label={"Donation:"} placeholder={'Placeholder Text'} />
+                        </div>
                     </div>
-                    <div className="w-[24%]">
-                        <InputField name={"Donation"} label={"Donation:"} placeholder={'Placeholder Text'} />
-                    </div>
-                    <div className="w-[24%]">
-                        <SelectField name={"City"} label={"City:"} placeholder={'Placeholder Text'} />
-                    </div>
-                    <div className="w-[24%]">
-                        <SelectField name={"Country"} label={"Country:"} placeholder={'Placeholder Text'} />
+                    <div className="flex justify-between w-[50%] max-desktop:w-full max-tablet:flex-col max-tablet:gap-3">
+                        <div className="w-[49%] max-tablet:w-full">
+                            <SelectField name={"City"} label={"City:"} placeholder={'Placeholder Text'} />
+                        </div>
+                        <div className="w-[49%] max-tablet:w-full">
+                            <SelectField name={"Country"} label={"Country:"} placeholder={'Placeholder Text'} />
+                        </div>
                     </div>
                 </div>
-                <div className="flex flex-wrap w-full justify-between">
-                    <div className="w-[24%]">
-                        <InputField name={"PostalCode"} label={"Postal Code:"} placeholder={'Placeholder Text'} />
-                    </div>
-                    <div className="w-[24%]">
-                        <InputField name={"pan_card"} label={"PAN Card:"} placeholder={'Placeholder Text'} />
-                    </div>
-                    <div className="w-[24%]">
-                        <InputField name={"DonationType"} label={"Donation Type:"} placeholder={'Placeholder Text'} />
-                    </div>
-                    <div className="w-[24%]">
-                        <SelectField name={"Payment Gateway:"} label={"Payment Gateway:"} placeholder={'Placeholder Text'} />
-                    </div>
+                <div className="flex max-desktop:flex-col max-tablet:flex-col  w-full gap-3">
+                    <div className="flex justify-between w-[50%] max-desktop:w-full max-tablet:flex-col max-tablet:gap-3">
 
-                </div>
-                <div className="flex flex-wrap w-full justify-between">
-                    <div className="w-[24%]">
-                        <InputField name={"BankName"} label={"Bank Name:"} placeholder={'Placeholder Text'} />
+                        <div className="w-[49%] max-tablet:w-full">
+                            <InputField name={"PostalCode"} label={"Postal Code:"} placeholder={'Placeholder Text'} />
+                        </div>
+                        <div className="w-[49%] max-tablet:w-full">
+                            <InputField name={"pan_card"} label={"PAN Card:"} placeholder={'Placeholder Text'} />
+                        </div>
                     </div>
-                    <div className="w-[24%]">
-                        <InputField name={"other"} label={"Other Details:"} placeholder={'Placeholder Text'} />
-                    </div>
-                    <div className="w-[24%]">
-                        <SelectField name={"Comments"} label={"Comments:"} placeholder={'Placeholder Text'} />
-                    </div>
-                    <div className="w-[24%]">
-                        <SelectField name={"anonymous"} label={"Anonymous:"} placeholder={'Placeholder Text'} />
-                    </div>
-                </div>
+                    <div className="flex justify-between w-[50%] max-desktop:w-full max-tablet:flex-col max-tablet:gap-3">
 
-                <div className="flex flex-wrap w-full justify-between">
-                    <div className="w-[24%]">
-                        <InputField
-                            type="date"
-                            // defaultValue={yesterday}
-
-                            name="TransactionDate"
-                            inputProps={{ min: moment().format('YYYY-MM-DD') }}
-
-                            required={true}
-                            label="Transaction Date:"
-                        />
-                    </div>
-                    <div className="w-[24%]">
-                        <InputField name={"TransactionConfirmation"} label={"Transfer Confirmation number:"} placeholder={'Placeholder Text'} />
-                    </div>
-
-                    <div className="w-[24%]">
-                        <InputField
-                            type="date"
-                            // defaultValue={yesterday}
-
-                            name="TransactionDate"
-                            inputProps={{ min: moment().format('YYYY-MM-DD') }}
-
-                            required={true}
-                            label="Transaction Date:"
-                        />
-
-                    </div>
-                    <div className="w-[24%]">
-                        <InputField name={"Reward"} label={"Reward:"} placeholder={'Placeholder Text'} />
+                        <div className="w-[49%] max-tablet:w-full">
+                            <InputField name={"DonationType"} label={"Donation Type:"} placeholder={'Placeholder Text'} />
+                        </div>
+                        <div className="w-[49%] max-tablet:w-full">
+                            <SelectField name={"Payment Gateway:"} label={"Payment Gateway:"} placeholder={'Placeholder Text'} />
+                        </div>
                     </div>
 
                 </div>
-                <div className="flex w-full flex-wrap gap-4">
-                    <div className="w-[24%]">
+                <div className="flex max-desktop:flex-col max-tablet:flex-col w-full gap-3">
+                    <div className="flex justify-between w-[50%] max-desktop:w-full max-tablet:flex-col max-tablet:gap-3">
+
+                        <div className="w-[49%] max-tablet:w-full">
+                            <InputField name={"BankName"} label={"Bank Name:"} placeholder={'Placeholder Text'} />
+                        </div>
+                        <div className="w-[49%] max-tablet:w-full">
+                            <InputField name={"other"} label={"Other Details:"} placeholder={'Placeholder Text'} />
+                        </div>
+                    </div>
+                    <div className="flex justify-between w-[50%] max-desktop:w-full max-tablet:flex-col max-tablet:gap-3">
+
+                        <div className="w-[49%] max-tablet:w-full">
+                            <SelectField name={"Comments"} label={"Comments:"} placeholder={'Placeholder Text'} />
+                        </div>
+                        <div className="w-[49%] max-tablet:w-full">
+                            <SelectField name={"anonymous"} label={"Anonymous:"} placeholder={'Placeholder Text'} />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="flex max-desktop:flex-col max-tablet:flex-col w-full gap-3">
+                    <div className="flex justify-between w-[50%] max-desktop:w-full max-tablet:flex-col max-tablet:gap-3">
+                        <div className="w-[49%] max-tablet:w-full">
+                            <InputField
+                                type="date"
+                                // defaultValue={yesterday}
+
+                                name="TransactionDate"
+                                inputProps={{ min: moment().format('YYYY-MM-DD') }}
+
+                                required={true}
+                                label="Transaction Date:"
+                            />
+                        </div>
+                        <div className="w-[49%] max-tablet:w-full">
+                            <InputField name={"TransactionConfirmation"} label={"Transfer Confirmation number:"} placeholder={'Placeholder Text'} />
+                        </div>
+                    </div>
+                    <div className="flex  justify-between w-[50%] max-desktop:w-full max-tablet:flex-col max-tablet:gap-3">
+
+                        <div className="w-[49%] max-tablet:w-full">
+                            <InputField
+                                type="date"
+                                // defaultValue={yesterday}
+
+                                name="TransactionDate"
+                                inputProps={{ min: moment().format('YYYY-MM-DD') }}
+
+                                required={true}
+                                label="Transaction Date:"
+                            />
+
+                        </div>
+                        <div className="w-[49%] max-tablet:w-full">
+                            <InputField name={"Reward"} label={"Reward:"} placeholder={'Placeholder Text'} />
+                        </div>
+                    </div>
+                </div>
+                <div className="flex w-full max-desktop:w-full max-tablet:flex-col  gap-3">
+                    <div className="w-[25%] max-desktop:w-1/2 max-tablet:w-full">
                         <SelectField name={"Preferred"} label={"Preferred Donation City:"} placeholder={'Placeholder Text'} />
                     </div>
-                    <div className="w-[24%]">
+                    <div className="w-[25%] max-desktop:w-1/2 max-tablet:w-full">
                         <SelectField name={"PreferredDonation"} label={"Preferred Donation State:"} placeholder={'Placeholder Text'} />
                     </div>
 

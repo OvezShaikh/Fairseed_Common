@@ -339,7 +339,7 @@ function CurrentCampaign({
           </div>
         </div>
       </div >
-      <div className="flex justify-center gap-4 max-desktop:hidden">
+      <div className="flex justify-center gap-4 max-desktop:hidden pt-4">
         <PrimaryButton
           sx={{ padding: "16px", borderRadius: "8px", paddingLeft: "43px", paddingRight: "43px", }}
         // style={{

@@ -28,6 +28,7 @@ import { useCreateOrUpdate, useGetAll } from '../../../Hooks'
 
 
 import { height } from '@mui/system'
+import { useLocation, useParams } from 'react-router-dom'
 const InputStyle =
 {
     padding: '20px', border: "1px solid #e2e2e2",
@@ -54,6 +55,8 @@ const initialValues = {
 }
 
 function Index() {
+    let { state } = useLocation(); let { id } = state;
+    console.log(id, "=====<id")
     const imageUrlFromBackend = 'https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'
     const [documents, setDocuments] = useState([]);
     const [Category, setCategory] = useState([]);
@@ -82,9 +85,7 @@ function Index() {
 
     ]
     const { data, isSuccess } = useGetAll({
-        key: `/admin-dashboard/campaign/05509b62-5f51-4dfa-b5da-4596103da36b
-
-        `,
+        key: `/admin-dashboard/campaign/${id}`,
         enabled: true,
         select: (data) => {
             console.log(data.data.data);
@@ -96,7 +97,7 @@ function Index() {
         },
     });
 
- useGetAll({
+    useGetAll({
         key: `/admin-dashboard/category?page=1&limit=10
         `,
         enabled: true,
@@ -111,7 +112,7 @@ function Index() {
     });
 
     const { mutate } = useCreateOrUpdate({
-        url:'/admin-dashboard/campaign/05509b62-5f51-4dfa-b5da-4596103da36b',
+        url: `/admin-dashboard/campaign/${id}`,
         method: "put",
     })
 
@@ -123,12 +124,12 @@ function Index() {
         location: user.location || "",
         // cpg_image: user.campaign_image || "",
         category: user?.category?.name || "",
-        is_featured:user?.is_featured || false,
-        summary:user?.summary || "",
-        zakat_eligible:user?.zakat_eligible||false,
-        end_date:user?.end_date||"",
-        status:user?.status|| "",
-        story:user?.story||"",
+        is_featured: user?.is_featured || false,
+        summary: user?.summary || "",
+        zakat_eligible: user?.zakat_eligible || false,
+        end_date: user?.end_date || "",
+        status: user?.status || "",
+        story: user?.story || "",
     };
 
     if (!isSuccess) {
@@ -142,15 +143,15 @@ function Index() {
             enableReinitialize={true}
             onSubmit={(values) => {
                 mutate(values, {
-                  onSuccess: (response) => {
-                    console.log(response);
-                    // Handle successful API response here
-                  },
+                    onSuccess: (response) => {
+                        console.log(response);
+                        // Handle successful API response here
+                    },
                 });
-              }}
+            }}
 
         >
-            {({ values , setFieldValue , handleChange }) => (
+            {({ values, setFieldValue, handleChange }) => (
 
                 <Form className='flex flex-col items-center'>
                     <div className="flex w-[100%] mt-2 gap-14 max-tablet:flex-col max-desktop:flex-col">
@@ -161,10 +162,10 @@ function Index() {
 
                             <div className="w-full">
                                 <InputField
-                                 value={values?.title}
-                                 onChange={handleChange}
-                                  sx={InputStyle}
-                                   name={"title"}
+                                    value={values?.title}
+                                    onChange={handleChange}
+                                    sx={InputStyle}
+                                    name={"title"}
                                     label={"Title of Campaign:"} required={"true"} placeholder={"Minimum 50 INR"} />
                             </div>
                             <SelectField
@@ -178,12 +179,12 @@ function Index() {
                                 }))}
                             />
                             <div className="w-full">
-                                <InputField type={'number'}  onChange={handleChange} value={values?.amount} sx={InputStyle} name={"amount"} label={"Amount to be raised:"} placeholder={"Minimum 50 INR"} />
+                                <InputField type={'number'} onChange={handleChange} value={values?.amount} sx={InputStyle} name={"amount"} label={"Amount to be raised:"} placeholder={"Minimum 50 INR"} />
                             </div>
 
                             <div className="w-full">
-                            <InputField  sx={ InputStyle } onChange={handleChange} value={values?.location} name={"location"} label={"Location:"} />
-                          </div>
+                                <InputField sx={InputStyle} onChange={handleChange} value={values?.location} name={"location"} label={"Location:"} />
+                            </div>
 
                             <div className="w-full">
                                 <FormLabel
@@ -206,13 +207,13 @@ function Index() {
                                         theme="snow"
                                         name='story'
                                         value={values?.story}
-                                         onChange={(value) => setFieldValue('story', value)}
+                                        onChange={(value) => setFieldValue('story', value)}
                                     />
                                 </div>
                             </div>
 
                             <div className="w-full mt-5">
-                                <InputField   onChange={handleChange} value={values?.summary} name={'summary'} label={"Summary"} required={"true"}
+                                <InputField onChange={handleChange} value={values?.summary} name={'summary'} label={"Summary"} required={"true"}
                                     multiline
                                     info
                                     CustomInfoIcon={
@@ -255,7 +256,7 @@ function Index() {
                                     <span className="text-red-600">*</span>
                                 </FormLabel>
 
-            
+
                                 <div className="flex gap-4">
 
                                     {img.map((imageUrl, index) => (
@@ -270,18 +271,18 @@ function Index() {
                             <div className="flex max-tablet:flex-col  w-[100%] gap-4">
                                 <div className="w-[50%] max-tablet:w-full pt-1.5">
                                     <InputField
-                                     value={values?.end_date}
-                                     type={"date"}
-                                     sx={InputStyleDate} 
-                                     name={"end_date"} label={"Accept Donations until (Select end date):"}
-                                     placeholder={"Minimum 50 INR"} />
+                                        value={values?.end_date}
+                                        type={"date"}
+                                        sx={InputStyleDate}
+                                        name={"end_date"} label={"Accept Donations until (Select end date):"}
+                                        placeholder={"Minimum 50 INR"} />
                                 </div>
 
                                 <div className='w-[50%] max-tablet:w-full document-upload-div'>
 
                                     <UploadField
                                         label="Upload Attachment:"
-                                        onDocumentUpload={handleDocumentUpload} 
+                                        onDocumentUpload={handleDocumentUpload}
                                         name="document"
                                         placeholder="Upload marksheets, Medical records, Fees Structure etc."
                                         sx={{ padding: '20px' }}
@@ -295,16 +296,16 @@ function Index() {
 
                             <div className="flex w-[100%] max-tablet:flex-col gap-4">
                                 <div className="w-[50%] max-tablet:w-full">
-                                    <SelectField 
-                                     value={values?.status} 
-                                      name={"status"}
-                                       label={"Status:"}
-                                        placeholder={"Minimum 50 INR"} 
+                                    <SelectField
+                                        value={values?.status}
+                                        name={"status"}
+                                        label={"Status:"}
+                                        placeholder={"Minimum 50 INR"}
                                         options={
-                                           [{label:"Pending",  value:'Pending'},
-                                            {label:"Active" , value:'Active' },
-                                        ]}
-                                        />
+                                            [{ label: "Pending", value: 'Pending' },
+                                            { label: "Active", value: 'Active' },
+                                            ]}
+                                    />
                                 </div>
 
                                 <div className="w-[50%] checkmark-div max-desktop:w-[46%] max-tablet:w-[100%]">
@@ -327,7 +328,7 @@ function Index() {
 
                             </div>
                             <div className="w-full ">
-                                <InputField  onChange={handleChange}  name={'Notes/Comments:'} label={"Notes/Comments:"} required={"true"}
+                                <InputField onChange={handleChange} name={'Notes/Comments:'} label={"Notes/Comments:"} required={"true"}
                                     multiline
                                     rows={5}
                                     sx={{

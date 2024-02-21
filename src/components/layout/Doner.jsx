@@ -49,7 +49,7 @@ function Doner({ data }) {
               <div className="col-span-3">
                 <div className="flex flex-col max-desktop:items-end max-tablet:items-end">
                   <div className="flex">
-                    <div className="max-desktop:flex  max-tablet:flex  max-tablet:justify-end ">
+                    <div className="max-desktop:flex  max-tablet:flex flex max-tablet:justify-end ">
                       <h1 className="text-xl font-semibold font-[satoshi] text-[#1ABD54] max-tablet:text-lg max-tablet:mr-2">
                         +
                       </h1>

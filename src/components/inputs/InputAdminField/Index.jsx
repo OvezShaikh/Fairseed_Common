@@ -35,7 +35,7 @@ const InputField = ({
     // }
 
     const styles = {
-        minHeight: "43.95px",
+        minHeight: "40.95px",
         // width: "100%",
         "label + &": {
             marginTop: "0.3rem",
@@ -47,6 +47,7 @@ const InputField = ({
             backgroundColor: "#fff",
             border: "1px solid #e2e2e2",
             fontSize: "16px",
+            height: '28px',
             width: "100%",
             padding: "8px 16px",
             borderRadius: '4px',
@@ -95,6 +96,7 @@ const InputField = ({
         },
         ...sx,
     };
+
 
     // const tooltipData = localStorage.getItem("tooltipData")
     //   ? JSON.parse(localStorage.getItem("tooltipData"))?.filter(
