@@ -14,7 +14,7 @@ function Index({ label, heading }) {
       `${pathname
         //   .replace("/", "")
         //   .replace(/\/*\[[^\]]*]/g, "")
-        //   .replace(/-/g, " ")
+          .replace(/-/g, " ")
         //   .replace(/\//g, "  ")
         // .replace("General Settings"," ")
         .slice(1)}`,

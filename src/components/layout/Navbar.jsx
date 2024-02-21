@@ -19,6 +19,7 @@ import UserLogin from '../../pages/login/Login_page/Index'
 import UserSignUp_02 from "../../pages/login/Sign_Up/Index";
 import { Link, NavLink } from "react-router-dom";
 import ProfileAvatar from "../../pages/login/ProfileAvatar";
+import { toast } from 'react-toastify'
 const styleButton = {
   color: 'red'
 }
@@ -26,15 +27,15 @@ const styleButton = {
 const GetInvolved = [
   {
     name: "Associateship",
-    href: "/Home/OnGoingCampaigns",
+    href: "/Home/GetInvolved/Associateship",
   },
   {
     name: "Partner with us",
-    href: "/Home/Donate",
+    href: "/Home/GetInvolved/Partner-with-us",
   },
   {
     name: "Internship",
-    href: '/Home/Create-Campaign',
+    href: '/Home/GetInvolved/Internships',
   },
   {
     name: "Create a campaign",
@@ -42,11 +43,11 @@ const GetInvolved = [
   },
   {
     name: "Support a campaign",
-    href: "/Home/OnGoingCampaigns",
+    href: "/Home/GetInvolved/Support-a-campaign",
   },
   {
     name: "Careers",
-    href: "/Home/ReligiousEducationCampaigns",
+    href: "/Home/GetInvolved/Careers",
   },
 ];
 const OurImpact = [
@@ -357,7 +358,9 @@ export default function Example() {
               ) : (
                 <PrimaryButton
                   onClick={() => {
-                    alert("Please Login to Create Campaign");
+                    toast.error("Please Login to create a Campaign", {
+                      position: "top-center"
+                    });
                   }}
                   sx={{ borderRadius: 'var(--Pixels-8, 8px)', fontWeight: 700, fontSize: '18px', padding: '12px 20px', }}>
                   Start a Campaign

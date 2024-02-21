@@ -209,12 +209,10 @@ const Sign_Stepper = () => {
     formData.append('user_type', values.user_type);
     formData.append('country', values.country);
     // formData.append('image' , values.image);
-    mutate(formData);
-    toast.success("user ceated successfully ! ", {
-      position: 'top-center'
-    })
-    window.location.href = '/Home';
-    console.log(formData);
+      mutate(formData);
+      alert("Signed Up Successfully !")
+      window.location.href = '/Home';
+      console.log(formData);
 
   }
   const getStepContent = (step) => {
