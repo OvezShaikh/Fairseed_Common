@@ -114,6 +114,9 @@ function Home() {
 
   const loadMore = () => {
 
+
+    console.log("LOAD MORE CLICKED");
+
     setVisibleCards((prevVisibleCards) => prevVisibleCards + 4);
 
     if (page < totalPages) {
@@ -123,6 +126,8 @@ function Home() {
     if (visibleCards >= perPage) {
       setPerPage(perPage + 100)
     }
+
+    
 
 
   };
