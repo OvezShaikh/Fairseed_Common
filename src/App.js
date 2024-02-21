@@ -17,15 +17,6 @@ import RegisterSmallScreen from "./pages/login/Sign_Up/RegisterSmallScreen";
 import UserEdit from "../src/components/AdminPanelPages/Froms/UserEdit/Index";
 import AdminLayout from "./components/layout/AdminLayout/Index";
 
-function ScrollToTop() {
-  const { pathname } = useLocation();
-
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  return null;
-}
 import StoriesOfChange from "./pages/StaticPages/StoriesOfChange/Index";
 import Associateship from "./pages/GetInvolved/Associateship";
 import Supportacampaign from "./pages/GetInvolved/Supportacampaign";
@@ -40,11 +31,17 @@ import OurTeam from "./pages/AboutUs/OurTeam";
 import HowItWorks from "./pages/HowItWorks/HowItWorks";
 import PrivacyPolicy from "./pages/login/Sign_Up/PrivacyPolicy";
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
+function ScrollToTop() {
+  const { pathname } = useLocation();
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 function App() {
-  
   return (
     <div className="container p-0">
       {/* <OnGoingCampaigns/> */}
@@ -80,32 +77,56 @@ function App() {
 
           <Route path="/campaign-details/:id" element={<CurrentCampaign />} />
 
-          <Route path="/Home/Impact/StoriesOfChange" element={<StoriesOfChange />} />
+          <Route
+            path="/Home/Impact/StoriesOfChange"
+            element={<StoriesOfChange />}
+          />
 
-          <Route path="/Home/GetInvolved/Associateship" element={<Associateship />} />
-          
-          <Route path="/Home/GetInvolved/Support-a-campaign" element={<Supportacampaign />} />
+          <Route
+            path="/Home/GetInvolved/Associateship"
+            element={<Associateship />}
+          />
+
+          <Route
+            path="/Home/GetInvolved/Support-a-campaign"
+            element={<Supportacampaign />}
+          />
 
           <Route path="/Home/GetInvolved/Internship" element={<Internship />} />
 
           <Route path="/Home/GetInvolved/Careers" element={<Careers />} />
 
-          <Route path="/Home/GetInvolved/Partner-with-us" element={<Partnerwithus />} />
+          <Route
+            path="/Home/GetInvolved/Partner-with-us"
+            element={<Partnerwithus />}
+          />
 
           <Route path="/Home/Impact/Reports" element={<Reports />} />
 
-          <Route path="/Home/About-Us/Knowing-Fairseed" element={<KnowingFairseed />} />
+          <Route
+            path="/Home/About-Us/Knowing-Fairseed"
+            element={<KnowingFairseed />}
+          />
 
-          <Route path="/Home/About-Us/Vision-&-Mission" element={<VisionMission />} />
+          <Route
+            path="/Home/About-Us/Vision-&-Mission"
+            element={<VisionMission />}
+          />
 
-          <Route path="/Home/About-Us/Objectives-&-values" element={<Objectivesandvalues />} />
+          <Route
+            path="/Home/About-Us/Objectives-&-values"
+            element={<Objectivesandvalues />}
+          />
 
           <Route path="/Home/About-Us/Our-Team" element={<OurTeam />} />
 
           <Route path="/Home/How-It-Works" element={<HowItWorks />} />
 
-          <Route path="/Home/Sign-Up/Privacy-Policy" element={<PrivacyPolicy/>} />
-
+          <Route
+            path="/Home/Sign-Up/Privacy-Policy"
+            element={<PrivacyPolicy />}
+          />
+          <Route path="/Home/How-It-Works" element={<HowItWorks />} />
         </Routes>
       </BrowserRouter>
     </div>

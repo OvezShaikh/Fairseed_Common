@@ -61,26 +61,26 @@ const OurImpact = [
   },
   {
     name: "Stories of Change",
-    href: '/Home/Create-Campaign',
+    href: '/Home/Impact/StoriesOfChange',
   },
   {
     name: "Reports",
-    href: '/Home/Create-Campaign',
+    href: '/Home/Impact/Reports',
   },
 
 ];
 const AboutUs = [
   {
     name: "Knowing Fairseed",
-    href: "/Home/OnGoingCampaigns",
+    href: "/Home/About-Us/Knowing-Fairseed",
   },
   {
     name: "Vision & Mission",
-    href: "/Home/Donate",
+    href: "/Home/About-Us/Vision-&-Mission",
   },
   {
-    name: "Our Mission",
-    href: '/Home/Create-Campaign',
+    name: "Objectives & Values",
+    href: '/Home/About-Us/Objectives-&-values',
   },
 
 
@@ -339,9 +339,11 @@ export default function Example() {
 
 
             {/* Fourth button */}
+
             <button
               className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
-            >How it Works</button>
+            >   <Link to={'/Home/How-It-Works'}>How it Works            </Link>
+            </button>
 
 
 
@@ -502,7 +504,7 @@ export default function Example() {
                     </>
                   )}
                 </Disclosure>
-                <Link to="/login"
+                <Link to={'/Home/How-It-Works'}
                   className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   How It works
