@@ -21,6 +21,7 @@ import VisionMission from "./pages/AboutUs/Vision&mission";
 import Objectivesandvalues from "./pages/AboutUs/Objectives&values";
 import OurTeam from "./pages/AboutUs/OurTeam";
 import HowItWorks from "./pages/HowItWorks/HowItWorks";
+import PrivacyPolicy from "./pages/login/Sign_Up/PrivacyPolicy";
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -76,6 +77,8 @@ function App() {
           <Route path="/Home/About-Us/Our-Team" element={<OurTeam />} />
 
           <Route path="/Home/How-It-Works" element={<HowItWorks />} />
+
+          <Route path="/Home/Sign-Up/Privacy-Policy" element={<PrivacyPolicy/>} />
 
         </Routes>
       </BrowserRouter>

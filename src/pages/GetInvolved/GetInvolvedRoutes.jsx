@@ -1,8 +1,10 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import StoriesOfChange from "../StaticPages/StoriesOfChange/Index";
-import Limit from "../../components/AdminPanelPages/General_Setting/Limit/Index";
-import ProfilesSocial from "../../components/AdminPanelPages/General_Setting/ProfilesSocial/Index";
+import Supportacampaign from "../GetInvolved/Supportacampaign"
+import Careers from "./Careers";
+import Internship from "./Intership";
+import Associateship from "./Associateship";
+import Partnerwithus from "./Partnerwithus";
 
 function OurImpactRoutes() {
   return (
@@ -14,15 +16,33 @@ function OurImpactRoutes() {
         }
       />
       <Route
-        path="/Limits"
+        path="/Support-a-campaign"
         element={
-          <Limit />
+          <Supportacampaign />
         }
       />
       <Route
-        path="/Profiles-Social"
+        path="/Careers"
         element={
-          <ProfilesSocial />
+          <Careers />
+        }
+      />
+      <Route
+        path="/Internship"
+        element={
+          <Internship />
+        }
+      />
+      <Route
+        path="/Partner-with-us"
+        element={
+          <Partnerwithus />
+        }
+      />
+      <Route
+        path="/Partner-with-us"
+        element={
+          <Partnerwithus />
         }
       />
     </Routes>

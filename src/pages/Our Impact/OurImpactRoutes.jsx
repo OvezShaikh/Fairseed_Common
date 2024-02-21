@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import StoriesOfChange from "../StaticPages/StoriesOfChange/Index";
-import Limit from "../../components/AdminPanelPages/General_Setting/Limit/Index";
+import Index from "../Campaigns/OnGoingCampaigns/Index";
 import ProfilesSocial from "../../components/AdminPanelPages/General_Setting/ProfilesSocial/Index";
 
 function OurImpactRoutes() {

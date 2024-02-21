@@ -26,15 +26,15 @@ const styleButton = {
 const GetInvolved = [
   {
     name: "Associateship",
-    href: "/Home/OnGoingCampaigns",
+    href: "/Home/GetInvolved/Associateship",
   },
   {
     name: "Partner with us",
-    href: "/Home/Donate",
+    href: "/Home/GetInvolved/Partner-with-us",
   },
   {
     name: "Internship",
-    href: '/Home/Create-Campaign',
+    href: '/Home/GetInvolved/Internships',
   },
   {
     name: "Create a campaign",
@@ -42,11 +42,11 @@ const GetInvolved = [
   },
   {
     name: "Support a campaign",
-    href: "/Home/OnGoingCampaigns",
+    href: "/Home/GetInvolved/Support-a-campaign",
   },
   {
     name: "Careers",
-    href: "/Home/ReligiousEducationCampaigns",
+    href: "/Home/GetInvolved/Careers",
   },
 ];
 const OurImpact = [
