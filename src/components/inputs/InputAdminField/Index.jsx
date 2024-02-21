@@ -1,9 +1,11 @@
+
+
 import React from "react";
 import { alpha } from "@mui/material/styles";
-import { FormLabel, InputBase, Tooltip } from "@mui/material";
+import { FormLabel, InputBase, TextField, Tooltip } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import { ErrorMessage, useField } from "formik";
-import { colors } from "../../../constants/theme";
+import { colors, theme } from "../../../constants/theme";
 
 const InputField = ({
     name,
@@ -32,32 +34,30 @@ const InputField = ({
     //   configTextfield.helpertext = meta.error;
     // }
 
-    const styles = (theme) => ({
+    const styles = {
         minHeight: "43.95px",
+        // width: "100%",
         "label + &": {
             marginTop: "0.3rem",
         },
         "& .MuiInputBase-input": {
             borderRadius: "3px",
-            // borderTopLeftRadius: configTextfield?.startAdornment ? "0px" : "4px",
-            // borderBottomLeftRadius: configTextfield?.startAdornment ? "0px" : "4px",
+
             position: "relative",
             backgroundColor: "#fff",
             border: "1px solid #e2e2e2",
-            fontSize: "20px",
+            fontSize: "16px",
             width: "100%",
             padding: "8px 16px",
             borderRadius: '4px',
-            ...sx,
             transition: theme.transitions.create([
                 "border-color",
                 "background-color",
                 "box-shadow",
             ]),
-            // fontFamily: ["FuturaLight"].join(","),
             "&:focus": {
                 boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);
-        `,
+            `,
                 borderColor: "black",
             },
 
@@ -93,8 +93,8 @@ const InputField = ({
             borderTopLeftRadius: theme.shape.borderRadius + "px",
             borderBottomLeftRadius: theme.shape.borderRadius + "px",
         },
-        // ...sx,
-    });
+        ...sx,
+    };
 
     // const tooltipData = localStorage.getItem("tooltipData")
     //   ? JSON.parse(localStorage.getItem("tooltipData"))?.filter(
@@ -103,8 +103,30 @@ const InputField = ({
     //         configTextfield?.label?.toLowerCase()
     //     )
     //   : null;
+    let textFieldConfig = {
+        variant,
+        InputLabelProps: { shrink: true },
+        fullWidth: true,
+        ...otherProps,
+        sx: { ...styles, ...otherProps.sx },
+    };
+    console.log(styles);
+    if (name) {
+        //eslint-disable-next-line
+        const [field, meta] = useField(name || "");
+        textFieldConfig = {
+            ...field,
+            ...textFieldConfig,
+        };
+
+        if (meta && meta.touched && meta.error) {
+            textFieldConfig.error = true;
+            textFieldConfig.helperText = meta.error;
+        }
+    }
+
     return (
-        <>
+        <div className="w-full">
             {label && (
                 <FormLabel
                     className="text-capitalize font-medium d-flex align-items-center"
@@ -115,6 +137,8 @@ const InputField = ({
                         fontWeight: 700,
                         fontFamily: "satoshi",
                         fontStyle: "normal",
+                        width: '100%'
+
                     }}
                 >
                     {label}
@@ -124,15 +148,15 @@ const InputField = ({
             <InputBase
                 sx={styles}
                 // style={{ ...configTextfield?.style }}
-                {...configTextfield}
+                {...textFieldConfig}
             />
-            {/* <ErrorMessage
-        name={name}
-        render={(msg) => (
-          <div style={{ color: "red", fontSize: "0.7rem" }}>{msg}</div>
-        )}
-      /> */}
-        </>
+            <ErrorMessage
+                name={name}
+                render={(msg) => (
+                    <div style={{ fontFamily: 'satoshi', color: "red", fontSize: "1rem", paddingLeft: '5px' }}>{msg}</div>
+                )}
+            />
+        </div>
     );
 };
 

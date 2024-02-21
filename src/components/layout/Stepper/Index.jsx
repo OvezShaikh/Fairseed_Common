@@ -15,7 +15,7 @@ import { useCreateOrUpdate } from "../../../Hooks/useCreateOrUpdate";
 import { useNavigate } from "react-router-dom";
 import { Formik } from "formik";
 import * as yup from 'yup';
-
+import "./Stepper.css";
 
 
 
@@ -123,7 +123,8 @@ const initialValues = {
   adhar_card: "",
   adhar_card_image: "",
   pan_card: "",
-  pan_card_image: ""
+  pan_card_image: "",
+  declaration:false,
 }
 
 const validations = [yup.object({
@@ -269,40 +270,61 @@ export default function HorizontalLinearStepper() {
 
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Stepper activeStep={activeStep} sx={styleStep}>
+    <Box sx={{ width: "100%" }} className="stepper-box">
+      <div className="steps-counter-div">
+
+
+      <StepLabel>
+        {activeStep === 4
+          ? "All Steps Completed"
+          : `${activeStep + 1} of ${steps.length} steps`}
+      </StepLabel>
+
+     
+      </div>
+
+      <Stepper activeStep={activeStep} sx={styleStep} className="stepper-div">
+
+      
+
+
         {steps.map((step, index) => {
           const stepProps = {};
           const labelProps = {};
-          // if (isStepOptional(index)) {
-          //   labelProps.optional = (
-          //     <Typography variant="caption">Optional</Typography>
-          //   );
-          // }
-          // if (isStepSkipped(index)) {
-          //   stepProps.completed = false;
-          // }
+          
           return (
-            <Step {...stepProps} key={index}>
-              <StepLabel {...labelProps}>{step}</StepLabel>
+            
+            
+              
+
+
+
+            <Step {...stepProps} key={index} className="step-div">
+
+            
+
+
+
+              <StepLabel className="step-label" {...labelProps}>{step}</StepLabel>
             </Step>
+            
           );
         })}
       </Stepper>
       {activeStep === steps.length ? (
         <React.Fragment>
           <Typography variant="h3" align="center">
-            <div className="w-full px-[140px] py-[89px] flex flex-col justify-center items-center gap-3">
-              <h1 className="text-[#06B217] text-[48px] font-[satoshi] font-bold">
+            <div className="w-full px-0 py-[89px] flex flex-col justify-center items-center gap-3 max-desktop:px-0">
+              <h1 className="text-[#06B217] deskttop:text-[48px] max-desktop:text-[48px] mb-[35px] font-[satoshi] font-bold max-tablet:text-[20px]">
                 Success!
               </h1>
               <img
-                className="w-[176px] h-[176px] "
+                className="w-[176px] h-[176px] mb-[35px]"
                 src={images.Success}
                 alt=""
               />
               <p
-                className="text-[24px] font-[satoshi] font-semibold"
+                className="text-[24px] font-[satoshi] font-bold mb-[90px] max-tablet:text-[20px] max-tablet:px-[12px]"
                 style={{
                   background:
                     "linear-gradient(71deg, #06B217 0%, #FF375F 62.9%)",
@@ -314,7 +336,7 @@ export default function HorizontalLinearStepper() {
               </p>
             </div>
           </Typography>
-          <div className="flex  gap-3">
+          <div className="flex desktop:gap-x-[40px] max-desktop:gap-x-[24px]">
             <SecondaryButton
               disabled={activeStep === 0}
               onClick={handleBack}

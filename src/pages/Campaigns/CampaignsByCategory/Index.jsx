@@ -30,11 +30,13 @@ function Index() {
       );
       const res = response.data;
       console.log(res, "cards");
-      console.log(res.rows);
+      console.log(res.rows,"------------------->");
+    
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList([...userList, ...res.rows]);
         setData(res.rows);
+       
       }
       //  else {
       //   console.error("Invalid data structure. Expected an array:");
@@ -54,7 +56,7 @@ function Index() {
       `${process.env.REACT_APP_API_URL}/campaign/category?category=${id}&page=${page}&limit=${perPage}`
     );
     if (Array.isArray(res.data.rows)) {
-      setTotalPages(res.pages_count);
+      setTotalPages(res.data.pages_count);
       setCategoryCampaignList([...categoryCampaignList, ...res.data.rows]);
       setCategoryDetail(res.data.category_data);
     } else {
@@ -147,18 +149,18 @@ function Index() {
                     </h1>
                   </SecondaryButton>
                   <div className="flex pl-[125px]">
-                  <SecondaryButton
-                    sx={{
-                      padding: "0px 12px 0px 30px",
-                      border: "none"
-                      
-                    }}
-                  >
-                    
-                    <h1 className=" font-[satoshi] text-[18px] text-[#25272C] font-bold ">
-                      Location : 
-                    </h1>
-                  </SecondaryButton>
+                    <SecondaryButton
+                      sx={{
+                        padding: "0px 12px 0px 30px",
+                        border: "none"
+
+                      }}
+                    >
+
+                      <h1 className=" font-[satoshi] text-[18px] text-[#25272C] font-bold ">
+                        Location :
+                      </h1>
+                    </SecondaryButton>
                   <OptionsButton />
                   </div>
                 </div>

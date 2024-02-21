@@ -1,48 +1,80 @@
-import React from 'react'
-import Input from "@mui/joy/Input";
-import FormControl from "@mui/joy/FormControl";
-import FormLabel from "@mui/joy/FormLabel";
-import InputField from "../../../inputs/InputField/index"
-import { colors, theme } from "../../../../constants/theme";
-import { padding } from '@mui/system';
+import React from 'react';
+import { Form, Formik } from 'formik';
+import * as Yup from 'yup'; // Import Yup for validation
+import { useCreateOrUpdate } from '../../../../Hooks';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import PrimaryButton from '../../../inputs/PrimaryButton';
-import InputAdminField from '../../../inputs/InputAdminField/Index'
-const styleLabel = {
-  fontFamily: "satoshi",
-  fontSize: 16,
-  fontWeight: 700,
-  color: "#383A42",
-};
-const styleInput = {
-  color: "#B6BAC3",
-  fontSize: 16,
-  fontFamily: "Satoshi ",
-  fontWeight: "500",
+import InputAdminField from '../../../inputs/InputAdminField/Index';
+
+const initialValues = {
+  instagram_url: "",
+  facebook_url: "",
+  twitter_url: "",
 };
 
-function ProfilesSocial() {
+const ProfilesSocial = () => {
+  const { mutate } = useCreateOrUpdate({
+    url: '/admin-dashboard/social-media'
+  });
+
+  const handleSubmit = async (values, { resetForm }) => {
+    try {
+      await mutate(values, {
+        onSuccess: (response) => {
+          console.log(response);
+          toast.success("Form submitted successfully");
+          resetForm(); // Optional: Reset the form after successful submission
+        }
+      });
+    } catch (error) {
+      console.error("Submission Error:", error);
+    }
+  };
+
+  // Define validation schema using Yup
+  const validationSchema = Yup.object().shape({
+    instagram_url: Yup.string()
+      // .url("Invalid URL")
+      .required("Instagram URL is required"),
+    facebook_url: Yup.string()
+      // .url("Invalid URL")
+      .required("Facebook URL is required"),
+    twitter_url: Yup.string()
+      // .url("Invalid URL")
+      .required("Twitter URL is required"),
+  });
+
   return (
-    <div className='flex flex-col flex-wrap justify-center items-center'>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema} // Pass validation schema to Formik
+      onSubmit={handleSubmit}
+    >
+      {({ errors, touched }) => (
+        <Form className='flex flex-col  flex-wrap justify-center max-tablet:pt-5 max-desktop:pt-5 items-center'>
+          <div className="flex  gap-4 w-full max-tablet:flex-col  mb-24">
+            <div className="flex w-full  flex-col">
+              <InputAdminField label={"Facebook"} name={"facebook_url"} placeholder={"Placeholder text"} />
 
-      <div className="flex  gap-4 w-full mb-24">
-        <div className="flex w-full flex-col">
-          <InputAdminField label={"Facebook"} name={"facebook"} placeholder={"Placeholder text"} />
-        </div>
-        <div className="flex w-full flex-col">
+            </div>
+            <div className="flex w-full flex-col">
+              <InputAdminField label={"Twitter"} name={"twitter_url"} placeholder={"Placeholder text"} />
 
-          <InputAdminField label={"Twitter"} name={"facebook"} placeholder={"Placeholder text"} />
-        </div>
-        <div className="flex w-full  flex-col">
+            </div>
+            <div className="flex w-full  flex-col">
+              <InputAdminField label={"Instagram"} name={"instagram_url"} placeholder={"Placeholder text"} />
 
-          <InputAdminField label={"Instagram"} name={"facebook"} placeholder={"Placeholder text"} />
-        </div>
-        {/* <FormHelperText>This is a helper text.</FormHelperText> */}
+            </div>
+          </div>
+          <PrimaryButton type='submit'>
+            <h1 className='text-white font-semibold font-[satoshi]'>Save</h1>
+          </PrimaryButton>
+        </Form>
+      )}
+    </Formik>
+  );
+};
 
-      </div >
-      <PrimaryButton >
-        <h1 className='text-white font-semibold font-[satoshi]'>Save</h1>
-      </PrimaryButton>
-    </div>)
-}
-
-export default ProfilesSocial
+export default ProfilesSocial;

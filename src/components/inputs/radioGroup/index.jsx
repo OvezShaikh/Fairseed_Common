@@ -11,7 +11,7 @@ import { pink, red } from "@mui/material/colors";
 import { colors } from "../../../constants/theme";
 import { ErrorMessage } from "formik";
 
-const RadioGroup = ({ label, options, onChange, required, name, ...otherProps }) => {
+const RadioGroup = ({ label, options, onChange, required, name, sx, style, ...otherProps }) => {
   return (
     <FormControl
       sx={{
@@ -23,7 +23,7 @@ const RadioGroup = ({ label, options, onChange, required, name, ...otherProps })
       }}
     >
       <FormLabel
-        className="text-capitalize font-medium d-flex align-items-center mb-1 me-4"
+        className="font-medium d-flex align-items-center mb-1 me-4"
         sx={{
           padding: "4px 8px 0px 8px",
           color: colors.text.main,
@@ -32,6 +32,7 @@ const RadioGroup = ({ label, options, onChange, required, name, ...otherProps })
           fontFamily: "satoshi",
           fontStyle: "normal",
           height: "32px",
+
         }}
         id={`demo-radio-buttons-group-label-${label}`}
       >
@@ -40,7 +41,7 @@ const RadioGroup = ({ label, options, onChange, required, name, ...otherProps })
 
       </FormLabel>
       <MuiRadioGroup
-        sx={{ display: "flex", flexDirection: "row", pl: "10px", pb: "1rem" }}
+        sx={{ display: "flex", flexDirection: "row", pl: "10px", pb: "1rem", ...sx }}
         {...otherProps}
         aria-labelledby={`demo-radio-buttons-group-label-${label}`}
         name={`radio-buttons-group-${label}`}
@@ -64,6 +65,7 @@ const RadioGroup = ({ label, options, onChange, required, name, ...otherProps })
                 fontWeight: 700,
                 fontFamily: "satoshi",
                 fontStyle: "normal",
+                ...style
               },
             }}
             control={

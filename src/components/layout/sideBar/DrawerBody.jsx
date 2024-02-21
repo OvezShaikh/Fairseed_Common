@@ -256,8 +256,8 @@ const DrawerBody = () => {
     },
     {
       icon: "CausesIcon",
-      path: "/AdminPanel/Causes",
-      title: "Causes",
+      path: "/AdminPanel/Campaigns",
+      title: "Campaigns",
     },
     {
       icon: "CausesApprovalIcon",
@@ -306,10 +306,16 @@ const DrawerBody = () => {
     },
     {
       icon: "PgSettingsIcon",
-      path: "/AdminPanel/PG-Settings",
-      title: "PG Settings",
+      path: "/AdminPanel/Payment-Gateway",
+      title: "Payment Gateway",
     },
   ];
+
+  // {
+  //   icon: "PolicyIcon",
+  //   path: "/teams-policy-settings",
+  //   title: "Teams Policy Settings",
+  // },
 
   // {
   //   icon: "PolicyIcon",

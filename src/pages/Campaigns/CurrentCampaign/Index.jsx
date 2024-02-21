@@ -64,9 +64,7 @@ function CurrentCampaign({
   return (
     <>
       <Navbar />
-      {/* <Grid sx={{ padding: "100px 50px 0px 50px" }}> */}
 
-      {/* </Grid> */}
       <div
         className="px-[52px] gap-[48px] max-tablet:gap-[28px] pt-[100px] max-desktop:w-full max-desktop:px-[28px] max-desktop:place-content-center max-tablet:px-[16px]"
         style={{
@@ -100,7 +98,7 @@ function CurrentCampaign({
               style={{ fontFamily: "satoshi", fontSize: 20, fontWeight: 700, color: '#95999D' }}
             >
               <div className="flex">
-                Home/<span className="text-[#61656A] w-[130px]" style={{ textOverflow: 'ellipsis' }}>{cardDetails?.title}</span>
+                Home/<span className="text-[#61656A] w-[130px] truncate" style={{ textOverflow: 'ellipsis' }}>{cardDetails?.title}</span>
               </div>
             </div>
           </div>

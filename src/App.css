@@ -49,3 +49,8 @@
     margin-right: 4px; /* Adjust the spacing between the bullet point and text */
 
  }
+@media screen and (max-width: 768px) {
+    :root {
+        --small-screen: true;
+    }
+}

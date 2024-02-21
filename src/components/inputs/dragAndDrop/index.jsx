@@ -1,5 +1,6 @@
 import { Upload } from "@carbon/icons-react";
 import { FiUpload } from "react-icons/fi";
+import images from "../../../constants/images";
 
 import {
   Button,
@@ -13,6 +14,7 @@ import { colors } from "../../../constants/theme";
 import { Label } from "@mui/icons-material";
 import ReactDropZone from "react-dropzone";
 import { useFormikContext } from "formik";
+import "./dragAndDrop.css";
 
 const DropZone = ({
   name,
@@ -60,9 +62,9 @@ const DropZone = ({
           {label && <Label className="text-sm ml-3" text={label} />}
           <div
             {...getRootProps()}
-            className="drop-zone mt-2"
+            className="drop-zone"
             style={{
-              background: isDragActive ? colors.tertiary.light : "#fff",
+              backgroundImage: isDragActive ? "images.DashedImageUpload" : "images.DashedImageUpload",
             }}
           >
             {isLoading ? (
@@ -98,12 +100,13 @@ const DropZone = ({
                     fontFamily: 'satoshi',
                     fontWeight: 500
                   }}
-                  startIcon={<FiUpload color={colors.primary} />}
-                  className="text-capitalize"
+                  
+                  startIcon={<img src={images.UploadIcon} />}
+                  className="normal-case text-[20px] max-desktop:text-[15px]"
                 >
                   Upload an Image
                 </Button>{" "}
-                <p className="w-[360px] font-[satoshi]  text-center" style={{ color: "rgba(0, 0, 0, 0.40)", }}>
+                <p className="max-w-[369px] font-[satoshi] text-center text-[20px] font-medium max-desktop:text-[15px] max-desktop:max-w-[276px]" style={{ color: "rgba(0, 0, 0, 0.40)", }}>
                   &nbsp; The Image must be less than 5 MB. Recommended size is
                   850x550. Minimum height is 550 and minimum width is 850.
                   {/* </>

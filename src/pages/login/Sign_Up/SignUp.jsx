@@ -16,7 +16,7 @@ const SignUp = ({ handleNext }) => {
   const { submitForm, setFieldValue } = useFormikContext();
 
   return (
-    <Form className='pt-8'>
+    <Form className='pt-8 max-tablet:pl-7'>
       <Container>
         <Grid container spacing={4}>
           <Grid container spacing={3}>

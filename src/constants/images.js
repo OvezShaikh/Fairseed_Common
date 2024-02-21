@@ -75,6 +75,13 @@ import Knowingfairseed from "../assets/Knowingfairseed.png"
 import VissionMission from "../assets/VissionMission.png"
 import valuepage from "../assets/valuepage.png"
 import ourteam from "../assets/ourteam.png"
+import DashedImageUpload from "../assets/Dashed Image Upload.png";
+import UploadIcon from "../assets/UploadIcon.png";
+import CausesDetails from "../assets/CausesDetails.svg";
+import Vector from "../assets/Vector.svg";
+import done from "../assets/done.gif";
+import ColorFullDownArrow from "../assets/ColorfulDownArrow.png";
+import CheckBoxGradient from "../assets/CheckBoxGradient.png";
 
 export default {
   SedalCheck,
@@ -152,5 +159,12 @@ export default {
   Knowingfairseed,
   VissionMission,
   valuepage,
-  ourteam
+  ourteam,
+  DashedImageUpload,
+  UploadIcon,
+  CausesDetails,
+  Vector,
+  done,
+  ColorFullDownArrow,
+  CheckBoxGradient,
 };

@@ -23,7 +23,7 @@ function Footer() {
         }}
       >
         <div className="flex mt-[140px] max-desktop:mt-[305px] desktop:max-w-[79%] desktop:w-full justify-center absolute -top-[50%] left-[50%] -translate-x-[50%] max-desktop:w-[81%] max-tablet:mt-[300px]">
-          <div className="rounded-lg footer text-center desktop:p-[90px] max-desktop:px-[48px] max-desktop:py-[85px] max-tablet:px-[23px] max-tablet:py-[33px]">
+          <div className="rounded-[20px] footer text-center desktop:p-[90px] max-desktop:px-[48px] max-desktop:py-[85px] max-tablet:px-[23px] max-tablet:py-[33px]">
             <p className="footer_text w-[100%] mx-auto text-[56px] max-desktop:text-[36px] max-tablet:text-[22px]" style={{ fontWeight: 700 }}>
               Ready to make an Impact? Join thousands of others today
             </p>

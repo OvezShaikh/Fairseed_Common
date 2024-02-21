@@ -102,7 +102,7 @@ export default function Example() {
           </NavLink>
         </div>
 
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end ">
+        <div className=" lg:flex lg:flex-1 lg:justify-end ">
           <div className="flex lg:hidden">
             <button
               type="button"
@@ -359,24 +359,18 @@ export default function Example() {
           </Popover.Group>
         </div>
       </nav>
-      <Dialog
-        as="div"
-        className="lg:hidden"
-        open={mobileMenuOpen}
-        onClose={setMobileMenuOpen}
-      >
+      <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <NavLink to="#" className="-m-1.5 p-1.5">
+            <Link to="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img
-                className="h-20% w-20% py-0.1em px-0.1em"
+                className="h-8 w-auto"
                 src={images.Logo}
-                alt="FairSeed"
-                title="FairSeed"
+                alt=""
               />
-            </NavLink>
+            </Link>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -392,49 +386,91 @@ export default function Example() {
                 <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                        Product
+                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
+                        Get Involved
                         <ChevronDownIcon
-                          className={classNames(
-                            open ? "rotate-180" : "",
-                            "h-5 w-5 flex-none"
-                          )}
+                          className={classNames(open ? 'rotate-180' : '', 'h-6 w-6 flex-none')}
                           aria-hidden="true"
                         />
                       </Disclosure.Button>
+                      <Disclosure.Panel className="mt-2 space-y-2">
+                        {[...GetInvolved].map((item) => (
+                          <Disclosure.Button
+                            key={item.name}
+                            as="a"
+                            href={item.href}
+                            className="block rounded-lg py-2 pl-6 pr-3 text-lg font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                          >
+                            {item.name}
+                          </Disclosure.Button>
+                        ))}
+                      </Disclosure.Panel>
                     </>
                   )}
                 </Disclosure>
-                <NavLink
-                  to="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Features
-                </NavLink>
+                <Disclosure as="div" className="-mx-3">
+                  {({ open }) => (
+                    <>
+                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
+                        Our Impact
+                        <ChevronDownIcon
+                          className={classNames(open ? 'rotate-180' : '', 'h-6 w-6 flex-none')}
+                          aria-hidden="true"
+                        />
+                      </Disclosure.Button>
+                      <Disclosure.Panel className="mt-2 space-y-2">
+                        {[...OurImpact].map((item) => (
+                          <Disclosure.Button
+                            key={item.name}
+                            as="a"
+                            href={item.href}
+                            className="block rounded-lg py-2 pl-6 pr-3 text-lg font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                          >
+                            {item.name}
+                          </Disclosure.Button>
+                        ))}
+                      </Disclosure.Panel>
+                    </>
+                  )}
+                </Disclosure>
 
-                <NavLink
-                  to="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                <Disclosure as="div" className="-mx-3">
+                  {({ open }) => (
+                    <>
+                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
+                        About Us
+                        <ChevronDownIcon
+                          className={classNames(open ? 'rotate-180' : '', 'h-6 w-6 flex-none')}
+                          aria-hidden="true"
+                        />
+                      </Disclosure.Button>
+                      <Disclosure.Panel className="mt-2 space-y-2">
+                        {[...AboutUs].map((item) => (
+                          <Disclosure.Button
+                            key={item.name}
+                            as="a"
+                            href={item.href}
+                            className="block rounded-lg py-2 pl-6 pr-3 text-lg font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                          >
+                            {item.name}
+                          </Disclosure.Button>
+                        ))}
+                      </Disclosure.Panel>
+                    </>
+                  )}
+                </Disclosure>
+                <Link to="/login"
+                  className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Company
-                </NavLink>
+                  How It works
+                </Link>
               </div>
-              <div
-                className="py-2"
-                style={{
-                  backgroundColor: "#FBAB7E",
-                  backgroundImage:
-                    "linear-gradient(62deg, #FBAB7E 0%, #F7CE68 50%)",
-                  height: "100px",
-                  width: "20px",
-                }}
-              >
-                <NavLink
-                  to="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 "
+              <div className="py-6">
+                <button
+                  className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
                 >
-                  Log in
-                </NavLink>
+                  <ProfileAvatar />
+                </button>
               </div>
             </div>
           </div>

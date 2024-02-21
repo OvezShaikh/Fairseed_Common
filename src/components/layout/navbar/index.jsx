@@ -73,7 +73,7 @@ const NavbarContainer = ({ handleDrawerToggle }) => {
         display: "inline-block",
         position: "fixed",
         right: 0,
-        top: '58px',
+        top: '54px',
         zIndex: "99",
         padding: '16px 16px  ',
         width: `${sideBar ? "100vw" : "calc(100vw - 273px)"}`,
@@ -206,12 +206,14 @@ const NavbarContainer = ({ handleDrawerToggle }) => {
             onChange={handleChange}
             aria-label="Platform"
           >
-            <ToggleButton value="web" aria-label="color">
+            {/* <ToggleButton value="web" aria-label="color">
               <SettingsIcon />
               <ArrowDropDownIcon />
-            </ToggleButton>
+            </ToggleButton> */}
 
-            <ToggleButton value="underlined" aria-label="underlined">
+            <ToggleButton
+              onClick={handleDrawerToggle}
+              value="underlined" aria-label="underlined">
               <LuPanelRight style={{ fontSize: 27 }} />
             </ToggleButton>
           </ToggleButtonGroup>

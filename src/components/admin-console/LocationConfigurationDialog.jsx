@@ -15,6 +15,7 @@ import SelectField from "../inputs/SelectField";
 import { toast } from "react-toastify";
 import ErrorIcon from "@mui/icons-material/Error";
 
+
 const initialState = {
   location: "",
   country_id: {},
@@ -23,6 +24,16 @@ const initialState = {
   ad_path: "",
   active: true,
 };
+const InputStyle =
+{
+  padding: '16px', border: "1px solid #e2e2e2"
+  , borderRadius: '5px',
+  // },
+  "&:focus-within": {
+    boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
+    borderColor: " black",
+  },
+}
 
 const validations = yup.object({
   location: yup
@@ -72,7 +83,7 @@ export const LocationConfigurationDialog = ({
 
   return (
     <Dialog
-      title={`${isUpdate ? "Update" : "Add"}  Location`}
+      title={`${isUpdate ? "Update" : "Add"}  Category`}
       onClose={() => onClose && onClose()}
       button={
         isUpdate ? (
@@ -162,7 +173,7 @@ export const LocationConfigurationDialog = ({
                   className="px-4"
                 >
                   <Grid md={6} xs={12} item>
-                    <InputField name="location" label="Location Name" />
+                    <InputField name="location" sx={InputStyle} label="Location Name" />
                   </Grid>
                   <Grid md={6} xs={12} item>
                     <SelectField
@@ -225,6 +236,7 @@ export const LocationConfigurationDialog = ({
                   </Grid>
                   <Grid xs={12} item>
                     <InputField
+                      sx={InputStyle}
                       name="ad_path"
                       label="AD Path"
                       multiline

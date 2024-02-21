@@ -2,6 +2,9 @@ import React, { useContext, useMemo } from "react";
 import { Grid, Typography } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import images from "../../../constants/images";
+import Link from "@mui/material/Link";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 function Index({ label, heading }) {
   const navigate = useNavigate();
@@ -18,6 +21,12 @@ function Index({ label, heading }) {
 
     [pathname]
   );
+  function handleClick(event, path) {
+    navigate(`/${path}`)
+    event.preventDefault();
+    console.info("You clicked a breadcrumb.");
+
+  }
   return (
     <div>
       <div
@@ -48,10 +57,36 @@ function Index({ label, heading }) {
               <img src={images.ArrowBack} alt="" />
             </div>
             <div
-              className="flex flex-col text-black/70 max-desktop:pb-0 max-tablet:pb-0 "  
-              style={{ fontFamily: "satoshi", fontSize: 20, fontWeight: 700, paddingBottom: '30px', whiteSpace: "pre-line"}}
+              className="flex flex-col text-black/70 max-desktop:pb-0 max-tablet:pb-0 bread-crumbs-div"
+              style={{ fontFamily: "satoshi", fontSize: 20, fontWeight: 700, paddingBottom: '30px' }}
             >
-              {title ? <>{title}</> : { label }}
+              <Breadcrumbs
+
+                className="breadcrumbs_navigation"
+                sx={{
+                  color: '#B6BAC3',
+                  fontSize: 16,
+                  fontFamily: 'Satoshi',
+                  fontWeight: 500
+                }}
+                separator='/' aria-label="breadcrumb"
+
+              >
+                {/* {breadcrumbs} */}
+                {pathname?.substr(1)?.split('/')?.map((item, i) => {
+                  return (
+                    <Link
+                      underline="hover"
+                      style={{ cursor: 'pointer' }}
+                      key={i}
+                      color="inherit"
+                      onClick={(e) => handleClick(e, item)}
+                    >
+                      {item}
+                    </Link>
+                  )
+                })}
+              </Breadcrumbs>
 
             </div>
           </div>
@@ -64,7 +99,7 @@ function Index({ label, heading }) {
         alignItems={"center"}
       >
         <h1
-          className="max-tablet:text-[24px] max-desktop:text-[34px] font-[satoshi] text-[48px] font-bold "
+          className="max-tablet:text-[24px] max-desktop:text-[34px] font-[satoshi] text-[48px] font-bold desktop:font-black"
           style={{
 
             background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",

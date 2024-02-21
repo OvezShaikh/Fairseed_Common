@@ -22,16 +22,97 @@ import { Link } from "react-router-dom";
 import BottomSlider from "../../components/layout/BottomSlider/Index";
 
 
+import FilterField from "../../components/inputs/FilterField/Index";
+
+
+
 
 function Home() {
   const [userList, setUserList] = useState([]);
-  const [visibleCards, setVisibleCards] = useState(1);
+  
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
   const [campaignCount, setCampaignCount] = useState(0);
+  const [showOptions, setShowOptions] = useState(false);
+  const [perPage,setPerPage] = useState(100);
+
+  const [dataFromChild, setDataFromChild] = useState('');
+
+
+  const [visibleCards, setVisibleCards] = useState(8);
+
+  
+
+  const receiveDataFromChild = (data) => {
+    
+    setDataFromChild(data);
+    
+    
+  };
+
+
+
+  const filteredUserList = Array.from(
+    new Set(
+      userList.filter((item) => {
+        const isCategoryMatch =
+          dataFromChild.length === 0 || dataFromChild.includes(item.category.name);
+        const isLocationMatch =
+          dataFromChild.length === 0 || dataFromChild.includes(item.location);
+  
+        // Display the card if either category or location matches
+        return isCategoryMatch || isLocationMatch;
+      }).map((item) => item.id)
+    )
+  ).map((id) => userList.find((item) => item.id === id));
+
+  const filteredCardCount = filteredUserList.length;
+
+ 
+  
+
+  useEffect(() => {
+    
+    console.log("DATA FROM CHILD ", dataFromChild)
+
+    if (filteredCardCount<=8){
+      console.log("Less than 8");
+      //setPerPage([perPage+12]);
+     // fetchUserList();
+     
+     
+   }
+  //  else{
+  //   setPerPage(8);
+  //  }
+
+
+  }, [dataFromChild]);
+
+
+  const filterToggle = () => {
+    
+    setShowOptions(!showOptions);
+  };
+
+  const loadMore = () => {
+    
+    setVisibleCards((prevVisibleCards) => prevVisibleCards + 4);
+    
+    if (page < totalPages) {
+      setPage(page + 1);
+    }
+
+    if (visibleCards >= perPage ){
+      setPerPage(perPage+100)
+    }
+
+
+  };
+
   const fetchUserList = async () => {
     try {
-      const perPage = 8;
+     // const perPage = 100;
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
       );
@@ -43,6 +124,10 @@ function Home() {
         setTotalPages(res.pages_count);
         setUserList([...userList, ...res.rows]);
         setCampaignCount(res.count);
+
+
+        
+
       } else {
         console.error("Invalid data structure. Expected an array:", res.data);
       }
@@ -52,6 +137,7 @@ function Home() {
   };
   useEffect(() => {
     fetchUserList();
+    
   }, [page]);
   let bnk = [
     {
@@ -66,16 +152,10 @@ function Home() {
   return (
     <>
       <div className="">
-        {
-          (localStorage.getItem('user_role') === 'Normal')
-            ?
-            (
-              <UserNavbar />
-            ) :
-            (
-              <Navbar />
-            )
-        }
+
+
+        <Navbar />
+
       </div>
       <div>
         <Coursal />
@@ -126,13 +206,16 @@ function Home() {
           </div>
         </div>
       </div>
-
+              
       <div className="flex flex-col flex-wrap w-full mb-[128px] items-center max-tablet:mb-[48px]">
         <div className="flex  desktop:ml-[-30px] desktop:max-w-[1760px] desktop:w-full desktop:justify-end max-desktop:w-[90%] max-desktop:flex-col max-desktop:items-end max-desktop:gap-y-[48px] max-tablet:mb-[50px] max-tablet:gap-y-[20px] scrollable-tabs-class ">
           <ScrollableTabsButtonForce />
           <button
             className="flex items-center ml-2 px-3 py-1.5 max-w-[115px] gap-x-[12px] max-desktop:px-[20px] max-desktop:py-[17px] max-tablet:py-[6px]"
             style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
+
+            onClick={filterToggle}
+
           >
             <img src={images.Funnel} />
             {/* <img src={images.Filter} /> */}
@@ -146,9 +229,19 @@ function Home() {
             }
             }>Filter</p>
           </button>
+          
         </div>
+        {showOptions && (
+       
+          <FilterField sendDataToParent={receiveDataFromChild}/>
+          
+        
+      )}
+  
+    
+      
         <div className="desktop:gap-x-[36px] desktop:gap-y-[48px] mt-[48px]  flex flex-wrap w-full justify-center desktop:max-w-[1740px] max-desktop:gap-x-[16px]  max-desktop:gap-y-[24px] max-tablet:gap-y-[48px]">
-          {userList?.map((item) => {
+          {filteredUserList?.slice(0, visibleCards).map((item) => {
             return (
               <Card
                 key={item.id}
@@ -167,8 +260,9 @@ function Home() {
         </div>
         <button
           className="pt-[64px] max-tablet:pt-[24px]"
-          onClick={() => setPage(page + 1)}
-          disabled={page >= totalPages}
+          onClick={() => loadMore()}
+          disabled={visibleCards >= campaignCount}
+          id="loadmorebutton"
           style={{
             width: "fit-content",
             textAlign: "center",
@@ -182,12 +276,14 @@ function Home() {
             "-webkit-background-clip": "text",
             "-webkit-text-fill-color": "transparent",
             textDecoration: "underline",
-            display: page >= totalPages ? "none" : "block",
+            display: ((visibleCards >= campaignCount)||(filteredCardCount<8) ? "none" : "block"),
             position: "relative",
+            
           }}
         >
           <p className="gradient-button mb-0">Load More</p>
         </button>
+        
       </div>
       <section className="bg-[#FFF6F5]">
         <div

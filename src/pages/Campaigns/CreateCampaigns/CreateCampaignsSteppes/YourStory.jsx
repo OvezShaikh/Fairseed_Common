@@ -2,11 +2,13 @@ import React from 'react';
 import { useFormik, Field, useFormikContext } from 'formik';
 import { FormLabel } from 'react-bootstrap';
 import ReactQuill from 'react-quill';
-import ReactQuilTextField from '../../../../components/inputs/ReactQuilTextField.jsx/Index';
+import ReactQuilTextField from '../../../../components/inputs/ReactQuilTextField/Index';
 import { colors } from '../../../../constants/theme';
 import UploadField from '../../../../components/inputs/UploadField/Index';
-import SecondaryButton from "../../../../components/inputs/secondaryButton"
-import PrimaryButton from "../../../../components/inputs/PrimaryButton"
+import SecondaryButton from "../../../../components/inputs/secondaryButton";
+import PrimaryButton from "../../../../components/inputs/PrimaryButton";
+import "../CreateCampaigns.css";
+
 const styleSecondaryButton = {
     width: "100%",
     height: "100%",
@@ -42,14 +44,14 @@ function YourStory({ handleBack, handleNext }) {
 
 
     return (
-        <form className="py-20 flex flex-col gap-20">
+        <form className="py-[80px] flex flex-col gap-y-[80px]">
             <div className="">
                 <FormLabel
-                    className="text-capitalize font-medium d-flex align-items-center"
+                    className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
                     style={{
                         padding: '4px 8px 8px 8px',
                         color: colors.text.main,
-                        fontSize: '20px',
+
                         fontWeight: 700,
                         fontFamily: 'satoshi',
                         fontStyle: 'normal',
@@ -59,7 +61,7 @@ function YourStory({ handleBack, handleNext }) {
                     Tell us your Story:
                     <span className="text-red-600">*</span>
                 </FormLabel>
-                <div className="h-[200px]">
+                <div className="h-[410px] story-div">
                     <ReactQuilTextField
                         theme="snow"
                         name="story"
@@ -67,7 +69,9 @@ function YourStory({ handleBack, handleNext }) {
                         value={values.story}
                         placeholder={`Write a story that does justice to your cause and make the supporter click the Donate button.
                 
-Pointers: Explain who you are raising it for.
+Pointers:
+
+Explain who you are raising it for.
 
 Explain why you are raising funds?
 
@@ -79,11 +83,11 @@ Make an Appeal.`}
 
             <div className="">
                 <FormLabel
-                    className="text-capitalize font-medium d-flex align-items-center"
+                    className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
                     style={{
                         padding: '4px 8px 8px 8px',
                         color: colors.text.main,
-                        fontSize: '20px',
+
                         fontWeight: 700,
                         fontFamily: 'satoshi',
                         fontStyle: 'normal',
@@ -93,7 +97,7 @@ Make an Appeal.`}
                     Summary:
                     <span className="text-red-600">*</span>
                 </FormLabel>
-                <div className="h-[119px]">
+                <div className="h-[205px] summary-div">
                     <ReactQuilTextField
                         theme="snow"
                         name='summary'
@@ -105,22 +109,29 @@ Make an Appeal.`}
                 </div>
             </div>
 
-            <div>
-                <Field
+            <div className='document-upload-div'>
+                {/* <Field
                     name="document"
                     render={({ field }) => (
                         <>
                             <UploadField
-                                label="Document:"
-                                name="document"
-                                placeholder="Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
                                 onChange={(value) => setFieldValue('document', value)}
                             />
                         </>
                     )}
+                /> */}
+                <UploadField
+                    label="Document:"
+                    // onChange={(file) => formik.setFieldValue("adhar", file)}
+                    name="document"
+                    placeholder="Upload marksheets, Medical records, Fees Structure etc."
+                    sx={{ padding: '20px' }}
+                    multiple={false}
+                    onChange={(value) => setFieldValue('adhar_front', value)}
+
                 />
             </div>
-            <div className="flex mt-4 gap-5">
+            <div className="flex mt-4 desktop:gap-x-[40px] max-desktop:gap-x-[24px]">
                 <SecondaryButton
                     // disabled={activeStep === 0}
                     onClick={handleBack}

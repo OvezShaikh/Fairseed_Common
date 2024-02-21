@@ -12,6 +12,7 @@ import CountrySelect from "../../../../components/inputs/countrySelect";
 import SecondaryButton from "../../../../components/inputs/secondaryButton"
 import PrimaryButton from "../../../../components/inputs/PrimaryButton"
 import moment from 'moment';
+import "../CreateCampaigns.css";
 
 import axios from "axios";
 import { Next } from "react-bootstrap/esm/PageItem";
@@ -62,9 +63,9 @@ const Test = ({ handleBack, handleNext }) => {
 
     return (
 
-        <Form className="flex flex-col gap-4">
+        <Form className="flex flex-col gap-4 campagin-form">
 
-            <Box className="py-16">
+            <Box className="desktop:py-[80px] max-desktop:py-[53px]">
                 <DropZone
                     name="campaign_image"
                     acceptedFiles={({ "file/*": [".png"] })}
@@ -74,19 +75,21 @@ const Test = ({ handleBack, handleNext }) => {
                 // onChange={(file) => setFieldValue("campaign_image", file)}
                 ></DropZone>
             </Box>
-            <div>
-                <InputField
+            <div className="campaign-input-div">
+                <InputField 
+                
                     name="title"
                     sx={InputStyle}
 
                     required={true}
-                    label="Title of the Campaign:"
-                    placeholder="Title of the Campaign (Max 250 Words)"
+                    label="Campaign Title:"
+                    placeholder="Max 250 words"
 
                 />
             </div>
-            <div>
+            <div className="campaign-input-div">
                 <InputField
+                
                     name="goal_amount"
                     type="number"
                     sx={InputStyle}
@@ -96,7 +99,7 @@ const Test = ({ handleBack, handleNext }) => {
 
                 />
             </div>
-            <div>
+            <div className="campaign-input-div">
                 <InputField
                     name="location"
                     sx={InputStyle}
@@ -107,7 +110,7 @@ const Test = ({ handleBack, handleNext }) => {
                 />
             </div>
 
-            <div>
+            <div className="campaign-input-div">
                 <SelectField
                     name="category"
                     required={true}
@@ -122,8 +125,8 @@ const Test = ({ handleBack, handleNext }) => {
                 />
             </div>
 
-            <div className="inline-flex w-full">
-                <div className="w-[50%]">
+            <div className="flex desktop:gap-5 w-full campaign-input-div max-desktop:gap-x-0 max-tablet:flex-col max-tablet:gap-y-[50px]">
+                <div className="w-[50%] checkmark-div max-desktop:w-[46%] max-tablet:w-[100%]">
                     <FormLabel className="text-capitalize font-medium d-flex align-items-center" style={{ padding: "4px 8px 8px 8px", color: colors.text.main, fontSize: "20px", fontWeight: 700, fontFamily: "satoshi", fontStyle: "normal", height: "22px" }}>
                         Is the Campaign Zakaat eligible?<span className="text-red-600">*</span>
                     </FormLabel>
@@ -133,21 +136,22 @@ const Test = ({ handleBack, handleNext }) => {
                         label={'Yes'}
 
                     />
+                    <span class="checkmark"></span>
                 </div>
-                <div className="w-[50%]">
+                <div className="w-[50%] campaign-input-div campaign-date-div max-tablet:w-[100%]">
                     <InputField
                         type="date"
                         name="end_date"
                         sx={InputStyle}
                         inputProps={{ min: moment().format('YYYY-MM-DD') }}
-
+                        
                         required={true}
-                        label="Date:"
+                        label="Accept Donations until (Select end date):"
                     />
                 </div>
 
             </div>
-            <div className="flex mt-4 gap-5">
+            <div className="flex mt-4 desktop:gap-x-[40px] max-desktop:gap-x-[24px]">
 
                 <SecondaryButton
 
