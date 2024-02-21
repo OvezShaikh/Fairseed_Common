@@ -317,6 +317,12 @@ const DrawerBody = () => {
   //   title: "Teams Policy Settings",
   // },
 
+  // {
+  //   icon: "PolicyIcon",
+  //   path: "/teams-policy-settings",
+  //   title: "Teams Policy Settings",
+  // },
+
   const [selectedPath, setSelectedMenu] = useState("");
 
   useEffect(() => {

@@ -107,12 +107,12 @@ const SelectField = ({
   const { values } = useFormikContext();
 
 
-  const configTextfield = {
-    // ...field,
-    ...otherProps,
-    name,
-    variant: "outlined",
-  };
+  // const configTextfield = {
+  //   // ...field,
+  //   ...otherProps,
+  //   name,
+  //   variant: "outlined",
+  // };
 
   // let textFieldConfig = {
   //   fullWidth: true,
@@ -126,10 +126,10 @@ const SelectField = ({
   // };
 
 
-  if (meta && meta.touched && meta.error) {
-    configTextfield.error = true;
-    configTextfield.helperText = meta.error;
-  }
+  // if (meta && meta.touched && meta.error) {
+  //   configTextfield.error = true;
+  //   configTextfield.helperText = meta.error;
+  // }
   // const { setFieldValue, setTouched, touched } = useFormikContext();
 
   // const tooltipData = localStorage.getItem("tooltipData")

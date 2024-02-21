@@ -291,11 +291,11 @@ body {
 
 
 
-.bread-crumbs-div li{
-  font-family:'Satoshi';
-font-size: 28px;
-font-weight: 500;
-color: rgba(149, 153, 157, 1);
+.bread-crumbs-div li {
+  font-family: 'Satoshi';
+  font-size: 28px;
+  font-weight: 500;
+  color: rgba(149, 153, 157, 1);
 
 }
 
@@ -308,9 +308,9 @@ color: rgba(149, 153, 157, 1);
 
 @media only screen and (max-width:1365px) {
 
-  .bread-crumbs-div li{
+  .bread-crumbs-div li {
 
-      font-size: 22px;
+    font-size: 22px;
   }
 
 }
@@ -319,9 +319,9 @@ color: rgba(149, 153, 157, 1);
 
 @media only screen and (max-width:751px) {
 
-  .bread-crumbs-div li{
+  .bread-crumbs-div li {
 
-      font-size:18px;
+    font-size: 18px;
   }
 
 }

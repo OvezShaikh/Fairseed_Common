@@ -1,8 +1,8 @@
 import { Form, Formik } from 'formik'
 import React from 'react'
-import InputField from '../../inputs/InputField/index'
-import SelectField from "../../inputs/SelectField/index"
-import PrimaryButton from '../../inputs/PrimaryButton'
+import InputField from '../../../inputs/InputField/index'
+import SelectField from "../../../inputs/SelectField/index"
+import PrimaryButton from '../../../inputs/PrimaryButton'
 import { borderRadius } from '@mui/system'
 const InputStyle =
 {

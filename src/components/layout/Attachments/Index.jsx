@@ -21,10 +21,22 @@ function YourComponent({ imageUrl }) {
     const cancelDelete = () => {
         setShowDeleteConfirmation(false);
     };
-
     const toggleFullScreen = () => {
-        setIsFullScreen(!isFullScreen);
+        // Check if the element with the class 'small-screen' exists
+        const isSmallScreen = document.documentElement.classList.contains('small-screen');
+
+        // Toggle full screen based on screen size
+        if (isSmallScreen) {
+            setIsFullScreen(!isFullScreen);
+        } else {
+            // Handle full screen toggling for large screens as before
+            // For example:
+            // setIsFullScreen(!isFullScreen);
+            setIsFullScreen(!isFullScreen);
+
+        }
     };
+
 
     const downloadImage = () => {
         // Create a temporary anchor element
@@ -102,7 +114,8 @@ function YourComponent({ imageUrl }) {
                             </>
                         ) : (
                             <>
-                                <h1 className='pb-2 text-[30px] font-[satoshi] font-black '>Success!</h1>
+                                <img src={images.done} alt="" />
+                                <h1 className='text-green-400 pb-2 text-[30px] font-[satoshi] font-black '>Success!</h1>
                                 <p className='text-[18px] text-black/40 font-medium font-[satoshi]'>Document deleted successfully.</p>
                                 <div className="mt-4">
                                     <button onClick={handleOk} className="bg-green-500 text-white text-[20px] font-[satoshi] font-medium px-4 py-2  rounded">OK</button>

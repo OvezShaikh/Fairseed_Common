@@ -164,6 +164,7 @@ const NavbarContainer = ({ handleDrawerToggle }) => {
           justifyContent={"flex-end"}
           alignItems="center"
           marginRight={'1rem'}
+          className="max-tablet:mr-0!"
         >
           {/* <Stack
             direction="column"
@@ -208,7 +209,9 @@ const NavbarContainer = ({ handleDrawerToggle }) => {
           >
            
 
-            <ToggleButton value="underlined" aria-label="underlined">
+            <ToggleButton
+              onClick={handleDrawerToggle}
+              value="underlined" aria-label="underlined">
               <LuPanelRight style={{ fontSize: 27 }} />
             </ToggleButton>
           </ToggleButtonGroup>

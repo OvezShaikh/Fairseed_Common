@@ -39,3 +39,9 @@
 .Active {
     color: red;
 }
+
+@media screen and (max-width: 768px) {
+    :root {
+        --small-screen: true;
+    }
+}
