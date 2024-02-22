@@ -9,6 +9,7 @@ import SecondaryButton from '../../inputs/secondaryButton';
 import CauseEdit from '../CauseEditApprovel/Index';
 import { GoDotFill } from "react-icons/go";
 import { Link } from 'react-router-dom';
+import Index from '../Froms/PagesAddNew/Index'
 
 const Page = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
@@ -96,19 +97,8 @@ const Page = () => {
     );
 return (
   <div>
-    <ReactTable
-    rows={[]}
-    columns={columns}
-    showFilter
-    manualPagination
-    title={"Campaign"}
-    checkboxComponent={IndeterminateCheckbox}
-    url={`/admin-dashboard/campaign`}
-    extraQuery={{ inactive: true }}
-     addButton={<LocationConfigurationDialog />}
-    // addButton={<Button>HElloooooo</Button>}
-    selectedRowID={selectedRowID}
-    />
+  
+  <Index/>
   </div>
 )
 }
