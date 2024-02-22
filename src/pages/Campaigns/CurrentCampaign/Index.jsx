@@ -7,7 +7,7 @@ import Doner from "../../../components/layout/Doner";
 import PrimaryButton from "../../../components/inputs/PrimaryButton";
 import { Grid, Typography } from "@mui/material";
 import SecondaryButton from "../../../components/inputs/secondaryButton";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams, Link  } from "react-router-dom";
 import React, { useContext, useMemo } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -38,7 +38,10 @@ function CurrentCampaign({
       .get(`${process.env.REACT_APP_BE_BASE_URL}/campaign/campaign-details/${id}`)
       .then((res) => {
         console.log("API Response:", res.data);
+        
         setCardDetails(res.data.data);
+        console.log("CURRENT CAMPAIGN ",cardDetails);
+        
         // setDonor(res.data.donor)
       })
       .catch((error) => {
@@ -216,6 +219,7 @@ function CurrentCampaign({
               - This campaign will collect all funds raised by{" "}
               {cardDetails?.end_date}
             </p>
+            <Link to={`/donate/${id}`}>
             <PrimaryButton className="w-full max-desktop:w-full"
               sx={{ padding: "16px", borderRadius: "8px" }}
             // style={{
@@ -245,6 +249,7 @@ function CurrentCampaign({
                 Support Cause
               </div>
             </PrimaryButton>
+            </Link>
           </div>
         </div>
         <div className="flex justify-start gap-5 w-full max-desktop:flex-col">
@@ -340,6 +345,7 @@ function CurrentCampaign({
         </div>
       </div >
       <div className="flex justify-center gap-4 max-desktop:hidden">
+      <Link to={`/donate/${id}`}>
         <PrimaryButton
           sx={{ padding: "16px", borderRadius: "8px", paddingLeft: "43px", paddingRight: "43px", }}
         // style={{
@@ -369,6 +375,7 @@ function CurrentCampaign({
             Support Cause
           </h1>
         </PrimaryButton>
+        </Link>
         <SecondaryButton
           sx={{ padding: "16px", borderRadius: "8px", background: "#FFF6F5", paddingLeft: "30px", paddingRight: "30px", }}
         // style={{

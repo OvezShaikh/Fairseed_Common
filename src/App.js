@@ -14,6 +14,8 @@ import LoginOnSmallScreen from "./pages/login/Login_page/LoginOnSmallScreen";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RegisterSmallScreen from "./pages/login/Sign_Up/RegisterSmallScreen";
+import Account from "./pages/Account Settings/Index";
+import Donate from "./pages/Donate/Index";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -60,6 +62,17 @@ function App() {
           />
 
           <Route path="/campaign-details/:id" element={<CurrentCampaign />} />
+
+
+          <Route path="/account-settings" element={<Account />} />
+          <Route path="/donate" element={<Donate />} />
+          <Route
+            path="/donate/:id"
+            element={<Donate />}
+          />
+
+
+
         </Routes>
       </BrowserRouter>
       <ToastContainer />

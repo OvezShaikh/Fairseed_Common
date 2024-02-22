@@ -99,12 +99,13 @@ export default function ProfileAvatar() {
 
         </MenuItem>
         <MenuItem onClick={handleClose}>
-
+        <Link to={"/account-settings"}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
 
           Settings
+          </Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
