@@ -20,7 +20,11 @@ const useLogin = () => {
   const loginData = async (data) => {
     console.log(data, "dadata");
     try {
-      const res = await serverAPI.post("/accounts/login/nt/", data);
+      const res = await serverAPI.post("/accounts/login/nt/", data 
+        // headers:{
+        //   "x-access-token" :`Bearer ${localStorage.getItem("token")}`
+        // }
+      );
       // console.log("response Login ",data);
       // alert("Login Successful")
       toast.success("Logged in Successfully ", {

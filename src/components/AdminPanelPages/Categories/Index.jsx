@@ -74,8 +74,8 @@ const Index = () => {
         sortable: false,
       },
       {
-        Header: 'User',
-        accessor: 'username',
+        Header: 'Name',
+        accessor: 'name',
         sortable: false,
 
       },

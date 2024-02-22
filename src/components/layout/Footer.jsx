@@ -6,6 +6,8 @@ import { RiPinterestLine } from "react-icons/ri";
 import { RiYoutubeLine } from "react-icons/ri";
 import icons from "../../constants/icons";
 import { Link } from "react-router-dom";
+import SecondaryButton from "../inputs/secondaryButton";
+import { toast } from "react-toastify";
 
 function Footer() {
   return (
@@ -56,7 +58,9 @@ function Footer() {
                   Support a Cause
                 </div>
               </button>
-              <Link
+             {
+              localStorage.getItem('token') ? (
+                <Link
                 to="/Home/Create-Campaign"
                 className="px-3 gap-[10px] max-tablet:gap-[0px]"
                 style={{
@@ -87,6 +91,42 @@ function Footer() {
                   Launch a Campaign
                 </div>
               </Link>
+              ) : (
+                 <SecondaryButton
+                className="px-2 gap-[10px] max-tablet:gap-[0px]"
+                style={{
+                  background:
+                    "linear-gradient(93deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.50) 100%)",
+                  borderRadius: 8,
+                  border: "1px rgba(255, 255, 255, 0.10) solid",
+                  backdropFilter: "blur(24px)",
+                  justifyContent: "center",
+                  alignItems: "center",
+
+                  display: "inline-flex",
+                }}
+                onClick={()=> 
+                toast.error("Please Login !!! " , {
+                  position:"top-center"
+                })
+                }
+              >
+                <div style={{ width: 32, height: 32, position: "relative" }}>
+                  <img src={images.RocketLaunch2} alt="" />
+                </div>
+                <div className="text-[20px] max-tablet:text-[16px] max-tablet:p-[16px] max-tablet:pl-[10px]"
+                  style={{
+                    color: "#383A42",
+                    fontFamily: "Satoshi",
+                    fontWeight: "700",
+                    wordWrap: "break-word",
+                  }}
+                >
+                  Launch a Campaign
+                </div>
+              </SecondaryButton>
+              )
+             }
             </div>
           </div>
         </div>

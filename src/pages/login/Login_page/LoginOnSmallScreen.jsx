@@ -102,7 +102,7 @@ function LoginOnSmallScreen({ Initial_value, formValidation, loginData }) {
                           fontSize: '22px', fontWeight: 500, background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
                           "-webkit-background-clip": "text",
                           "-webkit-text-fill-color": "transparent"
-                        }}> Register </span>
+                        }}> <UserSignUp_02 /> </span>
                       </SecondaryButton>
                     </Link>
                   </Grid>

@@ -25,7 +25,6 @@ const Formcom = ({ Initial_value, formValidation, loginData }) => {
         validationSchema={formValidation}
         onSubmit={async (values) => {
           loginData(values)
-
         }}
       >
         <Form>

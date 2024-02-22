@@ -3,7 +3,7 @@ import serverAPI from "../config/serverAPI";
 // import setAuthToken from "../utils/setAuthToken";
 // import errorHandle from "../utils/errorHandle";
 
-function getData(url, params) {
+function getData(url, params , headers) {
   if (
     localStorage.getItem("token") &&
     !serverAPI.defaults.headers.common["authorization"]
@@ -13,7 +13,8 @@ function getData(url, params) {
 
   return serverAPI.get(url, {
     params: params ? params : {},
-  });
+  }
+  );
 }
 
 export function useGetAll(options) {
