@@ -42,7 +42,7 @@ body {
 
 .main-container {
   min-height: calc(100vh - 120px);
-  width: calc(100vw - 290px);
+  /* width: calc(100vw - 290px); */
   margin: 148px 0px 20px 270px;
   padding: 0em 1em 0em 2.2em;
   /* position: fixed; */
@@ -324,4 +324,21 @@ body {
     font-size: 18px;
   }
 
+}
+
+.otp-input input {
+  /* Add your styles here */
+  border: 1px solid #717171;
+  border-radius: 10px;
+  padding: 8px;
+  margin: 10px;
+}
+
+.otp-input input:focus {
+  border-color: blue;
+  border: 1px solid red;
+}
+
+.otp-input input:active {
+  border: 1px solid red;
 }

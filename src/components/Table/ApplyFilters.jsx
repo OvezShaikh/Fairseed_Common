@@ -9,23 +9,18 @@ import SecondaryButton from "../inputs/secondaryButton";
 import SelectField from "../inputs/SelectField";
 import { Dialog } from "../layout/dialogBox";
 import * as yup from "yup";
-import InputAdminField from '../inputs/InputAdminField/Index'
 import MultipleSelectField from "../inputs/MultipleSelectField";
 import OperatorSelectField from '../inputs/operatorSelectField'
-
-// const InputStyle = {
-//   width: '350px',
-//   padding: '0px 0px 0px 2px'
-// }
 const InputStyle =
 {
-  padding: '16px', border: "1px solid #e2e2e2",
+  padding: '15px', border: "1px solid #e2e2e2",
   // },
   "&:focus-within": {
     boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
     borderColor: "black",
   },
 }
+
 
 const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
   const validationSchema = yup.object().shape({
@@ -39,8 +34,8 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
           .required("Column is required!"),
         operator: yup
           .object({
-            label: yup.string()
-              .required("Operator is required!"),
+            label: yup.string(),
+            // .required("Operator is required!"),
           })
           .nullable(),
       })
@@ -118,7 +113,7 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                               className="mb-3"
                               key={filter?.id}
                             >
-                              <Grid item xs={5}>
+                              <Grid item xs={4}>
                                 <SelectField
                                   name={`filters[${index}].column`}
                                   label="Column"
@@ -142,11 +137,6 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                                     allColumns
                                       ? allColumns
                                         ?.filter((item) => !item?.nofilter)
-                                        ?.map((item) =>
-                                          item?.Header === "Range Start"
-                                            ? { ...item, Header: "Range" }
-                                            : item
-                                        )
                                         ?.filter(
                                           (item) =>
                                             !values?.filters?.some(
@@ -172,7 +162,7 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                                 </Grid>
                               )}
 
-                              <Grid item xs={5} paddingTop={5}>
+                              <Grid item xs={4}>
                                 {values?.filters[index]?.column?.apiURL ||
                                   values?.filters[index]?.column?.options ? (
                                   <MultipleSelectField
@@ -234,9 +224,8 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                                   />
                                 ) : (
                                   <InputField
-                                    // sx={{ padding: '20px 10px' }}
-                                    sx={InputStyle}
                                     label="value"
+                                    sx={InputStyle}
                                     name={`filters[${index}].value`}
                                   />
                                 )}

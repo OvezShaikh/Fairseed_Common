@@ -7,13 +7,21 @@ import PrimaryButton from '../../../components/inputs/PrimaryButton';
 import { Grid, Container } from '@mui/material';
 import images from '../../../constants/images';
 import PreviewImage from '../../../components/inputs/PreviewImage/PreviewImage';
-
+import { toast } from 'react-toastify';
 
 const SignUp = ({ handleNext }) => {
 
   const imgRef = useRef(null);
 
-  const { submitForm, setFieldValue } = useFormikContext();
+  const { submitForm, isValid, setFieldValue } = useFormikContext();
+
+  const handleNextClick = () => {
+    if (isValid) {
+      handleNext();
+    } else {
+      toast.error('Please fill all required fields.');
+    }
+  };
 
   return (
     <Form className='pt-8 max-tablet:pl-7'>
@@ -95,7 +103,11 @@ const SignUp = ({ handleNext }) => {
             </Grid>
           </Grid>
           <Grid xs={12} >
-            <PrimaryButton sx={{ width: '100%', top: '2rem', padding: '12px 40px', fontSize: '22px', fontWeight: 900, fontFamily: 'satoshi' }} onClick={() => { handleNext() }}>
+            <PrimaryButton
+              disabled={!isValid}
+              sx={{ width: '100%', top: '2rem', padding: '12px 40px', fontSize: '22px', fontWeight: 900, fontFamily: 'satoshi' }}
+              onClick={handleNextClick}
+            >
               Next
             </PrimaryButton>
           </Grid>

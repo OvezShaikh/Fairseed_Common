@@ -8,8 +8,8 @@ import Navbar from "../navbar/index";
 import AdminNavbar from '../AdminNavbar'
 
 
-export function SideBar() {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+export function SideBar({ mobileOpen, setMobileOpen }) {
+  // const [mobileOpen, setMobileOpen] = React.useState(false);
   const container = React.useRef(null);
 
   const handleDrawerToggle = () => {
@@ -19,7 +19,7 @@ export function SideBar() {
   return (
     <Box sx={{ display: "flex" }}>
       {/* <CssBaseline /> */}
-      <Navbar handleDrawerToggle={handleDrawerToggle} />
+      <Navbar handleDrawerToggle={handleDrawerToggle} mobileOpen={mobileOpen} />
       <Box
         component="nav"
         sx={{
@@ -29,6 +29,7 @@ export function SideBar() {
         aria-label="mailbox folders"
       >
         <Drawer
+          className="transition-all duration-200 ease-in-out"
           container={container.current}
           variant="temporary"
           open={mobileOpen}
@@ -36,23 +37,31 @@ export function SideBar() {
           ModalProps={{
             keepMounted: true,
           }}
+          PaperProps={{
+            className: "transition-all duration-200 ease-in-out"
+          }}
           sx={{
             display: { xs: "block", sm: "block", md: "none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
-              width: "273px",
+              left: mobileOpen ? "0px" : "273px",
+              // width: mobileOpen ? "273px" : "0px",
             },
           }}
         >
           <DrawerBody />
         </Drawer>
         <Drawer
+          PaperProps={{
+            className: "!transition-all !duration-200 !ease-in-out"
+          }}
           variant="permanent"
           sx={{
             display: { xs: "none", sm: "none", md: "block" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
-              width: `273px`,
+              // width: mobileOpen ? `273px` : '0px',
+              left: mobileOpen ? "0px" : "-285px",
               top: '54px'
             },
           }}

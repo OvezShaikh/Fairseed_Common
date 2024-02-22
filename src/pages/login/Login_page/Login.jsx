@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { Formik, Form } from 'formik';
 import styled from '@emotion/styled';
 import CheckBox from '../../../components/inputs/checkBox';
-import { Grid, Link, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import InputField from '../../../components/inputs/InputField';
 import SecondaryButton from '../../../components/inputs/secondaryButton';
 import PrimaryButton from '../../../components/inputs/PrimaryButton'
 import UserSignUp_02 from '../Sign_Up/Index';
 import { Container } from '@mui/system';
+import { Link } from 'react-router-dom';
+import ForgotPassword from '../ForgotPassword/Index'
 
 
 
@@ -65,19 +67,11 @@ const Formcom = ({ Initial_value, formValidation, loginData }) => {
               <Grid item xs={12} container alignItems="center" justifyContent="space-between">
                 <CheckBox label="Remember Me" name={"remember_me"} />
                 <div style={{ width: '20px' }}></div>
-                <Link
-                  href="#"
-                  underline="always"
-                  sx={{
-                    padding: '10px 0',
-                    display: 'inline-block',
-                    fontFamily: 'satoshi',
-                    fontWeight: 500,
-                    fontSize: '22px'
-                  }}
+                <h1
+
                 >
-                  Forgot Password
-                </Link>
+                  <ForgotPassword />
+                </h1>
               </Grid>
               <Grid item xs={12} >
 
