@@ -102,7 +102,7 @@ const InputField = ({
     ...otherProps,
     sx: { ...styles, ...otherProps.sx },
   };
-  console.log(styles);
+  // console.log(styles);
   if (name) {
     //eslint-disable-next-line
     const [field, meta] = useField(name || "");

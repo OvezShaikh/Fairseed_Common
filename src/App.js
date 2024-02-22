@@ -13,6 +13,7 @@ import OnGoingCampaigns from "./pages/Campaigns/OnGoingCampaigns/Index";
 import LoginOnSmallScreen from "./pages/login/Login_page/LoginOnSmallScreen";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import 'react-image-crop/dist/ReactCrop.css'
 import RegisterSmallScreen from "./pages/login/Sign_Up/RegisterSmallScreen";
 
 function ScrollToTop() {
@@ -63,7 +64,6 @@ function App() {
           <Route path="/campaign-details/:id" element={<CurrentCampaign />} />
         </Routes>
       </BrowserRouter>
-     
     </div>
   );
 }
