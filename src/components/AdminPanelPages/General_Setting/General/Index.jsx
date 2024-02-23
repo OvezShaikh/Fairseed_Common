@@ -53,7 +53,7 @@ function General() {
       initialValues={initialValues}
       onSubmit={(values) => {
         mutate(values, {
-          onSuccess: (response) => {
+          onSuccess: () => {
            toast.success("Prefernces Saved Successfully !",{
             position: "top-center",
            })

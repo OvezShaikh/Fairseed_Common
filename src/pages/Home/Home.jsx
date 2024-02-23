@@ -141,7 +141,7 @@ function Home() {
         `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
       );
       const res = response.data;
-      console.log(Headers, "cards");
+      console.log(response.headers , "<================");
       console.log(res.rows);
       // `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
       if (Array.isArray(res.rows)) {
