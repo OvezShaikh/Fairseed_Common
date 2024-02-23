@@ -29,7 +29,7 @@ export function SideBar({ mobileOpen, setMobileOpen }) {
         aria-label="mailbox folders"
       >
         <Drawer
-          className="transition-all duration-200 ease-in-out"
+          className="transition-all duration-500 ease-in-out"
           container={container.current}
           variant="temporary"
           open={mobileOpen}
@@ -38,7 +38,7 @@ export function SideBar({ mobileOpen, setMobileOpen }) {
             keepMounted: true,
           }}
           PaperProps={{
-            className: "transition-all duration-200 ease-in-out"
+            className: "transition-all duration-500 ease-in-out"
           }}
           sx={{
             display: { xs: "block", sm: "block", md: "none" },
@@ -53,7 +53,7 @@ export function SideBar({ mobileOpen, setMobileOpen }) {
         </Drawer>
         <Drawer
           PaperProps={{
-            className: "!transition-all !duration-200 !ease-in-out"
+            className: "!transition-all !duration-500 !ease-in-out"
           }}
           variant="permanent"
           sx={{

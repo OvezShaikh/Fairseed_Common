@@ -73,32 +73,32 @@ const Index = () => {
       {
         Header: 'Id',
         accessor: 'id',
-        sortable: false,
+
       },
       {
         Header: 'User',
         accessor: 'username',
-        sortable: false,
+
 
       },
 
       {
         Header: 'Status',
         accessor: 'is_active',
-        sortable: false,
+
         Cell: StatusCell,
       },
 
       {
         Header: 'Actions',
         accessor: 'actions',
-        sortable: false,
+
         nofilter: true,
         minWidth: 100,
         width: 100,
         Cell: ({ row }) => {
           return (
-            <div className='flex items-center justify-center pl-6 gap-3'>
+            <div className='flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0'>
               <Link to="Edit" state={{ id: row?.id }} ><SecondaryButton sx={{ height: '30px' }} >Edit</SecondaryButton></Link>
               <SuccessButton sx={{ height: '30px', width: '60px', background: 'red', color: 'white' }} text={'Delete'}>Delete</SuccessButton>
               {/* <SecondaryButton sx={{ height: '30px' }}>Edit Bank and KYC</SecondaryButton> */}

@@ -210,7 +210,7 @@ const Sign_Stepper = () => {
     formData.append('country', values.country);
     // formData.append('image' , values.image);
     mutate(formData);
-    alert("Signed Up Successfully !")
+    toast.success('Register Successfully');
     window.location.href = '/Home';
     console.log(formData);
 

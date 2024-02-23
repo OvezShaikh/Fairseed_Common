@@ -69,7 +69,7 @@ const NavbarContainer = ({ handleDrawerToggle, mobileOpen }) => {
 
   return (
     <Navbar
-      className="py-2 transition-all duration-200 ease-in-out"
+      className="py-2 transition-all duration-500 ease-in-out"
       variant="light"
       style={{
         display: "inline-block",

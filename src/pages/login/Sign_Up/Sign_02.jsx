@@ -10,6 +10,8 @@ import { useFormikContext } from "formik";
 import { Field } from 'formik';
 import PrimaryButton from '../../../components/inputs/PrimaryButton'
 import SecondaryButton from '../../../components/inputs/secondaryButton';
+import { toast } from 'react-toastify';
+
 
 
 const buttonContainerStyle = {
@@ -43,7 +45,15 @@ const StyledTypography = styled(Typography)({
 
 const Sign_02 = ({ handleBack, handleNext }) => {
 
-  const { submitForm, setFieldValue } = useFormikContext();
+  const { submitForm, setFieldValue, isValid } = useFormikContext();
+  const handleNextClick = () => {
+    if (isValid) {
+      // handleNext();
+      submitForm();
+    } else {
+      toast.error('Please fill all required fields.');
+    }
+  };
 
   return (
     <Form className='pt-8'>
@@ -151,7 +161,8 @@ const Sign_02 = ({ handleBack, handleNext }) => {
 
             <PrimaryButton
               sx={{ width: '50%', padding: '12px 40px', }}
-              onClick={() => submitForm() && handleNext()}>
+              disabled={!isValid}
+              onClick={handleNextClick}>
               <h1 className='text-[22px] font-[satoshi] font-semibold text-whites '> SignUp</h1>
 
             </PrimaryButton>

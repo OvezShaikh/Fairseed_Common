@@ -8,6 +8,8 @@ import { Grid, Container } from '@mui/material';
 import images from '../../../constants/images';
 import PreviewImage from '../../../components/inputs/PreviewImage/PreviewImage';
 import { toast } from 'react-toastify';
+import { SlPencil } from "react-icons/sl";
+
 
 const SignUp = ({ handleNext }) => {
 
@@ -45,7 +47,7 @@ const SignUp = ({ handleNext }) => {
 
                 <div style={{ position: 'absolute', bottom: '0', right: '48px', zIndex: 1 }}>
                   <button onClick={() => imgRef.current.click()}>
-                    <img src={images.EditIcon} />
+                    <SlPencil />
                   </button>
                 </div>
               </Avatar>

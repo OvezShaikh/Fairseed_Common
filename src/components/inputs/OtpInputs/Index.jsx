@@ -1,5 +1,6 @@
 import OTPInput, { ResendOTP } from "otp-input-react";
 import React, { useState } from "react";
+import InputAdminField from '../InputAdminField/Index'
 
 
 function Index() {
@@ -14,7 +15,7 @@ function Index() {
                 otpType="number"
                 disabled={false}
                 secure
-
+                renderInput={(props) => <InputAdminField {...props} />}
                 className="otp-input"
 
             />

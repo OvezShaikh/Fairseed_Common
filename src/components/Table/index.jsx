@@ -560,11 +560,12 @@ const ReactTable = ({
 
                         // flex: 150,
                         fontFamily: 'satoshi',
-                        height: '85px',
+                        height: '77px',
                         alignItems: 'start',
                         fontWeight: 500,
                         flexDirection: 'column',
-                        padding: '5px 10px',
+                        padding: '5px 10px 0px 10px',
+                        overflowX: 'hidden'
 
 
                       },
@@ -572,7 +573,7 @@ const ReactTable = ({
                     key={column?.id}
 
                   ><div className="flex">
-                      <div className="pt-2">
+                      <div className="pt-1 max-tablet:text-[14px] ">
                         {column.render("Header")}
                       </div>
                       {column?.sortable !== false && (

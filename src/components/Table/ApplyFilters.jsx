@@ -72,7 +72,7 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
         maxWidth="md"
       >
         {({ onClose }) => (
-          <Grid container className="">
+          <Grid container className="max-tablet:flex max-tablet:flex-col">
             <Formik
               initialValues={{
                 filters:
@@ -100,20 +100,20 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
             >
               {({ values, setFieldValue }) => (
                 <Form className="w-100">
-                  <Grid container item xs={12} className="px-3">
+                  <Grid container item xs={12} className="px-3 max-tablet:flex max-tablet:flex-col">
                     <FieldArray name="filters">
                       {({ push, remove }) => (
                         <>
                           {values?.filters.map((filter, index) => (
                             <Grid
                               container
-                              columnSpacing={5}
+                              columnSpacing={2}
                               display={"flex"}
                               justifyContent={"space-between"}
                               className="mb-3"
                               key={filter?.id}
                             >
-                              <Grid item xs={4}>
+                              <Grid item xs={6}>
                                 <SelectField
                                   name={`filters[${index}].column`}
                                   label="Column"
@@ -150,7 +150,7 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                                 />
                               </Grid>
                               {!values?.filters[index]?.column?.apiURL && (
-                                <Grid item xs={3}>
+                                <Grid item xs={6}>
                                   <OperatorSelectField
                                     label="operator"
                                     value={values?.filters[index]?.operator}
@@ -162,7 +162,7 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                                 </Grid>
                               )}
 
-                              <Grid item xs={4}>
+                              <Grid item xs={8} paddingTop={2}>
                                 {values?.filters[index]?.column?.apiURL ||
                                   values?.filters[index]?.column?.options ? (
                                   <MultipleSelectField
@@ -232,7 +232,7 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                               </Grid>
                               <Grid
                                 item
-                                xs={1}
+                                xs={2}
                                 display="flex"
                                 alignItems="center"
                               >

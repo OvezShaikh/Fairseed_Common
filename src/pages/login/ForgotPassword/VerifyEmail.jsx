@@ -3,6 +3,9 @@ import OtpInput from '../../../components/inputs/OtpInputs/Index';
 import PrimaryButton from '../../../components/inputs/PrimaryButton';
 import InputField from '../../../components/inputs/InputField';
 import { Form, Formik } from 'formik';
+import { useCreateOrUpdate } from '../../../Hooks/useCreateOrUpdate'
+import * as Yup from 'yup'
+import { toast } from 'react-toastify';
 
 const inputStyle = {
     padding: ' 16px 10px 16px var(--Spacing-20, 20px)',
@@ -14,6 +17,7 @@ const inputStyle = {
 }
 
 function VerifyEmail() {
+    const [otp, setOtp] = useState(0)
     const [isVerified, setIsVerified] = useState(false);
     const [newPassword, setNewPassword] = useState(false);
 
@@ -21,19 +25,52 @@ function VerifyEmail() {
         setNewPassword(true);
     }
 
-    const handleVerifyEmail = () => {
+    const handleVerifyEmail = (values) => {
         // Perform verification logic here
         // For demonstration purposes, I'm just setting isVerified to true
-        setIsVerified(true);
+        console.log(values, "===================Values");
+        mutate(values,
+            {
+                onSuccess: () => {
+                    alert(`otp sent successfully on ${values.email}`)
+                    toast.success('otp sent successfully on ${values.email}', {
+                        position: 'bottom-right'
+                    })
+                    setIsVerified(true);
+
+                },
+                onError: () => {
+                    alert(`Please enter email address`)
+
+                }
+            }
+        )
+
+
     };
 
+    const { mutate } = useCreateOrUpdate(
+        {
+            url: '/accounts/forgetpassword'
+        }
+    )
+
     return (
-        <Formik>
-            <Form>
 
 
-                <div className='flex flex-col gap-2 w-[90%]'>
-                    {!isVerified && (
+        <div className='flex flex-col gap-2 w-[90%]'>
+            {!isVerified && (
+                <Formik
+                    initialValues={{
+                        email: ''
+                    }}
+                    validationSchema={Yup.object().shape({ email: Yup.string().email('Invalid email please enter coorect email') })}
+                    onSubmit={handleVerifyEmail}
+
+                >
+                    <Form>
+
+
                         <div className='flex flex-col gap-3'>
                             <div className="">
                                 <h1 className='text-[46px] font-bold font-[satoshi] pb-2' style={{
@@ -50,14 +87,24 @@ function VerifyEmail() {
                             <PrimaryButton
                                 sx={{ width: '100%', padding: '12px 40px' }}
                                 type='submit'
-                                onClick={handleVerifyEmail}
+                            // onClick={handleVerifyEmail}
                             >
                                 <span className='font-[satoshi]' style={{ fontSize: '22px', fontWeight: 900 }}> Confirm </span>
                             </PrimaryButton>
 
                         </div>
-                    )}
-                    {isVerified && !newPassword && (
+                    </Form>
+                </Formik>
+            )}
+            {isVerified && !newPassword && (
+                <Formik
+                    initialValues={{
+
+                    }}
+                >
+                    <Form>
+
+
                         <div className='flex flex-col gap-3'>
                             <div className="">
                                 <h1 className='text-[46px] font-bold font-[satoshi] pb-2' style={{
@@ -77,8 +124,14 @@ function VerifyEmail() {
                                 <span className='font-[satoshi]' style={{ fontSize: '22px', fontWeight: 900 }}> Verify Email </span>
                             </PrimaryButton>
                         </div>
-                    )}
-                    {newPassword && (
+                    </Form>
+                </Formik>
+            )}
+            {newPassword && (
+                <Formik>
+                    <Form>
+
+
                         <div className='flex flex-col gap-3'>
                             <div className="">
                                 <h1 className='text-[46px] font-bold font-[satoshi] pb-2' style={{
@@ -105,10 +158,11 @@ function VerifyEmail() {
                             </PrimaryButton>
 
                         </div>
-                    )}
-                </div>
-            </Form>
-        </Formik>
+                    </Form>
+                </Formik>
+            )}
+        </div>
+
     );
 }
 
