@@ -17,13 +17,15 @@ const styleLabel = {
 
 
 const initialValues = {
-  NoOfCampaigns: "",
-  File: "",
-  amount: "",
-  Minimum: "",
-  Maximum: "",
-  MinimumCampaign: "",
-  MaximumCampaign: ""
+  "id": "",
+  "created_on": "",
+  "updated_on": "",
+  "num_campaigns": 0,
+  "max_file_size": 0,
+  "campaign_min_amount": 0,
+  "donation_min_amount": 0,
+  "donation_max_amount": 0,
+  "campaign_max_amount": 0
 
 }
 
@@ -36,15 +38,15 @@ function Limit() {
         <div className="flex w-full gap-4">
           <FormControl className="w-full ">
 
-            <InputAdminField style={{ marginBottom: '2rem' }} placeholder={"Placeholder Text"} label={"No. of campaigns to show"} name={"NoOfCampaigns"} />
+            <InputAdminField style={{ marginBottom: '2rem' }} placeholder={"Placeholder Text"} label={"No. of campaigns to show"} name={"num_campaigns"} />
           </FormControl>
           <FormControl className="w-full ">
-            <InputAdminField label={"File size allowed"} placeholder={"Placeholder Text"} name={"File"} />
+            <InputAdminField label={"File size allowed"} placeholder={"Placeholder Text"} name={"max_file_size"} />
 
             <FormHelperText sx={{ fontWeight: 500, fontFamily: 'satoshi', fontSize: 16, }} >IMPORTANT: Your Server supports upto <span className='text-[#717171]'>100MB</span></FormHelperText>
           </FormControl>
           <FormControl className="w-full ">
-            <InputAdminField placeholder={"Placeholder Text"} label={"Minimum amount for campaign"} name={"amount"} />
+            <InputAdminField placeholder={"Placeholder Text"} label={"Minimum amount for campaign"} name={"campaign_min_amount"} />
 
           </FormControl>
 
@@ -53,18 +55,18 @@ function Limit() {
           <FormControl className="w-[40%] ">
             <FormLabel style={styleLabel}>Amount for Donations</FormLabel>
             <div className="flex justify-center items-center">
-              <InputAdminField label={""} size="lg" name={'Minimum'} placeholder="Minimum" />
+              <InputAdminField label={""} size="lg" name={'donation_min_amount'} placeholder="Minimum" />
               <h1 className='px-2  ' style={styleLabel}>To</h1>
-              <InputAdminField size="lg" name={"Maximum"} placeholder="Maximum" />
+              <InputAdminField size="lg" name={"donation_max_amount"} placeholder="Maximum" />
 
             </div>
           </FormControl>
           <FormControl className="w-[40%] ">
             <FormLabel style={styleLabel}>Amount for Campaigns</FormLabel>
             <div className="flex justify-center items-center">
-              <InputAdminField size="lg" name={'MinimumCampaign'} placeholder="Minimum" />
+              <InputAdminField size="lg" name={'campaign_min_amoun'} placeholder="Minimum" />
               <h1 className='px-2  ' style={styleLabel}>To</h1>
-              <InputAdminField size="lg" name={"MaximumCampaign"} placeholder="Maximum" />
+              <InputAdminField size="lg" name={"campaign_max_amount"} placeholder="Maximum" />
 
             </div>
           </FormControl>
