@@ -6,7 +6,10 @@ import SuccessButton from '../../inputs/SuccessButton/Index'
 import PrimaryButton from '../../inputs/PrimaryButton'
 import ErrorIcon from "@mui/icons-material/Error";
 
-
+const initialValues = {
+    id:'',
+    
+}
 function View() {
     return (
         <Formik>

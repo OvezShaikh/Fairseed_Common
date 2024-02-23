@@ -4,6 +4,11 @@ import InputField from '../../../inputs/InputField/index'
 import SelectField from "../../../inputs/SelectField/index"
 import PrimaryButton from '../../../inputs/PrimaryButton'
 import { borderRadius } from '@mui/system'
+
+const initialValues={
+
+}
+
 const InputStyle =
 {
     padding: '20px', border: "1px solid #e2e2e2",
@@ -21,7 +26,7 @@ function Index() {
                 <Formik >
                     <Form className="flex flex-col w-[100%] gap-4 items-center">
                         <div className="w-full">
-                            <InputField sx={InputStyle} name={"name"} label={"Name:"} />
+                            <InputField sx={InputStyle} name={"username"} label={"Name:"} />
                         </div>
                         <SelectField name={"role"} label={"Role:"} />
                         <div className="w-full">
