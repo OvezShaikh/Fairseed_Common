@@ -163,8 +163,7 @@ export default {
   DashedImageUpload,
   UploadIcon,
   CausesDetails,
-  Vector,
-  done,
   ColorFullDownArrow,
   CheckBoxGradient,
+  Vector,
 };

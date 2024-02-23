@@ -8,7 +8,7 @@ const AdminLayout = ({ children }) => {
     <>
       <AdminNavbar />
       <SideBar mobileOpen={mobileOpen} setMobileOpen={setMobileOpen}></SideBar>
-      <div className='main-container transition-all duration-500 ease-in-out max-tablet:pr-0' style={{ width: mobileOpen ? `calc(100vw - 290px)` : '100%', marginLeft: mobileOpen ? '270px' : '0px', paddingRight: mobileOpen ? '0px' : '2rem' }} >
+      <div className='main-container transition-all duration-500 ease-in-out max-tablet:pr-0 ' style={{ width: mobileOpen ? `calc(100vw - 290px)` : '100%', marginLeft: mobileOpen ? '270px' : '0px', paddingRight: mobileOpen ? '0px' : '2rem' }} >
         {children}
       </div>
       <hr className='pb-5' />

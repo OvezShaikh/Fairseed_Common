@@ -5,6 +5,7 @@ import { FormHelperText } from '@mui/material';
 import PrimaryButton from '../../../inputs/PrimaryButton';
 import { Form, Formik } from 'formik';
 import InputAdminField from "../../../inputs/InputAdminField/Index"
+
 const styleLabel = {
   fontFamily: "satoshi",
   fontSize: 16,
@@ -22,7 +23,6 @@ const initialValues = {
   Maximum: "",
   campaign_min_amount: "",
   campaign_max_amount: ""
-
 }
 
 function Limit() {

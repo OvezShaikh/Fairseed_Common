@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import InputAdminField from '../InputAdminField/Index'
 
 
-function Index() {
+function Index(otp) {
     const [OTP, setOTP] = useState("");
     return (
         <>
             <OTPInput
-                value={OTP}
+                value={otp}
                 onChange={setOTP}
                 autoFocus
                 OTPLength={4}
