@@ -22,6 +22,7 @@ import ImageBackgroundWithDeleteButton from '../../layout/CropAddImage/Index';
 import Attachments from '../../layout/Attachments/Index'
 import { useCreateOrUpdate, useGetAll } from '../../../Hooks'
 import { height } from '@mui/system'
+import { useLocation } from 'react-router-dom'
 const InputStyle =
 {
     padding: '20px', border: "1px solid #e2e2e2",
@@ -48,7 +49,9 @@ const initialValues = {
 }
 
 function Index() {
-    // const imageUrlFromBackend = 'https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'
+    let { state } = useLocation();
+    let { id } = state;
+     // const imageUrlFromBackend = 'https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'
     const [documents, setDocuments] = useState([]);
     const [dataUrl, setDataUrl] = useState(null);
     const [Category, setCategory] = useState([]);
@@ -79,7 +82,7 @@ function Index() {
 
     ]
     const { data, isSuccess } = useGetAll({
-        key: `/admin-dashboard/campaign/dcee59c8-3a00-495f-a18a-2da562c29e7e`,
+        key: `/admin-dashboard/campaign/${id}`,
         enabled: true,
         select: (data) => {
             // console.log(data.data.data);
@@ -105,7 +108,7 @@ function Index() {
     });
 
     const { mutate } = useCreateOrUpdate({
-        url: '/admin-dashboard/campaign/dcee59c8-3a00-495f-a18a-2da562c29e7e',
+        url: `/admin-dashboard/campaign/${id}`,
         method: "put",
     })
 
