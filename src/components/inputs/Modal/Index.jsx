@@ -25,7 +25,7 @@ const Modal = ({closeModal,setDataUrl}) => {
                 <span className="sr-only">Close menu</span>
                 <FaTimes />
               </button>
-              <ImageCrop setDataUrl={setDataUrl} />
+              <ImageCrop closeModal={closeModal} setDataUrl={setDataUrl} />
             </div>
           </div>
         </div>
