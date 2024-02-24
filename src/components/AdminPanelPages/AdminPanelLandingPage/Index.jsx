@@ -11,7 +11,9 @@ import PrimaryButton from '../../inputs/PrimaryButton';
 
 const InputStyle =
 {
-    padding: '20px', border: "1px solid #e2e2e2",
+    padding: '0px 16px', border: "1px solid #e2e2e2",
+    borderRadius:"4px",
+    fontSize:16,
     // },
     "&:focus-within": {
         boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
@@ -32,7 +34,7 @@ function Index() {
         <>
             <Navbar />
 
-            <div className='admin-panel-landing-page  pt-[150px]'>
+            <div className='admin-panel-landing-page pt-[150px]'>
                 <Formik>
                     <Form>
                         <div className='upload-div flex flex-wrap gap-x-[242px] gap-y-[68px]'>
@@ -222,14 +224,14 @@ function Index() {
                             </div>
                            
                         </div>
-                        <div className='default-link-div'>
+                        <div className='default-link-div flex items-center'>
                                 <InputField
 
                                     name="title"
                                     sx={InputStyle}
 
                                     
-                                    label="Default Link Colour:"
+                                    label="Default Link Colour"
                                     placeholder="Placeholder Text"
 
                                 />

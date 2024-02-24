@@ -55,7 +55,7 @@
 
 @media only screen and (max-width: 1800px) {
 
-    .create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary ,.create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary,.create-campaign-page .campagin-form label,.create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary ,.create-campaign-page label.form-label ,.create-campaign-page span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label , label.MuiFormLabel-root.MuiFormLabel-colorPrimary{
+    .create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary ,.create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary,.create-campaign-page .campagin-form label,.create-campaign-page .campagin-form label.MuiFormLabel-root.MuiFormLabel-colorPrimary ,.create-campaign-page label.form-label ,.create-campaign-page span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label ,.create-campaign-page label.MuiFormLabel-root.MuiFormLabel-colorPrimary{
     font-size: 18px !important;
 }
 
