@@ -70,6 +70,11 @@ import MapPin2 from "../assets/MapPin.svg";
 import HomePageHero from "../assets/HomePageHero.png";
 import HomePageHeroTab from "../assets/HomePageHeroTab.png";
 import LeftArrowBottomSlider from "../assets/leftarrowbs.png";
+import sliderimg2 from "../assets/sliderimg2.png";
+import Knowingfairseed from "../assets/Knowingfairseed.png"
+import VissionMission from "../assets/VissionMission.png"
+import valuepage from "../assets/valuepage.png"
+import ourteam from "../assets/ourteam.png"
 import DashedImageUpload from "../assets/Dashed Image Upload.png";
 import UploadIcon from "../assets/UploadIcon.png";
 import CausesDetails from "../assets/CausesDetails.svg";
@@ -150,6 +155,11 @@ export default {
   HomePageHero,
   HomePageHeroTab,
   LeftArrowBottomSlider,
+  sliderimg2,
+  Knowingfairseed,
+  VissionMission,
+  valuepage,
+  ourteam,
   DashedImageUpload,
   UploadIcon,
   CausesDetails,

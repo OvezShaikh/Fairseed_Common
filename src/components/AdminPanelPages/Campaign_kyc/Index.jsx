@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button, Checkbox } from '@mui/material';
 import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
 import { LocationConfigurationDialog } from '../../admin-console/LocationConfigurationDialog';
-import  Columnfilter  from '../../Table/Columnfilter'
+import Columnfilter from '../../Table/Columnfilter'
 import SecondaryButton from '../../inputs/secondaryButton';
 import CauseEdit from '../CauseEditApprovel/Index';
 import { Link } from 'react-router-dom';
@@ -22,7 +22,6 @@ const Campaign_Kyc = () => {
           filter:'text',
           minWidth: 100,
           width: 100,
-          
         },
         {
           Header: "Benificary Name",

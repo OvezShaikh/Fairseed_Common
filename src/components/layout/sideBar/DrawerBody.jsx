@@ -330,7 +330,7 @@ const DrawerBody = () => {
   }, [pathname]);
 
   return (
-    <div className="link-none">
+    <div className="link-none transition-all duration-1000 ease-in-out">
       <List
         // className="pt-4"
         sx={{

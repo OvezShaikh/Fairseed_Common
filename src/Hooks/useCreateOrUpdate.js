@@ -17,7 +17,7 @@ export function useCreateOrUpdate({
     onSuccess: (response, variables, context) => {
       onSuccess && onSuccess(response, variables, context);
       refetch && refetch();
-      console.log(Headers,"<------------------>");
+      console.log(response, "<------------------>");
     },
     onError: (data) => {
       // errorHandle(data);

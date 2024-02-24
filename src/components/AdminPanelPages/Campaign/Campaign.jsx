@@ -9,7 +9,6 @@ import SecondaryButton from '../../inputs/secondaryButton';
 import CauseEdit from '../CauseEditApprovel/Index';
 import { GoDotFill } from "react-icons/go";
 import { Link } from 'react-router-dom';
-import { Form, Formik } from 'formik';
 
 const Campaign = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
@@ -57,8 +56,7 @@ const Campaign = () => {
       {
         Header: "ID",
         accessor: "id",
-        // apiURL: `/admin-dashboard/campaign`,
-        sortable: false,
+        // apiURL: `/admin-dashboard/campaign
         filter: 'text',
         minWidth: 100,
         width: 100,
@@ -68,7 +66,6 @@ const Campaign = () => {
         Header: "Title",
         accessor: "title",
         // apiURL: `/admin-dashboard/campaign`,
-        sortable: false,
         minWidth: 100,
         width: 100,
 
@@ -78,7 +75,6 @@ const Campaign = () => {
         Header: "User",
         accessor: "user.username",
         // apiURL: `/admin-dashboard/campaign`,
-        sortable: false,
         minWidth: 100,
         width: 100,
 
@@ -87,7 +83,6 @@ const Campaign = () => {
         Header: "Email",
         accessor: "user.email",
         // apiURL: `/admin-dashboard/campaign`,
-        sortable: false,
         minWidth: 100,
         width: 100,
 
@@ -96,7 +91,6 @@ const Campaign = () => {
         Header: "Mobile",
         accessor: "user.mobile_number",
         // apiURL: `/admin-dashboard/campaign`,
-        sortable: false,
         minWidth: 100,
         width: 100,
 
@@ -105,7 +99,6 @@ const Campaign = () => {
         Header: "Goal",
         accessor: "goal_amount",
         // apiURL: `/admin-dashboard/campaign`,
-        sortable: false,
         minWidth: 100,
         width: 100,
 
@@ -113,8 +106,7 @@ const Campaign = () => {
       {
         Header: "Status",
         accessor: "status",
-        // apiURL: `/admin-dashboard/campaign`,
-        sortable: false,
+        // apiURL: `/admin-dashboard/campaign
         minWidth: 100,
         width: 100,
         Cell: StatusCell,
@@ -123,20 +115,20 @@ const Campaign = () => {
         Header: "Deadline",
         accessor: "end_date",
         // apiURL: `/admin-dashboard/campaign`,
-        sortable: false,
+
         minWidth: 100,
         width: 100,
       },
       {
         Header: 'Actions',
         accessor: 'actions',
-        sortable: false,
+
         nofilter: true,
         minWidth: 100,
         width: 100,
         Cell: ({ row }) => {
           return (
-            <div className='flex items-center justify-center pl-6`'>
+            <div className='flex items-center justify-center pl-6 max-desktop:pl-0 max-tablet:pl-0'>
               <Link to="Edit" state={{ id: row?.id }} ><SecondaryButton sx={{ height: '30px' }} >Edit</SecondaryButton></Link>
               {/* <SecondaryButton sx={{ height: '30px' }}>Finalize your Campaign</SecondaryButton> */}
               {/* <SecondaryButton sx={{ height: '30px' }}>Edit Bank and KYC</SecondaryButton> */}
@@ -148,27 +140,22 @@ const Campaign = () => {
 
   );
   return (
-    <Formik
-      initialValues={{}}
-    >
-      <Form>
-        <div>
-          <ReactTable
-            rows={[]}
-            columns={columns}
-            showFilter
-            manualPagination
-            title={"Campaign"}
-            checkboxComponent={IndeterminateCheckbox}
-            url={`/admin-dashboard/campaign`}
-            extraQuery={{ inactive: true }}
-            addButton={<LocationConfigurationDialog />}
-            // addButton={<Button>HElloooooo</Button>}
-            selectedRowID={selectedRowID}
-          />
-        </div>
-      </Form>
-    </Formik>
+
+    <div>
+      <ReactTable
+        rows={[]}
+        columns={columns}
+        showFilter
+        manualPagination
+        title={"Campaign"}
+        checkboxComponent={IndeterminateCheckbox}
+        url={`/admin-dashboard/campaign`}
+        extraQuery={{ inactive: true }}
+        addButton={<LocationConfigurationDialog />}
+        // addButton={<Button>HElloooooo</Button>}
+        selectedRowID={selectedRowID}
+      />
+    </div>
   )
 }
 

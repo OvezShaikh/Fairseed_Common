@@ -531,54 +531,47 @@ const ReactTable = ({
                     {...column.getHeaderProps({
                       style: {
                         minWidth: column.minWidth, width: column.width, color: '#484649',
-                        fontSize: '14px',
+                        fontSize: '18px',
                         // flex: '75 0 auto',
 
                         // flex: 150,
                         fontFamily: 'satoshi',
-                        height: '70px',
+                        height: '77px',
                         alignItems: 'start',
                         fontWeight: 500,
                         flexDirection: 'column',
-                        padding: '5px 10px',
+                        padding: '5px 10px 0px 10px',
+                        overflowX: 'hidden'
 
 
                       },
                     })}
                     key={column?.id}
 
-                  >
-                    {column.render("Header")}
-                    {<Columnfilter column={column} />}
-                    {column?.sortable !== false && (
-                      <Sorting
-                        column={column}
-                        order={order}
-                        sortField={sortField}
-                        handleSortingChange={handleSortingChange}
-                      />
-                    )}
+                  ><div className="flex">
+                      <div className="pt-1 max-tablet:text-[14px] ">
+                        {column.render("Header")}
+                      </div>
+                      {column?.sortable !== false && (
+                        <Sorting
+                          column={column}
+                          order={order}
+                          sortField={sortField}
+                          handleSortingChange={handleSortingChange}
+                        />
+
+                      )} </div>
+                    <div className="pt-2">
+                      {<Columnfilter column={column} />}
+                    </div>
+
 
                     <div
                       {...column.getResizerProps()}
                       className={`resizer ${column.isResizing ? "isResizing" : ""
                         }`}
                     />
-                    {/* {column?.search !== false && (
-                      <TextField
-                        sx={{
-                          "& .MuiInputBase-root .MuiInputBase-input ": {
-                            height: '0px',
-                            background: 'white',
-                            width: "126px",
-                            borderRadius: '4px',
-                            // flex: '75 0 auto',
 
-                            border: '1px solid pink'
-                          },
-                        }}
-                      />
-                    )} */}
                   </TableCell>
                 ))}
               </TableRow>

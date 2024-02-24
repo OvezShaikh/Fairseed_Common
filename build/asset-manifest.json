@@ -1,13 +1,23 @@
 {
   "files": {
+<<<<<<< HEAD
     "main.css": "/static/css/main.144d6d94.css",
     "main.js": "/static/js/main.5f24dcca.js",
+=======
+    "main.css": "/static/css/main.b29f12e5.css",
+    "main.js": "/static/js/main.9ba14bf1.js",
+>>>>>>> 992576093e81b941be1e6b9bafa079c37a2da460
     "static/js/787.bcf9f87a.chunk.js": "/static/js/787.bcf9f87a.chunk.js",
     "static/media/HomePageHero.png": "/static/media/HomePageHero.c09f0ed5bc6dd60ed8e0.png",
     "static/media/HeaderBgImg.png": "/static/media/HeaderBgImg.c2e2e786029fd166348b.png",
     "static/media/sliderimg.png": "/static/media/sliderimg.5b3800bc6b3348e47bc6.png",
     "static/media/HeroSection.png": "/static/media/HeroSection.14c4ae33dad61a885124.png",
+    "static/media/ourteam.png": "/static/media/ourteam.f51d365f37a7bc48a14f.png",
+    "static/media/valuepage.png": "/static/media/valuepage.e19fd449f0f58e353eea.png",
+    "static/media/Knowingfairseed.png": "/static/media/Knowingfairseed.d927e8a26423b6b116f3.png",
+    "static/media/sliderimg2.png": "/static/media/sliderimg2.79fd762ea464ad48d532.png",
     "static/media/HomePageHeroTab.png": "/static/media/HomePageHeroTab.39ad0a418ae0116bb41d.png",
+    "static/media/VissionMission.png": "/static/media/VissionMission.66508d03f0f7126f4f58.png",
     "static/media/SideImage.jpg": "/static/media/SideImage.3a8aa3c0f45514aa2c45.jpg",
     "static/media/Maskgroup2.png": "/static/media/Maskgroup2.b442c5a0676467b25340.png",
     "static/media/Maskgroup.png": "/static/media/Maskgroup.b25f4399ee382b8cf47e.png",
@@ -39,6 +49,7 @@
     "static/media/Success.svg": "/static/media/Success.96fcfd83b0ee5af2d15ee97b3c65f729.svg",
     "static/media/UploadSimple.svg": "/static/media/UploadSimple.2c0f77e1a204473bd43dcdfdecaadd6e.svg",
     "index.html": "/index.html",
+<<<<<<< HEAD
     "static/media/FooterIconTw.svg": "/static/media/FooterIconTw.1e38242ff325c516cfa6d58a12887b5b.svg",
     "static/media/one.svg": "/static/media/one.4177f303d0a6c958f191033797807753.svg",
     "static/media/HeaderColor.svg": "/static/media/HeaderColor.9ac64b8c514e4c440d7492d39759ffd9.svg",
@@ -55,5 +66,23 @@
   "entrypoints": [
     "static/css/main.144d6d94.css",
     "static/js/main.5f24dcca.js"
+=======
+    "static/media/FooterIconTw.svg": "/static/media/FooterIconTw.8967277248e6e549cbe33c08e5d73c99.svg",
+    "static/media/one.svg": "/static/media/one.107ac225af51821e4bd0b1dce9ba930e.svg",
+    "static/media/HeaderColor.svg": "/static/media/HeaderColor.a309e1a0eef33951b508c9699e48ea66.svg",
+    "static/media/ArrowBack .svg": "/static/media/ArrowBack .a4ed0f440032026e2ef934f6ee52a3a2.svg",
+    "static/media/share_Tabs.svg": "/static/media/share_Tabs.3123e961ef065ff38aabb63624d52fbb.svg",
+    "static/media/account.svg": "/static/media/account.2869c9fa52418153d0312a597bcbbeb9.svg",
+    "static/media/FooterIconYo.svg": "/static/media/FooterIconYo.d89d6a1c518008ca6f6f3b9396034f55.svg",
+    "static/media/Vector.svg": "/static/media/Vector.0c5ff3a99f6e4e88553cc0f87190b9b9.svg",
+    "static/media/caretDown.svg": "/static/media/caretDown.347a9c3606b55fe2bce17035dc4a0341.svg",
+    "main.b29f12e5.css.map": "/static/css/main.b29f12e5.css.map",
+    "main.9ba14bf1.js.map": "/static/js/main.9ba14bf1.js.map",
+    "787.bcf9f87a.chunk.js.map": "/static/js/787.bcf9f87a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b29f12e5.css",
+    "static/js/main.9ba14bf1.js"
+>>>>>>> 992576093e81b941be1e6b9bafa079c37a2da460
   ]
 }

@@ -27,15 +27,15 @@ const styleButton = {
 const GetInvolved = [
   {
     name: "Associateship",
-    href: "/Home/OnGoingCampaigns",
+    href: "/Home/GetInvolved/Associateship",
   },
   {
     name: "Partner with us",
-    href: "/Home/Donate",
+    href: "/Home/GetInvolved/Partner-with-us",
   },
   {
     name: "Internship",
-    href: '/Home/Create-Campaign',
+    href: '/Home/GetInvolved/Internships',
   },
   {
     name: "Create a campaign",
@@ -43,11 +43,11 @@ const GetInvolved = [
   },
   {
     name: "Support a campaign",
-    href: "/Home/OnGoingCampaigns",
+    href: "/Home/GetInvolved/Support-a-campaign",
   },
   {
     name: "Careers",
-    href: "/Home/ReligiousEducationCampaigns",
+    href: "/Home/GetInvolved/Careers",
   },
 ];
 const OurImpact = [
@@ -61,26 +61,26 @@ const OurImpact = [
   },
   {
     name: "Stories of Change",
-    href: '/Home/Create-Campaign',
+    href: '/Home/Impact/StoriesOfChange',
   },
   {
     name: "Reports",
-    href: '/Home/Create-Campaign',
+    href: '/Home/Impact/Reports',
   },
 
 ];
 const AboutUs = [
   {
     name: "Knowing Fairseed",
-    href: "/Home/OnGoingCampaigns",
+    href: "/Home/About-Us/Knowing-Fairseed",
   },
   {
     name: "Vision & Mission",
-    href: "/Home/Donate",
+    href: "/Home/About-Us/Vision-&-Mission",
   },
   {
-    name: "Our Mission",
-    href: '/Home/Create-Campaign',
+    name: "Objectives & Values",
+    href: '/Home/About-Us/Objectives-&-values',
   },
 
 
@@ -169,7 +169,7 @@ export default function Example() {
 
               <Transition
                 as={Fragment}
-                enter="transition ease-out duration-200"
+                enter="transition ease-out duration-500"
                 enterFrom="opacity-0 translate-y-1"
                 enterTo="opacity-100 translate-y-0"
                 leave="transition ease-in duration-150"
@@ -236,7 +236,7 @@ export default function Example() {
 
               <Transition
                 as={Fragment}
-                enter="transition ease-out duration-200"
+                enter="transition ease-out duration-500"
                 enterFrom="opacity-0 translate-y-1"
                 enterTo="opacity-100 translate-y-0"
                 leave="transition ease-in duration-150"
@@ -303,7 +303,7 @@ export default function Example() {
 
               <Transition
                 as={Fragment}
-                enter="transition ease-out duration-200"
+                enter="transition ease-out duration-500"
                 enterFrom="opacity-0 translate-y-1"
                 enterTo="opacity-100 translate-y-0"
                 leave="transition ease-in duration-150"
@@ -337,6 +337,7 @@ export default function Example() {
               </Transition>
             </Popover>
             {/* Fourth button */}
+
             <button
               className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
             >How it Works</button>
@@ -353,8 +354,8 @@ export default function Example() {
               ) : (
                 <PrimaryButton
                   onClick={() => {
-                    toast.error("please login First !!! ",{
-                      position:'top-center'
+                    toast.error("please login First !!! ", {
+                      position: 'top-center'
                     })
                   }}
                   sx={{ borderRadius: 'var(--Pixels-8, 8px)', fontWeight: 700, fontSize: '18px', padding: '12px 20px', }}>
@@ -424,7 +425,7 @@ export default function Example() {
                 <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
+                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
                         Get Involved
                         <ChevronDownIcon
                           className={classNames(open ? 'rotate-180' : '', 'h-6 w-6 flex-none')}
@@ -437,7 +438,7 @@ export default function Example() {
                             key={item.name}
                             as="a"
                             href={item.href}
-                            className="block rounded-lg py-2 pl-6 pr-3 text-lg font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                            className="block rounded-lg py-2 pl-6 pr-3 text-lg max-tablet:text-[16px] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -449,7 +450,7 @@ export default function Example() {
                 <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
+                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
                         Our Impact
                         <ChevronDownIcon
                           className={classNames(open ? 'rotate-180' : '', 'h-6 w-6 flex-none')}
@@ -462,7 +463,7 @@ export default function Example() {
                             key={item.name}
                             as="a"
                             href={item.href}
-                            className="block rounded-lg py-2 pl-6 pr-3 text-lg font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                            className="block rounded-lg py-2 pl-6 pr-3 text-lg max-tablet:text-[16px] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -475,7 +476,7 @@ export default function Example() {
                 <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
+                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
                         About Us
                         <ChevronDownIcon
                           className={classNames(open ? 'rotate-180' : '', 'h-6 w-6 flex-none')}
@@ -488,7 +489,7 @@ export default function Example() {
                             key={item.name}
                             as="a"
                             href={item.href}
-                            className="block rounded-lg py-2 pl-6 pr-3 text-lg font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                            className="block rounded-lg py-2 pl-6 pr-3 text-lg max-tablet:text-[16px] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -497,8 +498,8 @@ export default function Example() {
                     </>
                   )}
                 </Disclosure>
-                <Link to="/login"
-                  className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                <Link to={'/Home/How-It-Works'}
+                  className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[20px]  max-tablet:text-[18px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   How It works
                 </Link>
@@ -508,8 +509,8 @@ export default function Example() {
                 {
                   (localStorage.getItem('token')) ?
                     (<ProfileAvatar />)
-                    : (<Link to='/Home/LoginOnSmallScreen'><button
-                      className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
+                    : (<Link to='/Home/Login'><button
+                      className="font-[satoshi] text-[22px] font-medium text-[#40444C]"
                     >
                       Log In
                     </button></Link>)

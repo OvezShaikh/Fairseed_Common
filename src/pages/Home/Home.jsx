@@ -138,7 +138,11 @@ function Home() {
     try {
       // const perPage = 100;
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
+        `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`,{
+          headers:{
+            "x-access-token":localStorage.getItem('token')
+          }
+        }
       );
       const res = response.data;
       console.log(response.headers , "<================");

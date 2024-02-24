@@ -87,6 +87,8 @@ const UserLogin = () => {
                   >
                     Login
                   </StyledTypography>
+                  <hr className='text-gray-500 mx-32 pt-2' />
+
                 </DialogTitle>
               </Grid>
               <Grid item xs={12}>
