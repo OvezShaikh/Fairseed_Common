@@ -6,7 +6,6 @@ import CheckBox from '../../inputs/checkBox'
 import { FormLabel } from '@mui/material'
 import { colors } from '../../../constants/theme'
 import { Formik, Form, Field, useFormikContext } from 'formik'
-import images from '../../../constants/images'
 import ReactQuilTextField from '../../inputs/ReactQuilTextField/Index'
 import { RiDeleteBin6Line } from "react-icons/ri";
 import SuccessButton from '../../inputs/SuccessButton/Index'
@@ -16,12 +15,11 @@ import UploadField from '../../inputs/UploadField/Index'
 import RadioGroup from '../../inputs/radioGroup/index'
 import ErrorIcon from "@mui/icons-material/Error";
 import ImageEditor from '../../layout/ImageEditor/Index'
-import ImageDisplay from '../../layout/CropAddImage/Index'
 import { useState } from 'react'
 import ImageBackgroundWithDeleteButton from '../../layout/CropAddImage/Index';
 import Attachments from '../../layout/Attachments/Index'
 import { useCreateOrUpdate, useGetAll } from '../../../Hooks'
-import { height } from '@mui/system'
+import { Link, useLocation } from "react-router-dom"
 const InputStyle =
 {
     padding: '20px', border: "1px solid #e2e2e2",
@@ -48,6 +46,8 @@ const initialValues = {
 }
 
 function Index() {
+    let { state } = useLocation();
+    let { id } = state;
     // const imageUrlFromBackend = 'https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'
     const [documents, setDocuments] = useState([]);
     const [dataUrl, setDataUrl] = useState(null);
@@ -79,7 +79,7 @@ function Index() {
 
     ]
     const { data, isSuccess } = useGetAll({
-        key: `/admin-dashboard/campaign/dcee59c8-3a00-495f-a18a-2da562c29e7e`,
+        key: `/admin-dashboard/campaign/${id}`,
         enabled: true,
         select: (data) => {
             // console.log(data.data.data);
@@ -105,7 +105,7 @@ function Index() {
     });
 
     const { mutate } = useCreateOrUpdate({
-        url: '/admin-dashboard/campaign/dcee59c8-3a00-495f-a18a-2da562c29e7e',
+        url: `/admin-dashboard/campaign/${id}`,
         method: "put",
     })
 
@@ -353,11 +353,14 @@ function Index() {
                                 />
                                 {/* {console.log(values?.cpg_image)} */}
                             </div>
+                            <Link to={"Revision-History"}
+                            // state={id}
+                            >
+                                <PrimaryButton sx={{ borderRadius: '12px', width: '90%' }}>
+                                    <h1 className='text-white font-medium py-2.5 text-[18px] font-[satoshi]'>View Revision History</h1>
 
-                            <PrimaryButton sx={{ borderRadius: '12px', width: '90%' }}>
-                                <h1 className='text-white font-medium py-2.5 text-[18px] font-[satoshi]'>View Revision History</h1>
-
-                            </PrimaryButton>
+                                </PrimaryButton>
+                            </Link>
                         </div>
                     </div>
 

@@ -15,13 +15,15 @@ const User = () => {
   const columns = React.useMemo(
     () => [
       {
-        Header: "ID",
-        accessor: "id",
-        apiURL: `/admin-dashboard/campaign`,
-        filter: 'text',
-        minWidth: 100,
-        width: 100,
-
+        Header: "Id", // Row number header
+        accessor: "index", // Accessor for row number
+        Cell: ({ row }) => (
+          // Display row number using index provided by React Table
+          <div>{row.index + 1}</div>
+        ),
+        minWidth: 50,
+        width: 50,
+        search: false
       },
       {
         Header: "Name",

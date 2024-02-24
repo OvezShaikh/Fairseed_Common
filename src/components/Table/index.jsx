@@ -261,7 +261,7 @@ const ReactTable = ({
     }
   };
 
- 
+
 
   useEffect(() => {
     if (pageIndex === 0 && tableData?.length > 0) {
@@ -562,7 +562,9 @@ const ReactTable = ({
 
                       )} </div>
                     <div className="pt-2">
-                      {<Columnfilter column={column} />}
+                      {column?.search !== false && (
+                        <Columnfilter column={column} />
+                      )}
                     </div>
 
 

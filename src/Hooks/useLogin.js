@@ -2,8 +2,8 @@ import * as Yup from "yup";
 import serverAPI from "../config/serverAPI";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import setAuthToken from '../utils/setAuthToken';
-     
+import setAuthToken from "../utils/setAuthToken";
+
 const useLogin = () => {
   const Initial_value = {
     email: "",
@@ -21,14 +21,16 @@ const useLogin = () => {
   const loginData = async (data) => {
     console.log(data, "dadata");
     try {
-      const res = await serverAPI.post("/accounts/login/nt/", data );
-      
+      const res = await serverAPI.post("/accounts/login/nt/", data);
+
       toast.success("Logged in Successfully ", {
         position: "top-center",
       });
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user_role", res.data.user_info.user_role);
-      window.location.href = "/Home";
+      setTimeout(() => {
+        window.location.href = "/Home";
+      }, 2000);
       console.log(localStorage.getItem("token"));
       console.log(localStorage.getItem("userRole"));
     } catch (error) {
