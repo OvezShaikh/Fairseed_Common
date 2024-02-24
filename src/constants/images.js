@@ -75,6 +75,7 @@ import UploadIcon from "../assets/UploadIcon.png";
 import CausesDetails from "../assets/CausesDetails.svg";
 import ColorFullDownArrow from "../assets/ColorfulDownArrow.png";
 import CheckBoxGradient from "../assets/CheckBoxGradient.png";
+import AdminPanelDropzone from "../assets/AdminPanelDropzone.png";
 
 export default {
   SedalCheck,
@@ -153,4 +154,5 @@ export default {
   CausesDetails,
   ColorFullDownArrow,
   CheckBoxGradient,
+  AdminPanelDropzone,
 };

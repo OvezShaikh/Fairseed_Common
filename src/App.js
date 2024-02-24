@@ -16,6 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import RegisterSmallScreen from "./pages/login/Sign_Up/RegisterSmallScreen";
 import Account from "./pages/Account Settings/Index";
 import Donate from "./pages/Donate/Index";
+import AdminPanelLandingPage from "./components/AdminPanelPages/AdminPanelLandingPage/Index";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -70,7 +71,9 @@ function App() {
             path="/donate/:id"
             element={<Donate />}
           />
+         
 
+          <Route path="/adminpanellandingpage" element={<AdminPanelLandingPage />} />
 
 
         </Routes>

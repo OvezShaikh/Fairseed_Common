@@ -12,7 +12,9 @@ import React, { useContext, useMemo } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Avatar } from "@mui/material";
-import UserNavbar from '../../login/UserNavbar'
+import UserNavbar from '../../login/UserNavbar';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function CurrentCampaign({
   key,
@@ -32,6 +34,20 @@ function CurrentCampaign({
 
   // const perPage = 1;
   // const page=1;
+
+  const copy_current_url= () =>{
+    
+
+    const currentPageUrl = window.location.href;
+
+    // Use the Clipboard API to copy the URL to the clipboard
+    navigator.clipboard.writeText(currentPageUrl);
+    toast.info("Link Copied !",{
+      position:'top-center'
+    });
+      
+  }
+ 
 
   useEffect(() => {
     axios
@@ -284,6 +300,9 @@ function CurrentCampaign({
                     gap: 12,
                     display: "inline-flex",
                   }}
+
+                  onClick= {copy_current_url}
+
                 >
                   <div className="w-[32px] h-[32px] max-tablet:w-[20px] max-tablet:h-[20px]" style={{ position: "relative" }}>
                     <img src={images.ShareNetwork} alt="" />
