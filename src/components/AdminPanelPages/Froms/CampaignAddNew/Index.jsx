@@ -18,7 +18,6 @@ function AddNew() {
 
     return (
         <Formik
-
             initialValues={initialValues}
 
         >
