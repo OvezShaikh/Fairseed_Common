@@ -5,8 +5,6 @@ import Avatar from '@mui/material/Avatar';
 import { useFormikContext } from "formik";
 import PrimaryButton from '../../../components/inputs/PrimaryButton';
 import { Grid, Container } from '@mui/material';
-import images from '../../../constants/images';
-import PreviewImage from '../../../components/inputs/PreviewImage/PreviewImage';
 import { toast } from 'react-toastify';
 import { SlPencil } from "react-icons/sl";
 

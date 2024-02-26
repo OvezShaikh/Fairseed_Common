@@ -4,7 +4,7 @@ import Donation from "../../components/AdminPanelPages/Donation/Index";
 import Campaign from "../../components/AdminPanelPages/Campaign/Campaign";
 import Dashboard from "../../components/AdminPanelPages/Dashboard/Index";
 import UserPanel from "../../components/layout/User Dashboard/Index";
-
+import Scholarship from "../../components/AdminPanelPages/Scholarship Cause/Index";
 
 
 function UserPage() {
@@ -46,6 +46,14 @@ function UserPage() {
         element={
           <UserPanel>
             <Donation />
+          </UserPanel>
+        }
+      />
+      <Route
+        path="/Scholarships"
+        element={
+          <UserPanel>
+            <Scholarship />
           </UserPanel>
         }
       />
