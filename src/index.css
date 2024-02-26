@@ -304,6 +304,12 @@ color: rgba(149, 153, 157, 1);
   font-weight: 700;
   color: rgba(97, 101, 106, 1);
 }
+.leaflet-container {
+  height: 45vh;
+  width: 85%;
+  border-radius: 1rem;
+}
+
 
 
 
