@@ -86,9 +86,9 @@ const Formcom = ({ Initial_value, formValidation, loginData }) => {
               <Grid item xs={12} >
                 <SecondaryButton
                   sx={{ width: '100%', padding: '12px 40px', }}
-                  type='button'
+                  
                 >
-                  <UserSignUp_02 />
+                  {<UserSignUp_02 />}
                 </SecondaryButton>
 
               </Grid>

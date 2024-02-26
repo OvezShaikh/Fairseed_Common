@@ -12,9 +12,13 @@ import PrimaryButton from '../../../components/inputs/PrimaryButton'
 import UserSignUp_02 from '../Sign_Up/Index';
 import { Container } from '@mui/system';
 import Footer from '../../../components/layout/Footer';
+import useLogin from '../../../Hooks/useLogin';
 
 
-function LoginOnSmallScreen({ Initial_value, formValidation, loginData }) {
+function LoginOnSmallScreen() {
+
+  const { Initial_value, formValidation, loginData } = useLogin();
+  
   return (
     <div>
       <Navbar />
@@ -28,7 +32,6 @@ function LoginOnSmallScreen({ Initial_value, formValidation, loginData }) {
           validationSchema={formValidation}
           onSubmit={async (values) => {
             loginData(values)
-
           }}
         >
           <Form className='max-w-[471px] w-[100%] flex flex-col gap-4'>
@@ -37,7 +40,7 @@ function LoginOnSmallScreen({ Initial_value, formValidation, loginData }) {
                 <Grid item xs={12}>
                   <InputField
                     label="Email"
-                    name="email"
+                    name={"email"}
                     sx={{
                       padding: ' 16px 10px 16px var(--Spacing-20, 20px)',
                       border: '2px solid var(--Linear-BG, #FF9F0A)',
@@ -53,7 +56,7 @@ function LoginOnSmallScreen({ Initial_value, formValidation, loginData }) {
                   <InputField
                     label="Password"
                     type='password'
-                    name="password"
+                    name={"password"}
                     sx={{
                       padding: ' 16px 10px 16px 10px', border: '2px solid var(--Linear-BG, #FF9F0A)',
                       borderImage: 'linear-gradient(#FF9F0A, red) 20',

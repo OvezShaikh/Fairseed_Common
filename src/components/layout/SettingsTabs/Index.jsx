@@ -10,13 +10,8 @@ import SelectField from '../../inputs/SelectField';
 import CountrySelect from '../../inputs/countrySelect/index';
 import Avatar from '../../layout/Avatar/Index'
 import { Formik, Form } from 'formik';
-
-
-
-
-
-
-
+import Account from './Account';
+import Password from './Password';
 
 
 const InputStyle =
@@ -48,6 +43,7 @@ const initialValues={
 }
 
 export default function LabTabs({ onChange, src }) {
+
   const [value, setValue] = React.useState('1');
 
   const handleChange = (event, newValue) => {
@@ -66,74 +62,10 @@ export default function LabTabs({ onChange, src }) {
           </TabList>
         </Box>
         <TabPanel sx={{ pt: '4rem',color:"green" }} value="1">
-          <Formik
-          initialValues={initialValues}
-          onSubmit={(values)=>{
-            console.log(values)
-          }}
-          >
-            <Form>
-
-              <Avatar />
-              <InputField
-                name={"full_name"}
-                label={"Full Name:"}
-                sx={InputStyle}
-              />
-              <InputField
-                name={"email"}
-                label={"Email Id:"}
-                sx={InputStyle}
-              />
-              <InputField
-                name={"m_number"}
-                label={"Mobile:"}
-                placeholder={"(Optional)"}
-                sx={InputStyle}
-
-              />
-              <div className='country-select-div'>
-              <CountrySelect label="Country:"
-              name={"Country"}
-              sx={SelectStyle}
-
-              
-              
-              />
-
-            </div>
-
-
-            
-
-            
-
-              
-            </Form>
-          </Formik>
+         <Account/>
         </TabPanel>
         <TabPanel sx={{ pt: '4rem' }} value="2">
-          <Formik>
-            <Form>
-              <InputField
-                name={"SettingOldPassword"}
-                label={"Old Password:"}
-                type={'password'}
-                sx={InputStyle}
-
-
-              />
-              <InputField
-                name={"SettingNewPassword"}
-                label={"New Password:"}
-                type={'password'}
-                sx={InputStyle}
-
-              />
-            </Form>
-          </Formik>
-
-
+         <Password/>
         </TabPanel>
       </TabContext>
     </Box>

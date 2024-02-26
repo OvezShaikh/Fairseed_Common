@@ -16,6 +16,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from 'axios';
 import serverAPI from '../../config/serverAPI';
+import images from '../../constants/images';
 
 
 
@@ -106,7 +107,7 @@ export default function ProfileAvatar() {
         <MenuItem onClick={handleClose}>
         <Link to={"/User"}>
           <ListItemIcon>
-            <Settings fontSize="small" />
+          <img src={images.Dashboard} alt="" />
           </ListItemIcon>
           Dashboard
           </Link>
@@ -114,7 +115,7 @@ export default function ProfileAvatar() {
         
 
         <MenuItem onClick={handleClose}>
-        <Link to={"/AdminPanel"}>
+        <Link to={"/account-settings"}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
