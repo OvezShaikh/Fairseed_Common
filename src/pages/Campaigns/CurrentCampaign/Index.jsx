@@ -2,17 +2,18 @@ import Navbar from "../../../components/layout/Navbar";
 import Footer from "../../../components/layout/Footer";
 import images from "../../../constants/images";
 import { LinearProgress } from "@mui/material";
-import CampaignsTabs from "../../../components/layout/CampaignsTabs";
 import Doner from "../../../components/layout/Doner";
 import PrimaryButton from "../../../components/inputs/PrimaryButton";
 import { Grid, Typography } from "@mui/material";
 import SecondaryButton from "../../../components/inputs/secondaryButton";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams, Link  } from "react-router-dom";
 import React, { useContext, useMemo } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Avatar } from "@mui/material";
-import UserNavbar from '../../login/UserNavbar'
+import UserNavbar from '../../login/UserNavbar';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function CurrentCampaign({
   key,
@@ -33,12 +34,29 @@ function CurrentCampaign({
   // const perPage = 1;
   // const page=1;
 
+  const copy_current_url= () =>{
+    
+
+    const currentPageUrl = window.location.href;
+
+    // Use the Clipboard API to copy the URL to the clipboard
+    navigator.clipboard.writeText(currentPageUrl);
+    toast.info("Link Copied !",{
+      position:'top-center'
+    });
+      
+  }
+ 
+
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BE_BASE_URL}/campaign/campaign-details/${id}`)
       .then((res) => {
         console.log("API Response:", res.data);
+        
         setCardDetails(res.data.data);
+        console.log("CURRENT CAMPAIGN ",cardDetails);
+        
         // setDonor(res.data.donor)
       })
       .catch((error) => {
@@ -216,6 +234,7 @@ function CurrentCampaign({
               - This campaign will collect all funds raised by{" "}
               {cardDetails?.end_date}
             </p>
+            <Link to={`/donate/${id}`}>
             <PrimaryButton className="w-full max-desktop:w-full"
               sx={{ padding: "16px", borderRadius: "8px" }}
             // style={{
@@ -245,6 +264,7 @@ function CurrentCampaign({
                 Support Cause
               </div>
             </PrimaryButton>
+            </Link>
           </div>
         </div>
         <div className="flex justify-start gap-5 w-full max-desktop:flex-col">
@@ -279,6 +299,9 @@ function CurrentCampaign({
                     gap: 12,
                     display: "inline-flex",
                   }}
+
+                  onClick= {copy_current_url}
+
                 >
                   <div className="w-[32px] h-[32px] max-tablet:w-[20px] max-tablet:h-[20px]" style={{ position: "relative" }}>
                     <img src={images.ShareNetwork} alt="" />
@@ -340,6 +363,7 @@ function CurrentCampaign({
         </div>
       </div >
       <div className="flex justify-center gap-4 max-desktop:hidden">
+      <Link to={`/donate/${id}`}>
         <PrimaryButton
           sx={{ padding: "16px", borderRadius: "8px", paddingLeft: "43px", paddingRight: "43px", }}
         // style={{
@@ -369,6 +393,7 @@ function CurrentCampaign({
             Support Cause
           </h1>
         </PrimaryButton>
+        </Link>
         <SecondaryButton
           sx={{ padding: "16px", borderRadius: "8px", background: "#FFF6F5", paddingLeft: "30px", paddingRight: "30px", }}
         // style={{

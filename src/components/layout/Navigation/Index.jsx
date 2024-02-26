@@ -12,10 +12,11 @@ function Index({ label, heading }) {
   const title = useMemo(
     () =>
       `${pathname
-        //   .replace("/", "")
-        //   .replace(/\/*\[[^\]]*]/g, "")
-        //   .replace(/-/g, " ")
-        //   .replace(/\//g, "  ")
+        .replace("/", "")
+        .replace("Password-Reset", "Password Reset")
+        .replace(/\/*\[[^\]]*]/g, "")
+        .replace(/-/g, " ")
+        .replace(/\//g, "  ")
         // .replace("General Settings"," ")
         .slice(1)}`,
 

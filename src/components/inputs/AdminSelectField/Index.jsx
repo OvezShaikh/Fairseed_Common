@@ -34,16 +34,16 @@ const useStyles = makeStyles({
             // padding: "15px 15px",
             fontSize: "20px",
 
-            // marginTop: "5px",
-            //   "&:focus": {
-            //     boxShadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.15);,
-            //   borderColor: 'black',
+            marginTop: "5px",
+            // "&:focus": {
+            //     boxShadow: '0px 4px 10px 0px rgba(0, 0, 0, 0.15)',
+            //     borderColor: 'black',
 
             // },
         },
         "& .MuiInputBase-root.MuiOutlinedInput-root .MuiAutocomplete-input": {
 
-            height: '10px'
+            height: '15px'
         },
 
         "& .MuiOutlinedInput-notchedOutline": {
@@ -116,38 +116,7 @@ const SelectField = ({
     const { values } = useFormikContext();
 
 
-    // const configTextfield = {
-    //   // ...field,
-    //   ...otherProps,
-    //   name,
-    //   variant: "outlined",
-    // };
 
-    // let textFieldConfig = {
-    //   fullWidth: true,
-    //   sx: {
-    //     "& .MuiInputBase-root": {
-    //       padding: "7px 10px",
-    //     },
-    //     ...otherProps.sx,
-    //   },
-    //   ...otherProps,
-    // };
-
-
-    // if (meta && meta.touched && meta.error) {
-    //   configTextfield.error = true;
-    //   configTextfield.helperText = meta.error;
-    // }
-    // const { setFieldValue, setTouched, touched } = useFormikContext();
-
-    // const tooltipData = localStorage.getItem("tooltipData")
-    //   ? JSON.parse(localStorage.getItem("tooltipData"))?.filter(
-    //       (item) =>
-    //         item?.field_name?.toLowerCase() ===
-    //         configTextfield?.label?.toLowerCase()
-    //     )
-    //   : null;
 
     return (
         <>
@@ -159,8 +128,7 @@ const SelectField = ({
                     width: "100%",
                     "&.Mui-focused .MuiFormControl-root .MuiOutlinedInput-notchedOutline":
                     {
-                        boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);
-          `,
+                        boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15)`,
                         borderColor: "black",
                     },
                 }}
@@ -204,6 +172,7 @@ const SelectField = ({
                             //   onInputChange && onInputChange(e);
                             // }}
                             placeholder={placeholder}
+
                         />
                     </>
                 )}

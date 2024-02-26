@@ -19,7 +19,7 @@ const InputField = ({
   required,
   ...otherProps
 }) => {
-  // const [field, meta] = useField(name);
+  const [field, meta] = useField(name);
 
   const styles = {
 
@@ -84,17 +84,18 @@ const InputField = ({
   }
 
 
-  // const configTextfield = {
-  //   // ...field,
-  //   ...otherProps,
-  //   fullWidth: true,
-  //   variant: variant ? variant : "outlined",
-  // };
+  const configTextfield = {
+    ...field,
+    ...otherProps,
+    fullWidth: true,
+    variant: variant ? variant : "outlined",
+  };
 
-  // if (meta && meta.touched && meta.error) {
-  //   configTextfield.error = true;
-  //   configTextfield.helpertext = meta.error;
-  // }
+  if (meta && meta.touched && meta.error) {
+    configTextfield.error = true;
+    configTextfield.helpertext = meta.error;
+  }
+
   let textFieldConfig = {
     variant,
     InputLabelProps: { shrink: true },

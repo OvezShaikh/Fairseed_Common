@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button, Checkbox } from '@mui/material';
 import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
 import { LocationConfigurationDialog } from '../../admin-console/LocationConfigurationDialog';
-import  Columnfilter  from '../../Table/Columnfilter'
+import Columnfilter from '../../Table/Columnfilter'
 import SecondaryButton from '../../inputs/secondaryButton';
 import CauseEdit from '../CauseEditApprovel/Index';
 import { Link } from 'react-router-dom';
@@ -22,11 +22,10 @@ const Campaign_Kyc = () => {
           filter:'text',
           minWidth: 100,
           width: 100,
-          
         },
         {
-          Header: "Name",
-          accessor: "title", 
+          Header: "Benificary Name",
+          accessor: "account_holder_name", 
           apiURL:`/admin-dashboard/campaign`,
           sortable: false,
           minWidth: 100,
@@ -35,17 +34,17 @@ const Campaign_Kyc = () => {
         
         },
         {
-          Header: "User",
-          accessor: "user.username",
+          Header: "	Benificary Account No",
+          accessor: "account_number",
           apiURL:`/admin-dashboard/campaign`,
           sortable: false,
           minWidth: 100,
-          width: 100,
+          width: 150,
       
         },
         {
-          Header: "Email",
-          accessor: "user.email",
+          Header: "Bank Name",
+          accessor: "bank_name",
           apiURL:`/admin-dashboard/campaign`,
           sortable: false,
           minWidth: 100,
@@ -53,8 +52,8 @@ const Campaign_Kyc = () => {
          
         },
         {
-          Header: "Mobile",
-          accessor: "user.mobile_number",
+          Header: "IFSC Code",
+          accessor: "ifsc_code",
           apiURL:`/admin-dashboard/campaign`,
           sortable: false,
           minWidth: 100,
@@ -62,13 +61,21 @@ const Campaign_Kyc = () => {
          
         },
         {
-          Header: "Goal",
-          accessor: "goal_amount",
+          Header: "	Campaign ID",
+          accessor: "campaign.id",
           apiURL:`/admin-dashboard/campaign`,
           sortable: false,
           minWidth: 100,
           width: 100,
           
+        },
+        {
+          Header: "Campaign Title",
+          accessor: "campaign.title",
+          apiURL:`/admin-dashboard/campaign`,
+          sortable: false,
+          minWidth: 100,
+          width: 100,
         },
         {
           Header: "Status",
@@ -79,16 +86,8 @@ const Campaign_Kyc = () => {
           width: 100,
         },
         {
-          Header: "Date",
-          accessor: "end_date",
-          apiURL:`/admin-dashboard/campaign`,
-          sortable: false,
-          minWidth: 100,
-          width: 100,
-        },
-        {
-          Header: 'Actions',
-          accessor: 'actions',
+          Header: 'Action',
+          accessor: 'Action',
           sortable: false,
           nofilter: true,
           minWidth: 100,
@@ -96,9 +95,8 @@ const Campaign_Kyc = () => {
           Cell: ({row})=>{
             return (
               <div className='flex'>
-                 <Link to={'/Edit'} target={<CauseEdit id={row?.id}/>}><SecondaryButton >Edit</SecondaryButton></Link> 
-                <SecondaryButton>Finalize your Campaign</SecondaryButton>
-                <SecondaryButton>Edit Bank and KYC</SecondaryButton>
+                 <Link to={'/Edit'} target={<CauseEdit id={row?.id}/>}><SecondaryButton >view</SecondaryButton></Link> 
+               
               </div>
             )
           }
@@ -115,7 +113,7 @@ return (
     manualPagination
     title={"Campaign"}
     checkboxComponent={IndeterminateCheckbox}
-    url={`/admin-dashboard/campaign`}
+    url={`/admin-dashboard/campaign-kyc?page=1&limit=4`}
     extraQuery={{ inactive: true }}
      addButton={<LocationConfigurationDialog />}
     // addButton={<Button>HElloooooo</Button>}

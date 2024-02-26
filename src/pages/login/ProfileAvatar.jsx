@@ -14,6 +14,9 @@ import Logout from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from 'axios';
+import serverAPI from '../../config/serverAPI';
+
 
 
 export default function ProfileAvatar() {
@@ -23,6 +26,8 @@ export default function ProfileAvatar() {
     // Remove the 'token' item from localStorage
     localStorage.removeItem('token');
     localStorage.removeItem('user_role');
+    delete serverAPI.defaults.headers.common["authorization"];
+    delete axios.defaults.headers.common["authorization"];
     window.location.href = '/Home';
     toast.error("Logout Successful !",{
       position: "top-center"
@@ -94,18 +99,29 @@ export default function ProfileAvatar() {
       >
         <MenuItem onClick={handleClose}>
           <Link to={"/AdminPanel"}>
-            <Avatar /> Dashboard
+            <Avatar /> AdminPanel
           </Link>
-
         </MenuItem>
+        <Divider />
         <MenuItem onClick={handleClose}>
-
+        <Link to={"/User"}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
-
-          Settings
+          Dashboard
+          </Link>
         </MenuItem>
+        
+
+        <MenuItem onClick={handleClose}>
+        <Link to={"/AdminPanel"}>
+          <ListItemIcon>
+            <Settings fontSize="small" />
+          </ListItemIcon>
+          Settings
+          </Link>
+        </MenuItem>
+
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <Logout fontSize="small" />
@@ -116,6 +132,7 @@ export default function ProfileAvatar() {
             Logout
           </button>
         </MenuItem>
+
       </Menu>
     </React.Fragment>
   );

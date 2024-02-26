@@ -4,12 +4,13 @@ import { Autocomplete, FormLabel, TextField, Tooltip } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { colors } from "../../../constants/theme";
 
+
 const useStyles = makeStyles({
   textField: {
     "& .MuiInput-root": {
       margin: "0px",
       fontSize: "20px",
-      border:' 1px solid #E2E2E2',
+      border: ' 1px solid #E2E2E2',
       background: "#fff",
       "&::before": {
         display: "none",
@@ -39,7 +40,7 @@ const useStyles = makeStyles({
     },
 
     "& .MuiOutlinedInput-notchedOutline": {
-      border:" 1px solid #e2e2e2",
+      border: " 1px solid #e2e2e2",
     },
   },
 });
@@ -107,12 +108,12 @@ const SelectField = ({
   const { values } = useFormikContext();
 
 
-  const configTextfield = {
-    // ...field,
-    ...otherProps,
-    name,
-    variant: "outlined",
-  };
+  // const configTextfield = {
+  //   // ...field,
+  //   ...otherProps,
+  //   name,
+  //   variant: "outlined",
+  // };
 
   // let textFieldConfig = {
   //   fullWidth: true,
@@ -126,10 +127,10 @@ const SelectField = ({
   // };
 
 
-  if (meta && meta.touched && meta.error) {
-    configTextfield.error = true;
-    configTextfield.helperText = meta.error;
-  }
+  // if (meta && meta.touched && meta.error) {
+  //   configTextfield.error = true;
+  //   configTextfield.helperText = meta.error;
+  // }
   // const { setFieldValue, setTouched, touched } = useFormikContext();
 
   // const tooltipData = localStorage.getItem("tooltipData")
@@ -196,6 +197,9 @@ const SelectField = ({
               //   onInputChange && onInputChange(e);
               // }}
               placeholder={placeholder}
+
+              
+              
             />
           </>
         )}

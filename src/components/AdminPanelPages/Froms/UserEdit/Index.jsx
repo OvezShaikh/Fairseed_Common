@@ -1,9 +1,16 @@
 import { Form, Formik } from 'formik'
-import React from 'react'
-import InputField from '../../inputs/InputField/index'
-import SelectField from "../../inputs/SelectField/index"
-import PrimaryButton from '../../inputs/PrimaryButton'
+import React, { useState } from 'react'
+import InputField from '../../../inputs/InputField/index'
+import SelectField from "../../../inputs/SelectField/index"
+import PrimaryButton from '../../../inputs/PrimaryButton'
 import { borderRadius } from '@mui/system'
+import { useGetAll } from '../../../../Hooks/useGetAll'
+import {useCreateOrUpdate} from '../../../../Hooks/useCreateOrUpdate'
+
+const initialValues={
+
+}
+
 const InputStyle =
 {
     padding: '20px', border: "1px solid #e2e2e2",
@@ -14,14 +21,30 @@ const InputStyle =
     },
 }
 
-function Index() {
+
+
+function Index({id}) {
+
+    const [user , setUser] = useState({});
+
+    const { mutate } = useGetAll({
+        url:`/admin-dashboard/users`
+    })
+
+
+    const { Mute } = useCreateOrUpdate({
+        url:`/admin-dashboard/users/${id}`
+    })
+
+    
+
     return (
         <div className='flex w-[100%] pt-3 gap-24'>
             <div className="w-[70%]">
                 <Formik >
                     <Form className="flex flex-col w-[100%] gap-4 items-center">
                         <div className="w-full">
-                            <InputField sx={InputStyle} name={"name"} label={"Name:"} />
+                            <InputField sx={InputStyle} name={"username"} label={"Name:"} />
                         </div>
                         <SelectField name={"role"} label={"Role:"} />
                         <div className="w-full">

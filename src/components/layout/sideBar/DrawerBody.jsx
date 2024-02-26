@@ -317,6 +317,12 @@ const DrawerBody = () => {
   //   title: "Teams Policy Settings",
   // },
 
+  // {
+  //   icon: "PolicyIcon",
+  //   path: "/teams-policy-settings",
+  //   title: "Teams Policy Settings",
+  // },
+
   const [selectedPath, setSelectedMenu] = useState("");
 
   useEffect(() => {
@@ -324,7 +330,7 @@ const DrawerBody = () => {
   }, [pathname]);
 
   return (
-    <div className="link-none">
+    <div className="link-none transition-all duration-1000 ease-in-out">
       <List
         // className="pt-4"
         sx={{

@@ -11,6 +11,11 @@ import axios from "axios";
 import CountrySelect from "../../../components/inputs/countrySelect";
 import OptionsButton from "../../../components/inputs/OptionsButton/Index";
 import NoCampaign from "./NoCampaign";
+import FilterField from "../../../components/inputs/FilterField/Index";
+import "./CampaignsByCategory.css";
+
+
+
 function Index() {
   const { id } = useParams();
   const [data, setData] = useState([]);
@@ -22,21 +27,75 @@ function Index() {
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
 
+
+  const [showOptions, setShowOptions] = useState(false);
+
+
+  const [categoryDataFromChild, setCategoryDataFromChild] = useState('');
+  const [locationDataFromChild, setLocationDataFromChild] = useState('');
+
+
+  const filterToggle = () => {
+
+    setShowOptions(!showOptions);
+  };
+
+
+  const receiveCategoryFromChild = (categoryData) => {
+
+
+
+    console.log("DATA FROM CHILD Category ", categoryData);
+    setCategoryDataFromChild(categoryData);
+
+
+  };
+
+  const receiveLocationFromChild = (locationData) => {
+
+
+
+    console.log("DATA FROM CHILD Location ", locationData);
+    setLocationDataFromChild(locationData);
+
+
+  };
+
+
+  const filteredUserList = Array.from(
+    new Set(
+      categoryCampaignList.filter((item) => {
+
+
+
+
+
+
+
+        const isDataMatch = (((categoryDataFromChild.length === 0) && (locationDataFromChild.length === 0)) || ((categoryDataFromChild.includes(item.category.name)) && (locationDataFromChild.length === 0))) || (((locationDataFromChild.includes(item.location)) && (categoryDataFromChild.length === 0))) || ((categoryDataFromChild.includes(item.category.name)) && (locationDataFromChild.includes(item.location)));
+
+        return isDataMatch;
+      }).map((item) => item.id)
+    )
+  ).map((id) => categoryCampaignList.find((item) => item.id === id));
+
+
+
   const fetchUserList = async () => {
     try {
-      const perPage = 4;
+      const perPage = 100;
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/campaign/category?page=${page}&limit=${perPage}`
       );
       const res = response.data;
       console.log(res, "cards");
-      console.log(res.rows,"------------------->");
-    
+      console.log(res.rows, "------------------->");
+
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList([...userList, ...res.rows]);
         setData(res.rows);
-       
+
       }
       //  else {
       //   console.error("Invalid data structure. Expected an array:");
@@ -77,14 +136,18 @@ function Index() {
           label={"ReligiousEducationCampaigns"}
           heading={categoryDetail?.name}
         />
-        <div className="flex flex-col justify-center  pt-32 px-24 items-center ">
+        <div className="flex flex-col justify-center  pt-32 px-[20px] items-center ">
           {categoryCampaignList?.length > 0 ? (
             <div className="flex flex-col justify-center items-center " >
               <div className="flex w-[100%]  justify-start items-center text-center pl-3">
                 <div className="flex  gap-3">
+
+
+
+
                   <SecondaryButton
                     sx={{
-                      padding: "12px 24px",
+                      padding: "12px 18px",
                       borderRadius: "40px",
                     }}
                   >
@@ -95,7 +158,7 @@ function Index() {
                   </SecondaryButton>
                   <SecondaryButton
                     sx={{
-                      padding: "12px 24px",
+                      padding: "12px 18px",
                       borderRadius: "40px",
                     }}
                   >
@@ -106,7 +169,7 @@ function Index() {
                   </SecondaryButton>
                   <SecondaryButton
                     sx={{
-                      padding: "12px 24px",
+                      padding: "12px 18px",
                       borderRadius: "40px",
                     }}
                   >
@@ -117,7 +180,7 @@ function Index() {
                   </SecondaryButton>
                   <SecondaryButton
                     sx={{
-                      padding: "12px 24px",
+                      padding: "12px 18px",
                       borderRadius: "40px",
                     }}
                   >
@@ -128,7 +191,7 @@ function Index() {
                   </SecondaryButton>
                   <SecondaryButton
                     sx={{
-                      padding: "12px 24px",
+                      padding: "12px 18px",
                       borderRadius: "40px",
                     }}
                   >
@@ -139,7 +202,7 @@ function Index() {
                   </SecondaryButton>
                   <SecondaryButton
                     sx={{
-                      padding: "12px 24px",
+                      padding: "12px 18px",
                       borderRadius: "40px",
                     }}
                   >
@@ -148,26 +211,41 @@ function Index() {
                       Zakat Eligible
                     </h1>
                   </SecondaryButton>
-                  <div className="flex pl-[125px]">
-                    <SecondaryButton
-                      sx={{
-                        padding: "0px 12px 0px 30px",
-                        border: "none"
 
-                      }}
-                    >
-
-                      <h1 className=" font-[satoshi] text-[18px] text-[#25272C] font-bold ">
-                        Location :
-                      </h1>
-                    </SecondaryButton>
-                  <OptionsButton />
-                  </div>
                 </div>
+
+
+                <button
+                  className="flex items-center ml-2 px-3 py-1.5 max-w-[115px] gap-x-[12px] max-desktop:px-[20px] max-desktop:py-[17px] max-tablet:py-[6px]"
+                  style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
+
+                  onClick={filterToggle}
+
+                >
+                  <img src={images.Funnel} />
+                  {/* <img src={images.Filter} /> */}
+                  <p className="text-[18px]" style={{
+                    background:
+                      "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+                    "-webkit-background-clip": "text",
+                    "-webkit-text-fill-color": "transparent",
+                    "font-family": 'Satoshi',
+                    "font-weight": "700",
+                  }
+                  }>Filter</p>
+                </button>
+                
               </div>
+              <div id="filter-location">
+              {showOptions && (
+
+<FilterField sendCategoryToParent={receiveCategoryFromChild} sendLocationToParent={receiveLocationFromChild} />
+
+
+)}</div>
               <div className="gap-4 pt-[2rem] flex flex-wrap w-full justify-center">
 
-                {categoryCampaignList?.map((item) => {
+                {filteredUserList?.map((item) => {
                   return (
                     <Card
                       key={item.id}
@@ -205,7 +283,7 @@ function Index() {
                   textDecoration: "underline",
                   position: "relative",
                   display: page >= totalPages ? "none" : "block",
-                  
+
                 }}
               >
                 <p className="gradient-button mb-0 align-middle">Load More</p>

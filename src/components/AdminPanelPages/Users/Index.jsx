@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button, Checkbox } from '@mui/material';
 import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
 import { LocationConfigurationDialog } from '../../admin-console/LocationConfigurationDialog';
-import  Columnfilter  from '../../Table/Columnfilter'
+import Columnfilter from '../../Table/Columnfilter'
 import SecondaryButton from '../../inputs/secondaryButton';
 import CauseEdit from '../CauseEditApprovel/Index';
 import { Link } from 'react-router-dom';
@@ -15,8 +15,8 @@ const User = () => {
   const columns = React.useMemo(
       () => [
         {
-          Header: "ID",
-          accessor: "id",
+          Header: "Full name",
+          accessor: "username",
           apiURL:`/admin-dashboard/campaign`,
           sortable: false,
           filter:'text',
@@ -25,8 +25,8 @@ const User = () => {
           
         },
         {
-          Header: "Name",
-          accessor: "title", 
+          Header: "Email",
+          accessor: "email", 
           apiURL:`/admin-dashboard/campaign`,
           sortable: false,
           minWidth: 100,
@@ -35,8 +35,8 @@ const User = () => {
         
         },
         {
-          Header: "User",
-          accessor: "user.username",
+          Header: "Mobile",
+          accessor: " mobile_number",
           apiURL:`/admin-dashboard/campaign`,
           sortable: false,
           minWidth: 100,
@@ -44,7 +44,7 @@ const User = () => {
       
         },
         {
-          Header: "Email",
+          Header: "Campaigns",
           accessor: "user.email",
           apiURL:`/admin-dashboard/campaign`,
           sortable: false,
@@ -62,8 +62,8 @@ const User = () => {
          
         },
         {
-          Header: "Goal",
-          accessor: "goal_amount",
+          Header: "Date",
+          accessor: "created_on",
           apiURL:`/admin-dashboard/campaign`,
           sortable: false,
           minWidth: 100,
@@ -71,16 +71,8 @@ const User = () => {
           
         },
         {
-          Header: "Status",
-          accessor: "status",
-          apiURL:`/admin-dashboard/campaign`,
-          sortable: false,
-          minWidth: 100,
-          width: 100,
-        },
-        {
-          Header: "Date",
-          accessor: "end_date",
+          Header: "Registered As",
+          accessor: "user_type",
           apiURL:`/admin-dashboard/campaign`,
           sortable: false,
           minWidth: 100,
@@ -97,8 +89,8 @@ const User = () => {
             return (
               <div className='flex'>
                  <Link to={'/Edit'} target={<CauseEdit id={row?.id}/>}><SecondaryButton >Edit</SecondaryButton></Link> 
-                <SecondaryButton>Finalize your Campaign</SecondaryButton>
-                <SecondaryButton>Edit Bank and KYC</SecondaryButton>
+                <SecondaryButton>Delete</SecondaryButton>
+                
               </div>
             )
           }
@@ -115,7 +107,7 @@ return (
     manualPagination
     title={"Campaign"}
     checkboxComponent={IndeterminateCheckbox}
-    url={`/admin-dashboard/campaign`}
+    url={`/admin-dashboard/users`}
     extraQuery={{ inactive: true }}
      addButton={<LocationConfigurationDialog />}
     // addButton={<Button>HElloooooo</Button>}

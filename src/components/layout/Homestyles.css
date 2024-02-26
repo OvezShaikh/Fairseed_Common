@@ -115,7 +115,6 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
   justify-content: center;
 }
 
-/* Bottom Slider */
 
 .bottom-slider-div {
   position: relative;
@@ -123,10 +122,7 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
 
 }
 
-/* .bottom-slider-div .swiper.swiper-initialized.swiper-horizontal.swiper-grid {
-  max-width: 1560px;
-  max-width: 83%;
-} */
+
 
 .bottom-slider-div .swiper-button-prev:after {
   background: url(../../assets/leftarrowbs.png);

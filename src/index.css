@@ -43,10 +43,9 @@ body {
 
 .main-container {
   min-height: calc(100vh - 120px);
-  width: calc(100vw - 290px);
   margin: 148px 0px 20px 270px;
   padding: 0em 1em 0em 2.2em;
-  /* position: fixed; */
+ 
 }
 
 .ql-toolbar.ql-snow {
@@ -75,7 +74,7 @@ body {
     height: calc(100% - 210px);
     width: 100%;
     margin: 130px 0px 80px 0px;
-    padding: 0em 0.4em;
+    padding: 0em 0.4em !important;
   }
 }
 
@@ -292,11 +291,11 @@ body {
 
 
 
-.bread-crumbs-div li{
-  font-family:'Satoshi';
-font-size: 28px;
-font-weight: 500;
-color: rgba(149, 153, 157, 1);
+.bread-crumbs-div li {
+  font-family: 'Satoshi';
+  font-size: 28px;
+  font-weight: 500;
+  color: rgba(149, 153, 157, 1);
 
 }
 
@@ -315,9 +314,9 @@ color: rgba(149, 153, 157, 1);
 
 @media only screen and (max-width:1365px) {
 
-  .bread-crumbs-div li{
+  .bread-crumbs-div li {
 
-      font-size: 22px;
+    font-size: 22px;
   }
 
 }
@@ -326,9 +325,26 @@ color: rgba(149, 153, 157, 1);
 
 @media only screen and (max-width:751px) {
 
-  .bread-crumbs-div li{
+  .bread-crumbs-div li {
 
-      font-size:18px;
+    font-size: 18px;
   }
 
+}
+
+.otp-input input {
+  /* Add your styles here */
+  border: 1px solid #717171;
+  border-radius: 10px;
+  padding: 8px;
+  margin: 10px;
+}
+
+.otp-input input:focus {
+  border-color: blue;
+  border: 1px solid red;
+}
+
+.otp-input input:active {
+  border: 1px solid red;
 }

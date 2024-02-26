@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button, Checkbox } from '@mui/material';
 import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
 import { LocationConfigurationDialog } from '../../admin-console/LocationConfigurationDialog';
-import  Columnfilter  from '../../Table/Columnfilter'
+import Columnfilter from '../../Table/Columnfilter'
 import SecondaryButton from '../../inputs/secondaryButton';
 import CauseEdit from '../CauseEditApprovel/Index';
 import { Link } from 'react-router-dom';
@@ -24,16 +24,7 @@ const Reported_Causes = () => {
           width: 100,
           
         },
-        {
-          Header: "Name",
-          accessor: "title", 
-          apiURL:`/admin-dashboard/campaign`,
-          sortable: false,
-          minWidth: 100,
-          width: 100,
-          
-        
-        },
+       
         {
           Header: "User",
           accessor: "user.username",
@@ -43,49 +34,7 @@ const Reported_Causes = () => {
           width: 100,
       
         },
-        {
-          Header: "Email",
-          accessor: "user.email",
-          apiURL:`/admin-dashboard/campaign`,
-          sortable: false,
-          minWidth: 100,
-          width: 100,
-         
-        },
-        {
-          Header: "Mobile",
-          accessor: "user.mobile_number",
-          apiURL:`/admin-dashboard/campaign`,
-          sortable: false,
-          minWidth: 100,
-          width: 100,
-         
-        },
-        {
-          Header: "Goal",
-          accessor: "goal_amount",
-          apiURL:`/admin-dashboard/campaign`,
-          sortable: false,
-          minWidth: 100,
-          width: 100,
-          
-        },
-        {
-          Header: "Status",
-          accessor: "status",
-          apiURL:`/admin-dashboard/campaign`,
-          sortable: false,
-          minWidth: 100,
-          width: 100,
-        },
-        {
-          Header: "Date",
-          accessor: "end_date",
-          apiURL:`/admin-dashboard/campaign`,
-          sortable: false,
-          minWidth: 100,
-          width: 100,
-        },
+       
         {
           Header: 'Actions',
           accessor: 'actions',
@@ -96,9 +45,9 @@ const Reported_Causes = () => {
           Cell: ({row})=>{
             return (
               <div className='flex'>
-                 <Link to={'/Edit'} target={<CauseEdit id={row?.id}/>}><SecondaryButton >Edit</SecondaryButton></Link> 
-                <SecondaryButton>Finalize your Campaign</SecondaryButton>
-                <SecondaryButton>Edit Bank and KYC</SecondaryButton>
+                 <Link to={'/Edit'} target={<CauseEdit id={row?.id}/>}><SecondaryButton >view</SecondaryButton></Link> 
+                <SecondaryButton>Delete</SecondaryButton>
+                
               </div>
             )
           }

@@ -7,13 +7,23 @@ import PrimaryButton from '../../../components/inputs/PrimaryButton';
 import { Grid, Container } from '@mui/material';
 import images from '../../../constants/images';
 import PreviewImage from '../../../components/inputs/PreviewImage/PreviewImage';
+import { toast } from 'react-toastify';
+import { SlPencil } from "react-icons/sl";
 
 
 const SignUp = ({ handleNext }) => {
 
   const imgRef = useRef(null);
 
-  const { submitForm, setFieldValue } = useFormikContext();
+  const { submitForm, isValid, setFieldValue } = useFormikContext();
+
+  const handleNextClick = () => {
+    if (isValid) {
+      handleNext();
+    } else {
+      toast.error('Please fill all required fields.');
+    }
+  };
 
   return (
     <Form className='pt-8 max-tablet:pl-7'>
@@ -37,7 +47,7 @@ const SignUp = ({ handleNext }) => {
 
                 <div style={{ position: 'absolute', bottom: '0', right: '48px', zIndex: 1 }}>
                   <button onClick={() => imgRef.current.click()}>
-                    <img src={images.EditIcon} />
+                    <SlPencil />
                   </button>
                 </div>
               </Avatar>
@@ -95,7 +105,11 @@ const SignUp = ({ handleNext }) => {
             </Grid>
           </Grid>
           <Grid xs={12} >
-            <PrimaryButton sx={{ width: '100%', top: '2rem', padding: '12px 40px', fontSize: '22px', fontWeight: 900, fontFamily: 'satoshi' }} onClick={() => { handleNext() }}>
+            <PrimaryButton
+              disabled={!isValid}
+              sx={{ width: '100%', top: '2rem', padding: '12px 40px', fontSize: '22px', fontWeight: 900, fontFamily: 'satoshi' }}
+              onClick={handleNextClick}
+            >
               Next
             </PrimaryButton>
           </Grid>

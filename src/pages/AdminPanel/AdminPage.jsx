@@ -17,14 +17,16 @@ import AddNew from "../../components/AdminPanelPages/Categories/AddNew";
 import LandingPage from "../../components/AdminPanelPages/LandingPage/Index"
 import CauseEditApprovel from "../../components/AdminPanelPages/CauseEditApprovel/Index"
 import CauseEdit from "../../components/AdminPanelPages/CauseEditApprovel/Index";
+import CampaignAddNew from '../../components/AdminPanelPages/Froms/CampaignAddNew/Index'
 import Scholarship from "../../components/AdminPanelPages/Scholarship Cause/Index";
+import RevisionHistory from "../../components/AdminPanelPages/Froms/RevisionHistory/Index"
 import Campaign_Kyc from "../../components/AdminPanelPages/Campaign_kyc/Index";
+
 
 function AdminPage() {
   return (
     <Routes>
-      {/* <Route index element={<AdminPage/>} /> */}
-      {/* <Route path="/AdminPage" element={<AdminPage/>} /> */}
+     
       <Route
         path="/"
         element={
@@ -68,10 +70,34 @@ function AdminPage() {
         }
       />
       <Route
-        path="/Campaigns/*"
+        path="/Categories/Edit"
+        element={
+          <AdminLayout>
+            <CampaignAddNew />
+          </AdminLayout>
+        }
+      />
+      <Route
+        path="/Campaigns"
         element={
           <AdminLayout>
             <Campaign />
+          </AdminLayout>
+        }
+      />
+      <Route
+        path="/Campaigns/Edit"
+        element={
+          <AdminLayout>
+            <CauseEdit />
+          </AdminLayout>
+        }
+      />
+      <Route
+        path="/Campaigns/Edit/Revision-History"
+        element={
+          <AdminLayout>
+            <RevisionHistory />
           </AdminLayout>
         }
       />
@@ -103,7 +129,7 @@ function AdminPage() {
         path="/Withdrawals"
         element={
           <AdminLayout>
-            <Withdrawals/>
+            <Withdrawals />
           </AdminLayout>
         }
       />
@@ -111,7 +137,7 @@ function AdminPage() {
         path="/Cause-KYC"
         element={
           <AdminLayout>
-            <Campaign_Kyc/>
+            <Campaign_Kyc />
           </AdminLayout>
         }
       />
@@ -156,7 +182,7 @@ function AdminPage() {
           </AdminLayout>
         }
       />
-</Routes>
+    </Routes>
   );
 }
 
