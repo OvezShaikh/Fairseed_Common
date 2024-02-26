@@ -10,17 +10,19 @@ const OngoingCampaigns = () => {
       </div>
       <div className='mt-3'>
         <div className='p-2 mt-1 border border-black rounded-lg'>
-          <div className='flex'>
+          <div className='flex gap-2'>
             <div>
               <img src={imgCampaign} className='rounded-lg w-[79px] h-[42px]' alt="img01" />
             </div>
+            <div>
             <div className='flex justify-between'>
               <p>Eduction Program</p>
               <p>46% Compeleted</p>
             </div>
             <div>by Mohammed Ameen/ 15 April 2023</div>
-            <div>
+            <div className='w-full'>
             <Line percent={90} strokeWidth={3} strokeColor="#f10e0e" />
+            </div>
             </div>
           </div>
 

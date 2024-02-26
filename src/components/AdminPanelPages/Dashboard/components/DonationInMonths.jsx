@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Bar } from 'react-chartjs-2'
 
-const DonationInMonths = () => {
+const DonationInMonths = ({userData}) => {
   return (
-    <div className='p-7 border border-black rounded-lg'>DonationInMonths</div>
+    <div className='p-7 shadow-md rounded-lg'>
+      <Bar data={userData} />
+    </div>
   )
 }
 
