@@ -13,9 +13,8 @@ import OnGoingCampaigns from "./pages/Campaigns/OnGoingCampaigns/Index";
 import LoginOnSmallScreen from "./pages/login/Login_page/LoginOnSmallScreen";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import 'react-image-crop/dist/ReactCrop.css'
+import "react-image-crop/dist/ReactCrop.css";
 import RegisterSmallScreen from "./pages/login/Sign_Up/RegisterSmallScreen";
-import UserEdit from "../src/components/AdminPanelPages/Froms/UserEdit/Index";
 import AdminLayout from "./components/layout/AdminLayout/Index";
 
 import StoriesOfChange from "./pages/StaticPages/StoriesOfChange/Index";
@@ -58,9 +57,7 @@ function App() {
           <AdminPage />
         </div>
       </BrowserRouter> */}
- <ToastContainer
-      autoClose={5000}
-      />
+      <ToastContainer autoClose={5000} />
       <BrowserRouter>
         <ScrollToTop />
         <Routes>

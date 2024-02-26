@@ -14,6 +14,7 @@ import PrimaryButton from '../../inputs/PrimaryButton';
 
 
 
+
 const Index = () => {
   
   const [selectedRowID, setSelectedRowID] = useState(null);
@@ -78,9 +79,15 @@ const Index = () => {
 
       },
       {
-        Header: 'Id',
-        accessor: 'id',
-
+        Header: "Id", // Row number header
+        accessor: "index", // Accessor for row number
+        Cell: ({ row }) => (
+          // Display row number using index provided by React Table
+          <div>{row.index + 1}</div>
+        ),
+        minWidth: 50,
+        width: 50,
+        search: false
       },
       {
         Header: 'Name',

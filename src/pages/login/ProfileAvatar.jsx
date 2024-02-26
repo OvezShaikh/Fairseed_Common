@@ -27,8 +27,7 @@ export default function ProfileAvatar() {
     // Remove the 'token' item from localStorage
     localStorage.removeItem('token');
     localStorage.removeItem('user_role');
-    delete serverAPI.defaults.headers.common["authorization"];
-    delete axios.defaults.headers.common["authorization"];
+    console.log(localStorage.getItem('token'))
     window.location.href = '/Home';
     toast.error("Logout Successful !",{
       position: "top-center"
@@ -100,10 +99,15 @@ export default function ProfileAvatar() {
       >
         <MenuItem onClick={handleClose}>
           <Link to={"/AdminPanel"}>
-            <Avatar /> AdminPanel
+          <ListItemIcon>
+            <Avatar />
+            </ListItemIcon>
+             AdminPanel
           </Link>
         </MenuItem>
         <Divider />
+
+
         <MenuItem onClick={handleClose}>
         <Link to={"/User"}>
           <ListItemIcon>

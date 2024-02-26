@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import OtpInput from '../../../components/inputs/OtpInputs/Index';
 import PrimaryButton from '../../../components/inputs/PrimaryButton';
 import InputField from '../../../components/inputs/InputField';
 import { Form, Formik, useFormik, } from 'formik';
@@ -21,18 +20,26 @@ function VerifyEmail() {
     const [newPassword, setNewPassword] = useState(false);
     const [otpState, setOtpState] = useState([{ index: 0, value: '' }, { index: 1, value: '' }, { index: 2, value: '' }, { index: 3, value: '' }])
     const [backendOTP, setBackendOTP] = useState('')
+    const [Email, setEmail] = useState(" ")
+
+
 
     const verifyEmailMutation = useCreateOrUpdate({
         url: '/accounts/forgetpassword',
         method: 'post',
-        onSuccess: (res) => {
-            toast.success('OTP sent successfully', {
+        onSuccess: (values, response) => {
+            toast.success(`OTP sent successfully to `, {
                 position: 'top-center'
             });
             setIsVerified(true);
-            console.log('res.data.OTP', res.data.OTP)
-            setBackendOTP(res.data.OTP)
+            console.log('values.data.OTP', values.data.OTP)
+            console.log(response.email, "======================>")
+            setBackendOTP(values.data.OTP)
+            const key = response.email;
+            setEmail(key)
         },
+
+
         refetch: null // You can provide refetch function if needed
     });
 
@@ -40,11 +47,16 @@ function VerifyEmail() {
         url: '/accounts/reset-pass',
         method: 'post',
         onSuccess: () => {
+
             toast.success('Password reset successfully', {
-                position: 'top-center'
+                position: 'top-center',
+                autoClose: 5000,
             });
+            setTimeout(() => {
+                window.location.href = "/Home";
+            }, 2000);
         },
-        refetch: null // You can provide refetch function if needed
+        refetch: null
     });
 
     const handleVerifyEmail = (values) => {
@@ -62,10 +74,17 @@ function VerifyEmail() {
     const compareOTP = () => {
         if (getJoinedOTP() != backendOTP) {
             toast.error("OTP didn't match", { position: 'top-center' })
-            return
+
         }
-        toast.success("OTP verified", { position: 'top-center' })
-        setNewPassword(true)
+        else if (getJoinedOTP() === null) {
+            toast.error("please enter otp", { position: 'top-center' })
+
+
+        } else {
+            toast.success("OTP verified", { position: 'top-center' })
+            setNewPassword(true)
+        }
+
     }
 
     const handleOTPChange = (event, index) => {
@@ -82,13 +101,16 @@ function VerifyEmail() {
             event.target.nextElementSibling.focus()
         }
     }
+    console.log(Email);
 
     return (
         <div className='flex flex-col gap-2 w-[90%]'>
             {!isVerified && (
                 <Formik
                     initialValues={{ email: '' }}
-                    validationSchema={Yup.object().shape({ email: Yup.string().email('Invalid email') })}
+                    validationSchema={Yup.object().shape({
+                        email: Yup.string().email('Invalid email').required('Email is required')
+                    })}
                     onSubmit={handleVerifyEmail}
                 >
                     {(formikProps) => (
@@ -123,7 +145,7 @@ function VerifyEmail() {
                 >
                     {(formikProps) => (
                         <Form>
-                            <div className='flex flex-col gap-3'>
+                            <div className='flex flex-col gap-3 w-full'>
                                 <div className="">
                                     <h1 className='text-[46px] font-bold font-[satoshi] pb-2' style={{
                                         background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
@@ -133,7 +155,7 @@ function VerifyEmail() {
                                     <hr />
                                 </div>
                                 <p className='text-[22px] font-medium font-[satoshi] text-[#717171]'>Enter the 4-digit code sent to your email.</p>
-                                <div className='flex justify-start gap-2 items-center w-100'>
+                                <div className='flex justify-start gap-2 items-center '>
                                     {otpState.map((item) => {
                                         return (
                                             <input
@@ -172,7 +194,10 @@ function VerifyEmail() {
             )}
             {newPassword && (
                 <Formik
-                    initialValues={{ email: '', password: '', new_password: '' }}
+                    initialValues={{
+                        email: Email || "",
+                        password: '', new_password: ''
+                    }}
                     validationSchema={Yup.object().shape({
                         email: Yup.string().email('Invalid email'),
                         password: Yup.string().required('Password is required'),

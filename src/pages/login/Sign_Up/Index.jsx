@@ -38,6 +38,7 @@ const UserSignUp_02 = () => {
 
       <button
         onClick={handleOpen}
+        type='button'
       >
         <span style={{
           fontSize: '22px', fontWeight: 500, background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
