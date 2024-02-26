@@ -1,20 +1,26 @@
 import { useQuery } from "react-query";
 import serverAPI from "../config/serverAPI";
-// import setAuthToken from "../utils/setAuthToken";
+import setAuthToken from "../utils/setAuthToken";
 // import errorHandle from "../utils/errorHandle";
 
-function getData(url, params) {
+function getData(url, params ) {
   if (
-    localStorage.getItem("token") &&
-    !serverAPI.defaults.headers.common["authorization"]
+    localStorage.getItem("token") 
   ) {
-    // setAuthToken(localStorage.getItem("token"));
+   
+    setAuthToken(localStorage.getItem("token"));
   }
 
-  return serverAPI.get(url, {
-    params: params ? params : {},
-  });
+  return serverAPI.get(url,
+  //    {
+  //    headers:{
+  //    "x-access-token":localStorage.getItem('token')
+  //    }
+  // }
+  );
 }
+
+console.log(Headers , "+++++++++++++++++++++++")
 
 export function useGetAll(options) {
   let key = options?.params

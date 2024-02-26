@@ -70,9 +70,16 @@ import MapPin2 from "../assets/MapPin.svg";
 import HomePageHero from "../assets/HomePageHero.png";
 import HomePageHeroTab from "../assets/HomePageHeroTab.png";
 import LeftArrowBottomSlider from "../assets/leftarrowbs.png";
+import sliderimg2 from "../assets/sliderimg2.png";
+import Knowingfairseed from "../assets/Knowingfairseed.png"
+import VissionMission from "../assets/VissionMission.png"
+import valuepage from "../assets/valuepage.png"
+import ourteam from "../assets/ourteam.png"
 import DashedImageUpload from "../assets/Dashed Image Upload.png";
 import UploadIcon from "../assets/UploadIcon.png";
 import CausesDetails from "../assets/CausesDetails.svg";
+import Vector from "../assets/Vector.svg";
+import done from "../assets/done.gif";
 import ColorFullDownArrow from "../assets/ColorfulDownArrow.png";
 import CheckBoxGradient from "../assets/CheckBoxGradient.png";
 import AdminPanelDropzone from "../assets/AdminPanelDropzone.png";
@@ -149,10 +156,16 @@ export default {
   HomePageHero,
   HomePageHeroTab,
   LeftArrowBottomSlider,
+  sliderimg2,
+  Knowingfairseed,
+  VissionMission,
+  valuepage,
+  ourteam,
   DashedImageUpload,
   UploadIcon,
   CausesDetails,
   ColorFullDownArrow,
   CheckBoxGradient,
   AdminPanelDropzone,
+  Vector,
 };

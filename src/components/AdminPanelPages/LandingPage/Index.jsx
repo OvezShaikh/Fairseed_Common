@@ -174,6 +174,7 @@ function Index() {
                     </div> */}
                     <div className="w-[30%]">
                         <ImageEditor
+                            sx={{ maxWidth: '400px', minHeight: '600px' }}
                             imageUrl={imageUrlFromBackend}
                         />
                     </div>

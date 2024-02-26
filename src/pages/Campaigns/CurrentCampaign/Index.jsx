@@ -2,7 +2,6 @@ import Navbar from "../../../components/layout/Navbar";
 import Footer from "../../../components/layout/Footer";
 import images from "../../../constants/images";
 import { LinearProgress } from "@mui/material";
-import CampaignsTabs from "../../../components/layout/CampaignsTabs";
 import Doner from "../../../components/layout/Doner";
 import PrimaryButton from "../../../components/inputs/PrimaryButton";
 import { Grid, Typography } from "@mui/material";

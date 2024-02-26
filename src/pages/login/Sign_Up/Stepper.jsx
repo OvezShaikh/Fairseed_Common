@@ -210,9 +210,7 @@ const Sign_Stepper = () => {
     formData.append('country', values.country);
     // formData.append('image' , values.image);
     mutate(formData);
-    toast.success("user ceated successfully ! ", {
-      position: 'top-center'
-    })
+    toast.success('Register Successfully');
     window.location.href = '/Home';
     console.log(formData);
 
@@ -248,7 +246,7 @@ const Sign_Stepper = () => {
       <Box sx={{ width: "100%", justifyContent: 'center', margin: 'auto' }}>
         {activeStep === steps.length ? (
           <React.Fragment>
-            <Typography variant="h3" align="center">
+            {/* <Typography variant="h3" align="center">
               <div className="w-full px-[140px] py-[89px] flex flex-col justify-center items-center gap-3">
                 <h7 className="text-[#06B217] text-[48px] font-[satoshi] font-bold">
                   Success!
@@ -264,7 +262,7 @@ const Sign_Stepper = () => {
                   Congratulations ! you have signed up Successfully
                 </h6>
               </div>
-            </Typography>
+            </Typography> */}
             <div className="flex ">
 
 

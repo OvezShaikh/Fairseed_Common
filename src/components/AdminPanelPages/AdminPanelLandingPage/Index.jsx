@@ -32,9 +32,9 @@ function Index() {
 
     return (
         <>
-            <Navbar />
+           
 
-            <div className='admin-panel-landing-page pt-[150px]'>
+            <div className='admin-panel-landing-page'>
                 <Formik>
                     <Form>
                         <div className='upload-div flex flex-wrap gap-x-[242px] gap-y-[68px]'>
@@ -53,9 +53,10 @@ function Index() {
                                         label="Logo:"
                                         // onChange={(file) => formik.setFieldValue("adhar", file)}
                                         name="document"
-                                        placeholder="Recommended size: 150x50 px (PNG)"
+                                        placeholder="Recommended size:<br> 150x50 px (PNG)"
                                         sx={{ padding: '20px' }}
                                         multiple={false}
+                                        className="uploadField"
 
 
                                     /></div>
@@ -224,7 +225,7 @@ function Index() {
                             </div>
                            
                         </div>
-                        <div className='default-link-div flex items-center'>
+                        <div className='default-link-div flex items-center mt-[32px]'>
                                 <InputField
 
                                     name="title"
@@ -234,15 +235,18 @@ function Index() {
                                     label="Default Link Colour"
                                     placeholder="Placeholder Text"
 
+                                    className="inputField w-full max-w-[510px]"
+
                                 />
 
                             </div>
+                            <div className='mx-auto flex items-center mt-[65px]'>
                             <PrimaryButton className="mx-auto">Save</PrimaryButton>
-                            
+                            </div>
                     </Form>
                 </Formik>
             </div>
-            <Footer />
+           
         </>
     )
 }

@@ -1,107 +1,117 @@
 import React from 'react'
-import InputAdminField from "../../inputs/InputAdminField/Index"
-import { Form, Formik } from 'formik'
-import RadioGroup from '../../inputs/radioGroupAdminPanel'
-import ReactQuilTextField from "../../inputs/ReactQuilTextField/Index"
-import { FormLabel } from '@mui/material'
-import PrimaryButton from '../../inputs/PrimaryButton'
+import ReactTable from '../../Table/index'
+import { useState } from 'react';
+import { Button, Checkbox } from '@mui/material';
+import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
+import { LocationConfigurationDialog } from '../../admin-console/LocationConfigurationDialog';
+import  Columnfilter  from '../../Table/Columnfilter'
+import SecondaryButton from '../../inputs/secondaryButton';
+import CauseEdit from '../CauseEditApprovel/Index';
+import { GoDotFill } from "react-icons/go";
+import { Link } from 'react-router-dom';
 
-const styleLabel = {
-    fontFamily: "satoshi",
-    fontSize: 16,
-    fontWeight: 700,
-    color: "#383A42",
-};
+const Page = () => {
+  const [selectedRowID, setSelectedRowID] = useState(null);
+ 
 
-function Index() {
-    const initialValues = {
-        title: "",
-        url: "",
-        New1: "",
-        New2: "",
-        New3: "",
-        summary: ""
+  const getStatusCellStyle = (status) => {
+    console.log('Status:', status);
+    if (status === 'Pending') {
+      return {
+        background: '#EBF0ED',
+        color: '#717171'
+      };
+    } else if (status === 'Active') {
+      return {
+        background: '#ECFDF3  ',
 
-
+        color: '#037847',
+      };
     }
-    return (
-        <Formik
-            initialValues={initialValues}>
-            <Form className='flex flex-col items-center'>
-                <div className='flex w-full gap-4'>
+    return {
+      color: 'gray'
+    };
+  };
+  // const Status = ({ values }) => {
+  //   // Loop through the array and create a badge-like component instead of a comma-separated string
+  //   return (
+  //     <>
+  //       {values.map((Status, idx) => {
+  //         return (
+  //           <span key={idx} className="badge">
+  //             {Status}
+  //           </span>
+  //         );
+  //       })}
+  //     </>
+  //   );
+  // };
 
-                    <div className="w-full">
-                        <InputAdminField label={"Title"} name={"title"} placeholder={"Placeholder Text"} />
-                    </div>
-                    <div className="w-full">
-                        <InputAdminField label={"Slug/URL"} name={"url"} placeholder={"Placeholder Text"} />
-                    </div>
+  const StatusCell = ({ value }) => (
+    <div className=' flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl' style={getStatusCellStyle(value)}>
+      <span className='' style={getStatusCellStyle(value)}><GoDotFill /></span>
+      <span className='' style={getStatusCellStyle(value)}>{value}</span>
+    </div>
+  );
+  const columns = React.useMemo(
+      () => [
+        {
+          Header: "ID",
+          accessor: "id",
+          apiURL:`/admin-dashboard/campaign`,
+          sortable: false,
+          filter:'text',
+          minWidth: 100,
+          width: 100,
+          
+        },
+        {
+          Header: "Title",
+          accessor: "title", 
+          apiURL:`/admin-dashboard/campaign`,
+          sortable: false,
+          minWidth: 100,
+          width: 100,
+          
+        },
+        {
+          Header: 'Actions',
+          accessor: 'actions',
+          sortable: false,
+          nofilter: true,
+          minWidth: 100,
+          width: 100,
+          Cell: ({row})=>{
+            return (
+              <div className='flex'>
+                 <Link to={'/Edit'} target={<CauseEdit id={row?.id}/>}><SecondaryButton >Edit</SecondaryButton></Link> 
+                <SecondaryButton>Finalize your Campaign</SecondaryButton>
+                <SecondaryButton>Edit Bank and KYC</SecondaryButton>
+              </div>
+            )
+          }
+        }
+      ],
 
-                </div>
-                <div className="flex gap-32 w-full pt-8">
-                    <div className="  lg:w-[25%] ">
-                        <RadioGroup
-
-                            name={"New1"}
-                            options={[
-                                { label: "On", value: "On" },
-                                { label: "Off", value: "Off" },
-                            ]}
-                            label="New Registrations"
-                        // onChange={onChange}
-
-                        />
-                    </div>
-                    <div className="lg:w-[25%]">
-                        <RadioGroup
-                            name={"New2"}
-                            options={[
-                                { label: "On", value: "On" },
-                                { label: "Off", value: "Off" },
-                            ]}
-                            label="Auto Approve Causes"
-                        // onChange={onChange}
-
-                        />
-                    </div>
-                    <div className=" lg:w-[25%] ">
-                        <RadioGroup
-                            name={"New3"}
-                            options={[
-                                { label: "On", value: "On" },
-                                { label: "Off", value: "Off" },
-                            ]}
-                            label="Facebook Login"
-                        // onChange={onChange}
-
-                        />
-                    </div>
-
-                </div>
-                <div className="pt-7 mb-5 h-[300px] w-full">
-                    <FormLabel style={styleLabel}>Content:</FormLabel>
-                    {/* <TextEditor  /> */}
-                    <ReactQuilTextField
-                        theme="snow"
-                        name='summary'
-                        // value={values.summary}
-                        placeholder="Summarize in 100 words max."
-                        style={{ '& .ql-editor': { minHeight: '50px' } }}
-                    // onChange={(value) => setFieldValue('summary', value)}
-                    />
-                </div>
-                <div className="flex flex-row gap-4 mt-12">
-                    <button className='w-[69px] h-[32px] bg-[#F7F7F7]'>
-                        <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
-                    </button>
-                    <PrimaryButton >
-                        <h1 className='text-white font-semibold font-[satoshi]'>Save</h1>
-                    </PrimaryButton>
-
-                </div>
-            </Form>
-        </Formik>
-    )
+    );
+return (
+  <div>
+    <ReactTable
+    rows={[]}
+    columns={columns}
+    showFilter
+    manualPagination
+    title={"Campaign"}
+    checkboxComponent={IndeterminateCheckbox}
+    url={`/admin-dashboard/campaign`}
+    extraQuery={{ inactive: true }}
+     addButton={<LocationConfigurationDialog />}
+    // addButton={<Button>HElloooooo</Button>}
+    selectedRowID={selectedRowID}
+    />
+  </div>
+)
 }
 
-export default Index
+export default Page
+

@@ -10,7 +10,7 @@ const useStyles = makeStyles({
     "& .MuiInput-root": {
       margin: "0px",
       fontSize: "20px",
-      border:' 1px solid #E2E2E2',
+      border: ' 1px solid #E2E2E2',
       background: "#fff",
       "&::before": {
         display: "none",
@@ -40,7 +40,7 @@ const useStyles = makeStyles({
     },
 
     "& .MuiOutlinedInput-notchedOutline": {
-      border:" 1px solid #e2e2e2",
+      border: " 1px solid #e2e2e2",
     },
   },
 });

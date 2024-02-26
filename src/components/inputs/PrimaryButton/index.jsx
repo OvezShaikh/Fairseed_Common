@@ -5,6 +5,7 @@ const PrimaryButton = ({ children, sx, isLoading, ...otherProps }) => {
   return (
     <Button
       variant="contained"
+      // className="max-tablet:w-full max-tablet:px-[100px]"
       color={"warning"}
       sx={{
         // color: "#fff",
@@ -23,7 +24,7 @@ const PrimaryButton = ({ children, sx, isLoading, ...otherProps }) => {
         fontFamily: "satoshi",
         boxShadow: "none",
         '&:hover': {
-          boxShadow: 'none', 
+          boxShadow: 'none',
         },
         ...sx,
       }}
