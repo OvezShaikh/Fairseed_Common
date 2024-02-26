@@ -14,47 +14,18 @@ import CustomSwitch from "../inputs/customSwitch";
 import SelectField from "../inputs/SelectField";
 import { toast } from "react-toastify";
 import ErrorIcon from "@mui/icons-material/Error";
-import AddNew from "../AdminPanelPages/Categories/AddNew"
+import InputAdminField from '../inputs/InputAdminField/Index'
+import AdminUploadField from "../inputs/AdminUploadField/Index"
+import RadioGroup from '../inputs/radioGroupAdminPanel'
 
 
-const initialState = {
-  location: "",
-  country_id: {},
-  default_online_voice_routing_policy_id: {},
-  default_dial_plan_policy_id: {},
-  ad_path: "",
-  active: true,
-};
-const InputStyle =
-{
-  padding: '16px', border: "1px solid #e2e2e2"
-  , borderRadius: '5px',
-  // },
-  "&:focus-within": {
-    boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
-    borderColor: " black",
-  },
+
+const initialValues = {
+  name: "",
+  url: "",
+  thumbnail: "",
+  New8: ""
 }
-
-const validations = yup.object({
-  location: yup
-    .string()
-    .trim("This field cannot include leading and trailing spaces")
-    .strict(true)
-    .required("Location is required!"),
-  country_id: yup
-    .object({
-      country: yup.string().required("Country Name is required!"),
-      id: yup.string().required("Country Name is required!"),
-    })
-    .nullable()
-    .required("Country Name is required!"),
-  ad_path: yup
-    .string()
-    .trim("This field cannot include leading and trailing spaces")
-    .strict(true)
-    .required("Path is required!"),
-});
 
 export const LocationConfigurationDialog = ({
   isUpdate = false,
@@ -116,7 +87,54 @@ export const LocationConfigurationDialog = ({
       }
     >
       {({ onClose }) => (
-        <AddNew />
+        <Formik
+
+          initialValues={initialValues}
+
+        >
+          <Form className='flex flex-col items-center px-4'>
+            <div className='flex w-full gap-4'>
+              <div className="w-full">
+                <InputAdminField name={"name"} label={"Name"} placeholder={"Placeholder Text"} />
+              </div>
+              <div className="w-full">
+                <InputAdminField name={"url"} label={"Slug/URL"} placeholder={"Placeholder Text"} />
+              </div>
+
+            </div>
+            <div className="flex w-full mt-8 gap-4">
+              <div className="w-full " Style>
+                <AdminUploadField name={"thumbnail"} label='Thumbnail (Optainal)' />
+              </div>
+              <div className=" w-full ">
+                <RadioGroup
+                  name={"New8"}
+
+                  options={[
+                    { label: "Active", value: "Active" },
+                    { label: "Inactive", value: "Inactive" },
+                  ]}
+                  label="Status"
+                // onChange={onChange}
+
+                />
+              </div>
+            </div>
+            <div className="flex flex-row gap-4 mt-12">
+              <button
+                onClick={() => {
+                  onClose();
+                }}
+                className='w-[69px] h-[32px] bg-[#F7F7F7]'>
+                <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
+              </button>
+              <PrimaryButton >
+                <h1 className='text-white font-semibold font-[satoshi]'>Save</h1>
+              </PrimaryButton>
+
+            </div>
+          </Form>
+        </Formik>
       )}
     </Dialog>
   );

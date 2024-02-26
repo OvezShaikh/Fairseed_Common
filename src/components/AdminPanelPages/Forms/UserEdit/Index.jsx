@@ -3,8 +3,7 @@ import React, { useState } from 'react'
 import InputField from '../../../inputs/InputField/index'
 import SelectField from "../../../inputs/SelectField/index"
 import PrimaryButton from '../../../inputs/PrimaryButton'
-import { borderRadius } from '@mui/system'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import ImageEditor from '../../../layout/ImageEditor/Index'
 import images from '../../../../constants/images'
 const InputStyle =
@@ -19,7 +18,6 @@ const InputStyle =
 
 function Index() {
     const [isImageDeleted, setIsImageDeleted] = useState(false);
-    const [isFullScreen, setIsFullScreen] = useState(false);
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
     const [deleteSuccess, setDeleteSuccess] = useState(false);
     let { state } = useLocation(); let { id } = state;
@@ -28,6 +26,7 @@ function Index() {
     const handleDelete = () => {
         setShowDeleteConfirmation(true);
     };
+    const navigate = useNavigate()
     const handleOk = () => {
         setDeleteSuccess(false);
         setIsImageDeleted(true); // Actually delete the image
@@ -58,7 +57,8 @@ function Index() {
                             <InputField sx={InputStyle} name={"password"} label={"Password:"} />
                         </div>
                         <div className="flex flex-row gap-4 mt-12">
-                            <button className='w-[69px] h-[32px] bg-[#F7F7F7]'>
+                            <button onClick={() => navigate(-1)}
+                                className='w-[69px] h-[32px] bg-[#F7F7F7]'>
                                 <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
                             </button>
                             <PrimaryButton >

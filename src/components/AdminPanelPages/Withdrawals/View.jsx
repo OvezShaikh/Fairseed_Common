@@ -6,14 +6,32 @@ import SuccessButton from '../../inputs/SuccessButton/Index'
 import PrimaryButton from '../../inputs/PrimaryButton'
 import ErrorIcon from "@mui/icons-material/Error";
 import { useLocation } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 
 function View() {
     let { state } = useLocation(); let { id } = state;
     console.log(id, "=====<id")
+    const copyRowToClipboard = () => {
+        const rowData = document.getElementById('table-row').innerText;
+        navigator.clipboard.writeText(rowData)
+            .then(() => {
+                console.log('Row copied to clipboard');
+                toast.success('Success', { position: "bottom-center" })
+                // Optionally, you can show a success message here
+            })
+            .catch(error => {
+                console.error('Failed to copy row: ', error);
+                toast.error('Success', { position: "bottom-center" })
 
+                // Optionally, you can show an error message here
+            });
+    };
     return (
-        <Formik>
+        <Formik
+            initialValues={{}}
+            onSubmit={{}}
+        >
             <Form className='flex flex-col items-center '>
                 <div className="flex gap-4 w-full">
                     <div className="w-full">
@@ -53,14 +71,16 @@ function View() {
                                 <td className='w-[10%] text-black/70 font-[satoshi] font-[300px] text-[16px]'>Other Details</td>
                                 <td className='w-[40%] text-black/70 font-[satoshi] font-[300px] text-[16px]'></td>
                             </tr>
-                            <tr>
+                            <tr id="table-row">
                                 <td className='text-black/80'>2044</td>
                                 <td className='text-black/80'>AKA</td>
                                 <td className='text-black/80' >123456789</td>
                                 <td className='text-black/80'>SBI</td>
                                 <td className='text-black/80'>SBIN0007881</td>
                                 <td className='text-black/80'></td>
-                                <td className='text-black/80'><SuccessButton text={"Copy Row"} /></td>
+                                <td className='text-black/80'>
+                                    <SuccessButton text={"Copy Row"} onClick={copyRowToClipboard} />
+                                </td>
                             </tr>
                         </tbody>
                     </table>

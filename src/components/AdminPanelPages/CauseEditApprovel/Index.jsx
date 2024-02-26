@@ -19,7 +19,7 @@ import { useState } from 'react'
 import ImageBackgroundWithDeleteButton from '../../layout/CropAddImage/Index';
 import Attachments from '../../layout/Attachments/Index'
 import { useCreateOrUpdate, useGetAll } from '../../../Hooks'
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 const InputStyle =
 {
     padding: '20px', border: "1px solid #e2e2e2",
@@ -46,6 +46,7 @@ const initialValues = {
 }
 
 function Index() {
+    const navigate = useNavigate()
     let { state } = useLocation();
     let { id } = state;
     // const imageUrlFromBackend = 'https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'
@@ -367,7 +368,7 @@ function Index() {
 
 
                     <div className="flex gap-3 max-tablet:flex-col  max-tablet:items-center pt-5">
-                        <button onClick={() => { }} className='w-[69px] content-stretch h-[32px] bg-[#F7F7F7]'>
+                        <button onClick={() => navigate(-1)} className='w-[69px] content-stretch h-[32px] bg-[#F7F7F7]'>
                             <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
                         </button>
                         <SuccessButton type='submit' text={"Save & Approve"} icon={<PiCheckFat className='w-4 h-4 mt-1' />} />
@@ -377,9 +378,10 @@ function Index() {
 
                     </div>
                 </Form>
-            )}
+            )
+            }
 
-        </Formik>
+        </Formik >
     )
 }
 

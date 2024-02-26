@@ -120,6 +120,14 @@ function AdminPage() {
         }
       />
       <Route
+        path="/Scholarship-Cause/View"
+        element={
+          <AdminLayout>
+            <View />
+          </AdminLayout>
+        }
+      />
+      <Route
         path="/Reported-Cause"
         element={
           <AdminLayout>
@@ -164,6 +172,14 @@ function AdminPage() {
         element={
           <AdminLayout>
             <Donation />
+          </AdminLayout>
+        }
+      />
+      <Route
+        path="/Donations/View"
+        element={
+          <AdminLayout>
+            <PaymentGateway />
           </AdminLayout>
         }
       />
