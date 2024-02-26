@@ -341,3 +341,9 @@ body {
 .otp-input input:active {
   border: 1px solid red;
 }
+
+.leaflet-container {
+  height: 45vh;
+  width: 85%;
+  border-radius: 1rem;
+}

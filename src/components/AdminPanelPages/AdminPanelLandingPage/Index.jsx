@@ -53,7 +53,7 @@ function Index() {
                                         label="Logo:"
                                         // onChange={(file) => formik.setFieldValue("adhar", file)}
                                         name="document"
-                                        placeholder="Recommended size:<br> 150x50 px (PNG)"
+                                        placeholder="Recommended\n size: 150x50 px (PNG)"
                                         sx={{ padding: '20px' }}
                                         multiple={false}
                                         className="uploadField"
