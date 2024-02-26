@@ -8,19 +8,20 @@ import Donation from "../../components/AdminPanelPages/Donation/Index";
 import Categories from "../../components/AdminPanelPages/Categories/Index";
 import Pages from "../../components/AdminPanelPages/Pages/Index"
 import Campaign from "../../components/AdminPanelPages/Campaign/Campaign";
-// import AddNew from "../../components/AdminPanelPages/Categories/AddNew"
 import ReportedCauses from "../../components/AdminPanelPages/ReportedCauses/index";
 import PaymentGateway from "../../components/AdminPanelPages/PaymentGateway/Index"
 import Withdrawals from "../../components/AdminPanelPages/Withdrawals/Index"
 import Users from "../../components/AdminPanelPages/Users/Index"
-import AddNew from "../../components/AdminPanelPages/Categories/AddNew";
 import LandingPage from "../../components/AdminPanelPages/LandingPage/Index"
 import CauseEditApprovel from "../../components/AdminPanelPages/CauseEditApprovel/Index"
 import CauseEdit from "../../components/AdminPanelPages/CauseEditApprovel/Index";
-import CampaignAddNew from '../../components/AdminPanelPages/Froms/CampaignAddNew/Index'
+import CampaignAddNew from '../../components/AdminPanelPages/Forms/CampaignAddNew/Index'
 import Scholarship from "../../components/AdminPanelPages/Scholarship Cause/Index";
-import RevisionHistory from "../../components/AdminPanelPages/Froms/RevisionHistory/Index"
+import RevisionHistory from "../../components/AdminPanelPages/Forms/RevisionHistory/Index"
 import Campaign_Kyc from "../../components/AdminPanelPages/Campaign_kyc/Index";
+import PagesEdit from '../../components/AdminPanelPages/Forms/PagesEdit/Index'
+import UserEdit from '../../components/AdminPanelPages/Forms/UserEdit/Index'
+import View from '../../components/AdminPanelPages/Withdrawals/View'
 
 
 function AdminPage() {
@@ -135,10 +136,26 @@ function AdminPage() {
         }
       />
       <Route
+        path="/Withdrawals/View"
+        element={
+          <AdminLayout>
+            <View />
+          </AdminLayout>
+        }
+      />
+      <Route
         path="/Cause-KYC"
         element={
           <AdminLayout>
             <Campaign_Kyc />
+          </AdminLayout>
+        }
+      />
+      <Route
+        path="/Cause-KYC/View"
+        element={
+          <AdminLayout>
+            <View />
           </AdminLayout>
         }
       />
@@ -159,6 +176,14 @@ function AdminPage() {
         }
       />
       <Route
+        path="/Users/Edit-User"
+        element={
+          <AdminLayout>
+            <UserEdit />
+          </AdminLayout>
+        }
+      />
+      <Route
         path="/Scholarships"
         element={
           <AdminLayout>
@@ -167,10 +192,26 @@ function AdminPage() {
         }
       />
       <Route
+        path="/Scholarships/View"
+        element={
+          <AdminLayout>
+            <View />
+          </AdminLayout>
+        }
+      />
+      <Route
         path="/Pages"
         element={
           <AdminLayout>
             <Pages />
+          </AdminLayout>
+        }
+      />
+      <Route
+        path="/Pages/Edit-Pages"
+        element={
+          <AdminLayout>
+            <PagesEdit />
           </AdminLayout>
         }
       />

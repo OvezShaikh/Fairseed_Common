@@ -1,14 +1,12 @@
 import React from 'react'
 import ReactTable from '../../Table/index'
 import { useState } from 'react';
-import { Button, Checkbox } from '@mui/material';
 import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
-import { LocationConfigurationDialog } from '../../admin-console/LocationConfigurationDialog';
-import Columnfilter from '../../Table/Columnfilter'
+import PrimaryButton from '../../inputs/PrimaryButton';
 import SecondaryButton from '../../inputs/secondaryButton';
-import CauseEdit from '../CauseEditApprovel/Index';
 import { GoDotFill } from "react-icons/go";
 import { Link } from 'react-router-dom';
+import { PagesAddNew } from '../../admin-console/PagesAddNew';
 
 const Page = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
@@ -69,11 +67,17 @@ const Page = () => {
       {
         Header: "Title",
         accessor: "title",
-        apiURL: `/admin-dashboard/campaign`,
         sortable: false,
         minWidth: 100,
         width: 100,
 
+      },
+      {
+        Header: "Slug/URL",
+        accessor: 'slug',
+        sortable: false,
+        minWidth: 100,
+        width: 100,
       },
       {
         Header: 'Actions',
@@ -84,11 +88,11 @@ const Page = () => {
         width: 100,
         Cell: ({ row }) => {
           return (
-            <div className='flex'>
-              <Link to={'/Edit'} target={<CauseEdit id={row?.id} />}><SecondaryButton >Edit</SecondaryButton></Link>
-              <SecondaryButton>Finalize your Campaign</SecondaryButton>
-              <SecondaryButton>Edit Bank and KYC</SecondaryButton>
-            </div>
+            <div className='flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0'>
+              <Link to="Edit-Pages" state={{ id: row?.id }} ><SecondaryButton sx={{ height: '30px' }} >Edit</SecondaryButton></Link>
+              <PrimaryButton sx={{ height: '30px', width: '60px', background: 'red', color: 'white' }} text={'Delete'}>Delete</PrimaryButton>
+              {/* <SecondaryButton sx={{ height: '30px' }}>Edit Bank and KYC</SecondaryButton> */}
+            </div >
           )
         }
       }
@@ -104,9 +108,9 @@ const Page = () => {
         manualPagination
         title={"Campaign"}
         checkboxComponent={IndeterminateCheckbox}
-        url={`/admin-dashboard/campaign`}
+        url={`admin-dashboard/pages`}
         extraQuery={{ inactive: true }}
-        addButton={<LocationConfigurationDialog />}
+        addButton={<PagesAddNew />}
         // addButton={<Button>HElloooooo</Button>}
         selectedRowID={selectedRowID}
       />

@@ -1,13 +1,11 @@
 import React from 'react'
 import ReactTable from '../../Table/index'
 import { useState } from 'react';
-import { Button, Checkbox } from '@mui/material';
 import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
 import { LocationConfigurationDialog } from '../../admin-console/LocationConfigurationDialog';
-import Columnfilter from '../../Table/Columnfilter'
-import SecondaryButton from '../../inputs/secondaryButton';
-import CauseEdit from '../CauseEditApprovel/Index';
+
 import { Link } from 'react-router-dom';
+import PrimaryButton from '../../inputs/PrimaryButton';
 
 const Scholarship = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
@@ -88,11 +86,14 @@ const Scholarship = () => {
         width: 100,
         Cell: ({ row }) => {
           return (
-            <div className='flex'>
-              <Link to={'/Edit'} target={<CauseEdit id={row?.id} />}><SecondaryButton >Edit</SecondaryButton></Link>
-              <SecondaryButton>Finalize your Campaign</SecondaryButton>
-              <SecondaryButton>Edit Bank and KYC</SecondaryButton>
-            </div>
+            <div className='flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0'>
+              <Link to="View" state={{ id: row?.id }} ><PrimaryButton sx={{
+                height: '30px', width: '60px', background: '#219D80', color: 'white', "&  .MuiButton-root:hover": {
+                  background: "yellow"
+                }
+              }} text={'View'}>View</PrimaryButton></Link>
+              {/* <SecondaryButton sx={{ height: '30px' }}>Edit Bank and KYC</SecondaryButton> */}
+            </div >
           )
         }
       }

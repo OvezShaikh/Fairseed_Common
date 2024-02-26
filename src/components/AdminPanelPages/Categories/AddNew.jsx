@@ -20,7 +20,7 @@ function AddNew() {
             initialValues={initialValues}
 
         >
-            <Form className='flex flex-col items-center'>
+            <Form className='flex flex-col items-center px-4'>
                 <div className='flex w-full gap-4'>
                     <div className="w-full">
                         <InputAdminField name={"name"} label={"Name"} placeholder={"Placeholder Text"} />
