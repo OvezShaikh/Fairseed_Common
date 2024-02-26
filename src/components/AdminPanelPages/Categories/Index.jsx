@@ -7,10 +7,8 @@ import { LocationConfigurationDialog } from '../../admin-console/LocationConfigu
 import { Formik } from 'formik';
 import images from '../../../constants/images';
 import { GoDotFill } from "react-icons/go";
-import CauseEdit from '../CauseEditApprovel/Index';
 import SecondaryButton from '../../inputs/secondaryButton';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import SuccessButton from '../../inputs/SuccessButton/Index'
 import { useDelete } from '../../../Hooks';
 import PrimaryButton from '../../inputs/PrimaryButton';
 
@@ -21,14 +19,13 @@ const Index = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
 
   const { mutate } = useDelete({
-    url: `/admin-dashboard/category`, 
-    // name: "Item", // replace with the name of your item
-    // refetch: refetchData, 
+    url: '/admin-dashboard/category',
+    name: 'Category', 
   });
 
-  const handleDelete = (id)=>{
-    mutate(id)
-  }
+  const handleDelete = (id) => {
+    mutate(id);
+  };
 
 
 

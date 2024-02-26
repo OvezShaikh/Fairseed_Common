@@ -93,7 +93,9 @@ function Card({
               >
                 <div className="flex pl-1 pr-2 py-1 max-desktop:justify-center">
                   <img className="" src={images?.Coins} />
+                  <Link to={`/donate/${og_id}`}>
                   <p className="pl-1   text-[18px] max-tablet:text-[16px]">Donate</p>
+                  </Link>
                 </div>
               </button>
             </div>

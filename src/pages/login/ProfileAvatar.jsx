@@ -18,6 +18,7 @@ import axios from 'axios';
 import serverAPI from '../../config/serverAPI';
 
 
+
 export default function ProfileAvatar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -98,18 +99,29 @@ export default function ProfileAvatar() {
       >
         <MenuItem onClick={handleClose}>
           <Link to={"/AdminPanel"}>
-            <Avatar /> Dashboard
+            <Avatar /> AdminPanel
           </Link>
-
         </MenuItem>
+        <Divider />
         <MenuItem onClick={handleClose}>
-
+        <Link to={"/User"}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
-
-          Settings
+          Dashboard
+          </Link>
         </MenuItem>
+        
+
+        <MenuItem onClick={handleClose}>
+        <Link to={"/AdminPanel"}>
+          <ListItemIcon>
+            <Settings fontSize="small" />
+          </ListItemIcon>
+          Settings
+          </Link>
+        </MenuItem>
+
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <Logout fontSize="small" />
@@ -120,6 +132,7 @@ export default function ProfileAvatar() {
             Logout
           </button>
         </MenuItem>
+
       </Menu>
     </React.Fragment>
   );

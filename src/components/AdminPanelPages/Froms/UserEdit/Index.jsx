@@ -1,9 +1,11 @@
 import { Form, Formik } from 'formik'
-import React from 'react'
+import React, { useState } from 'react'
 import InputField from '../../../inputs/InputField/index'
 import SelectField from "../../../inputs/SelectField/index"
 import PrimaryButton from '../../../inputs/PrimaryButton'
 import { borderRadius } from '@mui/system'
+import { useGetAll } from '../../../../Hooks/useGetAll'
+import {useCreateOrUpdate} from '../../../../Hooks/useCreateOrUpdate'
 
 const initialValues={
 
@@ -19,7 +21,23 @@ const InputStyle =
     },
 }
 
-function Index() {
+
+
+function Index({id}) {
+
+    const [user , setUser] = useState({});
+
+    const { mutate } = useGetAll({
+        url:`/admin-dashboard/users`
+    })
+
+
+    const { Mute } = useCreateOrUpdate({
+        url:`/admin-dashboard/users/${id}`
+    })
+
+    
+
     return (
         <div className='flex w-[100%] pt-3 gap-24'>
             <div className="w-[70%]">

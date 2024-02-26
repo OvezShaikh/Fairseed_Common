@@ -39,7 +39,7 @@ const Campaign_Kyc = () => {
           apiURL:`/admin-dashboard/campaign`,
           sortable: false,
           minWidth: 100,
-          width: 100,
+          width: 150,
       
         },
         {

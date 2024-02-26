@@ -26,8 +26,7 @@ import Campaign_Kyc from "../../components/AdminPanelPages/Campaign_kyc/Index";
 function AdminPage() {
   return (
     <Routes>
-      {/* <Route index element={<AdminPage/>} /> */}
-      {/* <Route path="/AdminPage" element={<AdminPage/>} /> */}
+     
       <Route
         path="/"
         element={

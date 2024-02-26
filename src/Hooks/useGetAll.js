@@ -20,7 +20,7 @@ function getData(url, params ) {
   );
 }
 
-console.log(Headers , "+++++++++++++++++++++++")
+
 
 export function useGetAll(options) {
   let key = options?.params
