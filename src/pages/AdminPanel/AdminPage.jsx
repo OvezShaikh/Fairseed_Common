@@ -12,7 +12,6 @@ import ReportedCauses from "../../components/AdminPanelPages/ReportedCauses/inde
 import PaymentGateway from "../../components/AdminPanelPages/PaymentGateway/Index"
 import Withdrawals from "../../components/AdminPanelPages/Withdrawals/Index"
 import Users from "../../components/AdminPanelPages/Users/Index"
-import LandingPage from "../../components/AdminPanelPages/LandingPage/Index"
 import CauseEditApprovel from "../../components/AdminPanelPages/CauseEditApprovel/Index"
 import CampaignAddNew from '../../components/AdminPanelPages/Forms/CampaignAddNew/Index'
 import Scholarship from "../../components/AdminPanelPages/Scholarship Cause/Index";
@@ -23,6 +22,7 @@ import UserEdit from '../../components/AdminPanelPages/Forms/UserEdit/Index'
 import View from '../../components/AdminPanelPages/Withdrawals/View'
 import CauseEdit from "../../components/AdminPanelPages/CauseEditApprovel/CauseEdit";
 import CauseEdit_Form from "../../components/AdminPanelPages/CauseEditApprovel/Index";
+import LandingPage from "../../components/AdminPanelPages/AdminPanelLandingPage/Index";
 
 
 function AdminPage() {
@@ -59,7 +59,7 @@ function AdminPage() {
         path="/Landing-Page"
         element={
           <AdminLayout>
-            <LandingPage />
+            < LandingPage/>
           </AdminLayout>
         }
       />
