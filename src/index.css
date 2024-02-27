@@ -2,12 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 @import url("https://fonts.cdnfonts.com/css/satoshi");
+@import url("https://unpkg.com/leaflet@1.9.3/dist/leaflet.css");
 
 body {
   margin: 0;
   font-family: "FuturaMedium", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: scroll !important;
 }
 
 * {
@@ -302,6 +304,12 @@ body {
   font-weight: 700;
   color: rgba(97, 101, 106, 1);
 }
+.leaflet-container {
+  height: 45vh;
+  width: 85%;
+  border-radius: 1rem;
+}
+
 
 
 
@@ -347,3 +355,27 @@ body {
   width: 85%;
   border-radius: 1rem;
 }
+
+
+
+
+.makeStyles-textField-1:focus-within{
+  margin-top: -1px;
+  border: 1px solid black;
+}
+
+/* Select Field SVG start */
+.MuiAutocomplete-endAdornment{
+  background-image: url(../src/assets/DownArrow.png);
+  width: 14px;
+  height: 8px;
+  background-repeat: no-repeat;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.MuiAutocomplete-endAdornment button svg{
+  display: none;
+}
+
+/* Select Field SVG end */

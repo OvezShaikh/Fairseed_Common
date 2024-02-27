@@ -8,17 +8,16 @@ import Columnfilter from '../../Table/Columnfilter'
 import SecondaryButton from '../../inputs/secondaryButton';
 import CauseEdit from '../CauseEditApprovel/Index';
 import { GoDotFill } from "react-icons/go";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Campaign = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
 
   const getStatusCellStyle = (status) => {
+    // let { state } = useLocation(); let { id } = state
     console.log('Status:', status);
     if (status === 'Pending') {
       return {
-
-
 
         color: '#fa9820',
         background: '#f5fabe  ',
@@ -54,14 +53,17 @@ const Campaign = () => {
   const columns = React.useMemo(
     () => [
       {
-        Header: "ID",
-        accessor: "id",
-        // apiURL: `/admin-dashboard/campaign
-        filter: 'text',
-        minWidth: 100,
-        width: 100,
-
+        Header: "Id", // Row number header
+        accessor: "index", // Accessor for row number
+        Cell: ({ row }) => (
+          // Display row number using index provided by React Table
+          <div>{row.index + 1}</div>
+        ),
+        minWidth: 50,
+        width: 50,
+        search: false
       },
+
       {
         Header: "Title",
         accessor: "title",
@@ -149,7 +151,7 @@ const Campaign = () => {
         manualPagination
         title={"Campaign"}
         checkboxComponent={IndeterminateCheckbox}
-        url={`/admin-dashboard/campaign`}
+        url={`/admin-dashboard/campaign?page=1&limit=4`}
         extraQuery={{ inactive: true }}
         addButton={<LocationConfigurationDialog />}
         // addButton={<Button>HElloooooo</Button>}

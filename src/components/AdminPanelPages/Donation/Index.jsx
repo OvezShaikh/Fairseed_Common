@@ -1,122 +1,108 @@
 import React from 'react'
 import ReactTable from '../../Table/index'
 import { useState } from 'react';
-import { Button, Checkbox } from '@mui/material';
-import { LocationConfigurationDialog } from '../../admin-console/LocationConfigurationDialog';
-import SecondaryButton from '../../inputs/secondaryButton';
-import { Link } from 'react-router-dom';
+import PrimaryButton from '../../inputs/PrimaryButton';
+
 
 const Index = () => {
-    const [selectedRowID, setSelectedRowID] = useState(null);
-    const columns = React.useMemo(
-        () => [
-          {
-            Header: "ID",
-            accessor: "id",
-            minWidth: 100,
-            width: 100,
-            
-          },
-          {
-            Header: "Full name",
-            accessor: "full_name",
-            // minWidth: 150,
-            // width: 200,
-            nofilter: true,
-            
-          },
-          {
-            Header: "Campaign",
-            accessor: "campaign",
-            // minWidth: 200,
-            // width: 280,
-          
-          },
-          {
-            Header: "Email",
-            accessor: "email",
-            // minWidth: 200,
-            // width: 280,
-            nofilter: true,
-            
-          },
-          {
-            Header: "Donation",
-            accessor: "amount",
-            // minWidth: 200,
-            // width: 280,
-            nofilter: true,
-            
-          },
-          {
-            Header: "	Payment gateway",
-            accessor: "payment_type",
-            // minWidth: 200,
-            // width: 280,
-            nofilter: true,
-            
-          },
-          {
-            Header: "Date",
-            accessor: "created_on",
-            // minWidth: 200,
-            // width: 280,
-            nofilter: true,
-            
-          },
-          {
-            Header: "Donation Type",
-            accessor: "donation_type",
-            // minWidth: 200,
-            // width: 280,
-            nofilter: true,
-            
-          },
-          {
-            Header: "Preferred Country",
-            accessor: "country",
-            // minWidth: 200,
-            // width: 280,
-            nofilter: true,
-            
-          },
-          {
-            Header: "Preferred City",
-            accessor: "city",
-            // minWidth: 200,
-            // width: 280,
-            nofilter: true,
-            
-          },
-          {
-            Header: "Status",
-            accessor: "is_approved",
-            // minWidth: 200,
-            // width: 280,
-            nofilter: true,
-            
-          },
-          {
-            Header: 'Action',
-            accessor: 'Action',
-            sortable: false,
-            nofilter: true,
-            minWidth: 100,
-            width: 100,
-            Cell: ({row})=>{
-              return (
-                <div className='flex'>
-                   <Link to={'/Edit'} ><SecondaryButton >view</SecondaryButton></Link> 
-                 
-                </div>
-              )
-            }
-          }
-        ],
-      
-        []
-      );
- 
+  const [selectedRowID, setSelectedRowID] = useState(null);
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: "Id", // Row number header
+        accessor: "index", // Accessor for row number
+        Cell: ({ row }) => (
+          // Display row number using index provided by React Table
+          <div>{row.index + 1}</div>
+        ),
+        minWidth: 50,
+        width: 50,
+        search: false,
+        sortable: false
+      },
+      {
+        Header: "Full Name",
+        accessor: "full_name",
+        // minWidth: 150,
+        // width: 200,
+        nofilter: true,
+
+      },
+      {
+        Header: "Campaign",
+        accessor: "campaign",
+        // minWidth: 200,
+        // width: 280,
+
+      },
+      {
+        Header: "Email",
+        accessor: "email",
+        // minWidth: 150,
+        // width: 200,
+        nofilter: true,
+
+      },
+      {
+        Header: "Donation",
+        accessor: "amount",
+        // minWidth: 200,
+        // width: 280,
+
+      },
+      {
+        Header: "Payment Type",
+        accessor: "payment_type",
+        // minWidth: 150,
+        // width: 200,
+        nofilter: true,
+
+      },
+      {
+        Header: "Date",
+        accessor: "created_on",
+        // minWidth: 200,
+        // width: 280,
+
+      },
+      {
+        Header: "Donation Type",
+        accessor: 'donation_type'
+      },
+      {
+        Header: "Status",
+        accessor: "status",
+        // minWidth: 200,
+        // width: 280,
+        nofilter: true,
+
+      },
+      {
+        Header: 'Actions',
+        accessor: 'actions',
+        sortable: false,
+        nofilter: true,
+        minWidth: 100,
+        width: 100,
+        Cell: ({ row }) => {
+          return (
+            <div className='flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0'>
+              <PrimaryButton sx={{
+                height: '30px', width: '60px', background: '#219D80', color: 'white', "&  .MuiButton-root:hover": {
+                  background: "yellow"
+                }
+              }} text={'View'}>View</PrimaryButton>
+              {/* <SecondaryButton sx={{ height: '30px' }}>Edit Bank and KYC</SecondaryButton> */}
+            </div >
+          )
+        }
+      }
+
+    ],
+
+    []
+  );
+
   return (
     <div>
       <ReactTable

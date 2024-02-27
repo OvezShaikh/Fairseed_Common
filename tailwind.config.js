@@ -7,6 +7,7 @@ module.exports = {
         desktop: "1366px",
         "max-desktop": { max: "1365px" },
         "max-tablet": { max: "751px" },
+        "max-nav": { max: "1280px" },
       },
     },
   },

@@ -13,9 +13,8 @@ import OnGoingCampaigns from "./pages/Campaigns/OnGoingCampaigns/Index";
 import LoginOnSmallScreen from "./pages/login/Login_page/LoginOnSmallScreen";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import 'react-image-crop/dist/ReactCrop.css'
+import "react-image-crop/dist/ReactCrop.css";
 import RegisterSmallScreen from "./pages/login/Sign_Up/RegisterSmallScreen";
-import UserEdit from "../src/components/AdminPanelPages/Froms/UserEdit/Index";
 import AdminLayout from "./components/layout/AdminLayout/Index";
 
 import StoriesOfChange from "./pages/StaticPages/StoriesOfChange/Index";
@@ -36,6 +35,8 @@ import ForgotPasswordSmScreen from "./pages/login/ForgotPassword/ForgotPasswordS
 import Account from "./pages/Account Settings/Index";
 import Donate from "./pages/Donate/Index";
 import AdminPanelLandingPage from "./components/AdminPanelPages/AdminPanelLandingPage/Index";
+import Dashboard from "./components/layout/DashBoard";
+import UserPage from "./pages/User Page/User_page";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -56,9 +57,7 @@ function App() {
           <AdminPage />
         </div>
       </BrowserRouter> */}
- <ToastContainer
-      autoClose={5000}
-      />
+      <ToastContainer autoClose={5000} />
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
@@ -67,6 +66,7 @@ function App() {
           <Route path="/Home/Create-Campaign" element={<CreateCampaigns />} />
           <Route path="/Home/OnGoingCampaigns" element={<OnGoingCampaigns />} />
           <Route path="/AdminPanel/*" element={<AdminPage />} />
+           <Route path="/User/*" element={<UserPage />} />
           <Route path="/Home/Donate" element={<Donet />} />
           <Route path="/Home/DonateSettings" element={<DonateSettings />} />
           <Route
@@ -135,8 +135,7 @@ function App() {
             path="/Home/Password-Reset"
             element={<ForgotPasswordSmScreen />}
           />
-
-
+          
           <Route path="/account-settings" element={<Account />} />
           <Route path="/donate" element={<Donate />} />
           <Route
@@ -146,7 +145,6 @@ function App() {
          
 
           <Route path="/adminpanellandingpage" element={<AdminPanelLandingPage />} />
-
 
         </Routes>
       </BrowserRouter>

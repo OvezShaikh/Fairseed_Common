@@ -9,15 +9,9 @@ import InputField from '../../inputs/InputField';
 import SelectField from '../../inputs/SelectField';
 import CountrySelect from '../../inputs/countrySelect/index';
 import Avatar from '../../layout/Avatar/Index'
-import { Formik, Form , useFormikContext } from 'formik';
-import { SlPencil } from "react-icons/sl";
-import { useCreateOrUpdate } from '../../../Hooks/useCreateOrUpdate';
-import { useGetAll } from '../../../Hooks/useGetAll';
-
-
-
-
-
+import { Formik, Form } from 'formik';
+import Account from './Account';
+import Password from './Password';
 
 
 const InputStyle =
@@ -48,13 +42,7 @@ const initialValues={
   Country:""
 }
 
-export default function LabTabs() {
-
-  const [user,setUser] = useState({});
-  
-  const imgRef = useRef(null);
-
-  
+export default function LabTabs({ onChange, src }) {
 
   const [value, setValue] = React.useState('1');
 
@@ -74,95 +62,10 @@ export default function LabTabs() {
           </TabList>
         </Box>
         <TabPanel sx={{ pt: '4rem',color:"green" }} value="1">
-          <Formik
-          initialValues={initialValues}
-         
-          >{(value,setFieldValue)=>(
-
-         
-            <Form>
-
-            <Avatar
-                alt="Remy Sharp"
-                src="/static/images/avatar/1.jpg"
-                sx={{ width: '150px', height: '150px', position: 'relative' }}>
-                <input
-                  type='file'
-                  hidden
-                  ref={imgRef}
-                  sx={{ padding: ' 16px 10px 16px var(--Spacing-20, 20px)', border: '2px solid var(--Linear-BG, #FF9F0A)', borderRadius: '4px' }}
-                 
-                  name='image'
-                  onChange={(event) => setFieldValue('image', event.target.files[0])}
-                  
-                />
-
-                <div style={{ position: 'absolute', bottom: '0', right: '48px', zIndex: 1 }}>
-                  <button onClick={() => imgRef.current.click()}>
-                    <SlPencil />
-                  </button>
-                </div>
-              </Avatar>
-              <InputField
-                name={"username"}
-                label={"Full Name:"}
-                sx={InputStyle}
-              />
-              <InputField
-                name={"email"}
-                label={"Email Id:"}
-                sx={InputStyle}
-              />
-              <InputField
-                name={"mobile_number"}
-                label={"Mobile:"}
-                placeholder={"(Optional)"}
-                sx={InputStyle}
-
-              />
-              <div className='country-select-div'>
-              <CountrySelect label="Country:"
-              name={"country"}
-              sx={SelectStyle}
-
-              
-              
-              />
-
-            </div>
-
-
-            
-
-            
-
-              
-            </Form>
-             )}
-          </Formik>
+         <Account/>
         </TabPanel>
         <TabPanel sx={{ pt: '4rem' }} value="2">
-          <Formik>
-            <Form>
-              <InputField
-                name={"SettingOldPassword"}
-                label={"Old Password:"}
-                type={'password'}
-                sx={InputStyle}
-
-
-              />
-              <InputField
-                name={"SettingNewPassword"}
-                label={"New Password:"}
-                type={'password'}
-                sx={InputStyle}
-
-              />
-            </Form>
-          </Formik>
-
-
+         <Password/>
         </TabPanel>
       </TabContext>
     </Box>

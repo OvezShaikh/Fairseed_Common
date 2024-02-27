@@ -88,6 +88,11 @@ let Icons = {
   PgSettingsIcon: (isActive) => <PgSettingsIcon isActive={isActive} />,
   DashboardIcon: (isActive) => <DashboardIcon isActive={isActive} />,
 
+
+
+
+
+
 };
 
 const CollapsibleMenuItem = ({
@@ -205,118 +210,33 @@ const CollapsibleMenuItem = ({
   );
 };
 
-const DrawerBody = () => {
+const User_DrawerBody = () => {
   const { pathname } = useLocation();
 
   const menus = [
     {
       icon: "DashboardIcon",
-      path: "/AdminPanel/",
+      path: "/User/",
       title: "Dashboard",
-    },
-
-    {
-      icon: "SettingsIcon",
-      path: "/AdminPanel/General-Settings",
-      title: "General Settings ",
-      children: [
-        {
-          icon: "TbCaretRightFilled",
-          path: "/AdminPanel/General-Settings/General",
-          title: "General",
-        },
-        {
-          path: "/AdminPanel/General-Settings/Limits",
-          title: "Limits",
-        },
-        // {
-        //   path: "/admin-console/reports",
-        //   title: "Reports",
-        // },
-        {
-          path: "/AdminPanel/General-Settings/Profiles-Social",
-          title: "Profiles Social",
-        },
-      ],
-    },
-    {
-      icon: "LandingIcon",
-      path: "/AdminPanel/Landing-page",
-      title: "Landing Page",
-    },
-    {
-      icon: "CategorysIcon",
-      path: "/AdminPanel/Categories",
-      title: "Categories",
     },
     {
       icon: "CausesIcon",
-      path: "/AdminPanel/Campaigns",
+      path: "/User/Campaigns",
       title: "Campaigns",
     },
     {
-      icon: "CausesApprovalIcon",
-      path: "/AdminPanel/Causes-Edit-Approval",
-      title: "Cause Edit Approval",
-    },
-    {
-      icon: "ScholarshipCausesIcon",
-      path: "/AdminPanel/Scholarship-Cause",
-      title: "Scholarship Cause",
-    },
-    {
-      icon: "ReportedIcon",
-      path: "/AdminPanel/Reported-Cause",
-      title: "Reported Cause",
-    },
-    {
-      icon: "WithdrawalsIcon",
-      path: "/AdminPanel/Withdrawals",
-      title: "Withdrawals",
-    },
-    {
-      icon: "CampaignIcon",
-      path: "/AdminPanel/Cause-KYC",
-      title: "Cause KYC",
-    },
-    {
       icon: "DonationIcon",
-      path: "/AdminPanel/Donations",
+      path: "/User/Donations",
       title: "Donations",
     },
     {
-      icon: "UserIcon",
-      path: "/AdminPanel/Users",
-      title: "Users",
-    },
-    {
       icon: "ScholarshipsIcon",
-      path: "/AdminPanel/Scholarships",
+      path: "/User/Scholarships",
       title: "Scholarships",
     },
-    {
-      icon: "PagesIcon",
-      path: "/AdminPanel/Pages",
-      title: "Pages",
-    },
-    {
-      icon: "PgSettingsIcon",
-      path: "/AdminPanel/Payment-Gateway",
-      title: "Payment Gateway",
-    },
+   
   ];
 
-  // {
-  //   icon: "PolicyIcon",
-  //   path: "/teams-policy-settings",
-  //   title: "Teams Policy Settings",
-  // },
-
-  // {
-  //   icon: "PolicyIcon",
-  //   path: "/teams-policy-settings",
-  //   title: "Teams Policy Settings",
-  // },
 
   const [selectedPath, setSelectedMenu] = useState("");
 
@@ -399,4 +319,10 @@ const DrawerBody = () => {
   );
 };
 
-export default DrawerBody;
+export default User_DrawerBody;
+
+
+
+
+
+

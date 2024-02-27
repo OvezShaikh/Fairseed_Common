@@ -18,14 +18,13 @@ import ForgotPassword from '../ForgotPassword/Index'
 const Formcom = ({ Initial_value, formValidation, loginData }) => {
 
 
-  console.log({ Initial_value, formValidation, loginData })
 
   return (
     <>
       <Formik
         initialValues={Initial_value}
         validationSchema={formValidation}
-        onSubmit={async (values) => {
+        onSubmit={ (values) => {
           loginData(values)
         }}
       >
@@ -86,7 +85,6 @@ const Formcom = ({ Initial_value, formValidation, loginData }) => {
               <Grid item xs={12} >
                 <SecondaryButton
                   sx={{ width: '100%', padding: '12px 40px', }}
-                  type='button'
                 >
                   <UserSignUp_02 />
                 </SecondaryButton>

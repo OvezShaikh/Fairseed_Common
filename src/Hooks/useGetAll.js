@@ -12,15 +12,9 @@ function getData(url, params ) {
   }
 
   return serverAPI.get(url,
-  //    {
-  //    headers:{
-  //    "x-access-token":localStorage.getItem('token')
-  //    }
-  // }
   );
 }
 
-console.log(Headers , "+++++++++++++++++++++++")
 
 export function useGetAll(options) {
   let key = options?.params
