@@ -135,6 +135,14 @@ function AdminPage() {
           </AdminLayout>
         }
       />
+       {/* <Route
+        path="/Reported-Cause/View"
+        element={
+          <AdminLayout>
+            <ReportedCauses />
+          </AdminLayout>
+        }
+      /> */}
       <Route
         path="/Withdrawals"
         element={

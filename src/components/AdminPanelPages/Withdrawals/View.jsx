@@ -9,9 +9,16 @@ import { useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 
+
+const initialValues = {
+
+}
+
+
 function View() {
     let { state } = useLocation();
      let { id } = state;
+     
     console.log(id, "=====<id")
 
     const copyRowToClipboard = () => {

@@ -97,9 +97,8 @@ const Reported_Causes = () => {
         Cell: ({ row }) => {
           return (
             <div className='flex'>
-              <Link to={'/Edit'} target={<CauseEdit id={row?.id} />}><SecondaryButton >Edit</SecondaryButton></Link>
-              <SecondaryButton>Finalize your Campaign</SecondaryButton>
-              <SecondaryButton>Edit Bank and KYC</SecondaryButton>
+              <Link to="Edit" state={{ id: row?.id }} ><SecondaryButton >Edit</SecondaryButton></Link>
+             
             </div>
           )
         }
