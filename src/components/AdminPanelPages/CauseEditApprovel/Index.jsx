@@ -82,9 +82,9 @@ function CauseEdit_Form() {
         },
         onSuccess: (data) => {
             setUser(data);
-            const imageUrl = data?.campaign_image || null;
+            const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign_image || ""}`;
             setImageUrl(imageUrl);
-            setDataUrl(data?.campaign_image)
+            setDataUrl(imageUrl)
         },
     });
     console.log(imageUrl)
@@ -147,7 +147,7 @@ function CauseEdit_Form() {
                 <Form className='flex flex-col items-center'>
                     <div className="flex w-[100%] mt-2 gap-14 max-tablet:flex-col max-desktop:flex-col">
                         <div className="flex flex-col w-[70%] max-tablet:w-[100%] max-desktop:w-[100%] gap-10 items-center">
-                            <ImageBackgroundWithDeleteButton imgUrl={imageUrl} setDataUrl={setDataUrl} onDelete={handleDelete} />
+                            <ImageBackgroundWithDeleteButton imgUrl={imageUrl} onChange={(e) =>setDataUrl(e.target.value)} setDataUrl={setDataUrl} onDelete={handleDelete} />
                             <div className="w-full">
                                 <InputField
                                     value={values?.title}
