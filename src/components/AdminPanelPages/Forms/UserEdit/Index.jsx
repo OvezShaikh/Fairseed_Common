@@ -3,8 +3,7 @@ import React, { useState } from 'react'
 import InputField from '../../../inputs/InputField/index'
 import SelectField from "../../../inputs/SelectField/index"
 import PrimaryButton from '../../../inputs/PrimaryButton'
-import { borderRadius } from '@mui/system'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import ImageEditor from '../../../layout/ImageEditor/Index'
 import images from '../../../../constants/images'
 import { useCreateOrUpdate, useGetAll } from '../../../../Hooks'
@@ -28,7 +27,6 @@ function Index() {
    
     const [User , setUser] = useState({});
     const [isImageDeleted, setIsImageDeleted] = useState(false);
-    const [isFullScreen, setIsFullScreen] = useState(false);
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
     const [deleteSuccess, setDeleteSuccess] = useState(false);
     let { state } = useLocation();
@@ -36,6 +34,8 @@ function Index() {
     console.log(id, "=====<id")
     const imageUrlFromBackend = 'https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'
     
+    const navigate = useNavigate();
+
     const handleDelete = () => {
         setShowDeleteConfirmation(true);
     };
@@ -109,7 +109,8 @@ function Index() {
                             <InputField sx={InputStyle} name={"password"} label={"Password:"} />
                         </div>
                         <div className="flex flex-row gap-4 mt-12">
-                            <button className='w-[69px] h-[32px] bg-[#F7F7F7]'>
+                            <button onClick={() => navigate(-1)}
+                                className='w-[69px] h-[32px] bg-[#F7F7F7]'>
                                 <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
                             </button>
                             <PrimaryButton type='submit' >

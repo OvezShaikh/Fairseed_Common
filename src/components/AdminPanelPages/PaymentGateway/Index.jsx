@@ -6,6 +6,7 @@ import moment from 'moment';
 import "../../../pages/Campaigns/CreateCampaigns/CreateCampaigns.css"
 import { FormLabel } from '@mui/material';
 import images from '../../../constants/images';
+import { useLocation, useNavigate } from 'react-router-dom';
 // import dayjs from 'dayjs';
 
 const styleLabel = {
@@ -24,6 +25,10 @@ const initialValues = {
 }
 
 function Index() {
+
+    let { state } = useLocation(); let { id } = state;
+    console.log(id, "=====<id")
+    const navigate = useNavigate()
     // const yesterday = dayjs().subtract(1, 'day');
 
     return (
@@ -162,8 +167,8 @@ function Index() {
                     </div>
 
                 </div>
-                <button className='w-[69px] h-[32px] bg-[#F7F7F7]'>
-                    <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
+                <button onClick={() => navigate(-1)} className='w-[69px] h-[32px] bg-[#F7F7F7]'>
+                    <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Go Back</h1>
                 </button>
 
             </Form>

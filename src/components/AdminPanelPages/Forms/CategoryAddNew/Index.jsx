@@ -1,0 +1,85 @@
+import { Formik, Form } from 'formik'
+import React, { useState } from 'react'
+import InputAdminField from '../../../inputs/InputAdminField/Index'
+import AdminUploadField from "../../../inputs/AdminUploadField/Index"
+import RadioGroup from '../../../inputs/radioGroupAdminPanel'
+import PrimaryButton from '../../../inputs/PrimaryButton'
+import { useLocation } from 'react-router-dom'
+import { useGetAll } from '../../../../Hooks'
+
+function AddNew() {
+
+    let { state } = useLocation(); 
+    let { id } = state;
+    const [Category , setCategory ] = useState({});
+    useGetAll({
+        key: `/admin-dashboard/category/${id}`,
+        enabled: true,
+        select: (data) => {
+            console.log(data.data.data);
+            return data.data.data;
+        },
+        onSuccess: (data) => {
+            setCategory(data);
+
+        },
+    });
+    const initialValues = {
+        name:Category.name ||  "",
+        url:Category.slug || "",
+        thumbnail:Category.image || "",
+        status:Category.is_active ||  ""
+    }
+
+    return (
+        <Formik
+           enableReinitialize={true} 
+            initialValues={initialValues}
+
+        >
+              {({ values, setFieldValue, handleChange }) => (
+            <Form className='flex flex-col items-center px-4'>
+                <div className='flex w-full gap-4'>
+                    <div className="w-full">
+                        <InputAdminField name={"name"} value={values.name} onChange={handleChange} label={"Name"} placeholder={"Placeholder Text"} />
+                    </div>
+                    <div className="w-full">
+                        <InputAdminField name={"url"} label={"Slug/URL"} value={values.url}  onChange={handleChange} placeholder={"Placeholder Text"} />
+                    </div>
+
+                </div>
+                <div className="flex w-full mt-8 gap-4">
+                    <div className="w-full " Style>
+                        <AdminUploadField name={"thumbnail"} value={values.thumbnail}   onChange={handleChange} label='Thumbnail (Optainal)' />
+                    </div>
+                    <div className=" w-full ">
+                        <RadioGroup
+                            name={"status"}
+                            value={values.status}
+                            onChange={handleChange}
+                            options={[
+                                { label: "Active", value: "Active" },
+                                { label: "Inactive", value: "Inactive" },
+                            ]}
+                            label="Status"
+                        // onChange={onChange}
+
+                        />
+                    </div>
+                </div>
+                <div className="flex flex-row gap-4 mt-12">
+                    <button className='w-[69px] h-[32px] bg-[#F7F7F7]'>
+                        <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
+                    </button>
+                    <PrimaryButton >
+                        <h1 className='text-white font-semibold font-[satoshi]'>Save</h1>
+                    </PrimaryButton>
+
+                </div>
+            </Form>
+              )}
+        </Formik>
+    )
+}
+
+export default AddNew

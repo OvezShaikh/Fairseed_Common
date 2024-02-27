@@ -8,6 +8,7 @@ import UploadField from '../../inputs/UploadField/Index';
 import "./AdminPanelLandingPage.css";
 import InputField from '../../inputs/InputField';
 import PrimaryButton from '../../inputs/PrimaryButton';
+import AdminNavbar from '../../layout/AdminNavbar'
 
 const InputStyle =
 {
@@ -23,18 +24,12 @@ const InputStyle =
 
 
 
-function Index() {
-
-
-
-
-
+const  LandingPage = ()=> {
 
     return (
         <>
-           
-
-            <div className='admin-panel-landing-page'>
+            <AdminNavbar />
+            <div className='admin-panel-landing-page pt-[150px]'>
                 <Formik>
                     <Form>
                         <div className='upload-div flex flex-wrap gap-x-[242px] gap-y-[68px]'>
@@ -251,4 +246,4 @@ function Index() {
     )
 }
 
-export default Index
+export default LandingPage
