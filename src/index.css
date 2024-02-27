@@ -9,12 +9,14 @@ body {
   font-family: "FuturaMedium", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: scroll !important;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
 }
 
 :root {
@@ -45,7 +47,7 @@ body {
   min-height: calc(100vh - 120px);
   margin: 148px 0px 20px 270px;
   padding: 0em 1em 0em 2.2em;
- 
+
 }
 
 .ql-toolbar.ql-snow {
@@ -303,6 +305,7 @@ body {
   font-weight: 700;
   color: rgba(97, 101, 106, 1);
 }
+
 .leaflet-container {
   height: 45vh;
   width: 85%;

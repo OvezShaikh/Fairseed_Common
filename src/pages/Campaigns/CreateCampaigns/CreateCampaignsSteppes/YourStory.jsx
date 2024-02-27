@@ -124,6 +124,7 @@ Make an Appeal.`}
                     label="Document:"
                     // onChange={(file) => formik.setFieldValue("adhar", file)}
                     name="document"
+                    required={'true'}
                     placeholder="Upload marksheets, Medical records, Fees Structure etc."
                     sx={{ padding: '20px' }}
                     multiple={false}

@@ -17,6 +17,27 @@ const InputStyle =
         borderColor: "black",
     },
 }
+const InputCampaign =
+{
+
+    borderRadius: "4px",
+    background: '#D8DBDF',
+    padding: '12px', border: "1px solid #e2e2e2",
+    // },
+    "&:focus-within": {
+        boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
+        borderColor: "black",
+    },
+    "& .MuiInputBase-input": {
+        borderRadius: "3px",
+        background: '#D8DBDF !important',
+        position: "relative",
+        fontSize: "20px",
+        color: 'yellow !important',
+        width: "100%",
+
+    }
+}
 function CausesView() {
     const [imgOne, setImgOne] = useState('');
     const [imgTwo, setImgTwo] = useState('');
@@ -37,7 +58,7 @@ function CausesView() {
                     <div className="flex flex-col gap-7  w-[70%] max-desktop:w-full max-tablet:w-[100%]">
                         <div className="flex flex-col gap-7">
                             <div className="w-full">
-                                <InputField sx={InputStyle} label={"Title of Campaign:"} name={'campaign'} />
+                                <InputField sx={InputCampaign} disabled={true} label={"Title of Campaign:"} name={'campaign'} />
                             </div>
                             <div className="w-full">
                                 <InputField sx={InputStyle} label={"Aadhar Card:"} name={'campaign'} />
@@ -103,7 +124,12 @@ function CausesView() {
                                 <UploadField label='Upload Passbook Copy:' name={'pan'} />
                             </div>
                             <div className="w-full">
-                                <SelectField label={'Status'} name={'status'} />
+                                <SelectField label={'Status'} name={'status'}
+                                    options={[
+                                        { label: 'Approved', value: 'approved' },
+                                        { label: 'Pending', value: 'pending' }
+                                    ]}
+                                />
                             </div>
                             <div className="flex flex-row gap-4 mt-12">
                                 <button

@@ -108,7 +108,7 @@ const Page = () => {
         manualPagination
         title={"Campaign"}
         checkboxComponent={IndeterminateCheckbox}
-        url={`admin-dashboard/pages`}
+        url={`admin-dashboard/pages?page=1&limit=10`}
         extraQuery={{ inactive: true }}
         addButton={<PagesAddNew />}
         // addButton={<Button>HElloooooo</Button>}
