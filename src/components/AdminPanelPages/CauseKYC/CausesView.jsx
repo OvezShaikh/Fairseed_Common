@@ -33,9 +33,9 @@ function CausesView() {
             <Form>
 
 
-                <div className='p-4 w-full max-tablet:w-full'>
-                    <div className="flex flex-col gap-7  w-[70%] max-desktop:w-full max-tablet:w-full">
-                        <div className="flex flex-col gap-7 max-tablet:w-full">
+                <div className='p-4 w-[100%] '>
+                    <div className="flex flex-col gap-7  w-[70%] max-desktop:w-full max-tablet:w-[100%]">
+                        <div className="flex flex-col gap-7">
                             <div className="w-full">
                                 <InputField sx={InputStyle} label={"Title of Campaign:"} name={'campaign'} />
                             </div>
@@ -66,7 +66,7 @@ function CausesView() {
                             <div className="w-full">
                                 <InputField sx={InputStyle} label={"Other Details (Optional)::"} name={'campaign'} />
                             </div>
-                            <div className="w">
+                            <div className="w-full">
                                 <FormLabel sx={{ fontSize: '20px', fontFamily: 'satoshi', fontWeight: 700, color: "#383A42", paddingLeft: '8px' }}>
                                     Documents:
                                 </FormLabel>

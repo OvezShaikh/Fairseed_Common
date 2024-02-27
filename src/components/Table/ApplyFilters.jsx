@@ -3,23 +3,15 @@ import { Badge, Box, Grid, IconButton } from "@mui/material";
 import { FieldArray, Form, Formik } from "formik";
 import React from "react";
 import { colors } from "../../constants/theme";
-import InputField from "../inputs/InputField";
+import InputField from "../inputs/InputAdminField/Index";
 import PrimaryButton from "../inputs/PrimaryButton";
 import SecondaryButton from "../inputs/secondaryButton";
-import SelectField from "../inputs/SelectField";
+import SelectField from "../inputs/AdminSelectField/Index";
 import { Dialog } from "../layout/dialogBox";
 import * as yup from "yup";
 import MultipleSelectField from "../inputs/MultipleSelectField";
 import OperatorSelectField from '../inputs/operatorSelectField'
-const InputStyle =
-{
-  padding: '15px', border: "1px solid #e2e2e2",
-  // },
-  "&:focus-within": {
-    boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
-    borderColor: "black",
-  },
-}
+
 
 
 const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
@@ -113,7 +105,7 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                               className="mb-3"
                               key={filter?.id}
                             >
-                              <Grid item xs={6}>
+                              <Grid item xs={5}>
                                 <SelectField
                                   name={`filters[${index}].column`}
                                   label="Column"
@@ -150,7 +142,7 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                                 />
                               </Grid>
                               {!values?.filters[index]?.column?.apiURL && (
-                                <Grid item xs={6}>
+                                <Grid item xs={5}>
                                   <OperatorSelectField
                                     label="operator"
                                     value={values?.filters[index]?.operator}
@@ -162,7 +154,7 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                                 </Grid>
                               )}
 
-                              <Grid item xs={8} paddingTop={2}>
+                              <Grid item xs={5} paddingTop={2}>
                                 {values?.filters[index]?.column?.apiURL ||
                                   values?.filters[index]?.column?.options ? (
                                   <MultipleSelectField
@@ -225,7 +217,6 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                                 ) : (
                                   <InputField
                                     label="value"
-                                    sx={InputStyle}
                                     name={`filters[${index}].value`}
                                   />
                                 )}

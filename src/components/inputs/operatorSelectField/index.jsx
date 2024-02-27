@@ -71,7 +71,7 @@ const OperatorSelectField = ({
   ];
 
   return (
-    <>
+    <div className="pt-2">
       {!noLabel && (
         <FormLabel
           className="text-capitalize font-medium d-flex align-items-center"
@@ -85,7 +85,7 @@ const OperatorSelectField = ({
         value={value}
         sx={{
           ...sx, width: "100%", "& .MuiFormControl-root .MuiInputBase-root ": {
-            height: 70,
+            height: 50,
             // width: 300
           }
         }}
@@ -119,7 +119,7 @@ const OperatorSelectField = ({
           </div>
         )}
       />
-    </>
+    </div>
   );
 };
 
