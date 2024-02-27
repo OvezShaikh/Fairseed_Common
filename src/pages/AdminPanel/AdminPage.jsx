@@ -9,7 +9,7 @@ import Categories from "../../components/AdminPanelPages/Categories/Index";
 import Pages from "../../components/AdminPanelPages/Pages/Index"
 import Campaign from "../../components/AdminPanelPages/Campaign/Campaign";
 import ReportedCauses from "../../components/AdminPanelPages/ReportedCauses/index";
-import PaymentGateway from "../../components/AdminPanelPages/PaymentGateway/Index"
+import DonationView from "../../components/AdminPanelPages/Donation/DonationView"
 import Withdrawals from "../../components/AdminPanelPages/Withdrawals/Index"
 import Users from "../../components/AdminPanelPages/Users/Index"
 import LandingPage from "../../components/AdminPanelPages/LandingPage/Index"
@@ -22,6 +22,8 @@ import Campaign_Kyc from "../../components/AdminPanelPages/Campaign_kyc/Index";
 import PagesEdit from '../../components/AdminPanelPages/Forms/PagesEdit/Index'
 import UserEdit from '../../components/AdminPanelPages/Forms/UserEdit/Index'
 import View from '../../components/AdminPanelPages/Withdrawals/View'
+import PaymentGateway from '../../components/AdminPanelPages/PaymentGateway/Index'
+import CausesView from "../../components/AdminPanelPages/CauseKYC/CausesView";
 
 
 function AdminPage() {
@@ -163,7 +165,7 @@ function AdminPage() {
         path="/Cause-KYC/View"
         element={
           <AdminLayout>
-            <View />
+            <CausesView />
           </AdminLayout>
         }
       />
@@ -179,7 +181,7 @@ function AdminPage() {
         path="/Donations/View"
         element={
           <AdminLayout>
-            <PaymentGateway />
+            <DonationView />
           </AdminLayout>
         }
       />
@@ -233,7 +235,7 @@ function AdminPage() {
       />
 
       <Route
-        path="/Payment-Gateway"
+        path="/PG-Setting/PhonePe"
         element={
           <AdminLayout>
             <PaymentGateway />

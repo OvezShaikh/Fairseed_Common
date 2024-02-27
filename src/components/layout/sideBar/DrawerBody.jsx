@@ -306,7 +306,7 @@ const DrawerBody = () => {
     },
     {
       icon: "PgSettingsIcon",
-      path: "/AdminPanel/Payment-Gateway",
+      path: "/AdminPanel/PG-Setting/PhonePe",
       title: "Payment Gateway",
     },
   ];
