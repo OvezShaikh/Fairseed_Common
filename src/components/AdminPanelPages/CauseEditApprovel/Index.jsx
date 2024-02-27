@@ -111,9 +111,6 @@ function Index() {
         url: `/admin-dashboard/campaign/${id}`,
         method: "put",
     })
-
-
-
     const initial_values = {
         title: user.title || "",
         amount: user.goal_amount || "",

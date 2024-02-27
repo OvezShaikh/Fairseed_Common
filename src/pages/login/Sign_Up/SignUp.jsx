@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Form } from 'formik';
 import InputField from '../../../components/inputs/InputField';
 import Avatar from '@mui/material/Avatar';
@@ -9,11 +9,13 @@ import images from '../../../constants/images';
 import PreviewImage from '../../../components/inputs/PreviewImage/PreviewImage';
 import { toast } from 'react-toastify';
 import { SlPencil } from "react-icons/sl";
+import Modal from "../../../components/inputs/Modal/Index"
 
 
 const SignUp = ({ handleNext }) => {
 
   const imgRef = useRef(null);
+  const [openModal, setOpenModal] = useState(false);
 
   const { submitForm, isValid, setFieldValue } = useFormikContext();
 
@@ -40,17 +42,22 @@ const SignUp = ({ handleNext }) => {
                   hidden
                   ref={imgRef}
                   sx={{ padding: ' 16px 10px 16px var(--Spacing-20, 20px)', border: '2px solid var(--Linear-BG, #FF9F0A)', borderRadius: '4px' }}
-
                   name='image'
-                  onChange={(event) => setFieldValue('image', event.target.files[0])}
+                  onChange={(event) => setFieldValue('image',console.log( event.target.files[0]))}
                 />
 
                 <div style={{ position: 'absolute', bottom: '0', right: '48px', zIndex: 1 }}>
-                  <button onClick={() => imgRef.current.click()}>
+                  <button onClick={() => {
+                    imgRef.current.click()
+                    setOpenModal(true);
+                  }}>
                     <SlPencil />
                   </button>
                 </div>
               </Avatar>
+              {
+                openModal && <Modal setOpenModal={setOpenModal}/>
+              }
 
             </Grid>
             <Grid item xs={12}>
