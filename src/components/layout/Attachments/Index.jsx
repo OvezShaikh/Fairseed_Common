@@ -64,7 +64,7 @@ function YourComponent({ imageUrl }) {
         <>
             {!isImageDeleted && (
                 <div className="w-[218px] h-[100px] bg-[#F5F8FC] flex justify-end" style={{ border: '1px solid blue', borderRadius: '2px', position: 'relative' }}>
-                    <img src={imageUrl} alt="Documents will be Shown here" style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'pointer' }} onClick={toggleFullScreen} />
+                    <img src={imageUrl} alt="Documents" style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'pointer' }} onClick={toggleFullScreen} />
                     {!isFullScreen && (
                         <RiDeleteBin6Line
                             className='absolute top-0 right-0 m-1 cursor-pointer'
@@ -79,7 +79,7 @@ function YourComponent({ imageUrl }) {
                     <div className="relative">
                         <img
                             src={imageUrl}
-                            alt="Documents will be Shown here"
+                            alt="Documents "
                             style={{ maxWidth: '1000px', maxHeight: '1000px' }}
                             onClick={toggleFullScreen}
                         />

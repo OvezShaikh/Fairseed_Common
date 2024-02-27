@@ -10,7 +10,7 @@ import { colors } from "../../../constants/theme";
 import { pink, red, blue } from "@mui/material/colors";
 
 
-const RadioGroup = ({ label, options, onChange, ...otherProps }) => {
+const RadioGroup = ({ label, options, onChange, sx, ...otherProps }) => {
   return (
     <FormControl
       sx={{
@@ -30,6 +30,7 @@ const RadioGroup = ({ label, options, onChange, ...otherProps }) => {
           fontWeight: 700,
           fontFamily: 'satoshi',
           height: "22px",
+          ...sx
         }}
         id={`demo-radio-buttons-group-label-${label}`}
       >
