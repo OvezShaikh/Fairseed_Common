@@ -1,12 +1,14 @@
 import { Formik, Form } from 'formik'
 import React from 'react'
-import InputAdminField from '../../inputs/InputAdminField/Index'
-import AdminUploadField from "../../inputs/AdminUploadField/Index"
-import RadioGroup from '../../inputs/radioGroupAdminPanel'
-import PrimaryButton from '../../inputs/PrimaryButton'
+import InputAdminField from '../../../inputs/InputAdminField/Index'
+import AdminUploadField from "../../../inputs/AdminUploadField/Index"
+import RadioGroup from '../../../inputs/radioGroupAdminPanel'
+import PrimaryButton from '../../../inputs/PrimaryButton'
+import { useLocation } from 'react-router-dom'
 
 function AddNew() {
-
+    let { state } = useLocation(); let { id } = state;
+    console.log(id, "=====<id")
     const initialValues = {
         name: "",
         url: "",
@@ -20,7 +22,7 @@ function AddNew() {
             initialValues={initialValues}
 
         >
-            <Form className='flex flex-col items-center'>
+            <Form className='flex flex-col items-center px-4'>
                 <div className='flex w-full gap-4'>
                     <div className="w-full">
                         <InputAdminField name={"name"} label={"Name"} placeholder={"Placeholder Text"} />

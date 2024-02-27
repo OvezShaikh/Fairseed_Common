@@ -1,19 +1,16 @@
 import React from 'react'
 import ReactTable from '../../Table/index'
 import { useState } from 'react';
-import { Button, Checkbox } from '@mui/material';
 import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
-import { LocationConfigurationDialog } from '../../admin-console/LocationConfigurationDialog';
-import  Columnfilter  from '../../Table/Columnfilter'
+import PrimaryButton from '../../inputs/PrimaryButton';
 import SecondaryButton from '../../inputs/secondaryButton';
-import CauseEdit from '../CauseEditApprovel/Index';
 import { GoDotFill } from "react-icons/go";
 import { Link } from 'react-router-dom';
-import Index from '../Froms/PagesAddNew/Index'
+import { PagesAddNew } from '../../admin-console/PagesAddNew';
 
 const Page = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
- 
+
 
   const getStatusCellStyle = (status) => {
     console.log('Status:', status);
@@ -52,55 +49,73 @@ const Page = () => {
     <div className=' flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl' style={getStatusCellStyle(value)}>
       <span className='' style={getStatusCellStyle(value)}><GoDotFill /></span>
       <span className='' style={getStatusCellStyle(value)}>{value}</span>
-    </div>
-  );
+    </div>
+  );
   const columns = React.useMemo(
-      () => [
-        {
-          Header: "ID",
-          accessor: "id",
-          apiURL:`/admin-dashboard/campaign`,
-          sortable: false,
-          filter:'text',
-          minWidth: 100,
-          width: 100,
-          
-        },
-        {
-          Header: "Title",
-          accessor: "title", 
-          apiURL:`/admin-dashboard/campaign`,
-          sortable: false,
-          minWidth: 100,
-          width: 100,
-          
-        },
-        {
-          Header: 'Actions',
-          accessor: 'actions',
-          sortable: false,
-          nofilter: true,
-          minWidth: 100,
-          width: 100,
-          Cell: ({row})=>{
-            return (
-              <div className='flex'>
-                 <Link to={'/Edit'} target={<CauseEdit id={row?.id}/>}><SecondaryButton >Edit</SecondaryButton></Link> 
-                <SecondaryButton>Finalize your Campaign</SecondaryButton>
-                <SecondaryButton>Edit Bank and KYC</SecondaryButton>
-              </div>
-            )
-          }
-        }
-      ],
+    () => [
+      {
+        Header: "Id", // Row number header
+        accessor: "index", // Accessor for row number
+        Cell: ({ row }) => (
+          // Display row number using index provided by React Table
+          <div>{row.index + 1}</div>
+        ),
+        minWidth: 50,
+        width: 50,
+        search: false
+      },
+      {
+        Header: "Title",
+        accessor: "title",
+        sortable: false,
+        minWidth: 100,
+        width: 100,
 
-    );
-return (
-  <div>
-  
-  <Index/>
-  </div>
-)
+      },
+      {
+        Header: "Slug/URL",
+        accessor: 'slug',
+        sortable: false,
+        minWidth: 100,
+        width: 100,
+      },
+      {
+        Header: 'Actions',
+        accessor: 'actions',
+        sortable: false,
+        nofilter: true,
+        minWidth: 100,
+        width: 100,
+        Cell: ({ row }) => {
+          return (
+            <div className='flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0'>
+              <Link to="Edit-Pages" state={{ id: row?.id }} ><SecondaryButton sx={{ height: '30px' }} >Edit</SecondaryButton></Link>
+              <PrimaryButton sx={{ height: '30px', width: '60px', background: 'red', color: 'white' }} text={'Delete'}>Delete</PrimaryButton>
+              {/* <SecondaryButton sx={{ height: '30px' }}>Edit Bank and KYC</SecondaryButton> */}
+            </div >
+          )
+        }
+      }
+    ],
+
+  );
+  return (
+    <div>
+      <ReactTable
+        rows={[]}
+        columns={columns}
+        showFilter
+        manualPagination
+        title={"Campaign"}
+        checkboxComponent={IndeterminateCheckbox}
+        url={`admin-dashboard/pages`}
+        extraQuery={{ inactive: true }}
+        addButton={<PagesAddNew />}
+        // addButton={<Button>HElloooooo</Button>}
+        selectedRowID={selectedRowID}
+      />
+    </div>
+  )
 }
 
 export default Page

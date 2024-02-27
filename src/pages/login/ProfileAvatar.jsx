@@ -14,6 +14,8 @@ import Logout from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from 'axios';
+import serverAPI from '../../config/serverAPI';
 
 
 export default function ProfileAvatar() {
@@ -23,10 +25,12 @@ export default function ProfileAvatar() {
     // Remove the 'token' item from localStorage
     localStorage.removeItem('token');
     localStorage.removeItem('user_role');
-    toast.success('Logged Out Successfully', {
+    delete serverAPI.defaults.headers.common["authorization"];
+    delete axios.defaults.headers.common["authorization"];
+    window.location.href = '/Home';
+    toast.error("Logout Successful !",{
       position: "top-center"
     })
-    window.location.href = '/Home';
   }
 
 

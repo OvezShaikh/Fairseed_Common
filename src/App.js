@@ -13,8 +13,8 @@ import OnGoingCampaigns from "./pages/Campaigns/OnGoingCampaigns/Index";
 import LoginOnSmallScreen from "./pages/login/Login_page/LoginOnSmallScreen";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "react-image-crop/dist/ReactCrop.css";
 import RegisterSmallScreen from "./pages/login/Sign_Up/RegisterSmallScreen";
-import UserEdit from "../src/components/AdminPanelPages/Froms/UserEdit/Index";
 import AdminLayout from "./components/layout/AdminLayout/Index";
 
 import StoriesOfChange from "./pages/StaticPages/StoriesOfChange/Index";
@@ -30,8 +30,9 @@ import Objectivesandvalues from "./pages/AboutUs/Objectives&values";
 import OurTeam from "./pages/AboutUs/OurTeam";
 import HowItWorks from "./pages/HowItWorks/HowItWorks";
 import PrivacyPolicy from "./pages/login/Sign_Up/PrivacyPolicy";
-
 import "react-toastify/dist/ReactToastify.css";
+import ForgotPasswordSmScreen from "./pages/login/ForgotPassword/ForgotPasswordSmScreens";
+
 function ScrollToTop() {
   const { pathname } = useLocation();
 
@@ -51,7 +52,7 @@ function App() {
           <AdminPage />
         </div>
       </BrowserRouter> */}
-
+      <ToastContainer autoClose={5000} />
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
@@ -66,10 +67,7 @@ function App() {
             path="/Home/CampaignsByCategory/:id"
             element={<CampaignsByCategory />}
           />
-          <Route
-            path="/Home/LoginOnSmallScreen"
-            element={<LoginOnSmallScreen />}
-          />
+          <Route path="/Home/Login" element={<LoginOnSmallScreen />} />
           <Route
             path="/Home/RegisterSmallScreen"
             element={<RegisterSmallScreen />}
@@ -127,6 +125,10 @@ function App() {
             element={<PrivacyPolicy />}
           />
           <Route path="/Home/How-It-Works" element={<HowItWorks />} />
+          <Route
+            path="/Home/Password-Reset"
+            element={<ForgotPasswordSmScreen />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

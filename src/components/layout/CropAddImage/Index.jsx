@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import PrimaryButton from '../../inputs/PrimaryButton';
 import SuccessButton from '../../inputs/SuccessButton/Index'
@@ -6,12 +6,18 @@ import { ImageCropper } from '../../inputs/Cropper/ImageCropper';
 import { ImagePreviewDialog } from '../../inputs/PreviewImage/PreviewImage';
 import { useState } from 'react';
 import DropZone from '../../inputs/dragAndDrop/index';
+import Modal from "../../inputs/Modal/Index"
 
-function ImageBackgroundWithDeleteButton({ imageUrl, onDelete }) {
+function ImageBackgroundWithDeleteButton({ imgUrl, onDelete,setDataUrl }) {
     const [srcImg, setSrcImg] = useState("");
-    const [openCrop, setOpenCrop] = useState(false);
+    // const [openCrop, setOpenCrop] = useState(false);
+    const [openModal, setOpenModal] = useState(false)
+    const closeModal =()=> {
+        setOpenModal(false);
+    }
+    // const imgRef = useRef(null);
     const backgroundStyle = {
-        backgroundImage: `url(${imageUrl})`,
+        backgroundImage: `url(${imgUrl})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         width: '100%',
@@ -21,24 +27,13 @@ function ImageBackgroundWithDeleteButton({ imageUrl, onDelete }) {
         display: 'flex',
         justifyContent: 'end',
     };
-    const onChange = (e) => {
-        let files;
-
-        if (e) {
-            files = e;
-        }
-        const reader = new FileReader();
-        reader.onload = () => {
-            setSrcImg(reader.result);
-        };
-        reader.readAsDataURL(files[0]);
-
-        setOpenCrop(true);
-    };
+    
 
     return (
-        <div className="max-w-[500px] w-full  min-h-[333px]" style={backgroundStyle}>
-            {imageUrl ? (
+        <div className="max-w-[500px] w-full  min-h-[333px]" 
+        style={backgroundStyle}
+        >
+            {imgUrl ? (
                 <>
                     <PrimaryButton sx={{ width: '80px', height: '30px', margin: '5px', color: 'white', backgroundColor: 'red', opacity: 0.7 }}>
                         <h1 className="flex items-center" onClick={onDelete}>
@@ -46,7 +41,6 @@ function ImageBackgroundWithDeleteButton({ imageUrl, onDelete }) {
                             Delete
                         </h1>
                     </PrimaryButton>
-
                 </>
             ) : (
                 <>
@@ -57,8 +51,9 @@ function ImageBackgroundWithDeleteButton({ imageUrl, onDelete }) {
                         paddingTop: '4px'
                     }} /> */}
 
-                    <div className="flex flex-col text-center items-center justify-center">
-                        <img src="" alt="" />
+                    <div className="flex flex-col text-center items-center justify-center" onClick={()=> setOpenModal(true)}>
+                        {/* <img src={avatarUrl.current} alt="" /> */}
+                        
                         <h1 className=' text-[20px] font-bold font-[satoshi]'>Click to select image</h1>
                         <p className='text-[#00000066] text-[16px] font-normal   font-[satoshi] w-[70%]'>The Image must be less than 5 MB. Recommended size is 850x550.
                             Minimum height is 550 and minimum width is 850. </p>
@@ -73,17 +68,12 @@ function ImageBackgroundWithDeleteButton({ imageUrl, onDelete }) {
                                 setOpenCrop={setOpenCrop}
                                 setsrcImg={setSrcImg}
                             />
-
                             <ImagePreviewDialog croppedImage={imageUrl} />
                         </DropZone>
                     </> */}
-
-
-
                 </>)
-
-
             }
+            {openModal && <Modal closeModal={closeModal} setDataUrl={setDataUrl} />}
         </div>
     );
 }

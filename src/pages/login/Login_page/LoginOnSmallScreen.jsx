@@ -13,6 +13,7 @@ import UserSignUp_02 from '../Sign_Up/Index';
 import { Container } from '@mui/system';
 import Footer from '../../../components/layout/Footer';
 
+
 function LoginOnSmallScreen({ Initial_value, formValidation, loginData }) {
   return (
     <div>
@@ -67,15 +68,17 @@ function LoginOnSmallScreen({ Initial_value, formValidation, loginData }) {
                 <Grid item xs={12} container alignItems="center" justifyContent="space-between">
                   <CheckBox label="Remember Me" name={"remember_me"} />
                   {/* <div style={{ width: '20px' }}></div> */}
+
                   <Link
-                    href="#"
-                    underline="always"
-                    sx={{
+                    to="/Home/Password-Reset"
+                    style={{
                       padding: '10px 0',
                       display: 'inline-block',
                       fontFamily: 'satoshi',
                       fontWeight: 500,
-                      fontSize: '18px'
+                      fontSize: '20px',
+                      color: '#0466C8',
+                      textDecoration: 'underline'
                     }}
                   >
                     Forgot Password
@@ -102,7 +105,7 @@ function LoginOnSmallScreen({ Initial_value, formValidation, loginData }) {
                           fontSize: '22px', fontWeight: 500, background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
                           "-webkit-background-clip": "text",
                           "-webkit-text-fill-color": "transparent"
-                        }}> Register </span>
+                        }}> <UserSignUp_02 /> </span>
                       </SecondaryButton>
                     </Link>
                   </Grid>

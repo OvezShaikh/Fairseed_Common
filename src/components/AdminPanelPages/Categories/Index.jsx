@@ -12,6 +12,7 @@ import CauseEdit from '../CauseEditApprovel/Index';
 import SecondaryButton from '../../inputs/secondaryButton';
 import { Link, useNavigate } from 'react-router-dom';
 import SuccessButton from '../../inputs/SuccessButton/Index'
+import PrimaryButton from '../../inputs/PrimaryButton';
 
 
 
@@ -71,36 +72,42 @@ const Index = () => {
       },
 
       {
-        Header: 'Id',
-        accessor: 'id',
-        sortable: false,
+        Header: "Id", // Row number header
+        accessor: "index", // Accessor for row number
+        Cell: ({ row }) => (
+          // Display row number using index provided by React Table
+          <div>{row.index + 1}</div>
+        ),
+        minWidth: 50,
+        width: 50,
+        search: false
       },
       {
-        Header: 'User',
-        accessor: 'username',
-        sortable: false,
+        Header: 'Name',
+        accessor: 'name',
+
 
       },
 
       {
         Header: 'Status',
         accessor: 'is_active',
-        sortable: false,
+
         Cell: StatusCell,
       },
 
       {
         Header: 'Actions',
         accessor: 'actions',
-        sortable: false,
+
         nofilter: true,
         minWidth: 100,
         width: 100,
         Cell: ({ row }) => {
           return (
-            <div className='flex items-center justify-center pl-6 gap-3'>
+            <div className='flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0'>
               <Link to="Edit" state={{ id: row?.id }} ><SecondaryButton sx={{ height: '30px' }} >Edit</SecondaryButton></Link>
-              <SuccessButton sx={{ height: '30px', width: '60px', background: 'red', color: 'white' }} text={'Delete'}>Delete</SuccessButton>
+              <PrimaryButton sx={{ height: '30px', width: '60px', background: 'red', color: 'white' }} text={'Delete'}>Delete</PrimaryButton>
               {/* <SecondaryButton sx={{ height: '30px' }}>Edit Bank and KYC</SecondaryButton> */}
             </div >
           )

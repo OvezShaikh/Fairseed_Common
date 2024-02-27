@@ -23,31 +23,47 @@ import BottomSlider from "../../components/layout/BottomSlider/Index";
 
 
 import FilterField from "../../components/inputs/FilterField/Index";
+import UserLogin from "../login/Login_page/Index";
+import { toast } from "react-toastify";
 
 
 
 
 function Home() {
   const [userList, setUserList] = useState([]);
-  
+
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
   const [campaignCount, setCampaignCount] = useState(0);
   const [showOptions, setShowOptions] = useState(false);
-  const [perPage,setPerPage] = useState(100);
+  const [perPage, setPerPage] = useState(100);
 
-  const [dataFromChild, setDataFromChild] = useState('');
+  const [categoryDataFromChild, setCategoryDataFromChild] = useState('');
+  const [locationDataFromChild, setLocationDataFromChild] = useState('');
 
 
   const [visibleCards, setVisibleCards] = useState(8);
 
-  
 
-  const receiveDataFromChild = (data) => {
-    
-    setDataFromChild(data);
-    
-    
+
+  const receiveCategoryFromChild = (categoryData) => {
+
+
+
+    console.log("DATA FROM CHILD Category ", categoryData);
+    setCategoryDataFromChild(categoryData);
+
+
+  };
+
+  const receiveLocationFromChild = (locationData) => {
+
+
+
+    console.log("DATA FROM CHILD Location ", locationData);
+    setLocationDataFromChild(locationData);
+
+
   };
 
 
@@ -55,69 +71,77 @@ function Home() {
   const filteredUserList = Array.from(
     new Set(
       userList.filter((item) => {
-        const isCategoryMatch =
-          dataFromChild.length === 0 || dataFromChild.includes(item.category.name);
-        const isLocationMatch =
-          dataFromChild.length === 0 || dataFromChild.includes(item.location);
-  
-        // Display the card if either category or location matches
-        return isCategoryMatch || isLocationMatch;
+
+
+
+
+
+
+
+        const isDataMatch = (((categoryDataFromChild.length === 0) && (locationDataFromChild.length === 0)) || ((categoryDataFromChild.includes(item.category.name)) && (locationDataFromChild.length === 0))) || (((locationDataFromChild.includes(item.location)) && (categoryDataFromChild.length === 0))) || ((categoryDataFromChild.includes(item.category.name)) && (locationDataFromChild.includes(item.location)));
+
+        return isDataMatch;
       }).map((item) => item.id)
     )
   ).map((id) => userList.find((item) => item.id === id));
 
   const filteredCardCount = filteredUserList.length;
 
- 
-  
+
+
 
   useEffect(() => {
-    
-    console.log("DATA FROM CHILD ", dataFromChild)
 
-    if (filteredCardCount<=8){
+    //console.log("DATA FROM CHILD ", dataFromChild)
+
+    if (filteredCardCount <= 8) {
       console.log("Less than 8");
       //setPerPage([perPage+12]);
-     // fetchUserList();
-     
-     
-   }
-  //  else{
-  //   setPerPage(8);
-  //  }
+      // fetchUserList();
 
 
-  }, [dataFromChild]);
+    }
+    //  else{
+    //   setPerPage(8);
+    //  }
+
+
+  }, [categoryDataFromChild, locationDataFromChild]);
 
 
   const filterToggle = () => {
-    
+
     setShowOptions(!showOptions);
   };
 
   const loadMore = () => {
-    
+
+
+    console.log("LOAD MORE CLICKED");
+
     setVisibleCards((prevVisibleCards) => prevVisibleCards + 4);
-    
+
     if (page < totalPages) {
       setPage(page + 1);
     }
 
-    if (visibleCards >= perPage ){
-      setPerPage(perPage+100)
+    if (visibleCards >= perPage) {
+      setPerPage(perPage + 100)
     }
+
+    
 
 
   };
 
   const fetchUserList = async () => {
     try {
-     // const perPage = 100;
+      // const perPage = 100;
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
       );
       const res = response.data;
-      console.log(res, "cards");
+      console.log(response.headers , "<================");
       console.log(res.rows);
       // `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
       if (Array.isArray(res.rows)) {
@@ -126,7 +150,7 @@ function Home() {
         setCampaignCount(res.count);
 
 
-        
+
 
       } else {
         console.error("Invalid data structure. Expected an array:", res.data);
@@ -137,7 +161,7 @@ function Home() {
   };
   useEffect(() => {
     fetchUserList();
-    
+
   }, [page]);
   let bnk = [
     {
@@ -206,7 +230,7 @@ function Home() {
           </div>
         </div>
       </div>
-              
+
       <div className="flex flex-col flex-wrap w-full mb-[128px] items-center max-tablet:mb-[48px]">
         <div className="flex  desktop:ml-[-30px] desktop:max-w-[1760px] desktop:w-full desktop:justify-end max-desktop:w-[90%] max-desktop:flex-col max-desktop:items-end max-desktop:gap-y-[48px] max-tablet:mb-[50px] max-tablet:gap-y-[20px] scrollable-tabs-class ">
           <ScrollableTabsButtonForce />
@@ -229,17 +253,17 @@ function Home() {
             }
             }>Filter</p>
           </button>
-          
+
         </div>
         {showOptions && (
-       
-          <FilterField sendDataToParent={receiveDataFromChild}/>
-          
-        
-      )}
-  
-    
-      
+
+          <FilterField sendCategoryToParent={receiveCategoryFromChild} sendLocationToParent={receiveLocationFromChild} />
+
+
+        )}
+
+
+
         <div className="desktop:gap-x-[36px] desktop:gap-y-[48px] mt-[48px]  flex flex-wrap w-full justify-center desktop:max-w-[1740px] max-desktop:gap-x-[16px]  max-desktop:gap-y-[24px] max-tablet:gap-y-[48px]">
           {filteredUserList?.slice(0, visibleCards).map((item) => {
             return (
@@ -276,14 +300,14 @@ function Home() {
             "-webkit-background-clip": "text",
             "-webkit-text-fill-color": "transparent",
             textDecoration: "underline",
-            display: ((visibleCards >= campaignCount)||(filteredCardCount<8) ? "none" : "block"),
+            display: ((visibleCards >= campaignCount) || (filteredCardCount < 8) ? "none" : "block"),
             position: "relative",
-            
+
           }}
         >
           <p className="gradient-button mb-0">Load More</p>
         </button>
-        
+
       </div>
       <section className="bg-[#FFF6F5]">
         <div
@@ -423,23 +447,51 @@ function Home() {
               </div>
             </div>
           </div>
-          <Link to="/Home/Create-Campaign">
-            <PrimaryButton
-              sx={{
-                borderRadius: "var(--Pixels-8, 8px)",
-                fontSize: 20,
-                fontWeight: "900",
-                padding: "15px 28px 15px 28px",
-
-              }}
-              className="py-[15px] px-[28px] my-10"
-            >
-              <div className="mr-2" style={{ width: 32, height: 32, position: "relative" }}>
-                <img src={images.RocketLaunch} alt="" />
-              </div>
-              <div className="max-tablet:text-[16px]">Launch a Campaign Now !</div>
-            </PrimaryButton>
-          </Link>
+          {
+            localStorage.getItem('token') ? (
+              <Link to="/Home/Create-Campaign">
+              <PrimaryButton
+                sx={{
+                  borderRadius: "var(--Pixels-8, 8px)",
+                  fontSize: 20,
+                  fontWeight: "900",
+                  padding: "15px 28px 15px 28px",
+  
+                }}
+                className="py-[15px] px-[28px] my-10"
+              >
+                <div className="mr-2" style={{ width: 32, height: 32, position: "relative" }}>
+                  <img src={images.RocketLaunch} alt="" />
+                </div>
+                <div className="max-tablet:text-[16px]">Launch a Campaign Now !</div>
+              </PrimaryButton>
+            </Link>
+            ) : (
+             
+              <PrimaryButton
+                sx={{
+                  borderRadius: "var(--Pixels-8, 8px)",
+                  fontSize: 20,
+                  fontWeight: "900",
+                  padding: "15px 28px 15px 28px",
+  
+                }}
+                onClick ={ ()=>toast.error("Please Login !!! ", {
+                  position:'top-center'
+                })  
+                }
+                className="py-[15px] px-[28px] my-10"
+              >
+                <div className="mr-2" style={{ width: 32, height: 32, position: "relative" }}>
+                  <img src={images.RocketLaunch} alt="" />
+                </div>
+                <div className="max-tablet:text-[16px]">Launch a Campaign Now !</div>
+              </PrimaryButton>
+           
+            )
+          }
+      
+         
         </div>
       </section>
       <div className="flex-col pt-[60px] pb-[50px] flex-wrap container flex w-full text-center items-center max-tablet:pb-[24px]">

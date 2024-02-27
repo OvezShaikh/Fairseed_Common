@@ -27,7 +27,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 
 
-const NavbarContainer = ({ handleDrawerToggle }) => {
+const NavbarContainer = ({ handleDrawerToggle, mobileOpen }) => {
 
   // const { user } = useContext(AuthContext);
   const sideBar = useMediaQuery("(max-width: 900px)");
@@ -52,13 +52,12 @@ const NavbarContainer = ({ handleDrawerToggle }) => {
 
   let title = useMemo(
     () =>
-      `${pathname
+      `${pathname.split('/').reverse()[0]
         .replace("/", "")
         .replace(/\/*\[[^\]]*]/g, "")
         .replace(/-/g, " ")
         .replace(/\//g, "  ")
         .replace("General Settings", " ")
-        .replace("CampaignsEdit", "")
       }`,
 
 
@@ -66,11 +65,11 @@ const NavbarContainer = ({ handleDrawerToggle }) => {
   );
 
 
-  title = title?.split("AdminPanel").reverse()[0]
+  // title = title?.split("AdminPanel").reverse()[0]
 
   return (
     <Navbar
-      className="py-2"
+      className="py-2 transition-all duration-500 ease-in-out"
       variant="light"
       style={{
         display: "inline-block",
@@ -79,7 +78,7 @@ const NavbarContainer = ({ handleDrawerToggle }) => {
         top: '54px',
         zIndex: "99",
         padding: '16px 16px  ',
-        width: `${sideBar ? "100vw" : "calc(100vw - 273px)"}`,
+        width: `${sideBar ? "100vw" : (mobileOpen ? "calc(100vw - 273px)" : '100vw')}`,
         height: "77px",
         backgroundColor: `${sideBar ? "rgba(255, 235, 209, 1)" : "#fff"}`,
         backgroundColor: "#fff",
@@ -169,38 +168,7 @@ const NavbarContainer = ({ handleDrawerToggle }) => {
           marginRight={'1rem'}
           className="max-tablet:mr-0!"
         >
-          {/* <Stack
-            direction="column"
-            justifyContent="center"
-            alignItems="flex-end"
-            className="font-light"
-            style={{
-              fontSize: "0.75rem",
-              marginRight: "10px",
-              color: "#828282",
-              fontWeight: "500",
-              width: `${isTab ? (sideBar ? "" : "130%") : "150%"}`,
-            }}
-          >
-            <p className="text-truncate m-0" style={{ maxWidth: "100%" }}>
-              {"Username"}
-            </p>
-            <p className="text-truncate m-0" style={{ maxWidth: "100%" }}>
-              {"Designation"}
-            </p>
-          </Stack>
-          <Dropdown>
-            <Avatar
-              sx={{
-                width: 35,
-                height: 35,
-                marginRight: `15px`,
-                color: "#fff",
-                background: "#0094AA",
-              }}
-              className="my-auto"
-            />
-          </Dropdown> */}
+
           <ToggleButtonGroup
 
             size="small"
@@ -210,10 +178,6 @@ const NavbarContainer = ({ handleDrawerToggle }) => {
             onChange={handleChange}
             aria-label="Platform"
           >
-            {/* <ToggleButton value="web" aria-label="color">
-              <SettingsIcon />
-              <ArrowDropDownIcon />
-            </ToggleButton> */}
 
             <ToggleButton
               onClick={handleDrawerToggle}

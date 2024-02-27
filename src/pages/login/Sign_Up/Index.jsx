@@ -85,6 +85,7 @@ const UserSignUp_02 = () => {
                   >
                     Sign Up
                   </StyledTypography>
+                  <hr className='text-gray-500 mx-24' />
                 </DialogTitle>
               </Grid>
               <Grid item sx={{ width: '100%', padding: '0px 142px 48px 142px' }} >

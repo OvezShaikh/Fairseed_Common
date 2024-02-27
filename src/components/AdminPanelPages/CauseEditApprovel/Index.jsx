@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import InputField from '../../inputs/InputField/index'
 import SelectField from "../../inputs/SelectField/index"
 import PrimaryButton from '../../inputs/PrimaryButton'
@@ -6,7 +6,6 @@ import CheckBox from '../../inputs/checkBox'
 import { FormLabel } from '@mui/material'
 import { colors } from '../../../constants/theme'
 import { Formik, Form, Field, useFormikContext } from 'formik'
-import images from '../../../constants/images'
 import ReactQuilTextField from '../../inputs/ReactQuilTextField/Index'
 import { RiDeleteBin6Line } from "react-icons/ri";
 import SuccessButton from '../../inputs/SuccessButton/Index'
@@ -16,19 +15,11 @@ import UploadField from '../../inputs/UploadField/Index'
 import RadioGroup from '../../inputs/radioGroup/index'
 import ErrorIcon from "@mui/icons-material/Error";
 import ImageEditor from '../../layout/ImageEditor/Index'
-import ImageDisplay from '../../layout/CropAddImage/Index'
 import { useState } from 'react'
 import ImageBackgroundWithDeleteButton from '../../layout/CropAddImage/Index';
 import Attachments from '../../layout/Attachments/Index'
 import { useCreateOrUpdate, useGetAll } from '../../../Hooks'
-
-
-
-
-
-
-import { height } from '@mui/system'
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from "react-router-dom"
 const InputStyle =
 {
     padding: '20px', border: "1px solid #e2e2e2",
@@ -48,20 +39,24 @@ const InputStyleDate =
     },
 }
 
+const initialValues = {
 
+    TitleofCampaign: '',
+    document: '',
+}
 
 function Index() {
-    const navigate = useNavigate();
-
-    let { state } = useLocation(); let { id } = state;
-    console.log(id, "=====<id")
-    const imageUrlFromBackend = 'https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'
+    const navigate = useNavigate()
+    let { state } = useLocation();
+    let { id } = state;
+    // const imageUrlFromBackend = 'https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'
     const [documents, setDocuments] = useState([]);
+    const [dataUrl, setDataUrl] = useState(null);
     const [Category, setCategory] = useState([]);
 
     const handleDocumentUpload = (documentUrl) => {
         setDocuments([...documents, documentUrl]);
-        console.log(setDocuments, '================>docs');
+        // console.log(setDocuments, '================>docs');
     };
 
     const [user, setUser] = useState({})
@@ -76,6 +71,8 @@ function Index() {
         setImageUrl('');
     };
 
+
+
     const img = [
         "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
         "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
@@ -86,7 +83,7 @@ function Index() {
         key: `/admin-dashboard/campaign/${id}`,
         enabled: true,
         select: (data) => {
-            console.log(data.data.data);
+            // console.log(data.data.data);
             return data.data.data;
         },
         onSuccess: (data) => {
@@ -96,11 +93,10 @@ function Index() {
     });
 
     useGetAll({
-        key: `/admin-dashboard/category?page=1&limit=10
-        `,
+        key: `/admin-dashboard/category?page=1&limit=10`,
         enabled: true,
         select: (data) => {
-            console.log(data.data.data);
+            // console.log(data.data.data);
             return data.data.rows;
         },
         onSuccess: (data) => {
@@ -133,7 +129,7 @@ function Index() {
     if (!isSuccess) {
         return <div>Loading...</div>;
     }
-    console.log(initial_values);
+    // console.log(initial_values);
 
     return (
         <Formik
@@ -142,7 +138,7 @@ function Index() {
             onSubmit={(values) => {
                 mutate(values, {
                     onSuccess: (response) => {
-                        console.log(response);
+                        // console.log(response);imageUrl
                         // Handle successful API response here
                     },
                 });
@@ -155,9 +151,7 @@ function Index() {
                     <div className="flex w-[100%] mt-2 gap-14 max-tablet:flex-col max-desktop:flex-col">
                         <div className="flex flex-col w-[70%] max-tablet:w-[100%] max-desktop:w-[100%] gap-10 items-center">
 
-                            <ImageBackgroundWithDeleteButton imageUrl={imageUrl} onDelete={handleDelete} />
-
-
+                            <ImageBackgroundWithDeleteButton imgUrl={dataUrl} setDataUrl={setDataUrl} onDelete={handleDelete} />
                             <div className="w-full">
                                 <InputField
                                     value={values?.title}
@@ -183,7 +177,6 @@ function Index() {
                             <div className="w-full">
                                 <InputField sx={InputStyle} onChange={handleChange} value={values?.location} name={"location"} label={"Location:"} />
                             </div>
-
                             <div className="w-full">
                                 <FormLabel
                                     className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
@@ -357,13 +350,15 @@ function Index() {
                             <div className=" w-[100%] max-desktop:w-[100%]">
                                 <ImageEditor
                                     sx={{ maxWidth: '400px', minHeight: '600px' }}
-                                    imageUrl={imageUrl}
+                                    dataUrl={dataUrl}
                                 />
-                                {console.log(values?.cpg_image)}
+                                {/* {console.log(values?.cpg_image)} */}
                             </div>
-                            <Link to="Revision-History" state={{ id }} >
-                                <PrimaryButton sx={{ borderRadius: '12px', width: '90%' }} >
-                                    <h1 className='text-white font-medium py-2.5 text-[18px]   font-[satoshi]'>View Revision History</h1>
+                            <Link to={"Revision-History"}
+                            // state={id}
+                            >
+                                <PrimaryButton sx={{ borderRadius: '12px', width: '90%' }}>
+                                    <h1 className='text-white font-medium py-2.5 text-[18px] font-[satoshi]'>View Revision History</h1>
 
                                 </PrimaryButton>
                             </Link>
@@ -383,9 +378,10 @@ function Index() {
 
                     </div>
                 </Form>
-            )}
+            )
+            }
 
-        </Formik>
+        </Formik >
     )
 }
 

@@ -19,7 +19,7 @@ import UserLogin from '../../pages/login/Login_page/Index'
 import UserSignUp_02 from "../../pages/login/Sign_Up/Index";
 import { Link, NavLink } from "react-router-dom";
 import ProfileAvatar from "../../pages/login/ProfileAvatar";
-import { toast } from 'react-toastify'
+import { toast } from "react-toastify";
 const styleButton = {
   color: 'red'
 }
@@ -122,7 +122,7 @@ export default function Example() {
         </div>
 
         <div className=" lg:flex lg:flex-1 lg:justify-end ">
-          <div className="flex lg:hidden">
+          <div className="flex xl:hidden">
             <button
               type="button"
               className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
@@ -132,7 +132,7 @@ export default function Example() {
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-          <Popover.Group className="hidden lg:flex lg:gap-x-12">
+          <Popover.Group className="max-nav:hidden lg:flex lg:gap-x-12">
             <Popover className="relative mt-1" >
               <Popover.Button className="flex pt-2 nav_button items-center gap-x-1 text-[18px] font-medium font-[satoshi]  text-[#40444C]"
                 onclick="this.style.backgroundColor = (this.style.backgroundColor === '#40444C') ? 'blue' : '#40444C';"
@@ -169,7 +169,7 @@ export default function Example() {
 
               <Transition
                 as={Fragment}
-                enter="transition ease-out duration-200"
+                enter="transition ease-out duration-500"
                 enterFrom="opacity-0 translate-y-1"
                 enterTo="opacity-100 translate-y-0"
                 leave="transition ease-in duration-150"
@@ -236,7 +236,7 @@ export default function Example() {
 
               <Transition
                 as={Fragment}
-                enter="transition ease-out duration-200"
+                enter="transition ease-out duration-500"
                 enterFrom="opacity-0 translate-y-1"
                 enterTo="opacity-100 translate-y-0"
                 leave="transition ease-in duration-150"
@@ -303,7 +303,7 @@ export default function Example() {
 
               <Transition
                 as={Fragment}
-                enter="transition ease-out duration-200"
+                enter="transition ease-out duration-500"
                 enterFrom="opacity-0 translate-y-1"
                 enterTo="opacity-100 translate-y-0"
                 leave="transition ease-in duration-150"
@@ -336,17 +336,11 @@ export default function Example() {
                 </Popover.Panel>
               </Transition>
             </Popover>
-
-
             {/* Fourth button */}
 
             <button
               className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
-            >   <Link to={'/Home/How-It-Works'}>How it Works            </Link>
-            </button>
-
-
-
+            >How it Works</button>
             {/* Fifth button */}
             {
               (localStorage.getItem('token')) ? (
@@ -360,9 +354,9 @@ export default function Example() {
               ) : (
                 <PrimaryButton
                   onClick={() => {
-                    toast.error("Please Login to create a Campaign", {
-                      position: "top-center"
-                    });
+                    toast.error("please login First !!! ", {
+                      position: 'top-center'
+                    })
                   }}
                   sx={{ borderRadius: 'var(--Pixels-8, 8px)', fontWeight: 700, fontSize: '18px', padding: '12px 20px', }}>
                   Start a Campaign
@@ -404,7 +398,7 @@ export default function Example() {
           </Popover.Group>
         </div>
       </nav>
-      <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+      <Dialog as="div" className="xl:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
@@ -431,7 +425,7 @@ export default function Example() {
                 <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
+                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
                         Get Involved
                         <ChevronDownIcon
                           className={classNames(open ? 'rotate-180' : '', 'h-6 w-6 flex-none')}
@@ -444,7 +438,7 @@ export default function Example() {
                             key={item.name}
                             as="a"
                             href={item.href}
-                            className="block rounded-lg py-2 pl-6 pr-3 text-lg font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                            className="block rounded-lg py-2 pl-6 pr-3 text-lg max-tablet:text-[16px] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -456,7 +450,7 @@ export default function Example() {
                 <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
+                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
                         Our Impact
                         <ChevronDownIcon
                           className={classNames(open ? 'rotate-180' : '', 'h-6 w-6 flex-none')}
@@ -469,7 +463,7 @@ export default function Example() {
                             key={item.name}
                             as="a"
                             href={item.href}
-                            className="block rounded-lg py-2 pl-6 pr-3 text-lg font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                            className="block rounded-lg py-2 pl-6 pr-3 text-lg max-tablet:text-[16px] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -482,7 +476,7 @@ export default function Example() {
                 <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
+                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
                         About Us
                         <ChevronDownIcon
                           className={classNames(open ? 'rotate-180' : '', 'h-6 w-6 flex-none')}
@@ -495,7 +489,7 @@ export default function Example() {
                             key={item.name}
                             as="a"
                             href={item.href}
-                            className="block rounded-lg py-2 pl-6 pr-3 text-lg font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                            className="block rounded-lg py-2 pl-6 pr-3 text-lg max-tablet:text-[16px] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -505,7 +499,7 @@ export default function Example() {
                   )}
                 </Disclosure>
                 <Link to={'/Home/How-It-Works'}
-                  className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[20px]  max-tablet:text-[18px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   How It works
                 </Link>
@@ -515,8 +509,8 @@ export default function Example() {
                 {
                   (localStorage.getItem('token')) ?
                     (<ProfileAvatar />)
-                    : (<Link to='/Home/LoginOnSmallScreen'><button
-                      className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
+                    : (<Link to='/Home/Login'><button
+                      className="font-[satoshi] text-[22px] font-medium text-[#40444C]"
                     >
                       Log In
                     </button></Link>)

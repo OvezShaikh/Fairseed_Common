@@ -12,8 +12,10 @@ const Columnfilter = ({ column }) => {
                 sx={{
                     "& .MuiInputBase-root .MuiInputBase-input ": {
                         height: '0px',
+                        // margin: '5px',
+                        padding: '14px !important',
                         background: 'white',
-                        width: "126px",
+                        width: "100px",
                         borderRadius: '4px',
                         // flex: '75 0 auto',
 
