@@ -21,8 +21,15 @@ const OngoingCampaigns = () => {
           </div>
           <div>by User Name/End Date</div>
           <div className='w-full mt-[11px]'>
-          <Line percent={90} strokeWidth={3} strokeColor="#f10e0e" />
-           
+          
+          <div className='h-[13px]'>
+          <LinearProgress
+                                    style={{ backgroundColor: 'blue' }}
+                                    variant="determinate"
+                                    sx={{ height: "100%", borderRadius: "16px", background: `linear-gradient(to right, #0DC7B1, #0DC7B1 30%, #e0e0e0 30%)`, "& .MuiLinearProgress-bar": { backgroundColor: 'rgba(255, 55, 95, 1) !important' } }}
+                                    value={50 * 100}
+                                />
+                                </div>
           </div>
         </div>
       </div>
