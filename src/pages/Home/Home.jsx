@@ -146,7 +146,7 @@ function Home() {
         // }
       );
       const res = response.data;
-      console.log(response.headers , "<================");
+      console.log(localStorage.getItem() , "<================");
       console.log(res.rows);
       // `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
       if (Array.isArray(res.rows)) {

@@ -261,7 +261,7 @@ const ReactTable = ({
     }
   };
 
- 
+
 
   useEffect(() => {
     if (pageIndex === 0 && tableData?.length > 0) {
@@ -455,14 +455,14 @@ const ReactTable = ({
             <div />
           )}
           {!noSearch && showFilter && <div className="border  py-3 mx-3"></div>}
-          {showFilter && (
+          {/* {showFilter && (
             <ApplyFilters
               title={title}
               allColumns={allColumns}
               filters={filters}
               setFilters={setFilters}
             />
-          )}
+          )} */}
         </Grid>
         <Grid
           item
@@ -482,7 +482,7 @@ const ReactTable = ({
             postTableMetaData={postTableMetaData}
             isLoading={mutateLoading}
           />
-          <SecondaryButton
+          {/* <SecondaryButton
             onCick={() => localStorage.removeItem(`filters-of-${title_slug}`)}
             startIcon={
               <FilterReset
@@ -493,7 +493,7 @@ const ReactTable = ({
             }
           >
             Reset Filters
-          </SecondaryButton>
+          </SecondaryButton> */}
 
           {addButton && <div className="border  py-3 mx-3"></div>}
           {addButton}
@@ -562,7 +562,9 @@ const ReactTable = ({
 
                       )} </div>
                     <div className="pt-2">
-                      {<Columnfilter column={column} />}
+                      {column?.search !== false && (
+                        <Columnfilter column={column} />
+                      )}
                     </div>
 
 

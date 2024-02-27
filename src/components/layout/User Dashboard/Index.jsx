@@ -1,6 +1,6 @@
 import React from 'react'
 import AdminNavbar from '../AdminNavbar'
-import { SideBar } from '../sideBar';
+import { User_SideBar } from '../sideBar/User_panel';
 
 const UserPanel = ({children}) => {
 
@@ -9,7 +9,7 @@ const UserPanel = ({children}) => {
     return (
       <>
         <AdminNavbar />
-        <SideBar mobileOpen={mobileOpen} setMobileOpen={setMobileOpen}></SideBar>
+        <User_SideBar mobileOpen={mobileOpen} setMobileOpen={setMobileOpen}></User_SideBar>
         <div className='main-container transition-all duration-500 ease-in-out max-tablet:pr-0 ' style={{ width: mobileOpen ? `calc(100vw - 290px)` : '100%', marginLeft: mobileOpen ? '270px' : '0px', paddingRight: mobileOpen ? '0px' : '2rem' }} >
           {children}
         </div>

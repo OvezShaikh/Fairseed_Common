@@ -5,9 +5,13 @@ import AdminSelectField from '../../inputs/AdminSelectField/Index'
 import SuccessButton from '../../inputs/SuccessButton/Index'
 import PrimaryButton from '../../inputs/PrimaryButton'
 import ErrorIcon from "@mui/icons-material/Error";
+import { useLocation } from 'react-router-dom'
 
 
 function View() {
+    let { state } = useLocation(); let { id } = state;
+    console.log(id, "=====<id")
+
     return (
         <Formik>
             <Form className='flex flex-col items-center '>

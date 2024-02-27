@@ -6,6 +6,7 @@ import setAuthToken from '../utils/setAuthToken';
 import { useNavigate } from "react-router-dom";
      
 const useLogin = () => {
+  
   const Initial_value = {
     email: "",
     password: "",
@@ -25,15 +26,16 @@ const useLogin = () => {
    
     console.log(data, "dadata");
     try {
-      const res = await serverAPI.post("/accounts/login/nt/", data );
-      
+      const res = await serverAPI.post("/accounts/login/nt/", data);
+
       toast.success("Logged in Successfully ", {
         position: "top-center",
       });
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user_role", res.data.user_info.user_role);
-      // window.location.href = "/Home";
-      navigate('/Home');
+      setTimeout(() => {
+        window.location.href = "/Home";
+      }, 2000);
       console.log(localStorage.getItem("token"));
       console.log(localStorage.getItem("userRole"));
     } catch (error) {

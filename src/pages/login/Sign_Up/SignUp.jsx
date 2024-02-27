@@ -5,11 +5,10 @@ import Avatar from '@mui/material/Avatar';
 import { useFormikContext } from "formik";
 import PrimaryButton from '../../../components/inputs/PrimaryButton';
 import { Grid, Container } from '@mui/material';
-import images from '../../../constants/images';
-import PreviewImage from '../../../components/inputs/PreviewImage/PreviewImage';
 import { toast } from 'react-toastify';
 import { SlPencil } from "react-icons/sl";
 import Modal from "../../../components/inputs/Modal/Index"
+import ImagePreviewDialog from '../../../components/inputs/Cropper/ImagePreview';
 
 
 const SignUp = ({ handleNext }) => {
@@ -17,7 +16,7 @@ const SignUp = ({ handleNext }) => {
   const imgRef = useRef(null);
   const [openModal, setOpenModal] = useState(false);
 
-  const { submitForm, isValid, setFieldValue } = useFormikContext();
+  const { submitForm, isValid, setFieldValue , values } = useFormikContext();
 
   const handleNextClick = () => {
     if (isValid) {
@@ -27,16 +26,19 @@ const SignUp = ({ handleNext }) => {
     }
   };
 
+ 
+
   return (
     <Form className='pt-8 max-tablet:pl-7'>
       <Container>
         <Grid container spacing={4}>
           <Grid container spacing={3}>
             <Grid item xs={12} className='flex flex-col justify-center items-center'>
-              <Avatar
+            <Avatar
                 alt="Remy Sharp"
-                src="/static/images/avatar/1.jpg"
-                sx={{ width: '150px', height: '150px', position: 'relative' }}>
+                src={values.image ? URL.createObjectURL(values.image) : "/static/images/avatar/1.jpg"}
+                sx={{ width: '150px', height: '150px', position: 'relative', overflow: 'hidden' }}
+              >
                 <input
                   type='file'
                   hidden
@@ -46,11 +48,8 @@ const SignUp = ({ handleNext }) => {
                   onChange={(event) => setFieldValue('image',console.log( event.target.files[0]))}
                 />
 
-                <div style={{ position: 'absolute', bottom: '0', right: '48px', zIndex: 1 }}>
-                  <button onClick={() => {
-                    imgRef.current.click()
-                    setOpenModal(true);
-                  }}>
+                <div style={{ color:'black',  position: 'absolute', bottom: '10px', right: '20px', zIndex: 1, transform: 'translate(50%, 50%)' }}>
+                  <button onClick={() => imgRef.current.click()} style={{ background: 'white', border: 'none', padding: '0', borderRadius:'6rem', transform: 'translate(-50%, -50%)' }}>
                     <SlPencil />
                   </button>
                 </div>

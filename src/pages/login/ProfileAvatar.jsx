@@ -16,6 +16,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from 'axios';
 import serverAPI from '../../config/serverAPI';
+import images from '../../constants/images';
 
 
 
@@ -26,8 +27,7 @@ export default function ProfileAvatar() {
     // Remove the 'token' item from localStorage
     localStorage.removeItem('token');
     localStorage.removeItem('user_role');
-    delete serverAPI.defaults.headers.common["authorization"];
-    delete axios.defaults.headers.common["authorization"];
+    console.log(localStorage.getItem('token'))
     window.location.href = '/Home';
     toast.error("Logout Successful !",{
       position: "top-center"
@@ -99,14 +99,19 @@ export default function ProfileAvatar() {
       >
         <MenuItem onClick={handleClose}>
           <Link to={"/AdminPanel"}>
-            <Avatar /> AdminPanel
+          <ListItemIcon>
+            <Avatar />
+            </ListItemIcon>
+             AdminPanel
           </Link>
         </MenuItem>
         <Divider />
+
+
         <MenuItem onClick={handleClose}>
         <Link to={"/User"}>
           <ListItemIcon>
-            <Settings fontSize="small" />
+          <img src={images.Dashboard} alt="" />
           </ListItemIcon>
           Dashboard
           </Link>
@@ -114,7 +119,7 @@ export default function ProfileAvatar() {
         
 
         <MenuItem onClick={handleClose}>
-        <Link to={"/AdminPanel"}>
+        <Link to={"/account-settings"}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>

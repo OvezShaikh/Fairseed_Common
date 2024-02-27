@@ -5,6 +5,7 @@ import RadioGroup from '../../../inputs/radioGroupAdminPanel'
 import ReactQuilTextField from "../../../inputs/ReactQuilTextField/Index"
 import { FormLabel } from '@mui/material'
 import PrimaryButton from '../../../inputs/PrimaryButton'
+import { useLocation } from 'react-router-dom'
 
 const styleLabel = {
     fontFamily: "satoshi",
@@ -14,6 +15,8 @@ const styleLabel = {
 };
 
 function Index() {
+    let { state } = useLocation(); let { id } = state;
+    console.log(id, "=====<id")
     const initialValues = {
         title: "",
         url: "",

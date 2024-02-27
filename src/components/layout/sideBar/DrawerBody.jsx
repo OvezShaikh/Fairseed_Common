@@ -88,11 +88,6 @@ let Icons = {
   PgSettingsIcon: (isActive) => <PgSettingsIcon isActive={isActive} />,
   DashboardIcon: (isActive) => <DashboardIcon isActive={isActive} />,
 
-
-
-
-
-
 };
 
 const CollapsibleMenuItem = ({
