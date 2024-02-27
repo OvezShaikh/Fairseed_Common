@@ -6,21 +6,29 @@ import { Button, Checkbox, TextField } from '@mui/material';
 import { LocationConfigurationDialog } from '../../admin-console/LocationConfigurationDialog';
 import { Formik } from 'formik';
 import images from '../../../constants/images';
-
 import { GoDotFill } from "react-icons/go";
-import CauseEdit from '../CauseEditApprovel/Index';
 import SecondaryButton from '../../inputs/secondaryButton';
-import { Link, useNavigate } from 'react-router-dom';
-import SuccessButton from '../../inputs/SuccessButton/Index'
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useDelete } from '../../../Hooks';
 import PrimaryButton from '../../inputs/PrimaryButton';
 
 
 
 
 const Index = () => {
-
-
+  
   const [selectedRowID, setSelectedRowID] = useState(null);
+
+  const { mutate } = useDelete({
+    url: '/admin-dashboard/category',
+    name: 'Category', 
+  });
+
+  const handleDelete = (id) => {
+    mutate(id);
+  };
+
+
 
   const getStatusCellStyle = (value) => {
     console.log('Status:', value);
@@ -70,7 +78,6 @@ const Index = () => {
         search: false
 
       },
-
       {
         Header: "Id", // Row number header
         accessor: "index", // Accessor for row number
@@ -92,7 +99,6 @@ const Index = () => {
       {
         Header: 'Status',
         accessor: 'is_active',
-
         Cell: StatusCell,
       },
 
@@ -107,8 +113,7 @@ const Index = () => {
           return (
             <div className='flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0'>
               <Link to="Edit" state={{ id: row?.id }} ><SecondaryButton sx={{ height: '30px' }} >Edit</SecondaryButton></Link>
-              <PrimaryButton sx={{ height: '30px', width: '60px', background: 'red', color: 'white' }} text={'Delete'}>Delete</PrimaryButton>
-              {/* <SecondaryButton sx={{ height: '30px' }}>Edit Bank and KYC</SecondaryButton> */}
+              <PrimaryButton sx={{ height: '30px', width: '60px', background: 'red', color: 'white' }} onClick={()=>handleDelete(row?.id)} text={'Delete'}>Delete</PrimaryButton>
             </div >
           )
         }

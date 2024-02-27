@@ -19,8 +19,6 @@ const Campaign = () => {
     if (status === 'Pending') {
       return {
 
-
-
         color: '#fa9820',
         background: '#f5fabe  ',
       };
@@ -153,7 +151,7 @@ const Campaign = () => {
         manualPagination
         title={"Campaign"}
         checkboxComponent={IndeterminateCheckbox}
-        url={`/admin-dashboard/campaign`}
+        url={`/admin-dashboard/campaign?page=1&limit=4`}
         extraQuery={{ inactive: true }}
         addButton={<LocationConfigurationDialog />}
         // addButton={<Button>HElloooooo</Button>}

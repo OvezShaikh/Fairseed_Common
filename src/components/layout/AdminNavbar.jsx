@@ -14,7 +14,6 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const isTab = useMediaQuery("(max-width: 1100px)");
-
   const sideBar = useMediaQuery("(max-width: 900px)");
 
   return (

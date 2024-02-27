@@ -84,13 +84,6 @@ const User = () => {
         width: 100,
 
       },
-      // {
-      //   Header: "City",
-      //   accessor: "city",
-      //   minWidth: 100,
-      //   width: 100,
-
-      // },
       {
         Header: "Country",
         accessor: "country",
@@ -118,7 +111,7 @@ const User = () => {
             <div className='flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0'>
               <Link to="Edit-User" state={{ id: row?.id }} ><SecondaryButton sx={{ height: '30px' }} >Edit</SecondaryButton></Link>
               <PrimaryButton sx={{ height: '30px', width: '60px', background: 'red', color: 'white' }} text={'Delete'}>Delete</PrimaryButton>
-              {/* <SecondaryButton sx={{ height: '30px' }}>Edit Bank and KYC</SecondaryButton> */}
+              
             </div >
           )
         }

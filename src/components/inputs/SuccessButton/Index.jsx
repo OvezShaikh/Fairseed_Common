@@ -1,7 +1,7 @@
 import { Button } from '@mui/material'
 import React from 'react'
 
-function Index({ text, icon, sx }) {
+function Index({ text, icon, sx ,  ...otherProps }) {
     return (
         <button
             // variant="text"
@@ -19,11 +19,8 @@ function Index({ text, icon, sx }) {
                 justifyItems: 'center',
                 justifyContent: 'center',
                 ...sx
-
-
-
-
             }}
+             {...otherProps}
 
         >{icon}{" "}{text}</button>
     )

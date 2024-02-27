@@ -102,11 +102,11 @@ const DropZone = ({
                   }}
                   
                   startIcon={<img src={images.UploadIcon} />}
-                  className="normal-case text-[20px] max-desktop:text-[15px]"
+                  className="normal-case text-[20px] max-desktop:text-[15px] upload-an-img"
                 >
                   Upload an Image
                 </Button>{" "}
-                <p className="max-w-[369px] font-[satoshi] text-center text-[20px] font-medium max-desktop:text-[15px] max-desktop:max-w-[276px]" style={{ color: "rgba(0, 0, 0, 0.40)", }}>
+                <p className="max-w-[369px] font-[satoshi] text-center text-[20px] font-medium max-desktop:text-[15px] max-desktop:max-w-[276px] less-than-5" style={{ color: "rgba(0, 0, 0, 0.40)", }}>
                   &nbsp; The Image must be less than 5 MB. Recommended size is
                   850x550. Minimum height is 550 and minimum width is 850.
                   {/* </>

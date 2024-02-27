@@ -20,7 +20,7 @@ import { useState } from 'react'
 
 
 
-import { height } from '@mui/system'
+
 const InputStyle =
 {
     padding: '20px', border: "1px solid #e2e2e2",
@@ -183,7 +183,7 @@ function Index() {
                     <button onClick={() => { }} className='w-[69px] content-stretch h-[32px] bg-[#F7F7F7]'>
                         <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
                     </button>
-                    <SuccessButton onClick={() => { }} text={"Save & Approve"} icon={<PiCheckFat className='w-4 h-4 mt-1' />} />
+                    <SuccessButton type='submit' text={"Save & Approve"} icon={<PiCheckFat className='w-4 h-4 mt-1' />} />
                     <PrimaryButton onClick={() => { }}  >
                         <h1 className='text-white font-semibold font-[satoshi]'>Reject Modification Request</h1>
                     </PrimaryButton>

@@ -32,6 +32,11 @@ import HowItWorks from "./pages/HowItWorks/HowItWorks";
 import PrivacyPolicy from "./pages/login/Sign_Up/PrivacyPolicy";
 import "react-toastify/dist/ReactToastify.css";
 import ForgotPasswordSmScreen from "./pages/login/ForgotPassword/ForgotPasswordSmScreens";
+import Account from "./pages/Account Settings/Index";
+import Donate from "./pages/Donate/Index";
+import AdminPanelLandingPage from "./components/AdminPanelPages/AdminPanelLandingPage/Index";
+import Dashboard from "./components/layout/DashBoard";
+import UserPage from "./pages/User Page/User_page";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -61,6 +66,7 @@ function App() {
           <Route path="/Home/Create-Campaign" element={<CreateCampaigns />} />
           <Route path="/Home/OnGoingCampaigns" element={<OnGoingCampaigns />} />
           <Route path="/AdminPanel/*" element={<AdminPage />} />
+           <Route path="/User/*" element={<UserPage />} />
           <Route path="/Home/Donate" element={<Donet />} />
           <Route path="/Home/DonateSettings" element={<DonateSettings />} />
           <Route
@@ -129,6 +135,17 @@ function App() {
             path="/Home/Password-Reset"
             element={<ForgotPasswordSmScreen />}
           />
+          
+          <Route path="/account-settings" element={<Account />} />
+          <Route path="/donate" element={<Donate />} />
+          <Route
+            path="/donate/:id"
+            element={<Donate />}
+          />
+         
+
+          <Route path="/adminpanellandingpage" element={<AdminPanelLandingPage />} />
+
         </Routes>
       </BrowserRouter>
     </div>

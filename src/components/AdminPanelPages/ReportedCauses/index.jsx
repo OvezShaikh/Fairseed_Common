@@ -4,14 +4,14 @@ import { useState } from 'react';
 import { Button, Checkbox } from '@mui/material';
 import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
 import { LocationConfigurationDialog } from '../../admin-console/LocationConfigurationDialog';
-import Columnfilter from '../../Table/Columnfilter'
+
 import SecondaryButton from '../../inputs/secondaryButton';
 import CauseEdit from '../CauseEditApprovel/Index';
 import { Link } from 'react-router-dom';
 
 const Reported_Causes = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
-
+ 
   const columns = React.useMemo(
     () => [
       {
@@ -97,33 +97,32 @@ const Reported_Causes = () => {
         Cell: ({ row }) => {
           return (
             <div className='flex'>
-              <Link to={'/Edit'} target={<CauseEdit id={row?.id} />}><SecondaryButton >Edit</SecondaryButton></Link>
-              <SecondaryButton>Finalize your Campaign</SecondaryButton>
-              <SecondaryButton>Edit Bank and KYC</SecondaryButton>
+              <Link to="Edit" state={{ id: row?.id }} ><SecondaryButton >Edit</SecondaryButton></Link>
+             
             </div>
           )
         }
       }
     ],
 
-  );
-  return (
-    <div>
-      <ReactTable
-        rows={[]}
-        columns={columns}
-        showFilter
-        manualPagination
-        title={"Campaign"}
-        checkboxComponent={IndeterminateCheckbox}
-        url={`/admin-dashboard/campaign`}
-        extraQuery={{ inactive: true }}
-        addButton={<LocationConfigurationDialog />}
-        // addButton={<Button>HElloooooo</Button>}
-        selectedRowID={selectedRowID}
-      />
-    </div>
-  )
+    );
+return (
+  <div>
+    <ReactTable
+    rows={[]}
+    columns={columns}
+    showFilter
+    manualPagination
+    title={"Campaign"}
+    checkboxComponent={IndeterminateCheckbox}
+    url={`/admin-dashboard/campaign`}
+    extraQuery={{ inactive: true }}
+     addButton={<LocationConfigurationDialog />}
+    // addButton={<Button>HElloooooo</Button>}
+    selectedRowID={selectedRowID}
+    />
+  </div>
+)
 }
 
 export default Reported_Causes
