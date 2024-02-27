@@ -237,7 +237,7 @@ const  LandingPage = ()=> {
                     </Form>
                 </Formik>
             </div>
-         <Footer />
+        
         </>
     )
 }

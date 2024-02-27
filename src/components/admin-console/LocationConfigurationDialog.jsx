@@ -22,9 +22,9 @@ import RadioGroup from '../inputs/radioGroupAdminPanel'
 
 const initialValues = {
   name: "",
-  url: "",
-  thumbnail: "",
-  New8: ""
+  slug: "",
+  image: "",
+  is_active: "",
 }
 
 export const LocationConfigurationDialog = ({
@@ -42,16 +42,7 @@ export const LocationConfigurationDialog = ({
     onSuccess: () => onSuccess && onSuccess(),
   });
 
-  const { data: countryData } = useGetAll({
-    key: `/admin/location/country`,
-
-    enabled: true,
-  });
-
-  const { data: PolicyOptions } = useGetAll({
-    key: `/admin/policy`,
-    enabled: true,
-  });
+  
 
   return (
     <Dialog
