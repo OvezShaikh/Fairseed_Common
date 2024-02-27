@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import url("https://fonts.cdnfonts.com/css/satoshi");
+@import url("https://unpkg.com/leaflet@1.9.3/dist/leaflet.css");
 
 body {
   margin: 0;
@@ -44,6 +45,7 @@ body {
   min-height: calc(100vh - 120px);
   margin: 148px 0px 20px 270px;
   padding: 0em 1em 0em 2.2em;
+ 
 }
 
 .ql-toolbar.ql-snow {
@@ -301,6 +303,12 @@ body {
   font-weight: 700;
   color: rgba(97, 101, 106, 1);
 }
+.leaflet-container {
+  height: 45vh;
+  width: 85%;
+  border-radius: 1rem;
+}
+
 
 
 

@@ -88,11 +88,6 @@ let Icons = {
   PgSettingsIcon: (isActive) => <PgSettingsIcon isActive={isActive} />,
   DashboardIcon: (isActive) => <DashboardIcon isActive={isActive} />,
 
-
-
-
-
-
 };
 
 const CollapsibleMenuItem = ({
@@ -306,7 +301,7 @@ const DrawerBody = () => {
     },
     {
       icon: "PgSettingsIcon",
-      path: "/AdminPanel/Payment-Gateway",
+      path: "/AdminPanel/PG-Setting/PhonePe",
       title: "Payment Gateway",
     },
   ];

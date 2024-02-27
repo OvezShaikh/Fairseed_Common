@@ -1,22 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Dialog } from "../../layout/dialogBox";
-import PrimaryButton from "../PrimaryButton";
 
-const ImagePreviewDialog = ({ dataUrl, setOpenCrop }) => {
+
+const ImagePreviewDialog = ({ onChange }) => {
+  const [file, setFile] = useState(null);
+  const [fileDataURL, setFileDataURL] = useState(null);
+  const [openCrop , setOpenCrop ] = useState(true)
+
+  const imageMimeType = /image\/(png|jpg|jpeg)/i;
+
+  const changeHandler = (e) => {
+    const selectedFile = e.target.files[0];
+    if (!selectedFile.type.match(imageMimeType)) {
+      alert("Image mime type is not valid");
+      return;
+    }
+    setFile(selectedFile);
+    onChange(selectedFile); // Notify the parent component about the selected file if needed
+  };
+
+  useEffect(() => {
+    let fileReader, isCancel = false;
+    if (file) {
+      fileReader = new FileReader();
+      fileReader.onload = (e) => {
+        const { result } = e.target;
+        if (result && !isCancel) {
+          setFileDataURL(result);
+        }
+      };
+      fileReader.readAsDataURL(file);
+    }
+
+    return () => {
+      isCancel = true;
+      if (fileReader && fileReader.readyState === 1) {
+        fileReader.abort();
+      }
+    };
+  }, [file]);
+
   return (
     <Dialog maxWidth='sm' title={"Preview Image"} onClose={() => setOpenCrop(false)}>
       {() => (
         <>
-          {/* eslint-disable-next-line */}
-          <img src={dataUrl} width={150} height={50} alt='' />
-          <PrimaryButton
-            className={`mt-4 capitalize xl:text-sm 2xl:text-semi-base`}
-            variant={"contained"}
-            onClick={() => setOpenCrop(false)}
-          >
-            Close
-          </PrimaryButton>
-        </>
+          {fileDataURL &&
+        <div className="img-preview-wrapper">
+          <img src={fileDataURL} alt="preview" />
+        </div>
+      }
+      </>
       )}
     </Dialog>
   );

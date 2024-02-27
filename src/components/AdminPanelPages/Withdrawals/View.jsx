@@ -9,9 +9,18 @@ import { useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 
+
+const initialValues = {
+
+}
+
+
 function View() {
-    let { state } = useLocation(); let { id } = state;
+    let { state } = useLocation();
+     let { id } = state;
+     
     console.log(id, "=====<id")
+
     const copyRowToClipboard = () => {
         const rowData = document.getElementById('table-row').innerText;
         navigator.clipboard.writeText(rowData)
@@ -23,8 +32,6 @@ function View() {
             .catch(error => {
                 console.error('Failed to copy row: ', error);
                 toast.error('Success', { position: "bottom-center" })
-
-                // Optionally, you can show an error message here
             });
     };
     return (

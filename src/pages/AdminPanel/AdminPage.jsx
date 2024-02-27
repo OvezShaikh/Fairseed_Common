@@ -9,26 +9,27 @@ import Categories from "../../components/AdminPanelPages/Categories/Index";
 import Pages from "../../components/AdminPanelPages/Pages/Index"
 import Campaign from "../../components/AdminPanelPages/Campaign/Campaign";
 import ReportedCauses from "../../components/AdminPanelPages/ReportedCauses/index";
-import PaymentGateway from "../../components/AdminPanelPages/PaymentGateway/Index"
+import DonationView from "../../components/AdminPanelPages/Donation/DonationView"
 import Withdrawals from "../../components/AdminPanelPages/Withdrawals/Index"
 import Users from "../../components/AdminPanelPages/Users/Index"
-import LandingPage from "../../components/AdminPanelPages/LandingPage/Index"
 import CauseEditApprovel from "../../components/AdminPanelPages/CauseEditApprovel/Index"
-import CauseEdit from "../../components/AdminPanelPages/CauseEditApprovel/Index";
-import CampaignAddNew from '../../components/AdminPanelPages/Forms/CampaignAddNew/Index'
+import CategoryAddNew from '../../components/AdminPanelPages/Forms/CategoryAddNew/Index'
 import Scholarship from "../../components/AdminPanelPages/Scholarship Cause/Index";
 import RevisionHistory from "../../components/AdminPanelPages/Forms/RevisionHistory/Index"
 import Campaign_Kyc from "../../components/AdminPanelPages/Campaign_kyc/Index";
 import PagesEdit from '../../components/AdminPanelPages/Forms/PagesEdit/Index'
 import UserEdit from '../../components/AdminPanelPages/Forms/UserEdit/Index'
 import View from '../../components/AdminPanelPages/Withdrawals/View'
-
+import PaymentGateway from '../../components/AdminPanelPages/PaymentGateway/Index'
+import CausesView from "../../components/AdminPanelPages/CauseKYC/CausesView";
+import LandingPage from "../../components/AdminPanelPages/AdminPanelLandingPage/Index" 
+import CauseEdit_Form from '../../components/AdminPanelPages/CauseEditApprovel/CauseEdit'
+import CauseEdit from '../../components/AdminPanelPages/CauseEditApprovel/Index'
 
 function AdminPage() {
   return (
     <Routes>
-      {/* <Route index element={<AdminPage/>} /> */}
-      {/* <Route path="/AdminPage" element={<AdminPage/>} /> */}
+     
       <Route
         path="/"
         element={
@@ -59,7 +60,7 @@ function AdminPage() {
         path="/Landing-Page"
         element={
           <AdminLayout>
-            <LandingPage />
+            < LandingPage/>
           </AdminLayout>
         }
       />
@@ -75,7 +76,7 @@ function AdminPage() {
         path="/Categories/Edit"
         element={
           <AdminLayout>
-            <CampaignAddNew />
+            <CategoryAddNew />
           </AdminLayout>
         }
       />
@@ -107,7 +108,7 @@ function AdminPage() {
         path="/Causes-Edit-Approval"
         element={
           <AdminLayout>
-            <CauseEditApprovel />
+            <CauseEdit_Form />
           </AdminLayout>
         }
       />
@@ -135,6 +136,14 @@ function AdminPage() {
           </AdminLayout>
         }
       />
+       {/* <Route
+        path="/Reported-Cause/View"
+        element={
+          <AdminLayout>
+            <ReportedCauses />
+          </AdminLayout>
+        }
+      /> */}
       <Route
         path="/Withdrawals"
         element={
@@ -163,7 +172,7 @@ function AdminPage() {
         path="/Cause-KYC/View"
         element={
           <AdminLayout>
-            <View />
+            <CausesView />
           </AdminLayout>
         }
       />
@@ -179,7 +188,7 @@ function AdminPage() {
         path="/Donations/View"
         element={
           <AdminLayout>
-            <PaymentGateway />
+            <DonationView />
           </AdminLayout>
         }
       />
@@ -233,7 +242,7 @@ function AdminPage() {
       />
 
       <Route
-        path="/Payment-Gateway"
+        path="/PG-Setting/PhonePe"
         element={
           <AdminLayout>
             <PaymentGateway />

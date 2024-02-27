@@ -8,19 +8,13 @@ function getData(url, params ) {
     localStorage.getItem("token") 
   ) {
    
-    // setAuthToken(localStorage.getItem("token"));
+    setAuthToken(localStorage.getItem("token"));
   }
 
-  return serverAPI.get(url, {
-    params: params ? params : {},
-    // headers:{
-    // "x-access-token":localStorage.getItem('token')
-    // }
-  }
+  return serverAPI.get(url,
   );
 }
 
-console.log(Headers , "+++++++++++++++++++++++")
 
 export function useGetAll(options) {
   let key = options?.params

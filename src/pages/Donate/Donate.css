@@ -1,0 +1,54 @@
+.donate-div form div{
+    padding: 12px 20px;
+    margin-bottom:40px;
+    border-radius: 5px;    
+}
+
+
+.donate-div form .donation-type-div{
+    padding: 8px 20px;
+}
+
+.donate-div form .donation-type-div div{
+    margin-bottom:0px;
+    padding: 0 !important;
+}
+
+
+.donate-div .donation-type-div,.account-settings-div .donation-type-div div{
+    padding: 0 !important;
+
+}
+
+.donate-div .donation-type-div input{
+    padding: 18px 20px !important;
+}
+
+
+.donate-div  .anonymous-donation-div , .donate-div  .anonymous-donation-div div{
+    padding: 0px;
+}
+
+
+
+.donate-date-div input[type="date"]::-webkit-calendar-picker-indicator {
+    
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: block;
+    background: url(../../assets/calendarIcon.png) no-repeat;
+    background-size: 100% 100%;
+    width: 64px;
+    height: 64px;
+    border-width: thin;
+   
+}
+.donate-date-div input.MuiInputBase-input.css-yz9k0d-MuiInputBase-input{
+    padding: 20px 0px;
+}
+
+
+.donate-div .donate-date-div div{
+    padding: 0px 0px;
+    padding-left: 10px;
+}

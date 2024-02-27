@@ -6,6 +6,10 @@ import PrimaryButton from '../../../inputs/PrimaryButton'
 import { useLocation, useNavigate } from 'react-router-dom'
 import ImageEditor from '../../../layout/ImageEditor/Index'
 import images from '../../../../constants/images'
+import { useCreateOrUpdate, useGetAll } from '../../../../Hooks'
+import { toast } from 'react-toastify'
+
+
 const InputStyle =
 {
     padding: '20px', border: "1px solid #e2e2e2",
@@ -16,22 +20,32 @@ const InputStyle =
     },
 }
 
+
+
+
 function Index() {
+   
+    const [User , setUser] = useState({});
     const [isImageDeleted, setIsImageDeleted] = useState(false);
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
     const [deleteSuccess, setDeleteSuccess] = useState(false);
-    let { state } = useLocation(); let { id } = state;
+    let { state } = useLocation();
+    let { id } = state;
     console.log(id, "=====<id")
     const imageUrlFromBackend = 'https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'
+    
+    const navigate = useNavigate();
+
     const handleDelete = () => {
         setShowDeleteConfirmation(true);
     };
-    const navigate = useNavigate()
+    
     const handleOk = () => {
         setDeleteSuccess(false);
         setIsImageDeleted(true); // Actually delete the image
         setShowDeleteConfirmation(false); // Close the confirmation dialog
     };
+
     const confirmDelete = () => {
         // Simulate deletion by setting isImageDeleted to true
         setIsImageDeleted(true);
@@ -41,10 +55,48 @@ function Index() {
     const cancelDelete = () => {
         setShowDeleteConfirmation(false);
     };
+
+    useGetAll({
+        key: `/admin-dashboard/users/${id}`,
+        enabled: true,
+        select: (data) => {
+            // console.log(data.data.data);
+            return data.data.data;
+        },
+        onSuccess: (data) => {
+            setUser(data);
+
+        },
+    });
+
+    const { mutate } = useCreateOrUpdate({
+        url:`/admin-dashboard/users/${id}`
+    })
+
+    const initialvalues = {
+        name : User.username || "",
+        role:User.user_role || "",
+        email:User.email || "",
+        password:"",
+        created_on:User.created_on||""
+    }
+
     return (
         <div className='flex w-[100%] pt-3 gap-24'>
             <div className="w-[70%]">
-                <Formik >
+                <Formik 
+                enableReinitialize={true}
+                initialValues={initialvalues}
+                onSubmit={(values) => {
+                    mutate(values, {
+                        onSuccess: (response) => {
+                            toast.success("Details Updated Successfully !" ,{
+                                position:'top-right'
+                            })
+                        },
+                    });
+                }}
+                >
                     <Form className="flex flex-col w-[100%] gap-4 items-center">
                         <div className="w-full">
                             <InputField sx={InputStyle} name={"name"} label={"Name:"} />
@@ -61,7 +113,7 @@ function Index() {
                                 className='w-[69px] h-[32px] bg-[#F7F7F7]'>
                                 <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
                             </button>
-                            <PrimaryButton >
+                            <PrimaryButton type='submit' >
                                 <h1 className='text-white font-semibold font-[satoshi]'>Save</h1>
                             </PrimaryButton>
 

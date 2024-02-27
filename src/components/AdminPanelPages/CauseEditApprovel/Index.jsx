@@ -39,14 +39,8 @@ const InputStyleDate =
     },
 }
 
-const initialValues = {
 
-    TitleofCampaign: '',
-    document: '',
-}
-
-function Index() {
-    const navigate = useNavigate()
+function CauseEdit_Form() {
     let { state } = useLocation();
     let { id } = state;
     // const imageUrlFromBackend = 'https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'
@@ -58,12 +52,12 @@ function Index() {
         setDocuments([...documents, documentUrl]);
         // console.log(setDocuments, '================>docs');
     };
+    const navigate = useNavigate();
 
     const [user, setUser] = useState({})
 
-    const { submitForm } = useFormikContext
 
-    const [imageUrl, setImageUrl] = useState('https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'); // State to store the image URL
+    const [imageUrl, setImageUrl] = useState("https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"); // State to store the image URL
 
     const handleDelete = () => {
         // Logic to delete the image from the backend goes here
@@ -88,9 +82,12 @@ function Index() {
         },
         onSuccess: (data) => {
             setUser(data);
-
+            const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign_image || ""}`;
+            setImageUrl(imageUrl);
+            setDataUrl(imageUrl)
         },
     });
+    console.log(imageUrl)
 
     useGetAll({
         key: `/admin-dashboard/category?page=1&limit=10`,
@@ -101,6 +98,8 @@ function Index() {
         },
         onSuccess: (data) => {
             setCategory(data);
+           
+
 
         },
     });
@@ -109,14 +108,11 @@ function Index() {
         url: `/admin-dashboard/campaign/${id}`,
         method: "put",
     })
-
-
-
     const initial_values = {
+        campaign_image:user.campaign_image || "",
         title: user.title || "",
         amount: user.goal_amount || "",
         location: user.location || "",
-        // cpg_image: user.campaign_image || "",
         category: user?.category?.name || "",
         is_featured: user?.is_featured || false,
         summary: user?.summary || "",
@@ -124,6 +120,7 @@ function Index() {
         end_date: user?.end_date || "",
         status: user?.status || "",
         story: user?.story || "",
+        doc1 : user?.documents?.doc_file || ""
     };
 
     if (!isSuccess) {
@@ -150,8 +147,7 @@ function Index() {
                 <Form className='flex flex-col items-center'>
                     <div className="flex w-[100%] mt-2 gap-14 max-tablet:flex-col max-desktop:flex-col">
                         <div className="flex flex-col w-[70%] max-tablet:w-[100%] max-desktop:w-[100%] gap-10 items-center">
-
-                            <ImageBackgroundWithDeleteButton imgUrl={dataUrl} setDataUrl={setDataUrl} onDelete={handleDelete} />
+                            <ImageBackgroundWithDeleteButton imgUrl={imageUrl} onChange={(e) =>setDataUrl(e.target.value)} setDataUrl={setDataUrl} onDelete={handleDelete} />
                             <div className="w-full">
                                 <InputField
                                     value={values?.title}
@@ -160,6 +156,8 @@ function Index() {
                                     name={"title"}
                                     label={"Title of Campaign:"} required={"true"} placeholder={"Minimum 50 INR"} />
                             </div>
+                            {/* <img src={imageUrl} alt=''/>
+                            {console.log(imageUrl ,"+++++++++++++++++++++")} */}
                             <SelectField
                                 name={"category"}
                                 required={true}
@@ -385,4 +383,4 @@ function Index() {
     )
 }
 
-export default Index
+export default CauseEdit_Form

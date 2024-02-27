@@ -10,7 +10,7 @@ import setCanvasPreview from "./setCanvasPreview";
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
 
-const ImageCrop = ({ setDataUrl }) => {
+const ImageCrop = ({ setDataUrl,closeModal }) => {
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);
   const [imgSrc, setImgSrc] = useState("");
@@ -105,6 +105,7 @@ const ImageCrop = ({ setDataUrl }) => {
               console.log("DataUrl======>",dataUrl)
               // updateAvatar(dataUrl);
               setDataUrl(dataUrl)
+              closeModal();
             }}
           >
             Crop Image
