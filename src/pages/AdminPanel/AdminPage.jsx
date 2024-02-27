@@ -13,7 +13,7 @@ import PaymentGateway from "../../components/AdminPanelPages/PaymentGateway/Inde
 import Withdrawals from "../../components/AdminPanelPages/Withdrawals/Index"
 import Users from "../../components/AdminPanelPages/Users/Index"
 import CauseEditApprovel from "../../components/AdminPanelPages/CauseEditApprovel/Index"
-import CampaignAddNew from '../../components/AdminPanelPages/Forms/CampaignAddNew/Index'
+import CategoryAddNew from '../../components/AdminPanelPages/Forms/CategoryAddNew/Index'
 import Scholarship from "../../components/AdminPanelPages/Scholarship Cause/Index";
 import RevisionHistory from "../../components/AdminPanelPages/Forms/RevisionHistory/Index"
 import Campaign_Kyc from "../../components/AdminPanelPages/Campaign_kyc/Index";
@@ -75,7 +75,7 @@ function AdminPage() {
         path="/Categories/Edit"
         element={
           <AdminLayout>
-            <CampaignAddNew />
+            <CategoryAddNew />
           </AdminLayout>
         }
       />
@@ -116,6 +116,14 @@ function AdminPage() {
         element={
           <AdminLayout>
             <Scholarship />
+          </AdminLayout>
+        }
+      />
+      <Route
+        path="/Scholarship-Cause/View"
+        element={
+          <AdminLayout>
+            <View />
           </AdminLayout>
         }
       />
@@ -164,6 +172,14 @@ function AdminPage() {
         element={
           <AdminLayout>
             <Donation />
+          </AdminLayout>
+        }
+      />
+      <Route
+        path="/Donations/View"
+        element={
+          <AdminLayout>
+            <PaymentGateway />
           </AdminLayout>
         }
       />
