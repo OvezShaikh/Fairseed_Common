@@ -1,20 +1,30 @@
-
-import {
-  MapContainer,
-  TileLayer,
-} from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+import { VectorMap } from "@react-jvectormap/core";
+import { worldMill } from "@react-jvectormap/world";
+import React from "react";
 
 const MembersByCountries = () => {
   return (
-    <div className='p-7 '>
-      <MapContainer center={[48.8566, 2.3522]} zoom={2}>
-        <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    <div className="rounded-lg shadow-md ">
+      <VectorMap
+        map={worldMill}
+        containerStyle={{
+          width: "90%",
+          height: "90%",
+        }}
+        series={{
+          regionStyle: {
+            initial: {
+              fill: '#ff5566',
+              stroke: "#676767",
+              strokeWidth: 2.5,
+              fillOpacity: 1
+            }
+          }
+        }}
+        backgroundColor="#a3a3a3"
       />
-      </MapContainer>
     </div>
-  )
-}
-export default MembersByCountries
+  );
+};
+
+export default MembersByCountries;

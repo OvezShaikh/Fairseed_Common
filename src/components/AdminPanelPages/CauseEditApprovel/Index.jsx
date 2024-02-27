@@ -108,9 +108,6 @@ function CauseEdit_Form() {
         url: `/admin-dashboard/campaign/${id}`,
         method: "put",
     })
-
-
-
     const initial_values = {
         campaign_image:user.campaign_image || "",
         title: user.title || "",
