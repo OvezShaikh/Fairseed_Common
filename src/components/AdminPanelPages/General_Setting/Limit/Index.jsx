@@ -65,6 +65,7 @@ const initialValues = {
 
   return (
     <Formik
+    enableReinitialize={true}
       initialValues={initialValues}
       onSubmit={(values)=> handlesubmit(values)}
     >

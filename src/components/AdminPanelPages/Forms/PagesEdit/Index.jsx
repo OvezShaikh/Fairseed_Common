@@ -15,7 +15,8 @@ const styleLabel = {
 };
 
 function Index() {
-    let { state } = useLocation(); let { id } = state;
+    let { state } = useLocation(); 
+    let { id } = state;
     console.log(id, "=====<id")
     const initialValues = {
         title: "",

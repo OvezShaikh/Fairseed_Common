@@ -10,6 +10,7 @@ import InputField from '../../inputs/InputField';
 import PrimaryButton from '../../inputs/PrimaryButton';
 import AdminNavbar from '../../layout/AdminNavbar'
 import { useCreateOrUpdate, useGetAll } from '../../../Hooks';
+import { useLoaderData, useLocation } from 'react-router-dom';
 
 const InputStyle =
 {
@@ -28,6 +29,7 @@ const InputStyle =
 const  LandingPage = ()=> {
 
     const [data , setData ] = useState({})
+   
 
     useGetAll({
         key: `/admin-dashboard/landing-page?page=1&limit=4`,

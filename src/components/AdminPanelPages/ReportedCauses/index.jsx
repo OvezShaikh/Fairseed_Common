@@ -115,7 +115,7 @@ return (
     manualPagination
     title={"Campaign"}
     checkboxComponent={IndeterminateCheckbox}
-    url={`/admin-dashboard/campaign`}
+    url={`/admin-dashboard/reported-campaign`}
     extraQuery={{ inactive: true }}
      addButton={<LocationConfigurationDialog />}
     // addButton={<Button>HElloooooo</Button>}
