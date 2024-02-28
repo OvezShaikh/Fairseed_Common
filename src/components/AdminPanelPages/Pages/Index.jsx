@@ -7,6 +7,7 @@ import SecondaryButton from '../../inputs/secondaryButton';
 import { GoDotFill } from "react-icons/go";
 import { Link } from 'react-router-dom';
 import { PagesAddNew } from '../../admin-console/PagesAddNew';
+import { useDelete } from '../../../Hooks';
 
 const Page = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
@@ -44,6 +45,16 @@ const Page = () => {
   //     </>
   //   );
   // };
+  const { mutate } = useDelete({
+    url: '/admin-dashboard/pages',
+    name: 'Page',
+  });
+
+  const handleDelete = (id) => {
+    mutate(id, {
+
+    });
+  };
 
   const StatusCell = ({ value }) => (
     <div className=' flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl' style={getStatusCellStyle(value)}>
@@ -90,7 +101,7 @@ const Page = () => {
           return (
             <div className='flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0'>
               <Link to="Edit-Pages" state={{ id: row?.id }} ><SecondaryButton sx={{ height: '30px' }} >Edit</SecondaryButton></Link>
-              <PrimaryButton sx={{ height: '30px', width: '60px', background: 'red', color: 'white' }} text={'Delete'}>Delete</PrimaryButton>
+              <PrimaryButton sx={{ height: '30px', width: '60px', background: 'red', color: 'white' }} onClick={() => handleDelete(row?.id)} text={'Delete'}>Delete</PrimaryButton>
               {/* <SecondaryButton sx={{ height: '30px' }}>Edit Bank and KYC</SecondaryButton> */}
             </div >
           )

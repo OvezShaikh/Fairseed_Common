@@ -81,7 +81,7 @@ function CauseEdit_Form() {
         },
         onSuccess: (data) => {
             setUser(data);
-            const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign_image || ""}`;
+            const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign_image}`;
             setImageUrl(imageUrl);
             setDataUrl(imageUrl)
         },

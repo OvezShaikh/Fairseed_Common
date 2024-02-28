@@ -35,17 +35,17 @@ const LandingPage = () => {
         key: `/admin-dashboard/landing-page?page=1&limit=4`,
         enabled: true,
         select: (data) => {
-          console.log(data)
+            console.log(data)
             return data.data.rows[0];
         },
         onSuccess: (data) => {
-          console.log(data)
-          setData(data); 
+            console.log(data)
+            setData(data);
         },
     })
 
     const { mutate } = useCreateOrUpdate({
-        url:`/admin-dashboard/landing-page`
+        url: `/admin-dashboard/landing-page`
     })
 
     return (
