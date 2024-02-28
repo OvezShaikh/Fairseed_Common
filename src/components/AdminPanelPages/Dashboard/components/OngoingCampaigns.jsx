@@ -15,13 +15,10 @@ const OngoingCampaigns = () => {
     enabled: true,
     // enabled: !localStorage.getItem(`columns-of-${title}`),
     select: (data) => {
-      console.log(data);
-
       return data.data.data;
     },
     onSuccess: (data) => {
       setDataObject(data);
-      console.log(data);
     },
   });
 

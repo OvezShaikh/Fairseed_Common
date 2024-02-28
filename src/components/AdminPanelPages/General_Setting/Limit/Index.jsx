@@ -67,7 +67,7 @@ function Limit() {
       {({ values, handleChange }) => (
         <Form className="flex flex-col justify-center flex-wrap items-center max-desktop:pt-5 max-tablet:pt-5">
           <div className="flex w-full max-desktop:flex-col max-tablet:flex-col gap-4">
-            <FormControl className="w-full max-desktop:w-[80%] max-tablet:w-full ">
+            <div className="w-full max-desktop:w-[80%] max-tablet:w-full ">
               <InputAdminField
                 style={{ marginBottom: "2rem" }}
                 type="number"
@@ -77,8 +77,8 @@ function Limit() {
                 label={"No. of campaigns to show"}
                 name={"num_campaigns"}
               />
-            </FormControl>
-            <FormControl className="w-full max-desktop:w-[80%] max-tablet:w-full ">
+            </div>
+            <div className="w-full max-desktop:w-[80%] max-tablet:w-full ">
               <InputAdminField
                 label={"File size allowed"}
                 type="number"
@@ -94,7 +94,7 @@ function Limit() {
                 IMPORTANT: Your Server supports upto{" "}
                 <span className="text-[#717171]">100MB</span>
               </FormHelperText>
-            </FormControl>
+            </div>
           </div>
           <div className="flex w-full mb-24 max-desktop:flex-col max-tablet:flex-col flex-wrap pt-2 gap-4">
             <div className="w-[40%] max-desktop:w-[80%] max-tablet:w-full">

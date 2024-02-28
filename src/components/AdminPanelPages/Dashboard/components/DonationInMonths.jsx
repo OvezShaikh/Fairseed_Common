@@ -14,79 +14,79 @@ import "./DonationInMonths.css";
 
 const data = [
   {
-    date: "2000-01",
+    date: "2023-01",
     uv: 4000,
 
     amt: 2400,
   },
   {
-    date: "2000-02",
+    date: "2023-02",
     uv: 3000,
 
     amt: 2210,
   },
   {
-    date: "2000-03",
-    uv: 2000,
+    date: "2023-03",
+    uv: 2023,
 
     amt: 2290,
   },
   {
-    date: "2000-04",
+    date: "2023-04",
     uv: 2780,
 
-    amt: 2000,
+    amt: 2023,
   },
   {
-    date: "2000-05",
+    date: "2023-05",
     uv: 1890,
 
     amt: 2181,
   },
   {
-    date: "2000-06",
+    date: "2023-06",
     uv: 2390,
 
     amt: 2500,
   },
   {
-    date: "2000-07",
+    date: "2023-07",
     uv: 3490,
 
     amt: 2100,
   },
   {
-    date: "2000-08",
+    date: "2023-08",
     uv: 2390,
 
     amt: 2500,
   },
   {
-    date: "2000-09",
+    date: "2023-09",
     uv: 3490,
 
     amt: 2100,
   },
   {
-    date: "2000-10",
+    date: "2023-10",
     uv: 2390,
 
     amt: 2500,
   },
   {
-    date: "2000-11",
+    date: "2023-11",
     uv: 3490,
 
     amt: 2100,
   },
   {
-    date: "2000-12",
+    date: "2023-12",
     uv: 2390,
 
     amt: 2500,
   },
   {
-    date: "2000-13",
+    date: "2023-13",
     uv: 3490,
 
     amt: 2100,
@@ -108,7 +108,7 @@ const renderQuarterTick = (tickProps) => {
   const isMidMonth = month % 3 === 1;
 
   // if (month % 3 === 1) {
-  //   return <text x={x} y={y - 4} textAnchor="middle">{`Q${quarterNo}`}</text>;
+  //   return <text x={x} y={y - 4} textAnchor="middle">{Q${quarterNo}}</text>;
   // }
 
   const isLast = month === 11;
@@ -155,8 +155,8 @@ export default function DonationInMonths() {
   const [goalAmount, setGoalAmount] = useState(10000);
 
   return (
-    <div className="rounded-lg shadow-md p-5 ">
-      <p className={"mb-3 text-lg font-semibold"}>Donation in Months(lacs): </p>
+    <div className="rounded-md shadow-md p-5 ">
+      <p className={"mb-3 text-lg font-semibold"}>Donation In Months(lacs): </p>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart
           width={500}

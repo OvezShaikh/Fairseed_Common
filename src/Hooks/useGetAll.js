@@ -3,21 +3,15 @@ import serverAPI from "../config/serverAPI";
 import setAuthToken from "../utils/setAuthToken";
 // import errorHandle from "../utils/errorHandle";
 
-function getData(url, params ) {
-  if (
-    localStorage.getItem("token") 
-  ) {
-   
+function getData(url, params) {
+  if (localStorage.getItem("token")) {
     setAuthToken(localStorage.getItem("token"));
   }
 
-  return serverAPI.get(url,{
-    params : params ? params : {}
-  }
-    
-  );
+  return serverAPI.get(url, {
+    params: params ? params : {},
+  });
 }
-
 
 export function useGetAll(options) {
   let key = options?.params
@@ -28,6 +22,7 @@ export function useGetAll(options) {
     retry: false,
     select: (data) => data?.data,
     // onError: (err) => errorHandle(err),
+
     ...options,
   });
 }

@@ -64,6 +64,8 @@ function CompleteKYC({ handleBack, handleNext }) {
                     />
                 </div>
                 <UploadField
+                    required={'true'}
+
                     name={'adhar_card_image'}
                     // onChange={(file) => formik.setFieldValue("adhar", file)}
                     label="Upload Aadhar Card (Front and Back):"
@@ -90,18 +92,20 @@ function CompleteKYC({ handleBack, handleNext }) {
                 <UploadField
                     // onChange={(file) => formik.setFieldValue("pan_card_image", file)}
                     name={'pan_card_image'}
+                    required={'true'}
+
                     label="Upload PAN Card:"
                     placeholder="Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
                     onChange={(value) => setFieldValue('pan_card_image', value)}
                     multiple={false}
                 />
 
-<CheckBox
-                        sx={{ paddingLeft: '15px' }}
-                        name="declaration"
-                        label={'I, hereby declare that I accept the above conditions'}
+                <CheckBox
+                    sx={{ paddingLeft: '15px' }}
+                    name="declaration"
+                    label={'I, hereby declare that I accept the above conditions'}
 
-                    />
+                />
 
             </div>
             <div className="flex mt-4 desktop:gap-x-[40px] max-desktop:gap-x-[24px]">
@@ -113,7 +117,7 @@ function CompleteKYC({ handleBack, handleNext }) {
                     Back
                 </SecondaryButton>
 
-                <PrimaryButton  sx={stylePrimaryButton} onClick={() => { submitForm() }} >
+                <PrimaryButton sx={stylePrimaryButton} onClick={() => { submitForm() }} >
                     Submit
                 </PrimaryButton>
             </div>

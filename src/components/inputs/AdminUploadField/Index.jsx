@@ -133,6 +133,7 @@ const UploadField = ({
     multiple = true,
     label = "",
     name,
+    required,
     placeholder,
     onChange,
     ...otherProps
@@ -171,7 +172,7 @@ const UploadField = ({
                     }}
                 >
                     {label}
-                    <span className="text-red-600">*</span>
+                    {required ? <span className="text-red-600">*</span> : ""}
                 </FormLabel>
             )}
 
