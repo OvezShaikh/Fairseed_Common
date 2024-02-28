@@ -22,7 +22,7 @@ function Dashboard() {
       <DashboardActivities />
       <OngoingCampaigns />
       <MembersByCountries />
-      <DonationInMonths userData={userData} />
+      <DonationInMonths />
     </div>
   )
 }

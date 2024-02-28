@@ -139,7 +139,7 @@ const LinearGradientBar = (props) => {
 };
 
 
-export default function Example()  {
+export default function DonationInMonths()  {
   const [fundRaised, setFundRaised] = useState(0);
   const [goalAmount, setGoalAmount] = useState(0);
   
