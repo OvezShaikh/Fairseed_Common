@@ -68,9 +68,10 @@ const  LandingPage = ()=> {
                                         label="Logo:"
                                         // onChange={(file) => formik.setFieldValue("adhar", file)}
                                         name="document"
-                                        placeholder="Recommended size: 150x50 px (PNG)"
+                                        placeholder="Recommended\n size: 150x50 px (PNG)"
                                         sx={{ padding: '20px' }}
                                         multiple={false}
+                                        className="uploadField"
 
 
                                     /></div>
@@ -239,7 +240,7 @@ const  LandingPage = ()=> {
                             </div>
                            
                         </div>
-                        <div className='default-link-div flex items-center'>
+                        <div className='default-link-div flex items-center mt-[32px]'>
                                 <InputField
 
                                     name="title"
@@ -249,15 +250,18 @@ const  LandingPage = ()=> {
                                     label="Default Link Colour"
                                     placeholder="Placeholder Text"
 
+                                    className="inputField w-full max-w-[510px]"
+
                                 />
 
                             </div>
+                            <div className='mx-auto flex items-center mt-[65px]'>
                             <PrimaryButton className="mx-auto">Save</PrimaryButton>
-                            
+                            </div>
                     </Form>
                 </Formik>
             </div>
-        
+           
         </>
     )
 }

@@ -50,7 +50,7 @@ function Index() {
                                 { label: "On", value: "On" },
                                 { label: "Off", value: "Off" },
                             ]}
-                            label="New Registrations"
+                            label="Show Navbar"
                         // onChange={onChange}
 
                         />
@@ -62,7 +62,7 @@ function Index() {
                                 { label: "On", value: "On" },
                                 { label: "Off", value: "Off" },
                             ]}
-                            label="Auto Approve Causes"
+                            label="Show Footer"
                         // onChange={onChange}
 
                         />
@@ -74,7 +74,7 @@ function Index() {
                                 { label: "On", value: "On" },
                                 { label: "Off", value: "Off" },
                             ]}
-                            label="Facebook Login"
+                            label="Show Page"
                         // onChange={onChange}
 
                         />
