@@ -21,6 +21,7 @@ import { useParams } from "react-router-dom";
 import { Avatar } from "@mui/material";
 
 import moment from 'moment';
+import CountrySelect from "../../components/inputs/countrySelect";
 
 
 const InputStyle =
@@ -156,13 +157,12 @@ function Index({
                                                 name={"Email"}
                                                 sx={InputStyle}
                                             />
-                                            <div className='donation-type-div'>
-                                                <SelectField
-                                                    label={"Country:"}
-                                                    //   placeholder={"Mandatory, if total number donations exceeds 80K INR in one financial year"}
-                                                    name={"Country"}
+                                            <div className='donation-type-div country-select'>
+                                                <CountrySelect label="Country:"
+                                                    name={"country"}
                                                     sx={SelectStyle}
-                                                /></div>
+                                                />
+                                            </div>
                                         </div>
                                         <div className="w-[50%] p-0">
                                             <InputField
@@ -171,12 +171,15 @@ function Index({
                                                 name={"City"}
                                                 sx={InputStyle}
                                             />
+                                            
                                             <InputField
                                                 label={"Mobile:"}
                                                 //   placeholder={"Mandatory, if total number donations exceeds 80K INR in one financial year"}
                                                 name={"Mobile"}
                                                 sx={InputStyle}
+                                                className="mobile-input"
                                             />
+                                            
                                         </div>
                                     </div>
 

@@ -52,3 +52,35 @@
     padding: 0px 0px;
     padding-left: 10px;
 }
+
+
+.donation-type-div.country-select #react-flag-select button{
+    border: 1px solid #e2e2e2;
+}
+
+
+.donation-type-div.country-select .ReactFlagsSelect-module_selectBtn__19wW7:after , .donation-type-div.country-select  .ReactFlagsSelect-module_selectBtn__19wW7[aria-expanded="true"]:after{
+    content: none;
+}
+
+.donation-type-div.country-select div#react-flag-select button{
+    background-image: url(../../assets/DownArrow.png);
+    /* width: 14px;
+    height: 8px; */
+    background-repeat: no-repeat;
+    margin-top: 0px;
+    margin-right: 10px;
+    background-position: center right 20px;
+    height: 62px;
+    
+}
+
+.donation-type-div.country-select label{
+    font-family: satoshi;
+
+}
+
+.mobile-input{
+    margin-top: 10px !important;
+}
+
