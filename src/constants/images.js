@@ -84,6 +84,7 @@ import ColorFullDownArrow from "../assets/ColorfulDownArrow.png";
 import CheckBoxGradient from "../assets/CheckBoxGradient.png";
 import AdminPanelDropzone from "../assets/AdminPanelDropzone.png";
 import Dashboard from "../assets/Dashboard.svg";
+import DownArrow from "../assets/DownArrow.png";
 
 export default {
   SedalCheck,
@@ -170,4 +171,5 @@ export default {
   Vector,
   AdminPanelDropzone,
   Dashboard,
+  DownArrow,
 };

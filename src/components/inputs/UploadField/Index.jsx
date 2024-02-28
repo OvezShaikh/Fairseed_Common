@@ -191,6 +191,8 @@ const UploadField = ({
           fullWidth
           inputProps={{
             readOnly: true,
+            placeholder: placeholder,
+            value: field.value ? field.value.name : ""
           }}
           {...configTextfield}
           disabled

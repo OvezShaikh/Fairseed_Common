@@ -48,9 +48,10 @@ const LandingPage = () => {
                                         label="Logo:"
                                         // onChange={(file) => formik.setFieldValue("adhar", file)}
                                         name="document"
-                                        placeholder="Recommended size: 150x50 px (PNG)"
+                                        placeholder="Recommended\n size: 150x50 px (PNG)"
                                         sx={{ padding: '20px' }}
                                         multiple={false}
+                                        className="uploadField"
 
 
                                     /></div>
@@ -229,6 +230,8 @@ const LandingPage = () => {
 
                                     label="Default Link Colour"
                                     placeholder="Placeholder Text"
+
+                                    className="inputField w-full max-w-[510px]"
 
                                 />
 
