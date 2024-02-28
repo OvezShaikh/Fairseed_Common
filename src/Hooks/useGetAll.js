@@ -11,7 +11,10 @@ function getData(url, params ) {
     setAuthToken(localStorage.getItem("token"));
   }
 
-  return serverAPI.get(url,
+  return serverAPI.get(url,{
+    params : params ? params : {}
+  }
+    
   );
 }
 
