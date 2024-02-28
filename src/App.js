@@ -66,7 +66,7 @@ function App() {
           <Route path="/Home/Create-Campaign" element={<CreateCampaigns />} />
           <Route path="/Home/OnGoingCampaigns" element={<OnGoingCampaigns />} />
           <Route path="/AdminPanel/*" element={<AdminPage />} />
-           <Route path="/User/*" element={<UserPage />} />
+          <Route path="/User/*" element={<UserPage />} />
           <Route path="/Home/Donate" element={<Donet />} />
           <Route path="/Home/DonateSettings" element={<DonateSettings />} />
           <Route
@@ -135,17 +135,15 @@ function App() {
             path="/Home/Password-Reset"
             element={<ForgotPasswordSmScreen />}
           />
-          
+
           <Route path="/account-settings" element={<Account />} />
-          <Route path="/donate" element={<Donate />} />
+          <Route path="/Home/donate" element={<Donate />} />
+          <Route path="/Home/donate/:id" element={<Donate />} />
+
           <Route
-            path="/donate/:id"
-            element={<Donate />}
+            path="/adminpanellandingpage"
+            element={<AdminPanelLandingPage />}
           />
-         
-
-          <Route path="/adminpanellandingpage" element={<AdminPanelLandingPage />} />
-
         </Routes>
       </BrowserRouter>
     </div>
