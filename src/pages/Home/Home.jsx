@@ -178,6 +178,8 @@ function Home() {
       daysLeft: "10 Days Left",
     },
   ];
+
+  console.log(localStorage.getItem('user_info'))
   return (
     <>
       <div className="">

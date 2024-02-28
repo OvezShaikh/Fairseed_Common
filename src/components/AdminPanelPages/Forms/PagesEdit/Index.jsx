@@ -5,7 +5,7 @@ import RadioGroup from '../../../inputs/radioGroupAdminPanel'
 import ReactQuilTextField from "../../../inputs/ReactQuilTextField/Index"
 import { FormLabel } from '@mui/material'
 import PrimaryButton from '../../../inputs/PrimaryButton'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const styleLabel = {
     fontFamily: "satoshi",
@@ -17,6 +17,7 @@ const styleLabel = {
 function Index() {
     let { state } = useLocation(); 
     let { id } = state;
+    const navigate = useNavigate()
     console.log(id, "=====<id")
     const initialValues = {
         title: "",
@@ -25,8 +26,6 @@ function Index() {
         show_footer: "",
         New3: "",
         summary: ""
-
-
     }
     return (
         <Formik
@@ -95,7 +94,9 @@ function Index() {
                     />
                 </div>
                 <div className="flex flex-row gap-4 mt-12">
-                    <button className='w-[69px] h-[32px] bg-[#F7F7F7]'>
+                    <button className='w-[69px] h-[32px] bg-[#F7F7F7]'
+                        onClick={() => navigate(-1)}
+                    >
                         <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
                     </button>
                     <PrimaryButton >

@@ -6,7 +6,7 @@ import Doner from "../../../components/layout/Doner";
 import PrimaryButton from "../../../components/inputs/PrimaryButton";
 import { Grid, Typography } from "@mui/material";
 import SecondaryButton from "../../../components/inputs/secondaryButton";
-import { useLocation, useNavigate, useParams, Link  } from "react-router-dom";
+import { useLocation, useNavigate, useParams, Link } from "react-router-dom";
 import React, { useContext, useMemo } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -34,29 +34,29 @@ function CurrentCampaign({
   // const perPage = 1;
   // const page=1;
 
-  const copy_current_url= () =>{
-    
+  const copy_current_url = () => {
+
 
     const currentPageUrl = window.location.href;
 
     // Use the Clipboard API to copy the URL to the clipboard
     navigator.clipboard.writeText(currentPageUrl);
-    toast.info("Link Copied !",{
-      position:'top-center'
+    toast.info("Link Copied !", {
+      position: 'top-center'
     });
-      
+
   }
- 
+
 
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BE_BASE_URL}/campaign/campaign-details/${id}`)
       .then((res) => {
         console.log("API Response:", res.data);
-        
+
         setCardDetails(res.data.data);
-        console.log("CURRENT CAMPAIGN ",cardDetails);
-        
+        console.log("CURRENT CAMPAIGN ", cardDetails);
+
         // setDonor(res.data.donor)
       })
       .catch((error) => {
@@ -234,36 +234,36 @@ function CurrentCampaign({
               - This campaign will collect all funds raised by{" "}
               {cardDetails?.end_date}
             </p>
-            <Link to={`/donate/${id}`}>
-            <PrimaryButton className="w-full max-desktop:w-full"
-              sx={{ padding: "16px", borderRadius: "8px" }}
-            // style={{
+            <Link to={`/Home/donate/${id}`}>
+              <PrimaryButton className="w-full max-desktop:w-full"
+                sx={{ padding: "16px", borderRadius: "8px" }}
+              // style={{
 
-            //   paddingTop: 16,
-            //   paddingBottom: 16,
-            //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
-            //   borderRadius: 8,
-            //   justifyContent: "center",
-            //   alignItems: "center",
-            //   gap: 10,
-            //   display: "inline-flex",
-            // }}
-            >
-              <div style={{ width: 38, position: "relative" }}>
-                <img src={images.coins2} alt="" />
-              </div>
-              <div className="desktop:text-2xl max-desktop:text-[20px] max-tablet:text-base"
-                style={{
-                  color: "rgba(255, 255, 255, 0.90)",
-
-                  fontFamily: "Satoshi ",
-                  fontWeight: "900",
-                  wordWrap: "break-word",
-                }}
+              //   paddingTop: 16,
+              //   paddingBottom: 16,
+              //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
+              //   borderRadius: 8,
+              //   justifyContent: "center",
+              //   alignItems: "center",
+              //   gap: 10,
+              //   display: "inline-flex",
+              // }}
               >
-                Support Cause
-              </div>
-            </PrimaryButton>
+                <div style={{ width: 38, position: "relative" }}>
+                  <img src={images.coins2} alt="" />
+                </div>
+                <div className="desktop:text-2xl max-desktop:text-[20px] max-tablet:text-base"
+                  style={{
+                    color: "rgba(255, 255, 255, 0.90)",
+
+                    fontFamily: "Satoshi ",
+                    fontWeight: "900",
+                    wordWrap: "break-word",
+                  }}
+                >
+                  Support Cause
+                </div>
+              </PrimaryButton>
             </Link>
           </div>
         </div>
@@ -300,7 +300,7 @@ function CurrentCampaign({
                     display: "inline-flex",
                   }}
 
-                  onClick= {copy_current_url}
+                  onClick={copy_current_url}
 
                 >
                   <div className="w-[32px] h-[32px] max-tablet:w-[20px] max-tablet:h-[20px]" style={{ position: "relative" }}>
@@ -363,36 +363,36 @@ function CurrentCampaign({
         </div>
       </div >
       <div className="flex justify-center gap-4 max-desktop:hidden">
-      <Link to={`/donate/${id}`}>
-        <PrimaryButton
-          sx={{ padding: "16px", borderRadius: "8px", paddingLeft: "43px", paddingRight: "43px", }}
-        // style={{
+        <Link to={`/donate/${id}`}>
+          <PrimaryButton
+            sx={{ padding: "16px", borderRadius: "8px", paddingLeft: "43px", paddingRight: "43px", }}
+          // style={{
 
-        //   paddingTop: 16,
-        //   paddingBottom: 16,
-        //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
-        //   borderRadius: 8,
-        //   justifyContent: "center",
-        //   alignItems: "center",
-        //   gap: 10,
-        //   display: "inline-flex",
-        // }}
-        >
-          <div style={{ width: 38, position: "relative" }}>
-            <img src={images.coins2} alt="" />
-          </div>
-          <h1
-            style={{
-              color: "rgba(255, 255, 255, 0.90)",
-              fontSize: 20,
-              fontFamily: "Satoshi ",
-              fontWeight: "900",
-              wordWrap: "break-word",
-            }}
+          //   paddingTop: 16,
+          //   paddingBottom: 16,
+          //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
+          //   borderRadius: 8,
+          //   justifyContent: "center",
+          //   alignItems: "center",
+          //   gap: 10,
+          //   display: "inline-flex",
+          // }}
           >
-            Support Cause
-          </h1>
-        </PrimaryButton>
+            <div style={{ width: 38, position: "relative" }}>
+              <img src={images.coins2} alt="" />
+            </div>
+            <h1
+              style={{
+                color: "rgba(255, 255, 255, 0.90)",
+                fontSize: 20,
+                fontFamily: "Satoshi ",
+                fontWeight: "900",
+                wordWrap: "break-word",
+              }}
+            >
+              Support Cause
+            </h1>
+          </PrimaryButton>
         </Link>
         <SecondaryButton
           sx={{ padding: "16px", borderRadius: "8px", background: "#FFF6F5", paddingLeft: "30px", paddingRight: "30px", }}

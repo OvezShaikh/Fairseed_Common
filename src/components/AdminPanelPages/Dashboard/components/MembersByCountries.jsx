@@ -1,8 +1,10 @@
 import { VectorMap } from "@react-jvectormap/core";
 import { worldMill } from "@react-jvectormap/world";
 import React from "react";
+import { useState } from "react";
 
 const MembersByCountries = () => {
+  const [mapPosition, setMapPosition] = useState([40, 0]);
   return (
     <div className="rounded-lg shadow-md ">
       <VectorMap

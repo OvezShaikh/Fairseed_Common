@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import TuneIcon from "@mui/icons-material/Tune";
 import HelpIcon from "@mui/icons-material/Help";
@@ -11,10 +11,30 @@ import Badge from "@mui/material/Badge";
 import { Avatar, Grid, Stack } from "@mui/material";
 import { Search } from "../inputs/Search";
 import { Link } from "react-router-dom";
+import { useGetAll } from "../../Hooks";
 
 const Navbar = () => {
   const isTab = useMediaQuery("(max-width: 1100px)");
   const sideBar = useMediaQuery("(max-width: 900px)");
+
+  const [user , setUser] = useState({})
+
+  let userData = localStorage.getItem('user_info')
+  let Data = JSON.parse(userData)
+  let id = Data?.id
+  useGetAll({
+    key: `/admin-dashboard/users/${id}`,
+    enabled: true,
+    select: (data) => {
+      console.log(data)
+        return data.data.data;
+    },
+    onSuccess: (data) => {
+      console.log(data)
+      setUser(data); 
+    },
+
+  })
 
   return (
     <>
@@ -75,10 +95,10 @@ const Navbar = () => {
                 }}
               >
                 <p className="text-truncate m-0" style={{ maxWidth: "100%" }}>
-                  {"Username"}
+                  {user?.username}
                 </p>
                 <p className="text-truncate m-0" style={{ maxWidth: "100%" }}>
-                  {"Designation"}
+                {user?.user_role}
                 </p>
               </Stack>
               <DropDown >

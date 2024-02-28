@@ -16,6 +16,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
 }
 
 :root {
@@ -46,7 +47,7 @@ body {
   min-height: calc(100vh - 120px);
   margin: 148px 0px 20px 270px;
   padding: 0em 1em 0em 2.2em;
- 
+
 }
 
 .ql-toolbar.ql-snow {
@@ -304,6 +305,7 @@ body {
   font-weight: 700;
   color: rgba(97, 101, 106, 1);
 }
+
 .leaflet-container {
   height: 45vh;
   width: 85%;
@@ -349,3 +351,33 @@ body {
 .otp-input input:active {
   border: 1px solid red;
 }
+
+.leaflet-container {
+  height: 45vh;
+  width: 85%;
+  border-radius: 1rem;
+}
+
+
+
+
+.makeStyles-textField-1:focus-within{
+  margin-top: -1px;
+  border: 1px solid black;
+}
+
+/* Select Field SVG start */
+.MuiAutocomplete-endAdornment{
+  background-image: url(../src/assets/DownArrow.png);
+  width: 14px;
+  height: 8px;
+  background-repeat: no-repeat;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.MuiAutocomplete-endAdornment button svg{
+  display: none;
+}
+
+/* Select Field SVG end */

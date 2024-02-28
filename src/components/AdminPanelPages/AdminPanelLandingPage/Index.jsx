@@ -15,8 +15,8 @@ import { useLoaderData, useLocation } from 'react-router-dom';
 const InputStyle =
 {
     padding: '0px 16px', border: "1px solid #e2e2e2",
-    borderRadius:"4px",
-    fontSize:16,
+    borderRadius: "4px",
+    fontSize: 16,
     // },
     "&:focus-within": {
         boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
@@ -26,7 +26,7 @@ const InputStyle =
 
 
 
-const  LandingPage = ()=> {
+const LandingPage = () => {
 
     const [data , setData ] = useState({})
    
@@ -51,9 +51,9 @@ const  LandingPage = ()=> {
     return (
         <>
             <AdminNavbar />
-            <div className='admin-panel-landing-page pt-[150px]'>
+            <div className='admin-panel-landing-page'>
                 <Formik>
-                    <Form>
+                    <Form className='flex flex-col items-center'>
                         <div className='upload-div flex flex-wrap gap-x-[242px] gap-y-[68px]'>
                             <div className='single-div'>
                                 <Box>
@@ -70,9 +70,10 @@ const  LandingPage = ()=> {
                                         label="Logo:"
                                         // onChange={(file) => formik.setFieldValue("adhar", file)}
                                         name="document"
-                                        placeholder="Recommended size: 150x50 px (PNG)"
+                                        placeholder="Recommended\n size: 150x50 px (PNG)"
                                         sx={{ padding: '20px' }}
                                         multiple={false}
+                                        className="uploadField"
 
 
                                     /></div>
@@ -239,27 +240,33 @@ const  LandingPage = ()=> {
                                     /></div>
 
                             </div>
-                           
+
                         </div>
-                        <div className='default-link-div flex items-center'>
+                        <div className="w-full">
+                            <div className='default-link-div flex items-center w-[30%] pt-4'>
                                 <InputField
 
                                     name="title"
                                     sx={InputStyle}
 
-                                    
+
                                     label="Default Link Colour"
                                     placeholder="Placeholder Text"
+
+                                    className="inputField w-full max-w-[510px]"
 
                                 />
 
                             </div>
+                        </div>
+                        <div className="pt-4">
                             <PrimaryButton className="mx-auto">Save</PrimaryButton>
-                            
+                        </div>
+
+
                     </Form>
                 </Formik>
             </div>
-        
         </>
     )
 }

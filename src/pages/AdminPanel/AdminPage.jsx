@@ -22,14 +22,16 @@ import UserEdit from '../../components/AdminPanelPages/Forms/UserEdit/Index'
 import View from '../../components/AdminPanelPages/Withdrawals/View'
 import PaymentGateway from '../../components/AdminPanelPages/PaymentGateway/Index'
 import CausesView from "../../components/AdminPanelPages/CauseKYC/CausesView";
-import LandingPage from "../../components/AdminPanelPages/AdminPanelLandingPage/Index" 
+import LandingPage from "../../components/AdminPanelPages/AdminPanelLandingPage/Index"
 import CauseEdit_Form from '../../components/AdminPanelPages/CauseEditApprovel/CauseEdit'
 import CauseEdit from '../../components/AdminPanelPages/CauseEditApprovel/Index'
+import Scholarships from "../../components/AdminPanelPages/Scholarships/Index";
+import CampaignView from "../../components/AdminPanelPages/Forms/CampaignVeiw/Index";
 
 function AdminPage() {
   return (
     <Routes>
-     
+
       <Route
         path="/"
         element={
@@ -60,7 +62,7 @@ function AdminPage() {
         path="/Landing-Page"
         element={
           <AdminLayout>
-            < LandingPage/>
+            < LandingPage />
           </AdminLayout>
         }
       />
@@ -113,6 +115,14 @@ function AdminPage() {
         }
       />
       <Route
+        path="/Causes-Edit-Approval/View"
+        element={
+          <AdminLayout>
+            <CampaignView />
+          </AdminLayout>
+        }
+      />
+      <Route
         path="/Scholarship-Cause"
         element={
           <AdminLayout>
@@ -136,7 +146,7 @@ function AdminPage() {
           </AdminLayout>
         }
       />
-       {/* <Route
+      {/* <Route
         path="/Reported-Cause/View"
         element={
           <AdminLayout>
@@ -212,7 +222,7 @@ function AdminPage() {
         path="/Scholarships"
         element={
           <AdminLayout>
-            <Scholarship />
+            <Scholarships />
           </AdminLayout>
         }
       />
