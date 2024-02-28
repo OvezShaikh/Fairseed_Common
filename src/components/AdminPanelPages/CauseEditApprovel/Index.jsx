@@ -62,7 +62,7 @@ function CauseEdit_Form() {
     const handleDelete = () => {
         // Logic to delete the image from the backend goes here
         // After successful deletion, update the imageUrl state
-        setImageUrl('');
+        setDataUrl(null);
     };
 
 
@@ -77,7 +77,7 @@ function CauseEdit_Form() {
         key: `/admin-dashboard/campaign/${id}`,
         enabled: true,
         select: (data) => {
-            // console.log(data.data.data);
+            console.log(data.data.data,"Particular ID value----------->");
             return data.data.data;
         },
         onSuccess: (data) => {
@@ -93,11 +93,12 @@ function CauseEdit_Form() {
         key: `/admin-dashboard/category?page=1&limit=10`,
         enabled: true,
         select: (data) => {
-            // console.log(data.data.data);
+            console.log(data.data.rows);
             return data.data.rows;
         },
         onSuccess: (data) => {
             setCategory(data);
+            console.log(data, "data ------------------->")
            
 
 
@@ -147,7 +148,7 @@ function CauseEdit_Form() {
                 <Form className='flex flex-col items-center'>
                     <div className="flex w-[100%] mt-2 gap-14 max-tablet:flex-col max-desktop:flex-col">
                         <div className="flex flex-col w-[70%] max-tablet:w-[100%] max-desktop:w-[100%] gap-10 items-center">
-                            <ImageBackgroundWithDeleteButton imgUrl={imageUrl} onChange={(e) =>setDataUrl(e.target.value)} setDataUrl={setDataUrl} onDelete={handleDelete} />
+                            <ImageBackgroundWithDeleteButton imgUrl={dataUrl} onChange={(e) =>setDataUrl(console.log(imageUrl,""))} setDataUrl={setDataUrl} onDelete={handleDelete} />
                             <div className="w-full">
                                 <InputField
                                     value={values?.title}
