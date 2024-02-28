@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import images from "../../../../constants/images";
 
 const DashboardActivities = () => {
   return (
@@ -21,8 +22,11 @@ const DashboardActivities = () => {
         <h3 className='font-bold text-3xl mt-3'>27</h3>
       </div>
       <div className='px-[16px] py-[14px] shadow-md w-[163.19px] h-[150.56px] rounded-2xl'>
-        <p className='font-medium'>Visits</p>
-        <h3 className='font-bold text-3xl mt-3'>86%</h3>
+        <p className='font-medium'>Visits</p> 
+        <div className='flex flex-row items-center'>
+        <span className='font-bold text-3xl mt-3'>86%</span><img src={images.riseArrow} alt="" className='w-[18px] h-[12px] mt-[15px]'/>  
+        </div>
+        <img src={images.StaticGraph} alt="" />
       </div>
       <div className='px-[16px] py-[14px] shadow-md w-[163.19px] h-[150.56px] rounded-2xl'>
         <p className='font-medium'>Total Users</p>

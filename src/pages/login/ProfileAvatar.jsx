@@ -11,12 +11,13 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-import { Link } from 'react-router-dom';
+import { Link, json } from 'react-router-dom';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from 'axios';
 import serverAPI from '../../config/serverAPI';
 import images from '../../constants/images';
+import { useGetAll } from '../../Hooks';
 
 
 
@@ -26,7 +27,7 @@ export default function ProfileAvatar() {
   function logout() {
     // Remove the 'token' item from localStorage
     localStorage.removeItem('token');
-    localStorage.removeItem('user_role');
+    localStorage.removeItem('user_info');
     console.log(localStorage.getItem('token'))
     window.location.href = '/Home';
     toast.error("Logout Successful !",{
@@ -34,7 +35,7 @@ export default function ProfileAvatar() {
     })
   }
 
-
+const [user , setUser] = React.useState({})
 
   const open = Boolean(anchorEl);
 
@@ -45,6 +46,27 @@ export default function ProfileAvatar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  let userData = localStorage.getItem('user_info')
+  let Data = JSON.parse(userData)
+  console.log(Data)
+  let id = Data?.id
+  
+
+  // useGetAll({
+  //   key: `/admin-dashboard/users/${id}`,
+  //   enabled: true,
+  //   select: (data) => {
+  //     console.log(data)
+  //       return data.data.data;
+  //   },
+  //   onSuccess: (data) => {
+  //     console.log(data)
+  //     setUser(data); 
+  //   },
+
+  // })
+  
 
   return (
     <React.Fragment>

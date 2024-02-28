@@ -31,13 +31,17 @@ const useLogin = () => {
       toast.success("Logged in Successfully ", {
         position: "top-center",
       });
+      const userinfo = res.data.user_info;
+      const info = JSON.stringify(userinfo)
       localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user_role", res.data.user_info.user_role);
+      localStorage.setItem("user_info", info);
+      console.log(userinfo)
+
       setTimeout(() => {
         window.location.href = "/Home";
       }, 2000);
       console.log(localStorage.getItem("token"));
-      console.log(localStorage.getItem("userRole"));
+      // console.log(localStorage.getItem("userRole"));
     } catch (error) {
       console.log(error, "error from catch");
       toast.error("please enter valid credentials", {

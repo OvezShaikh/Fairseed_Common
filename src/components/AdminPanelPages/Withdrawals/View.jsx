@@ -1,5 +1,5 @@
 import { Form, Formik } from 'formik'
-import React from 'react'
+import React, { useState } from 'react'
 import InputField from '../../inputs/InputAdminField/Index'
 import AdminSelectField from '../../inputs/AdminSelectField/Index'
 import SuccessButton from '../../inputs/SuccessButton/Index'
@@ -7,6 +7,7 @@ import PrimaryButton from '../../inputs/PrimaryButton'
 import ErrorIcon from "@mui/icons-material/Error";
 import { useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { useGetAll } from '../../../Hooks'
 
 
 
@@ -16,10 +17,11 @@ const initialValues = {
 
 
 function View() {
+
     let { state } = useLocation();
      let { id } = state;
      
-    console.log(id, "=====<id")
+   const [ data , setData ] = useState({});
 
     const copyRowToClipboard = () => {
         const rowData = document.getElementById('table-row').innerText;
@@ -34,10 +36,24 @@ function View() {
                 toast.error('Success', { position: "bottom-center" })
             });
     };
+
+
+    useGetAll({
+        // key: `/admin-dashboard/landing-page?page=1&limit=4`,
+        enabled: true,
+        select: (data) => {
+          console.log(data)
+            return data.data.rows[0];
+        },
+        onSuccess: (data) => {
+          console.log(data)
+          setData(data); 
+        },
+    })
+
     return (
         <Formik
-            initialValues={{}}
-            onSubmit={{}}
+           
         >
             <Form className='flex flex-col items-center '>
                 <div className="flex gap-4 w-full">
