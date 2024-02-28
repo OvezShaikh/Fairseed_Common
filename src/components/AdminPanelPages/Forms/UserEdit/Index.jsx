@@ -26,6 +26,7 @@ const InputStyle =
 function Index() {
    
     const [User , setUser] = useState({});
+    const [role , setRole] = useState([])
     const [isImageDeleted, setIsImageDeleted] = useState(false);
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
     const [deleteSuccess, setDeleteSuccess] = useState(false);
@@ -69,6 +70,21 @@ function Index() {
         },
     });
 
+    useGetAll({
+        key: `/admin-dashboard/user-roles?page=1&limit=10`,
+        enabled: true,
+        select: (data) => {
+            console.log(data)
+            return data.data.data;
+        },
+        onSuccess: (data) => {
+            setRole(data);
+
+        },
+    });
+
+
+
     const { mutate } = useCreateOrUpdate({
         url:`/admin-dashboard/users/${id}`
     })
@@ -96,12 +112,21 @@ function Index() {
                         },
                     });
                 }}
-                >
+                >{({ values})=>(
+
+                
                     <Form className="flex flex-col w-[100%] gap-4 items-center">
                         <div className="w-full">
                             <InputField sx={InputStyle} name={"name"} label={"Name:"} />
                         </div>
-                        <SelectField name={"role"} label={"Role:"} />
+                        <SelectField name={"role"}
+                             label={"Role:"} 
+                                required={true}
+                                value={values?.role}
+                                options={role.map((item) => ({
+                                    label: item.name,
+                                    value: item.id,
+                                }))}/>
                         <div className="w-full">
                             <InputField sx={InputStyle} name={"email"} label={"Email Id:"} />
                         </div>
@@ -120,12 +145,13 @@ function Index() {
                         </div>
 
                     </Form>
+                    )}
 
                 </Formik>
             </div>
             <div className='w-[30%] overflow-y-scroll h-[700px]'>
                 <Formik >
-
+                            
                     <Form className="flex w-[100%] pr-2 flex-col">
 
                         <ImageEditor

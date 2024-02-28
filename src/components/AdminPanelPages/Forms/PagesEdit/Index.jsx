@@ -19,9 +19,9 @@ function Index() {
     console.log(id, "=====<id")
     const initialValues = {
         title: "",
-        url: "",
-        New1: "",
-        New2: "",
+        slug: "",
+        show_navbar: "",
+        show_footer: "",
         New3: "",
         summary: ""
 

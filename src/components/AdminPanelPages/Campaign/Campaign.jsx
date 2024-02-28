@@ -3,7 +3,7 @@ import ReactTable from '../../Table/index';
 import { useState } from 'react';
 import { Button, Checkbox } from '@mui/material';
 import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
-import { LocationConfigurationDialog } from '../../admin-console/LocationConfigurationDialog';
+import { LocationConfigurationDialog } from '../../admin-console/AddCategorydialog';
 import Columnfilter from '../../Table/Columnfilter'
 import SecondaryButton from '../../inputs/secondaryButton';
 import CauseEdit from '../CauseEditApprovel/Index';
@@ -153,7 +153,7 @@ const Campaign = () => {
         checkboxComponent={IndeterminateCheckbox}
         url={`/admin-dashboard/campaign?page=1&limit=4`}
         extraQuery={{ inactive: true }}
-        addButton={<LocationConfigurationDialog />}
+        // addButton={<LocationConfigurationDialog />}
         // addButton={<Button>HElloooooo</Button>}
         selectedRowID={selectedRowID}
       />

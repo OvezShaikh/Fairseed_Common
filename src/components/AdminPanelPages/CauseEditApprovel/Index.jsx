@@ -20,6 +20,7 @@ import ImageBackgroundWithDeleteButton from '../../layout/CropAddImage/Index';
 import Attachments from '../../layout/Attachments/Index'
 import { useCreateOrUpdate, useGetAll } from '../../../Hooks'
 import { Link, useLocation, useNavigate } from "react-router-dom"
+import { toast } from 'react-toastify'
 const InputStyle =
 {
     padding: '20px', border: "1px solid #e2e2e2",
@@ -43,14 +44,13 @@ const InputStyleDate =
 function CauseEdit_Form() {
     let { state } = useLocation();
     let { id } = state;
-    // const imageUrlFromBackend = 'https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'
     const [documents, setDocuments] = useState([]);
     const [dataUrl, setDataUrl] = useState(null);
     const [Category, setCategory] = useState([]);
 
     const handleDocumentUpload = (documentUrl) => {
         setDocuments([...documents, documentUrl]);
-        // console.log(setDocuments, '================>docs');
+        
     };
     const navigate = useNavigate();
 
@@ -60,8 +60,7 @@ function CauseEdit_Form() {
     const [imageUrl, setImageUrl] = useState("https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"); // State to store the image URL
 
     const handleDelete = () => {
-        // Logic to delete the image from the backend goes here
-        // After successful deletion, update the imageUrl state
+        setDataUrl('')
         setImageUrl('');
     };
 
@@ -93,7 +92,7 @@ function CauseEdit_Form() {
         key: `/admin-dashboard/category?page=1&limit=10`,
         enabled: true,
         select: (data) => {
-            // console.log(data.data.data);
+            console.log(data.data.rows);
             return data.data.rows;
         },
         onSuccess: (data) => {
@@ -108,6 +107,8 @@ function CauseEdit_Form() {
         url: `/admin-dashboard/campaign/${id}`,
         method: "put",
     })
+
+
     const initial_values = {
         campaign_image:user.campaign_image || "",
         title: user.title || "",
@@ -126,19 +127,26 @@ function CauseEdit_Form() {
     if (!isSuccess) {
         return <div>Loading...</div>;
     }
-    // console.log(initial_values);
+
+    const handleSubmit = (values)=>{
+        const formData = new FormData();
+        formData.append('campaign_image', values)
+        mutate(values, {
+            onSuccess: (response) => {
+                toast.success("Cause updated Succcessfully ! ",{
+                    position:'top-right'
+                })
+            },
+        });
+
+    }
 
     return (
         <Formik
             initialValues={initial_values}
             enableReinitialize={true}
             onSubmit={(values) => {
-                mutate(values, {
-                    onSuccess: (response) => {
-                        // console.log(response);imageUrl
-                        // Handle successful API response here
-                    },
-                });
+               handleSubmit(values)
             }}
 
         >
@@ -147,8 +155,18 @@ function CauseEdit_Form() {
                 <Form className='flex flex-col items-center'>
                     <div className="flex w-[100%] mt-2 gap-14 max-tablet:flex-col max-desktop:flex-col">
                         <div className="flex flex-col w-[70%] max-tablet:w-[100%] max-desktop:w-[100%] gap-10 items-center">
-                            <ImageBackgroundWithDeleteButton imgUrl={imageUrl} onChange={(e) =>setDataUrl(e.target.value)} setDataUrl={setDataUrl} onDelete={handleDelete} />
+                            <ImageBackgroundWithDeleteButton 
+                            name = {'campaign_image'}
+                            imgUrl={dataUrl} 
+                            onChange={(e) =>{
+                                setDataUrl(e.target.files[0]);
+                                setImageUrl(e.target.files[0])}
+                            }
+                             setDataUrl={setDataUrl}
+                              onDelete={handleDelete}
+                              multiple={false} />
                             <div className="w-full">
+
                                 <InputField
                                     value={values?.title}
                                     onChange={handleChange}
@@ -156,8 +174,6 @@ function CauseEdit_Form() {
                                     name={"title"}
                                     label={"Title of Campaign:"} required={"true"} placeholder={"Minimum 50 INR"} />
                             </div>
-                            {/* <img src={imageUrl} alt=''/>
-                            {console.log(imageUrl ,"+++++++++++++++++++++")} */}
                             <SelectField
                                 name={"category"}
                                 required={true}
