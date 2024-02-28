@@ -36,7 +36,7 @@ const UserSignUp_02 = () => {
   return (
     <>
 
-      <button
+      <Button
         onClick={handleOpen}
         type='button'
       >
@@ -46,7 +46,7 @@ const UserSignUp_02 = () => {
           "-webkit-text-fill-color": "transparent"
         }}> Register </span>
 
-      </button>
+      </Button>
 
       <Dialog
         sx={{

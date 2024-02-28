@@ -361,13 +361,13 @@ body {
 
 
 
-.makeStyles-textField-1:focus-within{
+.makeStyles-textField-1:focus-within {
   margin-top: -1px;
   border: 1px solid black;
 }
 
 /* Select Field SVG start */
-.MuiAutocomplete-endAdornment{
+.MuiAutocomplete-endAdornment {
   background-image: url(../src/assets/DownArrow.png);
   width: 14px;
   height: 8px;
@@ -376,7 +376,7 @@ body {
   margin-right: 10px;
 }
 
-.MuiAutocomplete-endAdornment button svg{
+.MuiAutocomplete-endAdornment button svg {
   display: none;
 }
 

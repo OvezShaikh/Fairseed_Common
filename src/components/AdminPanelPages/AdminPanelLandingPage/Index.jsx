@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../../../components/layout/Navbar'
 import Footer from '../../../components/layout/Footer'
 import { Field, Form, Formik, useFormik, useFormikContext } from "formik";
@@ -9,6 +9,7 @@ import "./AdminPanelLandingPage.css";
 import InputField from '../../inputs/InputField';
 import PrimaryButton from '../../inputs/PrimaryButton';
 import AdminNavbar from '../../layout/AdminNavbar'
+import { useCreateOrUpdate, useGetAll } from '../../../Hooks';
 
 const InputStyle =
 {
@@ -25,6 +26,25 @@ const InputStyle =
 
 
 const LandingPage = () => {
+
+    const [data, setData] = useState({})
+
+    useGetAll({
+        key: `/admin-dashboard/landing-page?page=1&limit=4`,
+        enabled: true,
+        select: (data) => {
+            console.log(data)
+            return data.data.rows[0];
+        },
+        onSuccess: (data) => {
+            console.log(data)
+            setData(data);
+        },
+    })
+
+    const { mutate } = useCreateOrUpdate({
+        url: `/admin-dashboard/landing-page`
+    })
 
     return (
         <>
@@ -245,6 +265,7 @@ const LandingPage = () => {
                     </Form>
                 </Formik>
             </div>
+
         </>
     )
 }

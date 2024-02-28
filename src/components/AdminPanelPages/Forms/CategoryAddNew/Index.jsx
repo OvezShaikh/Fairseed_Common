@@ -4,14 +4,18 @@ import InputAdminField from '../../../inputs/InputAdminField/Index'
 import AdminUploadField from "../../../inputs/AdminUploadField/Index"
 import RadioGroup from '../../../inputs/radioGroupAdminPanel'
 import PrimaryButton from '../../../inputs/PrimaryButton'
-import { useLocation } from 'react-router-dom'
-import { useGetAll } from '../../../../Hooks'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useCreateOrUpdate, useGetAll } from '../../../../Hooks'
+import { toast } from 'react-toastify'
+
 
 function AddNew() {
 
     let { state } = useLocation(); 
     let { id } = state;
     const [Category , setCategory ] = useState({});
+
+    const navigate = useNavigate();
     useGetAll({
         key: `/admin-dashboard/category/${id}`,
         enabled: true,
@@ -31,10 +35,24 @@ function AddNew() {
         status:Category.is_active ||  ""
     }
 
+    const { mutate } = useCreateOrUpdate({
+        url:`/admin-dashboard/category/${id}`,
+        method:'put'
+    })
+ 
     return (
         <Formik
            enableReinitialize={true} 
             initialValues={initialValues}
+            onSubmit={(values)=>{
+                mutate(values , {
+                    onSuccess:()=>{
+                        toast.success("Category Updated Successfully ! " ,{
+                            position:'top-right'
+                        })
+                    }
+                })
+            }}
 
         >
               {({ values, setFieldValue, handleChange }) => (
@@ -68,10 +86,12 @@ function AddNew() {
                     </div>
                 </div>
                 <div className="flex flex-row gap-4 mt-12">
-                    <button className='w-[69px] h-[32px] bg-[#F7F7F7]'>
+                    <button className='w-[69px] h-[32px] bg-[#F7F7F7]' onClick={()=>{
+                        navigate(-1)
+                    }}>
                         <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
                     </button>
-                    <PrimaryButton >
+                    <PrimaryButton type='submit' >
                         <h1 className='text-white font-semibold font-[satoshi]'>Save</h1>
                     </PrimaryButton>
 

@@ -2,7 +2,6 @@ import React from 'react'
 import ReactTable from '../../Table/index'
 import { useState } from 'react';
 import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
-import { LocationConfigurationDialog } from '../../admin-console/LocationConfigurationDialog';
 import { IoIosConstruct } from "react-icons/io";
 
 import { Link } from 'react-router-dom';

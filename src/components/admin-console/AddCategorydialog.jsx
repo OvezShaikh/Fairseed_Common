@@ -2,7 +2,7 @@ import { Add, Edit } from "@carbon/icons-react";
 import { Grid, Box, Button } from "@mui/material";
 import React from "react";
 import * as yup from "yup";
-import { Form, Formik } from "formik";
+import { Form, Formik, useFormikContext } from "formik";
 import { useQueryClient } from "react-query";
 import { Dialog } from "../layout/dialogBox/dialog";
 import { useCreateOrUpdate, useGetAll } from "../../Hooks";
@@ -13,7 +13,6 @@ import InputField from "../inputs/InputField";
 import CustomSwitch from "../inputs/customSwitch";
 import SelectField from "../inputs/SelectField";
 import { toast } from "react-toastify";
-import ErrorIcon from "@mui/icons-material/Error";
 import InputAdminField from '../inputs/InputAdminField/Index'
 import AdminUploadField from "../inputs/AdminUploadField/Index"
 import RadioGroup from '../inputs/radioGroupAdminPanel'
@@ -22,9 +21,9 @@ import RadioGroup from '../inputs/radioGroupAdminPanel'
 
 const initialValues = {
   name: "",
-  url: "",
-  thumbnail: "",
-  New8: ""
+  slug: "",
+  image: "",
+  is_active:false,
 }
 
 export const LocationConfigurationDialog = ({
@@ -34,64 +33,50 @@ export const LocationConfigurationDialog = ({
   onSuccess,
   onClose,
 }) => {
-  const queryClient = useQueryClient();
 
-  const { mutate, isLoading } = useCreateOrUpdate({
-    url: isUpdate ? `/admin/location/${data?.id}` : "/admin/location",
-    method: isUpdate ? "put" : "post",
-    onSuccess: () => onSuccess && onSuccess(),
-  });
+  const { mutate } = useCreateOrUpdate({
+    url:`/admin-dashboard/category`
+  })
 
-  const { data: countryData } = useGetAll({
-    key: `/admin/location/country`,
+  const handleSubmit = (values ) =>{
+    // values.preventDefault();
+    const formData = new FormData();
+    formData.append('image', values?.image);
+    formData.append('name', values?.name);
+    formData.append('slug', values?.slug);
+    formData.append('is_active', values?.is_active);
 
-    enabled: true,
-  });
-
-  const { data: PolicyOptions } = useGetAll({
-    key: `/admin/policy`,
-    enabled: true,
-  });
+    mutate( formData , {
+      onSuccess : ()=>{
+        toast.success(" Category Added" , {
+          position:'top-right'
+        })
+      }
+    })
+  }
+  
 
   return (
     <Dialog
-      title={`${isUpdate ? "Update" : "Add"}  Category`}
+      title={'Category'}
       onClose={() => onClose && onClose()}
       button={
-        isUpdate ? (
-          <Button
-            onClick={() => onEditClick && onEditClick()}
-            startIcon={<Edit />}
-            className="text-capitalize"
-            sx={{
-              lineHeight: "18px",
-              fontFamily: "FuturaLight",
-              fontWeight: "300",
-              fontSize: {
-                xs: "0.8rem",
-                lg: "0.9rem",
-              },
-            }}
-            variant="text"
-          >
-            View/Edit
-          </Button>
-        ) : (
           <PrimaryButton
             className="text-capitalize"
             startIcon={<Add size={24} />}
           >
             Add New
           </PrimaryButton>
-        )
       }
     >
-      {({ onClose }) => (
+      {({ onClose  }) => (
         <Formik
-
           initialValues={initialValues}
-
+          onSubmit={(values)=>handleSubmit(values)}
         >
+          {({setFieldValue})=>(
+
+         
           <Form className='flex flex-col items-center px-4'>
             <div className='flex w-full gap-4'>
               <div className="w-full">
@@ -104,18 +89,25 @@ export const LocationConfigurationDialog = ({
             </div>
             <div className="flex w-full mt-8 gap-4">
               <div className="w-full " Style>
-                <AdminUploadField name={"thumbnail"} label='Thumbnail (Optainal)' />
+                <AdminUploadField
+                label='Thumbnail (Optional)'
+                 placeholder="Recommended size: 150x50 px (PNG)"
+                 sx={{ padding: '20px' }}
+                 multiple={false}
+                name={"image"} 
+                 />
               </div>
               <div className=" w-full ">
                 <RadioGroup
-                  name={"New8"}
-
+                  name={"is_active"}
+                  onChange={(e) => {
+                    setFieldValue("is_active", e.target.value);
+                  }}
                   options={[
-                    { label: "Active", value: "Active" },
-                    { label: "Inactive", value: "Inactive" },
+                    { label: "Active", value: true },
+                    { label: "Inactive", value: false },
                   ]}
-                  label="Status"
-                // onChange={onChange}
+               
 
                 />
               </div>
@@ -128,12 +120,13 @@ export const LocationConfigurationDialog = ({
                 className='w-[69px] h-[32px] bg-[#F7F7F7]'>
                 <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
               </button>
-              <PrimaryButton >
+              <PrimaryButton type='submit' >
                 <h1 className='text-white font-semibold font-[satoshi]'>Save</h1>
               </PrimaryButton>
 
             </div>
           </Form>
+           )}
         </Formik>
       )}
     </Dialog>

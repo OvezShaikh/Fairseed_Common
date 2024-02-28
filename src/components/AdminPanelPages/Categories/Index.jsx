@@ -3,7 +3,7 @@ import ReactTable from '../../Table/index'
 import { useState } from 'react';
 import { Button, Checkbox, TextField } from '@mui/material';
 // import CheckBox from "../../../components/inputs/checkBox"
-import { LocationConfigurationDialog } from '../../admin-console/LocationConfigurationDialog';
+import { LocationConfigurationDialog } from '../../admin-console/AddCategorydialog';
 import { Formik } from 'formik';
 import images from '../../../constants/images';
 import { GoDotFill } from "react-icons/go";

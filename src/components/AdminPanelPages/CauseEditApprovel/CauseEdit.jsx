@@ -3,8 +3,7 @@ import ReactTable from '../../Table/index';
 import { useState } from 'react';
 import { Button, Checkbox } from '@mui/material';
 import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
-import { LocationConfigurationDialog } from '../../admin-console/LocationConfigurationDialog';
-import Columnfilter from '../../Table/Columnfilter'
+import { LocationConfigurationDialog } from '../../admin-console/AddCategorydialog';
 import SecondaryButton from '../../inputs/secondaryButton';
 import CauseEdit from '../CauseEditApprovel/Index';
 import { GoDotFill } from "react-icons/go";

@@ -125,7 +125,7 @@ export const PagesAddNew = ({
                 </div>
 
               </div>
-              <div className="flex gap-32 w-full pt-8">
+              <div className="flex gap-32 w-full pt-8 max-tablet:flex-col max-tablet:gap-4">
                 <div className="  lg:w-[25%] ">
                   <RadioGroup
                     name={"show_navbar"}

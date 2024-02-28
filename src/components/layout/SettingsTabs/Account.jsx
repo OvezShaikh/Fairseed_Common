@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Formik, Form } from 'formik';
 import Avatar from '../../layout/Avatar/Index'
 import InputField from '../../inputs/InputField';
 import CountrySelect from '../../inputs/countrySelect/index';
+import { useCreateOrUpdate, useGetAll } from '../../../Hooks';
 
 
 const InputStyle =
@@ -27,14 +28,35 @@ const SelectStyle =
 }
 
 
-const initialValues={
+
+
+
+const Account = () => {
+  const [ user , setUser] = useState({})
+
+  const { mutate } = useCreateOrUpdate({
+
+  })
+  
+  const { data } = useGetAll({
+    // key: `/admin-dashboard/campaign-kyc/${id}`,
+    enabled: true,
+    select: (data) => {
+        return data?.data?.data;
+    },
+    onSuccess: (data) => {
+      setUser(data);
+        console.log(data);
+    },
+  })
+
+  const initialValues={
     full_name:"",
     email:"",
     m_number:0,
     Country:""
   }
 
-const Account = () => {
   return (
     <Formik
           initialValues={initialValues}

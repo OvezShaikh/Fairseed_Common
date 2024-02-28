@@ -50,7 +50,7 @@ export default function LabTabs({ onChange, src }) {
     setValue(newValue);
   };
 
-  const [age, setAge] = React.useState('');
+  const [age, setAge] = useState('');
 
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>
