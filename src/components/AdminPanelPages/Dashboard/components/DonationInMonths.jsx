@@ -140,17 +140,17 @@ const LinearGradientBar = (props) => {
 
 
 export default function DonationInMonths()  {
-  const [fundRaised, setFundRaised] = useState(0);
-  const [goalAmount, setGoalAmount] = useState(0);
+  const [fundRaised, setFundRaised] = useState(5000);
+  const [goalAmount, setGoalAmount] = useState(10000);
   
 
   
     return (
-      <div className='rounded-lg shadow-md p-5 '>
-      <ResponsiveContainer width="100%" height="100%">
+      <div className='rounded-lg shadow-lg p-5 '>
+      <ResponsiveContainer width="100%" height={300}>
         <BarChart
           width={500}
-          height={500}
+          height={200}
           data={data}
           margin={{
             top: 5,
@@ -179,6 +179,6 @@ export default function DonationInMonths()  {
           
         </BarChart>
       </ResponsiveContainer>
-      </div>
+       </div>
     );
   }
