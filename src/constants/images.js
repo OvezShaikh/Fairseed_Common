@@ -85,6 +85,8 @@ import CheckBoxGradient from "../assets/CheckBoxGradient.png";
 import AdminPanelDropzone from "../assets/AdminPanelDropzone.png";
 import Dashboard from "../assets/Dashboard.svg";
 import DownArrow from "../assets/DownArrow.png";
+import riseArrow from "../assets/riseArrow.png";
+import StaticGraph from "../assets/StaticGraph.png";
 
 export default {
   SedalCheck,
@@ -172,4 +174,6 @@ export default {
   AdminPanelDropzone,
   Dashboard,
   DownArrow,
+  riseArrow,
+  StaticGraph,
 };
