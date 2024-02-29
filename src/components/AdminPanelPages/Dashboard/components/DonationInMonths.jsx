@@ -1,89 +1,96 @@
-import React, { PureComponent, useState } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceDot } from 'recharts';
-import "./DonationInMonths.css"
+import React, { PureComponent, useState } from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  ReferenceDot,
+} from "recharts";
+import "./DonationInMonths.css";
 
 const data = [
   {
-    date: '2023-01',
+    date: "2023-01",
     uv: 4000,
-   
+
     amt: 2400,
   },
   {
-    date: '2023-02',
+    date: "2023-02",
     uv: 3000,
-    
+
     amt: 2210,
   },
   {
-    date: '2023-03',
+    date: "2023-03",
     uv: 2023,
-   
+
     amt: 2290,
   },
   {
-    date: '2023-04',
+    date: "2023-04",
     uv: 2780,
-   
+
     amt: 2023,
   },
   {
-    date: '2023-05',
+    date: "2023-05",
     uv: 1890,
-    
+
     amt: 2181,
   },
   {
-    date: '2023-06',
+    date: "2023-06",
     uv: 2390,
-   
+
     amt: 2500,
   },
   {
-    date: '2023-07',
+    date: "2023-07",
     uv: 3490,
-   
+
     amt: 2100,
   },
   {
-    date: '2023-08',
+    date: "2023-08",
     uv: 2390,
-   
+
     amt: 2500,
   },
   {
-    date: '2023-09',
+    date: "2023-09",
     uv: 3490,
-   
+
     amt: 2100,
   },
   {
-    date: '2023-10',
+    date: "2023-10",
     uv: 2390,
-   
+
     amt: 2500,
   },
   {
-    date: '2023-11',
+    date: "2023-11",
     uv: 3490,
-   
+
     amt: 2100,
   },
   {
-    date: '2023-12',
+    date: "2023-12",
     uv: 2390,
-   
+
     amt: 2500,
   },
   {
-    date: '2023-13',
+    date: "2023-13",
     uv: 3490,
-   
+
     amt: 2100,
   },
- 
- 
-  
 ];
 
 const monthTickFormatter = (tick) => {
@@ -99,7 +106,6 @@ const renderQuarterTick = (tickProps) => {
   const month = date.getMonth();
   const quarterNo = Math.floor(month / 3) + 1;
   const isMidMonth = month % 3 === 1;
-  
 
   // if (month % 3 === 1) {
   //   return <text x={x} y={y - 4} textAnchor="middle">{Q${quarterNo}}</text>;
@@ -115,10 +121,8 @@ const renderQuarterTick = (tickProps) => {
   return null;
 };
 
-
-
 const LinearGradientBar = (props) => {
-  const { fill, x, y, customWidth, height ,fundRaised, goalAmount} = props;
+  const { fill, x, y, customWidth, height, fundRaised, goalAmount } = props;
   const barWidth = customWidth || 20;
   const cornerRadius = 10;
   const completionPercentage = (fundRaised / goalAmount) * 100;
@@ -132,21 +136,27 @@ const LinearGradientBar = (props) => {
           <stop offset="62.9%" stopColor="#FF375F" />
         </linearGradient>
       </defs>
-      <rect x={x} y={y} width={barWidth} height={height} rx={cornerRadius} ry={cornerRadius} fill={`url(#gradient-${x})`} />
+      <rect
+        x={x}
+        y={y}
+        width={barWidth}
+        height={height}
+        rx={cornerRadius}
+        ry={cornerRadius}
+        fill={`url(#gradient-${x})`}
+      />
       {/* <ReferenceDot x={x + barWidth / 2} y={y} r={2} fill="red" /> */}
     </g>
   );
 };
 
-
-export default function DonationInMonths()  {
+export default function DonationInMonths() {
   const [fundRaised, setFundRaised] = useState(5000);
   const [goalAmount, setGoalAmount] = useState(10000);
-  
 
-  
-    return (
-      <div className='rounded-lg shadow-lg p-5 '>
+  return (
+    <div className="rounded-md shadow-md p-5 ">
+      <p className={"mb-3 text-lg font-semibold"}>Donation In Months(lacs): </p>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart
           width={500}
@@ -175,10 +185,20 @@ export default function DonationInMonths()  {
           <Tooltip />
           <Legend />
           {/* <Bar className='recharts-layer recharts-bar-rectangle rounded' dataKey="pv"  /> */}
-          <Bar className='w-5' dataKey="uv"  shape={(props) => <LinearGradientBar fundRaised={fundRaised} goalAmount={goalAmount} customWidth={20} {...props} />}/>
-          
+          <Bar
+            className="w-5"
+            dataKey="uv"
+            shape={(props) => (
+              <LinearGradientBar
+                fundRaised={fundRaised}
+                goalAmount={goalAmount}
+                customWidth={20}
+                {...props}
+              />
+            )}
+          />
         </BarChart>
       </ResponsiveContainer>
-       </div>
-    );
-  }
+    </div>
+  );
+}

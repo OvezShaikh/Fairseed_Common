@@ -1,34 +1,63 @@
 .recharts-default-legend {
-    visibility: hidden;
-  }
-  
-  .MuiChartsLegend-root {
-    visibility: hidden;
-  }
-
-.recharts-layer .recharts-bar-rectangle{
-  background: linear-gradient(71.48deg, #FF9F0A 0%, #FF375F 62.9%);
-  
+  visibility: hidden;
 }
 
-  .css-1vuxth3-MuiBarElement-root {
-    fill: url(#myGradient) !important;
-  }
+.MuiChartsLegend-root {
+  visibility: hidden;
+}
 
+.recharts-layer .recharts-bar-rectangle {
+  background: linear-gradient(71.48deg, #ff9f0a 0%, #ff375f 62.9%);
+}
 
-  .gradientStyle {
-    background: 'linear-gradient(71.48deg, #FF9F0A 0%, #FF375F 62.9%)',
-    
-  };
+.css-1vuxth3-MuiBarElement-root {
+  fill: url(#myGradient) !important;
+}
 
-  .recharts-cartesian-grid{
-    visibility: hidden;
-  }
+.gradientStyle {
+  background: "linear-gradient(71.48deg, #FF9F0A 0%, #FF375F 62.9%)";
+}
 
-  .recharts-cartesian-grid-horizontal{
-    visibility: hidden;
-  }
+.recharts-cartesian-grid {
+  visibility: hidden;
+}
 
-  .recharts-cartesian-grid-vertical{
-    visibility: hidden;
-  }
+.recharts-cartesian-grid-horizontal {
+  visibility: hidden;
+}
+
+.recharts-cartesian-grid-vertical {
+  visibility: hidden;
+}
+
+.recharts-default-legend {
+  visibility: hidden;
+}
+
+.MuiChartsLegend-root {
+  visibility: hidden;
+}
+
+.recharts-layer .recharts-bar-rectangle {
+  background: linear-gradient(71.48deg, #ff9f0a 0%, #ff375f 62.9%);
+}
+
+.css-1vuxth3-MuiBarElement-root {
+  fill: url(#myGradient) !important;
+}
+
+.gradientStyle {
+  background: "linear-gradient(71.48deg, #FF9F0A 0%, #FF375F 62.9%)";
+}
+
+.recharts-cartesian-grid {
+  visibility: hidden;
+}
+
+.recharts-cartesian-grid-horizontal {
+  visibility: hidden;
+}
+
+.recharts-cartesian-grid-vertical {
+  visibility: hidden;
+}

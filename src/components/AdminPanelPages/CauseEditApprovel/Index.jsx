@@ -81,7 +81,7 @@ function CauseEdit_Form() {
         },
         onSuccess: (data) => {
             setUser(data);
-            const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign_image}`;
+            const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign_image || ""}`;
             setImageUrl(imageUrl);
             setDataUrl(imageUrl)
         },
@@ -93,13 +93,10 @@ function CauseEdit_Form() {
         enabled: true,
         select: (data) => {
             console.log(data.data.rows);
-            return data.data.rows;
+            return data?.data?.rows;
         },
         onSuccess: (data) => {
             setCategory(data);
-           
-
-
         },
     });
 
@@ -121,7 +118,7 @@ function CauseEdit_Form() {
         end_date: user?.end_date || "",
         status: user?.status || "",
         story: user?.story || "",
-        doc1 : user?.documents?.doc_file || ""
+        doc1 : user?.documents?.doc_file || "",
     };
 
     if (!isSuccess) {
@@ -130,9 +127,16 @@ function CauseEdit_Form() {
 
     const handleSubmit = (values)=>{
         const formData = new FormData();
-        formData.append('campaign_image', values)
-        mutate(values, {
-            onSuccess: (response) => {
+        formData.append('campaign_image', values?.campaign_image)
+        formData.append('title' , values?.title)
+        formData.append('goal_amount' , values?.goal_amount)
+        formData.append('location' , values?.location)
+        formData.append('end_date' , values?.end_date)
+        formData.append('summary' , values?.summary)
+        formData.append('story' , values?.story)
+        formData.append('category' , values?.category)
+        mutate(formData, {
+            onSuccess: () => {
                 toast.success("Cause updated Succcessfully ! ",{
                     position:'top-right'
                 })
@@ -160,7 +164,9 @@ function CauseEdit_Form() {
                             imgUrl={dataUrl} 
                             onChange={(e) =>{
                                 setDataUrl(e.target.files[0]);
-                                setImageUrl(e.target.files[0])}
+                                setImageUrl(e.target.files[0])
+                                setFieldValue(e.target.files[0])
+                            }
                             }
                              setDataUrl={setDataUrl}
                               onDelete={handleDelete}
@@ -348,6 +354,7 @@ function CauseEdit_Form() {
                             <div className=" w-full ">
                                 <RadioGroup
                                     name={"is_featured"}
+                                    type='radio'
                                     sx={{ flexDirection: 'column' }}
                                     options={[
                                         { label: "On", value: true },

@@ -21,7 +21,7 @@ function Associateship() {
                 <Navigation label={"Associateship"} heading={"Associateship"} />
             </div>
 
-            <div className='pt-[72px] flex-row text-left  max-w:[1920px] max-desktop:w-[718px] max-tablet:w-[400px] gap-[10px] px-10 max-desktop:px-2 max-tablet:px-6' style={{ whiteSpace: "pre-line", fontFamily: "satoshi" }}>
+            <div className='pt-[72px] flex-row text-left  max-w:[1920px] max-desktop:w-[718px] max-tablet:w-[400px] gap-[10px] px-10 max-desktop:px-2 max-tablet:px-6 max-tablet:py-4' style={{ whiteSpace: "pre-line", fontFamily: "satoshi" }}>
             <h1 className='desktop:text-center max-desktop:text-start!important max-tablet:text-start text-[40px] max-desktop:text-[32px] max-tablet:text-[24px] font-bold' style={{ whiteSpace: "pre-line" }}> Join Our Associates Program and Shape the Future!</h1>
             <p className='inline-block leading-normal text-[28px] max-desktop:text-[24px] max-tablet:text-[18px] align-text-bottom tracking-wide gap-16 pt-5' style={{ whiteSpace: "pre-line" }}>Welcome to our Associates Program – a unique opportunity for you to become an integral part of the creative journey. As an associate, you play a crucial role in bringing innovative projects to life. Here's why you should join:</p>
             </div>
