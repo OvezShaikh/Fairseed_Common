@@ -10,8 +10,9 @@ import SelectField from '../../inputs/SelectField';
 import CountrySelect from '../../inputs/countrySelect/index';
 import Avatar from '../../layout/Avatar/Index'
 import { Formik, Form } from 'formik';
-import Account from './Account';
 import Password from './Password';
+import Account from './Accounts';
+
 
 
 const InputStyle =
@@ -50,7 +51,7 @@ export default function LabTabs({ onChange, src }) {
     setValue(newValue);
   };
 
-  const [age, setAge] = React.useState('');
+  const [age, setAge] = useState('');
 
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>
@@ -62,7 +63,7 @@ export default function LabTabs({ onChange, src }) {
           </TabList>
         </Box>
         <TabPanel sx={{ pt: '4rem',color:"green" }} value="1">
-         <Account/>
+       <Account/>
         </TabPanel>
         <TabPanel sx={{ pt: '4rem' }} value="2">
          <Password/>

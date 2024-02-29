@@ -6,8 +6,8 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./pages/LandingPage/index";
 import CreateCampaigns from "./pages/Campaigns/CreateCampaigns/Index";
 import CurrentCampaign from "./pages/Campaigns/CurrentCampaign/Index";
-import Donet from "./pages/Campaigns/Donet/Index";
-import DonateSettings from "./pages/Campaigns/Donet/DonateSettings/Index";
+// import Donet from "./pages/Campaigns/Donet/Index";
+// import DonateSettings from "./pages/Campaigns/Donet/DonateSettings/Index";
 import CampaignsByCategory from "./pages/Campaigns/CampaignsByCategory/Index";
 import OnGoingCampaigns from "./pages/Campaigns/OnGoingCampaigns/Index";
 import LoginOnSmallScreen from "./pages/login/Login_page/LoginOnSmallScreen";
@@ -66,9 +66,9 @@ function App() {
           <Route path="/Home/Create-Campaign" element={<CreateCampaigns />} />
           <Route path="/Home/OnGoingCampaigns" element={<OnGoingCampaigns />} />
           <Route path="/AdminPanel/*" element={<AdminPage />} />
-           <Route path="/User/*" element={<UserPage />} />
-          <Route path="/Home/Donate" element={<Donet />} />
-          <Route path="/Home/DonateSettings" element={<DonateSettings />} />
+          <Route path="/User/*" element={<UserPage />} />
+          {/* <Route path="/Home/Donate" element={<Donet />} />
+          <Route path="/Home/DonateSettings" element={<DonateSettings />} /> */}
           <Route
             path="/Home/CampaignsByCategory/:id"
             element={<CampaignsByCategory />}
@@ -135,17 +135,15 @@ function App() {
             path="/Home/Password-Reset"
             element={<ForgotPasswordSmScreen />}
           />
-          
+
           <Route path="/account-settings" element={<Account />} />
-          <Route path="/donate" element={<Donate />} />
+          <Route path="/Home/donate" element={<Donate />} />
+          <Route path="/Home/donate/:id" element={<Donate />} />
+
           <Route
-            path="/donate/:id"
-            element={<Donate />}
+            path="/adminpanellandingpage"
+            element={<AdminPanelLandingPage />}
           />
-         
-
-          <Route path="/adminpanellandingpage" element={<AdminPanelLandingPage />} />
-
         </Routes>
       </BrowserRouter>
     </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import ReactTable from '../../Table/index'
 import { useState } from 'react';
 import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
-import { LocationConfigurationDialog } from '../../admin-console/LocationConfigurationDialog';
+import { LocationConfigurationDialog } from '../../admin-console/AddCategorydialog';
 import SecondaryButton from '../../inputs/secondaryButton';
 import { Link } from 'react-router-dom';
 import { GoDotFill } from "react-icons/go";

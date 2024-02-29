@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { Grid, Typography } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import images from "../../../constants/images";
@@ -6,7 +6,8 @@ import Link from "@mui/material/Link";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
-function Index({ label, heading }) {
+function Index({ label, heading, titleName }) {
+  // const [IdName, setIdName] = useState('')
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const title = useMemo(
@@ -21,6 +22,7 @@ function Index({ label, heading }) {
         .slice(1)}`,
 
     [pathname]
+
   );
   function handleClick(event, path) {
     navigate(`/${path}`)
@@ -74,19 +76,25 @@ function Index({ label, heading }) {
 
               >
                 {/* {breadcrumbs} */}
-                {pathname?.substr(1)?.split('/')?.map((item, i) => {
-                  return (
-                    <Link
-                      underline="hover"
-                      style={{ cursor: 'pointer' }}
-                      key={i}
-                      color="inherit"
-                      onClick={(e) => handleClick(e, item)}
-                    >
-                      {item}
-                    </Link>
-                  )
+                {pathname?.substr(1)?.split('/')?.map((item, i, array) => {
+                  // Check if the current index is not the last item in the array
+                  if (i !== array.length - 1) {
+                    return (
+                      <Link
+                        underline="hover"
+                        style={{ cursor: 'pointer' }}
+                        key={i}
+                        color="inherit"
+                      // onClick={(e) => handleClick(e, item)}
+                      >
+                        {item}
+
+                      </Link>
+                    );
+                  }
+                  return null; // Exclude rendering the last item (ID)
                 })}
+                {console.log(titleName, '=+=+=+Pathname=+=+=+')}
               </Breadcrumbs>
 
             </div>

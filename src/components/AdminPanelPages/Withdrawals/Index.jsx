@@ -2,7 +2,7 @@ import React from 'react'
 import ReactTable from '../../Table/index'
 import { useState } from 'react';
 import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
-import { LocationConfigurationDialog } from '../../admin-console/LocationConfigurationDialog';
+import { LocationConfigurationDialog } from '../../admin-console/AddCategorydialog';
 import images from '../../../constants/images';
 import { GoDotFill } from "react-icons/go";
 import PrimaryButton from '../../inputs/PrimaryButton';

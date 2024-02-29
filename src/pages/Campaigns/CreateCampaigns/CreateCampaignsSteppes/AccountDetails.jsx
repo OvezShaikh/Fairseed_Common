@@ -124,6 +124,8 @@ function AccountDetails({ handleBack, handleNext }) {
                     placeholder="Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
                     onChange={(value) => setFieldValue('passbook_image', value)}
                     multiple={false}
+                    required={'true'}
+
 
 
                 // {...formik.getFieldProps("passbook_image")}

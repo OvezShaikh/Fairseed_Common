@@ -26,12 +26,13 @@ const InputStyle =
 function Index() {
    
     const [User , setUser] = useState({});
+    const [role , setRole] = useState([])
     const [isImageDeleted, setIsImageDeleted] = useState(false);
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
     const [deleteSuccess, setDeleteSuccess] = useState(false);
     let { state } = useLocation();
     let { id } = state;
-    console.log(id, "=====<id")
+   
     const imageUrlFromBackend = 'https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'
     
     const navigate = useNavigate();
@@ -60,7 +61,7 @@ function Index() {
         key: `/admin-dashboard/users/${id}`,
         enabled: true,
         select: (data) => {
-            // console.log(data.data.data);
+            console.log(data.data.data);
             return data.data.data;
         },
         onSuccess: (data) => {
@@ -69,16 +70,33 @@ function Index() {
         },
     });
 
+    useGetAll({
+        key: `/admin-dashboard/user-roles?page=1&limit=10`,
+        enabled: true,
+        select: (data) => {
+            console.log(data)
+            return data.data.rows;
+        },
+        onSuccess: (data) => {
+            setRole(data);
+        },
+    });
+
+
+
     const { mutate } = useCreateOrUpdate({
         url:`/admin-dashboard/users/${id}`
     })
+
+    console.log(role)
 
     const initialvalues = {
         name : User.username || "",
         role:User.user_role || "",
         email:User.email || "",
         password:"",
-        created_on:User.created_on||""
+        created_on:User.created_on||"",
+        
     }
 
     return (
@@ -96,12 +114,21 @@ function Index() {
                         },
                     });
                 }}
-                >
+                >{({ values})=>(
+
+                
                     <Form className="flex flex-col w-[100%] gap-4 items-center">
                         <div className="w-full">
                             <InputField sx={InputStyle} name={"name"} label={"Name:"} />
                         </div>
-                        <SelectField name={"role"} label={"Role:"} />
+                        <SelectField name={"role"}
+                             label={"Role:"} 
+                                required={true}
+                                value={values?.role}
+                                options={role.map((item) => ({
+                                    label: item.role_name,
+                                    value: item.role_name,
+                                }))}/>
                         <div className="w-full">
                             <InputField sx={InputStyle} name={"email"} label={"Email Id:"} />
                         </div>
@@ -120,13 +147,14 @@ function Index() {
                         </div>
 
                     </Form>
+                    )}
 
                 </Formik>
             </div>
             <div className='w-[30%] overflow-y-scroll h-[700px]'>
-                <Formik >
-
-                    <Form className="flex w-[100%] pr-2 flex-col">
+                
+                            
+                    <div className="flex w-[100%] pr-2 flex-col">
 
                         <ImageEditor
                             sx={{ maxWidth: '500px', minHeight: '333px', border: '1px solid #3366CC !important' }}
@@ -135,18 +163,18 @@ function Index() {
                         />                        <div className="max-w-[500px] w-full pt-5 flex flex-col gap-4">
                             <div className="flex justify-between py-[15px] px-[8px]" style={{ border: '1px solid gray', borderRadius: '4px' }}>
                                 <p className='font-medium text-[18px] font-[satoshi] text-[#00000099]'>Registered</p>
-                                <p>31st Jan, 2024</p>
+                                <p>{}</p>
                             </div>
                             <div className="flex justify-between py-[15px] px-[8px]" style={{ border: '1px solid gray', borderRadius: '4px' }}>
-                                <p className='font-medium text-[18px] font-[satoshi] text-[#00000099]'>Registered</p>
-                                <p>31st Jan, 2024</p>
+                                <p className='font-medium text-[18px] font-[satoshi] text-[#00000099]'>Status</p>
+                                <p>{User?.is_active ? ("Active"): ( "Inactive")}</p>
                             </div>
                             <div className="flex justify-between py-[15px] px-[8px]" style={{ border: '1px solid gray', borderRadius: '4px' }}>
-                                <p className='font-medium text-[18px] font-[satoshi] text-[#00000099]'>Registered</p>
-                                <p>31st Jan, 2024</p>
+                                <p className='font-medium text-[18px] font-[satoshi] text-[#00000099]'>Country</p>
+                                <p>{User?.country}</p>
                             </div>
                             <div className="flex justify-between py-[15px] px-[8px]" style={{ border: '1px solid gray', borderRadius: '4px' }}>
-                                <p className='font-medium text-[18px] font-[satoshi] text-[#00000099]'>Registered</p>
+                                <p className='font-medium text-[18px] font-[satoshi] text-[#00000099]'>Campaigns</p>
                                 <p>31st Jan, 2024</p>
                             </div>
 
@@ -186,8 +214,8 @@ function Index() {
                             </div>
                         )}
 
-                    </Form>
-                </Formik>
+                    </div>
+               
             </div>
         </div>
     )

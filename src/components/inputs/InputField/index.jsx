@@ -14,6 +14,7 @@ const InputField = ({
   characterCount,
   label,
   style,
+  disabled = false,
   // multiple = false,
   sx,
   required,
@@ -156,6 +157,7 @@ const InputField = ({
         </FormLabel>
       )}
       <InputBase
+        disabled={disabled}
         sx={styles}
         // multiple={multiple}
         // style={{ ...configTextfield?.style }}

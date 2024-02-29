@@ -1,5 +1,5 @@
 import { Form, Formik } from 'formik'
-import React from 'react'
+import React, { useState } from 'react'
 import InputField from '../../inputs/InputAdminField/Index'
 import SelectField from '../../inputs/AdminSelectField/Index'
 import moment from 'moment';
@@ -7,6 +7,7 @@ import "../../../pages/Campaigns/CreateCampaigns/CreateCampaigns.css"
 import { FormLabel } from '@mui/material';
 import images from '../../../constants/images';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useGetAll } from '../../../Hooks';
 // import dayjs from 'dayjs';
 
 const styleLabel = {
@@ -26,10 +27,29 @@ const initialValues = {
 
 function Index() {
 
-    let { state } = useLocation(); let { id } = state;
-    console.log(id, "=====<id")
+    const [ data, setData] = useState({})
+
+    let { state } = useLocation(); 
+    
+    let { id } = state;
+    
     const navigate = useNavigate()
-    // const yesterday = dayjs().subtract(1, 'day');
+
+    useGetAll({
+        key: `/admin-dashboard/donors?page=1&limit=10/${id}`,
+        enabled: true,
+        select: (data) => {
+          console.log(data)
+            return data.data.data;
+        },
+        onSuccess: (data) => {
+          setData(data); 
+        },
+    })
+    
+    const initial_values = {
+
+    }
 
     return (
         <Formik>
