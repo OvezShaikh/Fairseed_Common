@@ -10,7 +10,7 @@ import setCanvasPreview from "./setCanvasPreview";
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
 
-const ImageCrop = ({ setDataUrl,closeModal ,name }) => {
+const ImageCrop = ({ setDataUrl,closeModal ,name , setImage }) => {
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);
   const [imgSrc, setImgSrc] = useState("");
@@ -19,6 +19,7 @@ const ImageCrop = ({ setDataUrl,closeModal ,name }) => {
 
   const onSelectFile = (e) => {
     const file = e.target.files?.[0];
+    setImage(file);
     if (!file) return;
     console.log(file, "_______________file")
 

@@ -56,8 +56,8 @@ function CauseEdit_Form() {
 
     const [user, setUser] = useState({});
     const [document , setDocument ] = useState([]);
-
-    const [imageUrl, setImageUrl] = useState("https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"); // State to store the image URL
+    const [cropdata , setcropdata] = useState(null);
+    const [imageUrl, setImageUrl] = useState(); 
 
     const handleDelete = () => {
         setDataUrl('')
@@ -120,6 +120,7 @@ function CauseEdit_Form() {
         doc1 : user?.documents?.doc_file || "",
     };
 
+    console.log(cropdata , "<-------------------------")
     if (!isSuccess) {
         return <div>Loading...</div>;
     }
@@ -161,6 +162,7 @@ function CauseEdit_Form() {
                     <div className="flex w-[100%] mt-2 gap-14 max-tablet:flex-col max-desktop:flex-col">
                         <div className="flex flex-col w-[70%] max-tablet:w-[100%] max-desktop:w-[100%] gap-10 items-center">
                             <ImageBackgroundWithDeleteButton 
+                            setImage={setcropdata}
                             name = {'campaign_image'}
                             imgUrl={dataUrl} 
                             onChange={(e) =>{

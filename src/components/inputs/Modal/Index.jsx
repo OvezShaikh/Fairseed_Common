@@ -3,7 +3,7 @@ import ImageCrop from "../CropImage/ImageCrop";
 // import ImageCropper from "../Cropper/ImageCropper"
 import { FaTimes } from "react-icons/fa";
 
-const Modal = ({closeModal,setDataUrl , name}) => {
+const Modal = ({closeModal,setDataUrl , name ,setImage}) => {
 
   return (
     <div
@@ -25,7 +25,7 @@ const Modal = ({closeModal,setDataUrl , name}) => {
                 <span className="sr-only">Close menu</span>
                 <FaTimes />
               </button>
-              <ImageCrop  name ={name}closeModal={closeModal} setDataUrl={setDataUrl} />
+              <ImageCrop  name ={name}closeModal={closeModal} setDataUrl={setDataUrl} setImage={setImage} />
             </div>
           </div>
         </div>
