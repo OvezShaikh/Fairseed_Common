@@ -260,6 +260,17 @@ const ReactTable = ({
       }, 500);
     }
   };
+  //     setTimeout(() => {
+  //       setHiddenColumns(
+  //         JSON.parse(data.hiddenColumns).length
+  //           ? JSON.parse(data.hiddenColumns)
+  //           : newHiddenColumns
+  //       );
+  //       setColumnOrder(JSON.parse(data.columnOrder));
+  //     }, 500);
+  //   }
+  // };
+
 
 
 
@@ -544,12 +555,12 @@ const ReactTable = ({
                         overflowX: 'hidden'
 
 
-                      },
+                      }, className: "!max-tablet:text-[5px]",
                     })}
                     key={column?.id}
 
                   ><div className="flex">
-                      <div className="pt-1 max-tablet:text-[14px] ">
+                      <div className="pt-1 max-table:w-[10px] overflow-hidden  ">
                         {column.render("Header")}
                       </div>
                       {column?.sortable !== false && (
