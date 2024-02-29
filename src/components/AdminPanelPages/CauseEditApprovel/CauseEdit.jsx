@@ -55,7 +55,6 @@ const Campaign = () => {
         Header: "Id", // Row number header
         accessor: "index", // Accessor for row number
         Cell: ({ row }) => (
-          // Display row number using index provided by React Table
           <div>{row.index + 1}</div>
         ),
         minWidth: 50,
@@ -131,8 +130,7 @@ const Campaign = () => {
           return (
             <div className='flex items-center justify-center pl-6 max-desktop:pl-0 max-tablet:pl-0'>
               <Link to="View" state={{ id: row?.id }} ><SecondaryButton sx={{ height: '30px' }} >Edit</SecondaryButton></Link>
-              {/* <SecondaryButton sx={{ height: '30px' }}>Finalize your Campaign</SecondaryButton> */}
-              {/* <SecondaryButton sx={{ height: '30px' }}>Edit Bank and KYC</SecondaryButton> */}
+              
             </div >
           )
         }
@@ -148,9 +146,9 @@ const Campaign = () => {
         columns={columns}
         showFilter
         manualPagination
-        title={"Campaign"}
+        title={"Cause"}
         checkboxComponent={IndeterminateCheckbox}
-        url={`/admin-dashboard/campaign?page=1&limit=4`}
+        url={`/admin-dashboard/cause-edit`}
         extraQuery={{ inactive: true }}
         addButton={<LocationConfigurationDialog />}
         // addButton={<Button>HElloooooo</Button>}

@@ -20,12 +20,13 @@ const ImageCrop = ({ setDataUrl,closeModal ,name }) => {
   const onSelectFile = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    console.log(file, "_______________file")
 
     const reader = new FileReader();
     reader.addEventListener("load", () => {
       const imageElement = new Image();
       const imageUrl = reader.result?.toString() || "";
-      console.log("ImageUrl=========>",imageUrl)
+      // console.log("ImageUrl=========>",imageUrl)
       imageElement.src = imageUrl;
 
       imageElement.addEventListener("load", (e) => {
@@ -103,7 +104,9 @@ const ImageCrop = ({ setDataUrl,closeModal ,name }) => {
                 )
               );
               const dataUrl = previewCanvasRef.current.toDataURL();
-              console.log("DataUrl======>",dataUrl)
+
+console.log(previewCanvasRef.current,"<=====curuurnneenetteetetet")
+              console.log("DataUrl======>",dataUrl);
               // updateAvatar(dataUrl);
               setDataUrl(dataUrl)
               closeModal();
