@@ -7,8 +7,6 @@ import DropZone from "../../../../components/inputs/dragAndDrop";
 import SelectField from "../../../../components/inputs/SelectField";
 import CheckBox from "../../../../components/inputs/checkBox";
 import Box from "@mui/material/Box";
-import { useCreateOrUpdate } from "../../../../Hooks/useCreateOrUpdate";
-import CountrySelect from "../../../../components/inputs/countrySelect";
 import SecondaryButton from "../../../../components/inputs/secondaryButton"
 import PrimaryButton from "../../../../components/inputs/PrimaryButton"
 import moment from 'moment';
@@ -76,8 +74,8 @@ const Test = ({ handleBack, handleNext }) => {
                 ></DropZone>
             </Box>
             <div className="campaign-input-div">
-                <InputField 
-                
+                <InputField
+
                     name="title"
                     sx={InputStyle}
 
@@ -89,7 +87,7 @@ const Test = ({ handleBack, handleNext }) => {
             </div>
             <div className="campaign-input-div">
                 <InputField
-                
+
                     name="goal_amount"
                     type="number"
                     sx={InputStyle}
@@ -144,7 +142,7 @@ const Test = ({ handleBack, handleNext }) => {
                         name="end_date"
                         sx={InputStyle}
                         inputProps={{ min: moment().format('YYYY-MM-DD') }}
-                        
+
                         required={true}
                         label="Accept Donations until (Select end date):"
                     />

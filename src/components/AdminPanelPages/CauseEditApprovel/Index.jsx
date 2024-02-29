@@ -50,7 +50,7 @@ function CauseEdit_Form() {
 
     const handleDocumentUpload = (documentUrl) => {
         setDocuments([...documents, documentUrl]);
-        
+
     };
     const navigate = useNavigate();
 
@@ -76,31 +76,27 @@ function CauseEdit_Form() {
         key: `/admin-dashboard/campaign/${id}`,
         enabled: true,
         select: (data) => {
-            console.log(data.data.data,"Particular ID value----------->");
+            console.log(data.data.data, "Individual Data from ------->");
             return data.data.data;
         },
         onSuccess: (data) => {
             setUser(data);
-            const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign_image}`;
+            const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign_image || ""}`;
             setImageUrl(imageUrl);
-            setDataUrl(dataUrl)
+            setDataUrl(imageUrl)
         },
     });
-    console.log(imageUrl)
+    // console.log(imageUrl)
 
     useGetAll({
         key: `/admin-dashboard/category?page=1&limit=10`,
         enabled: true,
         select: (data) => {
-            console.log(data.data.rows);
-            return data.data.rows;
+            // console.log(data.data.rows);
+            return data?.data?.rows;
         },
         onSuccess: (data) => {
             setCategory(data);
-            console.log(data, "data ------------------->")
-           
-
-
         },
     });
 
@@ -108,10 +104,11 @@ function CauseEdit_Form() {
         url: `/admin-dashboard/campaign/${id}`,
         method: "put",
     })
+    console.log(id, "ID from Camp--------->")
 
 
     const initial_values = {
-        campaign_image:user.campaign_image || "",
+        campaign_image: user.campaign_image || "",
         title: user.title || "",
         amount: user.goal_amount || "",
         location: user.location || "",
@@ -122,20 +119,27 @@ function CauseEdit_Form() {
         end_date: user?.end_date || "",
         status: user?.status || "",
         story: user?.story || "",
-        doc1 : user?.documents?.doc_file || ""
+        doc1: user?.documents?.doc_file || "",
     };
 
     if (!isSuccess) {
         return <div>Loading...</div>;
     }
 
-    const handleSubmit = (values)=>{
+    const handleSubmit = (values) => {
         const formData = new FormData();
-        formData.append('campaign_image', values)
-        mutate(values, {
-            onSuccess: (response) => {
-                toast.success("Cause updated Succcessfully ! ",{
-                    position:'top-right'
+        formData.append('campaign_image', values?.campaign_image)
+        formData.append('title', values?.title)
+        formData.append('goal_amount', values?.goal_amount)
+        formData.append('location', values?.location)
+        formData.append('end_date', values?.end_date)
+        formData.append('summary', values?.summary)
+        formData.append('story', values?.story)
+        formData.append('category', values?.category)
+        mutate(formData, {
+            onSuccess: () => {
+                toast.success("Cause updated Succcessfully ! ", {
+                    position: 'top-right'
                 })
             },
         });
@@ -147,7 +151,7 @@ function CauseEdit_Form() {
             initialValues={initial_values}
             enableReinitialize={true}
             onSubmit={(values) => {
-               handleSubmit(values)
+                handleSubmit(values)
             }}
 
         >
@@ -156,16 +160,18 @@ function CauseEdit_Form() {
                 <Form className='flex flex-col items-center'>
                     <div className="flex w-[100%] mt-2 gap-14 max-tablet:flex-col max-desktop:flex-col">
                         <div className="flex flex-col w-[70%] max-tablet:w-[100%] max-desktop:w-[100%] gap-10 items-center">
-                            <ImageBackgroundWithDeleteButton 
-                            name = {'campaign_image'}
-                            imgUrl={dataUrl} 
-                            onChange={(e) =>{
-                                setDataUrl(e.target.files[0]);
-                                setImageUrl(e.target.files[0])}
-                            }
-                             setDataUrl={setDataUrl}
-                              onDelete={handleDelete}
-                              multiple={false} />
+                            <ImageBackgroundWithDeleteButton
+                                name={'campaign_image'}
+                                imgUrl={dataUrl}
+                                onChange={(e) => {
+                                    setDataUrl(e.target.files[0]);
+                                    setImageUrl(e.target.files[0])
+                                    setFieldValue(e.target.files[0])
+                                }
+                                }
+                                setDataUrl={setDataUrl}
+                                onDelete={handleDelete}
+                                multiple={false} />
                             <div className="w-full">
 
                                 <InputField
@@ -349,6 +355,7 @@ function CauseEdit_Form() {
                             <div className=" w-full ">
                                 <RadioGroup
                                     name={"is_featured"}
+                                    type='radio'
                                     sx={{ flexDirection: 'column' }}
                                     options={[
                                         { label: "On", value: true },

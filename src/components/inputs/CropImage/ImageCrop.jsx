@@ -10,7 +10,7 @@ import setCanvasPreview from "./setCanvasPreview";
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
 
-const ImageCrop = ({ setDataUrl,closeModal }) => {
+const ImageCrop = ({ setDataUrl,closeModal ,name }) => {
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);
   const [imgSrc, setImgSrc] = useState("");
@@ -64,6 +64,7 @@ const ImageCrop = ({ setDataUrl,closeModal }) => {
       <label className="block mb-3 w-fit">
         <span className="sr-only">Choose profile photo</span>
         <input
+        name= {name}
           type="file"
           accept="image/*"
           onChange={onSelectFile}
