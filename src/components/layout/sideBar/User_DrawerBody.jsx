@@ -230,11 +230,21 @@ const User_DrawerBody = () => {
       title: "Donations",
     },
     {
+      icon: "DonationIcon",
+      path: "/User/My-Donations",
+      title: "My Donations",
+    },
+    {
+      icon: "WithdrawalsIcon",
+      path: "/User/Withdrawals",
+      title: "Withdrawals",
+    },
+    {
       icon: "ScholarshipsIcon",
       path: "/User/Scholarships",
       title: "Scholarships",
     },
-   
+
   ];
 
 

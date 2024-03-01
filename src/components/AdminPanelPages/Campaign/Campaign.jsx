@@ -11,8 +11,12 @@ import { GoDotFill } from "react-icons/go";
 import { Link, useLocation } from 'react-router-dom';
 
 const Campaign = () => {
+  let userData = localStorage.getItem('user_info')
+  let Data = JSON.parse(userData)
+  let id = Data?.id
+  console.log(id, '-------------------')
   const [selectedRowID, setSelectedRowID] = useState(null);
-
+  const { pathname } = useLocation();
   const getStatusCellStyle = (status) => {
     // let { state } = useLocation(); let { id } = state
     console.log('Status:', status);
@@ -54,9 +58,8 @@ const Campaign = () => {
     () => [
       {
         Header: "Id", // Row number header
-        accessor: "index", // Accessor for row number
+        accessor: "id", // Accessor for row number
         Cell: ({ row }) => (
-          // Display row number using index provided by React Table
           <div>{row.index + 1}</div>
         ),
         minWidth: 50,
@@ -125,13 +128,28 @@ const Campaign = () => {
         Header: 'Actions',
         accessor: 'actions',
 
-        nofilter: true,
-        minWidth: 100,
-        width: 100,
+
+        minWidth: pathname === '/User/Campaigns' ? 180 : 100,
+        width: pathname === '/User/Campaigns' ? 180 : 100,
+
         Cell: ({ row }) => {
           return (
-            <div className='flex items-center justify-center pl-6 max-desktop:pl-0 max-tablet:pl-0'>
-              <Link to="Edit" state={{ id: row?.id }} ><SecondaryButton sx={{ height: '30px' }} >Edit</SecondaryButton></Link>
+            <div className={`flex items-center gap-2 justify-center ${pathname === '/User/Campaigns' ? 'pl-0' : 'pl-6'} max-desktop:pl-0 max-tablet:pl-0`}
+            >
+
+              {pathname === '/User/Campaigns' ? (
+                <>
+                  <Link to="Edit" state={{ id: row?.id }} >
+                    <SecondaryButton sx={{ height: '30px' }}>Edit Bank and KYC</SecondaryButton>
+                  </Link>
+                  <Link to="View" state={{ id: row?.id }} >
+                    <SecondaryButton sx={{ height: '30px' }}>View Bank and KYC</SecondaryButton>
+                  </Link>
+                </>
+              ) : (
+                <Link to="Edit" state={{ id: row?.id }} ><SecondaryButton sx={{ height: '30px' }} >Edit</SecondaryButton></Link>
+
+              )}
 
             </div >
           )
@@ -150,7 +168,13 @@ const Campaign = () => {
         manualPagination
         title={"Campaign"}
         checkboxComponent={IndeterminateCheckbox}
-        url={`/admin-dashboard/campaign?page=1&limit=4`}
+        // {...(pathname === 'User/campaigns' && {
+        //   url: `/user-dashboard/campaign/${id}`
+        // })}
+        // {...(pathname === 'AdminPanel/campaigns' && {
+          url= {'/admin-dashboard/campaign'}
+        // })}
+
         extraQuery={{ inactive: true }}
         // addButton={<LocationConfigurationDialog />}
         // addButton={<Button>HElloooooo</Button>}

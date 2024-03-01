@@ -17,24 +17,13 @@ const Navbar = () => {
   const isTab = useMediaQuery("(max-width: 1100px)");
   const sideBar = useMediaQuery("(max-width: 900px)");
 
-  const [user , setUser] = useState({})
-
   let userData = localStorage.getItem('user_info')
   let Data = JSON.parse(userData)
-  let id = Data?.id
-  useGetAll({
-    key: `/admin-dashboard/users/${id}`,
-    enabled: true,
-    select: (data) => {
-      console.log(data)
-        return data.data.data;
-    },
-    onSuccess: (data) => {
-      console.log(data)
-      setUser(data); 
-    },
+  let username = Data?.username
+  let user_role = Data?.user_role
+  let profile_pic = Data?.profile_pic
 
-  })
+ 
 
   return (
     <>
@@ -95,10 +84,10 @@ const Navbar = () => {
                 }}
               >
                 <p className="text-truncate m-0" style={{ maxWidth: "100%" }}>
-                  {user?.username}
+                  {username}
                 </p>
                 <p className="text-truncate m-0" style={{ maxWidth: "100%" }}>
-                {user?.user_role}
+                {user_role}
                 </p>
               </Stack>
               <DropDown >
@@ -111,6 +100,7 @@ const Navbar = () => {
                     background: "#0094AA",
                   }}
                   className="my-auto "
+                  srcSet={profile_pic}
                 />
               </DropDown>
             </Grid>
