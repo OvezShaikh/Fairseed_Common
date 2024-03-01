@@ -12,6 +12,7 @@ import CountrySelect from "../../../components/inputs/countrySelect";
 import OptionsButton from "../../../components/inputs/OptionsButton/Index";
 import NoCampaign from "./NoCampaign";
 import FilterField from "../../../components/inputs/FilterField/Index";
+import ScrollbleTabsButtonForce from '../../../components/layout/ScrollableTabsButtonAuto'
 import "./CampaignsByCategory.css";
 
 
@@ -139,80 +140,9 @@ function Index() {
         <div className="flex flex-col justify-center  pt-32 px-[20px] items-center ">
           {categoryCampaignList?.length > 0 ? (
             <div className="flex flex-col justify-center items-center " >
-              <div className="flex w-[100%]  justify-start items-center text-center pl-3">
-                <div className="flex  gap-3">
+              <div className="flex w-[90%] max-desktop:w-[100%] max-tablet:w-[100%] justify-start items-center text-center pl-3">
 
-
-
-
-                  <SecondaryButton
-                    sx={{
-                      padding: "12px 18px",
-                      borderRadius: "40px",
-                    }}
-                  >
-                    <img src={images.TrendUp} alt="" />
-                    <h1 className="pl-2 font-[satoshi] text-[18px] text-[#383A42] font-semibold">
-                      Trending
-                    </h1>
-                  </SecondaryButton>
-                  <SecondaryButton
-                    sx={{
-                      padding: "12px 18px",
-                      borderRadius: "40px",
-                    }}
-                  >
-                    <img src={images.WarningCircle} alt="" />
-                    <h1 className="pl-2 font-[satoshi] text-[18px] text-[#383A42] font-semibold">
-                      Newly Added
-                    </h1>
-                  </SecondaryButton>
-                  <SecondaryButton
-                    sx={{
-                      padding: "12px 18px",
-                      borderRadius: "40px",
-                    }}
-                  >
-                    <img src={images.HandCoins2} alt="" />
-                    <h1 className="pl-2 font-[satoshi] text-[18px] text-[#383A42] font-semibold">
-                      Almost Funded
-                    </h1>
-                  </SecondaryButton>
-                  <SecondaryButton
-                    sx={{
-                      padding: "12px 18px",
-                      borderRadius: "40px",
-                    }}
-                  >
-                    <img src={images.MegaphoneSimple} alt="" />
-                    <h1 className="pl-2 font-[satoshi] text-[18px] text-[#383A42] font-semibold">
-                      NGO Initiatives
-                    </h1>
-                  </SecondaryButton>
-                  <SecondaryButton
-                    sx={{
-                      padding: "12px 18px",
-                      borderRadius: "40px",
-                    }}
-                  >
-                    <img src={images.Alarm} alt="" />
-                    <h1 className="pl-2 font-[satoshi] text-[18px] text-[#383A42] font-semibold">
-                      Expiring Soon
-                    </h1>
-                  </SecondaryButton>
-                  <SecondaryButton
-                    sx={{
-                      padding: "12px 18px",
-                      borderRadius: "40px",
-                    }}
-                  >
-                    <img src={images.SedalCheck} className="w-6 h-6" alt="" />
-                    <h1 className="pl-2 font-[satoshi] text-[18px] text-[#383A42] font-semibold">
-                      Zakat Eligible
-                    </h1>
-                  </SecondaryButton>
-
-                </div>
+                <ScrollbleTabsButtonForce />
 
 
                 <button
@@ -234,15 +164,15 @@ function Index() {
                   }
                   }>Filter</p>
                 </button>
-                
+
               </div>
               <div id="filter-location">
-              {showOptions && (
+                {showOptions && (
 
-<FilterField sendCategoryToParent={receiveCategoryFromChild} sendLocationToParent={receiveLocationFromChild} />
+                  <FilterField sendCategoryToParent={receiveCategoryFromChild} sendLocationToParent={receiveLocationFromChild} />
 
 
-)}</div>
+                )}</div>
               <div className="gap-4 pt-[2rem] flex flex-wrap w-full justify-center">
 
                 {filteredUserList?.map((item) => {

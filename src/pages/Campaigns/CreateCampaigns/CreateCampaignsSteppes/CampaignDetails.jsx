@@ -113,7 +113,6 @@ const Test = ({ handleBack, handleNext }) => {
                     name="category"
                     required={true}
                     label="Choose a Category:"
-
                     // onChange={Formik.value.category}
                     options={category.map((item) => ({
                         label: item.name,

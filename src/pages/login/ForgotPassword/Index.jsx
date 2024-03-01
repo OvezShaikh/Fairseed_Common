@@ -37,14 +37,14 @@ const UserSignUp_02 = () => {
     return (
         <>
 
-            <button
+            <Button
                 onClick={handleOpen}
                 style={{
                     padding: '10px 0',
                     display: 'inline-block',
                     fontFamily: 'satoshi',
                     fontWeight: 500,
-                    fontSize: '22px',
+                    fontSize: '16px',
                     color: '#0466C8',
                     textDecoration: 'underline'
                 }}
@@ -54,7 +54,7 @@ const UserSignUp_02 = () => {
 
                 Forgot Password
 
-            </button>
+            </Button>
 
             <Dialog
                 sx={{
