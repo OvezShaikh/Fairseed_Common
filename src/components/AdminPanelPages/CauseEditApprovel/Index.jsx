@@ -50,7 +50,7 @@ function CauseEdit_Form() {
 
     const handleDocumentUpload = (documentUrl) => {
         setDocuments([...documents, documentUrl]);
-        
+
     };
     const navigate = useNavigate();
 
@@ -85,13 +85,13 @@ function CauseEdit_Form() {
             setDataUrl(imageUrl)
         },
     });
-    console.log(imageUrl)
+    // console.log(imageUrl)
 
     useGetAll({
         key: `/admin-dashboard/category?page=1&limit=10`,
         enabled: true,
         select: (data) => {
-            console.log(data.data.rows);
+            // console.log(data.data.rows);
             return data?.data?.rows;
         },
         onSuccess: (data) => {
@@ -103,10 +103,11 @@ function CauseEdit_Form() {
         url: `/admin-dashboard/campaign/${id}`,
         method: "put",
     })
+    console.log(id, "ID from Camp--------->")
 
 
     const initial_values = {
-        campaign_image:user.campaign_image || "",
+        campaign_image: user.campaign_image || "",
         title: user.title || "",
         amount: user.goal_amount || "",
         location: user.location || "",
@@ -117,7 +118,7 @@ function CauseEdit_Form() {
         end_date: user?.end_date || "",
         status: user?.status || "",
         story: user?.story || "",
-        doc1 : user?.documents?.doc_file || "",
+        doc1: user?.documents?.doc_file || "",
     };
 
     console.log(cropdata , "<-------------------------")
@@ -127,23 +128,23 @@ function CauseEdit_Form() {
 
     const handleSubmit = (values)=>{
 
-        console.log(values,",========valllllele",imageUrl)
-        const formData = new FormData();
-        formData.append('campaign_image', values?.campaign_image)
-        formData.append('title' , values?.title)
-        formData.append('amount' , values?.amount)
-        formData.append('location' , values?.location)
-        formData.append('end_date' , values?.end_date)
-        formData.append('summary' , values?.summary)
-        formData.append('story' , values?.story)
-        formData.append('category' , values?.category)
-        mutate(formData, {
-            onSuccess: () => {
-                toast.success("Cause updated Succcessfully ! ",{
-                    position:'top-right'
-                })
-            },
-        });
+        console.log(values,",========valllllele",dataUrl)
+        // const formData = new FormData();
+        // formData.append('campaign_image', values?.campaign_image)
+        // formData.append('title' , values?.title)
+        // formData.append('amount' , values?.amount)
+        // formData.append('location' , values?.location)
+        // formData.append('end_date' , values?.end_date)
+        // formData.append('summary' , values?.summary)
+        // formData.append('story' , values?.story)
+        // formData.append('category' , values?.category)
+        // mutate(formData, {
+        //     onSuccess: () => {
+        //         toast.success("Cause updated Succcessfully ! ", {
+        //             position: 'top-right'
+        //         })
+        //     },
+        // });
         // console.log(formData);
     }
 
@@ -152,7 +153,7 @@ function CauseEdit_Form() {
             initialValues={initial_values}
             enableReinitialize={true}
             onSubmit={(values) => {
-               handleSubmit(values)
+                handleSubmit(values)
             }}
 
         >
@@ -162,7 +163,7 @@ function CauseEdit_Form() {
                     <div className="flex w-[100%] mt-2 gap-14 max-tablet:flex-col max-desktop:flex-col">
                         <div className="flex flex-col w-[70%] max-tablet:w-[100%] max-desktop:w-[100%] gap-10 items-center">
                             <ImageBackgroundWithDeleteButton 
-                            setImage={setcropdata}
+                            // setImage={setcropdata}
                             name = {'campaign_image'}
                             imgUrl={dataUrl} 
                             onChange={(e) =>{

@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
-import InputField from '../../inputs/InputField'
+import InputField from '../../../inputs/InputField'
 import { Form, Formik } from 'formik'
 import { FormLabel } from '@mui/material'
-import UploadField from '../../inputs/UploadField/Index'
-import SelectField from '../../inputs/SelectField'
-import PrimaryButton from '../../inputs/PrimaryButton'
-import Attachments from '../../layout/Attachments/Index'
-import { useCreateOrUpdate, useGetAll } from '../../../Hooks'
-import { useLocation } from 'react-router-dom'
+import UploadField from '../../../inputs/UploadField/Index'
+import PrimaryButton from '../../../inputs/PrimaryButton'
+import Attachments from '../../../layout/Attachments/Index'
+import { useCreateOrUpdate, useGetAll } from '../../../../Hooks'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import RadioGroup from '../../inputs/radioGroup'
+import RadioGroup from '../../../inputs/radioGroup'
+import CheckBox from '../../../inputs/checkBox'
 const InputStyle =
 {
 
@@ -45,11 +45,12 @@ const InputCampaign =
 function CausesView() {
     let { state } = useLocation();
     let { id } = state;
-    const [data, setData] = useState({});
 
-    const [imgOne, setImgOne] = useState('');
-    const [imgTwo, setImgTwo] = useState('');
-    const [imgThree, setImgThree] = useState('');
+    const [data, setData] = useState({});
+    let navigate = useNavigate();
+    // const [imgOne, setImgOne] = useState('');
+    // const [imgTwo, setImgTwo] = useState('');
+    // const [imgThree, setImgThree] = useState('');
 
     const img = [
         "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
@@ -110,9 +111,7 @@ function CausesView() {
                     <div className='p-4 w-[100%] '>
                         <div className="flex flex-col gap-7  w-[70%] max-desktop:w-full max-tablet:w-[100%]">
                             <div className="flex flex-col gap-7">
-                                <div className="w-full">
-                                    <InputField sx={InputCampaign} disabled={true} label={"Title of Campaign:"} name={'title'} value={values?.title} onChange={handleChange} />
-                                </div>
+
                                 <div className="w-full">
                                     <InputField sx={InputStyle} label={"Aadhar Card:"} name={'adhaar_num'} value={values?.adhaar_num} onChange={handleChange} />
                                 </div>
@@ -176,15 +175,6 @@ function CausesView() {
                                 <div className="w-full">
                                     <UploadField label='Upload Passbook Copy:' name={'pan'} />
                                 </div>
-                                <div className="w-full">
-                                    <SelectField label={'Status'} name={'status'}
-                                        type='radio'
-                                        options={[
-                                            { label: 'Approved', value: 'approved' },
-                                            { label: 'Pending', value: 'pending' }
-                                        ]}
-                                    />
-                                </div>
                                 <RadioGroup
                                     // onChange={(e) => { setFieldValue("rasing_for", e.target.value) }}
                                     name="rasing_for"
@@ -198,13 +188,20 @@ function CausesView() {
                                 //   onChange={formik.handleChange}
                                 //   value={formik.values.rasing_for}
                                 />
+                                <CheckBox
+                                    sx={{ paddingLeft: '15px' }}
+                                    name="declaration"
+                                    label={'I give my consent by sharing my Aadhar details with the team for verification'}
+
+                                />
                                 <div className="flex flex-row gap-4 mt-12">
                                     <button
+                                        onClick={() => navigate(-1)}
                                         className='w-[69px] h-[32px] bg-[#F7F7F7]'>
-                                        <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
+                                        <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Go Back</h1>
                                     </button>
                                     <PrimaryButton type='submit' >
-                                        <h1 className='text-white font-semibold font-[satoshi]'>Save</h1>
+                                        <h1 className='text-white font-semibold font-[satoshi]'>Save Edit</h1>
                                     </PrimaryButton>
 
                                 </div>
