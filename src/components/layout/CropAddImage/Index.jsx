@@ -34,7 +34,6 @@ function ImageBackgroundWithDeleteButton({ imgUrl, onDelete, setDataUrl }) {
       className="max-w-[500px] w-full  min-h-[333px]"
       style={backgroundStyle}
     >
-       
       {imgUrl ? (
         <>
           <PrimaryButton

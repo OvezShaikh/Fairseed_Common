@@ -76,14 +76,14 @@ function CauseEdit_Form() {
         key: `/admin-dashboard/campaign/${id}`,
         enabled: true,
         select: (data) => {
-            // console.log(data.data.data);
+            console.log(data.data.data,"Particular ID value----------->");
             return data.data.data;
         },
         onSuccess: (data) => {
             setUser(data);
             const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign_image}`;
             setImageUrl(imageUrl);
-            setDataUrl(imageUrl)
+            setDataUrl(dataUrl)
         },
     });
     console.log(imageUrl)
@@ -97,6 +97,7 @@ function CauseEdit_Form() {
         },
         onSuccess: (data) => {
             setCategory(data);
+            console.log(data, "data ------------------->")
            
 
 

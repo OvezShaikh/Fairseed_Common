@@ -5,6 +5,7 @@ import Campaign from "../../components/AdminPanelPages/Campaign/Campaign";
 import Dashboard from "../../components/AdminPanelPages/Dashboard/Index";
 import UserPanel from "../../components/layout/User Dashboard/Index";
 import Scholarship from "../../components/AdminPanelPages/Scholarship Cause/Index";
+import User_Dashboard from "../User Dashboard/Index";
 
 
 function UserPage() {
@@ -15,7 +16,7 @@ function UserPage() {
         path="/"
         element={
           <UserPanel>
-            <Dashboard />
+           <User_Dashboard/>
           </UserPanel>
         }
       />

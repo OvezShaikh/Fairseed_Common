@@ -18,11 +18,11 @@ function Dashboard() {
     }],
     });
   return (
-    <div className='py-6 px-4 grid grid-cols-2 gap-4  dashboard-div font-[satoshi]'>
+    <div className='py-6 px-4 grid grid-cols-2 gap-4  dashboard-div font-[satoshi] max-desktop:grid-cols-1'>
       <DashboardActivities />
       <OngoingCampaigns />
       <MembersByCountries />
-      <DonationInMonths userData={userData} />
+      <DonationInMonths />
     </div>
   )
 }
