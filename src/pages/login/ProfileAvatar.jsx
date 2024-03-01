@@ -30,12 +30,13 @@ export default function ProfileAvatar() {
     localStorage.removeItem('user_info');
     console.log(localStorage.getItem('token'))
     window.location.href = '/Home';
-    toast.error("Logout Successful !",{
+    toast.error("Logout Successful !", {
       position: "top-center"
     })
   }
 
-const [user , setUser] = React.useState({})
+
+  const [user, setUser] = React.useState({})
 
   const open = Boolean(anchorEl);
 
@@ -51,22 +52,8 @@ const [user , setUser] = React.useState({})
   let Data = JSON.parse(userData)
   console.log(Data)
   let role = Data?.user_role
-  
 
-  // useGetAll({
-  //   key: `/admin-dashboard/users/${id}`,
-  //   enabled: true,
-  //   select: (data) => {
-  //     console.log(data)
-  //       return data.data.data;
-  //   },
-  //   onSuccess: (data) => {
-  //     console.log(data)
-  //     setUser(data); 
-  //   },
 
-  // })
-  
 
   return (
     <React.Fragment>
@@ -119,33 +106,38 @@ const [user , setUser] = React.useState({})
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
+        {
+          role === 'Admin' && (
+            <>
+              <MenuItem onClick={handleClose}>
+                <Link to="/AdminPanel">
+                  <ListItemIcon>
+                    <Avatar />
+                  </ListItemIcon>
+                  AdminPanel
+                </Link>
+              </MenuItem>
+               <Divider />
+               </>
+          )
+        }
+ 
         <MenuItem onClick={handleClose}>
-          <Link to={"/AdminPanel"}>
-          <ListItemIcon>
-            <Avatar />
+          <Link to={"/User"}>
+            <ListItemIcon>
+              <img src={images.Dashboard} alt="" />
             </ListItemIcon>
-             AdminPanel
+            Dashboard
           </Link>
         </MenuItem>
-        <Divider />
 
 
         <MenuItem onClick={handleClose}>
-        <Link to={"/User"}>
-          <ListItemIcon>
-          <img src={images.Dashboard} alt="" />
-          </ListItemIcon>
-          Dashboard
-          </Link>
-        </MenuItem>
-        
-
-        <MenuItem onClick={handleClose}>
-        <Link to={"/account-settings"}>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
+          <Link to={"/account-settings"}>
+            <ListItemIcon>
+              <Settings fontSize="small" />
+            </ListItemIcon>
+            Settings
           </Link>
         </MenuItem>
 

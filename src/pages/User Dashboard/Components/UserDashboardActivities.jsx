@@ -33,20 +33,20 @@ const UserDashboardActivities = () => {
 
 
   return (
-    <div className='grid grid-cols-2 gap-x-[20px] gap-y-[32px] col-span-1'>
-        <div className='w-full max-w-[240px] border border-[#DBDBDE] rounded-[20px] py-[22px] px-[11px]'>
+    <div className='grid grid-cols-2 gap-x-[20px] gap-y-[32px] '>
+        <div className='max-w-[240px] w-full border border-[#DBDBDE] rounded-[20px] py-[22px] px-[11px]'>
             <h4 className='font-[satoshi] font-bold text-[16px]'>Campaigns</h4>
             <h6 className='font-[satoshi] font-medium text-[40px]'>{dataObject.total_campaign}</h6>
         </div>
-        <div className='w-full max-w-[240px] border border-[#DBDBDE] rounded-[20px] py-[22px] px-[11px]'>
+        <div className='max-w-[240px] w-full border border-[#DBDBDE] rounded-[20px] py-[22px] px-[11px]'>
             <h4 className='font-[satoshi] font-bold text-[16px]'>Donations</h4>
             <h6 className='font-[satoshi] font-medium text-[40px]'>{dataObject.no_of_donation}</h6>
         </div>
-        <div className='w-full max-w-[240px] border border-[#DBDBDE] rounded-[20px] py-[22px] px-[11px]'>
+        <div className='max-w-[240px] w-full border border-[#DBDBDE] rounded-[20px] py-[22px] px-[11px]'>
             <h4 className='font-[satoshi] font-bold text-[16px]'>Funds Raised</h4>
-            <h6 className='font-[satoshi] font-medium text-[40px]'>2</h6>
+            <h6 className='font-[satoshi] font-medium text-[40px]'>200000</h6>
         </div>
-        <div className='w-full max-w-[240px] border border-[#DBDBDE] rounded-[20px] py-[22px] px-[11px]'>
+        <div className='max-w-[240px] w-full border border-[#DBDBDE] rounded-[20px] py-[22px] px-[11px]'>
             <h4 className='font-[satoshi] font-bold text-[16px]'>Withdrawn</h4>
             <h6 className='font-[satoshi] font-medium text-[40px]'>2</h6>
         </div>

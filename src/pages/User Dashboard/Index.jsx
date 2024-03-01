@@ -7,9 +7,13 @@ import MyRecentDonations from './Components/MyRecentDonations';
 const User_Dashboard = () => {
   return (
     <div>
-      <div className='grid grid-cols-3 mb-[68px] gap-x-[20px]'><UserDashboardActivities />
-        <FundsRaisedInLastMonth /></div>
-      <div className='grid grid-cols-3'><MyRecentDonations /></div>
+      <div className='grid grid-cols-[auto,auto] gap-x-[20px] big-desktop:grid-cols-[499px,auto]'>
+        <UserDashboardActivities />
+        <FundsRaisedInLastMonth />
+      </div>
+      <div className='grid grid-cols-3 mt-[68px]'>
+        <MyRecentDonations />
+      </div>
 
     </div>
   )

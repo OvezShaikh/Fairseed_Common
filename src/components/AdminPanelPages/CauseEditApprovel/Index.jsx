@@ -54,10 +54,10 @@ function CauseEdit_Form() {
     };
     const navigate = useNavigate();
 
-    const [user, setUser] = useState({})
-
-
-    const [imageUrl, setImageUrl] = useState("https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"); // State to store the image URL
+    const [user, setUser] = useState({});
+    const [document , setDocument ] = useState([]);
+    const [cropdata , setcropdata] = useState(null);
+    const [imageUrl, setImageUrl] = useState(); 
 
     const handleDelete = () => {
         setDataUrl('')
@@ -76,14 +76,13 @@ function CauseEdit_Form() {
         key: `/admin-dashboard/campaign/${id}`,
         enabled: true,
         select: (data) => {
-            console.log(data.data.data,"Particular ID value----------->");
             return data.data.data;
         },
         onSuccess: (data) => {
             setUser(data);
-            const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign_image}`;
+            const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign_image || ""}`;
             setImageUrl(imageUrl);
-            setDataUrl(dataUrl)
+            setDataUrl(imageUrl)
         },
     });
     console.log(imageUrl)
@@ -93,14 +92,10 @@ function CauseEdit_Form() {
         enabled: true,
         select: (data) => {
             console.log(data.data.rows);
-            return data.data.rows;
+            return data?.data?.rows;
         },
         onSuccess: (data) => {
             setCategory(data);
-            console.log(data, "data ------------------->")
-           
-
-
         },
     });
 
@@ -115,31 +110,41 @@ function CauseEdit_Form() {
         title: user.title || "",
         amount: user.goal_amount || "",
         location: user.location || "",
-        category: user?.category?.name || "",
+        category: user?.category?.name ,
         is_featured: user?.is_featured || false,
         summary: user?.summary || "",
         zakat_eligible: user?.zakat_eligible || false,
         end_date: user?.end_date || "",
         status: user?.status || "",
         story: user?.story || "",
-        doc1 : user?.documents?.doc_file || ""
+        doc1 : user?.documents?.doc_file || "",
     };
 
+    console.log(cropdata , "<-------------------------")
     if (!isSuccess) {
         return <div>Loading...</div>;
     }
 
     const handleSubmit = (values)=>{
+
+        console.log(values,",========valllllele",imageUrl)
         const formData = new FormData();
-        formData.append('campaign_image', values)
-        mutate(values, {
-            onSuccess: (response) => {
+        formData.append('campaign_image', values?.campaign_image)
+        formData.append('title' , values?.title)
+        formData.append('amount' , values?.amount)
+        formData.append('location' , values?.location)
+        formData.append('end_date' , values?.end_date)
+        formData.append('summary' , values?.summary)
+        formData.append('story' , values?.story)
+        formData.append('category' , values?.category)
+        mutate(formData, {
+            onSuccess: () => {
                 toast.success("Cause updated Succcessfully ! ",{
                     position:'top-right'
                 })
             },
         });
-
+        // console.log(formData);
     }
 
     return (
@@ -157,12 +162,17 @@ function CauseEdit_Form() {
                     <div className="flex w-[100%] mt-2 gap-14 max-tablet:flex-col max-desktop:flex-col">
                         <div className="flex flex-col w-[70%] max-tablet:w-[100%] max-desktop:w-[100%] gap-10 items-center">
                             <ImageBackgroundWithDeleteButton 
+                            setImage={setcropdata}
                             name = {'campaign_image'}
                             imgUrl={dataUrl} 
                             onChange={(e) =>{
-                                setDataUrl(e.target.files[0]);
-                                setImageUrl(e.target.files[0])}
-                            }
+                                const newImage = e.target.files[0];
+                                console.log(e.target.files,'targete filelslslslssl')
+                                setDataUrl(URL.createObjectURL(newImage));  // Display the new image preview
+                                setFieldValue('campaign_image', newImage);  // Set the new image in Formik values
+                                setImageUrl(newImage);  // Optionally, set the new image for other purposes
+                            }}
+                            
                              setDataUrl={setDataUrl}
                               onDelete={handleDelete}
                               multiple={false} />
@@ -349,6 +359,7 @@ function CauseEdit_Form() {
                             <div className=" w-full ">
                                 <RadioGroup
                                     name={"is_featured"}
+                                    type='radio'
                                     sx={{ flexDirection: 'column' }}
                                     options={[
                                         { label: "On", value: true },
