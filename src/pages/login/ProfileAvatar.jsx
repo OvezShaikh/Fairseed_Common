@@ -50,7 +50,7 @@ const [user , setUser] = React.useState({})
   let userData = localStorage.getItem('user_info')
   let Data = JSON.parse(userData)
   console.log(Data)
-  let id = Data?.id
+  let role = Data?.user_role
   
 
   // useGetAll({
