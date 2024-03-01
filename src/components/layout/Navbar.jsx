@@ -20,6 +20,7 @@ import UserSignUp_02 from "../../pages/login/Sign_Up/Index";
 import { Link, NavLink } from "react-router-dom";
 import ProfileAvatar from "../../pages/login/ProfileAvatar";
 import { toast } from "react-toastify";
+
 const styleButton = {
   color: 'red'
 }
@@ -86,6 +87,15 @@ const AboutUs = [
 
 ];
 
+const HowItWorks = [
+  {
+    name: "How-It-Works",
+    href: "/How-It-Works",
+  },
+ 
+
+];
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -93,6 +103,7 @@ function classNames(...classes) {
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+ 
   // const [isClicked, setIsClicked] = useState(false);
 
   // const handleButtonClick = () => {
@@ -338,10 +349,13 @@ export default function Example() {
             </Popover>
             {/* Fourth button */}
 
+            
             <button
               className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
-            >How it Works</button>
+            ><Link to="/Home/How-It-Works">How it Works</Link></button>
             {/* Fifth button */}
+
+
             {
               (localStorage.getItem('token')) ? (
                 <PrimaryButton

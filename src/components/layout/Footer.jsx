@@ -175,7 +175,7 @@ function Footer() {
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="#"
+                  to="/Home"
                 >
                   Home
                 </Link>
@@ -188,7 +188,7 @@ function Footer() {
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="#"
+                  to="/Home/About-Us/Knowing-Fairseed"
                 >
                   About Us
                 </Link>
