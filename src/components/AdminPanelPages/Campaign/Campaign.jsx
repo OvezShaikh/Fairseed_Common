@@ -168,16 +168,14 @@ const Campaign = () => {
         manualPagination
         title={"Campaign"}
         checkboxComponent={IndeterminateCheckbox}
-        {...(pathname === 'User/campaigns' && {
-          url: `/user-dashboard/campaign/${id}`
-        })}
-        {...(pathname === 'AdminPanel/campaigns' && {
-          url: '/admin-dashboard/campaign'
-        })}
+        // {...(pathname === 'User/campaigns' && {
+        //   url: `/user-dashboard/campaign/${id}`
+        // })}
+        // {...(pathname === 'AdminPanel/campaigns' && {
+        url='/admin-dashboard/campaign'
+        // })}
 
         extraQuery={{ inactive: true }}
-        // addButton={<LocationConfigurationDialog />}
-        // addButton={<Button>HElloooooo</Button>}
         selectedRowID={selectedRowID}
       />
     </div>

@@ -4,6 +4,7 @@ import Donation from "../../components/AdminPanelPages/Donation/Index";
 import Campaign from "../../components/AdminPanelPages/Campaign/Campaign";
 import Dashboard from "../../components/AdminPanelPages/Dashboard/Index";
 import UserPanel from "../../components/layout/User Dashboard/Index";
+import MyDonation from "../../components/AdminPanelPages/MyDonation/Index"
 import Withdrawals from "../../components/AdminPanelPages/Withdrawals/Index"
 import Scholarship from "../../components/AdminPanelPages/Scholarship Cause/Index";
 import DonationView from "../../components/AdminPanelPages/UserForms/DonationView/Index"
@@ -72,7 +73,7 @@ function UserPage() {
         path="/My-Donations"
         element={
           <UserPanel>
-            <Donation />
+            <MyDonation />
           </UserPanel>
         }
       />
