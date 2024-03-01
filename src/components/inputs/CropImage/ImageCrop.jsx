@@ -10,7 +10,7 @@ import setCanvasPreview from "./setCanvasPreview";
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
 
-const ImageCrop = ({ setDataUrl,closeModal }) => {
+const ImageCrop = ({ setDataUrl,closeModal ,name , setImage }) => {
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);
   const [imgSrc, setImgSrc] = useState("");
@@ -19,13 +19,15 @@ const ImageCrop = ({ setDataUrl,closeModal }) => {
 
   const onSelectFile = (e) => {
     const file = e.target.files?.[0];
+    setImage(file);
     if (!file) return;
+    console.log(file, "_______________file")
 
     const reader = new FileReader();
     reader.addEventListener("load", () => {
       const imageElement = new Image();
       const imageUrl = reader.result?.toString() || "";
-      console.log("ImageUrl=========>",imageUrl)
+      // console.log("ImageUrl=========>",imageUrl)
       imageElement.src = imageUrl;
 
       imageElement.addEventListener("load", (e) => {
@@ -64,6 +66,7 @@ const ImageCrop = ({ setDataUrl,closeModal }) => {
       <label className="block mb-3 w-fit">
         <span className="sr-only">Choose profile photo</span>
         <input
+        name= {name}
           type="file"
           accept="image/*"
           onChange={onSelectFile}
@@ -102,7 +105,9 @@ const ImageCrop = ({ setDataUrl,closeModal }) => {
                 )
               );
               const dataUrl = previewCanvasRef.current.toDataURL();
-              console.log("DataUrl======>",dataUrl)
+
+console.log(previewCanvasRef.current,"<=====curuurnneenetteetetet")
+              console.log("DataUrl======>",dataUrl);
               // updateAvatar(dataUrl);
               setDataUrl(dataUrl)
               closeModal();

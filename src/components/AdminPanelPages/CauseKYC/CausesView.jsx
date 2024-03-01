@@ -6,8 +6,9 @@ import UploadField from '../../inputs/UploadField/Index'
 import SelectField from '../../inputs/SelectField'
 import PrimaryButton from '../../inputs/PrimaryButton'
 import Attachments from '../../layout/Attachments/Index'
-import { useGetAll } from '../../../Hooks'
+import { useCreateOrUpdate, useGetAll } from '../../../Hooks'
 import { useLocation } from 'react-router-dom'
+import { toast } from 'react-toastify'
 const InputStyle =
 {
 
@@ -81,54 +82,62 @@ function CausesView() {
           setData(data); 
         },
     })
+    const { mutate } = useCreateOrUpdate({
+        url:`/user-dashboard/edit-bankkyc/${id}`,
+        method:'put'
+    })
 
     const handleSubmit = (values) =>{
-        console.log(values);
+        mutate(values ,{
+            onSuccess:(response)=>{
+                toast.success('Details Updated Successfully ! ', {
+                    position:'top-right'
+                })
+            }
+        })
     }
 
 
-
-console.log(initial_values ,'<--------------')
     return (
         <Formik 
         enableReinitialize={true}
         initialValues={initial_values}
-        // onSubmit={(values)=>handleSubmit(values)}
+        onSubmit={(values)=>handleSubmit(values)}
         >
-            {({values })=>(
+            {({values , handleChange })=>(
             <Form>
                 <div className='p-4 w-[100%] '>
                     <div className="flex flex-col gap-7  w-[70%] max-desktop:w-full max-tablet:w-[100%]">
                         <div className="flex flex-col gap-7">
                             <div className="w-full">
-                                <InputField sx={InputCampaign} disabled={true} label={"Title of Campaign:"} name={'title'} value={values?.title} />
+                                <InputField sx={InputCampaign} disabled={true} label={"Title of Campaign:"} name={'title'} value={values?.title} onChange={handleChange} />
                             </div>
                             <div className="w-full">
-                                <InputField sx={InputStyle} label={"Aadhar Card:"} name={'adhaar_num'} value={values?.adhaar_num} />
+                                <InputField sx={InputStyle} label={"Aadhar Card:"} name={'adhaar_num'} value={values?.adhaar_num} onChange={handleChange} />
                             </div>
                             <div className="w-full">
-                                <InputField sx={InputStyle} label={"Account Holder Name:"} name={'account_holder_name'} value={values?.account_holder_name} />
+                                <InputField sx={InputStyle} label={"Account Holder Name:"} name={'account_holder_name'} value={values?.account_holder_name} onChange={handleChange} />
                             </div>
                             <div className="w-full">
-                                <InputField sx={InputStyle} label={"Beneficiary Bank Account Number::"} name={'account_holder_name'} value={values?.account_number} />
+                                <InputField sx={InputStyle} label={"Beneficiary Bank Account Number::"} name={'account_number'} value={values?.account_number} onChange={handleChange} />
                             </div>
                             <div className="w-full">
-                                <InputField sx={InputStyle} label={"Bank Name:"} name={'bank_name'} value={values?.bank_name} />
+                                <InputField sx={InputStyle} label={"Bank Name:"} name={'bank_name'} value={values?.bank_name} onChange={handleChange} />
                             </div>
                             <div className="w-full">
-                                <InputField sx={InputStyle} label={"Branch Name:"} name={'branch_name'} value={values?.branch_name} />
+                                <InputField sx={InputStyle} label={"Branch Name:"} name={'branch_name'} value={values?.branch_name} onChange={handleChange} />
                             </div>
                             <div className="w-full">
-                                <InputField sx={InputStyle} label={"IFSC Code:"} name={'ifsc_code'} value={values?.ifsc_code} />
+                                <InputField sx={InputStyle} label={"IFSC Code:"} name={'ifsc_code'} value={values?.ifsc_code} onChange={handleChange} />
                             </div>
                             <div className="w-full">
-                                <InputField sx={InputStyle} label={"Pan Card Number:"} name={'pan_number'} value={values?.pan_number} />
+                                <InputField sx={InputStyle} label={"Pan Card Number:"} name={'pan_number'} value={values?.pan_number} onChange={handleChange} />
                             </div>
                             <div className="w-full">
-                                <InputField sx={InputStyle} label={"Adhar Number:"} name={'adhaar_num'} value={values?.adhaar_num} />
+                                <InputField sx={InputStyle} label={"Adhar Number:"} name={'adhaar_num'} value={values?.adhaar_num} onChange={handleChange} />
                             </div>
                             <div className="w-full">
-                                <InputField sx={InputStyle} label={"Other Details (Optional)::"} name={'other'}  value={values?.other}/>
+                                <InputField sx={InputStyle} label={"Other Details (Optional)::"} name={'other'}  value={values?.other} onChange={handleChange}/>
                             </div>
                             <div className="w-full">
                                 <FormLabel sx={{ fontSize: '20px', fontFamily: 'satoshi', fontWeight: 700, color: "#383A42", paddingLeft: '8px' }}>
@@ -168,6 +177,7 @@ console.log(initial_values ,'<--------------')
                             </div>
                             <div className="w-full">
                                 <SelectField label={'Status'} name={'status'}
+                                type='radio'
                                     options={[
                                         { label: 'Approved', value: 'approved' },
                                         { label: 'Pending', value: 'pending' }
