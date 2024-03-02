@@ -76,23 +76,20 @@ function Index({ label, heading, titleName }) {
 
               >
                 {/* {breadcrumbs} */}
-                {pathname?.substr(1)?.split('/')?.map((item, i, array) => {
+                {pathname?.substr(1)?.split('/')?.map((item, i) => {
                   // Check if the current index is not the last item in the array
-                  if (i !== array.length - 1) {
-                    return (
-                      <Link
-                        underline="hover"
-                        style={{ cursor: 'pointer' }}
-                        key={i}
-                        color="inherit"
-                      // onClick={(e) => handleClick(e, item)}
-                      >
-                        {item}
+                  return (
+                    <Link
+                      underline="hover"
+                      style={{ cursor: 'pointer' }}
+                      key={i}
+                      color="inherit"
+                    // onClick={(e) => handleClick(e, item)}
+                    >
+                      {item}
 
-                      </Link>
-                    );
-                  }
-                  return null; // Exclude rendering the last item (ID)
+                    </Link>
+                  );
                 })}
                 {console.log(titleName, '=+=+=+Pathname=+=+=+')}
               </Breadcrumbs>

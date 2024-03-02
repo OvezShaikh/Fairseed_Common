@@ -16,7 +16,7 @@ const ImagePreviewDialog = ({ onChange }) => {
       return;
     }
     setFile(selectedFile);
-    onChange(selectedFile); // Notify the parent component about the selected file if needed
+    onChange(selectedFile); 
   };
 
   useEffect(() => {

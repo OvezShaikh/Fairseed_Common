@@ -105,7 +105,7 @@ const CustomPagination = ({
               // width: "50px",
             }}
           >
-            {[25, 50, 75, 100, 150].map((pageSize) => (
+            {[5,10,25, 50, 75, 100, 150].map((pageSize) => (
               <MenuItem
                 key={pageSize}
                 value={pageSize}

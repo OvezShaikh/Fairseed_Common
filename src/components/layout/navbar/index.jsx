@@ -137,7 +137,7 @@ const NavbarContainer = ({ handleDrawerToggle, mobileOpen }) => {
                             style={{ cursor: 'pointer' }}
                             key={i}
                             color="inherit"
-                            onClick={(e) => handleClick(e, item)}
+                          // onClick={(e) => handleClick(e, item)}
                           >
                             {item}
                           </Link>

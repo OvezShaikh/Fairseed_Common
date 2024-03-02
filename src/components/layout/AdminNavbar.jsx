@@ -12,29 +12,19 @@ import { Avatar, Grid, Stack } from "@mui/material";
 import { Search } from "../inputs/Search";
 import { Link } from "react-router-dom";
 import { useGetAll } from "../../Hooks";
+import ProfileAvatar from "../../pages/login/ProfileAvatar";
 
 const Navbar = () => {
   const isTab = useMediaQuery("(max-width: 1100px)");
   const sideBar = useMediaQuery("(max-width: 900px)");
 
-  const [user , setUser] = useState({})
-
   let userData = localStorage.getItem('user_info')
   let Data = JSON.parse(userData)
-  let id = Data?.id
-  useGetAll({
-    key: `/admin-dashboard/users/${id}`,
-    enabled: true,
-    select: (data) => {
-      console.log(data)
-        return data.data.data;
-    },
-    onSuccess: (data) => {
-      console.log(data)
-      setUser(data); 
-    },
+  let username = Data?.username
+  let user_role = Data?.user_role
+  let profile_pic = Data?.profile_pic
 
-  })
+ 
 
   return (
     <>
@@ -63,17 +53,7 @@ const Navbar = () => {
               }} />
           </div>
           <div className="flex-row ps-2 justify-start items-center inline-flex ">
-            {/* <div className=" flex max-tablet:hidden">
-              <Badge badgeContent={17} style={{ cursor: 'pointer' }} color="error">
-                <NotificationsIcon />
-              </Badge>
-              <button className="w-6 h-6 flex-1  ml-3">
-                <TuneIcon />
-              </button>
-              <button className="w-6 h-6 flex-1 mx-3">
-                <HelpIcon />
-              </button>
-            </div> */}
+            
 
             <Grid
               item
@@ -95,29 +75,18 @@ const Navbar = () => {
                 }}
               >
                 <p className="text-truncate m-0" style={{ maxWidth: "100%" }}>
-                  {user?.username}
+                  {username}
                 </p>
                 <p className="text-truncate m-0" style={{ maxWidth: "100%" }}>
-                {user?.user_role}
+                {user_role}
                 </p>
               </Stack>
-              <DropDown >
-                <Avatar
-                  sx={{
-                    width: 35,
-                    height: 35,
-                    marginRight: `15px`,
-                    color: "#fff",
-                    background: "#0094AA",
-                  }}
-                  className="my-auto "
-                />
-              </DropDown>
+                <ProfileAvatar/>
             </Grid>
           </div>
         </div>
       </nav>
-      {/* Side bar */}
+     
     </>
   );
 };

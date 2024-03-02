@@ -9,6 +9,7 @@ import Attachments from '../../layout/Attachments/Index'
 import { useCreateOrUpdate, useGetAll } from '../../../Hooks'
 import { useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import RadioGroup from '../../inputs/radioGroup'
 const InputStyle =
 {
 
@@ -42,10 +43,10 @@ const InputCampaign =
     }
 }
 function CausesView() {
-    let {state} = useLocation();
+    let { state } = useLocation();
     let { id } = state;
-    const [data , setData] = useState({});
-    
+    const [data, setData] = useState({});
+
     const [imgOne, setImgOne] = useState('');
     const [imgTwo, setImgTwo] = useState('');
     const [imgThree, setImgThree] = useState('');
@@ -58,40 +59,40 @@ function CausesView() {
     ]
 
     const initial_values = {
-        account_holder_name: data?.account_holder_name ||"",
-        account_number:data?.account_number || "",
+        account_holder_name: data?.account_holder_name || "",
+        account_number: data?.account_number || "",
         bank_data: data?.bank_data || "",
-        bank_name:data?.bank_name || "",
-        branch_name:data?.branch_name || "",
-        title:data?.campaign?.title || "",
-        ifsc_code:data?.ifsc_code || "",
-        status:data?.status ,
-        pan_number:"",
-        adhaar_num :"",
-        other:""
+        bank_name: data?.bank_name || "",
+        branch_name: data?.branch_name || "",
+        title: data?.campaign?.title || "",
+        ifsc_code: data?.ifsc_code || "",
+        status: data?.status,
+        pan_number: "",
+        adhaar_num: "",
+        other: ""
     }
 
     useGetAll({
         key: `/admin-dashboard/campaign-kyc/${id}`,
         enabled: true,
         select: (data) => {
-          console.log(data)
+            console.log(data)
             return data.data.data;
         },
         onSuccess: (data) => {
-          setData(data); 
+            setData(data);
         },
     })
     const { mutate } = useCreateOrUpdate({
-        url:`/user-dashboard/edit-bankkyc/${id}`,
-        method:'put'
+        url: `/user-dashboard/edit-bankkyc/${id}`,
+        method: 'put'
     })
 
-    const handleSubmit = (values) =>{
-        mutate(values ,{
-            onSuccess:(response)=>{
+    const handleSubmit = (values) => {
+        mutate(values, {
+            onSuccess: (response) => {
                 toast.success('Details Updated Successfully ! ', {
-                    position:'top-right'
+                    position: 'top-right'
                 })
             }
         })
@@ -99,109 +100,122 @@ function CausesView() {
 
 
     return (
-        <Formik 
-        enableReinitialize={true}
-        initialValues={initial_values}
-        onSubmit={(values)=>handleSubmit(values)}
+        <Formik
+            enableReinitialize={true}
+            initialValues={initial_values}
+            onSubmit={(values) => handleSubmit(values)}
         >
-            {({values , handleChange })=>(
-            <Form>
-                <div className='p-4 w-[100%] '>
-                    <div className="flex flex-col gap-7  w-[70%] max-desktop:w-full max-tablet:w-[100%]">
-                        <div className="flex flex-col gap-7">
-                            <div className="w-full">
-                                <InputField sx={InputCampaign} disabled={true} label={"Title of Campaign:"} name={'title'} value={values?.title} onChange={handleChange} />
-                            </div>
-                            <div className="w-full">
-                                <InputField sx={InputStyle} label={"Aadhar Card:"} name={'adhaar_num'} value={values?.adhaar_num} onChange={handleChange} />
-                            </div>
-                            <div className="w-full">
-                                <InputField sx={InputStyle} label={"Account Holder Name:"} name={'account_holder_name'} value={values?.account_holder_name} onChange={handleChange} />
-                            </div>
-                            <div className="w-full">
-                                <InputField sx={InputStyle} label={"Beneficiary Bank Account Number::"} name={'account_number'} value={values?.account_number} onChange={handleChange} />
-                            </div>
-                            <div className="w-full">
-                                <InputField sx={InputStyle} label={"Bank Name:"} name={'bank_name'} value={values?.bank_name} onChange={handleChange} />
-                            </div>
-                            <div className="w-full">
-                                <InputField sx={InputStyle} label={"Branch Name:"} name={'branch_name'} value={values?.branch_name} onChange={handleChange} />
-                            </div>
-                            <div className="w-full">
-                                <InputField sx={InputStyle} label={"IFSC Code:"} name={'ifsc_code'} value={values?.ifsc_code} onChange={handleChange} />
-                            </div>
-                            <div className="w-full">
-                                <InputField sx={InputStyle} label={"Pan Card Number:"} name={'pan_number'} value={values?.pan_number} onChange={handleChange} />
-                            </div>
-                            <div className="w-full">
-                                <InputField sx={InputStyle} label={"Adhar Number:"} name={'adhaar_num'} value={values?.adhaar_num} onChange={handleChange} />
-                            </div>
-                            <div className="w-full">
-                                <InputField sx={InputStyle} label={"Other Details (Optional)::"} name={'other'}  value={values?.other} onChange={handleChange}/>
-                            </div>
-                            <div className="w-full">
-                                <FormLabel sx={{ fontSize: '20px', fontFamily: 'satoshi', fontWeight: 700, color: "#383A42", paddingLeft: '8px' }}>
-                                    Documents:
-                                </FormLabel>
-                                <div className="flex gap-4 pt-2">
-                                    <div className="flex flex-col gap-2">
-                                        <Attachments imageUrl={{}} />
-                                        <FormLabel sx={{ fontSize: '20px', fontFamily: 'satoshi', fontWeight: 700, color: "#383A42", paddingLeft: '8px' }}>
-                                            PAN Card
-                                        </FormLabel>
-                                    </div>
-                                    <div className="flex flex-col gap-2">
-                                        <Attachments imageUrl={{}} />
-                                        <FormLabel sx={{ fontSize: '20px', fontFamily: 'satoshi', fontWeight: 700, color: "#383A42", paddingLeft: '8px' }}>
-                                            Adhar Card
-                                        </FormLabel>
-                                    </div>
-                                    <div className="flex flex-col gap-2">
-                                        <Attachments imageUrl={{}} />
-                                        <FormLabel sx={{ fontSize: '20px', fontFamily: 'satoshi', fontWeight: 700, color: "#383A42", paddingLeft: '8px' }}>
-                                            Passbook
-                                        </FormLabel>
-                                    </div>
+            {({ values, handleChange }) => (
+                <Form>
+                    <div className='p-4 w-[100%] '>
+                        <div className="flex flex-col gap-7  w-[70%] max-desktop:w-full max-tablet:w-[100%]">
+                            <div className="flex flex-col gap-7">
+                                <div className="w-full">
+                                    <InputField sx={InputCampaign} disabled={true} label={"Title of Campaign:"} name={'title'} value={values?.title} onChange={handleChange} />
+                                </div>
+                                <div className="w-full">
+                                    <InputField sx={InputStyle} label={"Aadhar Card:"} name={'adhaar_num'} value={values?.adhaar_num} onChange={handleChange} />
+                                </div>
+                                <div className="w-full">
+                                    <InputField sx={InputStyle} label={"Account Holder Name:"} name={'account_holder_name'} value={values?.account_holder_name} onChange={handleChange} />
+                                </div>
+                                <div className="w-full">
+                                    <InputField sx={InputStyle} label={"Beneficiary Bank Account Number::"} name={'account_number'} value={values?.account_number} onChange={handleChange} />
+                                </div>
+                                <div className="w-full">
+                                    <InputField sx={InputStyle} label={"Bank Name:"} name={'bank_name'} value={values?.bank_name} onChange={handleChange} />
+                                </div>
+                                <div className="w-full">
+                                    <InputField sx={InputStyle} label={"Branch Name:"} name={'branch_name'} value={values?.branch_name} onChange={handleChange} />
+                                </div>
+                                <div className="w-full">
+                                    <InputField sx={InputStyle} label={"IFSC Code:"} name={'ifsc_code'} value={values?.ifsc_code} onChange={handleChange} />
+                                </div>
+                                <div className="w-full">
+                                    <InputField sx={InputStyle} label={"Pan Card Number:"} name={'pan_number'} value={values?.pan_number} onChange={handleChange} />
+                                </div>
+                                <div className="w-full">
+                                    <InputField sx={InputStyle} label={"Adhar Number:"} name={'adhaar_num'} value={values?.adhaar_num} onChange={handleChange} />
+                                </div>
+                                <div className="w-full">
+                                    <InputField sx={InputStyle} label={"Other Details (Optional)::"} name={'other'} value={values?.other} onChange={handleChange} />
+                                </div>
+                                <div className="w-full">
+                                    <FormLabel sx={{ fontSize: '20px', fontFamily: 'satoshi', fontWeight: 700, color: "#383A42", paddingLeft: '8px' }}>
+                                        Documents:
+                                    </FormLabel>
+                                    <div className="flex gap-4 pt-2">
+                                        <div className="flex flex-col gap-2">
+                                            <Attachments imageUrl={{}} />
+                                            <FormLabel sx={{ fontSize: '20px', fontFamily: 'satoshi', fontWeight: 700, color: "#383A42", paddingLeft: '8px' }}>
+                                                PAN Card
+                                            </FormLabel>
+                                        </div>
+                                        <div className="flex flex-col gap-2">
+                                            <Attachments imageUrl={{}} />
+                                            <FormLabel sx={{ fontSize: '20px', fontFamily: 'satoshi', fontWeight: 700, color: "#383A42", paddingLeft: '8px' }}>
+                                                Adhar Card
+                                            </FormLabel>
+                                        </div>
+                                        <div className="flex flex-col gap-2">
+                                            <Attachments imageUrl={{}} />
+                                            <FormLabel sx={{ fontSize: '20px', fontFamily: 'satoshi', fontWeight: 700, color: "#383A42", paddingLeft: '8px' }}>
+                                                Passbook
+                                            </FormLabel>
+                                        </div>
 
+
+                                    </div>
+                                </div>
+                                <div className="w-full">
+                                    <UploadField label='Upload PAN Card Copy:' name={'pan'} />
+                                </div>
+                                <div className="w-full">
+                                    <UploadField label='Upload Aadhar Card Copy:' name={'pan'} />
+                                </div>
+                                <div className="w-full">
+                                    <UploadField label='Upload Passbook Copy:' name={'pan'} />
+                                </div>
+                                <div className="w-full">
+                                    <SelectField label={'Status'} name={'status'}
+                                        type='radio'
+                                        options={[
+                                            { label: 'Approved', value: 'approved' },
+                                            { label: 'Pending', value: 'pending' }
+                                        ]}
+                                    />
+                                </div>
+                                <RadioGroup
+                                    // onChange={(e) => { setFieldValue("rasing_for", e.target.value) }}
+                                    name="rasing_for"
+                                    required={true}
+                                    options={[
+                                        { label: "Self", value: "Self" },
+                                        { label: "Family/Friends", value: "Family" },
+                                        { label: "Charity", value: "Charity" },
+                                    ]}
+                                    label="Raising this Campaign for:"
+                                //   onChange={formik.handleChange}
+                                //   value={formik.values.rasing_for}
+                                />
+                                <div className="flex flex-row gap-4 mt-12">
+                                    <button
+                                        className='w-[69px] h-[32px] bg-[#F7F7F7]'>
+                                        <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
+                                    </button>
+                                    <PrimaryButton type='submit' >
+                                        <h1 className='text-white font-semibold font-[satoshi]'>Save</h1>
+                                    </PrimaryButton>
 
                                 </div>
-                            </div>
-                            <div className="w-full">
-                                <UploadField label='Upload PAN Card Copy:' name={'pan'} />
-                            </div>
-                            <div className="w-full">
-                                <UploadField label='Upload Aadhar Card Copy:' name={'pan'} />
-                            </div>
-                            <div className="w-full">
-                                <UploadField label='Upload Passbook Copy:' name={'pan'} />
-                            </div>
-                            <div className="w-full">
-                                <SelectField label={'Status'} name={'status'}
-                                type='radio'
-                                    options={[
-                                        { label: 'Approved', value: 'approved' },
-                                        { label: 'Pending', value: 'pending' }
-                                    ]}
-                                />
-                            </div>
-                            <div className="flex flex-row gap-4 mt-12">
-                                <button
-                                    className='w-[69px] h-[32px] bg-[#F7F7F7]'>
-                                    <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
-                                </button>
-                                <PrimaryButton type='submit' >
-                                    <h1 className='text-white font-semibold font-[satoshi]'>Save</h1>
-                                </PrimaryButton>
 
                             </div>
+
 
                         </div>
 
-
                     </div>
-
-                </div>
-            </Form>
+                </Form>
             )}
         </Formik>
     )
