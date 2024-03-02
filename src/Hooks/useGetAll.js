@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import serverAPI from "../config/serverAPI";
 import setAuthToken from "../utils/setAuthToken";
-// import errorHandle from "../utils/errorHandle";
+import errorHandle from "../utils/errorHandle";
 
 function getData(url, params) {
   if (localStorage.getItem("token")) {
@@ -21,7 +21,7 @@ export function useGetAll(options) {
   return useQuery(key, () => getData(options.key, options?.params), {
     retry: false,
     select: (data) => data?.data,
-    // onError: (err) => errorHandle(err),
+    onError: (err) => errorHandle(err),
 
     ...options,
   });

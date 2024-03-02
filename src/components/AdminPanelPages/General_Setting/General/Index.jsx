@@ -51,7 +51,7 @@ function General() {
   const initialValues = {
     namesite: Details?.namesite || "",
     welcome_subtitle:Details?.welcome_subtitle || "",
-    welcome_text: Details?.welcome_text ||  "welcome text",
+    welcome_text: Details?.welcome_text ||  "",
     description: Details?.description ||  "",
     email_admin: Details?.email_admin || "",
     tandc_url: Details?.tandc_url || "",
@@ -74,12 +74,12 @@ console.log(Details)
       initialValues={initialValues}
       onSubmit={(values) => {
         mutate(values, {
-          onSuccess: (response) => {
+          onSuccess: () => {
             toast.success("Prefernces Saved Successfully !", {
               position: "top-center",
             })
           },
-          onError: (response) => {
+          onError: () => {
             toast.error("Could Not Save Preferences !", {
               position: "top-center",
             })
@@ -87,27 +87,27 @@ console.log(Details)
         });
       }}
     >
-      {({ values, setFieldValue }) => (
+      {({ values, setFieldValue , handleChange }) => (
 
         <Form>
           <div className="flex flex-wrap justify-between max-desktop:flex-col max-tablet:flex-col  max-desktop:pt-4 max-tablet:pt-4">
             <div className="w-[24%] max-desktop:w-full max-tablet:w-full">
-              <InputAdminField label={'Name Site'} name={"namesite"}  placeholder={'Placeholder Text'} value={values?.namesite} />
+              <InputAdminField label={'Name Site'} onChange={handleChange} name={"namesite"}  placeholder={'Placeholder Text'} value={values?.namesite} />
 
             </div>
             <div className="w-[24%] max-desktop:w-full max-tablet:w-full">
-              <InputAdminField label={'Welcome Subtitle '} name={"welcome_subtitle"}  placeholder={'Placeholder Text'} value={values?.welcome_subtitle} />
+              <InputAdminField label={'Welcome Subtitle '} onChange={handleChange} name={"welcome_subtitle"}  placeholder={'Placeholder Text'} value={values?.welcome_subtitle} />
             </div>
             <div className="w-[24%] max-desktop:w-full max-tablet:w-full">
-              <InputAdminField label={'Welcome Text'} name={"welcome_text"} placeholder={'Placeholder Text'} value={values?.welcome_text} />
+              <InputAdminField label={'Welcome Text'} name={"welcome_text"} onChange={handleChange} placeholder={'Placeholder Text'} value={values?.welcome_text} />
 
             </div>
             <div className="w-[24%] max-desktop:w-full max-tablet:w-full">
-              <InputAdminField label={'Email No-reply'} name={"email_no_reply"} placeholder={'Placeholder Text'} value={values?.email_no_reply} />
+              <InputAdminField label={'Email No-reply'} name={"email_no_reply"} onChange={handleChange} placeholder={'Placeholder Text'} value={values?.email_no_reply} />
             </div>
           </div >
           <div className="w-[50%] max-desktop:w-full max-tablet:w-full pt-2">
-            <InputAdminField label={'Keywords'} name={"keywords_data"} placeholder={'Add Tag'} 
+            <InputAdminField label={'Keywords'} name={"keywords_data"} onChange={handleChange} placeholder={'Add Tag'} 
             // value={values?.keywords_data} 
             />
 
@@ -126,14 +126,14 @@ console.log(Details)
           </div>
           <div className="flex gap-4 pt-8  max-desktop:flex-col max-tablet:flex-col  max-desktop:pt-2 max-tablet:pt-12">
             <div className="w-[25%] max-desktop:w-full max-tablet:w-full">
-              <InputAdminField label={'Email Admin'} name={"email_admin"} placeholder={'Placeholder Text'} value={values?.email_admin} />
+              <InputAdminField label={'Email Admin'} onChange={handleChange} name={"email_admin"} placeholder={'Placeholder Text'} value={values?.email_admin} />
 
             </div>
             <div className="w-[25%] max-desktop:w-full max-tablet:w-full">
-              <InputAdminField label={'Link to terms and conditions'} name={"tandc_url"} placeholder={'Placeholder Text'} value={values?.tandc_url} />
+              <InputAdminField label={'Link to terms and conditions'} onChange={handleChange} name={"tandc_url"} placeholder={'Placeholder Text'} value={values?.tandc_url} />
             </div>
             <div className="w-[25%] max-desktop:w-full max-tablet:w-full">
-              <InputAdminField label={'Link to privacy policy'} name={"privacy_policy_url"} placeholder={'Placeholder Text'} value={values?.privacy_policy_url} />
+              <InputAdminField label={'Link to privacy policy'} name={"privacy_policy_url"} onChange={handleChange} placeholder={'Placeholder Text'} value={values?.privacy_policy_url} />
             </div>
             <div className="w-[25%] max-desktop:w-full max-tablet:w-full">
               <InputAdminField
@@ -143,6 +143,7 @@ console.log(Details)
                 name={"date_time"}
                 value={values?.date_time}
                 style={styleInput}
+                onChange={handleChange}
                 slotProps={{
                   input: {
                     min: "2000-01-01",
@@ -157,36 +158,37 @@ console.log(Details)
               <RadioGroup
                 name={"new_registration_enabled"}
                 value={values?.new_registration_enabled}
+                onChange={handleChange}
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
                 ]}
                 label="New Registrations"
-              // onChange={onChange}
+              
               />
             </div>
             <div className="lg:w-[25%] max-tablet:w-full max-desktop:w-full">
               <RadioGroup
                 name={"auto_approve_enabled"}
+                onChange={handleChange}
                 value={values?.auto_approve_enabled}
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
                 ]}
                 label="Auto Approve Causes"
-              // onChange={onChange}
               />
             </div>
             <div className=" lg:w-[25%] max-tablet:w-full max-desktop:w-full">
               <RadioGroup
                 name={"facebook_login_enabled"}
                 value={values?.facebook_login_enabled}
+                onChange={handleChange}
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
                 ]}
                 label="Facebook Login"
-              // onChange={onChange}
               />
             </div>
 
@@ -202,7 +204,8 @@ console.log(Details)
                   { label: "Off", value: false },
                 ]}
                 label="Google Login"
-              // onChange={onChange}
+                onChange={handleChange}
+                
               />
             </div>
             <div className=" lg:w-[25%] max-tablet:w-full max-desktop:w-full">
@@ -214,7 +217,7 @@ console.log(Details)
                   { label: "Off", value: false },
                 ]}
                 label="Captcha"
-             // onChange={onChange}
+                onChange={handleChange}
               />
             </div>
             <div className=" lg:w-[25%] max-tablet:w-full max-desktop:w-full">
@@ -226,7 +229,7 @@ console.log(Details)
                   { label: "Off", value: false },
                 ]}
                 label="Email Verifications"
-              // onChange={onChange}
+                onChange={handleChange}
               />
             </div>
           </div>
