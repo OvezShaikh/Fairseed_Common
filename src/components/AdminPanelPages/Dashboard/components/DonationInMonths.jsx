@@ -155,7 +155,7 @@ export default function DonationInMonths() {
   const [goalAmount, setGoalAmount] = useState(10000);
 
   return (
-    <div className="rounded-md shadow-md p-5 ">
+    <div className="rounded-md p-5 ">
       <p className={"mb-3 text-lg font-semibold"}>Donation In Months(lacs): </p>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart

@@ -211,7 +211,7 @@ export default function HorizontalLinearStepper() {
   const [activeStep, setActiveStep] = useState(0);
   const getSteps = () => {
     return ["Campaign Details", "Your Story", "Account Details", "Complete KYC"];
-  }
+  } 
 
   const getStepContent = (step) => {
     switch (step) {

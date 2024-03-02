@@ -31,9 +31,9 @@ const DropZone = ({
     <ReactDropZone
       minSize={0}
       accept={{
-        'image/png': ['.png'],
-        'image/jpg': ['.jpg'],
-        'image/jpeg': ['.jpeg'],
+        "image/png": [".png"],
+        "image/jpg": [".jpg"],
+        "image/jpeg": [".jpeg"],
       }}
       onDrop={(acceptedFiles, rejectedFiles) => {
         if (!acceptedFiles.length) {
@@ -49,7 +49,7 @@ const DropZone = ({
           setFieldValue(name, acceptedFiles[0]);
         }
         if (acceptedFiles.length) {
-          setFieldValue(acceptedFiles)
+          setFieldValue(acceptedFiles);
           // onChange && onChange(acceptedFiles, rejectedFiles);
           setError([]);
         }
@@ -64,7 +64,9 @@ const DropZone = ({
             {...getRootProps()}
             className="drop-zone"
             style={{
-              backgroundImage: isDragActive ? "images.DashedImageUpload" : "images.DashedImageUpload",
+              backgroundImage: isDragActive
+                ? "images.DashedImageUpload"
+                : "images.DashedImageUpload",
             }}
           >
             {isLoading ? (
@@ -96,17 +98,19 @@ const DropZone = ({
                   color="warning"
                   sx={{
                     color: "#3366CC",
-                    textDecorationLine: 'underline',
-                    fontFamily: 'satoshi',
-                    fontWeight: 500
+                    textDecorationLine: "underline",
+                    fontFamily: "satoshi",
+                    fontWeight: 500,
                   }}
-                  
                   startIcon={<img src={images.UploadIcon} />}
                   className="normal-case text-[20px] max-desktop:text-[15px] upload-an-img"
                 >
                   Upload an Image
                 </Button>{" "}
-                <p className="max-w-[369px] font-[satoshi] text-center text-[20px] font-medium max-desktop:text-[15px] max-desktop:max-w-[276px] less-than-5" style={{ color: "rgba(0, 0, 0, 0.40)", }}>
+                <p
+                  className="max-w-[369px] font-[satoshi] text-center text-[20px] font-medium max-desktop:text-[15px] max-desktop:max-w-[276px] less-than-5"
+                  style={{ color: "rgba(0, 0, 0, 0.40)" }}
+                >
                   &nbsp; The Image must be less than 5 MB. Recommended size is
                   850x550. Minimum height is 550 and minimum width is 850.
                   {/* </>
@@ -123,7 +127,7 @@ const DropZone = ({
           )}
         </div>
       )}
-    </ReactDropZone >
+    </ReactDropZone>
   );
 };
 

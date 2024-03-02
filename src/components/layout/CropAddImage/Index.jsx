@@ -8,9 +8,14 @@ import { useState } from "react";
 import DropZone from "../../inputs/dragAndDrop/index";
 import Modal from "../../inputs/Modal/Index";
 
-function ImageBackgroundWithDeleteButton({ imgUrl, onDelete, setDataUrl }) {
+function ImageBackgroundWithDeleteButton({
+  imgUrl,
+  onDelete,
+  setDataUrl,
+  setImagePreview,
+}) {
   console.log(imgUrl, "imgUrl in CauseEditApproval");
-  const [srcImg, setSrcImg] = useState("");
+  // const [srcImg, setSrcImg] = useState("");
   // const [openCrop, setOpenCrop] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const closeModal = () => {
@@ -68,7 +73,13 @@ function ImageBackgroundWithDeleteButton({ imgUrl, onDelete, setDataUrl }) {
           </div>
         </>
       )}
-      {openModal && <Modal closeModal={closeModal} setDataUrl={setDataUrl} />}
+      {openModal && (
+        <Modal
+          closeModal={closeModal}
+          setImagePreview={setImagePreview}
+          setDataUrl={setDataUrl}
+        />
+      )}
     </div>
   );
 }
