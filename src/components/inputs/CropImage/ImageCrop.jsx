@@ -19,31 +19,56 @@ const ImageCrop = ({ setDataUrl,closeModal ,name , setImage }) => {
 
   const onSelectFile = (e) => {
     const file = e.target.files?.[0];
-    // console.log(' ', file)
-    setDataUrl(file)
+    console.log(file, "file value from ImageCrop");
     if (!file) return;
-    console.log(file, "_______________file")
 
     const reader = new FileReader();
     reader.addEventListener("load", () => {
       const imageElement = new Image();
       const imageUrl = reader.result?.toString() || "";
-      console.log("ImageUrl=========>",imageUrl)
+      console.log("ImageUrl=========>", imageUrl);
+
       imageElement.src = imageUrl;
 
       imageElement.addEventListener("load", (e) => {
         if (error) setError("");
         const { naturalWidth, naturalHeight } = e.currentTarget;
-        console.log("CurrentHeight&Weight",e.currentTarget)
+        console.log("CurrentHeight&Weight", e.currentTarget);
         if (naturalWidth < MIN_DIMENSION || naturalHeight < MIN_DIMENSION) {
           setError("Image must be at least 150 x 150 pixels.");
           return setImgSrc("");
         }
       });
       setImgSrc(imageUrl);
+      // Convert base64 string to File and pass it for further processing
+      const fileFromBase64 = base64StringtoFile(imageUrl, file.name);
+      processFile(fileFromBase64);
     });
+
     reader.readAsDataURL(file);
   };
+
+  const processFile = (file) => {
+    setDataUrl(file);
+    
+    // Perform additional processing with the file if needed
+    console.log("Processing file:", file);
+  };
+
+  const base64StringtoFile = (base64String, filename) => {
+    if (!base64String) return null;
+
+    const arr = base64String.split(",");
+    const mime = arr[0].match(/:(.*?);/)?.[1];
+    let bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, { type: mime });
+  };
+
   const onImageLoad = (e) => {
     const { width, height } = e.currentTarget;
     const cropWidthInPercent = (MIN_DIMENSION / width) * 100;
@@ -52,7 +77,6 @@ const ImageCrop = ({ setDataUrl,closeModal ,name , setImage }) => {
       {
         unit: "%",
         width: cropWidthInPercent,
-        // width: 550,
       },
       ASPECT_RATIO,
       width,

@@ -27,8 +27,7 @@ const OngoingCampaigns = () => {
       <div className="font-semibold text-lg">Ongoing Campaings:</div>
 
       <div className="overflow-y-scroll h-[310px] pr-[20px]">
-        {dataObject.map((item, index) => (
-          // Rendering each item in the array as a <div> element
+        {dataObject?.map((item, index) => (
           <div>
             <div className="flex mt-[24px]">
               <div className="flex items-center mr-[25px]">
