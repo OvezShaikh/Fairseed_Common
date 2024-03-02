@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState , useRef } from 'react';
+import { useState, useRef } from 'react';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
@@ -36,37 +36,80 @@ const SelectStyle =
 
 }
 
-const initialValues={
-  full_name:"",
-  email:"",
-  m_number:0,
-  Country:""
-}
 
-export default function LabTabs({ onChange, src }) {
+export default function LabTabs() {
+
 
   const [value, setValue] = React.useState('1');
+  const [age, setAge] = useState('');
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const [age, setAge] = useState('');
-
+ 
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 0, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example"   >
-            <Tab label="Account" value="1"  className='account-tab' />
+            <Tab label="Account" value="1" className='account-tab' />
             <Tab label="Passwords" value="2" className='password-tab' />
           </TabList>
         </Box>
-        <TabPanel sx={{ pt: '4rem',color:"green" }} value="1">
-       <Account/>
+        <TabPanel sx={{ pt: '4rem', color: "green" }} value="1">
+         <>
+            <Avatar />
+            <InputField
+              onChange={handleChange}
+              name={"username"}
+              label={"Full Name:"}
+              sx={InputStyle}
+            />
+            <InputField
+              onChange={handleChange}
+
+              name={"email"}
+              label={"Email Id:"}
+              sx={InputStyle}
+            />
+            <InputField
+              onChange={handleChange}
+
+              name={"mobile_number"}
+              label={"Mobile:"}
+              placeholder={"(Optional)"}
+              sx={InputStyle}
+            />
+            <div className='country-select-div'>
+              <CountrySelect
+                onChange={handleChange}
+                label="Country:"
+                name={"country"}
+                sx={SelectStyle}
+              />
+            </div>
+            </>
         </TabPanel>
         <TabPanel sx={{ pt: '4rem' }} value="2">
-         <Password/>
+          <>
+            <InputField
+              onChange={handleChange}
+              name={"password"}
+              label={"Old Password:"}
+              type={'password'}
+              sx={InputStyle}
+
+
+            />
+            <InputField
+              onChange={handleChange}
+              name={"password"}
+              label={"New Password:"}
+              type={'password'}
+              sx={InputStyle}
+            /></>
         </TabPanel>
       </TabContext>
     </Box>

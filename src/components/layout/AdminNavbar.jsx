@@ -12,36 +12,36 @@ import { Avatar, Grid, Stack } from "@mui/material";
 import { Search } from "../inputs/Search";
 import { Link } from "react-router-dom";
 import { useGetAll } from "../../Hooks";
+import ProfileAvatar from "../../pages/login/ProfileAvatar";
 
 const Navbar = () => {
   const isTab = useMediaQuery("(max-width: 1100px)");
   const sideBar = useMediaQuery("(max-width: 900px)");
 
-  const [user , setUser] = useState({})
+  const [user, setUser] = useState({});
 
-  let userData = localStorage.getItem('user_info')
-  let Data = JSON.parse(userData)
-  let id = Data?.id
+  let userData = localStorage.getItem("user_info");
+  let Data = JSON.parse(userData);
+  let id = Data?.id;
   useGetAll({
     key: `/admin-dashboard/users/${id}`,
     enabled: true,
     select: (data) => {
-      console.log(data)
-        return data.data.data;
+      console.log(data);
+      return data.data.data;
     },
     onSuccess: (data) => {
-      console.log(data)
-      setUser(data); 
+      console.log(data);
+      setUser(data);
     },
-
-  })
+  });
 
   return (
     <>
       <nav className=" fixed top-0 left-0 right-0 z-10 pl-5 pr-5 bg-white border-b-2 border-[#D8DBDF] max-tablet:pl-2 border-solid justify-between  items-center inline-flex">
         <div className="w-[815.56px] self-stretch pt-2 pb-2 justify-start items-center gap-4 max-tablet:pl-0 flex">
           <div className="w-24 h-9 relative">
-            <Link to={'/Home'} >
+            <Link to={"/Home"}>
               <img src={images.Logo} alt="" />
             </Link>
           </div>
@@ -52,29 +52,19 @@ const Navbar = () => {
           <div className="mr-3 max-tablet:hidden">
             <Search
               sx={{
-                width: '362px',
-                background: '#F7F8F8',
+                width: "362px",
+                background: "#F7F8F8",
                 "& .MuiInputBase-root .MuiOutlinedInput-notchedOutline": {
                   border: `none`,
                 },
-                "& .MuiInputBase-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                  border: `none`,
-                },
-              }} />
+                "& .MuiInputBase-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+                  {
+                    border: `none`,
+                  },
+              }}
+            />
           </div>
           <div className="flex-row ps-2 justify-start items-center inline-flex ">
-            {/* <div className=" flex max-tablet:hidden">
-              <Badge badgeContent={17} style={{ cursor: 'pointer' }} color="error">
-                <NotificationsIcon />
-              </Badge>
-              <button className="w-6 h-6 flex-1  ml-3">
-                <TuneIcon />
-              </button>
-              <button className="w-6 h-6 flex-1 mx-3">
-                <HelpIcon />
-              </button>
-            </div> */}
-
             <Grid
               item
               display={"flex"}
@@ -98,26 +88,14 @@ const Navbar = () => {
                   {user?.username}
                 </p>
                 <p className="text-truncate m-0" style={{ maxWidth: "100%" }}>
-                {user?.user_role}
+                  {user?.user_role}
                 </p>
               </Stack>
-              <DropDown >
-                <Avatar
-                  sx={{
-                    width: 35,
-                    height: 35,
-                    marginRight: `15px`,
-                    color: "#fff",
-                    background: "#0094AA",
-                  }}
-                  className="my-auto "
-                />
-              </DropDown>
+              <ProfileAvatar />
             </Grid>
           </div>
         </div>
       </nav>
-      {/* Side bar */}
     </>
   );
 };

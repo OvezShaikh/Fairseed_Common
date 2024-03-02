@@ -7,6 +7,15 @@ import { FormLabel } from "@mui/material";
 import { colors } from "../../../constants/theme";
 import { Formik, Form, Field, useFormikContext } from "formik";
 import ReactQuilTextField from "../../inputs/ReactQuilTextField/Index";
+import React, { useEffect, useRef } from "react";
+import InputField from "../../inputs/InputField/index";
+import SelectField from "../../inputs/SelectField/index";
+import PrimaryButton from "../../inputs/PrimaryButton";
+import CheckBox from "../../inputs/checkBox";
+import { FormLabel } from "@mui/material";
+import { colors } from "../../../constants/theme";
+import { Formik, Form, Field, useFormikContext } from "formik";
+import ReactQuilTextField from "../../inputs/ReactQuilTextField/Index";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import SuccessButton from "../../inputs/SuccessButton/Index";
 import { PiCheckFat } from "react-icons/pi";
@@ -21,6 +30,12 @@ import Attachments from "../../layout/Attachments/Index";
 import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { ImageCropper } from "../../inputs/Cropper/ImageCropper";
+import { ImagePreviewDialog } from "../../inputs/PreviewImage/PreviewImage";
+import { Box } from "@mui/system";
+import DropZone from "../../inputs/Cropper/CropDrop";
+import { AutoComplete } from "../../inputs/autocomplete";
+
 const InputStyle = {
   padding: "20px",
   border: "1px solid #e2e2e2",
@@ -51,49 +66,79 @@ function CauseEdit_Form() {
     setDocuments([...documents, documentUrl]);
   };
   const navigate = useNavigate();
+  const handleDocumentUpload = (documentUrl) => {
+    setDocuments([...documents, documentUrl]);
+  };
+  const navigate = useNavigate();
 
   const [user, setUser] = useState({});
-  const [imagePreview, setImagePreview] = useState(null);
+  const [imageUrl, setImageUrl] = useState();
+  const [srcImg, setSrcImg] = useState("");
+  const [openCrop, setOpenCrop] = useState(false);
 
-  // const [imageUrl, setImageUrl] = useState(
-  //   "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-  // ); // State to store the image URL
+  useEffect(() => {
+    refetch();
+    refetchCategories();
+  }, []);
+
+  const handleDelete = () => {
+    setDataUrl("");
+    setImageUrl("");
+  };
+
+  const onChange = (e) => {
+    let files;
+
+    if (e) {
+      files = e;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      setSrcImg(reader.result);
+    };
+    reader.readAsDataURL(files[0]);
+
+    setOpenCrop(true);
+  };
 
   const img = [
     "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
     "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
     "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
   ];
-  const { data, isSuccess } = useGetAll({
+
+  const { data, isSuccess, refetch } = useGetAll({
     key: `/admin-dashboard/campaign/${id}`,
-    enabled: true,
+    enabled: false,
     select: (data) => {
-      console.log(data.data.data, "Particular ID value----------->");
       return data.data.data;
     },
     onSuccess: (data) => {
       setUser(data);
-      const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign_image}`;
-      // setImageUrl(imageUrl);
-      // setDataUrl(dataUrl);
+      const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${
+        data?.campaign_image || ""
+      }`;
+      setSrcImg(imageUrl);
       setDataUrl(imageUrl);
     },
   });
-  console.log(data, "Values from after API Call ------------------>");
+  // console.log(imageUrl)
 
-  useGetAll({
+  const { refetch: refetchCategories } = useGetAll({
     key: `/admin-dashboard/category?page=1&limit=10`,
-    enabled: true,
+    enabled: false,
     select: (data) => {
-      console.log(data.data.rows);
-      return data.data.rows;
+      return data?.data?.rows;
     },
     onSuccess: (data) => {
-      setCategory(data);
-      console.log(data, "data ------------------->");
+      setCategories(data);
     },
   });
 
+  const { mutate } = useCreateOrUpdate({
+    url: `/admin-dashboard/campaign/${id}`,
+    method: "put",
+  });
   const { mutate } = useCreateOrUpdate({
     url: `/admin-dashboard/campaign/${id}`,
     method: "put",
@@ -104,74 +149,74 @@ function CauseEdit_Form() {
     title: user.title || "",
     amount: user.goal_amount || "",
     location: user.location || "",
-    category: user?.category?.name || "",
+    category: user?.category || " ",
     is_featured: user?.is_featured || false,
     summary: user?.summary || "",
     zakat_eligible: user?.zakat_eligible || false,
     end_date: user?.end_date || "",
     status: user?.status || "",
     story: user?.story || "",
-    doc1: user?.documents?.doc_file || "",
   };
-
+  console.log(initial_values);
   if (!isSuccess) {
     return <div>Loading...</div>;
   }
+
   const handleSubmit = (values) => {
     const formData = new FormData();
-    formData.append("campaign_image", imagePreview);
-
-    // Add other form fields to formData as needed
+    if (values?.campaign_image instanceof File) {
+      formData.append("campaign_image", values?.campaign_image);
+    }
+    console.log(values?.campaign_image, "<========================");
+    formData.append("title", values?.title);
+    formData.append("amount", values?.amount);
+    formData.append("location", values?.location);
+    formData.append("end_date", values?.end_date);
+    formData.append("summary", values?.summary);
+    formData.append("story", values?.story);
+    formData.append("category", values?.category?.id);
+    console.log(values?.category?.id, "<============");
 
     mutate(formData, {
-      onSuccess: (response) => {
-        toast.success("Cause updated successfully!", {
+      onSuccess: () => {
+        toast.success("Cause updated Succcessfully ! ", {
           position: "top-right",
         });
       },
     });
-    console.log(values, "formdata changes values --------------->");
-  };
-  const handleDelete = () => {
-    setDataUrl(""); // Clear the data URL if needed
   };
 
   return (
     <Formik
       initialValues={initial_values}
       enableReinitialize={true}
-      onSubmit={(values) => {
-        handleSubmit(values);
-      }}
+      onSubmit={(values) => handleSubmit(values)}
     >
       {({ values, setFieldValue, handleChange }) => (
         <Form className="flex flex-col items-center">
           <div className="flex w-[100%] mt-2 gap-14 max-tablet:flex-col max-desktop:flex-col">
             <div className="flex flex-col w-[70%] max-tablet:w-[100%] max-desktop:w-[100%] gap-10 items-center">
-              {console.log(values, "Values from Cause-------->")}
-              {/* <ImageBackgroundWithDeleteButton
-                setImagePreview={setImagePreview}
-                name={"campaign_image"}
-                imgUrl={dataUrl}
-                onChange={(e) => {
-                  setDataUrl(e.target.files[0]);
-                  // setImageUrl(e.target.files[0]);
-                }}
-                setDataUrl={setDataUrl}
-                onDelete={handleDelete}
-                multiple={false}
-              /> */}
-              <ImageBackgroundWithDeleteButton
-                setImagePreview={setImagePreview}
-                name={"campaign_image"}
-                imgUrl={dataUrl}
-                onChange={(e) => {
-                  setDataUrl(e.target.files[0]); // Set the data URL for preview
-                }}
-                setDataUrl={setDataUrl}
-                onDelete={handleDelete}
-                multiple={false}
-              />
+              <div className="desktop:py-[80px] max-desktop:py-[53px]">
+                <DropZone
+                  name="campaign_image"
+                  label={"campaign image"}
+                  onChange={onChange}
+                  initialPreview={srcImg}
+                />
+
+                {openCrop && (
+                  <>
+                    <ImageCropper
+                      srcImg={srcImg}
+                      setOpenCrop={setOpenCrop}
+                      setsrcImg={setSrcImg}
+                    />
+                  </>
+                )}
+
+                {srcImg && <ImagePreviewDialog croppedImage={srcImg} />}
+              </div>
+
               <div className="w-full">
                 <InputField
                   value={values?.title}
@@ -183,15 +228,16 @@ function CauseEdit_Form() {
                   placeholder={"Minimum 50 INR"}
                 />
               </div>
+
               <SelectField
                 name={"category"}
                 required={true}
                 label="Choose a Category:"
+                getOptionLabel={(item) => {
+                  return item.name;
+                }}
                 value={values?.category}
-                options={Category.map((item) => ({
-                  label: item.name,
-                  value: item.id,
-                }))}
+                options={Categories}
               />
               <div className="w-full">
                 <InputField
