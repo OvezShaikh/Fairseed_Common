@@ -2,6 +2,7 @@ import React from 'react';
 import UserDashboardActivities from './Components/UserDashboardActivities';
 import FundsRaisedInLastMonth from './Components/FundsRaisedInLastMonth';
 import MyRecentDonations from './Components/MyRecentDonations';
+import RecentCampaigns from './Components/RecentCampaigns';
 
 
 const User_Dashboard = () => {
@@ -13,6 +14,8 @@ const User_Dashboard = () => {
       </div>
       <div className='grid grid-cols-3 mt-[68px]'>
         <MyRecentDonations />
+        <RecentCampaigns />
+        
       </div>
 
     </div>
