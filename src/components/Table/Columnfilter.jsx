@@ -22,6 +22,7 @@ const Columnfilter = ({ column }) => {
                         border: '1px solid pink'
                     },
                 }}
+                className='!max-tablet:p-1'
                 value={filterValue || ''}
                 onChange={(e) => setFilter(e.target.value)}
             />

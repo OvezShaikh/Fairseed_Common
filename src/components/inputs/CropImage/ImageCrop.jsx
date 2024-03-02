@@ -9,7 +9,7 @@ import setCanvasPreview from "./setCanvasPreview";
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
 
-const ImageCrop = ({ setDataUrl, closeModal, setImagePreview }) => {
+const ImageCrop = ({ setDataUrl, closeModal }) => {
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);
   const [imgSrc, setImgSrc] = useState("");
@@ -18,7 +18,7 @@ const ImageCrop = ({ setDataUrl, closeModal, setImagePreview }) => {
 
   const onSelectFile = (e) => {
     const file = e.target.files?.[0];
-    console.log(typeof file, "file value from ImageCrop");
+    console.log(file, "file value from ImageCrop");
     if (!file) return;
     // setImagePreview(file);
 
@@ -42,15 +42,14 @@ const ImageCrop = ({ setDataUrl, closeModal, setImagePreview }) => {
       setImgSrc(imageUrl);
       // Convert base64 string to File and pass it for further processing
       const fileFromBase64 = base64StringtoFile(imageUrl, file.name);
-      console.log(fileFromBase64, "FilefromBase64===========>");
       processFile(fileFromBase64);
-      setImagePreview(fileFromBase64);
     });
+
     reader.readAsDataURL(file);
   };
 
   const processFile = (file) => {
-    // setDataUrl(file);
+    setDataUrl(file);
 
     // Perform additional processing with the file if needed
     console.log("Processing file:", file);
@@ -68,7 +67,6 @@ const ImageCrop = ({ setDataUrl, closeModal, setImagePreview }) => {
       u8arr[n] = bstr.charCodeAt(n);
     }
     return new File([u8arr], filename, { type: mime });
-    // const file = new File([u8arr], values.campaign_image, { type: mime });
   };
 
   const onImageLoad = (e) => {

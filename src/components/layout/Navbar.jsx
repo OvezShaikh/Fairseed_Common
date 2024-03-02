@@ -10,12 +10,9 @@ import {
   ChevronDownIcon,
 
 } from "@heroicons/react/20/solid";
-// import someImage from "../../constants/images";
-// import { OutlineIconName } from "@heroicons/react/outline";
 import PrimaryButton from "../inputs/PrimaryButton";
 import images from "../../constants/images";
 import UserLogin from '../../pages/login/Login_page/Index'
-// import UserLogin from "../../pages/login/Login_page/Index";
 import UserSignUp_02 from "../../pages/login/Sign_Up/Index";
 import { Link, NavLink } from "react-router-dom";
 import ProfileAvatar from "../../pages/login/ProfileAvatar";
@@ -93,20 +90,7 @@ function classNames(...classes) {
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  // const [isClicked, setIsClicked] = useState(false);
-
-  // const handleButtonClick = () => {
-  //   setIsClicked(!isClicked);
-  // };
-
-  // const buttonStyles = {
-  //   color: isClicked
-  //     ? 'linear-gradient(45deg, #FF9F0A, #FF375F)'
-  //     : '#40444C',
-  // };
-
-
-
+ 
   return (
     <header className="absolute top-0 left-0 right-0 bg-transparent z-10 container" style={{
       backgroundColor: '#8EC5FC', backdropFilter: 'blur(10px)'
@@ -116,7 +100,6 @@ export default function Example() {
     >
         <div className="flex lg:flex ">
           <NavLink to="/Home">
-            {/* <span className="sr-only">FairSeed </span> */}
             <img src={images.Logo} alt="FairSeed" title="FairSeed" />
           </NavLink>
         </div>
@@ -136,8 +119,6 @@ export default function Example() {
             <Popover className="relative mt-1" >
               <Popover.Button className="flex pt-2 nav_button items-center gap-x-1 text-[18px] font-medium font-[satoshi]  text-[#40444C]"
                 onclick="this.style.backgroundColor = (this.style.backgroundColor === '#40444C') ? 'blue' : '#40444C';"
-              // style={buttonStyles}
-              // onClick={handleButtonClick}
               >
                 Get Involved
                 <svg
@@ -198,7 +179,6 @@ export default function Example() {
                       </div>
                     ))}
                   </div>
-
                 </Popover.Panel>
               </Transition>
             </Popover>

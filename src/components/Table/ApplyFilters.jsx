@@ -129,6 +129,11 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                                     allColumns
                                       ? allColumns
                                         ?.filter((item) => !item?.nofilter)
+                                        ?.map((item) =>
+                                          item?.Header === "Range Start"
+                                            ? { ...item, Header: "Range" }
+                                            : item
+                                        )
                                         ?.filter(
                                           (item) =>
                                             !values?.filters?.some(

@@ -50,10 +50,9 @@ const DropZone = ({
         }
         if (acceptedFiles.length) {
           setFieldValue(acceptedFiles);
-          // onChange && onChange(acceptedFiles, rejectedFiles);
+          onChange && onChange(acceptedFiles, rejectedFiles);
           setError([]);
         }
-        console.log(values);
       }}
       {...otherProps}
     >

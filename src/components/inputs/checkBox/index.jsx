@@ -6,7 +6,7 @@ import {
   FormGroup,
 } from "@mui/material";
 import { useField, useFormikContext } from "formik";
-import { pink, red } from "@mui/material/colors";
+import { red } from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
 import { colors } from "../../../constants/theme";
 import { ErrorMessage } from "formik";
@@ -78,7 +78,7 @@ const CheckBox = ({
               sx={{
                 // color: red[500],
                 "&.Mui-checked": {
-                  color: red[500],
+                  color: 'red[500] !important',
                 },
               }}
               checked={checked}

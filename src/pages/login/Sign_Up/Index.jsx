@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import styled from '@emotion/styled';
 import Sign_Stepper from './Stepper';
+import SecondaryButton from '../../../components/inputs/secondaryButton';
 
 
 
@@ -36,7 +37,8 @@ const UserSignUp_02 = () => {
   return (
     <>
 
-      <Button
+      <SecondaryButton
+       sx={{ width: '100%', padding: '12px 40px', }}
         onClick={handleOpen}
         type='button'
       >
@@ -46,7 +48,7 @@ const UserSignUp_02 = () => {
           "-webkit-text-fill-color": "transparent"
         }}> Register </span>
 
-      </Button>
+      </SecondaryButton>
 
       <Dialog
         sx={{

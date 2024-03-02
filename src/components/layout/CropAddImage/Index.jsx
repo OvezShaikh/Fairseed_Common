@@ -12,7 +12,8 @@ function ImageBackgroundWithDeleteButton({
   imgUrl,
   onDelete,
   setDataUrl,
-  setImagePreview,
+  name,
+  setImage,
 }) {
   console.log(imgUrl, "imgUrl in CauseEditApproval");
   // const [srcImg, setSrcImg] = useState("");
@@ -75,9 +76,10 @@ function ImageBackgroundWithDeleteButton({
       )}
       {openModal && (
         <Modal
+          name={name}
           closeModal={closeModal}
-          setImagePreview={setImagePreview}
           setDataUrl={setDataUrl}
+          setImage={setImage}
         />
       )}
     </div>

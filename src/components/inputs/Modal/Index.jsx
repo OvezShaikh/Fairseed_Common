@@ -3,7 +3,7 @@ import ImageCrop from "../CropImage/ImageCrop";
 // import ImageCropper from "../Cropper/ImageCropper"
 import { FaTimes } from "react-icons/fa";
 
-const Modal = ({ closeModal, setDataUrl, setImagePreview }) => {
+const Modal = ({ closeModal, setDataUrl, name, setImage }) => {
   return (
     <div
       className="relative z-[9999999999999999999999999]"
@@ -25,9 +25,10 @@ const Modal = ({ closeModal, setDataUrl, setImagePreview }) => {
                 <FaTimes />
               </button>
               <ImageCrop
+                name={name}
                 closeModal={closeModal}
-                setImagePreview={setImagePreview}
                 setDataUrl={setDataUrl}
+                setImage={setImage}
               />
             </div>
           </div>

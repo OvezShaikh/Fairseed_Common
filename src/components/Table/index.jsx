@@ -260,6 +260,17 @@ const ReactTable = ({
       }, 500);
     }
   };
+  //     setTimeout(() => {
+  //       setHiddenColumns(
+  //         JSON.parse(data.hiddenColumns).length
+  //           ? JSON.parse(data.hiddenColumns)
+  //           : newHiddenColumns
+  //       );
+  //       setColumnOrder(JSON.parse(data.columnOrder));
+  //     }, 500);
+  //   }
+  // };
+
 
 
 
@@ -455,14 +466,14 @@ const ReactTable = ({
             <div />
           )}
           {!noSearch && showFilter && <div className="border  py-3 mx-3"></div>}
-          {showFilter && (
+          {/* {showFilter && (
             <ApplyFilters
               title={title}
               allColumns={allColumns}
               filters={filters}
               setFilters={setFilters}
             />
-          )}
+          )} */}
         </Grid>
         <Grid
           item
@@ -482,7 +493,7 @@ const ReactTable = ({
             postTableMetaData={postTableMetaData}
             isLoading={mutateLoading}
           />
-          <SecondaryButton
+          {/* <SecondaryButton
             onCick={() => localStorage.removeItem(`filters-of-${title_slug}`)}
             startIcon={
               <FilterReset
@@ -493,7 +504,7 @@ const ReactTable = ({
             }
           >
             Reset Filters
-          </SecondaryButton>
+          </SecondaryButton> */}
 
           {addButton && <div className="border  py-3 mx-3"></div>}
           {addButton}
@@ -544,12 +555,12 @@ const ReactTable = ({
                         overflowX: 'hidden'
 
 
-                      },
+                      }, className: "!max-tablet:text-[5px]",
                     })}
                     key={column?.id}
 
                   ><div className="flex">
-                      <div className="pt-1 max-tablet:text-[14px] ">
+                      <div className="pt-1 max-table:w-[10px] overflow-hidden  ">
                         {column.render("Header")}
                       </div>
                       {column?.sortable !== false && (
