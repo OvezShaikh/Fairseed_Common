@@ -1,9 +1,9 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import InputField from '../../inputs/InputField/index'
 import SelectField from "../../inputs/SelectField/index"
 import PrimaryButton from '../../inputs/PrimaryButton'
 import CheckBox from '../../inputs/checkBox'
-import { FormLabel } from '@mui/material'
+import {  FormLabel } from '@mui/material'
 import { colors } from '../../../constants/theme'
 import { Formik, Form, Field, useFormikContext } from 'formik'
 import ReactQuilTextField from '../../inputs/ReactQuilTextField/Index'
@@ -25,6 +25,7 @@ import { ImageCropper } from '../../inputs/Cropper/ImageCropper'
 import { ImagePreviewDialog } from '../../inputs/PreviewImage/PreviewImage'
 import { Box } from '@mui/system'
 import DropZone from '../../inputs/Cropper/CropDrop'
+import { AutoComplete } from '../../inputs/autocomplete'
 
 const InputStyle =
 {
@@ -55,8 +56,6 @@ function CauseEdit_Form() {
 
     const handleDocumentUpload = (documentUrl) => {
         setDocuments([...documents, documentUrl]);
-        
-
     };
     const navigate = useNavigate();
 
@@ -66,6 +65,12 @@ function CauseEdit_Form() {
     const [openCrop, setOpenCrop] = useState(false);
 
 
+    useEffect(() => {
+        refetch()
+        refetchCategories()
+    }, [])
+
+
     const handleDelete = () => {
         setDataUrl('')
         setImageUrl('');
@@ -73,18 +78,18 @@ function CauseEdit_Form() {
 
     const onChange = (e) => {
         let files;
-    
+
         if (e) {
-          files = e;
+            files = e;
         }
         const reader = new FileReader();
         reader.onload = () => {
-          setSrcImg(reader.result);
+            setSrcImg(reader.result);
         };
         reader.readAsDataURL(files[0]);
-    
+
         setOpenCrop(true);
-      };
+    };
 
     const img = [
         "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
@@ -92,10 +97,10 @@ function CauseEdit_Form() {
         "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
 
     ]
-    
-    const { data, isSuccess } = useGetAll({
+
+    const { data, isSuccess, refetch } = useGetAll({
         key: `/admin-dashboard/campaign/${id}`,
-        enabled: true,
+        enabled: false,
         select: (data) => {
             return data.data.data;
         },
@@ -108,9 +113,9 @@ function CauseEdit_Form() {
     });
     // console.log(imageUrl)
 
-    useGetAll({
+    const { refetch: refetchCategories } = useGetAll({
         key: `/admin-dashboard/category?page=1&limit=10`,
-        enabled: true,
+        enabled: false,
         select: (data) => {
             return data?.data?.rows;
         },
@@ -123,7 +128,7 @@ function CauseEdit_Form() {
         url: `/admin-dashboard/campaign/${id}`,
         method: "put",
     })
-   
+
 
 
     const initial_values = {
@@ -131,35 +136,37 @@ function CauseEdit_Form() {
         title: user.title || "",
         amount: user.goal_amount || "",
         location: user.location || "",
-        category: user?.category?.name || " ",
+        category: user?.category || " ",
         is_featured: user?.is_featured || false,
         summary: user?.summary || "",
         zakat_eligible: user?.zakat_eligible || false,
         end_date: user?.end_date || "",
         status: user?.status || "",
         story: user?.story || "",
-      
-    };
 
+    };
+    console.log(initial_values);
     if (!isSuccess) {
         return <div>Loading...</div>;
     }
 
     const handleSubmit = (values) => {
 
-        
+
         const formData = new FormData();
-        formData.append('campaign_image', values?.campaign_image)
-        console.log( values?.campaign_image , "<========================")
-        formData.append('title' , values?.title)
-        formData.append('amount' , values?.amount)
-        formData.append('location' , values?.location)
-        formData.append('end_date' , values?.end_date)
-        formData.append('summary' , values?.summary)
-        formData.append('story' , values?.story)
-        formData.append('category' , values?.category?.value)
-        console.log(values?.category?.value ,'<============')
-    
+        if(values?.campaign_image instanceof File){
+            formData.append('campaign_image', values?.campaign_image)
+        }
+        console.log(values?.campaign_image, "<========================")
+        formData.append('title', values?.title)
+        formData.append('amount', values?.amount)
+        formData.append('location', values?.location)
+        formData.append('end_date', values?.end_date)
+        formData.append('summary', values?.summary)
+        formData.append('story', values?.story)
+        formData.append('category', values?.category?.id)
+        console.log(values?.category?.id, '<============')
+
         mutate(formData, {
             onSuccess: () => {
                 toast.success("Cause updated Succcessfully ! ", {
@@ -167,14 +174,14 @@ function CauseEdit_Form() {
                 })
             },
         });
-       
+
     }
 
     return (
         <Formik
             initialValues={initial_values}
             enableReinitialize={true}
-            onSubmit={(values) => 
+            onSubmit={(values) =>
                 handleSubmit(values)
             }
 
@@ -189,10 +196,10 @@ function CauseEdit_Form() {
                                     name="campaign_image"
                                     label={'campaign image'}
                                     onChange={onChange}
-                                   initialPreview={srcImg}
-                                    />
-                                    
-                                     {openCrop && (
+                                    initialPreview={srcImg}
+                                />
+
+                                {openCrop && (
                                     <>
                                         <ImageCropper
                                             srcImg={srcImg}
@@ -201,7 +208,7 @@ function CauseEdit_Form() {
                                         />
                                     </>
                                 )}
-                                
+
                                 {srcImg && <ImagePreviewDialog croppedImage={srcImg} />}
                             </div>
 
@@ -213,15 +220,16 @@ function CauseEdit_Form() {
                                     name={"title"}
                                     label={"Title of Campaign:"} required={"true"} placeholder={"Minimum 50 INR"} />
                             </div>
+                           
                             <SelectField
                                 name={"category"}
                                 required={true}
                                 label="Choose a Category:"
+                                getOptionLabel={(item)=> {
+                                    return item.name
+                                }}
                                 value={values?.category}
-                                options={Categories.map((item) => ({
-                                    label: item.name,
-                                    value: item.id,
-                                }))}
+                                options={Categories}
                             />
                             <div className="w-full">
                                 <InputField type={'number'} onChange={handleChange} value={values?.amount} sx={InputStyle} name={"amount"} label={"Amount to be raised:"} placeholder={"Minimum 50 INR"} />

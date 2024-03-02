@@ -37,8 +37,7 @@ export const ImageCropper = ({
       while (n--) {
         u8arr[n] = bstr.charCodeAt(n);
       }
-      let img = new File([u8arr], values?.campaign_image, { type: mime }); 
-      console.log(img ,'<-------------------------')
+      let img = new File([u8arr], values?.campaign_image?.name, { type: mime }); 
       setFieldValue('campaign_image' ,  img);
     }
   };
