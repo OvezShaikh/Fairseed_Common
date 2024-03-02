@@ -18,6 +18,7 @@ const ImageCrop = ({ setDataUrl, closeModal, setImagePreview }) => {
 
   const onSelectFile = (e) => {
     const file = e.target.files?.[0];
+    setImagePreview(file);
     console.log(file, "file value from ImageCrop");
     if (!file) return;
 

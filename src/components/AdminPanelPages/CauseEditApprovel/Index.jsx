@@ -46,7 +46,6 @@ function CauseEdit_Form() {
   const [documents, setDocuments] = useState([]);
   const [dataUrl, setDataUrl] = useState(null);
   const [Category, setCategory] = useState([]);
-  const { setFieldValue } = useFormikContext();
 
   const handleDocumentUpload = (documentUrl) => {
     setDocuments([...documents, documentUrl]);
@@ -118,22 +117,9 @@ function CauseEdit_Form() {
   if (!isSuccess) {
     return <div>Loading...</div>;
   }
-
-  // const handleSubmit = (values) => {
-  //   const formData = new FormData();
-  //   formData.append("campaign_image", values.campaign_image);
-  //   mutate(values, {
-  //     onSuccess: (response) => {
-  //       toast.success("Cause updated Succcessfully ! ", {
-  //         position: "top-right",
-  //       });
-  //     },
-  //   });
-  //   // console.log(values, "Values from Cause-------->");
-  // };
   const handleSubmit = (values) => {
     const formData = new FormData();
-    formData.append("campaign_image", values.campaign_image);
+    formData.append("campaign_image", imagePreview);
 
     // Add other form fields to formData as needed
 
