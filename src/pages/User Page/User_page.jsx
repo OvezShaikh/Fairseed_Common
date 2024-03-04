@@ -9,7 +9,7 @@ import Scholarship from "../../components/AdminPanelPages/Scholarship Cause/Inde
 import DonationView from "../../components/AdminPanelPages/UserForms/DonationView/Index"
 import EditBankAndKYC from "../../components/AdminPanelPages/UserForms/EditBankAndKYC/Index"
 import ViewBankandKYC from "../../components/AdminPanelPages/UserForms/ViewBankandKYC/Index";
-import User_Dashboard from "../../components/layout/User Dashboard/Index";
+import User_Dashboard from '../../pages/User Dashboard/Index';
 
 function UserPage() {
   return (
@@ -19,7 +19,7 @@ function UserPage() {
         path="/"
         element={
           <UserPanel>
-           <User_Dashboard/>
+           
            
           </UserPanel>
         }
@@ -29,7 +29,7 @@ function UserPage() {
         path="/Dashboard"
         element={
           <UserPanel>
-            <h1>Dashboard</h1>
+            <User_Dashboard/>
           </UserPanel>
         }
       />

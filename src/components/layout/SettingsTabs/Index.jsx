@@ -11,7 +11,7 @@ import CountrySelect from '../../inputs/countrySelect/index';
 import Avatar from '../../layout/Avatar/Index'
 import { Formik, Form } from 'formik';
 import Password from './Password';
-import Account from './Accounts';
+import Accounts from './Accounts';
 
 
 
@@ -41,12 +41,15 @@ export default function LabTabs() {
 
 
   const [value, setValue] = React.useState('1');
+ 
   const [age, setAge] = useState('');
 
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+
 
  
   return (
@@ -59,57 +62,10 @@ export default function LabTabs() {
           </TabList>
         </Box>
         <TabPanel sx={{ pt: '4rem', color: "green" }} value="1">
-         <>
-            <Avatar />
-            <InputField
-              onChange={handleChange}
-              name={"username"}
-              label={"Full Name:"}
-              sx={InputStyle}
-            />
-            <InputField
-              onChange={handleChange}
-
-              name={"email"}
-              label={"Email Id:"}
-              sx={InputStyle}
-            />
-            <InputField
-              onChange={handleChange}
-
-              name={"mobile_number"}
-              label={"Mobile:"}
-              placeholder={"(Optional)"}
-              sx={InputStyle}
-            />
-            <div className='country-select-div'>
-              <CountrySelect
-                onChange={handleChange}
-                label="Country:"
-                name={"country"}
-                sx={SelectStyle}
-              />
-            </div>
-            </>
+         <Accounts />
         </TabPanel>
         <TabPanel sx={{ pt: '4rem' }} value="2">
-          <>
-            <InputField
-              onChange={handleChange}
-              name={"password"}
-              label={"Old Password:"}
-              type={'password'}
-              sx={InputStyle}
-
-
-            />
-            <InputField
-              onChange={handleChange}
-              name={"password"}
-              label={"New Password:"}
-              type={'password'}
-              sx={InputStyle}
-            /></>
+          <Password />
         </TabPanel>
       </TabContext>
     </Box>

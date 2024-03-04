@@ -11,13 +11,15 @@ const OngoingCampaigns = () => {
   const [dataObject, setDataObject] = useState([]);
 
   useGetAll({
-    key: `/user-dashboard/campaign`,
+    key: `/admin-dashboard/campaign?page=1&limit=15`,
     enabled: true,
    
     select: (data) => {
-      return data.data.data;
+      
+      return data.data.rows;
     },
     onSuccess: (data) => {
+      
       setDataObject(data);
     },
   });
