@@ -1,12 +1,3 @@
-import React, { useRef } from "react";
-import InputField from "../../inputs/InputField/index";
-import SelectField from "../../inputs/SelectField/index";
-import PrimaryButton from "../../inputs/PrimaryButton";
-import CheckBox from "../../inputs/checkBox";
-import { FormLabel } from "@mui/material";
-import { colors } from "../../../constants/theme";
-import { Formik, Form, Field, useFormikContext } from "formik";
-import ReactQuilTextField from "../../inputs/ReactQuilTextField/Index";
 import React, { useEffect, useRef } from "react";
 import InputField from "../../inputs/InputField/index";
 import SelectField from "../../inputs/SelectField/index";
@@ -60,12 +51,8 @@ function CauseEdit_Form() {
   let { id } = state;
   const [documents, setDocuments] = useState([]);
   const [dataUrl, setDataUrl] = useState(null);
-  const [Category, setCategory] = useState([]);
+  const [Categories, setCategories] = useState([]);
 
-  const handleDocumentUpload = (documentUrl) => {
-    setDocuments([...documents, documentUrl]);
-  };
-  const navigate = useNavigate();
   const handleDocumentUpload = (documentUrl) => {
     setDocuments([...documents, documentUrl]);
   };
@@ -111,6 +98,7 @@ function CauseEdit_Form() {
     key: `/admin-dashboard/campaign/${id}`,
     enabled: false,
     select: (data) => {
+      console.log(data.data.data, "Campaign values form ID");
       return data.data.data;
     },
     onSuccess: (data) => {
@@ -135,10 +123,6 @@ function CauseEdit_Form() {
     },
   });
 
-  const { mutate } = useCreateOrUpdate({
-    url: `/admin-dashboard/campaign/${id}`,
-    method: "put",
-  });
   const { mutate } = useCreateOrUpdate({
     url: `/admin-dashboard/campaign/${id}`,
     method: "put",
@@ -435,6 +419,7 @@ function CauseEdit_Form() {
               <div className=" w-full ">
                 <RadioGroup
                   name={"is_featured"}
+                  type="radio"
                   sx={{ flexDirection: "column" }}
                   options={[
                     { label: "On", value: true },
@@ -450,7 +435,7 @@ function CauseEdit_Form() {
               <div className=" w-[100%] max-desktop:w-[100%]">
                 <ImageEditor
                   sx={{ maxWidth: "400px", minHeight: "600px" }}
-                  dataUrl={dataUrl}
+                  dataUrl={srcImg}
                 />
                 {/* {console.log(values?.cpg_image)} */}
               </div>
