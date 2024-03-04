@@ -30,7 +30,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 const NavbarContainer = ({ handleDrawerToggle, mobileOpen }) => {
 
   // const { user } = useContext(AuthContext);
-  const sideBar = useMediaQuery("(max-width: 900px)");
+  const sideBar = useMediaQuery("(max-width: 0px)");
   const [alignment, setAlignment] = React.useState("web");
 
   const navigate = useNavigate();
@@ -75,7 +75,7 @@ const NavbarContainer = ({ handleDrawerToggle, mobileOpen }) => {
         display: "inline-block",
         position: "fixed",
         right: 0,
-        top: '54px',
+        top: '59px',
         zIndex: "99",
         padding: '16px 16px  ',
         width: `${sideBar ? "100vw" : (mobileOpen ? "calc(100vw - 273px)" : '100vw')}`,
@@ -93,17 +93,9 @@ const NavbarContainer = ({ handleDrawerToggle, mobileOpen }) => {
           : "d-flex justify-content-between"
           }`}
       >
-        <Grid item xs={3} md={7}>
+        <Grid item xs={9} md={7}>
           <Toolbar sx={{ minHeight: "60px !important", width: "100%", padding: 0, }}>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{ mr: 1, display: { sm: "block", md: "none" } }}
-            >
-              <MenuIcon className="my-auto block " />
-            </IconButton>
+            
             {!sideBar && (
               <Box className="d-flex justify-content-between align-items-center w-100 ">
                 <Typography
@@ -130,7 +122,7 @@ const NavbarContainer = ({ handleDrawerToggle, mobileOpen }) => {
                       className="breadcrumbs_title"
                       sx={{
                         color: '#B6BAC3',
-                        fontSize: 16,
+                        fontSize: 14,
                         fontFamily: 'Satoshi',
                         fontWeight: 500
                       }}

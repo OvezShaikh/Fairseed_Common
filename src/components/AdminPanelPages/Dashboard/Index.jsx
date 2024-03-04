@@ -18,7 +18,7 @@ function Dashboard() {
       }],
     });
   return (
-    <div className='py-6 px-4 grid grid-cols-2 gap-4  dashboard-div font-[satoshi] max-desktop:flex max-desktop:flex-col max-tablet:flex-col'>
+    <div className='py-6 px-4 grid grid-cols-2 gap-4  dashboard-div font-[satoshi] max-desktop:grid-cols-1'>
       <DashboardActivities />
       <OngoingCampaigns />
       <MembersByCountries />

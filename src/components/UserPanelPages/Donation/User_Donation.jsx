@@ -7,13 +7,9 @@ import { GoDotFill } from "react-icons/go";
 
 
 
-const Index = () => {
+const User_Donation = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
 
-  let userData = localStorage.getItem('user_info')
-  let Data = JSON.parse(userData)
-  let id = Data?.id
-  
   const getStatusCellStyle = (status) => {
     if (status === 'Pending') {
       return {
@@ -153,7 +149,7 @@ const Index = () => {
         columns={columns}
         manualPagination
         title={"Donations"}
-        url={`/user-dashboard/donations/${id}`}
+        url={`/user-dashboard/donations`}
         extraQuery={{ inactive: true }}
         selectedRowID={selectedRowID}
         checkboxSelection={true}
@@ -162,4 +158,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default User_Donation

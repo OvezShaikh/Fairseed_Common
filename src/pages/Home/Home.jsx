@@ -23,8 +23,6 @@ import BottomSlider from "../../components/layout/BottomSlider/Index";
 
 
 import FilterField from "../../components/inputs/FilterField/Index";
-import UserLogin from "../login/Login_page/Index";
-import { toast } from "react-toastify";
 
 
 
@@ -129,7 +127,7 @@ function Home() {
       setPerPage(perPage + 100)
     }
 
-    
+
 
 
   };
@@ -138,15 +136,10 @@ function Home() {
     try {
       // const perPage = 100;
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`,
-        // {
-        //   headers:{
-        //     "x-access-token":localStorage.getItem('token')
-        //   }
-        // }
+        `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
       );
       const res = response.data;
-      console.log(localStorage.getItem() , "<================");
+      console.log(res, "cards");
       console.log(res.rows);
       // `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
       if (Array.isArray(res.rows)) {
@@ -178,8 +171,6 @@ function Home() {
       daysLeft: "10 Days Left",
     },
   ];
-
-  console.log(localStorage.getItem('user_info'))
   return (
     <>
       <div className="">
@@ -454,51 +445,23 @@ function Home() {
               </div>
             </div>
           </div>
-          {
-            localStorage.getItem('token') ? (
-              <Link to="/Home/Create-Campaign">
-              <PrimaryButton
-                sx={{
-                  borderRadius: "var(--Pixels-8, 8px)",
-                  fontSize: 20,
-                  fontWeight: "900",
-                  padding: "15px 28px 15px 28px",
-  
-                }}
-                className="py-[15px] px-[28px] my-10"
-              >
-                <div className="mr-2" style={{ width: 32, height: 32, position: "relative" }}>
-                  <img src={images.RocketLaunch} alt="" />
-                </div>
-                <div className="max-tablet:text-[16px]">Launch a Campaign Now !</div>
-              </PrimaryButton>
-            </Link>
-            ) : (
-             
-              <PrimaryButton
-                sx={{
-                  borderRadius: "var(--Pixels-8, 8px)",
-                  fontSize: 20,
-                  fontWeight: "900",
-                  padding: "15px 28px 15px 28px",
-  
-                }}
-                onClick ={ ()=>toast.error("Please Login !!! ", {
-                  position:'top-center'
-                })  
-                }
-                className="py-[15px] px-[28px] my-10"
-              >
-                <div className="mr-2" style={{ width: 32, height: 32, position: "relative" }}>
-                  <img src={images.RocketLaunch} alt="" />
-                </div>
-                <div className="max-tablet:text-[16px]">Launch a Campaign Now !</div>
-              </PrimaryButton>
-           
-            )
-          }
-      
-         
+          <Link to="/Home/Create-Campaign">
+            <PrimaryButton
+              sx={{
+                borderRadius: "var(--Pixels-8, 8px)",
+                fontSize: 20,
+                fontWeight: "900",
+                padding: "15px 28px 15px 28px",
+
+              }}
+              className="py-[15px] px-[28px] my-10"
+            >
+              <div className="mr-2" style={{ width: 32, height: 32, position: "relative" }}>
+                <img src={images.RocketLaunch} alt="" />
+              </div>
+              <div className="max-tablet:text-[16px]">Launch a Campaign Now !</div>
+            </PrimaryButton>
+          </Link>
         </div>
       </section>
       <div className="flex-col pt-[60px] pb-[50px] flex-wrap container flex w-full text-center items-center max-tablet:pb-[24px]">

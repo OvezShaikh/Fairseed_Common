@@ -13,7 +13,7 @@ const OngoingCampaigns = () => {
   useGetAll({
     key: `/user-dashboard/campaign`,
     enabled: true,
-    // enabled: !localStorage.getItem(`columns-of-${title}`),
+   
     select: (data) => {
       return data.data.data;
     },
@@ -28,6 +28,7 @@ const OngoingCampaigns = () => {
 
       <div className="overflow-y-scroll h-[310px] pr-[20px]">
         {dataObject?.map((item, index) => (
+          // Rendering each item in the array as a <div> element
           <div>
             <div className="flex mt-[24px]">
               <div className="flex items-center mr-[25px]">

@@ -54,7 +54,7 @@ function VerifyEmail() {
             });
             setTimeout(() => {
                 window.location.href = "/Home";
-            }, 2000);
+            }, 1500);
         },
         refetch: null
     });
@@ -117,7 +117,7 @@ function VerifyEmail() {
                         <Form>
                             <div className='flex flex-col gap-3'>
                                 <div className="">
-                                    <h1 className='text-[46px] font-bold font-[satoshi] pb-2' style={{
+                                    <h1 className='text-[46px] font-bold font-[Epilogue] pb-2' style={{
                                         background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
                                         "-webkit-background-clip": "text",
                                         "-webkit-text-fill-color": "transparent",
@@ -147,7 +147,7 @@ function VerifyEmail() {
                         <Form>
                             <div className='flex flex-col gap-3 w-full'>
                                 <div className="">
-                                    <h1 className='text-[46px] font-bold font-[satoshi] pb-2' style={{
+                                    <h1 className='text-[46px] font-bold font-[Epilogue] pb-2' style={{
                                         background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
                                         "-webkit-background-clip": "text",
                                         "-webkit-text-fill-color": "transparent",
@@ -209,7 +209,7 @@ function VerifyEmail() {
                         <Form>
                             <div className='flex flex-col gap-3'>
                                 <div className="">
-                                    <h1 className='text-[46px] font-bold font-[satoshi] pb-2' style={{
+                                    <h1 className='text-[46px] font-bold font-[Epilogue] pb-2' style={{
                                         background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
                                         "-webkit-background-clip": "text",
                                         "-webkit-text-fill-color": "transparent",

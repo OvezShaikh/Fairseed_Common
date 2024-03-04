@@ -6,7 +6,7 @@ import SecondaryButton from '../../inputs/secondaryButton';
 import { GoDotFill } from "react-icons/go";
 import { Link, useLocation } from 'react-router-dom';
 
-const Campaign = () => {
+const User_Campaign = () => {
   
   const [selectedRowID, setSelectedRowID] = useState(null);
   const { pathname } = useLocation();
@@ -162,11 +162,10 @@ const Campaign = () => {
         checkboxComponent={IndeterminateCheckbox}
           url= {`/admin-dashboard/campaign`}
         extraQuery={{ inactive: true }}
-       
         selectedRowID={selectedRowID}
       />
     </div>
   )
 }
 
-export default Campaign;
+export default User_Campaign;

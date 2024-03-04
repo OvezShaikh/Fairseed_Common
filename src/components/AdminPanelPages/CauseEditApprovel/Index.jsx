@@ -3,7 +3,7 @@ import InputField from '../../inputs/InputField/index'
 import SelectField from "../../inputs/SelectField/index"
 import PrimaryButton from '../../inputs/PrimaryButton'
 import CheckBox from '../../inputs/checkBox'
-import {  FormLabel } from '@mui/material'
+import { FormLabel } from '@mui/material'
 import { colors } from '../../../constants/theme'
 import { Formik, Form, Field, useFormikContext } from 'formik'
 import ReactQuilTextField from '../../inputs/ReactQuilTextField/Index'
@@ -154,7 +154,7 @@ function CauseEdit_Form() {
 
 
         const formData = new FormData();
-        if(values?.campaign_image instanceof File){
+        if (values?.campaign_image instanceof File) {
             formData.append('campaign_image', values?.campaign_image)
         }
         console.log(values?.campaign_image, "<========================")
@@ -220,12 +220,12 @@ function CauseEdit_Form() {
                                     name={"title"}
                                     label={"Title of Campaign:"} required={"true"} placeholder={"Minimum 50 INR"} />
                             </div>
-                           
+
                             <SelectField
                                 name={"category"}
                                 required={true}
                                 label="Choose a Category:"
-                                getOptionLabel={(item)=> {
+                                getOptionLabel={(item) => {
                                     return item.name
                                 }}
                                 value={values?.category}
