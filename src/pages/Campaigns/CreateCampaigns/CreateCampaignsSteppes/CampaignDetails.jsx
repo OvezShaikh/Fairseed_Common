@@ -48,6 +48,9 @@ const Test = ({ handleBack, handleNext }) => {
   const [category, setCategory] = useState([]);
   const { setFieldValue, values } = useFormikContext();
   const [imagePreview, setImagePreview] = useState(null);
+  const [img, setImg] = useState(
+    "https://www.pexels.com/photo/grayscale-photography-of-herd-of-zebras-2118656/"
+  );
 
   useEffect(() => {
     axios
@@ -62,7 +65,7 @@ const Test = ({ handleBack, handleNext }) => {
       });
   }, []);
   const backgroundStyle = {
-    backgroundImage: `url(${imagePreview})`,
+    backgroundImage: `url(${img})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     width: "100%",
@@ -80,6 +83,7 @@ const Test = ({ handleBack, handleNext }) => {
           name="campaign_image"
           acceptedFiles={{ "file/*": [".png"] }}
           maxFiles={1}
+          backgroundStyle={backgroundStyle}
           onChange={(value) => {
             setFieldValue("document------------>", value);
             // Set image preview URL using setImagePreview
