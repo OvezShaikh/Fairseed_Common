@@ -1,4 +1,5 @@
 import React, { PureComponent, useState } from "react";
+import { useGetAll } from "../../../../Hooks";
 import {
   BarChart,
   Bar,
@@ -116,7 +117,7 @@ const renderQuarterTick = (tickProps) => {
   if (month % 3 === 0 || isLast) {
     const pathX = Math.floor(isLast ? x + offset : x - offset) + 0.5;
 
-    return <path d={`M${pathX},${y - 4}v${-35}`} stroke="red" />;
+    return <path d={`M${pathX},${y - 4}v${-35}`}  />;
   }
   return null;
 };
@@ -151,6 +152,25 @@ const LinearGradientBar = (props) => {
 };
 
 export default function DonationInMonths() {
+
+  const [dataObject, setDataObject] = useState([]);
+
+  useGetAll({
+    key: `/admin-dashboard/donation-api`,
+    enabled: true,
+   
+    select: (data) => {
+      
+      return data.data.fundraised_data;
+    },
+    onSuccess: (data) => {
+      
+      setDataObject(data);
+    },
+  });
+
+
+
   const [fundRaised, setFundRaised] = useState(5000);
   const [goalAmount, setGoalAmount] = useState(10000);
 
@@ -187,7 +207,7 @@ export default function DonationInMonths() {
           {/* <Bar className='recharts-layer recharts-bar-rectangle rounded' dataKey="pv"  /> */}
           <Bar
             className="w-5"
-            dataKey="uv"
+            dataKey={dataObject?.total_amount}
             shape={(props) => (
               <LinearGradientBar
                 fundRaised={fundRaised}
