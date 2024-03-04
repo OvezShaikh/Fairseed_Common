@@ -3,6 +3,8 @@
 @tailwind utilities;
 @import url("https://fonts.cdnfonts.com/css/satoshi");
 @import url("https://unpkg.com/leaflet@1.9.3/dist/leaflet.css");
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap');
+
 
 body {
   margin: 0;
@@ -64,7 +66,7 @@ body {
   height: 100% !important;
 }
 
-.ql-toolbar.ql-snow + .ql-container.ql-snow {
+.ql-toolbar.ql-snow+.ql-container.ql-snow {
   border-bottom-left-radius: 10px 10px;
   border-bottom-right-radius: 10px 10px;
 }
@@ -104,7 +106,7 @@ body {
   padding: 8px;
 }
 
-.normal-table > tbody > tr > td {
+.normal-table>tbody>tr>td {
   padding: 8px;
   border: 1px solid #d0e2ff;
 }
@@ -177,11 +179,9 @@ body {
   width: 48px;
   height: 48px;
   backdrop-filter: blur(20px);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.18) 0%,
-    rgba(255, 255, 255, 0.32) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0.32) 100%);
   border-radius: 50%;
   padding: 40px;
   overflow: hidden;
@@ -243,7 +243,7 @@ body {
   top: 260px;
 }
 
-.breadcrumbs_title > ol > .MuiBreadcrumbs-li:last-child {
+.breadcrumbs_title>ol>.MuiBreadcrumbs-li:last-child {
   color: #3366cc;
   text-decoration: underline;
 }
@@ -289,7 +289,7 @@ body {
   color: rgba(149, 153, 157, 1);
 }
 
-.breadcrumbs_navigation > ol > .MuiBreadcrumbs-li:last-child {
+.breadcrumbs_navigation>ol>.MuiBreadcrumbs-li:last-child {
   font-weight: 700;
   color: rgba(97, 101, 106, 1);
 }

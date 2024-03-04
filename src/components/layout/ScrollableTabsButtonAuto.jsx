@@ -212,7 +212,7 @@ export default function ScrollableTabsButtonForce({
             </Box>
           }
         />
-        <Tab
+        {/* <Tab
           style={{
             color: "var(--cool-grey-cool-grey-10, #383A42)",
             borderRadius: "var(--Spacing-24, 50px)",
@@ -271,7 +271,7 @@ export default function ScrollableTabsButtonForce({
               Trending
             </Box>
           }
-        />
+        /> */}
       </Tabs>
     </Box>
   );

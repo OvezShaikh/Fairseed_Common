@@ -38,9 +38,10 @@ const UserSignUp_02 = () => {
     <>
 
       <SecondaryButton
-       sx={{ width: '100%', padding: '12px 40px', }}
         onClick={handleOpen}
         type='button'
+        sx={{ width: '100%', padding: '12px 40px', }}
+
       >
         <span style={{
           fontSize: '22px', fontWeight: 500, background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
@@ -84,7 +85,7 @@ const UserSignUp_02 = () => {
                   <StyledTypography
                     component="h4"
                     variant="h4"
-                    sx={{ marginTop: '18px', marginLeft: '102px', paddingBottom: '10px' }}
+                    sx={{ marginTop: '18px', marginLeft: '102px', paddingBottom: '10px', fontFamily: 'Epilogue' }}
                   >
                     Sign Up
                   </StyledTypography>

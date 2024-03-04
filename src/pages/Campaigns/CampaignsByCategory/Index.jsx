@@ -12,6 +12,7 @@ import CountrySelect from "../../../components/inputs/countrySelect";
 import OptionsButton from "../../../components/inputs/OptionsButton/Index";
 import NoCampaign from "./NoCampaign";
 import FilterField from "../../../components/inputs/FilterField/Index";
+import ScrollbleTabsButtonForce from '../../../components/layout/ScrollableTabsButtonAuto'
 import "./CampaignsByCategory.css";
 import ScrollableTabsButtonForce from "../../../components/layout/ScrollableTabsButtonAuto";
 
@@ -128,7 +129,7 @@ function Index() {
   useEffect(() => {
     fetchCategoryDetail();
   }, [page]);
-  
+
   return (
     <div>
       <Navbar />
@@ -138,30 +139,30 @@ function Index() {
           heading={categoryDetail?.name}
         />
 
-<div className="mx-auto max-w-[91%] flex max-desktop:flex-col max-desktop:gap-y-[48px] max-desktop:items-end max-tablet:gap-y-[20px] mt-[50px]">
+        <div className="mx-auto max-w-[91%] flex max-desktop:flex-col max-desktop:gap-y-[48px] max-desktop:items-end max-tablet:gap-y-[20px] mt-[50px]">
 
           <ScrollableTabsButtonForce />
           <button
-                  className="flex items-center ml-2 px-3 py-1.5 max-w-[115px] gap-x-[12px] max-desktop:px-[20px] max-desktop:py-[17px] max-tablet:py-[6px]"
-                  style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
+            className="flex items-center ml-2 px-3 py-1.5 max-w-[115px] gap-x-[12px] max-desktop:px-[20px] max-desktop:py-[17px] max-tablet:py-[6px]"
+            style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
 
-                  onClick={filterToggle}
+            onClick={filterToggle}
 
-                >
-                  <img src={images.Funnel} />
-                  {/* <img src={images.Filter} /> */}
-                  <p className="text-[18px]" style={{
-                    background:
-                      "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
-                    "-webkit-background-clip": "text",
-                    "-webkit-text-fill-color": "transparent",
-                    "font-family": 'Satoshi',
-                    "font-weight": "700",
-                  }
-                  }>Filter</p>
-                </button>
+          >
+            <img src={images.Funnel} />
+            {/* <img src={images.Filter} /> */}
+            <p className="text-[18px]" style={{
+              background:
+                "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+              "-webkit-background-clip": "text",
+              "-webkit-text-fill-color": "transparent",
+              "font-family": 'Satoshi',
+              "font-weight": "700",
+            }
+            }>Filter</p>
+          </button>
         </div>
-        
+
 
         <div className="flex flex-col justify-center  pt-[50px] px-[10px] items-center max-desktop:pt-[20px]">
           {categoryCampaignList?.length > 0 ? (
@@ -172,14 +173,14 @@ function Index() {
 
 
 
-              
-
-                
 
 
-                
 
-             
+
+
+
+
+
               <div id="filter-location">
                 {showOptions && (
 

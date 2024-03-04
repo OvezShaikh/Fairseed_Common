@@ -24,7 +24,7 @@ const Formcom = ({ Initial_value, formValidation, loginData }) => {
       <Formik
         initialValues={Initial_value}
         validationSchema={formValidation}
-        onSubmit={ (values) => {
+        onSubmit={(values) => {
           loginData(values)
         }}
       >
@@ -83,8 +83,8 @@ const Formcom = ({ Initial_value, formValidation, loginData }) => {
               </Grid>
 
               <Grid item xs={12} >
-                  <UserSignUp_02 />
-              
+
+                <UserSignUp_02 />
 
               </Grid>
             </Grid>
