@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import styled from '@emotion/styled';
 import Sign_Stepper from './Stepper';
+import SecondaryButton from '../../../components/inputs/secondaryButton';
 
 
 
@@ -36,9 +37,11 @@ const UserSignUp_02 = () => {
   return (
     <>
 
-      <Button
+      <SecondaryButton
         onClick={handleOpen}
         type='button'
+        sx={{ width: '100%', padding: '12px 40px', }}
+
       >
         <span style={{
           fontSize: '22px', fontWeight: 500, background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
@@ -46,7 +49,7 @@ const UserSignUp_02 = () => {
           "-webkit-text-fill-color": "transparent"
         }}> Register </span>
 
-      </Button>
+      </SecondaryButton>
 
       <Dialog
         sx={{
@@ -82,7 +85,7 @@ const UserSignUp_02 = () => {
                   <StyledTypography
                     component="h4"
                     variant="h4"
-                    sx={{ marginTop: '18px', marginLeft: '102px', paddingBottom: '10px' }}
+                    sx={{ marginTop: '18px', marginLeft: '102px', paddingBottom: '10px', fontFamily: 'Epilogue' }}
                   >
                     Sign Up
                   </StyledTypography>

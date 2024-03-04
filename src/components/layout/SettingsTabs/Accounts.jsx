@@ -1,9 +1,8 @@
 import React from 'react'
-import { Formik, Form } from 'formik';
+import { Formik, Form, useFormikContext } from 'formik';
 import Avatar from '../../layout/Avatar/Index'
 import InputField from '../../inputs/InputField';
 import CountrySelect from '../../inputs/countrySelect/index';
-
 
 const InputStyle =
 {
@@ -18,7 +17,6 @@ const InputStyle =
 const SelectStyle =
 {
   padding: '0px', border: "none",
-  // },
   "&:focus-within": {
     boxShadow: `none`,
     borderColor: "none",
@@ -26,49 +24,48 @@ const SelectStyle =
 
 }
 
-
-const initialValues={
-    full_name:"",
-    email:"",
-    m_number:0,
-    Country:""
-  }
-
 const Account = () => {
-  return (
-    <Formik
-          initialValues={initialValues}
-          onSubmit={(values)=>{
-            console.log(values)
-          }}
-          >
-            <Form>
-              <Avatar />
-              <InputField
-                name={"full_name"}
-                label={"Full Name:"}
-                sx={InputStyle}
-              />
-              <InputField
-                name={"email"}
-                label={"Email Id:"}
-                sx={InputStyle}
-              />
-              <InputField
-                name={"m_number"}
-                label={"Mobile:"}
-                placeholder={"(Optional)"}
-                sx={InputStyle}
 
-              />
-              <div className='country-select-div'>
-              <CountrySelect label="Country:"
-              name={"Country"}
-              sx={SelectStyle}
+  const { handleChange , values } = useFormikContext();
+console.log(values, ' +++++++++++++ ')
+  return (
+    <>
+     <Avatar />
+            <InputField
+              onChange={handleChange}
+              value={values?.username}
+              name={"username"}
+              label={"Full Name:"}
+              sx={InputStyle}
+            />
+            <InputField
+              onChange={handleChange}
+              value={values?.username}
+              name={"email"}
+              label={"Email Id:"}
+              sx={InputStyle}
+            />
+            <InputField
+              onChange={handleChange}
+              value={values?.mobile_number}
+              name={"mobile_number"}
+              label={"Mobile:"}
+              placeholder={"(Optional)"}
+              sx={InputStyle}
+            />
+            <div className='country-select-div'>
+              <CountrySelect
+                onChange={handleChange}
+                value={values?.country}
+                label="Country:"
+                name={"country"}
+                sx={SelectStyle}
               />
             </div>
-            </Form>
-          </Formik>
+     
+        
+    </>
+
   )
 }
 

@@ -10,12 +10,9 @@ import {
   ChevronDownIcon,
 
 } from "@heroicons/react/20/solid";
-// import someImage from "../../constants/images";
-// import { OutlineIconName } from "@heroicons/react/outline";
 import PrimaryButton from "../inputs/PrimaryButton";
 import images from "../../constants/images";
 import UserLogin from '../../pages/login/Login_page/Index'
-// import UserLogin from "../../pages/login/Login_page/Index";
 import UserSignUp_02 from "../../pages/login/Sign_Up/Index";
 import { Link, NavLink } from "react-router-dom";
 import ProfileAvatar from "../../pages/login/ProfileAvatar";
@@ -164,7 +161,6 @@ export default function Example() {
     >
         <div className="flex lg:flex ">
           <NavLink to="/Home">
-            {/* <span className="sr-only">FairSeed </span> */}
             <img src={images.Logo} alt="FairSeed" title="FairSeed" />
           </NavLink>
         </div>
@@ -246,7 +242,6 @@ export default function Example() {
                       </div>
                     ))}
                   </div>
-
                 </Popover.Panel>
               </Transition>
             </Popover>

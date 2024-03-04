@@ -83,7 +83,7 @@ const UserLogin = () => {
                   <StyledTypography
                     component="h4"
                     variant="h4"
-                    sx={{ marginTop: '48px', marginLeft: '142px', }}
+                    sx={{ marginTop: '48px', marginLeft: '142px', fontFamily: 'Epilogue' }}
                   >
                     Login
                   </StyledTypography>

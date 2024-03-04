@@ -2,7 +2,6 @@ import * as Yup from "yup";
 import serverAPI from "../config/serverAPI";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import setAuthToken from '../utils/setAuthToken';
 import { useNavigate } from "react-router-dom";
      
 const useLogin = () => {

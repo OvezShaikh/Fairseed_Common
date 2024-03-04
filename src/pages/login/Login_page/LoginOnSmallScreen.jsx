@@ -18,7 +18,7 @@ import useLogin from '../../../Hooks/useLogin';
 function LoginOnSmallScreen() {
 
   const { Initial_value, formValidation, loginData } = useLogin();
-  
+
   return (
     <div>
       <Navbar />
@@ -100,16 +100,12 @@ function LoginOnSmallScreen() {
                   </Grid>
                   <Grid item>
                     <Link to='/Home/RegisterSmallScreen'>
-                      <SecondaryButton
-                        sx={{ width: '100%', padding: '12px 40px', }}
-                        type='button'
-                      >
-                        <span style={{
-                          fontSize: '22px', fontWeight: 500, background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
-                          "-webkit-background-clip": "text",
-                          "-webkit-text-fill-color": "transparent"
-                        }}> <UserSignUp_02 /> </span>
-                      </SecondaryButton>
+
+                      <span style={{
+                        fontSize: '22px', fontWeight: 500, background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+                        "-webkit-background-clip": "text",
+                        "-webkit-text-fill-color": "transparent"
+                      }}> <UserSignUp_02 /> </span>
                     </Link>
                   </Grid>
 

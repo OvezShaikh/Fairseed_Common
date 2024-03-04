@@ -12,6 +12,7 @@ import { Avatar, Grid, Stack } from "@mui/material";
 import { Search } from "../inputs/Search";
 import { Link } from "react-router-dom";
 import { useGetAll } from "../../Hooks";
+import ProfileAvatar from "../../pages/login/ProfileAvatar";
 
 const Navbar = () => {
   const isTab = useMediaQuery("(max-width: 1100px)");
@@ -52,17 +53,7 @@ const Navbar = () => {
               }} />
           </div>
           <div className="flex-row ps-2 justify-start items-center inline-flex ">
-            {/* <div className=" flex max-tablet:hidden">
-              <Badge badgeContent={17} style={{ cursor: 'pointer' }} color="error">
-                <NotificationsIcon />
-              </Badge>
-              <button className="w-6 h-6 flex-1  ml-3">
-                <TuneIcon />
-              </button>
-              <button className="w-6 h-6 flex-1 mx-3">
-                <HelpIcon />
-              </button>
-            </div> */}
+            
 
             <Grid
               item
@@ -90,24 +81,12 @@ const Navbar = () => {
                 {user_role}
                 </p>
               </Stack>
-              <DropDown >
-                <Avatar
-                  sx={{
-                    width: 35,
-                    height: 35,
-                    marginRight: `15px`,
-                    color: "#fff",
-                    background: "#0094AA",
-                  }}
-                  className="my-auto "
-                  srcSet={profile_pic}
-                />
-              </DropDown>
+                <ProfileAvatar/>
             </Grid>
           </div>
         </div>
       </nav>
-      {/* Side bar */}
+     
     </>
   );
 };

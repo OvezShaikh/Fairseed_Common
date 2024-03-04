@@ -267,8 +267,8 @@ function Home() {
           {filteredUserList?.slice(0, visibleCards).map((item) => {
             return (
               <Card
-                key={item.id}
-                username={item.user.username}
+                key={item?.id}
+                username={item?.user?.username}
                 title={item.title}
                 og_id={item.id}
                 cardImage={item.campaign_image}

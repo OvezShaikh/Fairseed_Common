@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState , useRef } from 'react';
+import { useState, useRef } from 'react';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
@@ -12,6 +12,7 @@ import Avatar from '../../layout/Avatar/Index'
 import { Formik, Form } from 'formik';
 import Password from './Password';
 import Account from './Accounts';
+import { useFormContext } from 'react-hook-form';
 
 
 
@@ -28,7 +29,6 @@ const InputStyle =
 const SelectStyle =
 {
   padding: '0px', border: "none",
-  // },
   "&:focus-within": {
     boxShadow: `none`,
     borderColor: "none",
@@ -36,34 +36,30 @@ const SelectStyle =
 
 }
 
-const initialValues={
-  full_name:"",
-  email:"",
-  m_number:0,
-  Country:""
-}
 
-export default function LabTabs({ onChange, src }) {
+export default function LabTabs() {
+
 
   const [value, setValue] = React.useState('1');
+  const [age, setAge] = useState('');
 
-  const handleChange = (event, newValue) => {
+
+  const handletabChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const [age, setAge] = useState('');
-
+ 
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 0, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example"   >
-            <Tab label="Account" value="1"  className='account-tab' />
+          <TabList onChange={handletabChange} aria-label="lab API tabs example"   >
+            <Tab label="Account" value="1" className='account-tab' />
             <Tab label="Passwords" value="2" className='password-tab' />
           </TabList>
         </Box>
-        <TabPanel sx={{ pt: '4rem',color:"green" }} value="1">
-       <Account/>
+        <TabPanel sx={{ pt: '4rem', color: "green" }} value="1">
+           <Account/>
         </TabPanel>
         <TabPanel sx={{ pt: '4rem' }} value="2">
          <Password/>

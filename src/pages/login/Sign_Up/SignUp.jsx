@@ -16,7 +16,7 @@ const SignUp = ({ handleNext }) => {
   const imgRef = useRef(null);
   const [openModal, setOpenModal] = useState(false);
 
-  const { submitForm, isValid, setFieldValue , values } = useFormikContext();
+  const {  isValid, setFieldValue , values } = useFormikContext();
 
   const handleNextClick = () => {
     if (isValid) {
@@ -45,7 +45,8 @@ const SignUp = ({ handleNext }) => {
                   ref={imgRef}
                   sx={{ padding: ' 16px 10px 16px var(--Spacing-20, 20px)', border: '2px solid var(--Linear-BG, #FF9F0A)', borderRadius: '4px' }}
                   name='image'
-                  onChange={(event) => setFieldValue('image',console.log( event.target.files[0]))}
+                  onChange={(event) => setFieldValue('image',values)}
+                  // console.log( event.target.files[0])
                 />
 
                 <div style={{ color:'black',  position: 'absolute', bottom: '10px', right: '20px', zIndex: 1, transform: 'translate(50%, 50%)' }}>
@@ -54,9 +55,7 @@ const SignUp = ({ handleNext }) => {
                   </button>
                 </div>
               </Avatar>
-              {
-                openModal && <Modal setOpenModal={setOpenModal}/>
-              }
+             
 
             </Grid>
             <Grid item xs={12}>

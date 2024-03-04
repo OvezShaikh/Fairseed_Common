@@ -56,16 +56,7 @@ const styleStep = {
         fill: "#06B217",
       },
     },
-    // "& .MuiStepLebal-root .MuiStepLabel-labelContainer .MuiStepLabel-label":{
-    //   color:'green'
-    // },
-    // "& .MuiStepLabel-root .MuiStepLabel-alternativeLabel":{
-    //     color:'red'
-    // },
-    // "& .MuiStepLabel-labelContainer": {
-    //   color: "red",
-    // },
-
+   
     "& .MuiStepConnector-line": {
       borderColor: "#06B217",
     },
@@ -103,7 +94,7 @@ const stylePrimaryButton = {
   borderRadius: "12px",
 };
 const initialValues = {
-  // campaign_image: "",
+  campaign_image: "",
   title: "",
   goal_amount: "",
   location: "",
@@ -112,7 +103,7 @@ const initialValues = {
   end_date: "",
   story: '',
   summary: '',
-  document: "",
+  documents: "",
   rasing_for: "",
   account_holder_name: "",
   account_number: "",
@@ -252,14 +243,12 @@ export default function HorizontalLinearStepper() {
   const onSubmit = (Values) => {
     console.log('Values', Values)
     const formData = new FormData();
-
     for (const key in Values) {
       if (key == 'category') {
         formData.append('category', Values['category']['value'])
 
       }
       else {
-
         formData.append(key, Values[key]);
       }
     }

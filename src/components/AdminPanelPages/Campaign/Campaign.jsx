@@ -14,12 +14,10 @@ const Campaign = () => {
   let userData = localStorage.getItem('user_info')
   let Data = JSON.parse(userData)
   let id = Data?.id
-  console.log(id, '-------------------')
   const [selectedRowID, setSelectedRowID] = useState(null);
   const { pathname } = useLocation();
   const getStatusCellStyle = (status) => {
     // let { state } = useLocation(); let { id } = state
-    console.log('Status:', status);
     if (status === 'Pending') {
       return {
 
@@ -57,8 +55,8 @@ const Campaign = () => {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Id", // Row number header
-        accessor: "id", // Accessor for row number
+        Header: "Id", 
+        accessor: "id", 
         Cell: ({ row }) => (
           <div>{row.index + 1}</div>
         ),
@@ -168,16 +166,8 @@ const Campaign = () => {
         manualPagination
         title={"Campaign"}
         checkboxComponent={IndeterminateCheckbox}
-        // {...(pathname === 'User/campaigns' && {
-        //   url: `/user-dashboard/campaign/${id}`
-        // })}
-        // {...(pathname === 'AdminPanel/campaigns' && {
-          url= {'/admin-dashboard/campaign'}
-        // })}
-
+        url={`/admin-dashboard/campaign`}
         extraQuery={{ inactive: true }}
-        // addButton={<LocationConfigurationDialog />}
-        // addButton={<Button>HElloooooo</Button>}
         selectedRowID={selectedRowID}
       />
     </div>

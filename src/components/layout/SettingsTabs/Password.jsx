@@ -1,8 +1,6 @@
 import React from 'react'
-import { Formik, Form } from 'formik';
-import InputField from '../../inputs/InputField';
-import * as Yup from 'yup'
-import { useCreateOrUpdate } from '../../../Hooks';
+import InputField from '../../inputs/InputField'
+import { useFormikContext } from 'formik'
 
 
 const InputStyle =
@@ -15,48 +13,37 @@ const InputStyle =
   },
 
 }
-const initialValues = {
-    password:'',
-    password2:''
+const SelectStyle =
+{
+  padding: '0px', border: "none",
+  "&:focus-within": {
+    boxShadow: `none`,
+    borderColor: "none",
+  },
+
 }
-
-const Validation = Yup.object().shape({
-        password: Yup.string().required('Password is required!'),
-        password2: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must be match').required('Required')
-      })
-
-     
-
 
 const Password = () => {
 
-    const {mutate} =  useCreateOrUpdate({
-        url:``
-    })
+    const { handleChange , values  } = useFormikContext();
+
   return (
-    <Formik
-    
-    initialValues={initialValues}
-    validationSchema={Validation}
-   
-    >
-            <Form>
-              <InputField
-                name={"password"}
-                label={"Old Password:"}
-                type={'password'}
-                sx={InputStyle}
-
-
-              />
-              <InputField
-                name={"password2"}
-                label={"New Password:"}
-                type={'password'}
-                sx={InputStyle}
-              />
-            </Form>
-          </Formik>
+    <>
+    <InputField
+      onChange={handleChange}
+      value={values?.password}
+      name={"password"}
+      label={"Old Password:"}
+      type={'password'}
+      sx={InputStyle}
+    />
+    <InputField
+      name={"password"}
+      label={"New Password:"}
+      type={'password'}
+      sx={InputStyle}
+    />
+    </>
   )
 }
 

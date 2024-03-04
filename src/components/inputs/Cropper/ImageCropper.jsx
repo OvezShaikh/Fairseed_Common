@@ -9,7 +9,7 @@ import {
 
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useFormikContext } from "formik";
 
 export const ImageCropper = ({
@@ -17,16 +17,18 @@ export const ImageCropper = ({
   setOpenCrop,
   setsrcImg,
 }) => {
+
+
   const [_, setCropData] = useState("#");
   const [cropper, setCropper] = useState();
   const { setFieldValue, values } = useFormikContext();
+  // const cropperRef = useRef(null);
 
   const getCropData = () => {
     if (typeof cropper !== "undefined") {
       setCropData(cropper.getCroppedCanvas().toDataURL());
       setsrcImg(cropper.getCroppedCanvas().toDataURL());
       setOpenCrop(false);
-
       var arr = cropper.getCroppedCanvas().toDataURL().split(",");
       let mime = arr[0].match(/:(.*?);/)[1];
       let bstr = atob(arr[1]);
@@ -35,8 +37,8 @@ export const ImageCropper = ({
       while (n--) {
         u8arr[n] = bstr.charCodeAt(n);
       }
-      let img = new File([u8arr], values.tenant_pic.name, { type: mime });
-      setFieldValue("tenant_pic", img);
+      let img = new File([u8arr], values?.campaign_image?.name, { type: mime }); 
+      setFieldValue('campaign_image' ,  img);
     }
   };
 
@@ -62,15 +64,16 @@ export const ImageCropper = ({
               preview='.img-preview'
               src={srcImg}
               viewMode={1}
-              minCropBoxHeight={10}
-              minCropBoxWidth={10}
+              minCropBoxHeight={20}
+              minCropBoxWidth={20}
               background={true}
               responsive={true}
               autoCropArea={1}
               checkOrientation={false}
               onInitialized={(instance) => {
+                console.log(instance , "<++++++++++++++++++++")
                 setCropper(instance);
-              }}
+                }}
               guides={true}
             />
           </DialogContent>
