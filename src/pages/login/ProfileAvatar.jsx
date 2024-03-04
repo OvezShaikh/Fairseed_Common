@@ -53,6 +53,7 @@ export default function ProfileAvatar() {
   console.log(Data)
   let role = Data?.user_role;
   let image = Data?.profile_pic; 
+  let img = `${process.env.REACT_APP_API_URL}`+image;
 
 
 
@@ -113,7 +114,9 @@ export default function ProfileAvatar() {
               <MenuItem onClick={handleClose}>
                 <Link to="/AdminPanel">
                   <ListItemIcon>
-                    <Avatar />
+                    <Avatar 
+                    src={img}
+                    />
                   </ListItemIcon>
                   AdminPanel
                 </Link>
