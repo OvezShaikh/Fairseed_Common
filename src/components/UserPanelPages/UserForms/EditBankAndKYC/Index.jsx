@@ -67,14 +67,14 @@ function CausesView() {
         branch_name: data?.branch_name || "",
         title: data?.campaign?.title || "",
         ifsc_code: data?.ifsc_code || "",
-        status: data?.status,
-        pan_number: "",
-        adhaar_num: "",
-        other: ""
-    }
+        status: data?.status || false,
+        pan_card: data?.pan_card || "",
+        adhar_card: data?.adhar_card ||  "",
+        tandc_accept:data?.tandc_accept || false ,
+        }
 
     useGetAll({
-        key: `/admin-dashboard/campaign-kyc/${id}`,
+        key: `/user-dashboard/edit-bankkyc/${id}`,
         enabled: true,
         select: (data) => {
             console.log(data)
@@ -92,7 +92,7 @@ function CausesView() {
     const handleSubmit = (values) => {
         mutate(values, {
             onSuccess: (response) => {
-                toast.success('Details Updated Successfully ! ', {
+                toast.success('Your changes has been recorded and is sent for approval to Admin ', {
                     position: 'top-right'
                 })
             }
@@ -113,7 +113,7 @@ function CausesView() {
                             <div className="flex flex-col gap-7">
 
                                 <div className="w-full">
-                                    <InputField sx={InputStyle} label={"Aadhar Card:"} name={'adhaar_num'} value={values?.adhaar_num} onChange={handleChange} />
+                                    <InputField sx={InputStyle} label={"Aadhar Card:"} name={'adhar_card'} value={values?.adhar_card} onChange={handleChange} />
                                 </div>
                                 <div className="w-full">
                                     <InputField sx={InputStyle} label={"Account Holder Name:"} name={'account_holder_name'} value={values?.account_holder_name} onChange={handleChange} />
@@ -131,10 +131,10 @@ function CausesView() {
                                     <InputField sx={InputStyle} label={"IFSC Code:"} name={'ifsc_code'} value={values?.ifsc_code} onChange={handleChange} />
                                 </div>
                                 <div className="w-full">
-                                    <InputField sx={InputStyle} label={"Pan Card Number:"} name={'pan_number'} value={values?.pan_number} onChange={handleChange} />
+                                    <InputField sx={InputStyle} label={"Pan Card Number:"} name={'pan_card'} value={values?.pan_card} onChange={handleChange} />
                                 </div>
                                 <div className="w-full">
-                                    <InputField sx={InputStyle} label={"Adhar Number:"} name={'adhaar_num'} value={values?.adhaar_num} onChange={handleChange} />
+                                    <InputField sx={InputStyle} label={"Adhar Number:"} name={'adhar_card'} value={values?.adhar_card} onChange={handleChange} />
                                 </div>
                                 <div className="w-full">
                                     <InputField sx={InputStyle} label={"Other Details (Optional)::"} name={'other'} value={values?.other} onChange={handleChange} />
@@ -178,6 +178,7 @@ function CausesView() {
                                 <RadioGroup
                                     // onChange={(e) => { setFieldValue("rasing_for", e.target.value) }}
                                     name="rasing_for"
+                                    value={values?.tandc_accept}
                                     required={true}
                                     options={[
                                         { label: "Self", value: "Self" },

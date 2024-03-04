@@ -7,6 +7,9 @@ import DonationView from "../../components/AdminPanelPages/Donation/DonationView
 // import EditBankAndKYC from "../../components/AdminPanelPages/UserForms/EditBankAndKYC/Index";
 // import ViewBankandKYC from "../../components/AdminPanelPages/UserForms/ViewBankandKYC/Index";
 import User_Dashboard from "../../pages/User Dashboard/Index";
+import User_Campaign from "../../components/UserPanelPages/Campaign/User_Campaign";
+import User_Donation from "../../components/UserPanelPages/Donation/User_Donation";
+import MyDonation from "../../components/UserPanelPages/MyDonation/Index";
 
 function UserPage() {
   return (
@@ -28,7 +31,6 @@ function UserPage() {
           </UserPanel>
         }
       />
-
       <Route
         path="/Campaigns"
         element={
@@ -47,14 +49,6 @@ function UserPage() {
         }
       />
       <Route
-        path="/My-Donations"
-        element={
-          <UserPanel>
-            <MyDonation />
-          </UserPanel>
-        }
-      />
-      <Route
         path="/Donations/View"
         element={
           <UserPanel>
@@ -62,6 +56,15 @@ function UserPage() {
           </UserPanel>
         }
       />
+      <Route
+        path="/My-Donations"
+        element={
+          <UserPanel>
+            <MyDonation />
+          </UserPanel>
+        }
+      />
+
       <Route
         path="/Withdrawals"
         element={

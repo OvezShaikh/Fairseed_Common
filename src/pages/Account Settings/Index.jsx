@@ -23,20 +23,28 @@ function Index() {
   
 let userData = localStorage.getItem('user_info')
 let Data = JSON.parse(userData)
-console.log(Data, ' ----------')
+console.log(Data , "++++++++++")
 let password = Data?.password;
 let email = Data?.email;
 let mobile_number = Data?.mobile_number;
 let country = Data?.country;
 let username = Data?.username
 
+  // const initial_values = {
+  //   username: username ||  '',
+  //   email: email || '',
+  //   mobile_number:mobile_number || '',
+  //   country: country || '',
+  //   password:password || ''
+  //  }
   const initial_values = {
-    username: username ||  '',
-    email: email || '',
-    mobile_number:mobile_number || '',
-    country: country || '',
-    password:password || ''
+    username:   '',
+    email:  '',
+    mobile_number:  '',
+    country:  '',
+    password: ''
    }
+
   
 
   const [value, setValue] = React.useState('1');
@@ -47,7 +55,6 @@ let username = Data?.username
   return (
     <>
       <Navbar />
-
       <Navigation
         label={"Account Settings"}
         heading={"Account Settings"}
@@ -56,15 +63,14 @@ let username = Data?.username
       <Formik 
       enableReinitialize={true}
       initialValues={initial_values}
-      
       >
         <Form>
-        <SettingTabs />
+        {/* <SettingTabs /> */}
         <div className="mx-auto flex justify-center">
         <PrimaryButton className="mx-auto">Save Changes</PrimaryButton>
         </div>
         </Form>
-        </Formik>
+       </Formik>
 
       </div>
 

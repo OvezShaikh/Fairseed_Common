@@ -98,7 +98,6 @@ function CauseEdit_Form() {
     key: `/admin-dashboard/campaign/${id}`,
     enabled: false,
     select: (data) => {
-      console.log(data.data.data, "Campaign values form ID");
       return data.data.data;
     },
     onSuccess: (data) => {
@@ -110,7 +109,6 @@ function CauseEdit_Form() {
       setDataUrl(imageUrl);
     },
   });
-  // console.log(imageUrl)
 
   const { refetch: refetchCategories } = useGetAll({
     key: `/admin-dashboard/category?page=1&limit=10`,
@@ -160,7 +158,6 @@ function CauseEdit_Form() {
     formData.append("story", values?.story);
     formData.append("category", values?.category?.id);
     console.log(values?.category?.id, "<============");
-
     mutate(formData, {
       onSuccess: () => {
         toast.success("Cause updated Succcessfully ! ", {

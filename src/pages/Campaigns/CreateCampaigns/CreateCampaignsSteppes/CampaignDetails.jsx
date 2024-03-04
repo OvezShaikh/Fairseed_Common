@@ -83,20 +83,9 @@ const Test = ({ handleBack, handleNext }) => {
           name="campaign_image"
           acceptedFiles={{ "file/*": [".png"] }}
           maxFiles={1}
-          backgroundStyle={backgroundStyle}
-          onChange={(value) => {
-            setFieldValue("document------------>", value);
-            // Set image preview URL using setImagePreview
-            if (value && value.length > 0) {
-              setImagePreview(URL.createObjectURL(value[0]));
-              console.log(
-                URL.createObjectURL(value[0]),
-                "createObjectUrl================>"
-              );
-            } else {
-              setImagePreview(null);
-            }
-          }}
+          onChange={(value) => setFieldValue("campaign_image", value)}
+
+          // onChange={(file) => setFieldValue("campaign_image", file)}
         ></DropZone>
       </Box>
       <div className="campaign-input-div">

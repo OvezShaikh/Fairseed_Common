@@ -58,12 +58,9 @@ const Campaign = () => {
 
   const columns = React.useMemo(() => [
     {
-      Header: "Id", // Row number header
-      accessor: "index", // Accessor for row number
-      Cell: ({ row }) => (
-        // Display row number using index provided by React Table
-        <div>{row.index + 1}</div>
-      ),
+      Header: "Id",
+      accessor: "id",
+      Cell: ({ row }) => <div>{row.index + 1}</div>,
       minWidth: 50,
       width: 50,
       search: false,
@@ -149,13 +146,7 @@ const Campaign = () => {
         manualPagination
         title={"Campaign"}
         checkboxComponent={IndeterminateCheckbox}
-        // {...(pathname === 'User/campaigns' && {
-        //   url: `/user-dashboard/campaign/${id}`
-        // })}
-        // {...(pathname === 'AdminPanel/campaigns' && {
-        url="/admin-dashboard/campaign"
-        // })}
-
+        url={`/admin-dashboard/campaign`}
         extraQuery={{ inactive: true }}
         selectedRowID={selectedRowID}
       />
