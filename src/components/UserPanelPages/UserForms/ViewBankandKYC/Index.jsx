@@ -21,11 +21,7 @@ const styleLabel = {
     paddingLeft: '5px'
 };
 
-const initialValues = {
 
-
-    transaction: ''
-}
 
 function Index() {
 
@@ -38,7 +34,7 @@ function Index() {
     const navigate = useNavigate()
 
     useGetAll({
-        key: `/admin-dashboard/donors?page=1&limit=10/${id}`,
+        key: `/user-dashboard/edit-bankkyc/${id}`,
         enabled: true,
         select: (data) => {
             console.log(data)
@@ -48,6 +44,7 @@ function Index() {
             setData(data);
         },
     })
+    
 
     const initial_values = {
 

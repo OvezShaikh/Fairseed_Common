@@ -55,8 +55,8 @@ const Campaign = () => {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Id", // Row number header
-        accessor: "id", // Accessor for row number
+        Header: "Id", 
+        accessor: "id", 
         Cell: ({ row }) => (
           <div>{row.index + 1}</div>
         ),
@@ -166,13 +166,7 @@ const Campaign = () => {
         manualPagination
         title={"Campaign"}
         checkboxComponent={IndeterminateCheckbox}
-        // {...(pathname === 'User/campaigns' && {
-        //   url: `/user-dashboard/campaign/${id}`
-        // })}
-        // {...(pathname === 'AdminPanel/campaigns' && {
-        url='/admin-dashboard/campaign'
-        // })}
-
+        url={`/admin-dashboard/campaign`}
         extraQuery={{ inactive: true }}
         selectedRowID={selectedRowID}
       />

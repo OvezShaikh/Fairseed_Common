@@ -94,7 +94,7 @@ const stylePrimaryButton = {
   borderRadius: "12px",
 };
 const initialValues = {
-  // campaign_image: "",
+  campaign_image: "",
   title: "",
   goal_amount: "",
   location: "",
@@ -103,7 +103,7 @@ const initialValues = {
   end_date: "",
   story: '',
   summary: '',
-  document: "",
+  documents: "",
   rasing_for: "",
   account_holder_name: "",
   account_number: "",

@@ -33,9 +33,6 @@ function UserPage() {
           </UserPanel>
         }
       />
-
-
-
       <Route
         path="/Campaigns"
         element={
@@ -70,6 +67,14 @@ function UserPage() {
           </UserPanel>
         }
       />
+       <Route
+        path="/Donations/View"
+        element={
+          <UserPanel>
+            <DonationView />
+          </UserPanel>
+        }
+      />
       <Route
         path="/My-Donations"
         element={
@@ -78,14 +83,7 @@ function UserPage() {
           </UserPanel>
         }
       />
-      <Route
-        path="/Donations/View"
-        element={
-          <UserPanel>
-            <DonationView />
-          </UserPanel>
-        }
-      />
+     
       <Route
         path="/Withdrawals"
         element={
