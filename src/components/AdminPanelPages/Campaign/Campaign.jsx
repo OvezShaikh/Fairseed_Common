@@ -14,12 +14,10 @@ const Campaign = () => {
   let userData = localStorage.getItem('user_info')
   let Data = JSON.parse(userData)
   let id = Data?.id
-  console.log(id, '-------------------')
   const [selectedRowID, setSelectedRowID] = useState(null);
   const { pathname } = useLocation();
   const getStatusCellStyle = (status) => {
     // let { state } = useLocation(); let { id } = state
-    console.log('Status:', status);
     if (status === 'Pending') {
       return {
 
