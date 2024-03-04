@@ -14,6 +14,7 @@ import NoCampaign from "./NoCampaign";
 import FilterField from "../../../components/inputs/FilterField/Index";
 import ScrollbleTabsButtonForce from '../../../components/layout/ScrollableTabsButtonAuto'
 import "./CampaignsByCategory.css";
+import ScrollableTabsButtonForce from "../../../components/layout/ScrollableTabsButtonAuto";
 
 
 
@@ -128,7 +129,7 @@ function Index() {
   useEffect(() => {
     fetchCategoryDetail();
   }, [page]);
-  console.log(data, ",================dstatatatatata ")
+
   return (
     <div>
       <Navbar />
@@ -137,35 +138,49 @@ function Index() {
           label={"ReligiousEducationCampaigns"}
           heading={categoryDetail?.name}
         />
-        <div className="flex flex-col justify-center  pt-32 px-[20px] items-center ">
+
+        <div className="mx-auto max-w-[91%] flex max-desktop:flex-col max-desktop:gap-y-[48px] max-desktop:items-end max-tablet:gap-y-[20px] mt-[50px]">
+
+          <ScrollableTabsButtonForce />
+          <button
+            className="flex items-center ml-2 px-3 py-1.5 max-w-[115px] gap-x-[12px] max-desktop:px-[20px] max-desktop:py-[17px] max-tablet:py-[6px]"
+            style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
+
+            onClick={filterToggle}
+
+          >
+            <img src={images.Funnel} />
+            {/* <img src={images.Filter} /> */}
+            <p className="text-[18px]" style={{
+              background:
+                "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+              "-webkit-background-clip": "text",
+              "-webkit-text-fill-color": "transparent",
+              "font-family": 'Satoshi',
+              "font-weight": "700",
+            }
+            }>Filter</p>
+          </button>
+        </div>
+
+
+        <div className="flex flex-col justify-center  pt-[50px] px-[10px] items-center max-desktop:pt-[20px]">
           {categoryCampaignList?.length > 0 ? (
             <div className="flex flex-col justify-center items-center " >
-              <div className="flex w-[90%] max-desktop:w-[100%] max-tablet:w-[100%] justify-start items-center text-center pl-3">
-
-                <ScrollbleTabsButtonForce />
 
 
-                <button
-                  className="flex items-center ml-2 px-3 py-1.5 max-w-[115px] gap-x-[12px] max-desktop:px-[20px] max-desktop:py-[17px] max-tablet:py-[6px]"
-                  style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
 
-                  onClick={filterToggle}
 
-                >
-                  <img src={images.Funnel} />
-                  {/* <img src={images.Filter} /> */}
-                  <p className="text-[18px]" style={{
-                    background:
-                      "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
-                    "-webkit-background-clip": "text",
-                    "-webkit-text-fill-color": "transparent",
-                    "font-family": 'Satoshi',
-                    "font-weight": "700",
-                  }
-                  }>Filter</p>
-                </button>
 
-              </div>
+
+
+
+
+
+
+
+
+
               <div id="filter-location">
                 {showOptions && (
 
