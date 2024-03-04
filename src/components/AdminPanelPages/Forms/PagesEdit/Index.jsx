@@ -33,7 +33,7 @@ function Index() {
     content: Details?.content || "",
   };
 
-  const { data } = useGetAll({
+  useGetAll({
     key: `admin-dashboard/pages`,
     enabled: true,
     select: (data) => {
@@ -46,7 +46,7 @@ function Index() {
   });
 
   const { mutate } = useCreateOrUpdate({
-    url: `admin-dashboard/pages`,
+    url: `admin-dashboard/pages/${id}`,
     method: "put",
   });
   return (
@@ -71,7 +71,7 @@ function Index() {
     >
       {({ handleChange, setFieldValue, values }) => (
         <Form className="flex flex-col items-center">
-          <div className="flex w-full gap-4">
+          <div className="flex w-full max-tablet:flex-col gap-4">
             <div className="w-full">
               <InputAdminField
                 label={"Title"}
@@ -91,44 +91,56 @@ function Index() {
               />
             </div>
           </div>
-          <div className="flex gap-32 w-full pt-8">
+          <div className="flex gap-32 w-full pt-8 max-tablet:flex-col">
             <div className="  lg:w-[25%] ">
               <RadioGroup
-                // onChange={handleChange}
-                name={"show_navbar"}
+               
+              name={"show_navbar"}
+                onChange={
+                  (e) => {
+                    setFieldValue("show_navbar", e === "true")
+                  }  } 
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
                 ]}
                 label="Show Navbar"
                 value={values?.show_navbar}
-                // onChange={onChange}
+              // onChange={onChange}
               />
             </div>
             <div className="lg:w-[25%]">
               <RadioGroup
                 name={"show_footer"}
-                // onChange={handleChange}
+             
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
                 ]}
                 label="Show Footer"
+                onChange={
+                  (e) => {
+                    setFieldValue("show_footer", e === "true")
+                  }
+                }
                 value={values?.show_footer}
-                // onChange={onChange}
+              // onChange={onChange}
               />
             </div>
             <div className=" lg:w-[25%] ">
               <RadioGroup
-                // onChange={handleChange}
-                name={"show_page"}
+                onChange={
+                  (e) => {
+                    setFieldValue("show_page", e === "true")
+                  }
+                } name={"show_page"}
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
                 ]}
                 label="Show Page"
                 value={values?.show_page}
-                // onChange={onChange}
+              // onChange={onChange}
               />
             </div>
           </div>
