@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import OtpInput from '../../../components/inputs/OtpInputs/Index';
 import PrimaryButton from '../../../components/inputs/PrimaryButton';
 import InputField from '../../../components/inputs/InputField';
 import Navigation from "../../../components/layout/Navigation/Index"
 import { Form, Formik } from 'formik';
+import { toast } from 'react-toastify';
+import { useCreateOrUpdate } from '../../../Hooks';
+import * as Yup from 'yup';
+import OTPInput, { ResendOTP } from "otp-input-react";
+
 
 const inputStyle = {
     padding: ' 16px 10px 16px var(--Spacing-20, 20px)',
@@ -18,97 +22,232 @@ function VerifyEmail() {
     const [step, setStep] = useState(1);
     const [isVerified, setIsVerified] = useState(false);
     const [newPassword, setNewPassword] = useState(false);
+    // const [isVerified, setIsVerified] = useState(false);
+    const [otpState, setOtpState] = useState([{ index: 0, value: '' }, { index: 1, value: '' }, { index: 2, value: '' }, { index: 3, value: '' }])
+    const [backendOTP, setBackendOTP] = useState('')
+    const [Email, setEmail] = useState(" ")
 
-    const handleNewPassword = () => {
-        setStep(3);
-        setNewPassword(true);
+
+    const verifyEmailMutation = useCreateOrUpdate({
+        url: '/accounts/forgetpassword',
+        method: 'post',
+        onSuccess: (values, response) => {
+            toast.success(`OTP sent successfully to `, {
+                position: 'top-center'
+            });
+
+            setIsVerified(true);
+
+            console.log('values.data.OTP', values.data.OTP)
+            console.log(response.email, "======================>")
+            setBackendOTP(values.data.OTP)
+            const key = response.email;
+            setEmail(key)
+        },
+        onError: () => {
+            toast.error(`Fail to sent OTP`, {
+                position: 'top-center'
+            });
+            setIsVerified(false);
+
+
+        }
+
+
+    });
+
+    const resetPasswordMutation = useCreateOrUpdate({
+        url: '/accounts/reset-pass',
+        method: 'post',
+        onSuccess: () => {
+
+            toast.success('Password reset successfully', {
+                position: 'top-center',
+                autoClose: 5000,
+            });
+            setTimeout(() => {
+                window.location.href = "/Home";
+            }, 2000);
+        },
+        onError: () => {
+            toast.error('Fail to reset password')
+        }
+    });
+
+    const handleVerifyEmail = (values) => {
+        verifyEmailMutation.mutate(values);
+    };
+
+    const handleNewPassword = (values) => {
+        resetPasswordMutation.mutate(values);
+    };
+
+    const getJoinedOTP = () => {
+        return otpState.map(i => i.value).join('')
     }
 
-    const handleVerifyEmail = () => {
-        if (step === 1) {
-            setStep(2);
-            // Perform verification logic here
-            // For demonstration purposes, I'm just setting isVerified to true
-            setIsVerified(true);
-        } else if (step === 2) {
-            setStep(3);
+    const compareOTP = () => {
+        if (getJoinedOTP() != backendOTP) {
+            toast.error("OTP didn't match", { position: 'top-center' })
+
         }
-    };
+        else if (getJoinedOTP() === "") {
+            toast.error("please enter otp", { position: 'top-center' })
+            setNewPassword(false)
+
+
+
+        } else {
+            toast.success("OTP verified", { position: 'top-center' })
+            setNewPassword(true)
+            setStep(3);
+
+        }
+
+    }
+
+    const handleOTPChange = (event, index) => {
+        if (event.target.value.length > 1) {
+            return
+        }
+        setOtpState(prev => {
+            let old = [...prev]
+            old[index] = { index, value: event.target.value }
+            console.log('oldvoldoldold', old);
+            return old
+        })
+        if (index != 3) {
+            event.target.nextElementSibling.focus()
+        }
+    }
+    console.log(Email);
+
+    // const handleNewPassword = () => {
+    //     setStep(3);
+    //     setNewPassword(true);
+    // }
+
 
     return (
         <>
-            <Navigation heading={step === 1 ? "Forgot Password?" : step === 2 ? "Verify your Email" : "Password Reset"} />
-            <div className="w-full flex justify-center items-center">
+            <Navigation heading={!isVerified ? "Forgot Password?" : !newPassword ? "Verify your Email" : "Password Reset"} />
+            <div className="w-full flex justify-center items-center pt-4">
                 <div className="w-[60%] pt-3 max-desktop:w-[60%] max-tablet:w-full max-tablet:p-2">
+                    {!isVerified && (
 
-                    <Formik>
-                        <Form>
-
-                            <div className='flex flex-col gap-2'>
-                                {!isVerified && step === 1 && (
+                        <Formik
+                            initialValues={{ email: '' }}
+                            validationSchema={Yup.object().shape({
+                                email: Yup.string().email('Invalid email').required('Email is required')
+                            })}
+                            onSubmit={handleVerifyEmail}
+                        >
+                            {(formikProps) => (
+                                <Form>
                                     <div className='flex flex-col gap-3'>
-                                        <div className="">
 
-                                        </div>
-                                        <p className='text-[22px] max-tablet:text-[18px] font-medium font-[satoshi] text-[#717171] pb-2'>Enter the email address associated with your account.</p>
+                                        <p className='text-[22px] max-tablet:text-[16px] font-medium font-[satoshi] text-[#717171]'>Enter the email address associated with your account.</p>
                                         <div className="pb-4">
-                                            <InputField name={"email"} label={'Email'} placeholder={'Enter you email'} sx={inputStyle} />
+                                            <InputField name={"email"} label={'Email'} placeholder={'Enter your email'} sx={inputStyle} />
                                         </div>
                                         <PrimaryButton
                                             sx={{ width: '100%', padding: '12px 40px' }}
                                             type='submit'
-                                            onClick={handleVerifyEmail}
                                         >
                                             <span className='font-[satoshi]' style={{ fontSize: '22px', fontWeight: 900 }}> Confirm </span>
                                         </PrimaryButton>
-
                                     </div>
-                                )}
-                                {isVerified && !newPassword && step === 2 && (
-                                    <div className='flex flex-col gap-3'>
-                                        <div className="">
+                                </Form>
+                            )}
+                        </Formik>
+                    )}
 
+                    {isVerified && !newPassword && (
+                        <Formik
+                            initialValues={{}}
+                        >
+                            {(formikProps) => (
+                                <Form>
+                                    <div className='flex flex-col gap-3 w-full'>
+
+                                        <p className='text-[22px] max-tablet:text-[16px] font-medium font-[satoshi] text-[#717171]'>Enter the 4-digit code sent to your email.</p>
+                                        <div className='flex justify-start gap-2 items-center py-2 '>
+                                            {otpState.map((item) => {
+                                                return (
+                                                    <input
+                                                        className="w-[33px] h-[34px] text-center border rounded-md"
+                                                        onChange={(event) =>
+                                                            handleOTPChange(event, item.index)
+                                                        }
+                                                        maxlength="1"
+                                                        value={item.value}
+                                                        autoComplete="one-time-code"
+                                                        maxLength={1}
+                                                    />
+                                                );
+                                            })}
                                         </div>
-                                        <p className='text-[22px] max-tablet:text-[18px] font-medium font-[satoshi] text-[#717171]'>Enter the 4 digit code sent to your email id.</p>
-                                        <OtpInput />
+                                        <ResendOTP
+                                            onResendClick={() => handleVerifyEmail()}
+                                            style={{
+                                                // Inline styles for ResendOTP component
+                                                color: "#0466C8",
+                                                fontFamily: 'satoshi',
+                                                cursor: "pointer",
+                                            }}
+                                        />
                                         <PrimaryButton
-                                            sx={{ width: '100%', padding: '12px 40px', marginTop: '10px' }}
+                                            sx={{ width: '100%', padding: '12px 40px', marginTop: '8px' }}
                                             type='submit'
-                                            onClick={handleNewPassword}
+                                            onClick={compareOTP}
                                         >
                                             <span className='font-[satoshi]' style={{ fontSize: '22px', fontWeight: 900 }}> Verify Email </span>
                                         </PrimaryButton>
                                     </div>
-                                )}
-                                {newPassword && step === 3 && (
+                                </Form>
+                            )}
+                        </Formik>
+                    )}
+
+                    {newPassword && (
+                        <Formik
+                            initialValues={{
+                                email: Email || "",
+                                password: '', new_password: ''
+                            }}
+                            validationSchema={Yup.object().shape({
+                                email: Yup.string().email('Invalid email'),
+                                password: Yup.string().required('Password is required'),
+                                new_password: Yup.string().required('New password is required').oneOf([Yup.ref('password'), null], 'Passwords must match')
+                            })}
+                            onSubmit={handleNewPassword}
+                        >
+                            {(formikProps) => (
+                                <Form>
                                     <div className='flex flex-col gap-3'>
-                                        <div className="">
 
-                                        </div>
-                                        <p className='text-[22px] max-tablet:text-[18px] font-medium font-[satoshi] text-[#717171] pb-2'>Almost done. Enter your new password and you are all set!</p>
-
+                                        <p className='text-[22px] max-tablet:text-[16px] font-medium font-[satoshi] text-[#717171]'>Almost done. Enter your new password and you are all set!</p>
                                         <div className="pb-4">
-                                            <InputField name={"password"} type={'password'} label={'Enter new Password'} placeholder={'***************'} sx={inputStyle} />
+                                            <InputField name={"password"} type={'password'} label={'Enter New Password'} placeholder={'***************'} sx={inputStyle} />
                                         </div>
                                         <div className="pb-4">
-                                            <InputField name={"new_password"} type={'password'} label={'Confirm new Password'} placeholder={'***************'} sx={inputStyle} />
+                                            <InputField name={"new_password"} type={'password'} label={'Confirm New Password'} placeholder={'***************'} sx={inputStyle} />
                                         </div>
                                         <PrimaryButton
                                             sx={{ width: '100%', padding: '12px 40px' }}
                                             type='submit'
-                                            onClick={handleVerifyEmail}
                                         >
-                                            <span className='font-[satoshi]' style={{ fontSize: '22px', fontWeight: 900 }}>Reset Password</span>
+                                            <span className='font-[satoshi]' style={{ fontSize: '22px', fontWeight: 900 }}> Reset Password </span>
                                         </PrimaryButton>
-
                                     </div>
-                                )}
-                            </div>
+                                </Form>
+                            )}
+                        </Formik>
+                    )}
 
-                        </Form>
-                    </Formik>
-                </div>
-            </div>
+
+                </div >
+            </div >
         </>
     );
 

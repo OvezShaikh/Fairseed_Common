@@ -1,21 +1,21 @@
 import React from "react";
-import {  Route, Routes } from "react-router-dom";
-import Donation from "../../components/AdminPanelPages/Donation/Index";
-import Campaign from "../../components/AdminPanelPages/Campaign/Campaign";
-import Dashboard from "../../components/AdminPanelPages/Dashboard/Index";
+import { Route, Routes } from "react-router-dom";
 import UserPanel from "../../components/layout/User Dashboard/Index";
-import Scholarship from "../../components/AdminPanelPages/Scholarship Cause/Index";
-
+import Withdrawals from "../../components/AdminPanelPages/Withdrawals/Index";
+// import Scholarship from "../../components/AdminPanelPages/Scholarship Cause/Index";
+import DonationView from "../../components/AdminPanelPages/Donation/DonationView";
+// import EditBankAndKYC from "../../components/AdminPanelPages/UserForms/EditBankAndKYC/Index";
+// import ViewBankandKYC from "../../components/AdminPanelPages/UserForms/ViewBankandKYC/Index";
+import User_Dashboard from "../../pages/User Dashboard/Index";
 
 function UserPage() {
   return (
     <Routes>
-     
       <Route
         path="/"
         element={
           <UserPanel>
-            <Dashboard />
+            <User_Dashboard />
           </UserPanel>
         }
       />
@@ -24,36 +24,49 @@ function UserPage() {
         path="/Dashboard"
         element={
           <UserPanel>
-            <h1>Dashboard</h1>
+            <User_Dashboard />
           </UserPanel>
         }
       />
-     
-      
-     
+
       <Route
         path="/Campaigns"
         element={
           <UserPanel>
-            <Campaign />
+            <User_Campaign />
           </UserPanel>
         }
       />
-     
-      
+
       <Route
         path="/Donations"
         element={
           <UserPanel>
-            <Donation />
+            <User_Donation />
           </UserPanel>
         }
       />
       <Route
-        path="/Scholarships"
+        path="/My-Donations"
         element={
           <UserPanel>
-            <Scholarship />
+            <MyDonation />
+          </UserPanel>
+        }
+      />
+      <Route
+        path="/Donations/View"
+        element={
+          <UserPanel>
+            <DonationView />
+          </UserPanel>
+        }
+      />
+      <Route
+        path="/Withdrawals"
+        element={
+          <UserPanel>
+            <Withdrawals />
           </UserPanel>
         }
       />

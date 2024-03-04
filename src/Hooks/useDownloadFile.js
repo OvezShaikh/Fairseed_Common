@@ -1,5 +1,5 @@
 import { useGetAll } from "./useGetAll";
-// import errorHandle from "../utils/errorHandle";
+import errorHandle from "../utils/errorHandle";
 
 export const useDownloadFile = (path, params, onSuccess) => {
   return useGetAll({
@@ -17,7 +17,7 @@ export const useDownloadFile = (path, params, onSuccess) => {
       onSuccess && onSuccess();
     },
     onError(err) {
-      // errorHandle(err);
+      errorHandle(err);
     },
   });
 };

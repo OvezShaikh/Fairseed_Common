@@ -16,12 +16,12 @@ import PrimaryButton from '../../inputs/PrimaryButton';
 
 
 const Index = () => {
-  
+
   const [selectedRowID, setSelectedRowID] = useState(null);
 
   const { mutate } = useDelete({
     url: '/admin-dashboard/category',
-    name: 'Category', 
+    name: 'Category',
   });
 
   const handleDelete = (id) => {
@@ -112,8 +112,8 @@ const Index = () => {
         Cell: ({ row }) => {
           return (
             <div className='flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0'>
-              <Link to="Edit" state={{ id: row?.id }} ><SecondaryButton sx={{ height: '30px' }} >Edit</SecondaryButton></Link>
-              <PrimaryButton sx={{ height: '30px', width: '60px', background: 'red', color: 'white' }} onClick={()=>handleDelete(row?.id)} text={'Delete'}>Delete</PrimaryButton>
+              <Link to="Edit" state={{ id: row?.id }} ><PrimaryButton sx={{ height: '30px' }} >Edit</PrimaryButton></Link>
+              <PrimaryButton sx={{ height: '30px', width: '60px', background: '#red', color: 'white' }} onClick={() => handleDelete(row?.id)} text={'Delete'}>Delete</PrimaryButton>
             </div >
           )
         }

@@ -13,7 +13,7 @@ const OngoingCampaigns = () => {
   useGetAll({
     key: `/user-dashboard/campaign`,
     enabled: true,
-    // enabled: !localStorage.getItem(`columns-of-${title}`),
+   
     select: (data) => {
       return data.data.data;
     },

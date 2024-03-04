@@ -1,7 +1,7 @@
 import { useMutation } from "react-query";
 import { toast } from "react-toastify";
 import serverAPI from "../config/serverAPI";
-// import errorHandle from "../utils/errorHandle";
+import errorHandle from "../utils/errorHandle";
 
 export function useDelete({ url, name, refetch }) {
   const deleteItem = (id) => {
@@ -13,7 +13,7 @@ export function useDelete({ url, name, refetch }) {
       refetch && refetch();
     },
     onError: (error) => {
-      // errorHandle(error);
+      errorHandle(error);
     },
   });
 }

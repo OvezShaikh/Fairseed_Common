@@ -421,6 +421,7 @@ function CauseEdit_Form() {
                   name={"is_featured"}
                   type="radio"
                   sx={{ flexDirection: "column" }}
+                  onChange={handleChange}
                   options={[
                     { label: "On", value: true },
                     { label: "Off", value: false },

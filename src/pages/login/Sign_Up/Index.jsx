@@ -1,31 +1,36 @@
-import React from 'react'
-import { Dialog, Button, Grid, DialogContent, DialogTitle, Typography } from '@mui/material/'
-import { useState } from 'react';
+import React from "react";
+import {
+  Dialog,
+  Button,
+  Grid,
+  DialogContent,
+  DialogTitle,
+  Typography,
+} from "@mui/material/";
+import { useState } from "react";
 // import {createTheme } from '@mui/system'
-import useMediaQuery from '@mui/material/useMediaQuery';
-import FormSlider from '../FormSlider';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
-import styled from '@emotion/styled';
-import Sign_Stepper from './Stepper';
-
-
+import useMediaQuery from "@mui/material/useMediaQuery";
+import FormSlider from "../FormSlider";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import styled from "@emotion/styled";
+import Sign_Stepper from "./Stepper";
+import SecondaryButton from "../../../components/inputs/secondaryButton";
 
 const StyledTypography = styled(Typography)({
-  background: 'var(--Linear-BG, linear-gradient(71deg, #FF9F0A 0%, #FF375F 62.9%))',
-  WebkitBackgroundClip: 'text',
-  fontSize: '46px',
-  color: 'transparent',
-  display: 'inline-block',
-  fontfamily: 'Epilogue',
+  background:
+    "var(--Linear-BG, linear-gradient(71deg, #FF9F0A 0%, #FF375F 62.9%))",
+  WebkitBackgroundClip: "text",
+  fontSize: "46px",
+  color: "transparent",
+  display: "inline-block",
+  fontfamily: "Epilogue",
   fontWeight: 700,
-  fontStyle: 'normal',
-
+  fontStyle: "normal",
 });
 
 const UserSignUp_02 = () => {
-
-  const isSmallScreen = useMediaQuery('(max-width:600px)');
+  const isSmallScreen = useMediaQuery("(max-width:600px)");
 
   const [open, setOpen] = useState(false);
 
@@ -35,66 +40,86 @@ const UserSignUp_02 = () => {
 
   return (
     <>
-
-      <Button
+      <SecondaryButton
         onClick={handleOpen}
-        type='button'
+        type="button"
+        sx={{ width: "100%", padding: "12px 40px" }}
       >
-        <span style={{
-          fontSize: '22px', fontWeight: 500, background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
-          "-webkit-background-clip": "text",
-          "-webkit-text-fill-color": "transparent"
-        }}> Register </span>
-
-      </Button>
+        <span
+          style={{
+            fontSize: "22px",
+            fontWeight: 500,
+            background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+            "-webkit-background-clip": "text",
+            "-webkit-text-fill-color": "transparent",
+          }}
+        >
+          Register{" "}
+        </span>
+      </SecondaryButton>
 
       <Dialog
         sx={{
-          padding: '0px !important', "& .MuiDialogContent-root": {
-            padding: '0px !important'
-          }
+          padding: "0px !important",
+          "& .MuiDialogContent-root": {
+            padding: "0px !important",
+          },
         }}
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
         fullScreen={isSmallScreen}
-        maxWidth='xl'
+        maxWidth="xl"
       >
         <IconButton
           aria-label="close"
           onClick={handleClose}
           sx={{
-            position: 'absolute',
+            position: "absolute",
             right: 16,
             top: 16,
             zIndex: 1,
-            backgroundColor: '#0000001a'
+            backgroundColor: "#0000001a",
           }}
         >
           <CloseIcon />
         </IconButton>
 
-        <DialogContent style={{ overflowY: 'hidden', overflowX: 'hidden' }}>
-          <Grid container >
-            <Grid item xs={16} sm={8} md={6} >
+        <DialogContent style={{ overflowY: "hidden", overflowX: "hidden" }}>
+          <Grid container>
+            <Grid item xs={16} sm={8} md={6}>
               <Grid item xs={12}>
-                <DialogTitle >
+                <DialogTitle>
                   <StyledTypography
                     component="h4"
                     variant="h4"
-                    sx={{ marginTop: '18px', marginLeft: '102px', paddingBottom: '10px' }}
+                    sx={{
+                      marginTop: "18px",
+                      marginLeft: "102px",
+                      paddingBottom: "10px",
+                      fontFamily: "Epilogue",
+                    }}
                   >
                     Sign Up
                   </StyledTypography>
-                  <hr className='text-gray-500 mx-24' />
+                  <hr className="text-gray-500 mx-24" />
                 </DialogTitle>
               </Grid>
-              <Grid item sx={{ width: '100%', padding: '0px 142px 48px 142px' }} >
+              <Grid
+                item
+                sx={{ width: "100%", padding: "0px 142px 48px 142px" }}
+              >
                 <Sign_Stepper />
               </Grid>
             </Grid>
             {!isSmallScreen && (
-              <Grid item xs={12} sm={isSmallScreen ? 12 : 8} md={6} sx={{ overflowY: 'hidden' }} >
+              <Grid
+                item
+                xs={12}
+                sm={isSmallScreen ? 12 : 8}
+                md={6}
+                sx={{ overflowY: "hidden" }}
+              >
                 <FormSlider />
               </Grid>
             )}
@@ -102,7 +127,7 @@ const UserSignUp_02 = () => {
         </DialogContent>
       </Dialog>
     </>
-  )
-}
+  );
+};
 
-export default UserSignUp_02
+export default UserSignUp_02;

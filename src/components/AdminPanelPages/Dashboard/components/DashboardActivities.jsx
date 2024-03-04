@@ -1,40 +1,51 @@
-import React from 'react';
+import React, { useState } from "react";
 import images from "../../../../constants/images";
+import { useGetAll } from "../../../../Hooks";
 
 const DashboardActivities = () => {
-  return (
-    <div className='p-7'>
-    <div className='grid grid-cols-3 grid-rows-2 gap-2 items-center'>
-      <div className='px-[16px] py-[14px] shadow-md w-[163.19px] h-[150.56px] rounded-2xl'>
-        <p className='font-medium'>Active Users</p>
-        <h3 className='font-bold text-3xl mt-3'>24</h3>
-      </div>
-      <div className='px-[16px] py-[14px] shadow-md w-[163.19px] h-[150.56px] rounded-2xl'>
-        <p className='font-medium'>Total Funds(lacs)</p>
-        <h3 className='font-bold text-3xl mt-3'>3,298</h3>
-      </div>
-      <div className='px-[16px] py-[14px] shadow-md w-[163.19px] h-[150.56px] rounded-2xl'>
-        <p className='text-sm'>Av. Session Length</p>
-        <h3 className='font-bold text-2xl mt-3'>2m 34s</h3>
-      </div>
-      <div className='px-[16px] py-[14px] shadow-md w-[163.19px] h-[150.56px] rounded-2xl'>
-        <p className='font-medium'>Causes</p>
-        <h3 className='font-bold text-3xl mt-3'>27</h3>
-      </div>
-      <div className='px-[16px] py-[14px] shadow-md w-[163.19px] h-[150.56px] rounded-2xl'>
-        <p className='font-medium'>Visits</p> 
-        <div className='flex flex-row items-center'>
-        <span className='font-bold text-3xl mt-3'>86%</span><img src={images.riseArrow} alt="" className='w-[18px] h-[12px] mt-[15px]'/>  
-        </div>
-        <img src={images.StaticGraph} alt="" />
-      </div>
-      <div className='px-[16px] py-[14px] shadow-md w-[163.19px] h-[150.56px] rounded-2xl'>
-        <p className='font-medium'>Total Users</p>
-        <h3 className='font-bold text-3xl mt-3'>154</h3>
-      </div>
-    </div>
-    </div>
-  )
-}
+  const [dataObject, setDataObject] = useState([]);
 
-export default DashboardActivities
+  useGetAll({
+    key: `/admin-dashboard/dashboard-api`,
+    enabled: true,
+
+    select: (data) => {
+      return data.data.data;
+    },
+    onSuccess: (data) => {
+      setDataObject(data);
+    },
+  });
+
+  return (
+    <div className="p-7">
+      <div className="grid grid-cols-2 grid-rows-2 gap-y-2 gap-x-1 items-center max-desktop:grid-cols-1">
+        <div className="px-[16px] py-[14px] shadow-md w-[50%] h-[150.56px] rounded-2xl">
+          <p className="font-medium">Total Donations</p>
+          <h3 className="font-bold text-3xl mt-3">
+            {dataObject.no_of_donation}
+          </h3>
+        </div>
+        <div className="px-[16px] py-[14px] shadow-md w-[50%] h-[150.56px] rounded-2xl">
+          <p className="font-medium">Total Funds(lacs)</p>
+          <h3 className="font-bold text-3xl mt-3">
+            {(dataObject.fund_raised / 100000).toFixed(2)}
+          </h3>
+        </div>
+        <div className="px-[16px] py-[14px] shadow-md w-[50%] h-[150.56px] rounded-2xl">
+          <p className="font-medium">Total Campaigns</p>
+          <h3 className="font-bold text-2xl mt-3">
+            {dataObject.total_campaign}
+          </h3>
+        </div>
+
+        <div className="px-[16px] py-[14px] shadow-md w-[50%] h-[150.56px] rounded-2xl">
+          <p className="font-medium">Total Users</p>
+          <h3 className="font-bold text-3xl mt-3">{dataObject.user}</h3>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default DashboardActivities;

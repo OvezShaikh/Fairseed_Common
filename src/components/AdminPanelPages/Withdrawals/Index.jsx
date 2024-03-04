@@ -6,14 +6,16 @@ import { LocationConfigurationDialog } from '../../admin-console/AddCategorydial
 import images from '../../../constants/images';
 import { GoDotFill } from "react-icons/go";
 import PrimaryButton from '../../inputs/PrimaryButton';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 
 const Withdrawals = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
+  const [get, setGet] = useState('')
+  let { pathname } = useLocation()
 
   const getStatusCellStyle = (status) => {
-    console.log('Status:', status);
+    setGet(status)
     if (status === 'Pending') {
       return {
         background: '#EBF0ED',
@@ -39,13 +41,14 @@ const Withdrawals = () => {
     </div>
   );
 
+
+
   const columns = React.useMemo(
     () => [
       {
         Header: "Id", // Row number header
-        accessor: "index", // Accessor for row number
+        accessor: "id", // Accessor for row number
         Cell: ({ row }) => (
-          // Display row number using index provided by React Table
           <div>{row.index + 1}</div>
         ),
         minWidth: 50,
@@ -55,7 +58,6 @@ const Withdrawals = () => {
       {
         Header: "Name",
         accessor: "title",
-        apiURL: `/admin-dashboard/campaign`,
         minWidth: 100,
         width: 100,
 
@@ -65,7 +67,6 @@ const Withdrawals = () => {
       {
         Header: "Email",
         accessor: "user.email",
-        apiURL: `/admin-dashboard/campaign`,
         minWidth: 100,
         width: 100,
 
@@ -73,7 +74,6 @@ const Withdrawals = () => {
       {
         Header: "Mobile",
         accessor: "user.mobile_number",
-        apiURL: `/admin-dashboard/campaign`,
         minWidth: 100,
         width: 100,
 
@@ -81,7 +81,6 @@ const Withdrawals = () => {
       {
         Header: "Goal",
         accessor: "goal_amount",
-        apiURL: `/admin-dashboard/campaign`,
         minWidth: 100,
         width: 100,
 
@@ -89,7 +88,6 @@ const Withdrawals = () => {
       {
         Header: "Status",
         accessor: "status",
-        apiURL: `/admin-dashboard/campaign`,
         minWidth: 100,
         width: 100,
         Cell: StatusCell,
@@ -97,13 +95,14 @@ const Withdrawals = () => {
       {
         Header: "Date",
         accessor: "end_date",
-        apiURL: `/admin-dashboard/campaign`,
         minWidth: 100,
         width: 100,
       },
       {
         Header: 'Causes',
         accessor: 'causes',
+        minWidth: 100,
+        width: 100,
         Cell: ({ row }) => {
           return (
             <div className='flex  '>
@@ -117,6 +116,7 @@ const Withdrawals = () => {
           );
         },
 
+
       },
       {
         Header: 'Actions',
@@ -128,18 +128,64 @@ const Withdrawals = () => {
         Cell: ({ row }) => {
           return (
             <div className='flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0'>
-              <Link to="View" state={{ id: row?.id }} ><PrimaryButton sx={{
-                height: '30px', width: '60px', background: '#219D80', color: 'white', "&  .MuiButton-root:hover": {
-                  background: "yellow"
-                }
-              }} text={'View'}>View</PrimaryButton></Link>
+              {pathname === '/User/Withdrawals' ? (
+                <>
+                  {get === 'Active' ? (
+                    <PrimaryButton
+                      sx={{
+                        height: '30px',
+                        width: '60px',
+                        background: 'red', // Corrected color value
+                        color: 'white',
+                        "& .MuiButton-root:hover": {
+                          background: "yellow"
+                        }
+                      }}
+                    >
+                      Delete
+                    </PrimaryButton>
+                  ) : (
+                    <PrimaryButton
+                      disabled
+                      sx={{
+                        height: '30px',
+                        width: '60px',
+                        background: 'green',
+                        color: 'white',
+                        "& .MuiButton-root:hover": {
+                          background: "yellow"
+                        }
+                      }}
+                    >
+                      Paid
+                    </PrimaryButton>
+                  )}
+                </>
+              ) : (
+                <Link to="View" state={{ id: row?.id }} >
+                  <PrimaryButton
+                    sx={{
+                      height: '30px',
+                      width: '60px',
+                      background: '#219D80',
+                      color: 'white',
+                      "& .MuiButton-root:hover": {
+                        background: "yellow"
+                      }
+                    }}
+                  >
+                    View
+                  </PrimaryButton>
+                </Link>
+              )}
+
               {/* <SecondaryButton sx={{ height: '30px' }}>Edit Bank and KYC</SecondaryButton> */}
             </div >
           )
         }
       }
     ],
-
+    console.log(get, 'get+=================>')
   );
   return (
     <div>
