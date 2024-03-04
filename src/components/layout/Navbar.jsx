@@ -21,6 +21,7 @@ import { Link, NavLink } from "react-router-dom";
 import ProfileAvatar from "../../pages/login/ProfileAvatar";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Card from './Card'; 
 
 
 const styleButton = {
@@ -107,16 +108,36 @@ function classNames(...classes) {
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const navigate = useNavigate();
+  const [filteredCards, setFilteredCards] = useState([]);
+  const allCards = [
+    // your card data array
+    // { title: 'Card 1', ... },
+    // { title: 'Card 2', ... },
+    // ...
+  ];
 
   const handleSearch = (e) => {
     e.preventDefault();
-    navigate(`/search?q=${searchTerm}`); 
+
+    const filtered = allCards.filter(card => card.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    setFilteredCards(filtered);
   };
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
+  const findSearchResults = (term) => {
+    return [];
+  };
+
+
+  const highlightSearchResults = (text, results) => {
+    return results.reduce((acc, result) => {
+      const { word, position } = result;
+      const startTag = `<span class="highlight">${text.slice(position[0], position[1])}</span>`;
+      return acc.replace(word, startTag);
+    }, text);
+  };
 
 
 
@@ -402,7 +423,7 @@ export default function Example() {
                   type="search"
                   value={searchTerm}
                   onChange={handleInputChange}
-                  className="text-xs peer cursor-pointer relative mt-2 z-10 h-8 w-10 rounded-lg border bg-transparent  pr-8 outline-none focus:rounded-r-none focus:w-full focus:cursor-text focus:border-taupeGray focus:px-3"
+                  className="text-xs peer cursor-pointer relative mt-2 z-10 h-8 w-10  bg-transparent  pr-8 outline-none focus:rounded-r-none focus:w-full focus:cursor-text focus:border-taupeGray focus:px-3"
                   placeholder="Typing..."
                 />
                 <button type="submit" className="absolute top-0 mt-2 right-0  bottom-0 my-auto h-8 w-10 px-3 bg-transparent rounded-lg peer-focus:relative peer-focus:rounded-l-none">
@@ -411,6 +432,22 @@ export default function Example() {
                   </svg>
                 </button>
               </form>
+
+              {(searchTerm !== '' ? filteredCards : allCards).map(card => (
+                <Card
+                  key={card.id}
+                  title={card.title}
+                  username={card.username}
+                  cardImage={card.cardImage}
+                  goalAmount={card.goalAmount}
+                  fundRaised={card.fundRaised}
+                  daysLeft={card.daysLeft}
+                  userCount={card.userCount}
+                  location={card.location}
+                  og_id={card.og_id}
+                />
+              ))}
+
               {
                 (localStorage.getItem('token')) ?
                   (<ProfileAvatar />)
