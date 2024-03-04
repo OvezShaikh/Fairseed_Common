@@ -8,7 +8,7 @@ import { FormLabel } from '@mui/material';
 import images from '../../../../constants/images';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useGetAll } from '../../../../Hooks';
-// import dayjs from 'dayjs';
+
 
 const styleLabel = {
     fontFamily: "satoshi",
@@ -20,8 +20,6 @@ const styleLabel = {
 };
 
 const initialValues = {
-
-
     transaction: ''
 }
 

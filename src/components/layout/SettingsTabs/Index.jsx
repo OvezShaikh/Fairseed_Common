@@ -11,7 +11,8 @@ import CountrySelect from '../../inputs/countrySelect/index';
 import Avatar from '../../layout/Avatar/Index'
 import { Formik, Form } from 'formik';
 import Password from './Password';
-import Accounts from './Accounts';
+import Account from './Accounts';
+import { useFormContext } from 'react-hook-form';
 
 
 
@@ -28,7 +29,6 @@ const InputStyle =
 const SelectStyle =
 {
   padding: '0px', border: "none",
-  // },
   "&:focus-within": {
     boxShadow: `none`,
     borderColor: "none",
@@ -45,7 +45,7 @@ export default function LabTabs() {
   const [age, setAge] = useState('');
 
 
-  const handleChange = (event, newValue) => {
+  const handletabChange = (event, newValue) => {
     setValue(newValue);
   };
 
@@ -56,16 +56,16 @@ export default function LabTabs() {
     <Box sx={{ width: '100%', typography: 'body1' }}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 0, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example"   >
+          <TabList onChange={handletabChange} aria-label="lab API tabs example"   >
             <Tab label="Account" value="1" className='account-tab' />
             <Tab label="Passwords" value="2" className='password-tab' />
           </TabList>
         </Box>
         <TabPanel sx={{ pt: '4rem', color: "green" }} value="1">
-         <Accounts />
+           <Account/>
         </TabPanel>
         <TabPanel sx={{ pt: '4rem' }} value="2">
-          <Password />
+         <Password/>
         </TabPanel>
       </TabContext>
     </Box>

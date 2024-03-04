@@ -1,23 +1,17 @@
 import React from 'react';
 import ReactTable from '../../Table/index';
 import { useState } from 'react';
-import { Button, Checkbox } from '@mui/material';
 import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
-import { LocationConfigurationDialog } from '../../admin-console/AddCategorydialog';
-import Columnfilter from '../../Table/Columnfilter'
 import SecondaryButton from '../../inputs/secondaryButton';
-import CauseEdit from '../CauseEditApprovel/Index';
 import { GoDotFill } from "react-icons/go";
 import { Link, useLocation } from 'react-router-dom';
 
-const Campaign = () => {
-  let userData = localStorage.getItem('user_info')
-  let Data = JSON.parse(userData)
-  let id = Data?.id
+const User_Campaign = () => {
+  
   const [selectedRowID, setSelectedRowID] = useState(null);
   const { pathname } = useLocation();
   const getStatusCellStyle = (status) => {
-    // let { state } = useLocation(); let { id } = state
+   
     if (status === 'Pending') {
       return {
 
@@ -55,8 +49,8 @@ const Campaign = () => {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Id", 
-        accessor: "id", 
+        Header: "Id", // Row number header
+        accessor: "id", // Accessor for row number
         Cell: ({ row }) => (
           <div>{row.index + 1}</div>
         ),
@@ -68,7 +62,7 @@ const Campaign = () => {
       {
         Header: "Title",
         accessor: "title",
-        // apiURL: `/admin-dashboard/campaign`,
+       
         minWidth: 100,
         width: 100,
 
@@ -77,7 +71,7 @@ const Campaign = () => {
       {
         Header: "User",
         accessor: "user.username",
-        // apiURL: `/admin-dashboard/campaign`,
+       
         minWidth: 100,
         width: 100,
 
@@ -85,7 +79,7 @@ const Campaign = () => {
       {
         Header: "Email",
         accessor: "user.email",
-        // apiURL: `/admin-dashboard/campaign`,
+       
         minWidth: 100,
         width: 100,
 
@@ -93,7 +87,7 @@ const Campaign = () => {
       {
         Header: "Mobile",
         accessor: "user.mobile_number",
-        // apiURL: `/admin-dashboard/campaign`,
+       
         minWidth: 100,
         width: 100,
 
@@ -101,7 +95,7 @@ const Campaign = () => {
       {
         Header: "Goal",
         accessor: "goal_amount",
-        // apiURL: `/admin-dashboard/campaign`,
+        
         minWidth: 100,
         width: 100,
 
@@ -109,7 +103,7 @@ const Campaign = () => {
       {
         Header: "Status",
         accessor: "status",
-        // apiURL: `/admin-dashboard/campaign
+       
         minWidth: 100,
         width: 100,
         Cell: StatusCell,
@@ -117,7 +111,7 @@ const Campaign = () => {
       {
         Header: "Deadline",
         accessor: "end_date",
-        // apiURL: `/admin-dashboard/campaign`,
+       
 
         minWidth: 100,
         width: 100,
@@ -166,7 +160,7 @@ const Campaign = () => {
         manualPagination
         title={"Campaign"}
         checkboxComponent={IndeterminateCheckbox}
-        url={`/admin-dashboard/campaign`}
+          url= {`/admin-dashboard/campaign`}
         extraQuery={{ inactive: true }}
         selectedRowID={selectedRowID}
       />
@@ -174,4 +168,4 @@ const Campaign = () => {
   )
 }
 
-export default Campaign;
+export default User_Campaign;

@@ -1,16 +1,6 @@
-import React from 'react';
-import { useState, useRef } from 'react';
-import Box from '@mui/material/Box';
-import Tab from '@mui/material/Tab';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
-import InputField from '../../inputs/InputField';
-import SelectField from '../../inputs/SelectField';
-import CountrySelect from '../../inputs/countrySelect/index';
-import Avatar from '../../layout/Avatar/Index'
-import { Formik, Form } from 'formik';
-
+import React from 'react'
+import InputField from '../../inputs/InputField'
+import { useFormikContext } from 'formik'
 
 
 const InputStyle =
@@ -26,7 +16,6 @@ const InputStyle =
 const SelectStyle =
 {
   padding: '0px', border: "none",
-  // },
   "&:focus-within": {
     boxShadow: `none`,
     borderColor: "none",
@@ -34,44 +23,27 @@ const SelectStyle =
 
 }
 
-
-
-
-
-
-
 const Password = () => {
 
-
-
-    const [value, setValue] = React.useState('1');
-
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-      };
-    
-
+    const { handleChange , values  } = useFormikContext();
 
   return (
     <>
-            <InputField
-              onChange={handleChange}
-              name={"password"}
-              label={"Old Password:"}
-              type={'password'}
-              sx={InputStyle}
-              value={value}
-
-
-            />
-            <InputField
-              onChange={handleChange}
-              name={"password"}
-              label={"New Password:"}
-              type={'password'}
-              sx={InputStyle}
-              value={value}
-            /></>
+    <InputField
+      onChange={handleChange}
+      value={values?.password}
+      name={"password"}
+      label={"Old Password:"}
+      type={'password'}
+      sx={InputStyle}
+    />
+    <InputField
+      name={"password"}
+      label={"New Password:"}
+      type={'password'}
+      sx={InputStyle}
+    />
+    </>
   )
 }
 

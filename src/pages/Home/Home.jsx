@@ -48,7 +48,7 @@ function Home() {
 
 
 
-    console.log("DATA FROM CHILD Category ", categoryData);
+    
     setCategoryDataFromChild(categoryData);
 
 
@@ -58,7 +58,7 @@ function Home() {
 
 
 
-    console.log("DATA FROM CHILD Location ", locationData);
+    
     setLocationDataFromChild(locationData);
 
 
@@ -93,7 +93,7 @@ function Home() {
     //console.log("DATA FROM CHILD ", dataFromChild)
 
     if (filteredCardCount <= 8) {
-      console.log("Less than 8");
+      
       //setPerPage([perPage+12]);
       // fetchUserList();
 
@@ -266,8 +266,8 @@ function Home() {
           {filteredUserList?.slice(0, visibleCards).map((item) => {
             return (
               <Card
-                key={item.id}
-                username={item.user.username}
+                key={item?.id}
+                username={item?.user?.username}
                 title={item.title}
                 og_id={item.id}
                 cardImage={item.campaign_image}

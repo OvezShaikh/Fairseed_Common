@@ -68,7 +68,7 @@ const Test = ({ handleBack, handleNext }) => {
                     name="campaign_image"
                     acceptedFiles={({ "file/*": [".png"] })}
                     maxFiles={1}
-                    onChange={(value) => setFieldValue('document', value)}
+                    onChange={(value) => setFieldValue('campaign_image', value)}
 
                 // onChange={(file) => setFieldValue("campaign_image", file)}
                 ></DropZone>

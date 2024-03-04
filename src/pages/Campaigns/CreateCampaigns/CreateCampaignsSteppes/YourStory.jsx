@@ -123,12 +123,12 @@ Make an Appeal.`}
                 <UploadField
                     label="Document:"
                     // onChange={(file) => formik.setFieldValue("adhar", file)}
-                    name="document"
+                    name="documents"
                     required={'true'}
                     placeholder="Upload marksheets, Medical records, Fees Structure etc."
                     sx={{ padding: '20px' }}
                     multiple={false}
-                    onChange={(value) => setFieldValue('adhar_front', value)}
+                    onChange={(value) => setFieldValue('documents', value)}
 
                 />
             </div>

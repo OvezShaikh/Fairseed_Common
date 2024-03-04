@@ -59,11 +59,11 @@ function General() {
     keywords_data: Details?.keywords_data || "",
     privacy_policy_url: Details?.privacy_policy_url ||  "",
     date_time: Details?.date_time ||  "",
-    new_registration_enabled: Details?.new_registration_enabled || false,
-    auto_approve_enabled: Details?.auto_approve_enabled ||  false,
-    email_verification_enabled: Details?.email_verification_enabled ||  false,
-    facebook_login_enabled: Details?.facebook_login_enabled ||  false,
-    google_login_enabled: Details?.google_login_enabled ||  false,
+    new_registration_enabled: Details?.new_registration_enabled ,
+    auto_approve_enabled: Details?.auto_approve_enabled ,
+    email_verification_enabled: Details?.email_verification_enabled ,
+    facebook_login_enabled: Details?.facebook_login_enabled ,
+    google_login_enabled: Details?.google_login_enabled ,
   }
 console.log(Details)
 

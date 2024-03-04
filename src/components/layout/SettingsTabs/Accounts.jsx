@@ -4,8 +4,6 @@ import Avatar from '../../layout/Avatar/Index'
 import InputField from '../../inputs/InputField';
 import CountrySelect from '../../inputs/countrySelect/index';
 
-
-
 const InputStyle =
 {
   padding: '20px', border: "1px solid #e2e2e2",
@@ -19,7 +17,6 @@ const InputStyle =
 const SelectStyle =
 {
   padding: '0px', border: "none",
-  // },
   "&:focus-within": {
     boxShadow: `none`,
     borderColor: "none",
@@ -27,53 +24,47 @@ const SelectStyle =
 
 }
 
-
-
-
-
 const Account = () => {
 
-  const [value, setValue] = React.useState('1');
-
-
-  const { handleChange } = useFormikContext();
-
+  const { handleChange , values } = useFormikContext();
+console.log(values, ' +++++++++++++ ')
   return (
     <>
-            <Avatar />
+     <Avatar />
             <InputField
               onChange={handleChange}
+              value={values?.username}
               name={"username"}
               label={"Full Name:"}
               sx={InputStyle}
-              value={value}
             />
             <InputField
               onChange={handleChange}
-
+              value={values?.username}
               name={"email"}
               label={"Email Id:"}
               sx={InputStyle}
-              value={value}
             />
             <InputField
               onChange={handleChange}
-
+              value={values?.mobile_number}
               name={"mobile_number"}
               label={"Mobile:"}
               placeholder={"(Optional)"}
               sx={InputStyle}
-              value={value}
             />
             <div className='country-select-div'>
               <CountrySelect
                 onChange={handleChange}
+                value={values?.country}
                 label="Country:"
                 name={"country"}
                 sx={SelectStyle}
               />
             </div>
-            </>
+     
+        
+    </>
 
   )
 }

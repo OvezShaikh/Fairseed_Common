@@ -10,7 +10,7 @@ const MyRecentDonations = () => {
     
 
   useGetAll({
-    key: `/admin-dashboard/donors?page=1&limit=10`,
+    key: `/user-dashboard/campaign?page=1&limit=12`,
     enabled: true,
 
     select: (data) => {
@@ -28,14 +28,18 @@ const MyRecentDonations = () => {
 
 
     return (
-        <div className='max-w-[499px] w-full'>
+      <div>
 
-            <h6 className='font-[satoshi] font-bold text-[16px]'>My Recent Donations</h6>
-            <div className="overflow-y-scroll h-[310px] pr-[20px]">
+        <div className="font-semibold text-lg">Recent Donations:</div>
+
+        <div className='border border-[#DBDBDE] rounded-[20px] p-7'>
+
+
+        <div className="overflow-y-scroll h-[310px] pr-[20px]">
         {dataObject?.map((item, index) => (
           // Rendering each item in the array as a <div> element
           <div>
-            <div className="flex mt-[24px]">
+            <div className="flex mb-[24px]">
               <div className="flex items-center mr-[25px]">
                 <img
                   src={`${process.env.REACT_APP_API_URL}`+item.campaign_image}
@@ -45,13 +49,13 @@ const MyRecentDonations = () => {
               </div>
               <div className="w-full">
                 <div className="flex justify-between">
-                  <div key={index}>{item.campaign}</div>
+                  <div key={index}>{item.title}</div>
                   <div>
                     {Math.round((item.fund_raised / item.goal_amount) * 100)}%
                     Completed
                   </div>
                 </div>
-               
+                
                 <div className="w-full mt-[11px]">
                   <div className="h-[13px]">
                     <LinearProgress
@@ -73,9 +77,11 @@ const MyRecentDonations = () => {
               </div>
             </div>
           </div>
+          
         ))}
       </div>
-
+      
+        </div>
         </div>
     )
 }
