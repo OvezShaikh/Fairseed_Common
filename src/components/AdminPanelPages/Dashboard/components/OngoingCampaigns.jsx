@@ -4,18 +4,14 @@ import { LinearProgress } from "@mui/material";
 import { useGetAll } from "../../../../Hooks";
 
 const OngoingCampaigns = () => {
-  const [imgCampaign, setImgCampaign] = useState(
-    "https://images.pexels.com/photos/18262756/pexels-photo-18262756/free-photo-of-smiling-woman-carrying-basket-on-back-with-flowers.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-  );
-
   const [dataObject, setDataObject] = useState([]);
 
   useGetAll({
-    key: `/user-dashboard/campaign`,
+    key: `/admin-dashboard/campaign?page=1&limit=15`,
     enabled: true,
-   
+
     select: (data) => {
-      return data.data.data;
+      return data.data.rows;
     },
     onSuccess: (data) => {
       setDataObject(data);
@@ -33,7 +29,7 @@ const OngoingCampaigns = () => {
             <div className="flex mt-[24px]">
               <div className="flex items-center mr-[25px]">
                 <img
-                  src={imgCampaign}
+                  src={`${process.env.REACT_APP_API_URL}` + item.campaign_image}
                   className="rounded-lg w-[79px] h-[42px]"
                   alt="img01"
                 />
