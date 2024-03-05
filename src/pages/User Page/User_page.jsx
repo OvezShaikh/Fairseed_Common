@@ -20,7 +20,7 @@ function UserPage() {
         element={
           <UserPanel>
            
-           
+           <User_Dashboard/>
           </UserPanel>
         }
       />

@@ -5,11 +5,14 @@ import { FiInstagram } from "react-icons/fi";
 import { RiPinterestLine } from "react-icons/ri";
 import { RiYoutubeLine } from "react-icons/ri";
 import icons from "../../constants/icons";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate} from "react-router-dom";
 import SecondaryButton from "../inputs/secondaryButton";
 import { toast } from "react-toastify";
 
+
 function Footer() {
+  const navigate = useNavigate();
+  const navigateToOng = () => {navigate('/Home/OnGoingCampaigns')};
   return (
     <>
       <div
@@ -31,6 +34,7 @@ function Footer() {
             </p>
             <div className="flex justify-center my-10 mb-0 desktop:mt-[64px] gap-4 max-tablet:flex-col">
               <button className="px-[28px] max-desktop:px-[15px]"
+                onClick={navigateToOng}
                 style={{
 
                   paddingTop: 16,
