@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Formik, Form } from 'formik';
 import Avatar from '../../layout/Avatar/Index'
 import InputField from '../../inputs/InputField';
@@ -41,6 +41,7 @@ let id = Data?.id;
 const Account = () => {
 
   const [Details , setDetails ] = useState({})
+  const [image , setImage] = useState(''); 
 
 useGetAll({
   key: `/accounts/user/${id}`,
@@ -53,9 +54,10 @@ useGetAll({
     setDetails(data);
   },
 })
-
-
-console.log(Details , "<=========")
+useEffect(()=>{
+  const img = `${process.env.REACT_APP_BASE_URL}`+ Details?.profile_pic;
+setImage(img);
+})
 
 const initial_values = {
   username: Details?.username || '',
@@ -86,7 +88,7 @@ const initial_values = {
 
       {({ values, handleChange }) => (
         <Form>
-          <Avatar />
+          <Avatar  img={image}/>
           <InputField
             onChange={handleChange}
             value={values?.username}

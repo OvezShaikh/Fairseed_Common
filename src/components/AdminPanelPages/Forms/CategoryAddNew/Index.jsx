@@ -13,6 +13,7 @@ function AddNew() {
 
     let { state } = useLocation(); 
     let { id } = state;
+
     const [Category , setCategory ] = useState({});
 
     const navigate = useNavigate();
@@ -32,7 +33,7 @@ function AddNew() {
         name:Category.name ||  "",
         url:Category.slug || "",
         thumbnail:Category.image || "",
-        status:Category.is_active ||  ""
+        is_active:Category.is_active ||  false
     }
 
     const { mutate } = useCreateOrUpdate({
@@ -59,28 +60,30 @@ function AddNew() {
             <Form className='flex flex-col items-center px-4'>
                 <div className='flex w-full gap-4'>
                     <div className="w-full">
-                        <InputAdminField name={"name"} value={values.name} onChange={handleChange} label={"Name"} placeholder={"Placeholder Text"} />
+                        <InputAdminField name={"name"} value={values?.name} onChange={handleChange} label={"Name"} placeholder={"Placeholder Text"} />
                     </div>
                     <div className="w-full">
-                        <InputAdminField name={"url"} label={"Slug/URL"} value={values.url}  onChange={handleChange} placeholder={"Placeholder Text"} />
+                        <InputAdminField name={"url"} label={"Slug/URL"} value={values?.url}  onChange={handleChange} placeholder={"Placeholder Text"} />
                     </div>
 
                 </div>
                 <div className="flex w-full mt-8 gap-4">
                     <div className="w-full " Style>
-                        <AdminUploadField name={"thumbnail"} value={values.thumbnail}   onChange={handleChange} label='Thumbnail (Optainal)' />
+                        <AdminUploadField name={"thumbnail"} value={values?.thumbnail}   onChange={handleChange} label='Thumbnail (Optainal)' />
                     </div>
                     <div className=" w-full ">
                         <RadioGroup
-                            name={"status"}
-                            value={values.status}
-                            onChange={handleChange}
+                            name={"is_active"}
+                            value={values?.is_active}
+                            onChange={
+                                (e) => {
+                                  setFieldValue("is_active", e === "true")
+                                }}
                             options={[
-                                { label: "Active", value: "Active" },
-                                { label: "Inactive", value: "Inactive" },
+                                { label: "Active", value: true },
+                                { label: "Inactive", value: false },
                             ]}
                             label="Status"
-                        // onChange={onChange}
 
                         />
                     </div>

@@ -16,7 +16,7 @@ const SignUp = ({ handleNext }) => {
   const imgRef = useRef(null);
   const [openModal, setOpenModal] = useState(false);
 
-  const {  isValid, setFieldValue , values } = useFormikContext();
+  const { isValid, setFieldValue, values } = useFormikContext();
 
   const handleNextClick = () => {
     if (isValid) {
@@ -26,7 +26,7 @@ const SignUp = ({ handleNext }) => {
     }
   };
 
- 
+
 
   return (
     <Form className='pt-8 max-tablet:pl-7'>
@@ -34,28 +34,28 @@ const SignUp = ({ handleNext }) => {
         <Grid container spacing={4}>
           <Grid container spacing={3}>
             <Grid item xs={12} className='flex flex-col justify-center items-center'>
-            <Avatar
+
+              <Avatar
                 alt="Remy Sharp"
-                src={values.image ? URL.createObjectURL(values.image) : "/static/images/avatar/1.jpg"}
+                src={values.profile_pic ? URL.createObjectURL(values.profile_pic) : "/static/images/avatar/1.jpg"}
                 sx={{ width: '150px', height: '150px', position: 'relative', overflow: 'hidden' }}
               >
                 <input
                   type='file'
                   hidden
                   ref={imgRef}
-                  sx={{ padding: ' 16px 10px 16px var(--Spacing-20, 20px)', border: '2px solid var(--Linear-BG, #FF9F0A)', borderRadius: '4px' }}
-                  name='image'
-                  onChange={(event) => setFieldValue('image',values)}
-                  // console.log( event.target.files[0])
+                  sx={{ padding: '16px 10px 16px var(--Spacing-20, 20px)', border: '2px solid var(--Linear-BG, #FF9F0A)', borderRadius: '4px' }}
+                  name={'profile_pic'}
+                  onChange={(event) => setFieldValue('profile_pic', event.target.files[0])}
                 />
 
-                <div style={{ color:'black',  position: 'absolute', bottom: '10px', right: '20px', zIndex: 1, transform: 'translate(50%, 50%)' }}>
-                  <button onClick={() => imgRef.current.click()} style={{ background: 'white', border: 'none', padding: '0', borderRadius:'6rem', transform: 'translate(-50%, -50%)' }}>
+                <div style={{ color: 'black', position: 'absolute', bottom: '10px', right: '20px', zIndex: 1, transform: 'translate(50%, 50%)' }}>
+                  <button onClick={() => imgRef.current.click()} style={{ background: 'white', border: 'none', padding: '0', borderRadius: '6rem', transform: 'translate(-50%, -50%)' }}>
                     <SlPencil />
                   </button>
                 </div>
               </Avatar>
-             
+
 
             </Grid>
             <Grid item xs={12}>

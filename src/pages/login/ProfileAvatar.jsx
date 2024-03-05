@@ -50,11 +50,12 @@ export default function ProfileAvatar() {
 
   let userData = localStorage.getItem('user_info')
   let Data = JSON.parse(userData)
-  console.log(Data)
+  // console.log(Data)
   let role = Data?.user_role;
   let image = Data?.profile_pic; 
-  let img = `${process.env.REACT_APP_API_URL}`+image;
-
+  
+  let img = `${process.env.REACT_APP_API_URL}`+ image;
+  console.log(img , '<======')
 
 
   return (
@@ -69,7 +70,7 @@ export default function ProfileAvatar() {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>{image}</Avatar>
+            <Avatar sx={{ width: 32, height: 32 }} src={img}/>
           </IconButton>
         </Tooltip>
       </Box>

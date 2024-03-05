@@ -211,7 +211,7 @@ function Index() {
                                     Attachments:
                                     <span className="text-red-600">*</span>
                                 </FormLabel>
-                                <div className="flex gap-4">
+                                <div className="flex gap-4 max-tablet:flex-col">
 
                                     {img.map((imageUrl, index) => (
                                         <Attachments key={index} imageUrl={imageUrl} />

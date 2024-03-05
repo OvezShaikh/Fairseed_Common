@@ -12,7 +12,7 @@ const User_Dashboard = () => {
         <UserDashboardActivities />
         <FundsRaisedInLastMonth />
       </div>
-      <div className='grid grid-cols-3 mt-[68px]'>
+      <div className='grid grid-cols-3 mt-[68px] gap-x-[20px]'>
         <MyRecentDonations />
         <RecentCampaigns />
         

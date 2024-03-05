@@ -91,13 +91,6 @@ function CauseEdit_Form() {
         setOpenCrop(true);
     };
 
-    const img = [
-        "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-        "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-        "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-
-    ]
-
     const { data, isSuccess, refetch } = useGetAll({
         key: `/admin-dashboard/campaign/${id}`,
         enabled: false,
@@ -140,6 +133,7 @@ function CauseEdit_Form() {
         end_date: user?.end_date || "",
         status: user?.status || "",
         story: user?.story || "",
+        documents: user?.documents || []
 
     };
     console.log(initial_values);
@@ -154,7 +148,7 @@ function CauseEdit_Form() {
         if (values?.campaign_image instanceof File) {
             formData.append('campaign_image', values?.campaign_image)
         }
-        console.log(values?.campaign_image, "<========================")
+
         formData.append('title', values?.title)
         formData.append('amount', values?.amount)
         formData.append('location', values?.location)
@@ -305,13 +299,12 @@ function CauseEdit_Form() {
 
 
                                 <div className="flex gap-4">
-
-                                    {img.map((imageUrl, index) => (
-                                        <Attachments key={index} imageUrl={imageUrl} />
-                                    ))}
-
+                                    {values?.documents?.map((imageUrl, index) => {
+                                        const documentLink =`${ process.env.REACT_APP_BE_BASE_URL}${imageUrl.doc_file}`;
+                                        console.log(imageUrl.doc_file, "doc_file")
+                                    return <Attachments key={index} imageUrl={documentLink} />;
+                  })}
                                 </div>
-
                             </div>
 
 

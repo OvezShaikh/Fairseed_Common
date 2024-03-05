@@ -144,7 +144,7 @@ function CausesView() {
                                     <FormLabel sx={{ fontSize: '20px', fontFamily: 'satoshi', fontWeight: 700, color: "#383A42", paddingLeft: '8px' }}>
                                         Documents:
                                     </FormLabel>
-                                    <div className="flex gap-4 pt-2">
+                                    <div className="flex gap-4 pt-2 max-tablet:flex-col">
                                         <div className="flex flex-col gap-2">
                                             <Attachments imageUrl={{}} />
                                             <FormLabel sx={{ fontSize: '20px', fontFamily: 'satoshi', fontWeight: 700, color: "#383A42", paddingLeft: '8px' }}>
