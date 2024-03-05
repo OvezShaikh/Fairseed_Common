@@ -56,16 +56,7 @@ const styleStep = {
         fill: "#06B217",
       },
     },
-    // "& .MuiStepLebal-root .MuiStepLabel-labelContainer .MuiStepLabel-label":{
-    //   color:'green'
-    // },
-    // "& .MuiStepLabel-root .MuiStepLabel-alternativeLabel":{
-    //     color:'red'
-    // },
-    // "& .MuiStepLabel-labelContainer": {
-    //   color: "red",
-    // },
-
+   
     "& .MuiStepConnector-line": {
       borderColor: "#06B217",
     },
@@ -112,7 +103,7 @@ const initialValues = {
   end_date: "",
   story: '',
   summary: '',
-  document: "",
+  documents: "",
   rasing_for: "",
   account_holder_name: "",
   account_number: "",
@@ -128,33 +119,33 @@ const initialValues = {
 }
 
 const validations = [yup.object({
-  campaign_image: yup.mixed()
-    .required('Image is required')
-    .test(
-      'fileSize',
-      'The image must be less than 5 MB',
-      (value) => value && value.size <= 5 * 1024 * 1024
-    )
-    .test(
-      'fileDimensions',
-      'Recommended size is 850x550. Minimum height is 550 and minimum width is 850',
-      (value) => {
-        if (!value) return false;
+  // campaign_image: yup.mixed()
+  //   .required('Image is required')
+  //   .test(
+  //     'fileSize',
+  //     'The image must be less than 5 MB',
+  //     (value) => value && value.size <= 5 * 1024 * 1024
+  //   )
+  //   .test(
+  //     'fileDimensions',
+  //     'Recommended size is 850x550. Minimum height is 550 and minimum width is 850',
+  //     (value) => {
+  //       if (!value) return false;
 
-        const image = new Image();
-        image.src = URL.createObjectURL(value);
+  //       const image = new Image();
+  //       image.src = URL.createObjectURL(value);
 
-        const minHeight = 550;
-        const minWidth = 850;
+  //       const minHeight = 550;
+  //       const minWidth = 850;
 
-        return (
-          image.height >= minHeight &&
-          image.width >= minWidth &&
-          value.width >= minWidth &&
-          value.height >= minHeight
-        );
-      }
-    ),
+  //       return (
+  //         image.height >= minHeight &&
+  //         image.width >= minWidth &&
+  //         value.width >= minWidth &&
+  //         value.height >= minHeight
+  //       );
+  //     }
+  //   ),
   title: yup.string().required("title is required"),
   goal_amount: yup.number()
     .max(100000, 'Amount must be less than or equal to 100,000')
@@ -252,14 +243,12 @@ export default function HorizontalLinearStepper() {
   const onSubmit = (Values) => {
     console.log('Values', Values)
     const formData = new FormData();
-
     for (const key in Values) {
       if (key == 'category') {
         formData.append('category', Values['category']['value'])
 
       }
       else {
-
         formData.append(key, Values[key]);
       }
     }

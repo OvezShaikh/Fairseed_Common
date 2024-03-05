@@ -11,24 +11,7 @@ const Page = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
 
 
-  // const Status = ({ values }) => {
-  //   // Loop through the array and create a badge-like component instead of a comma-separated string
-  //   return (
-  //     <>
-  //       {values.map((Status, idx) => {
-  //         return (
-  //           <span key={idx} className="badge">
-  //             {Status}
-  //           </span>
-  //         );
-  //       })}
-  //     </>
-  //   );
-  // };
-  // const { mutate } = useDelete({
-  //   url: '/admin-dashboard/pages',
-  //   name: 'Page',
-  // });
+
 
 
 

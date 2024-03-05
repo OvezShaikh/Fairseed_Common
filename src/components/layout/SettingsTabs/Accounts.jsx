@@ -1,21 +1,109 @@
 import React from 'react'
-import { Formik, Form, useFormikContext } from 'formik';
+import { Formik, Form } from 'formik';
 import Avatar from '../../layout/Avatar/Index'
 import InputField from '../../inputs/InputField';
 import CountrySelect from '../../inputs/countrySelect/index';
+import { useCreateOrUpdate } from '../../../Hooks';
+import { toast } from 'react-toastify';
+import PrimaryButton from '../../inputs/PrimaryButton';
 
+const InputStyle =
+{
+  padding: '20px', border: "1px solid #e2e2e2",
+  // },
+  "&:focus-within": {
+    boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
+    borderColor: "black",
+  },
+
+}
+const SelectStyle =
+{
+  padding: '0px', border: "none",
+  "&:focus-within": {
+    boxShadow: `none`,
+    borderColor: "none",
+  },
+
+}
+
+let userData = localStorage.getItem('user_info')
+let Data = JSON.parse(userData)
+console.log(Data, "++++++++++")
+let email = Data?.email;
+let id = Data?.id;
+let mobile_number = Data?.mobile_number;
+let country = Data?.country;
+let username = Data?.username
+
+const initial_values = {
+  username: username || '',
+  email: email || '',
+  mobile_number: mobile_number || '',
+  country: country || '',
+}
 
 const Account = () => {
-
-  const { handleChange } = useFormikContext();
+  const { mutate } = useCreateOrUpdate({
+    url: `/accounts/user/${id}`,
+    method: 'put'
+  })
 
   return (
-    <>
+    <Formik
+      enableReinitialize={true}
+      initialValues={initial_values}
+      onSubmit={(values) => {
+        mutate(values, {
+          onSuccess: () => {
+            toast.success(" Details Updated Successfully !", {
+              position: 'top-right'
+            })
+          }
+        })
+      }}
+    >
 
-     
-        
-    </>
-
+      {({ values, handleChange }) => (
+        <Form>
+          <Avatar />
+          <InputField
+            onChange={handleChange}
+            value={values?.username}
+            name={"username"}
+            label={"Full Name:"}
+            sx={InputStyle}
+          />
+          <InputField
+            onChange={handleChange}
+            value={values?.email}
+            name={"email"}
+            label={"Email Id:"}
+            sx={InputStyle}
+          />
+          <InputField
+            onChange={handleChange}
+            value={values?.mobile_number}
+            name={"mobile_number"}
+            label={"Mobile:"}
+            placeholder={"(Optional)"}
+            sx={InputStyle}
+          />
+          <div className='country-select-div'>
+            <CountrySelect
+              onChange={handleChange}
+              value={values?.country}
+              label="Country:"
+              name={"country"}
+              sx={SelectStyle}
+            />
+          </div>
+          <div className="mx-auto flex justify-center">
+            <PrimaryButton type='submit' className="mx-auto">Save Changes</PrimaryButton>
+          </div>
+        </Form>
+      )}
+    </Formik>
   )
 }
 

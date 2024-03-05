@@ -111,7 +111,6 @@ function CauseEdit_Form() {
             setDataUrl(imageUrl)
         },
     });
-    // console.log(imageUrl)
 
     const { refetch: refetchCategories } = useGetAll({
         key: `/admin-dashboard/category?page=1&limit=10`,
@@ -128,8 +127,6 @@ function CauseEdit_Form() {
         url: `/admin-dashboard/campaign/${id}`,
         method: "put",
     })
-
-
 
     const initial_values = {
         campaign_image: user.campaign_image || "",
@@ -166,7 +163,6 @@ function CauseEdit_Form() {
         formData.append('story', values?.story)
         formData.append('category', values?.category?.id)
         console.log(values?.category?.id, '<============')
-
         mutate(formData, {
             onSuccess: () => {
                 toast.success("Cause updated Succcessfully ! ", {
@@ -174,7 +170,6 @@ function CauseEdit_Form() {
                 })
             },
         });
-
     }
 
     return (

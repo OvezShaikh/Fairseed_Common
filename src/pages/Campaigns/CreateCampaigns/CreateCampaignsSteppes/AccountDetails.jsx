@@ -14,15 +14,7 @@ const InputStyle =
         borderColor: "black",
     },
 }
-// const initialValues = {
-//   rasing_for: "",
-//   account_holder_name: "",
-//   account_number: "",
-//   bank_name: "",
-//   branch_name: "",
-//   ifsc_code: "",
-//   passbook_image: null,
-// };
+
 const styleSecondaryButton = {
     width: "100%",
     height: "100%",
@@ -41,13 +33,7 @@ const stylePrimaryButton = {
 };
 function AccountDetails({ handleBack, handleNext }) {
     const { setFieldValue } = useFormikContext();
-    //   const formik = useFormik({
-    //     initialValues,
-    //     onSubmit: (values) => {
-    //       // Handle form submission
-    //       console.log(values);
-    //     },
-    //   });
+ 
 
     return (
         <Form className="">
@@ -61,8 +47,7 @@ function AccountDetails({ handleBack, handleNext }) {
                         { label: "Charity", value: "Charity" },
                     ]}
                     label="Raising this Campaign for:"
-                //   onChange={formik.handleChange}
-                //   value={formik.values.rasing_for}
+           
                 />
                 <div>
                     <InputField
@@ -71,7 +56,6 @@ function AccountDetails({ handleBack, handleNext }) {
                         name="account_holder_name"
                         type="text"
                         required={true}
-                    //   {...formik.getFieldProps("account_holder_name")}
                     /></div>
                 <div>
 
@@ -82,7 +66,6 @@ function AccountDetails({ handleBack, handleNext }) {
 
                         type="number"
                         required={true}
-                    // {...formik.getFieldProps("account_number")}
                     /></div>
                 <div>
                     <InputField
@@ -93,7 +76,6 @@ function AccountDetails({ handleBack, handleNext }) {
                         type="text"
                         required={true}
 
-                    // {...formik.getFieldProps("bank_name")}
                     /></div>
 
                 <div>
@@ -104,7 +86,6 @@ function AccountDetails({ handleBack, handleNext }) {
 
                         type="text"
                         required={true}
-                    // {...formik.getFieldProps("branch_name")}
                     /></div>
 
                 <div>
@@ -115,7 +96,6 @@ function AccountDetails({ handleBack, handleNext }) {
                         sx={InputStyle}
 
                         required={true}
-                    // {...formik.getFieldProps("ifsc_code")}
                     /></div>
 
                 <UploadField
@@ -125,16 +105,11 @@ function AccountDetails({ handleBack, handleNext }) {
                     onChange={(value) => setFieldValue('passbook_image', value)}
                     multiple={false}
                     required={'true'}
-
-
-
-                // {...formik.getFieldProps("passbook_image")}
                 />
 
 
             </div><div className="flex mt-4 desktop:gap-x-[40px] max-desktop:gap-x-[24px]">
                 <SecondaryButton
-                    // disabled={activeStep === 0}
                     onClick={handleBack}
                     sx={styleSecondaryButton}
                 >
