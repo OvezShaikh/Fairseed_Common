@@ -1,8 +1,12 @@
-import React from 'react'
-import { Formik, Form, useFormikContext } from 'formik';
+import React, { useState } from 'react'
+import { Formik, Form } from 'formik';
 import Avatar from '../../layout/Avatar/Index'
 import InputField from '../../inputs/InputField';
 import CountrySelect from '../../inputs/countrySelect/index';
+import { useCreateOrUpdate, useGetAll } from '../../../Hooks';
+import { toast } from 'react-toastify';
+import PrimaryButton from '../../inputs/PrimaryButton';
+
 
 const InputStyle =
 {
@@ -24,48 +28,103 @@ const SelectStyle =
 
 }
 
+let userData = localStorage.getItem('user_info')
+let Data = JSON.parse(userData)
+let id = Data?.id;
+
+
+
+
+
+
+
 const Account = () => {
 
-  const { handleChange , values } = useFormikContext();
-console.log(values, ' +++++++++++++ ')
-  return (
-    <>
-     <Avatar />
-            <InputField
-              onChange={handleChange}
-              value={values?.username}
-              name={"username"}
-              label={"Full Name:"}
-              sx={InputStyle}
-            />
-            <InputField
-              onChange={handleChange}
-              value={values?.username}
-              name={"email"}
-              label={"Email Id:"}
-              sx={InputStyle}
-            />
-            <InputField
-              onChange={handleChange}
-              value={values?.mobile_number}
-              name={"mobile_number"}
-              label={"Mobile:"}
-              placeholder={"(Optional)"}
-              sx={InputStyle}
-            />
-            <div className='country-select-div'>
-              <CountrySelect
-                onChange={handleChange}
-                value={values?.country}
-                label="Country:"
-                name={"country"}
-                sx={SelectStyle}
-              />
-            </div>
-     
-        
-    </>
+  const [Details , setDetails ] = useState({})
 
+useGetAll({
+  key: `/accounts/user/${id}`,
+  enabled: true,
+  select: (data) => {
+    console.log(data)
+    return data.data.data;
+  },
+  onSuccess: (data) => {
+    setDetails(data);
+  },
+})
+
+
+console.log(Details , "<=========")
+
+const initial_values = {
+  username: Details?.username || '',
+  email: Details?.email || '',
+  mobile_number: Details?.mobile_number || '',
+  country: Details?.country || '',
+}
+
+  const { mutate } = useCreateOrUpdate({
+    url: `/accounts/user/${id}`,
+    method: 'put'
+  })
+
+  return (
+    <Formik
+      enableReinitialize={true}
+      initialValues={initial_values}
+      onSubmit={(values) => {
+        mutate(values, {
+          onSuccess: () => {
+            toast.success(" Details Updated Successfully !", {
+              position: 'top-right'
+            })
+          }
+        })
+      }}
+    >
+
+      {({ values, handleChange }) => (
+        <Form>
+          <Avatar />
+          <InputField
+            onChange={handleChange}
+            value={values?.username}
+            name={"username"}
+            label={"Full Name:"}
+            sx={InputStyle}
+          />
+          <InputField
+            onChange={handleChange}
+            value={values?.email}
+            name={"email"}
+            label={"Email Id:"}
+            sx={InputStyle}
+          />
+          <InputField
+            onChange={handleChange}
+            value={values?.mobile_number}
+            name={"mobile_number"}
+            type='number'
+            label={"Mobile:"}
+            placeholder={"(Optional)"}
+            sx={InputStyle}
+          />
+          <div className='country-select-div'>
+            <CountrySelect
+              onChange={handleChange}
+              value={values?.country}
+              label="Country:"
+              name={"country"}
+              sx={SelectStyle}
+            />
+          </div>
+          <div className="mx-auto flex justify-center">
+            <PrimaryButton type='submit' className="mx-auto">Save Changes</PrimaryButton>
+          </div>
+        </Form>
+      )}
+    </Formik>
   )
 }
 

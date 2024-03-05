@@ -129,43 +129,48 @@ function CauseEdit_Form() {
     method: "put",
   });
 
-  const initial_values = {
-    campaign_image: user.campaign_image || "",
-    title: user.title || "",
-    amount: user.goal_amount || "",
-    location: user.location || "",
-    category: user?.category || " ",
-    is_featured: user?.is_featured || false,
-    summary: user?.summary || "",
-    zakat_eligible: user?.zakat_eligible || false,
-    end_date: user?.end_date || "",
-    status: user?.status || "",
-    story: user?.story || "",
-    documents: user?.documents || [],
-  };
-  console.log(initial_values);
-  if (!isSuccess) {
-    return <div>Loading...</div>;
-  }
+    const initial_values = {
+        campaign_image: user.campaign_image || "",
+        title: user.title || "",
+        amount: user.goal_amount || "",
+        location: user.location || "",
+        category: user?.category || " ",
+        is_featured: user?.is_featured || false,
+        summary: user?.summary || "",
+        zakat_eligible: user?.zakat_eligible || false,
+        end_date: user?.end_date || "",
+        status: user?.status || "",
+        story: user?.story || "",
+        documents: user?.documents || []
 
-  const handleSubmit = (values) => {
-    const formData = new FormData();
-    if (values?.campaign_image instanceof File) {
-      formData.append("campaign_image", values?.campaign_image);
+    };
+    console.log(initial_values);
+    if (!isSuccess) {
+        return <div>Loading...</div>;
     }
-    console.log(values?.campaign_image, "<========================");
-    formData.append("title", values?.title);
-    formData.append("amount", values?.amount);
-    formData.append("location", values?.location);
-    formData.append("end_date", values?.end_date);
-    formData.append("summary", values?.summary);
-    formData.append("story", values?.story);
-    formData.append("category", values?.category?.id);
-    console.log(values?.category?.id, "<============");
-    mutate(formData, {
-      onSuccess: () => {
-        toast.success("Cause updated Succcessfully ! ", {
-          position: "top-right",
+
+    const handleSubmit = (values) => {
+
+
+        const formData = new FormData();
+        if (values?.campaign_image instanceof File) {
+            formData.append('campaign_image', values?.campaign_image)
+        }
+
+        formData.append('title', values?.title)
+        formData.append('amount', values?.amount)
+        formData.append('location', values?.location)
+        formData.append('end_date', values?.end_date)
+        formData.append('summary', values?.summary)
+        formData.append('story', values?.story)
+        formData.append('category', values?.category?.id)
+        console.log(values?.category?.id, '<============')
+        mutate(formData, {
+            onSuccess: () => {
+                toast.success("Cause updated Succcessfully ! ", {
+                    position: 'top-right'
+                })
+            },
         });
       },
     });
@@ -322,13 +327,16 @@ function CauseEdit_Form() {
                   <span className="text-red-600">*</span>
                 </FormLabel>
 
-                <div className="flex gap-4">
-                  {values?.documents?.map((imageUrl, index) => {
-                    const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl.doc_file}`;
-                    return <Attachments key={index} imageUrl={documentLink} />;
+                                <div className="flex gap-4">
+                                    {values?.documents?.map((imageUrl, index) => {
+                                        const documentLink =`${ process.env.REACT_APP_BE_BASE_URL}${imageUrl.doc_file}` ;
+                                    return <Attachments key={index} imageUrl={documentLink} />;
                   })}
-                </div>
-              </div>
+                                </div>
+
+
+                            </div>
+
 
               <div className="flex max-tablet:flex-col  w-[100%] gap-4">
                 <div className="w-[50%] max-tablet:w-full pt-1.5">

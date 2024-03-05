@@ -50,23 +50,11 @@ const [user , setUser] = React.useState({})
   let userData = localStorage.getItem('user_info')
   let Data = JSON.parse(userData)
   console.log(Data)
-  let id = Data?.id
-  
+  let role = Data?.user_role;
+  let image = Data?.profile_pic; 
+  let img = `${process.env.REACT_APP_API_URL}`+image;
 
-  // useGetAll({
-  //   key: `/admin-dashboard/users/${id}`,
-  //   enabled: true,
-  //   select: (data) => {
-  //     console.log(data)
-  //       return data.data.data;
-  //   },
-  //   onSuccess: (data) => {
-  //     console.log(data)
-  //     setUser(data); 
-  //   },
 
-  // })
-  
 
   return (
     <React.Fragment>
@@ -119,17 +107,24 @@ const [user , setUser] = React.useState({})
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={handleClose}>
-          <Link to={"/AdminPanel"}>
-          <ListItemIcon>
-            <Avatar />
-            </ListItemIcon>
-             AdminPanel
-          </Link>
-        </MenuItem>
-        <Divider />
-
-
+        {
+          role === 'Admin' && (
+            <>
+              <MenuItem onClick={handleClose}>
+                <Link to="/AdminPanel">
+                  <ListItemIcon>
+                    <Avatar 
+                    src={img}
+                    />
+                  </ListItemIcon>
+                  AdminPanel
+                </Link>
+              </MenuItem>
+               <Divider />
+               </>
+          )
+        }
+ 
         <MenuItem onClick={handleClose}>
         <Link to={"/User"}>
           <ListItemIcon>

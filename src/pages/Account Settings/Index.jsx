@@ -6,6 +6,7 @@ import SettingTabs from "../../components/layout/SettingsTabs/Index";
 import "./Account Settings.css";
 import PrimaryButton from '../../components/inputs/PrimaryButton';
 import { Form, Formik } from 'formik';
+import { useCreateOrUpdate } from '../../Hooks';
 
 
 function Index() {
@@ -21,30 +22,16 @@ function Index() {
 
 
   
-let userData = localStorage.getItem('user_info')
-let Data = JSON.parse(userData)
-console.log(Data , "++++++++++")
-let password = Data?.password;
-let email = Data?.email;
-let mobile_number = Data?.mobile_number;
-let country = Data?.country;
-let username = Data?.username
 
-  // const initial_values = {
-  //   username: username ||  '',
-  //   email: email || '',
-  //   mobile_number:mobile_number || '',
-  //   country: country || '',
-  //   password:password || ''
-  //  }
-  const initial_values = {
-    username:   '',
-    email:  '',
-    mobile_number:  '',
-    country:  '',
-    password: ''
-   }
 
+  const { mutate } = useCreateOrUpdate({
+    url:``,
+    method:'put'
+  })
+
+  const handleSubmit = (values)=>{
+
+  }
   
 
   const [value, setValue] = React.useState('1');
@@ -60,17 +47,16 @@ let username = Data?.username
         heading={"Account Settings"}
       />
       <div className='account-settings-div desktop:max-w-[832px] mx-auto desktop:mt-[128px] max-desktop:max-w-[470px] max-desktop:mt-[60px] max-tablet:mt-[40px] max-tablet:px-[16px]'>
-      <Formik 
+      {/* <Formik 
       enableReinitialize={true}
       initialValues={initial_values}
+      onSubmit={(values)=>handleSubmit(values)}
       >
-        <Form>
-        {/* <SettingTabs /> */}
-        <div className="mx-auto flex justify-center">
-        <PrimaryButton className="mx-auto">Save Changes</PrimaryButton>
-        </div>
-        </Form>
-       </Formik>
+        <Form> */}
+        <SettingTabs />
+       
+        {/* </Form>
+       </Formik> */}
 
       </div>
 

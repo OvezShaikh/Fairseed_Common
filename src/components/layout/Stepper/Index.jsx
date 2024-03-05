@@ -94,7 +94,7 @@ const stylePrimaryButton = {
   borderRadius: "12px",
 };
 const initialValues = {
-  campaign_image: "",
+  // campaign_image: "",
   title: "",
   goal_amount: "",
   location: "",
@@ -119,33 +119,33 @@ const initialValues = {
 }
 
 const validations = [yup.object({
-  campaign_image: yup.mixed()
-    .required('Image is required')
-    .test(
-      'fileSize',
-      'The image must be less than 5 MB',
-      (value) => value && value.size <= 5 * 1024 * 1024
-    )
-    .test(
-      'fileDimensions',
-      'Recommended size is 850x550. Minimum height is 550 and minimum width is 850',
-      (value) => {
-        if (!value) return false;
+  // campaign_image: yup.mixed()
+  //   .required('Image is required')
+  //   .test(
+  //     'fileSize',
+  //     'The image must be less than 5 MB',
+  //     (value) => value && value.size <= 5 * 1024 * 1024
+  //   )
+  //   .test(
+  //     'fileDimensions',
+  //     'Recommended size is 850x550. Minimum height is 550 and minimum width is 850',
+  //     (value) => {
+  //       if (!value) return false;
 
-        const image = new Image();
-        image.src = URL.createObjectURL(value);
+  //       const image = new Image();
+  //       image.src = URL.createObjectURL(value);
 
-        const minHeight = 550;
-        const minWidth = 850;
+  //       const minHeight = 550;
+  //       const minWidth = 850;
 
-        return (
-          image.height >= minHeight &&
-          image.width >= minWidth &&
-          value.width >= minWidth &&
-          value.height >= minHeight
-        );
-      }
-    ),
+  //       return (
+  //         image.height >= minHeight &&
+  //         image.width >= minWidth &&
+  //         value.width >= minWidth &&
+  //         value.height >= minHeight
+  //       );
+  //     }
+  //   ),
   title: yup.string().required("title is required"),
   goal_amount: yup.number()
     .max(100000, 'Amount must be less than or equal to 100,000')
