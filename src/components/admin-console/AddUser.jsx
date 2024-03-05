@@ -37,7 +37,7 @@ export const AddUser = ({
         email: "",
         password: "",
         user_role: "",
-        user_type: ''
+        user_type: "",
 
 
     }
@@ -60,16 +60,17 @@ export const AddUser = ({
 
     const { mutate } = useCreateOrUpdate({
         url: `/admin-dashboard/users`
+
     })
     // const { mutate, isLoading } = useCreateOrUpdate({
-    //   url: isUpdate ? `/admin/tooltip/${data?.id}` : "/admin/tooltip",
-    //   method: isUpdate ? "put" : "post",
-    //   onSuccess: () => onSuccess && onSuccess(),
+    //     url: isUpdate ? `/admin-dashboard/users${data?.id}` : "/admin-dashboard/users",
+    //     method: isUpdate ? "put" : "post",
+    //     onSuccess: () => onSuccess && onSuccess(),
     // });
 
     return (
         <Dialog
-            title={`${isUpdate ? "Update" : "Add"}  New Pages`}
+            title={`${isUpdate ? "Update" : "Add"}  New User`}
             onClose={() => onClose && onClose()}
             button={
                 // isUpdate ? (
@@ -103,11 +104,11 @@ export const AddUser = ({
             {({ onClose }) => (
                 <Formik
                     initialValues={initialValues}
-                    validationSchema={validationSchema}
+                    // validationSchema={validationSchema}
                     onSubmit={(values) => {
                         mutate({ ...values, user_type: values?.user_type?.value }, {
                             onSuccess: (response) => {
-                                toast.success('Page create successfully', { position: 'top-right' });
+                                toast.success('User create successfully', { position: 'top-right' });
                                 queryClient.refetchQueries({
                                     queryKey: ['/admin-dashboard/users'],
                                     // stale: true,
@@ -173,11 +174,11 @@ export const AddUser = ({
                                     <RadioGroup
                                         name={"user_type"}
                                         onChange={(e) => {
-                                            setFieldValue('Register_as', e.target.value)
+                                            setFieldValue('user_type', e?.target?.value)
                                         }}
                                         options={[
-                                            { label: "Individual", value: "individual" },
-                                            { label: "NGO", value: 'ngo' },
+                                            { label: "Individual", value: "Individual" },
+                                            { label: "NGO", value: 'NGO' },
                                         ]}
                                         label="Register as"
                                     />

@@ -23,22 +23,22 @@ function Index() {
   const navigate = useNavigate();
   let { state } = useLocation();
   let { id } = state;
-  console.log(id, "=====<id");
+  // console.log(id, "=====<id");
   const initialValues = {
     title: Details?.title || "",
     slug: Details?.slug || "",
-    show_navbar: Details?.show_navbar || true,
+    show_navbar: Details?.show_navbar || false,
     show_footer: Details?.show_footer || false,
-    show_page: Details?.show_page || true,
+    show_page: Details?.show_page || false,
     content: Details?.content || "",
   };
 
   useGetAll({
-    key: `admin-dashboard/pages`,
+    key: `admin-dashboard/pages/${id}`,
     enabled: true,
     select: (data) => {
-      console.log(data.data.rows);
-      return data.data.rows[0];
+      console.log(data.data);
+      return data.data.data;
     },
     onSuccess: (data) => {
       setDetails(data);
@@ -94,12 +94,12 @@ function Index() {
           <div className="flex gap-32 w-full pt-8 max-tablet:flex-col">
             <div className="  lg:w-[25%] ">
               <RadioGroup
-               
-              name={"show_navbar"}
+
+                name={"show_navbar"}
                 onChange={
                   (e) => {
                     setFieldValue("show_navbar", e === "true")
-                  }  } 
+                  }}
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
@@ -112,7 +112,7 @@ function Index() {
             <div className="lg:w-[25%]">
               <RadioGroup
                 name={"show_footer"}
-             
+
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
@@ -146,7 +146,6 @@ function Index() {
           </div>
           <div className="pt-7 mb-5 h-[300px] w-full">
             <FormLabel style={styleLabel}>Content:</FormLabel>
-            {/* <TextEditor  /> */}
             <ReactQuilTextField
               theme="snow"
               name={"content"}
