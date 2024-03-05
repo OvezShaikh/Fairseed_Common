@@ -57,21 +57,20 @@ export const ImageCropper = ({
             }}
           >
             <Cropper
-              style={{ height: 400, width: "100%" }}
+              style={{ height: "100%", width: "100%" }}
               zoomTo={0.5}
               aspectRatio={3}
-              initialAspectRatio={3}
+              initialAspectRatio={1}
               preview='.img-preview'
               src={srcImg}
               viewMode={1}
-              minCropBoxHeight={20}
-              minCropBoxWidth={20}
+              minCropBoxHeight={10}
+              minCropBoxWidth={10}
               background={true}
               responsive={true}
               autoCropArea={1}
               checkOrientation={false}
               onInitialized={(instance) => {
-                console.log(instance , "<++++++++++++++++++++")
                 setCropper(instance);
                 }}
               guides={true}
