@@ -15,7 +15,7 @@ const SecondaryButton = ({
   return (
     <Button
       sx={{
-        color: 'black',
+        color: color || 'black',
         // height: "36px",
         // fontSize: {
         //   xs: "0.6rem",

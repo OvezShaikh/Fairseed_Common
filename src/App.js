@@ -57,8 +57,20 @@ function App() {
           <AdminPage />
         </div>
       </BrowserRouter> */}
-      <ToastContainer autoClose={5000} />
       <BrowserRouter>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          limit={3}
+          theme="colored"
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover
+        />
         <ScrollToTop />
         <Routes>
           <Route index element={<HomePage />} />

@@ -40,8 +40,8 @@ const RadioGroup = ({ label, options, onChange, sx, ...otherProps }) => {
         {...otherProps}
         aria-labelledby={`demo-radio-buttons-group-label-${label}`}
         name={`radio-buttons-group-${label}`}
-        onChange={(e) => {
-          onChange && onChange(e);
+        onChange={(e, value) => {
+          onChange && onChange(value);
         }}
       >
         {options?.map((item) => (
@@ -61,6 +61,7 @@ const RadioGroup = ({ label, options, onChange, sx, ...otherProps }) => {
             }}
             control={
               <Radio
+                value={item.value}
                 color="warning"
                 sx={{
                   // color: red[500],

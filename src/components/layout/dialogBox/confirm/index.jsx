@@ -53,12 +53,12 @@ export const Confirm = ({
                 ? children({ onClose })
                 : children}
 
-              <Grid xs={12} item className="border-top mt-4 pt-3">
-                <Box className="d-flex justify-content-end mt-8">
+              <Grid xs={12} item className="border-top mt-4">
+                <Box className="d-flex justify-content-end mt-2">
                   <SecondaryButton
                     className="px-4 text-capitalize me-4"
                     sx={{ border: `1px solid ${colors.primary.dark}` }}
-                    color="warning"
+                    color="black"
                     onClick={onClose}
                   >
                     Close

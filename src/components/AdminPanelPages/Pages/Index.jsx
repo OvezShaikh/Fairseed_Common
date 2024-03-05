@@ -2,35 +2,15 @@ import React from 'react'
 import ReactTable from '../../Table/index'
 import { useState } from 'react';
 import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
-import PrimaryButton from '../../inputs/PrimaryButton';
 import SecondaryButton from '../../inputs/secondaryButton';
-import { GoDotFill } from "react-icons/go";
 import { Link } from 'react-router-dom';
 import { PagesAddNew } from '../../admin-console/PagesAddNew';
-import { useDelete } from '../../../Hooks';
+import { DeleteBox } from '../../layout/dialogBox/delete';
 
 const Page = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
 
 
-  const getStatusCellStyle = (status) => {
-    console.log('Status:', status);
-    if (status === 'Pending') {
-      return {
-        background: '#EBF0ED',
-        color: '#717171'
-      };
-    } else if (status === 'Active') {
-      return {
-        background: '#ECFDF3  ',
-
-        color: '#037847',
-      };
-    }
-    return {
-      color: 'gray'
-    };
-  };
   // const Status = ({ values }) => {
   //   // Loop through the array and create a badge-like component instead of a comma-separated string
   //   return (
@@ -45,23 +25,13 @@ const Page = () => {
   //     </>
   //   );
   // };
-  const { mutate } = useDelete({
-    url: '/admin-dashboard/pages',
-    name: 'Page',
-  });
+  // const { mutate } = useDelete({
+  //   url: '/admin-dashboard/pages',
+  //   name: 'Page',
+  // });
 
-  const handleDelete = (id) => {
-    mutate(id, {
 
-    });
-  };
 
-  const StatusCell = ({ value }) => (
-    <div className=' flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl' style={getStatusCellStyle(value)}>
-      <span className='' style={getStatusCellStyle(value)}><GoDotFill /></span>
-      <span className='' style={getStatusCellStyle(value)}>{value}</span>
-    </div>
-  );
   const columns = React.useMemo(
     () => [
       {
@@ -101,8 +71,18 @@ const Page = () => {
           return (
             <div className='flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0'>
               <Link to="Edit-Pages" state={{ id: row?.id }} ><SecondaryButton sx={{ height: '30px' }} >Edit</SecondaryButton></Link>
-              <PrimaryButton sx={{ height: '30px', width: '60px', background: 'red', color: 'white' }} onClick={() => handleDelete(row?.id)} text={'Delete'}>Delete</PrimaryButton>
-              {/* <SecondaryButton sx={{ height: '30px' }}>Edit Bank and KYC</SecondaryButton> */}
+              <DeleteBox
+                url={`/admin-dashboard/pages`}
+                data={row?.original?.id}
+                title={"Pages"}
+                // onClick={() => setSelectedRowID(row?.original?.id)}
+                // onSuccess={() => setSelectedRowID(null)}
+                // onClose={() => setSelectedRowID(null)}
+
+                refetchUrl={'/admin-dashboard/pages'}
+              >
+
+              </DeleteBox>
             </div >
           )
         }
@@ -119,8 +99,8 @@ const Page = () => {
         manualPagination
         title={"Campaign"}
         checkboxComponent={IndeterminateCheckbox}
-        url={`admin-dashboard/pages?page=1&limit=10`}
-        extraQuery={{ inactive: true }}
+        url={`/admin-dashboard/pages`}
+        // extraQuery={{ inactive: true }}
         addButton={<PagesAddNew />}
         // addButton={<Button>HElloooooo</Button>}
         selectedRowID={selectedRowID}

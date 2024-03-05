@@ -1,34 +1,46 @@
-import React from "react";
-import { TextField } from "@mui/material";
-import { useField, useFormikContext } from "formik";
+import React, { useState } from "react";
+import { Chips } from "primereact/chips";
+import { useField } from "formik";
+import "./CustomChips.css"; // Import your custom CSS file
+import { FormLabel } from "@mui/material";
 
-const MultiKeyTextField = ({ name, ...props }) => {
-    const { setFieldValue } = useFormikContext();
-    const [field, meta] = useField(name);
+const CustomChips = ({
+    name,
+    label,
+    variant,
+    sx,
+    placeholder,
+    ...otherProps
+}) => {
+    const [field, meta, helpers] = useField(name);
+    const [value, setValue] = useState([]);
 
-    const handleChange = (event) => {
-        const { value } = event.target;
-        const keys = value.split(",").map((key) => key.trim());
-        setFieldValue(name, keys);
-    };
-
-    const handleBlur = () => {
-        // Do something onBlur if needed
+    const handleChange = (e) => {
+        setValue(e.value);
+        helpers.setValue(e.value); // Update Formik field value
     };
 
     return (
-        <TextField
-            {...field}
-            {...props}
-            name={name}
-            value={field.value ? field.value.join(", ") : ""}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            helperText={meta.touched && meta.error ? meta.error : ""}
-            error={meta.touched && meta.error ? true : false}
-            variant="outlined"
-        />
+        <>
+            {label && <FormLabel sx={{ ...sx }}>{label}</FormLabel>}
+
+            <div className="card p-fluid">
+                <Chips
+                    {...field}
+                    value={value}
+                    onChange={handleChange}
+                    name={name}
+                    className="custom-chips"
+                    {...otherProps}
+                    placeholder={placeholder}
+                />
+                {meta.touched && meta.error && (
+                    <div className="error">{meta.error}</div>
+                )}
+            </div>
+        </>
     );
 };
 
-export default MultiKeyTextField;
+export default CustomChips;
+

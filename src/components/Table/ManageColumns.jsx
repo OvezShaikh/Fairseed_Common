@@ -7,7 +7,7 @@ import { ArrowDown, ArrowUp, Column, View } from "@carbon/icons-react";
 import CustomSwitch from "../inputs/customSwitch";
 import PrimaryButton from "../inputs/PrimaryButton";
 import { Dialog } from "../layout/dialogBox";
-  
+
 
 const ManageColumns = ({
   visibleColumns,
@@ -217,7 +217,7 @@ const ManageColumns = ({
               <SecondaryButton
                 className="px-4 text-capitalize me-4"
                 sx={{ border: `1px solid ${colors.primary.dark}` }}
-                color="warning"
+                color="black"
                 onClick={onClose}
               >
                 Close
