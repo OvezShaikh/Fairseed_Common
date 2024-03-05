@@ -15,11 +15,12 @@ const Avatar = ({img}) => {
             height: "200px",
             borderRadius: "58%",
             objectFit: "cover",
+            margin:"auto",
           }}
           src={img}
           alt=""
         />
-        <Button onClick={() => setdialogs(true)}>dialog</Button>
+        {/* <Button onClick={() => setdialogs(true)}>dialog</Button> */}
         <Dialog
           visible={dialogs}
           header={() => (
