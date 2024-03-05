@@ -28,7 +28,7 @@ function YourComponent({ imageUrl }) {
         // Toggle full screen based on screen size
         if (isSmallScreen) {
             setIsFullScreen(!isFullScreen);
-        } else {
+        } else {    
             // Handle full screen toggling for large screens as before
             // For example:
             // setIsFullScreen(!isFullScreen);
