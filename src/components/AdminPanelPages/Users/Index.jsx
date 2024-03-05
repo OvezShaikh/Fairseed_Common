@@ -2,11 +2,12 @@ import React from 'react'
 import ReactTable from '../../Table/index'
 import { useState } from 'react';
 import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
-import { LocationConfigurationDialog } from '../../admin-console/AddCategorydialog';
+import { AddUser } from '../../admin-console/AddUser';
 import SecondaryButton from '../../inputs/secondaryButton';
 import { Link } from 'react-router-dom';
 import { GoDotFill } from "react-icons/go";
 import PrimaryButton from '../../inputs/PrimaryButton';
+import { DeleteBox } from '../../layout/dialogBox/delete';
 
 const User = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
@@ -108,10 +109,20 @@ const User = () => {
         width: 100,
         Cell: ({ row }) => {
           return (
-            <div className='flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0'>
+            <div className='flex items-center justify-center gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0'>
               <Link to="Edit-User" state={{ id: row?.id }} ><SecondaryButton sx={{ height: '30px' }} >Edit</SecondaryButton></Link>
-              <PrimaryButton sx={{ height: '30px', width: '60px', background: 'red', color: 'white' }} text={'Delete'}>Delete</PrimaryButton>
-              
+              <DeleteBox
+                url={`/admin-dashboard/users`}
+                data={row?.original?.id}
+                title={"User"}
+                // onClick={() => setSelectedRowID(row?.original?.id)}
+                // onSuccess={() => setSelectedRowID(null)}
+                // onClose={() => setSelectedRowID(null)}
+
+                refetchUrl={'/admin-dashboard/users'}
+              >
+
+              </DeleteBox>
             </div >
           )
         }
@@ -126,11 +137,11 @@ const User = () => {
         columns={columns}
         showFilter
         manualPagination
-        title={"Campaign"}
+        title={"User"}
         checkboxComponent={IndeterminateCheckbox}
-        url={`admin-dashboard/users?paage=1&limit=10`}
-        extraQuery={{ inactive: true }}
-        addButton={<LocationConfigurationDialog />}
+        url={`/admin-dashboard/users`}
+        // extraQuery={{ inactive: true }}
+        addButton={<AddUser />}
         // addButton={<Button>HElloooooo</Button>}
         selectedRowID={selectedRowID}
       />

@@ -98,7 +98,13 @@ export const PagesAddNew = ({
           onSubmit={(values) => {
             mutate(values, {
               onSuccess: (response) => {
-                toast.success('Page create successfully', { position: 'top-right' })
+                toast.success('Page create successfully', { position: 'top-right' });
+                queryClient.refetchQueries({
+                  queryKey: ['/admin-dashboard/pages'],
+                  // stale: true,
+                  exact: false,
+                  // predicate: (query) => !query?.options?.params?.download,
+                })
                 onClose()
                 // console.log(response);imageUrl
                 // Handle successful API response here

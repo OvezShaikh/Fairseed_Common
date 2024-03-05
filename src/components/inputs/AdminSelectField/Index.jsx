@@ -32,7 +32,7 @@ const useStyles = makeStyles({
     root: {
         "& .MuiInputBase-root.MuiOutlinedInput-root ": {
             // padding: "15px 15px",
-            fontSize: "20px",
+            fontSize: "15px",
 
             marginTop: "5px",
             // "&:focus": {

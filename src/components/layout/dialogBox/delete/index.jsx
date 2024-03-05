@@ -1,9 +1,10 @@
 import { RowDelete } from "@carbon/icons-react";
-import { useDelete } from "../../../../hooks/useDelete";
 import { useQueryClient } from "react-query";
 import Typography from "@mui/material/Typography";
 import { Confirm } from "../confirm";
 import SecondaryButton from "../../../inputs/secondaryButton";
+import { useDelete } from "../../../../Hooks";
+import PrimaryButton from "../../../inputs/PrimaryButton";
 
 export const DeleteBox = ({
   data,
@@ -19,13 +20,15 @@ export const DeleteBox = ({
   const { mutate, isLoading } = useDelete({
     url,
     name: title || "",
-    refetch: () =>
+    refetch: () => {
+      console.log('refetched', refetchUrl)
       queryClient.refetchQueries({
         queryKey: [refetchUrl ? refetchUrl : url],
-        stale: true,
+        // stale: true,
         exact: false,
-        predicate: (query) => !query?.options?.params?.download,
-      }),
+        // predicate: (query) => !query?.options?.params?.download,
+      })
+    }
   });
 
   return (
@@ -35,7 +38,7 @@ export const DeleteBox = ({
       button={
         <SecondaryButton
           variant="text"
-          sx={{ border: "none" }}
+          sx={{ border: '1px solid red' }}
           startIcon={<RowDelete />}
           color={"red"}
           className="text-capitalize"
@@ -45,8 +48,8 @@ export const DeleteBox = ({
             className="text-capitalize  xl:text-sm 2xl:text-semi-base ms-2"
             sx={{
               lineHeight: "18px",
-              fontFamily: "FuturaLight",
-              fontWeight: "300",
+              fontFamily: "satoshi",
+              fontWeight: "500",
               fontSize: {
                 xs: "0.8rem",
                 lg: "0.9rem",
