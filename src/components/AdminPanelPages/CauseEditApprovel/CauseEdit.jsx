@@ -150,7 +150,7 @@ const Campaign = () => {
         checkboxComponent={IndeterminateCheckbox}
         url={`/admin-dashboard/cause-edit`}
         extraQuery={{ inactive: true }}
-        addButton={<LocationConfigurationDialog />}
+        // addButton={<LocationConfigurationDialog />}
         // addButton={<Button>HElloooooo</Button>}
         selectedRowID={selectedRowID}
       />

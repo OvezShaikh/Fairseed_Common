@@ -3,7 +3,7 @@ import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
 import images from "../../../constants/images";
 // import img from " /profile.jpg";
-const Avatar = () => {
+const Avatar = ({img}) => {
   const [dialogs, setdialogs] = useState(false);
   return(
   <div>
@@ -16,7 +16,7 @@ const Avatar = () => {
             borderRadius: "58%",
             objectFit: "cover",
           }}
-          src={images.Maskgroup3}
+          src={img}
           alt=""
         />
         <Button onClick={() => setdialogs(true)}>dialog</Button>
