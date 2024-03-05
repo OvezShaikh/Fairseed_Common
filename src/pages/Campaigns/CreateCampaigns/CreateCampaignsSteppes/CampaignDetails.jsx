@@ -83,7 +83,7 @@ const Test = ({ handleBack, handleNext }) => {
 
         <Form className="flex flex-col gap-4 campagin-form">
 
-            <Box className="desktop:py-[80px] max-desktop:py-[53px]">
+            <Box className="desktop:py-[80px] max-desktop:py-[53px] flex flex-col items-center">
                 <DropZone
                     name="campaign_image"
                     // label={'campaign image'}

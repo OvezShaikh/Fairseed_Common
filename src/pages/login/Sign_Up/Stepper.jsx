@@ -148,7 +148,7 @@ const INITIAL_VALUE = {
   password2: '',
   country: '',
   user_type: '',
-  image: null
+  profile_pic: ''
 }
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -201,7 +201,7 @@ const Sign_Stepper = () => {
     console.log(values);
     const formData = new FormData();
     if (activeStep === 1)
-      formData.append('image', values.image);
+      formData.append('profile_pic', values.profile_pic);
     formData.append('email', values.email);
     formData.append('username', values.username);
     formData.append('password', values.password);

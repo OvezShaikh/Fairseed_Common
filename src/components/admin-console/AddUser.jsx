@@ -37,7 +37,7 @@ export const AddUser = ({
         email: "",
         password: "",
         user_role: "",
-        user_type: ''
+        user_type: "",
 
 
     }
@@ -60,11 +60,12 @@ export const AddUser = ({
 
     const { mutate } = useCreateOrUpdate({
         url: `/admin-dashboard/users`
+
     })
     // const { mutate, isLoading } = useCreateOrUpdate({
-    //   url: isUpdate ? `/admin/tooltip/${data?.id}` : "/admin/tooltip",
-    //   method: isUpdate ? "put" : "post",
-    //   onSuccess: () => onSuccess && onSuccess(),
+    //     url: isUpdate ? `/admin-dashboard/users${data?.id}` : "/admin-dashboard/users",
+    //     method: isUpdate ? "put" : "post",
+    //     onSuccess: () => onSuccess && onSuccess(),
     // });
 
     return (
