@@ -98,13 +98,16 @@ function CauseEdit_Form() {
     key: `/admin-dashboard/campaign/${id}`,
     enabled: false,
     select: (data) => {
+      console.log(data.data.data.documents, "Values from Particular");
       return data.data.data;
     },
     onSuccess: (data) => {
       setUser(data);
+      console.log(data, "Data from =====>");
       const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${
         data?.campaign_image || ""
       }`;
+
       setSrcImg(imageUrl);
       setDataUrl(imageUrl);
     },
@@ -138,6 +141,7 @@ function CauseEdit_Form() {
     end_date: user?.end_date || "",
     status: user?.status || "",
     story: user?.story || "",
+    documents: user?.documents || [],
   };
   console.log(initial_values);
   if (!isSuccess) {
@@ -319,9 +323,10 @@ function CauseEdit_Form() {
                 </FormLabel>
 
                 <div className="flex gap-4">
-                  {img.map((imageUrl, index) => (
-                    <Attachments key={index} imageUrl={imageUrl} />
-                  ))}
+                  {values?.documents?.map((imageUrl, index) => {
+                    const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl.doc_file}`;
+                    return <Attachments key={index} imageUrl={documentLink} />;
+                  })}
                 </div>
               </div>
 
