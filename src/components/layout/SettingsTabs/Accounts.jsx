@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Formik, Form } from 'formik';
 import Avatar from '../../layout/Avatar/Index'
 import InputField from '../../inputs/InputField';
 import CountrySelect from '../../inputs/countrySelect/index';
-import { useCreateOrUpdate } from '../../../Hooks';
+import { useCreateOrUpdate, useGetAll } from '../../../Hooks';
 import { toast } from 'react-toastify';
 import PrimaryButton from '../../inputs/PrimaryButton';
+
 
 const InputStyle =
 {
@@ -29,21 +30,40 @@ const SelectStyle =
 
 let userData = localStorage.getItem('user_info')
 let Data = JSON.parse(userData)
-console.log(Data, "++++++++++")
-let email = Data?.email;
 let id = Data?.id;
-let mobile_number = Data?.mobile_number;
-let country = Data?.country;
-let username = Data?.username
 
-const initial_values = {
-  username: username || '',
-  email: email || '',
-  mobile_number: mobile_number || '',
-  country: country || '',
-}
+
+
+
+
+
 
 const Account = () => {
+
+  const [Details , setDetails ] = useState({})
+
+useGetAll({
+  key: `/accounts/user/${id}`,
+  enabled: true,
+  select: (data) => {
+    console.log(data)
+    return data.data.data;
+  },
+  onSuccess: (data) => {
+    setDetails(data);
+  },
+})
+
+
+console.log(Details , "<=========")
+
+const initial_values = {
+  username: Details?.username || '',
+  email: Details?.email || '',
+  mobile_number: Details?.mobile_number || '',
+  country: Details?.country || '',
+}
+
   const { mutate } = useCreateOrUpdate({
     url: `/accounts/user/${id}`,
     method: 'put'
@@ -85,6 +105,7 @@ const Account = () => {
             onChange={handleChange}
             value={values?.mobile_number}
             name={"mobile_number"}
+            type='number'
             label={"Mobile:"}
             placeholder={"(Optional)"}
             sx={InputStyle}

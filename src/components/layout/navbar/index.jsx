@@ -95,7 +95,7 @@ const NavbarContainer = ({ handleDrawerToggle, mobileOpen }) => {
       >
         <Grid item xs={9} md={7}>
           <Toolbar sx={{ minHeight: "60px !important", width: "100%", padding: 0, }}>
-            
+
             {!sideBar && (
               <Box className="d-flex justify-content-between align-items-center w-100 ">
                 <Typography
@@ -119,7 +119,7 @@ const NavbarContainer = ({ handleDrawerToggle, mobileOpen }) => {
                     {title ? <>{title}</> : "dashboard"}
                     <Breadcrumbs
 
-                      className="breadcrumbs_title"
+                      className="breadcrumbs_title max-tablet:hidden"
                       sx={{
                         color: '#B6BAC3',
                         fontSize: 14,

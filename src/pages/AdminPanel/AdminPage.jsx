@@ -13,7 +13,7 @@ import DonationView from "../../components/AdminPanelPages/Donation/DonationView
 import Withdrawals from "../../components/AdminPanelPages/Withdrawals/Index"
 import Users from "../../components/AdminPanelPages/Users/Index"
 import CauseEditApprovel from "../../components/AdminPanelPages/CauseEditApprovel/Index"
-import CategoryAddNew from '../../components/AdminPanelPages/Forms/CategoryAddNew/Index'
+// import CategoryAddNew from '../../components/AdminPanelPages/Forms/CategoryAddNew/Index'
 import Scholarship from "../../components/AdminPanelPages/Scholarship Cause/Index";
 import RevisionHistory from "../../components/AdminPanelPages/Forms/RevisionHistory/Index"
 import Campaign_Kyc from "../../components/AdminPanelPages/Campaign_kyc/Index";
@@ -74,14 +74,14 @@ function AdminPage() {
           </AdminLayout>
         }
       />
-      <Route
+      {/* <Route
         path="/Categories/Edit"
         element={
           <AdminLayout>
             <CategoryAddNew />
           </AdminLayout>
         }
-      />
+      /> */}
       <Route
         path="/Campaigns"
         element={

@@ -23,22 +23,22 @@ function Index() {
   const navigate = useNavigate();
   let { state } = useLocation();
   let { id } = state;
-  console.log(id, "=====<id");
+  // console.log(id, "=====<id");
   const initialValues = {
     title: Details?.title || "",
     slug: Details?.slug || "",
-    show_navbar: Details?.show_navbar || true,
+    show_navbar: Details?.show_navbar || false,
     show_footer: Details?.show_footer || false,
-    show_page: Details?.show_page || true,
+    show_page: Details?.show_page || false,
     content: Details?.content || "",
   };
 
-  const { data } = useGetAll({
-    key: `admin-dashboard/pages`,
+  useGetAll({
+    key: `admin-dashboard/pages/${id}`,
     enabled: true,
     select: (data) => {
-      console.log(data.data.rows);
-      return data.data.rows[0];
+      console.log(data.data);
+      return data.data.data;
     },
     onSuccess: (data) => {
       setDetails(data);
@@ -46,7 +46,7 @@ function Index() {
   });
 
   const { mutate } = useCreateOrUpdate({
-    url: `admin-dashboard/pages`,
+    url: `admin-dashboard/pages/${id}`,
     method: "put",
   });
   return (
@@ -71,7 +71,7 @@ function Index() {
     >
       {({ handleChange, setFieldValue, values }) => (
         <Form className="flex flex-col items-center">
-          <div className="flex w-full gap-4">
+          <div className="flex w-full max-tablet:flex-col gap-4">
             <div className="w-full">
               <InputAdminField
                 label={"Title"}
@@ -91,50 +91,61 @@ function Index() {
               />
             </div>
           </div>
-          <div className="flex gap-32 w-full pt-8">
+          <div className="flex gap-32 w-full pt-8 max-tablet:flex-col">
             <div className="  lg:w-[25%] ">
               <RadioGroup
-                // onChange={handleChange}
+
                 name={"show_navbar"}
+                onChange={
+                  (e) => {
+                    setFieldValue("show_navbar", e === "true")
+                  }}
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
                 ]}
                 label="Show Navbar"
                 value={values?.show_navbar}
-                // onChange={onChange}
+              // onChange={onChange}
               />
             </div>
             <div className="lg:w-[25%]">
               <RadioGroup
                 name={"show_footer"}
-                // onChange={handleChange}
+
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
                 ]}
                 label="Show Footer"
+                onChange={
+                  (e) => {
+                    setFieldValue("show_footer", e === "true")
+                  }
+                }
                 value={values?.show_footer}
-                // onChange={onChange}
+              // onChange={onChange}
               />
             </div>
             <div className=" lg:w-[25%] ">
               <RadioGroup
-                // onChange={handleChange}
-                name={"show_page"}
+                onChange={
+                  (e) => {
+                    setFieldValue("show_page", e === "true")
+                  }
+                } name={"show_page"}
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
                 ]}
                 label="Show Page"
                 value={values?.show_page}
-                // onChange={onChange}
+              // onChange={onChange}
               />
             </div>
           </div>
           <div className="pt-7 mb-5 h-[300px] w-full">
             <FormLabel style={styleLabel}>Content:</FormLabel>
-            {/* <TextEditor  /> */}
             <ReactQuilTextField
               theme="snow"
               name={"content"}

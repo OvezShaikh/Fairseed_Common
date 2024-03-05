@@ -9,13 +9,15 @@ import { useCreateOrUpdate } from "../../../../Hooks/useCreateOrUpdate.js";
 import { toast } from "react-toastify";
 import MultiKeyTextField from "../../../inputs/MultiAddTags/Index.jsx";
 import { useGetAll } from "../../../../Hooks/useGetAll.js";
+// import { Chips } from "primereact/chips";
 
 const styleLabel = {
   fontFamily: "satoshi",
-  fontSize: 18,
+  fontSize: 16,
+  paddingBottom: '5px',
   paddingLeft: '5px',
   fontWeight: 700,
-  color: "#383A42",
+  color: "#404040",
 };
 const styleInput = {
   color: "#B6BAC3",
@@ -28,20 +30,21 @@ const styleInput = {
 
 function General() {
 
-  const [Details , setDetails ]  =  useState({})
+  const [Details, setDetails] = useState({})
+  const [value, setValue] = useState([]);
 
- const { data } =  useGetAll({
+  const { data } = useGetAll({
     key: `/admin-dashboard/gs`,
     enabled: true,
     select: (data) => {
-        console.log(data.data.rows );
-        return data.data.rows[0];
+      console.log(data.data.rows);
+      return data.data.rows[0];
     },
-    onSuccess:(data) =>{
+    onSuccess: (data) => {
       setDetails(data)
     }
-   
-});
+
+  });
 
 
   const { mutate } = useCreateOrUpdate({
@@ -50,27 +53,27 @@ function General() {
 
   const initialValues = {
     namesite: Details?.namesite || "",
-    welcome_subtitle:Details?.welcome_subtitle || "",
-    welcome_text: Details?.welcome_text ||  "",
-    description: Details?.description ||  "",
+    welcome_subtitle: Details?.welcome_subtitle || "",
+    welcome_text: Details?.welcome_text || "",
+    description: Details?.description || "",
     email_admin: Details?.email_admin || "",
     tandc_url: Details?.tandc_url || "",
-    email_no_reply: Details?.email_no_reply ||  "",
-    keywords_data: Details?.keywords_data || "",
-    privacy_policy_url: Details?.privacy_policy_url ||  "",
-    date_time: Details?.date_time ||  "",
-    new_registration_enabled: Details?.new_registration_enabled ,
-    auto_approve_enabled: Details?.auto_approve_enabled ,
-    email_verification_enabled: Details?.email_verification_enabled ,
-    facebook_login_enabled: Details?.facebook_login_enabled ,
-    google_login_enabled: Details?.google_login_enabled ,
+    email_no_reply: Details?.email_no_reply || "",
+    keywords_data: Details?.keywords_data || [], // Set initial value as an empty array
+    privacy_policy_url: Details?.privacy_policy_url || "",
+    date_time: Details?.date_time || "",
+    new_registration_enabled: Details?.new_registration_enabled || false,
+    auto_approve_enabled: Details?.auto_approve_enabled || false,
+    email_verification_enabled: Details?.email_verification_enabled || false,
+    facebook_login_enabled: Details?.facebook_login_enabled || false,
+    google_login_enabled: Details?.google_login_enabled || false,
   }
-console.log(Details)
+  console.log(Details)
 
 
   return (
     <Formik
-    enableReinitialize={true}
+      enableReinitialize={true}
       initialValues={initialValues}
       onSubmit={(values) => {
         mutate(values, {
@@ -87,16 +90,16 @@ console.log(Details)
         });
       }}
     >
-      {({ values, setFieldValue , handleChange }) => (
+      {({ values, setFieldValue, handleChange }) => (
 
         <Form>
           <div className="flex flex-wrap justify-between max-desktop:flex-col max-tablet:flex-col  max-desktop:pt-4 max-tablet:pt-4">
             <div className="w-[24%] max-desktop:w-full max-tablet:w-full">
-              <InputAdminField label={'Name Site'} onChange={handleChange} name={"namesite"}  placeholder={'Placeholder Text'} value={values?.namesite} />
+              <InputAdminField label={'Name Site'} onChange={handleChange} name={"namesite"} placeholder={'Placeholder Text'} value={values?.namesite} />
 
             </div>
             <div className="w-[24%] max-desktop:w-full max-tablet:w-full">
-              <InputAdminField label={'Welcome Subtitle '} onChange={handleChange} name={"welcome_subtitle"}  placeholder={'Placeholder Text'} value={values?.welcome_subtitle} />
+              <InputAdminField label={'Welcome Subtitle '} onChange={handleChange} name={"welcome_subtitle"} placeholder={'Placeholder Text'} value={values?.welcome_subtitle} />
             </div>
             <div className="w-[24%] max-desktop:w-full max-tablet:w-full">
               <InputAdminField label={'Welcome Text'} name={"welcome_text"} onChange={handleChange} placeholder={'Placeholder Text'} value={values?.welcome_text} />
@@ -106,10 +109,21 @@ console.log(Details)
               <InputAdminField label={'Email No-reply'} name={"email_no_reply"} onChange={handleChange} placeholder={'Placeholder Text'} value={values?.email_no_reply} />
             </div>
           </div >
-          <div className="w-[50%] max-desktop:w-full max-tablet:w-full pt-2">
-            <InputAdminField label={'Keywords'} name={"keywords_data"} onChange={handleChange} placeholder={'Add Tag'} 
+          <div className="w-[49%] max-desktop:w-full max-tablet:w-full pt-2">
+            {/* <InputAdminField label={'Keywords'} name={"keywords_data"} onChange={handleChange} placeholder={'Add Tag'} 
             // value={values?.keywords_data} 
+            /> */}
+
+            <MultiKeyTextField
+              name={"keywords_data"}
+              label={"Keywords"}
+              sx={styleLabel}
+              onChange={handleChange}
+              placeholder={"Add Tags"}
+              value={values?.keywords_data}
             />
+
+
 
           </div>
           <div className="pt-7 mb-5 h-[200px]">
@@ -158,19 +172,25 @@ console.log(Details)
               <RadioGroup
                 name={"new_registration_enabled"}
                 value={values?.new_registration_enabled}
-                onChange={handleChange}
+                onChange={
+                  (e) => {
+                    setFieldValue("new_registration_enabled", e === "true")
+                  }}
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
                 ]}
                 label="New Registrations"
-              
+
               />
             </div>
             <div className="lg:w-[25%] max-tablet:w-full max-desktop:w-full">
               <RadioGroup
                 name={"auto_approve_enabled"}
-                onChange={handleChange}
+                onChange={
+                  (e) => {
+                    setFieldValue("auto_approve_enabled", e === "true")
+                  }}
                 value={values?.auto_approve_enabled}
                 options={[
                   { label: "On", value: true },
@@ -183,7 +203,10 @@ console.log(Details)
               <RadioGroup
                 name={"facebook_login_enabled"}
                 value={values?.facebook_login_enabled}
-                onChange={handleChange}
+                onChange={
+                  (e) => {
+                    setFieldValue("facebook_login_enabled", e === "true")
+                  }}
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
@@ -204,21 +227,25 @@ console.log(Details)
                   { label: "Off", value: false },
                 ]}
                 label="Google Login"
-                onChange={handleChange}
-                
+                onChange={
+                  (e) => {
+                    setFieldValue("google_login_enabled", e === "true")
+                  }}
               />
             </div>
             <div className=" lg:w-[25%] max-tablet:w-full max-desktop:w-full">
 
               <RadioGroup
                 name={"New5"}
-                                options={[
+                options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
                 ]}
                 label="Captcha"
-                onChange={handleChange}
-              />
+                onChange={
+                  (e) => {
+                    setFieldValue("New5", e === "true")
+                  }} />
             </div>
             <div className=" lg:w-[25%] max-tablet:w-full max-desktop:w-full">
               <RadioGroup
@@ -229,8 +256,10 @@ console.log(Details)
                   { label: "Off", value: false },
                 ]}
                 label="Email Verifications"
-                onChange={handleChange}
-              />
+                onChange={
+                  (e) => {
+                    setFieldValue("email_verification_enabled", e === "true")
+                  }} />
             </div>
           </div>
           <div className="flex justify-center items-center pt-8 ">

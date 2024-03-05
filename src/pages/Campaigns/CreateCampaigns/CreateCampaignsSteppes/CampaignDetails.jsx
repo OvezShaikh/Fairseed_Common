@@ -3,7 +3,7 @@ import { Field, Form, Formik, useFormikContext } from "formik";
 import InputField from "../../../../components/inputs/InputField";
 import { FormLabel } from "react-bootstrap";
 import { colors } from "../../../../constants/theme";
-import DropZone from "../../../../components/inputs/dragAndDrop";
+import DropZone from "../../../../components/inputs/Cropper/CropDrop";
 import SelectField from "../../../../components/inputs/SelectField";
 import CheckBox from "../../../../components/inputs/checkBox";
 import Box from "@mui/material/Box";
@@ -15,6 +15,8 @@ import "../CreateCampaigns.css";
 import axios from "axios";
 import { Next } from "react-bootstrap/esm/PageItem";
 import { Link } from "react-router-dom";
+import { ImageCropper } from "../../../../components/inputs/Cropper/ImageCropper";
+import { ImagePreviewDialog } from "../../../../components/inputs/PreviewImage/PreviewImage";
 const InputStyle =
 {
     padding: '20px', border: "1px solid #e2e2e2",
@@ -45,6 +47,23 @@ const stylePrimaryButton = {
 const Test = ({ handleBack, handleNext }) => {
     const [category, setCategory] = useState([]);
     const { setFieldValue, values } = useFormikContext();
+    const [srcImg, setSrcImg] = useState("");
+    const [openCrop, setOpenCrop] = useState(false);
+
+    const onChange = (e) => {
+        let files;
+
+        if (e) {
+            files = e;
+        }
+        const reader = new FileReader();
+        reader.onload = () => {
+            setSrcImg(reader.result);
+        };
+        reader.readAsDataURL(files[0]);
+
+        setOpenCrop(true);
+    };
 
     useEffect(() => {
         axios
@@ -59,19 +78,30 @@ const Test = ({ handleBack, handleNext }) => {
             });
     }, []);
 
+
     return (
 
         <Form className="flex flex-col gap-4 campagin-form">
 
-            <Box className="desktop:py-[80px] max-desktop:py-[53px]">
+            <Box className="desktop:py-[80px] max-desktop:py-[53px] flex flex-col items-center">
                 <DropZone
                     name="campaign_image"
-                    acceptedFiles={({ "file/*": [".png"] })}
-                    maxFiles={1}
-                    onChange={(value) => setFieldValue('campaign_image', value)}
+                    // label={'campaign image'}
+                    onChange={onChange}
+                    initialPreview={srcImg}
+                />
 
-                // onChange={(file) => setFieldValue("campaign_image", file)}
-                ></DropZone>
+                {openCrop && (
+                    <>
+                        <ImageCropper
+                            srcImg={srcImg}
+                            setOpenCrop={setOpenCrop}
+                            setsrcImg={setSrcImg}
+                        />
+                    </>
+                )}
+
+                {srcImg && <ImagePreviewDialog croppedImage={srcImg} />}
             </Box>
             <div className="campaign-input-div">
                 <InputField
