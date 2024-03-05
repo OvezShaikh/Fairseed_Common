@@ -58,6 +58,7 @@ const Test = ({ handleBack, handleNext }) => {
                 console.error("Error fetching category data:", error);
             });
     }, []);
+    
 
     return (
 
@@ -66,7 +67,7 @@ const Test = ({ handleBack, handleNext }) => {
             <Box className="desktop:py-[80px] max-desktop:py-[53px]">
                 <DropZone
                     name="campaign_image"
-                    acceptedFiles={({ "file/*": [".png"] })}
+                    acceptedFiles={({ "file/*": [".png",".jpeg", ".jpg"] })}
                     maxFiles={1}
                     onChange={(value) => setFieldValue('campaign_image', value)}
 
