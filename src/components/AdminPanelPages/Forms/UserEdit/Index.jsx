@@ -94,9 +94,10 @@ function Index() {
         role: User.user_role || "",
         email: User.email || "",
         password: "",
-        created_on: User.created_on || "",
+        // created_on: User.created_on || "",
 
     }
+   
 
     return (
         <div className='flex w-[100%] pt-3 gap-24'>
@@ -114,8 +115,6 @@ function Index() {
                         });
                     }}
                 >{({ values }) => (
-
-
                     <Form className="flex flex-col w-[100%] gap-4 items-center">
                         <div className="w-full">
                             <InputField sx={InputStyle} name={"name"} label={"Name:"} />
@@ -162,7 +161,7 @@ function Index() {
                     />                        <div className="max-w-[500px] w-full pt-5 flex flex-col gap-4">
                         <div className="flex justify-between py-[15px] px-[8px]" style={{ border: '1px solid gray', borderRadius: '4px' }}>
                             <p className='font-medium text-[18px] font-[satoshi] text-[#00000099]'>Registered</p>
-                            <p>{ }</p>
+                            <p>{User?.created_on }</p>
                         </div>
                         <div className="flex justify-between py-[15px] px-[8px]" style={{ border: '1px solid gray', borderRadius: '4px' }}>
                             <p className='font-medium text-[18px] font-[satoshi] text-[#00000099]'>Status</p>

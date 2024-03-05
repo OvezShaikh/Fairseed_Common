@@ -111,13 +111,11 @@ export const AddUser = ({
                                 toast.success('User create successfully', { position: 'top-right' });
                                 queryClient.refetchQueries({
                                     queryKey: ['/admin-dashboard/users'],
-                                    // stale: true,
                                     exact: false,
-                                    // predicate: (query) => !query?.options?.params?.download,
+                                   
                                 })
                                 onClose()
-                                // console.log(response);imageUrl
-                                // Handle successful API response here
+                               
                             },
                             onError: () => {
                                 toast.error('Somthing is wrong please try again later', { position: 'top-right' })
