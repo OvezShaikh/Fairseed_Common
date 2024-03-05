@@ -216,7 +216,7 @@ const User_DrawerBody = () => {
   const menus = [
     {
       icon: "DashboardIcon",
-      path: "/User/",
+      path: "/User/Dashboard",
       title: "Dashboard",
     },
     {

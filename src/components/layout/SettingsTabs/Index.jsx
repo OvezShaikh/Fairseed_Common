@@ -41,12 +41,15 @@ export default function LabTabs() {
 
 
   const [value, setValue] = React.useState('1');
+ 
   const [age, setAge] = useState('');
 
 
   const handletabChange = (event, newValue) => {
     setValue(newValue);
   };
+
+
 
  
   return (

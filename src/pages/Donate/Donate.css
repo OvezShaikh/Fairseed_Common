@@ -1,40 +1,38 @@
-.donate-div form div {
+.donate-div form div{
     padding: 12px 20px;
-    margin-bottom: 40px;
-    border-radius: 5px;
+    margin-bottom:40px;
+    border-radius: 5px;    
 }
 
 
-.donate-div form .donation-type-div {
+.donate-div form .donation-type-div{
     padding: 8px 20px;
 }
 
-.donate-div form .donation-type-div div {
-    margin-bottom: 0px;
+.donate-div form .donation-type-div div{
+    margin-bottom:0px;
     padding: 0 !important;
 }
 
 
-.donate-div .donation-type-div,
-.account-settings-div .donation-type-div div {
+.donate-div .donation-type-div,.account-settings-div .donation-type-div div{
     padding: 0 !important;
 
 }
 
-.donate-div .donation-type-div input {
+.donate-div .donation-type-div input{
     padding: 18px 20px !important;
 }
 
 
-.donate-div .anonymous-donation-div,
-.donate-div .anonymous-donation-div div {
+.donate-div  .anonymous-donation-div , .donate-div  .anonymous-donation-div div{
     padding: 0px;
 }
 
 
 
 .donate-date-div input[type="date"]::-webkit-calendar-picker-indicator {
-
+    
     color: rgba(0, 0, 0, 0);
     opacity: 1;
     display: block;
@@ -43,39 +41,50 @@
     width: 64px;
     height: 64px;
     border-width: thin;
-
+   
 }
-
-.donate-date-div input.MuiInputBase-input.css-yz9k0d-MuiInputBase-input {
+.donate-date-div input.MuiInputBase-input.css-yz9k0d-MuiInputBase-input{
     padding: 20px 0px;
 }
 
-/* @media only screen and(max-width:750px) {
-    .donate-date-div input {
-        margin-top: 50px;
-    }
-}
 
-*/
-
-.donate-div .donate-date-div div {
+.donate-div .donate-date-div div{
     padding: 0px 0px;
     padding-left: 10px;
 }
 
-/* #react-flag-select button {
-    border: 1px solid #DCDFE3;
-    border-radius: 5px;
-    height: 70px;
-} */
-.show-content {
-    opacity: 1;
-    transition: opacity 2s ease-in-out;
+
+.donation-type-div.country-select #react-flag-select button{
+    border: 1px solid #e2e2e2;
 }
 
-.hide-content {
-    opacity: 0;
-    transition: opacity 2s ease-in-out;
-    pointer-events: none;
-    /* Optionally disable pointer events when content is hidden */
+
+.donation-type-div.country-select .ReactFlagsSelect-module_selectBtn__19wW7:after , .donation-type-div.country-select  .ReactFlagsSelect-module_selectBtn__19wW7[aria-expanded="true"]:after{
+    content: none;
+}
+
+.donation-type-div.country-select div#react-flag-select button{
+    background-image: url(../../assets/DownArrow.png);
+    /* width: 14px;
+    height: 8px; */
+    background-repeat: no-repeat;
+    margin-top: 0px;
+    margin-right: 10px;
+    background-position: center right 20px;
+    height: 62px;
+    
+}
+
+.donation-type-div.country-select label{
+    font-family: satoshi;
+
+}
+
+.mobile-input{
+    margin-top: 10px !important;
+}
+
+
+.donate-div .email-country-div  , .donate-div .city-mobile{
+    margin-bottom: 0px;
 }
