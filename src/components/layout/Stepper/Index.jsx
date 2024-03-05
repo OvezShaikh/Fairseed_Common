@@ -94,7 +94,7 @@ const stylePrimaryButton = {
   borderRadius: "12px",
 };
 const initialValues = {
-  campaign_image: "",
+  //campaign_image: "",
   title: "",
   goal_amount: "",
   location: "",
