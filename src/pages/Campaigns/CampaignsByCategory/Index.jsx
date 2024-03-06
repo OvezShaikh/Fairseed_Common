@@ -188,7 +188,7 @@ function Index() {
 
 
                 )}</div>
-              <div className="gap-4 pt-[2rem] flex flex-wrap w-full justify-center">
+              <div className="gap-4 pt-[2rem] flex flex-wrap justify-center desktop:w-[1900px]">
 
                 {filteredUserList?.map((item) => {
                   return (
