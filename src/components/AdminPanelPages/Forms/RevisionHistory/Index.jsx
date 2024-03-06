@@ -3,7 +3,7 @@ import SuccessButton from '../../../inputs/SuccessButton/Index'
 
 function ModificationLogTable() {
     return (
-        <table className="table-auto border-collapse border border-gray-800">
+        <table className="table-auto border-collapse border border-gray-800 max-tablet:w-full">
             <thead>
                 <tr className="">
                     <th className="border border-gray-800 px-4 text-[26px] font-[satoshi] font-light py-3">Modification Date</th>

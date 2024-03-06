@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import { useCreateOrUpdate } from '../../../Hooks';
 import * as Yup from 'yup';
 import OTPInput, { ResendOTP } from "otp-input-react";
+import { useLocation } from 'react-router-dom';
 
 
 const inputStyle = {
@@ -19,6 +20,8 @@ const inputStyle = {
 }
 
 function VerifyEmail() {
+
+
     const [step, setStep] = useState(1);
     const [isVerified, setIsVerified] = useState(false);
     const [newPassword, setNewPassword] = useState(false);
@@ -29,7 +32,7 @@ function VerifyEmail() {
 
 
     const verifyEmailMutation = useCreateOrUpdate({
-        url: '/accounts/forgetpassword',
+        url: `/accounts/forgetpassword/nt/`,
         method: 'post',
         onSuccess: (values, response) => {
             toast.success(`OTP sent successfully to `, {
@@ -57,7 +60,7 @@ function VerifyEmail() {
     });
 
     const resetPasswordMutation = useCreateOrUpdate({
-        url: '/accounts/reset-pass',
+        url: '/accounts/reset-pass/nt/',
         method: 'post',
         onSuccess: () => {
 
@@ -67,7 +70,7 @@ function VerifyEmail() {
             });
             setTimeout(() => {
                 window.location.href = "/Home";
-            }, 2000);
+            }, 1500);
         },
         onError: () => {
             toast.error('Fail to reset password')

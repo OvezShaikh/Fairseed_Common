@@ -46,7 +46,7 @@ function Index() {
         phonepay_secret: Details?.phonepay_secret || "",
         fee_percent: Details?.fee_percent || '',
         fee_cents: Details?.fee_cents || '',
-        is_enabled: Details?.is_enabled || false
+        is_enabled: Details?.is_enabled || false,
     }
 
     return (
@@ -91,6 +91,10 @@ function Index() {
                             <RadioGroup
                                 name={"is_enabled"}
                                 sx={{ fontSize: '22px' }}
+                                onChange={
+                                    (e) => {
+                                        setFieldValue("is_enabled", e === "true")
+                                    }}
                                 options={[
                                     { label: "Active", value: true },
                                     { label: "Disable", value: false },

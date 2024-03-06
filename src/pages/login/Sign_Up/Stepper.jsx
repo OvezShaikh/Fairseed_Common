@@ -208,6 +208,8 @@ const Sign_Stepper = () => {
     formData.append('country', values.country);
     formData.append('user_type', values.user_type);
     formData.append('country', values.country);
+    formData.append('mobile_number', values.mobile_number);
+
     mutate(formData);
     toast.success('Register Successfully');
     window.location.href = '/Home';

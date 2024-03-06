@@ -71,6 +71,7 @@ function CausesView() {
         pan_card: data?.pan_card || "",
         adhar_card: data?.adhar_card || "",
         tandc_accept: data?.tandc_accept || false,
+        other: data?.other || "",
     }
 
     useGetAll({
@@ -95,6 +96,7 @@ function CausesView() {
                 toast.success('Your changes has been recorded and is sent for approval to Admin ', {
                     position: 'top-right'
                 })
+                navigate(-1);
             }
         })
     }
@@ -106,7 +108,7 @@ function CausesView() {
             initialValues={initial_values}
             onSubmit={(values) => handleSubmit(values)}
         >
-            {({ values, handleChange }) => (
+            {({ values, handleChange, setFieldValue }) => (
                 <Form>
                     <div className='p-4 w-[100%] '>
                         <div className="flex flex-col gap-7  w-[70%] max-desktop:w-full max-tablet:w-[100%]">
@@ -137,7 +139,7 @@ function CausesView() {
                                     <InputField sx={InputStyle} label={"Adhar Number:"} name={'adhar_card'} value={values?.adhar_card} onChange={handleChange} />
                                 </div>
                                 <div className="w-full">
-                                    <InputField sx={InputStyle} label={"Other Details (Optional)::"} name={'other'} value={values?.other} onChange={handleChange} />
+                                    <InputField sx={InputStyle} label={"Other Details (Optional):"} name={'other'} value={values?.other} onChange={handleChange} />
                                 </div>
                                 <div className="w-full">
                                     <FormLabel sx={{ fontSize: '20px', fontFamily: 'satoshi', fontWeight: 700, color: "#383A42", paddingLeft: '8px' }}>
@@ -145,13 +147,13 @@ function CausesView() {
                                     </FormLabel>
                                     <div className="flex gap-4 pt-2 max-tablet:flex-col">
                                         <div className="flex flex-col gap-2">
-                                            <Attachments imageUrl={{}} />
+                                            <Attachments imageUrl={data.passbook_image} />
                                             <FormLabel sx={{ fontSize: '20px', fontFamily: 'satoshi', fontWeight: 700, color: "#383A42", paddingLeft: '8px' }}>
                                                 PAN Card
                                             </FormLabel>
                                         </div>
                                         <div className="flex flex-col gap-2">
-                                            <Attachments imageUrl={{}} />
+                                            <Attachments imageUrl={data.adhar_card_image} />
                                             <FormLabel sx={{ fontSize: '20px', fontFamily: 'satoshi', fontWeight: 700, color: "#383A42", paddingLeft: '8px' }}>
                                                 Adhar Card
                                             </FormLabel>
@@ -176,7 +178,7 @@ function CausesView() {
                                     <UploadField label='Upload Passbook Copy:' name={'pan'} />
                                 </div>
                                 <RadioGroup
-                                    // onChange={(e) => { setFieldValue("rasing_for", e.target.value) }}
+                                    onChange={(e) => { setFieldValue("rasing_for", e === 'true') }}
                                     name="rasing_for"
                                     value={values?.tandc_accept}
                                     required={true}
