@@ -13,14 +13,16 @@ import {
 import PrimaryButton from "../inputs/PrimaryButton";
 import images from "../../constants/images";
 import UserLogin from '../../pages/login/Login_page/Index'
-import UserSignUp_02 from "../../pages/login/Sign_Up/Index";
 import { Link, NavLink } from "react-router-dom";
 import ProfileAvatar from "../../pages/login/ProfileAvatar";
 import { toast } from "react-toastify";
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Logout from '@mui/icons-material/Logout';
-
+import Avatar from '@mui/material/Avatar';
+import Divider from '@mui/material/Divider';
+import Settings from '@mui/icons-material/Settings';
+// import images from "../../constants/images";
 
 
 const styleButton = {
@@ -116,6 +118,8 @@ export default function Example() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  let img = `${process.env.REACT_APP_API_URL}` + image;
+
   return (
     <header className="absolute top-0 left-0 right-0 bg-transparent z-10 container" style={{
       backgroundColor: '#8EC5FC', backdropFilter: 'blur(10px)'
@@ -514,34 +518,53 @@ export default function Example() {
                 {
                   (localStorage.getItem('token')) ?
                     <>
-                      {
-                        role === 'Admin' && (
-                          <Link to={'/AdminPanel'}
-                            className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[20px]  max-tablet:text-[18px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                          >
-                            Admin Panel
-                          </Link>
-                        )}
-                      <Link to={'/User'}
-                        className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[20px]  max-tablet:text-[18px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                      >
-                        Dashboard
-                      </Link>
-                      <Link to={'/account-settings'}
-                        className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[20px]  max-tablet:text-[18px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                      >
-                        Account Settings
-                      </Link>
-                      <MenuItem onClick={handleClose}>
-                        <ListItemIcon>
-                          <Logout fontSize="small" />
-                        </ListItemIcon>
-                        <button
-                          onClick={() => logout()}
-                        >
-                          Logout
-                        </button>
-                      </MenuItem>
+                     {
+          role === 'Admin' && (
+            <>
+              <MenuItem onClick={handleClose}>
+                <Link to="/AdminPanel">
+                  <ListItemIcon>
+                    <Avatar
+                      src={img}
+                    />
+                  </ListItemIcon>
+                  AdminPanel
+                </Link>
+              </MenuItem>
+              <Divider />
+            </>
+          )
+        }
+
+        <MenuItem onClick={handleClose}>
+          <Link to={"/User"}>
+            <ListItemIcon>
+              <img src={images.Dashboard} alt="" />
+            </ListItemIcon>
+            Dashboard
+          </Link>
+        </MenuItem>
+
+
+        <MenuItem onClick={handleClose}>
+          <Link to={"/account-settings"}>
+            <ListItemIcon>
+              <Settings fontSize="small" />
+            </ListItemIcon>
+            Settings
+          </Link>
+        </MenuItem>
+
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <Logout fontSize="small" />
+          </ListItemIcon>
+          <button
+            onClick={() => logout()}
+          >
+            Logout
+          </button>
+        </MenuItem>
                     </>
 
                     : (<Link to='/Home/Login'><button
