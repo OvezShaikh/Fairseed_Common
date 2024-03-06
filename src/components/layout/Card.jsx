@@ -25,14 +25,14 @@ function Card({
     <>
       <div
         key={key}
-        className="card rounded-xl font-bold desktop:max-w-[408px] w-full max-desktop:max-w-[355px]"
+        className="card rounded-xl font-bold w-[600px] desktop:max-w-[408px] max-desktop:max-w-[355px]"
         style={{ fontFamily: "satoshi" }}
       >
 
         <Link to={`/campaign-details/${og_id}`}>
           <img
             src={`${process.env.REACT_APP_API_URL}` + cardImage}
-            className="card-img-top h-80"
+            className="card-img-top h-80 w-full"
             alt="..."
 
           />
