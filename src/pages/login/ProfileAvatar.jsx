@@ -51,10 +51,10 @@ export default function ProfileAvatar() {
   let userData = localStorage.getItem('user_info')
   let Data = JSON.parse(userData)
   let role = Data?.user_role;
-  let image = Data?.profile_pic; 
-  
-  let img = `${process.env.REACT_APP_API_URL}`+ image;
-  console.log(img , '<======')
+  let image = Data?.profile_pic;
+
+  let img = `${process.env.REACT_APP_API_URL}` + image;
+  console.log(img, '<======')
 
 
   return (
@@ -64,12 +64,12 @@ export default function ProfileAvatar() {
           <IconButton
             onClick={handleClick}
             size="small"
-            sx={{ ml: 2 }}
+            // sx={{ ml: 2 }}
             aria-controls={open ? 'account-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }} src={img}/>
+            <Avatar sx={{ width: 32, height: 32 }} src={img} />
           </IconButton>
         </Tooltip>
       </Box>
@@ -114,18 +114,18 @@ export default function ProfileAvatar() {
               <MenuItem onClick={handleClose}>
                 <Link to="/AdminPanel">
                   <ListItemIcon>
-                    <Avatar 
-                    src={img}
+                    <Avatar
+                      src={img}
                     />
                   </ListItemIcon>
                   AdminPanel
                 </Link>
               </MenuItem>
-               <Divider />
-               </>
+              <Divider />
+            </>
           )
         }
- 
+
         <MenuItem onClick={handleClose}>
           <Link to={"/User"}>
             <ListItemIcon>

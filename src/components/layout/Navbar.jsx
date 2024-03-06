@@ -17,6 +17,12 @@ import UserSignUp_02 from "../../pages/login/Sign_Up/Index";
 import { Link, NavLink } from "react-router-dom";
 import ProfileAvatar from "../../pages/login/ProfileAvatar";
 import { toast } from "react-toastify";
+import MenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Logout from '@mui/icons-material/Logout';
+
+
+
 const styleButton = {
   color: 'red'
 }
@@ -90,7 +96,26 @@ function classNames(...classes) {
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
- 
+  function logout() {
+    // Remove the 'token' item from localStorage
+    localStorage.removeItem('token');
+    localStorage.removeItem('user_info');
+    console.log(localStorage.getItem('token'))
+    window.location.href = '/Home';
+    toast.error("Logout Successful !", {
+      position: "top-center"
+    })
+  }
+  let userData = localStorage.getItem('user_info')
+  let Data = JSON.parse(userData)
+  // console.log(Data)
+  let role = Data?.user_role;
+  let image = Data?.profile_pic;
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <header className="absolute top-0 left-0 right-0 bg-transparent z-10 container" style={{
       backgroundColor: '#8EC5FC', backdropFilter: 'blur(10px)'
@@ -488,7 +513,37 @@ export default function Example() {
 
                 {
                   (localStorage.getItem('token')) ?
-                    (<ProfileAvatar />)
+                    <>
+                      {
+                        role === 'Admin' && (
+                          <Link to={'/AdminPanel'}
+                            className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[20px]  max-tablet:text-[18px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                          >
+                            Admin Panel
+                          </Link>
+                        )}
+                      <Link to={'/User'}
+                        className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[20px]  max-tablet:text-[18px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                      >
+                        Dashboard
+                      </Link>
+                      <Link to={'/account-settings'}
+                        className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[20px]  max-tablet:text-[18px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                      >
+                        Account Settings
+                      </Link>
+                      <MenuItem onClick={handleClose}>
+                        <ListItemIcon>
+                          <Logout fontSize="small" />
+                        </ListItemIcon>
+                        <button
+                          onClick={() => logout()}
+                        >
+                          Logout
+                        </button>
+                      </MenuItem>
+                    </>
+
                     : (<Link to='/Home/Login'><button
                       className="font-[satoshi] text-[22px] font-medium text-[#40444C]"
                     >

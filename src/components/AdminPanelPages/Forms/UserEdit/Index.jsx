@@ -12,7 +12,7 @@ import { toast } from 'react-toastify'
 
 const InputStyle =
 {
-    padding: '20px', border: "1px solid #e2e2e2",
+    padding: '15px', border: "1px solid #e2e2e2",
     // },
     "&:focus-within": {
         boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
@@ -97,11 +97,11 @@ function Index() {
         // created_on: User.created_on || "",
 
     }
-   
+
 
     return (
-        <div className='flex w-[100%] pt-3 gap-24'>
-            <div className="w-[70%]">
+        <div className='flex w-[100%] pt-3 gap-24 max-tablet:flex-col max-desktop:flex-col'>
+            <div className="w-[70%] max-desktop:w-full max-tablet:w-full">
                 <Formik
                     enableReinitialize={true}
                     initialValues={initialvalues}
@@ -149,19 +149,20 @@ function Index() {
 
                 </Formik>
             </div>
-            <div className='w-[30%] overflow-y-scroll h-[700px]'>
+            <div className='w-[30%] overflow-y-scroll h-[700px] max-desktop:w-full max-tablet:w-full max-desktop:flex max-desktop:flex-col max-desktop:items-center max-tablet:h-full max-desktop:h-full'>
 
 
-                <div className="flex w-[100%] pr-2 flex-col">
+                <div className="flex w-[100%] pr-2 flex-col max-desktop:w-[60%] ">
 
                     <ImageEditor
                         sx={{ maxWidth: '500px', minHeight: '333px', border: '1px solid #3366CC !important' }}
                         imageUrl={imageUrlFromBackend}
 
-                    />                        <div className="max-w-[500px] w-full pt-5 flex flex-col gap-4">
+                    />
+                    <div className="max-w-[500px] w-full pt-5 flex flex-col gap-4 ">
                         <div className="flex justify-between py-[15px] px-[8px]" style={{ border: '1px solid gray', borderRadius: '4px' }}>
                             <p className='font-medium text-[18px] font-[satoshi] text-[#00000099]'>Registered</p>
-                            <p>{User?.created_on }</p>
+                            <p>{User?.created_on}</p>
                         </div>
                         <div className="flex justify-between py-[15px] px-[8px]" style={{ border: '1px solid gray', borderRadius: '4px' }}>
                             <p className='font-medium text-[18px] font-[satoshi] text-[#00000099]'>Status</p>

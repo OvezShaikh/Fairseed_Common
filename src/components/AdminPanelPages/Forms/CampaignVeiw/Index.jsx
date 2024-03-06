@@ -124,9 +124,9 @@ function Index() {
         >
             {({ values, setFieldValue, handleChange }) => (
 
-                <Form className='flex flex-col items-center'>
-                    <div className="flex w-[100%] mt-2 gap-14">
-                        <div className="flex flex-col w-[70%] gap-10 items-center">
+                <Form className='flex flex-col items-center  max-desktop:pt-6 max-tablet:pt-6'>
+                    <div className="flex w-[100%] mt-2 gap-14 max-desktop:flex-col max-tablet:flex-col">
+                        <div className="flex flex-col w-[70%] gap-10 items-center max-desktop:w-full max-tablet:w-full">
                             <div className="flex flex-col items-center">
                                 <div className="flex">
                                     <h1 className='text-[18px] font-[satoshi] font-medium text-[#000000] underline pr-2'> {values.title}</h1>
@@ -254,7 +254,7 @@ function Index() {
 
                         </div>
 
-                        <div className="w-[30%]">
+                        <div className="w-[30%] flex max-desktop:w-full max-tablet:w-full justify-center ">
                             <ImageEditor
                                 sx={{ maxWidth: '400px', minHeight: '600px' }}
                                 dataUrl={image}
