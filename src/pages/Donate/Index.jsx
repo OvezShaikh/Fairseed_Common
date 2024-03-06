@@ -155,24 +155,22 @@ function Index({
                                         />
 
 
-                                        <div className="flex w-full gap-4 p-0">
-                                            <div className="w-[50%] p-0">
+                                        <div className="flex w-full gap-4 p-0 max-tablet:flex-col">
+                                            <div className="w-[50%] p-0 max-tablet:w-full max-tablet:mb-0 email-country-div">
                                                 <InputField
                                                     label={"Email:"}
                                                     //   placeholder={"Mandatory, if total number donations exceeds 80K INR in one financial year"}
                                                     name={"Email"}
                                                     sx={InputStyle}
                                                 />
-                                                <div className='donation-type-div'>
-                                                    <SelectField
-                                                        label={"Country:"}
-                                                        //   placeholder={"Mandatory, if total number donations exceeds 80K INR in one financial year"}
-                                                        name={"Country"}
-                                                        // sx={{ fontSize: '20px', marginBottom: '0 !important' }}
+                                                <div className='donation-type-div country-select'>
+                                                    <CountrySelect label="Country:"
+                                                        name={"country"}
                                                         sx={SelectStyle}
-                                                    /></div>
+                                                    />
+                                                </div>
                                             </div>
-                                            <div className="w-[50%] p-0">
+                                            <div className="w-[50%] p-0 max-tablet:w-full max-tablet:mb-0 city-mobile">
                                                 <InputField
                                                     label={"City:"}
                                                     //   placeholder={"Mandatory, if total number donations exceeds 80K INR in one financial year"}
@@ -181,11 +179,11 @@ function Index({
                                                 />
 
                                                 <InputField
-
                                                     label={"Mobile:"}
                                                     //   placeholder={"Mandatory, if total number donations exceeds 80K INR in one financial year"}
                                                     name={"Mobile"}
                                                     sx={InputStyle}
+                                                    className="mobile-input"
                                                 />
                                             </div>
                                         </div>

@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 const Reported_Causes = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
- 
+
   const columns = React.useMemo(
     () => [
       {
@@ -28,7 +28,6 @@ const Reported_Causes = () => {
       {
         Header: "Name",
         accessor: "title",
-        apiURL: `/admin-dashboard/campaign`,
 
         minWidth: 100,
         width: 100,
@@ -38,7 +37,6 @@ const Reported_Causes = () => {
       {
         Header: "User",
         accessor: "user.username",
-        apiURL: `/admin-dashboard/campaign`,
 
         minWidth: 100,
         width: 100,
@@ -47,7 +45,6 @@ const Reported_Causes = () => {
       {
         Header: "Email",
         accessor: "user.email",
-        apiURL: `/admin-dashboard/campaign`,
 
         minWidth: 100,
         width: 100,
@@ -56,7 +53,6 @@ const Reported_Causes = () => {
       {
         Header: "Mobile",
         accessor: "user.mobile_number",
-        apiURL: `/admin-dashboard/campaign`,
 
         minWidth: 100,
         width: 100,
@@ -65,7 +61,6 @@ const Reported_Causes = () => {
       {
         Header: "Goal",
         accessor: "goal_amount",
-        apiURL: `/admin-dashboard/campaign`,
 
         minWidth: 100,
         width: 100,
@@ -74,7 +69,6 @@ const Reported_Causes = () => {
       {
         Header: "Status",
         accessor: "status",
-        apiURL: `/admin-dashboard/campaign`,
 
         minWidth: 100,
         width: 100,
@@ -82,7 +76,6 @@ const Reported_Causes = () => {
       {
         Header: "Date",
         accessor: "end_date",
-        apiURL: `/admin-dashboard/campaign`,
 
         minWidth: 100,
         width: 100,
@@ -98,31 +91,31 @@ const Reported_Causes = () => {
           return (
             <div className='flex'>
               <Link to="Edit" state={{ id: row?.id }} ><SecondaryButton >Edit</SecondaryButton></Link>
-             
+
             </div>
           )
         }
       }
     ],
 
-    );
-return (
-  <div>
-    <ReactTable
-    rows={[]}
-    columns={columns}
-    showFilter
-    manualPagination
-    title={"Campaign"}
-    checkboxComponent={IndeterminateCheckbox}
-    url={`/admin-dashboard/reported-campaign`}
-    extraQuery={{ inactive: true }}
-     addButton={<LocationConfigurationDialog />}
-    // addButton={<Button>HElloooooo</Button>}
-    selectedRowID={selectedRowID}
-    />
-  </div>
-)
+  );
+  return (
+    <div>
+      <ReactTable
+        rows={[]}
+        columns={columns}
+        showFilter
+        manualPagination
+        title={"Campaign"}
+        checkboxComponent={IndeterminateCheckbox}
+        url={`/admin-dashboard/reported-campaign`}
+        extraQuery={{ inactive: true }}
+        addButton={<LocationConfigurationDialog />}
+        // addButton={<Button>HElloooooo</Button>}
+        selectedRowID={selectedRowID}
+      />
+    </div>
+  )
 }
 
 export default Reported_Causes

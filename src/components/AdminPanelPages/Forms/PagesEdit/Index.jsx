@@ -23,7 +23,7 @@ function Index() {
   const navigate = useNavigate();
   let { state } = useLocation();
   let { id } = state;
-
+  // console.log(id, "=====<id");
   const initialValues = {
     title: Details?.title || "",
     slug: Details?.slug || "",
@@ -37,6 +37,7 @@ function Index() {
     key: `admin-dashboard/pages/${id}`,
     enabled: true,
     select: (data) => {
+      console.log(data.data);
       return data.data.data;
     },
     onSuccess: (data) => {
@@ -93,12 +94,12 @@ function Index() {
           <div className="flex gap-32 w-full pt-8 max-tablet:flex-col">
             <div className="  lg:w-[25%] ">
               <RadioGroup
-               
-              name={"show_navbar"}
+
+                name={"show_navbar"}
                 onChange={
                   (e) => {
                     setFieldValue("show_navbar", e === "true")
-                  }  } 
+                  }}
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
@@ -111,7 +112,7 @@ function Index() {
             <div className="lg:w-[25%]">
               <RadioGroup
                 name={"show_footer"}
-             
+
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
@@ -145,7 +146,6 @@ function Index() {
           </div>
           <div className="pt-7 mb-5 h-[300px] w-full">
             <FormLabel style={styleLabel}>Content:</FormLabel>
-            {/* <TextEditor  /> */}
             <ReactQuilTextField
               theme="snow"
               name={"content"}

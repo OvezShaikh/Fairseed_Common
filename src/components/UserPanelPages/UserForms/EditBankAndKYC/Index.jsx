@@ -69,9 +69,9 @@ function CausesView() {
         ifsc_code: data?.ifsc_code || "",
         status: data?.status || false,
         pan_card: data?.pan_card || "",
-        adhar_card: data?.adhar_card ||  "",
-        tandc_accept:data?.tandc_accept || false ,
-        }
+        adhar_card: data?.adhar_card || "",
+        tandc_accept: data?.tandc_accept || false,
+    }
 
     useGetAll({
         key: `/user-dashboard/edit-bankkyc/${id}`,
@@ -143,7 +143,7 @@ function CausesView() {
                                     <FormLabel sx={{ fontSize: '20px', fontFamily: 'satoshi', fontWeight: 700, color: "#383A42", paddingLeft: '8px' }}>
                                         Documents:
                                     </FormLabel>
-                                    <div className="flex gap-4 pt-2">
+                                    <div className="flex gap-4 pt-2 max-tablet:flex-col">
                                         <div className="flex flex-col gap-2">
                                             <Attachments imageUrl={{}} />
                                             <FormLabel sx={{ fontSize: '20px', fontFamily: 'satoshi', fontWeight: 700, color: "#383A42", paddingLeft: '8px' }}>

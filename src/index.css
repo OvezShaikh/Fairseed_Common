@@ -341,10 +341,16 @@ body {
   fill: rgba(244, 244, 244, 0.9);
 }
 
-.makeStyles-textField-1:focus-within {
+
+
+
+
+
+
+/* .makeStyles-textField-1:focus-within {
   margin-top: -1px;
   border: 1px solid black;
-}
+} */
 
 /* Select Field SVG start */
 .MuiAutocomplete-endAdornment {
@@ -352,12 +358,18 @@ body {
   width: 14px;
   height: 8px;
   background-repeat: no-repeat;
-  margin-top: 0px;
+  margin-top: 11px;
   margin-right: 10px;
+  
 }
 
 .MuiAutocomplete-endAdornment button svg {
   display: none;
 }
+
+
+
+
+
 
 /* Select Field SVG end */

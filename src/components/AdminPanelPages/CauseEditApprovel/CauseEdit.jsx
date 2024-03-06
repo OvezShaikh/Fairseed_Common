@@ -152,7 +152,7 @@ const Campaign = () => {
         checkboxComponent={IndeterminateCheckbox}
         url={`/admin-dashboard/campaign?page=1&limit=4`}
         extraQuery={{ inactive: true }}
-        addButton={<LocationConfigurationDialog />}
+        // addButton={<LocationConfigurationDialog />}
         // addButton={<Button>HElloooooo</Button>}
         selectedRowID={selectedRowID}
       />

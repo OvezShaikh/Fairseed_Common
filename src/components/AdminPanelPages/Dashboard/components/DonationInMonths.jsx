@@ -207,7 +207,8 @@ export default function DonationInMonths() {
           {/* <Bar className='recharts-layer recharts-bar-rectangle rounded' dataKey="pv"  /> */}
           <Bar
             className="w-5"
-            dataKey='uv'
+            dataKey={dataObject?.total_amount}
+            // dataKey='uv'
             shape={(props) => (
               <LinearGradientBar
                 fundRaised={fundRaised}
