@@ -46,7 +46,7 @@ const OngoingCampaigns = () => {
                   </div>
                 </div>
                 <div>
-                  by {item.user.username}/{item.end_date}
+                  by {item?.user?.username}/{item?.end_date}
                 </div>
                 <div className="w-full mt-[11px]">
                   <div className="h-[13px]">

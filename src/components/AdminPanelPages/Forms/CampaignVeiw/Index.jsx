@@ -75,7 +75,7 @@ function Index() {
     });
 
     const { mutate } = useCreateOrUpdate({
-        url: `/user-dashboard/campaign/${id}`,
+        url: `/admin-dashboard/cause-edit/${id}`,
         method: 'put'
     })
 
@@ -90,6 +90,7 @@ function Index() {
         summary: campaign?.summary || '',
         story: campaign?.story || '',
         campaign_image: image || '',
+        approval_status:false
     }
 
     const handleSubmit = (values) => {
@@ -102,6 +103,7 @@ function Index() {
         formData.append('summary', values?.summary)
         formData.append('story', values?.story)
         formData.append('category', values?.category)
+        formData.append('approval_status' , false);
 
         mutate(formData, {
             onSuccess: () => {
@@ -264,6 +266,7 @@ function Index() {
                             <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
                         </button>
                         <SuccessButton type='submit' text={"Save & Approve"} icon={<PiCheckFat className='w-4 h-4 mt-1' />} />
+
                         <PrimaryButton >
                             <h1 className='text-white font-semibold font-[satoshi]'>Reject Modification Request</h1>
                         </PrimaryButton>
