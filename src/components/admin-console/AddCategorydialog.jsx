@@ -13,18 +13,16 @@ import InputField from "../inputs/InputField";
 import CustomSwitch from "../inputs/customSwitch";
 import SelectField from "../inputs/SelectField";
 import { toast } from "react-toastify";
-import InputAdminField from '../inputs/InputAdminField/Index'
-import AdminUploadField from "../inputs/AdminUploadField/Index"
-import RadioGroup from '../inputs/radioGroupAdminPanel'
-
-
+import InputAdminField from "../inputs/InputAdminField/Index";
+import AdminUploadField from "../inputs/AdminUploadField/Index";
+import RadioGroup from "../inputs/radioGroupAdminPanel";
 
 const initialValues = {
   name: "",
   slug: "",
   image: "",
   is_active: false,
-}
+};
 
 export const LocationConfigurationDialog = ({
   isUpdate = false,
@@ -33,39 +31,37 @@ export const LocationConfigurationDialog = ({
   onSuccess,
   onClose,
 }) => {
-
   const { mutate } = useCreateOrUpdate({
-    url: `/admin-dashboard/category`
-  })
+    url: `/admin-dashboard/category`,
+  });
   const queryClient = useQueryClient();
 
   const handleSubmit = (values) => {
     // values.preventDefault();
     const formData = new FormData();
-    formData.append('image', values?.image);
-    formData.append('name', values?.name);
-    formData.append('slug', values?.slug);
-    formData.append('is_active', values?.is_active);
+    formData.append("image", values?.image);
+    formData.append("name", values?.name);
+    formData.append("slug", values?.slug);
+    formData.append("is_active", values?.is_active);
 
     mutate(formData, {
       onSuccess: () => {
         toast.success(" Category Added", {
-          position: 'top-right'
+          position: "top-right",
         });
         queryClient.refetchQueries({
-          queryKey: ['/admin-dashboard/category'],
+          queryKey: ["/admin-dashboard/category"],
           // stale: true,
           exact: false,
           // predicate: (query) => !query?.options?.params?.download,
-        })
-      }
-    })
-  }
-
+        });
+      },
+    });
+  };
 
   return (
     <Dialog
-      title={'Category'}
+      title={"Category"}
       onClose={() => onClose && onClose()}
       button={
         <PrimaryButton
@@ -82,24 +78,29 @@ export const LocationConfigurationDialog = ({
           onSubmit={(values) => handleSubmit(values)}
         >
           {({ setFieldValue }) => (
-
-
-            <Form className='flex flex-col items-center px-4'>
-              <div className='flex w-full gap-4'>
+            <Form className="flex flex-col items-center px-4">
+              <div className="flex w-full gap-4">
                 <div className="w-full">
-                  <InputAdminField name={"name"} label={"Name"} placeholder={"Placeholder Text"} />
+                  <InputAdminField
+                    name={"name"}
+                    label={"Name"}
+                    placeholder={"Placeholder Text"}
+                  />
                 </div>
                 <div className="w-full">
-                  <InputAdminField name={"url"} label={"Slug/URL"} placeholder={"Placeholder Text"} />
+                  <InputAdminField
+                    name={"url"}
+                    label={"Slug/URL"}
+                    placeholder={"Placeholder Text"}
+                  />
                 </div>
-
               </div>
               <div className="flex w-full mt-8 gap-4">
                 <div className="w-full " Style>
                   <AdminUploadField
-                    label='Thumbnail (Optional)'
+                    label="Thumbnail (Optional)"
                     placeholder="Recommended size: 150x50 px (PNG)"
-                    sx={{ padding: '20px' }}
+                    sx={{ padding: "20px" }}
                     multiple={false}
                     name={"image"}
                   />
@@ -108,14 +109,12 @@ export const LocationConfigurationDialog = ({
                   <RadioGroup
                     name={"is_active"}
                     onChange={(e) => {
-                      setFieldValue("is_active", e.target.value);
+                      setFieldValue("is_active", e === "true");
                     }}
                     options={[
                       { label: "Active", value: true },
                       { label: "Inactive", value: false },
                     ]}
-
-
                   />
                 </div>
               </div>
@@ -124,13 +123,17 @@ export const LocationConfigurationDialog = ({
                   onClick={() => {
                     onClose();
                   }}
-                  className='w-[69px] h-[32px] bg-[#F7F7F7]'>
-                  <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
+                  className="w-[69px] h-[32px] bg-[#F7F7F7]"
+                >
+                  <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
+                    Cancel
+                  </h1>
                 </button>
-                <PrimaryButton type='submit' onClick={() => onClose()}>
-                  <h1 className='text-white font-semibold font-[satoshi]'>Save</h1>
+                <PrimaryButton type="submit" onClick={() => onClose()}>
+                  <h1 className="text-white font-semibold font-[satoshi]">
+                    Save
+                  </h1>
                 </PrimaryButton>
-
               </div>
             </Form>
           )}

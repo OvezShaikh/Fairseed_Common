@@ -1,7 +1,7 @@
 import { ErrorMessage, useField, useFormikContext } from "formik";
 import React from "react";
 import { Autocomplete, FormLabel, TextField } from "@mui/material";
-import { makeStyles } from '@mui/styles';
+import { makeStyles } from "@mui/styles";
 import { colors } from "../../../constants/theme";
 
 const useStyles = makeStyles({
@@ -26,7 +26,7 @@ const useStyles = makeStyles({
   root: {
     "& .MuiInputBase-root.MuiOutlinedInput-root": {
       padding: "3px",
-      marginTop: "5px",
+      marginTop: "7px",
     },
     "& .MuiOutlinedInput-notchedOutline": {
       border: `1px solid #e2e2e2`,
@@ -71,11 +71,17 @@ const OperatorSelectField = ({
   ];
 
   return (
-    <div className="pt-2">
+    <div>
       {!noLabel && (
         <FormLabel
-          className="text-capitalize font-medium d-flex align-items-center"
-          sx={{ color: colors.text.main, fontSize: "20px", fontFamily: 'satoshi', height: "22px", fontWeight: 700 }}
+          className="text-capitalize font-medium d-flex align-items-center "
+          sx={{
+            color: colors.text.main,
+            fontSize: "16px",
+            fontFamily: "satoshi",
+            height: "22px",
+            fontWeight: 700,
+          }}
         >
           {configTextfield?.label}{" "}
         </FormLabel>
@@ -84,10 +90,12 @@ const OperatorSelectField = ({
         {...configTextfield}
         value={value}
         sx={{
-          ...sx, width: "100%", "& .MuiFormControl-root .MuiInputBase-root ": {
+          ...sx,
+          width: "100%",
+          "& .MuiFormControl-root .MuiInputBase-root ": {
             height: 50,
             // width: 300
-          }
+          },
         }}
         options={options}
         disabled={disable}

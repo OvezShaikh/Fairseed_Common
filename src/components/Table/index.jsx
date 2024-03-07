@@ -144,14 +144,13 @@ const ReactTable = ({
   const [order, setOrder] = useState();
   const [sortField, setSortField] = useState();
   const [tableColumns, setTableColumns] = useState(columns || []);
-  const [columnOrderArr, setColumnOrderArr] = useState(
-    // JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
-    //   ? JSON.parse(
-    //     JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
-    //       .columnOrder
-    //   )
-    //   : []
-  );
+  const [columnOrderArr, setColumnOrderArr] = useState();
+  // JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
+  //   ? JSON.parse(
+  //     JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
+  //       .columnOrder
+  //   )
+  //   : []
 
   useEffect(() => {
     if (data) {
@@ -211,13 +210,13 @@ const ReactTable = ({
         columnOrder: columnOrderArr,
         hiddenColumns: JSON.parse(localStorage.getItem(`columns-of-${title}`))
           ? JSON.parse(
-            JSON.parse(localStorage.getItem(`columns-of-${title}`))
-              .hiddenColumns
-          )
+              JSON.parse(localStorage.getItem(`columns-of-${title}`))
+                .hiddenColumns
+            )
           : columns.reduce(
-            (prev, curr) => (curr.hidden ? [...prev, curr.accessor] : prev),
-            []
-          ),
+              (prev, curr) => (curr.hidden ? [...prev, curr.accessor] : prev),
+              []
+            ),
       },
 
       ...clientPaginationOptions,
@@ -271,9 +270,6 @@ const ReactTable = ({
   //     }, 500);
   //   }
   // };
-
-
-
 
   useEffect(() => {
     if (pageIndex === 0 && tableData?.length > 0) {
@@ -343,23 +339,23 @@ const ReactTable = ({
     key: url,
     params: manualPagination
       ? {
-        page: pagination.page + 1,
-        limit: pagination.limit,
-        search: search,
-        ...extraQuery,
-        filters: filters?.map((item) => ({
-          column: item?.column?.id,
-          operator: item?.operator?.value,
-          value: Array.isArray(item?.value)
-            ? item?.value?.map(
-              (item) =>
-                item?.mail || item?.userPrincipalName || item?.id || item
-            )
-            : item?.value,
-        })),
-        order,
-        sortField,
-      }
+          page: pagination.page + 1,
+          limit: pagination.limit,
+          search: search,
+          ...extraQuery,
+          filters: filters?.map((item) => ({
+            column: item?.column?.id,
+            operator: item?.operator?.value,
+            value: Array.isArray(item?.value)
+              ? item?.value?.map(
+                  (item) =>
+                    item?.mail || item?.userPrincipalName || item?.id || item
+                )
+              : item?.value,
+          })),
+          order,
+          sortField,
+        }
       : { ...extraQuery },
     enabled: refetchInside || Boolean(queryKey),
     onSuccess(data) {
@@ -428,7 +424,6 @@ const ReactTable = ({
   };
 
   useGetAll({
-
     key: `/admin-dashboard/${title_slug}`,
     enabled: false,
     // enabled: !localStorage.getItem(`columns-of-${title}`),
@@ -467,14 +462,14 @@ const ReactTable = ({
             <div />
           )}
           {!noSearch && showFilter && <div className="border  py-3 mx-3"></div>}
-          {/* {showFilter && (
+          {showFilter && (
             <ApplyFilters
               title={title}
               allColumns={allColumns}
               filters={filters}
               setFilters={setFilters}
             />
-          )} */}
+          )}
         </Grid>
         <Grid
           item
@@ -494,8 +489,11 @@ const ReactTable = ({
             postTableMetaData={postTableMetaData}
             isLoading={mutateLoading}
           />
-          {/* <SecondaryButton
-            onCick={() => localStorage.removeItem(`filters-of-${title_slug}`)}
+          <SecondaryButton
+            onClick={() => {
+              localStorage.removeItem(`filters-of-${title_slug}`);
+              setFilters([]);
+            }}
             startIcon={
               <FilterReset
                 color={colors.primary.dark}
@@ -505,7 +503,7 @@ const ReactTable = ({
             }
           >
             Reset Filters
-          </SecondaryButton> */}
+          </SecondaryButton>
 
           {addButton && <div className="border  py-3 mx-3"></div>}
           {addButton}
@@ -529,8 +527,6 @@ const ReactTable = ({
               <TableRow
                 style={{
                   width: "100%",
-
-
                 }}
                 {...headerGroup.getHeaderGroupProps()}
                 key={headerGroup.id}
@@ -542,25 +538,26 @@ const ReactTable = ({
                     // }}
                     {...column.getHeaderProps({
                       style: {
-                        minWidth: column.minWidth, width: column.width, color: '#484649',
-                        fontSize: '18px',
+                        minWidth: column.minWidth,
+                        width: column.width,
+                        color: "#484649",
+                        fontSize: "18px",
                         // flex: '75 0 auto',
 
                         // flex: 150,
-                        fontFamily: 'satoshi',
-                        height: '77px',
-                        alignItems: 'start',
+                        fontFamily: "satoshi",
+                        height: "77px",
+                        alignItems: "start",
                         fontWeight: 500,
-                        flexDirection: 'column',
-                        padding: '5px 10px 0px 10px',
-                        overflowX: 'hidden'
-
-
-                      }, className: "!max-tablet:text-[5px]",
+                        flexDirection: "column",
+                        padding: "5px 10px 0px 10px",
+                        overflowX: "hidden",
+                      },
+                      className: "!max-tablet:text-[5px]",
                     })}
                     key={column?.id}
-
-                  ><div className="flex">
+                  >
+                    <div className="flex">
                       <div className="pt-1 max-table:w-[10px] overflow-hidden  ">
                         {column.render("Header")}
                       </div>
@@ -571,21 +568,20 @@ const ReactTable = ({
                           sortField={sortField}
                           handleSortingChange={handleSortingChange}
                         />
-
-                      )} </div>
+                      )}{" "}
+                    </div>
                     <div className="pt-2">
                       {column?.search !== false && (
                         <Columnfilter column={column} />
                       )}
                     </div>
 
-
                     <div
                       {...column.getResizerProps()}
-                      className={`resizer ${column.isResizing ? "isResizing" : ""
-                        }`}
+                      className={`resizer ${
+                        column.isResizing ? "isResizing" : ""
+                      }`}
                     />
-
                   </TableCell>
                 ))}
               </TableRow>
@@ -619,12 +615,11 @@ const ReactTable = ({
                               minWidth: cell.column.minWidth,
                               width: cell.column.width,
                               height: rowHeight ? rowHeight : "40px",
-                              color: '#717171',
-                              fontSize: '14px',
+                              color: "#717171",
+                              fontSize: "14px",
                               // flex: 150,
-                              fontFamily: 'satoshi',
+                              fontFamily: "satoshi",
                               fontWeight: 500,
-
                             },
                           })}
                           key={`${cell?.value}${index}`}
@@ -866,7 +861,7 @@ export default ReactTable;
 //       initialState: {
 //         pageIndex: 0,
 //         pageSize: 10,
-   
+
 //         // columnOrder: columnOrderArr,
 //         // hiddenColumns: JSON.parse(localStorage.getItem(`columns-of-${title}`))
 //         //   ? JSON.parse(
@@ -921,7 +916,7 @@ export default ReactTable;
 // if(data.rows){
 //         setTableData(data.rows);
 //       }
-     
+
 //       setCustomPageCount(
 //         data.pages_count
 //       );
@@ -1018,7 +1013,6 @@ export default ReactTable;
 //                 style={{
 //                   width: "100%",
 
-
 //                 }}
 //                 {...headerGroup.getHeaderGroupProps()}
 //                 key={headerGroup.id}
@@ -1043,7 +1037,6 @@ export default ReactTable;
 //                         padding: '5px 10px 0px 10px',
 //                         overflowX: 'hidden'
 
-
 //                       }, className: "!max-tablet:text-[5px]",
 //                     })}
 //                     key={column?.id}
@@ -1061,14 +1054,13 @@ export default ReactTable;
 //                         />
 
 //                       )}  */}
-                      
+
 //                       </div>
 //                     <div className="pt-2">
 //                       {/* {column?.search !== false && (
 //                         <Columnfilter column={column} />
 //                       )} */}
 //                     </div>
-
 
 //                     <div
 //                       {...column.getResizerProps()}
@@ -1148,6 +1140,5 @@ export default ReactTable;
 //       />
 //     </Grid>
 // }
-
 
 // export default ReactTable;
