@@ -1,28 +1,27 @@
 import * as React from "react";
 import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
-import {
-  Bars3Icon,
-
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
-import {
-  ChevronDownIcon,
-
-} from "@heroicons/react/20/solid";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 // import someImage from "../../constants/images";
 // import { OutlineIconName } from "@heroicons/react/outline";
 import PrimaryButton from "../inputs/PrimaryButton";
 import images from "../../constants/images";
-import UserLogin from '../../pages/login/Login_page/Index'
-// import UserLogin from "../../pages/login/Login_page/Index";
-import UserSignUp_02 from "../../pages/login/Sign_Up/Index";
+import UserLogin from "../../pages/login/Login_page/Index";
 import { Link, NavLink } from "react-router-dom";
 import ProfileAvatar from "../../pages/login/ProfileAvatar";
 import { toast } from "react-toastify";
+import MenuItem from "@mui/material/MenuItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import Logout from "@mui/icons-material/Logout";
+import Avatar from "@mui/material/Avatar";
+import Divider from "@mui/material/Divider";
+import Settings from "@mui/icons-material/Settings";
+// import images from "../../constants/images";
+
 const styleButton = {
-  color: 'red'
-}
+  color: "red",
+};
 
 const GetInvolved = [
   {
@@ -35,11 +34,11 @@ const GetInvolved = [
   },
   {
     name: "Internship",
-    href: '/Home/GetInvolved/Internships',
+    href: "/Home/GetInvolved/Internships",
   },
   {
     name: "Create a campaign",
-    href: '/Home/Create-Campaign',
+    href: "/Home/Create-Campaign",
   },
   {
     name: "Support a campaign",
@@ -61,13 +60,12 @@ const OurImpact = [
   },
   {
     name: "Stories of Change",
-    href: '/Home/Impact/StoriesOfChange',
+    href: "/Home/Impact/StoriesOfChange",
   },
   {
     name: "Reports",
-    href: '/Home/Impact/Reports',
+    href: "/Home/Impact/Reports",
   },
-
 ];
 const AboutUs = [
   {
@@ -80,40 +78,51 @@ const AboutUs = [
   },
   {
     name: "Objectives & Values",
-    href: '/Home/About-Us/Objectives-&-values',
+    href: "/Home/About-Us/Objectives-&-values",
   },
-
-
 ];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  // const [isClicked, setIsClicked] = useState(false);
+  function logout() {
+    // Remove the 'token' item from localStorage
+    localStorage.removeItem("token");
+    localStorage.removeItem("user_info");
+    console.log(localStorage.getItem("token"));
+    window.location.href = "/Home";
+    toast.error("Logout Successful !", {
+      position: "top-center",
+    });
+  }
+  let userData = localStorage.getItem("user_info");
+  let Data = JSON.parse(userData);
+  // console.log(Data)
+  let role = Data?.user_role;
+  let image = Data?.profile_pic;
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
-  // const handleButtonClick = () => {
-  //   setIsClicked(!isClicked);
-  // };
-
-  // const buttonStyles = {
-  //   color: isClicked
-  //     ? 'linear-gradient(45deg, #FF9F0A, #FF375F)'
-  //     : '#40444C',
-  // };
-
-
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  let img = `${process.env.REACT_APP_API_URL}` + image;
 
   return (
-    <header className="absolute top-0 left-0 right-0 bg-transparent z-10 container" style={{
-      backgroundColor: '#8EC5FC', backdropFilter: 'blur(10px)'
-    }}>      <nav
-      className="mx-auto flex max-w-9xl max-desktop:px-2 max-tablet:px-0  items-center justify-between p-6 lg:px-8"
-      aria-label="Global"
+    <header
+      className="absolute top-0 left-0 right-0 bg-transparent z-10 container"
+      style={{
+        backgroundColor: "#8EC5FC",
+        backdropFilter: "blur(10px)",
+      }}
     >
+      {" "}
+      <nav
+        className="mx-auto flex max-w-9xl max-desktop:px-2 max-tablet:px-0  items-center justify-between p-6 lg:px-8"
+        aria-label="Global"
+      >
         <div className="flex lg:flex ">
           <NavLink to="/Home">
             {/* <span className="sr-only">FairSeed </span> */}
@@ -133,11 +142,12 @@ export default function Example() {
             </button>
           </div>
           <Popover.Group className="max-nav:hidden lg:flex lg:gap-x-12">
-            <Popover className="relative mt-1" >
-              <Popover.Button className="flex pt-2 nav_button items-center gap-x-1 text-[18px] font-medium font-[satoshi]  text-[#40444C]"
+            <Popover className="relative mt-1">
+              <Popover.Button
+                className="flex pt-2 nav_button items-center gap-x-1 text-[18px] font-medium font-[satoshi]  text-[#40444C]"
                 onclick="this.style.backgroundColor = (this.style.backgroundColor === '#40444C') ? 'blue' : '#40444C';"
-              // style={buttonStyles}
-              // onClick={handleButtonClick}
+                // style={buttonStyles}
+                // onClick={handleButtonClick}
               >
                 Get Involved
                 <svg
@@ -184,7 +194,6 @@ export default function Example() {
                         className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
                         style={{ fontWeight: 400 }}
                       >
-
                         <div className="flex-auto">
                           <NavLink
                             to={item.href}
@@ -193,12 +202,10 @@ export default function Example() {
                             {item.name}
                             <span className="absolute inset-0" />
                           </NavLink>
-
                         </div>
                       </div>
                     ))}
                   </div>
-
                 </Popover.Panel>
               </Transition>
             </Popover>
@@ -251,7 +258,6 @@ export default function Example() {
                         className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
                         style={{ fontWeight: 400 }}
                       >
-
                         <div className="flex-auto">
                           <NavLink
                             to={item.href}
@@ -260,12 +266,10 @@ export default function Example() {
                             {item.name}
                             <span className="absolute inset-0" />
                           </NavLink>
-
                         </div>
                       </div>
                     ))}
                   </div>
-
                 </Popover.Panel>
               </Transition>
             </Popover>
@@ -318,7 +322,6 @@ export default function Example() {
                         className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[Satoshi] text-[#333] hover:bg-gray-50"
                         style={{ fontWeight: 400 }}
                       >
-
                         <div className="flex-auto">
                           <NavLink
                             to={item.href}
@@ -327,44 +330,47 @@ export default function Example() {
                             {item.name}
                             <span className="absolute inset-0" />
                           </NavLink>
-
                         </div>
                       </div>
                     ))}
                   </div>
-
                 </Popover.Panel>
               </Transition>
             </Popover>
             {/* Fourth button */}
 
-            <button
-              className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
-            >How it Works</button>
+            <button className="font-[satoshi] text-[18px] font-medium text-[#40444C]">
+              How it Works
+            </button>
             {/* Fifth button */}
-            {
-              (localStorage.getItem('token')) ? (
-                <PrimaryButton
-                  sx={{ borderRadius: 'var(--Pixels-8, 8px)', fontWeight: 700, fontSize: '18px', padding: '12px 20px', }}>
-                  <NavLink to="/Home/Create-Campaign">
-                    Start a Campaign
-                  </NavLink>
-                </PrimaryButton>
-
-              ) : (
-                <PrimaryButton
-                  onClick={() => {
-                    toast.error("please login First !!! ", {
-                      position: 'top-center'
-                    })
-                  }}
-                  sx={{ borderRadius: 'var(--Pixels-8, 8px)', fontWeight: 700, fontSize: '18px', padding: '12px 20px', }}>
-                  Start a Campaign
-                </PrimaryButton>
-
-              )
-            }
-
+            {localStorage.getItem("token") ? (
+              <PrimaryButton
+                sx={{
+                  borderRadius: "var(--Pixels-8, 8px)",
+                  fontWeight: 700,
+                  fontSize: "18px",
+                  padding: "12px 20px",
+                }}
+              >
+                <NavLink to="/Home/Create-Campaign">Start a Campaign</NavLink>
+              </PrimaryButton>
+            ) : (
+              <PrimaryButton
+                onClick={() => {
+                  toast.error("please login First !!! ", {
+                    position: "top-center",
+                  });
+                }}
+                sx={{
+                  borderRadius: "var(--Pixels-8, 8px)",
+                  fontWeight: 700,
+                  fontSize: "18px",
+                  padding: "12px 20px",
+                }}
+              >
+                Start a Campaign
+              </PrimaryButton>
+            )}
 
             <div className="flex space-x-8">
               <button className=" text-black bg-transparent rounded-full ">
@@ -383,32 +389,29 @@ export default function Example() {
                   />
                 </svg>
               </button>
-              {
-                (localStorage.getItem('token')) ?
-                  (<ProfileAvatar />)
-                  : (<button
-                    className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
-                  >
-                    <UserLogin />
-                  </button>)
-              }
-
-
+              {localStorage.getItem("token") ? (
+                <ProfileAvatar />
+              ) : (
+                <button className="font-[satoshi] text-[18px] font-medium text-[#40444C]">
+                  <UserLogin />
+                </button>
+              )}
             </div>
           </Popover.Group>
         </div>
       </nav>
-      <Dialog as="div" className="xl:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+      <Dialog
+        as="div"
+        className="xl:hidden"
+        open={mobileMenuOpen}
+        onClose={setMobileMenuOpen}
+      >
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <Link to="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto"
-                src={images.Logo}
-                alt=""
-              />
+              <img className="h-8 w-auto" src={images.Logo} alt="" />
             </Link>
             <button
               type="button"
@@ -425,10 +428,17 @@ export default function Example() {
                 <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
+                      <Disclosure.Button
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                          open ? " text-red-400" : ""
+                        }`}
+                      >
                         Get Involved
                         <ChevronDownIcon
-                          className={classNames(open ? 'rotate-180' : '', 'h-6 w-6 flex-none')}
+                          className={classNames(
+                            open ? "rotate-180" : "",
+                            "h-6 w-6 flex-none"
+                          )}
                           aria-hidden="true"
                         />
                       </Disclosure.Button>
@@ -450,10 +460,17 @@ export default function Example() {
                 <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
+                      <Disclosure.Button
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                          open ? " text-red-400" : ""
+                        }`}
+                      >
                         Our Impact
                         <ChevronDownIcon
-                          className={classNames(open ? 'rotate-180' : '', 'h-6 w-6 flex-none')}
+                          className={classNames(
+                            open ? "rotate-180" : "",
+                            "h-6 w-6 flex-none"
+                          )}
                           aria-hidden="true"
                         />
                       </Disclosure.Button>
@@ -476,10 +493,17 @@ export default function Example() {
                 <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
+                      <Disclosure.Button
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                          open ? " text-red-400" : ""
+                        }`}
+                      >
                         About Us
                         <ChevronDownIcon
-                          className={classNames(open ? 'rotate-180' : '', 'h-6 w-6 flex-none')}
+                          className={classNames(
+                            open ? "rotate-180" : "",
+                            "h-6 w-6 flex-none"
+                          )}
                           aria-hidden="true"
                         />
                       </Disclosure.Button>
@@ -498,29 +522,67 @@ export default function Example() {
                     </>
                   )}
                 </Disclosure>
-                <Link to={'/Home/How-It-Works'}
+                <Link
+                  to={"/Home/How-It-Works"}
                   className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[20px]  max-tablet:text-[18px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   How It works
                 </Link>
               </div>
               <div className="py-6">
+                {localStorage.getItem("token") ? (
+                  <>
+                    {role === "Admin" && (
+                      <>
+                        <MenuItem onClick={handleClose}>
+                          <Link to="/AdminPanel">
+                            <ListItemIcon>
+                              <Avatar src={img} />
+                            </ListItemIcon>
+                            AdminPanel
+                          </Link>
+                        </MenuItem>
+                        <Divider />
+                      </>
+                    )}
 
-                {
-                  (localStorage.getItem('token')) ?
-                    (<ProfileAvatar />)
-                    : (<Link to='/Home/Login'><button
-                      className="font-[satoshi] text-[22px] font-medium text-[#40444C]"
-                    >
+                    <MenuItem onClick={handleClose}>
+                      <Link to={"/User"}>
+                        <ListItemIcon>
+                          <img src={images.Dashboard} alt="" />
+                        </ListItemIcon>
+                        Dashboard
+                      </Link>
+                    </MenuItem>
+
+                    <MenuItem onClick={handleClose}>
+                      <Link to={"/account-settings"}>
+                        <ListItemIcon>
+                          <Settings fontSize="small" />
+                        </ListItemIcon>
+                        Settings
+                      </Link>
+                    </MenuItem>
+
+                    <MenuItem onClick={handleClose}>
+                      <ListItemIcon>
+                        <Logout fontSize="small" />
+                      </ListItemIcon>
+                      <button onClick={() => logout()}>Logout</button>
+                    </MenuItem>
+                  </>
+                ) : (
+                  <Link to="/Home/Login">
+                    <button className="font-[satoshi] text-[22px] font-medium text-[#40444C]">
                       Log In
-                    </button></Link>)
-                }
+                    </button>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
         </Dialog.Panel>
       </Dialog>
-
-    </header >
+    </header>
   );
 }

@@ -15,7 +15,6 @@ const Campaign = () => {
   let Data = JSON.parse(userData);
   let id = Data?.id;
   const [selectedRowID, setSelectedRowID] = useState(null);
-
   const getStatusCellStyle = (status) => {
     // let { state } = useLocation(); let { id } = state
     if (status === "Pending") {
@@ -121,17 +120,15 @@ const Campaign = () => {
       Header: "Actions",
       accessor: "actions",
 
-      nofilter: true,
       minWidth: 100,
       width: 100,
+
       Cell: ({ row }) => {
         return (
-          <div className="flex items-center justify-center pl-6 max-desktop:pl-0 max-tablet:pl-0">
+          <div className="flex items-center gap-2 justify-center pl-6 max-desktop:pl-0 max-tablet:pl-0">
             <Link to="Edit" state={{ id: row?.id }}>
               <SecondaryButton sx={{ height: "30px" }}>Edit</SecondaryButton>
             </Link>
-            {/* <SecondaryButton sx={{ height: '30px' }}>Finalize your Campaign</SecondaryButton> */}
-            {/* <SecondaryButton sx={{ height: '30px' }}>Edit Bank and KYC</SecondaryButton> */}
           </div>
         );
       },

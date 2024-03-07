@@ -20,7 +20,6 @@ const Avatar = ({img}) => {
           src={img}
           alt=""
         />
-        {/* <Button onClick={() => setdialogs(true)}>dialog</Button> */}
         <Dialog
           visible={dialogs}
           header={() => (

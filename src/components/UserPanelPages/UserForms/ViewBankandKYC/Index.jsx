@@ -76,18 +76,20 @@ function Index() {
                         <div className="flex justify-between w-[50%]     max-desktop:w-full max-tablet:flex-col max-tablet:gap-3">
 
                             <div className="w-[49%] max-tablet:w-full">
-                                <InputField name={"id"} label={"ID:"} values={values?.id} placeholder={'Placeholder Text'} />
+                                <InputField name={"id"} label={"ID:"} disabled={'true'} values={values?.id} placeholder={'Placeholder Text'} />
                             </div>
                             <div className="w-[49%] max-tablet:w-full">
-                                <SelectField name={"Donation"} label={"Raised for others:"} placeholder={'Placeholder Text'} />
+                                <SelectField name={"Donation"} disable label={"Raised for others:"} placeholder={'Placeholder Text'}
+
+                                />
                             </div>
                         </div>
                         <div className="flex justify-between w-[50%] max-desktop:w-full max-tablet:flex-col max-tablet:gap-3">
                             <div className="w-[49%] max-tablet:w-full">
-                                <InputField name={"account_holder_name"} label={"Beneficiary Name:"} value={values?.account_holder_name} placeholder={'Placeholder Text'} />
+                                <InputField name={"account_holder_name"} disabled={'true'} label={"Beneficiary Name:"} value={values?.account_holder_name} placeholder={'Placeholder Text'} />
                             </div>
                             <div className="w-[49%] max-tablet:w-full">
-                                <InputField name={"account_number"} label={"Account No.:"} value={values?.account_number} placeholder={'Placeholder Text'} />
+                                <InputField name={"account_number"} disabled={'true'} label={"Account No.:"} value={values?.account_number} placeholder={'Placeholder Text'} />
                             </div>
                         </div>
                     </div>
@@ -95,19 +97,19 @@ function Index() {
                         <div className="flex justify-between w-[50%] max-desktop:w-full max-tablet:flex-col max-tablet:gap-3">
 
                             <div className="w-[49%] max-tablet:w-full">
-                                <InputField name={"bank_name"} label={"Bank Name:"} value={values?.bank_name} placeholder={'Placeholder Text'} />
+                                <InputField name={"bank_name"} disabled={'true'} label={"Bank Name:"} value={values?.bank_name} placeholder={'Placeholder Text'} />
                             </div>
                             <div className="w-[49%] max-tablet:w-full">
-                                <InputField name={"branch_name"} label={"Branch Name:"} value={values?.branch_name} placeholder={'Placeholder Text'} />
+                                <InputField name={"branch_name"} disabled={'true'} label={"Branch Name:"} value={values?.branch_name} placeholder={'Placeholder Text'} />
                             </div>
                         </div>
                         <div className="flex justify-between w-[50%] max-desktop:w-full max-tablet:flex-col max-tablet:gap-3">
 
                             <div className="w-[49%] max-tablet:w-full">
-                                <InputField name={"ifsc_code"} label={"IFSC:"} value={values?.ifsc_code} placeholder={'Placeholder Text'} />
+                                <InputField name={"ifsc_code"} disabled={'true'} label={"IFSC:"} value={values?.ifsc_code} placeholder={'Placeholder Text'} />
                             </div>
                             <div className="w-[49%] max-tablet:w-full">
-                                <InputField name={"pan_card"} label={"PAN Card:"} value={values?.pan_card} placeholder={'Placeholder Text'} />
+                                <InputField name={"pan_card"} disabled={'true'} label={"PAN Card:"} value={values?.pan_card} placeholder={'Placeholder Text'} />
                             </div>
                         </div>
 
@@ -117,22 +119,25 @@ function Index() {
                     <div className="flex max-desktop:flex-col max-tablet:flex-col w-full gap-3">
                         <div className="flex justify-between w-[50%] max-desktop:w-full max-tablet:flex-col max-tablet:gap-3">
                             <div className="w-[49%] max-tablet:w-full">
-                                <InputField name={"adhar_card"} label={"Aadhar Card:"} value={values?.adhar_card} placeholder={'Placeholder Text'} />
+                                <InputField name={"adhar_card"} disabled={'true'} label={"Aadhar Card:"} value={values?.adhar_card} placeholder={'Placeholder Text'} />
 
                             </div>
                             <div className="w-[49%] max-tablet:w-full">
-                                <InputField name={"other_details"} label={"Other Details"} value={values?.other_details} placeholder={'Placeholder Text'} />
+                                <InputField name={"other_details"} disabled={'true'} label={"Other Details"} value={values?.other_details} placeholder={'Placeholder Text'} />
                             </div>
                         </div>
                         <div className="flex  justify-between w-[50%] max-desktop:w-full max-tablet:flex-col max-tablet:gap-3">
 
 
                             <div className="w-[49%] max-tablet:w-full">
-                                <SelectField name={"status"} label={"Status:"} value={values?.status} placeholder={'Placeholder Text'} />
+                                <SelectField name={"status"} disable label={"Status:"} value={values?.status} placeholder={'Placeholder Text'}
+
+                                />
                             </div>
                             <div className="w-[49%] max-tablet:w-full">
                                 <InputField
                                     type="date"
+                                    disabled={'true'}
                                     value={values?.updated_on}
                                     name="updated_on"
                                     inputProps={{ min: moment().format('YYYY-MM-DD') }}

@@ -167,6 +167,7 @@ const SelectField = ({
                             variant="outlined"
                             {...props}
                             onChange={onChangeInner}
+                            disabled={disable}
                             // onChange={(e) => {
                             //   props?.onChange && props?.onChange(e);
                             //   onInputChange && onInputChange(e);

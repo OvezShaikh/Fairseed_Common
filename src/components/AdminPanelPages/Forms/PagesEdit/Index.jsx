@@ -71,7 +71,7 @@ function Index() {
     >
       {({ handleChange, setFieldValue, values }) => (
         <Form className="flex flex-col items-center">
-          <div className="flex w-full max-tablet:flex-col gap-4">
+          <div className="flex w-full max-tablet:flex-col gap-4 max-tablet:pt-4 max-desktop:pt-4">
             <div className="w-full">
               <InputAdminField
                 label={"Title"}
@@ -91,7 +91,7 @@ function Index() {
               />
             </div>
           </div>
-          <div className="flex gap-32 w-full pt-8 max-tablet:flex-col">
+          <div className="flex gap-32 w-full pt-8 max-tablet:flex-col max-tablet:gap-0">
             <div className="  lg:w-[25%] ">
               <RadioGroup
 
@@ -155,7 +155,7 @@ function Index() {
               onChange={(value) => setFieldValue("content", value)}
             />
           </div>
-          <div className="flex flex-row gap-4 mt-12">
+          <div className="flex flex-row gap-4 mt-12 max-tablet:mt-16">
             <button
               className="w-[69px] h-[32px] bg-[#F7F7F7]"
               onClick={() => navigate(-1)}
