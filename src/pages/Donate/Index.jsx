@@ -121,7 +121,7 @@ function Index({
 
 
     const inititalValues = {
-        // campaign: cardDetails?.id || '',
+        campaign: cardDetails?.id ,
         donation_type: '',
         full_name: '',
         amount: '',
@@ -134,6 +134,7 @@ function Index({
         payment_type: '',
         is_anonymous: false,
     }
+    console.log(inititalValues , '+++++++++')
 
     return (
         <>
@@ -151,7 +152,6 @@ function Index({
                                     <div className='donation-type-div'>
                                         <SelectField
                                             label={"Donation Type:"}
-                                            placeholder={"General Donation"}
                                             options={[
                                                 { label: "General Donation    ", value: "General_Donation" },
                                                 { label: "Zakat", value: "Zakat" },
@@ -192,7 +192,7 @@ function Index({
                                         <div className="w-[50%] p-0 max-tablet:w-full max-tablet:mb-0 city-mobile">
                                             <InputField
                                                 label={"City:"}
-                                                name={"City"}
+                                                name={"city"}
                                                 sx={InputStyle}
                                             />
 
@@ -444,18 +444,7 @@ function Index({
                             </div>
                         </div>
                     </div>
-                    {/* <div className="flex justify-center gap-3">
-                        <SecondaryButton
-                             onClick={() => navigate(-2)}
-                            sx={styleSecondaryButton}
-                        >
-                            Back
-                        </SecondaryButton>
-
-                        <PrimaryButton type='submit' sx={stylePrimaryButton}>
-                            Donate
-                        </PrimaryButton>
-                    </div> */}
+                   
                 </div>
             </div >
             <Footer />

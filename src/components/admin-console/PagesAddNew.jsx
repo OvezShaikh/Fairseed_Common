@@ -7,12 +7,11 @@ import { useQueryClient } from "react-query";
 import { Dialog } from "../layout/dialogBox/dialog";
 import { useCreateOrUpdate } from "../../Hooks/useCreateOrUpdate";
 import PrimaryButton from "../inputs/PrimaryButton";
-import InputAdminField from "../inputs/InputAdminField/Index"
-import RadioGroup from '../inputs/radioGroupAdminPanel'
-import ReactQuilTextField from "../inputs/ReactQuilTextField/Index"
-import { FormLabel } from '@mui/material'
+import InputAdminField from "../inputs/InputAdminField/Index";
+import RadioGroup from "../inputs/radioGroupAdminPanel";
+import ReactQuilTextField from "../inputs/ReactQuilTextField/Index";
+import { FormLabel } from "@mui/material";
 import { toast } from "react-toastify";
-
 
 export const PagesAddNew = ({
   isUpdate = false,
@@ -29,17 +28,14 @@ export const PagesAddNew = ({
     color: "#383A42",
   };
 
-
   const initialValues = {
     title: "",
     slug: "",
     show_navbar: false,
     show_footer: false,
     show_page: false,
-    content: ""
-
-
-  }
+    content: "",
+  };
   const validationSchema = yup.object().shape({
     title: yup.string().required("Title is required"),
     slug: yup.string().required("Slug/URL is required"),
@@ -50,8 +46,8 @@ export const PagesAddNew = ({
   });
 
   const { mutate } = useCreateOrUpdate({
-    url: `/admin-dashboard/pages`
-  })
+    url: `/admin-dashboard/pages`,
+  });
   // const { mutate, isLoading } = useCreateOrUpdate({
   //   url: isUpdate ? `/admin/tooltip/${data?.id}` : "/admin/tooltip",
   //   method: isUpdate ? "put" : "post",
@@ -98,45 +94,51 @@ export const PagesAddNew = ({
           onSubmit={(values) => {
             mutate(values, {
               onSuccess: (response) => {
-                toast.success('Page create successfully', { position: 'top-right' });
+                toast.success("Page create successfully", {
+                  position: "top-right",
+                });
                 queryClient.refetchQueries({
-                  queryKey: ['/admin-dashboard/pages'],
+                  queryKey: ["/admin-dashboard/pages"],
                   // stale: true,
                   exact: false,
                   // predicate: (query) => !query?.options?.params?.download,
-                })
-                onClose()
+                });
+                onClose();
                 // console.log(response);imageUrl
                 // Handle successful API response here
               },
               onError: () => {
-                toast.error('Somthing is wrong please try again later', { position: 'top-right' })
-              }
-
+                toast.error("Somthing is wrong please try again later", {
+                  position: "top-right",
+                });
+              },
             });
           }}
-
-
         >
           {({ setFieldValue, values, errors, touched }) => (
-
-            <Form className='flex flex-col items-center px-4'>
-              <div className='flex w-full gap-4'>
-
+            <Form className="flex flex-col items-center px-4">
+              <div className="flex w-full gap-4 max-desktop:flex-col max-tablet:flex-col">
                 <div className="w-full">
-                  <InputAdminField label={"Title"} name={"title"} placeholder={"Placeholder Text"} />
+                  <InputAdminField
+                    label={"Title"}
+                    name={"title"}
+                    placeholder={"Placeholder Text"}
+                  />
                 </div>
                 <div className="w-full">
-                  <InputAdminField label={"Slug/URL"} name={"slug"} placeholder={"Placeholder Text"} />
+                  <InputAdminField
+                    label={"Slug/URL"}
+                    name={"slug"}
+                    placeholder={"Placeholder Text"}
+                  />
                 </div>
-
               </div>
               <div className="flex gap-32 w-full pt-8 max-tablet:flex-col max-tablet:gap-4">
                 <div className="  lg:w-[25%] ">
                   <RadioGroup
                     name={"show_navbar"}
                     onChange={(e) => {
-                      setFieldValue('show_navbar', e.target.value)
+                      setFieldValue("show_navbar", e.target.value);
                     }}
                     options={[
                       { label: "On", value: true },
@@ -144,13 +146,15 @@ export const PagesAddNew = ({
                     ]}
                     label="Show Navbar"
                   />
-                  {errors.show_navbar && touched.show_navbar && <div className="error">{errors.show_navbar}</div>}
+                  {errors.show_navbar && touched.show_navbar && (
+                    <div className="error">{errors.show_navbar}</div>
+                  )}
                 </div>
                 <div className="lg:w-[25%]">
                   <RadioGroup
                     name={"show_footer"}
                     onChange={(e) => {
-                      setFieldValue('show_footer', e.target.value)
+                      setFieldValue("show_footer", e.target.value);
                     }}
                     options={[
                       { label: "On", value: true },
@@ -158,12 +162,14 @@ export const PagesAddNew = ({
                     ]}
                     label="Show Footer"
                   />
-                  {errors.show_footer && touched.show_footer && <div className="error">{errors.show_footer}</div>}
+                  {errors.show_footer && touched.show_footer && (
+                    <div className="error">{errors.show_footer}</div>
+                  )}
                 </div>
                 <div className=" lg:w-[25%] ">
                   <RadioGroup
                     onChange={(e) => {
-                      setFieldValue('show_page', e.target.value)
+                      setFieldValue("show_page", e.target.value);
                     }}
                     name={"show_page"}
                     options={[
@@ -172,7 +178,9 @@ export const PagesAddNew = ({
                     ]}
                     label="Show Page"
                   />
-                  {errors.show_page && touched.show_page && <div className="error">{errors.show_page}</div>}
+                  {errors.show_page && touched.show_page && (
+                    <div className="error">{errors.show_page}</div>
+                  )}
                 </div>
               </div>
               <div className="pt-7 mb-5 h-[300px] w-full">
@@ -180,32 +188,32 @@ export const PagesAddNew = ({
                 {/* <TextEditor  /> */}
                 <ReactQuilTextField
                   theme="snow"
-                  name={'content'}
+                  name={"content"}
                   value={values.content}
-
                   placeholder="Summarize in 100 words max."
-                  style={{ '& .ql-editor': { minHeight: '50px' } }}
-                  onChange={(value) => setFieldValue('content', value)}
-
+                  style={{ "& .ql-editor": { minHeight: "50px" } }}
+                  onChange={(value) => setFieldValue("content", value)}
                 />
               </div>
-              <div className="flex flex-row gap-4 mt-12">
-                <button className='w-[69px] h-[32px] bg-[#F7F7F7]'
+              <div className="flex flex-row gap-4 mt-12 max-tablet:mt-16">
+                <button
+                  className="w-[69px] h-[32px] bg-[#F7F7F7]"
                   onClick={() => onClose()}
                 >
-                  <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
+                  <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
+                    Cancel
+                  </h1>
                 </button>
-                <PrimaryButton type='submit'>
-                  <h1 className='text-white font-semibold font-[satoshi]'>Save</h1>
+                <PrimaryButton type="submit">
+                  <h1 className="text-white font-semibold font-[satoshi]">
+                    Save
+                  </h1>
                 </PrimaryButton>
-
               </div>
             </Form>
           )}
-
         </Formik>
-      )
-      }
-    </Dialog >
+      )}
+    </Dialog>
   );
 };
