@@ -101,6 +101,8 @@ function App() {
       setPage(data);
     },
   });
+
+  console.log(page, "<=====paggegegeg");
   return (
     <div className="container p-0">
       {/* <OnGoingCampaigns/> */}
@@ -209,8 +211,8 @@ function App() {
             path="/adminpanellandingpage"
             element={<AdminPanelLandingPage />}
           />
-          <Route path="/page/:slug" element={<AdminPanelLandingPage />} />
-          {page?.map((item) => {
+          <Route path="/Home/page/:slug" element={<AddPages />} />
+          {/* {page?.map((item) => {
             return (
               <Route
                 path={item.slug}
@@ -224,7 +226,7 @@ function App() {
                 }
               />
             );
-          })}
+          })} */}
         </Routes>
       </BrowserRouter>
     </div>

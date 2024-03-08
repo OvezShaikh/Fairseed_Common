@@ -95,17 +95,13 @@ export default function Example() {
       position: "top-center",
     });
   }
-  const [page, setPage] = useState([]);
-  useGetAll({
+  const { data: page } = useGetAll({
     key: `/admin-dashboard/pages?page=4&limit=8`,
     enabled: true,
-
     select: (data) => {
-      return data.data.rows;
+      return data.data.rows?.filter((item) => item?.show_page);
     },
-    onSuccess: (data) => {
-      setPage(data);
-    },
+    onSuccess: (data) => {},
   });
   const [showSearch, setShowSearch] = useState(false);
 
@@ -245,7 +241,7 @@ export default function Example() {
               </Transition>
             </Popover>
 
-            {/* <Popover className="relative mt-1">
+            <Popover className="relative mt-1">
               <Popover.Button
                 className="flex pt-2 nav_button items-center gap-x-1 text-[18px] font-medium font-[satoshi]  text-[#40444C]"
                 onclick="this.style.backgroundColor = (this.style.backgroundColor === '#40444C') ? 'blue' : '#40444C';"
@@ -296,7 +292,8 @@ export default function Example() {
                       >
                         <div className="flex-auto">
                           <NavLink
-                            to={item.slug}
+                            // to={item.slug}
+                            to={`/Home/page/${item?.slug}`}
                             className="block font-semibold text-gray-900"
                           >
                             {item.title}
@@ -308,7 +305,7 @@ export default function Example() {
                   </div>
                 </Popover.Panel>
               </Transition>
-            </Popover> */}
+            </Popover>
             {/*  second button */}
 
             <Popover className="relative mt-1">
