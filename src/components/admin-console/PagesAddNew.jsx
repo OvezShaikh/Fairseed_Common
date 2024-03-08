@@ -138,7 +138,7 @@ export const PagesAddNew = ({
                   <RadioGroup
                     name={"show_navbar"}
                     onChange={(e) => {
-                      setFieldValue("show_navbar", e.target.value);
+                      setFieldValue("show_navbar", e === 'true');
                     }}
                     options={[
                       { label: "On", value: true },
@@ -154,7 +154,7 @@ export const PagesAddNew = ({
                   <RadioGroup
                     name={"show_footer"}
                     onChange={(e) => {
-                      setFieldValue("show_footer", e.target.value);
+                      setFieldValue("show_footer", e === 'true');
                     }}
                     options={[
                       { label: "On", value: true },
@@ -169,7 +169,7 @@ export const PagesAddNew = ({
                 <div className=" lg:w-[25%] ">
                   <RadioGroup
                     onChange={(e) => {
-                      setFieldValue("show_page", e.target.value);
+                      setFieldValue("show_page", e === 'true');
                     }}
                     name={"show_page"}
                     options={[
