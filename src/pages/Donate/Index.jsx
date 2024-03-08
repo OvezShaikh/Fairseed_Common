@@ -84,7 +84,7 @@ function Index({
     const { pathname } = useLocation();
     const { id } = useParams();
     const [cardDetails, setCardDetails] = useState(null);
-    const [selectedPaymentGateway, setSelectedPaymentGateway] = useState(null);
+    const [selectedPaymentGateway, setSelectedPaymentGateway] = useState("");
 
 
     useEffect(() => {
@@ -239,9 +239,8 @@ function Index({
                                             label={"Payment Gateway:"}
                                             options={[
                                                 { label: "BANK TRANSFER ", value: "Bank_Transfer" },
-                                                { label: "UPI /Credit Card  ", value: "UPI" },
+                                                { label: "Pay via Credit Card/Debit Card/Net Banking/UPI /QR Code ", value: "UPI" },
                                             ]}
-                                           
                                             name={"payment_type"}
                                             sx={SelectStyle}
 
