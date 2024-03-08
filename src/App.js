@@ -37,6 +37,7 @@ import Donate from "./pages/Donate/Index";
 import AdminPanelLandingPage from "./components/AdminPanelPages/AdminPanelLandingPage/Index";
 import Dashboard from "./components/layout/DashBoard";
 import UserPage from "./pages/User Page/User_page";
+import AddPages from "./pages/AboutUs/AddPages/Index";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -48,6 +49,45 @@ function ScrollToTop() {
   return null;
 }
 function App() {
+  let page = [
+    {
+      slug: "/Home/Zaid",
+      img: "sdsds",
+      title: "Zaid",
+      content:
+        "adsfiudshudhfkjdsnnncdsfoidhfoidshfdshfkdsklnflkdsnfjdshfuidshfiuhdsffdshfkjdsh",
+      footer: true,
+      navbar: true,
+    },
+    {
+      slug: "/Home/Hammad",
+      img: "sdsds",
+      title: "Hammad",
+      content:
+        "adsfiudshudhfkjdsnnncdsfoidhfoidshfdshfkdsklnflkdsnfjdshfuidshfiuhdsffdshfkjdsh",
+
+      footer: true,
+      navbar: false,
+    },
+    {
+      slug: "/Home/Azhar",
+      img: "https://images.pexels.com/photos/20141058/pexels-photo-20141058/free-photo-of-a-white-church-on-a-cliff-overlooking-the-ocean.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+      title: "azhar",
+      content:
+        "adsfiudshudhfkjdsnnncdsfoidhfoidshfdshfkdsklnflkdsnfjdshfuidshfiuhdsffdshfkjdsh",
+      footer: false,
+      navbar: true,
+    },
+    {
+      slug: "/Home/Rehaan",
+      img: "sdsds",
+      title: "rehaan",
+      content:
+        "adsfiudshudhfkjdsnnncdsfoidhfoidshfdshfkdsklnflkdsnfjdshfuidshfiuhdsffdshfkjdsh",
+      footer: false,
+      navbar: false,
+    },
+  ];
   return (
     <div className="container p-0">
       {/* <OnGoingCampaigns/> */}
@@ -156,6 +196,24 @@ function App() {
             path="/adminpanellandingpage"
             element={<AdminPanelLandingPage />}
           />
+          {page.map((item) => {
+            console.log(item?.slug, "==========>slug");
+
+            return (
+              <Route
+                path={item.slug}
+                element={
+                  <AddPages
+                    footer={item.footer}
+                    navbar={item.navbar}
+                    title={item.title}
+                    img={item.img}
+                    content={item.content}
+                  />
+                }
+              />
+            );
+          })}
         </Routes>
       </BrowserRouter>
     </div>
@@ -163,10 +221,3 @@ function App() {
 }
 
 export default App;
-{
-  /* <Route path='/Home/CurrentCampaign' element={<CurrentCampaign/>}/> */
-}
-
-{
-  /* <Route path='/Home/ReligiousEducationCampaigns/:id' element={<ReligiousEducationCampaigns/>}/>  */
-}

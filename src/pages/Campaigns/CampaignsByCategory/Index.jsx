@@ -12,11 +12,9 @@ import CountrySelect from "../../../components/inputs/countrySelect";
 import OptionsButton from "../../../components/inputs/OptionsButton/Index";
 import NoCampaign from "./NoCampaign";
 import FilterField from "../../../components/inputs/FilterField/Index";
-import ScrollbleTabsButtonForce from '../../../components/layout/ScrollableTabsButtonAuto'
+import ScrollbleTabsButtonForce from "../../../components/layout/ScrollableTabsButtonAuto";
 import "./CampaignsByCategory.css";
 import ScrollableTabsButtonForce from "../../../components/layout/ScrollableTabsButtonAuto";
-
-
 
 function Index() {
   const { id } = useParams();
@@ -29,59 +27,44 @@ function Index() {
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
 
-
   const [showOptions, setShowOptions] = useState(false);
 
-
-  const [categoryDataFromChild, setCategoryDataFromChild] = useState('');
-  const [locationDataFromChild, setLocationDataFromChild] = useState('');
-
+  const [categoryDataFromChild, setCategoryDataFromChild] = useState("");
+  const [locationDataFromChild, setLocationDataFromChild] = useState("");
 
   const filterToggle = () => {
-
     setShowOptions(!showOptions);
   };
 
-
   const receiveCategoryFromChild = (categoryData) => {
-
-
-
     console.log("DATA FROM CHILD Category ", categoryData);
     setCategoryDataFromChild(categoryData);
-
-
   };
 
   const receiveLocationFromChild = (locationData) => {
-
-
-
     console.log("DATA FROM CHILD Location ", locationData);
     setLocationDataFromChild(locationData);
-
-
   };
-
 
   const filteredUserList = Array.from(
     new Set(
-      categoryCampaignList.filter((item) => {
+      categoryCampaignList
+        .filter((item) => {
+          const isDataMatch =
+            (categoryDataFromChild.length === 0 &&
+              locationDataFromChild.length === 0) ||
+            (categoryDataFromChild.includes(item.category.name) &&
+              locationDataFromChild.length === 0) ||
+            (locationDataFromChild.includes(item.location) &&
+              categoryDataFromChild.length === 0) ||
+            (categoryDataFromChild.includes(item.category.name) &&
+              locationDataFromChild.includes(item.location));
 
-
-
-
-
-
-
-        const isDataMatch = (((categoryDataFromChild.length === 0) && (locationDataFromChild.length === 0)) || ((categoryDataFromChild.includes(item.category.name)) && (locationDataFromChild.length === 0))) || (((locationDataFromChild.includes(item.location)) && (categoryDataFromChild.length === 0))) || ((categoryDataFromChild.includes(item.category.name)) && (locationDataFromChild.includes(item.location)));
-
-        return isDataMatch;
-      }).map((item) => item.id)
+          return isDataMatch;
+        })
+        .map((item) => item.id)
     )
   ).map((id) => categoryCampaignList.find((item) => item.id === id));
-
-
 
   const fetchUserList = async () => {
     try {
@@ -97,7 +80,6 @@ function Index() {
         setTotalPages(res.pages_count);
         setUserList([...userList, ...res.rows]);
         setData(res.rows);
-
       }
       //  else {
       //   console.error("Invalid data structure. Expected an array:");
@@ -124,7 +106,7 @@ function Index() {
       console.error("Invalid data structure. Expected an array:", res.data);
     }
     // console.log(res.data.rows);
-    // setCategoryCampaignList(res.data.rows)   
+    // setCategoryCampaignList(res.data.rows)
   };
   useEffect(() => {
     fetchCategoryDetail();
@@ -140,56 +122,42 @@ function Index() {
         />
 
         <div className="mx-auto max-w-[91%] flex max-desktop:flex-col max-desktop:gap-y-[48px] max-desktop:items-end max-tablet:gap-y-[20px] mt-[50px]">
-
           <ScrollableTabsButtonForce />
           <button
             className="flex items-center ml-2 px-3 py-1.5 max-w-[115px] gap-x-[12px] max-desktop:px-[20px] max-desktop:py-[17px] max-tablet:py-[6px]"
             style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
-
             onClick={filterToggle}
-
           >
-            <img src={images.Funnel} />
+            <img src={images.Funnel} alt="" />
             {/* <img src={images.Filter} /> */}
-            <p className="text-[18px]" style={{
-              background:
-                "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
-              "-webkit-background-clip": "text",
-              "-webkit-text-fill-color": "transparent",
-              "font-family": 'Satoshi',
-              "font-weight": "700",
-            }
-            }>Filter</p>
+            <p
+              className="text-[18px]"
+              style={{
+                background:
+                  "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+                "-webkit-background-clip": "text",
+                "-webkit-text-fill-color": "transparent",
+                "font-family": "Satoshi",
+                "font-weight": "700",
+              }}
+            >
+              Filter
+            </p>
           </button>
         </div>
 
-
         <div className="flex flex-col justify-center  pt-[50px] px-[10px] items-center max-desktop:pt-[20px]">
           {categoryCampaignList?.length > 0 ? (
-            <div className="flex flex-col justify-center items-center " >
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <div className="flex flex-col justify-center items-center ">
               <div id="filter-location">
                 {showOptions && (
-
-                  <FilterField sendCategoryToParent={receiveCategoryFromChild} sendLocationToParent={receiveLocationFromChild} />
-
-
-                )}</div>
+                  <FilterField
+                    sendCategoryToParent={receiveCategoryFromChild}
+                    sendLocationToParent={receiveLocationFromChild}
+                  />
+                )}
+              </div>
               <div className="gap-4 pt-[2rem] flex flex-wrap justify-center desktop:w-[1900px]">
-
                 {filteredUserList?.map((item) => {
                   return (
                     <Card
@@ -206,7 +174,6 @@ function Index() {
                     />
                   );
                 })}
-
               </div>
               <button
                 onClick={() => setPage(page + 1)}
@@ -228,12 +195,10 @@ function Index() {
                   textDecoration: "underline",
                   position: "relative",
                   display: page >= totalPages ? "none" : "block",
-
                 }}
               >
                 <p className="gradient-button mb-0 align-middle">Load More</p>
               </button>
-
             </div>
           ) : (
             <div>

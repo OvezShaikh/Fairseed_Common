@@ -76,6 +76,22 @@ const AboutUs = [
     name: "Objectives & Values",
     href: "/Home/About-Us/Objectives-&-values",
   },
+  {
+    name: "Zaid",
+    href: "/Home/Zaid",
+  },
+  {
+    name: "Hammad",
+    href: "/Home/Hammad",
+  },
+  {
+    name: "azhar",
+    href: "/Home/Azhar",
+  },
+  {
+    name: "Rehaan",
+    href: "/Home/Rehaan",
+  },
 ];
 
 function classNames(...classes) {
