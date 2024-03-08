@@ -103,38 +103,40 @@ function Index({
     }, [id]);
 
 
-    console.log(cardDetails?.id  , '<========')
+    console.log(cardDetails?.id, '<========')
 
     const { mutate } = useCreateOrUpdate({
-        url:`/donors/donate-money`
+        url: `/donors/donate-money`
     })
 
     const handleSubmit = (values) => {
-        const formData=new FormData();
-        formData.append('donation_type' , values?.donation_type?.value)
-        formData.append('full_name' , values?.full_name)
-        formData.append('amount' , values?.amount)
-        formData.append('city' , values?.city)
-        formData.append('email' , values?.email)
-        formData.append('pancard' , values?.pancard)
-        formData.append('country' , values?.country)
-        formData.append('comment' , values?.comment)
-        formData.append('payment_type' , values?.payment_type?.value)
-        formData.append('is_anonymous' , values?.is_anonymous)
-        formData.append('campaign' , cardDetails?.id )
+        const formData = new FormData();
+        formData.append('donation_type', values?.donation_type?.value)
+        formData.append('full_name', values?.full_name)
+        formData.append('amount', values?.amount)
+        formData.append('city', values?.city)
+        formData.append('email', values?.email)
+        formData.append('pancard', values?.pancard)
+        formData.append('country', values?.country)
+        formData.append('comment', values?.comment)
+        formData.append('payment_type', values?.payment_type?.value)
+        formData.append('is_anonymous', values?.is_anonymous)
+        formData.append('campaign', cardDetails?.id)
 
-       mutate(formData , {
-        onSuccess:(Response)=>{
-            console.log(Response?.data?.pay_page_url, '===================')
-            window.location.href=Response?.data?.pay_page_url
-        }   
+        mutate(formData, {
+            onSuccess: (Response) => {
+                window.location.href = Response?.data?.pay_page_url
+            }
 
-       })
+        })
     }
 
 
+
+
+
     const inititalValues = {
-        campaign:"" ,
+        campaign: "",
         donation_type: '',
         full_name: '',
         amount: '',
@@ -147,7 +149,7 @@ function Index({
         payment_type: '',
         is_anonymous: false,
     }
-    console.log(inititalValues , '+++++++++')
+    console.log(inititalValues, '+++++++++')
 
     return (
         <>
@@ -164,7 +166,7 @@ function Index({
                                 <Form>
                                     <div className='donation-type-div'>
                                         <SelectField
-                                         name={"donation_type"}
+                                            name={"donation_type"}
                                             label={"Donation Type:"}
                                             options={[
                                                 { label: "General Donation    ", value: "General_Donation" },
@@ -234,21 +236,20 @@ function Index({
                                         sx={InputStyle}
                                     />
                                     <div className='donation-type-div'>
-                                    
-                                    <SelectField
+
+                                        <SelectField
                                             label={"Payment Gateway:"}
                                             options={[
-                                                { label: "BANK TRANSFER ", value: "Bank_Transfer" },
-                                                { label: "Pay via Credit Card/Debit Card/Net Banking/UPI /QR Code ", value: "UPI" },
+                                                { label: "BANK TRANSFER", value: "Bank_Transfer" },
+                                                { label: "Pay via Credit Card/Debit Card/Net Banking/UPI /QR Code", value: "UPI" },
                                             ]}
                                             name={"payment_type"}
                                             sx={SelectStyle}
-
                                         />
                                     </div>
 
-                                    {selectedPaymentGateway?.value === "Bank_Transfer" ? (
-                                        <div style={{ width: '100%', padding: '0 !important' }} className={selectedPaymentGateway?.value === "Bank_Transfer" ? "show-content" : "hide-content"}>
+                                    {selectedPaymentGateway === "Bank_Transfer" ? (
+                                        <div style={{ width: '100%', padding: '0 !important' }} className={selectedPaymentGateway === "Bank_Transfer" ? "show-content" : "hide-content"}>
 
 
                                             <div className=" w-full min-h-[302px] h-full bg-[#F7FAFF]  border flex flex-col gap-7" style={{ borderRadius: '4px', padding: '8px 16px' }}>
@@ -457,7 +458,7 @@ function Index({
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
             </div >
             <Footer />
