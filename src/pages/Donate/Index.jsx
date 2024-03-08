@@ -22,6 +22,8 @@ import { Avatar } from "@mui/material";
 import moment from 'moment';
 import CountrySelect from "../../components/inputs/countrySelect";
 import { padding } from "@mui/system";
+import { useCreateOrUpdate } from "../../Hooks";
+import { toast } from "react-toastify";
 
 
 const InputStyle =
@@ -92,30 +94,46 @@ function Index({
                 console.log("API Response:", res.data);
 
                 setCardDetails(res.data.data);
-                console.log("CURRENT CAMPAIGN ", cardDetails);
 
-                // setDonor(res.data.donor)
+                console.log("CURRENT CAMPAIGN ", cardDetails);
             })
             .catch((error) => {
                 console.error("API Error:", error);
-                // Handle error if needed
             });
     }, [id]);
 
-    // const title = useMemo(
-    //     () =>
-    //         `${pathname
-    //             // .replace("/", "")
-    //             // .replace(/\/\[[^\]]]/g, "")
-    //             // .replace(/-/g, " ")
-    //             // .replace(/\//g, "  ")
-    //             // .replace("General Settings"," ")
-    //             .slice(1)}`,
 
-    //     [pathname]
-    //     // console.log(cardDetails,"cardDetailscardDetails")
-    // );
+    console.log(cardDetails?.id  , '<========')
 
+    const { mutate } = useCreateOrUpdate({
+        url:`/donors/donate-money`
+    })
+
+    const handleSubmit = (values) => {
+       mutate(values , {
+        onSuccess:()=>{
+            toast.success("Donation Successfull !" ,{
+                position:'top-right'
+            })
+        }
+       })
+    }
+
+
+    const inititalValues = {
+        // campaign: cardDetails?.id || '',
+        donation_type: '',
+        full_name: '',
+        amount: '',
+        city: '',
+        email: '',
+        mobile: '',
+        pancard: '',
+        country: '',
+        comment: '',
+        payment_type: '',
+        is_anonymous: false,
+    }
 
     return (
         <>
@@ -126,158 +144,166 @@ function Index({
                     <div className="flex  gap-24 max-desktop:flex-col-reverse">
                         <div className="w-[65%] donate-div  max-desktop:w-full">
                             <Formik
-                                initialValues={{}}
+                                initialValues={inititalValues}
+                                onSubmit={(values) => handleSubmit(values)}
                             >
-                                {({ values }) => (
+                                <Form>
+                                    <div className='donation-type-div'>
+                                        <SelectField
+                                            label={"Donation Type:"}
+                                            placeholder={"General Donation"}
+                                            options={[
+                                                { label: "General Donation    ", value: "General_Donation" },
+                                                { label: "Zakat", value: "Zakat" },
+                                                { label: "Interest Offloading ", value: "Interest_Offloading" },
+                                            ]}
+                                            name={"donation_type"}
+                                            sx={SelectStyle}
+
+                                        />
+                                    </div>
+                                    <InputField
+                                        label={"Enter your Donation:"}
+                                        placeholder={"Minimum 50 INR"}
+                                        name={"amount"}
+                                        sx={InputStyle}
+                                    />
+                                    <InputField
+                                        label={"Full Name:"}
+                                        name={"full_name"}
+                                        sx={InputStyle}
+                                    />
 
 
-                                    <Form>
-                                        <div className='donation-type-div'>
-                                            <SelectField
-                                                label={"Donation Type:"}
-                                                placeholder={"General Donation"}
-                                                name={"DonationType"}
-                                                sx={SelectStyle}
+                                    <div className="flex w-full gap-4 p-0 max-tablet:flex-col">
+                                        <div className="w-[50%] p-0 max-tablet:w-full max-tablet:mb-0 email-country-div">
+                                            <InputField
+                                                label={"Email:"}
+                                                name={"email"}
+                                                sx={InputStyle}
+                                            />
+                                            <div className='donation-type-div country-select'>
+                                                <CountrySelect label="Country:"
+                                                    name={"country"}
+                                                    sx={SelectStyle}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="w-[50%] p-0 max-tablet:w-full max-tablet:mb-0 city-mobile">
+                                            <InputField
+                                                label={"City:"}
+                                                name={"City"}
+                                                sx={InputStyle}
+                                            />
 
+                                            <InputField
+                                                label={"Mobile:"}
+                                                name={"mobile"}
+                                                sx={InputStyle}
+                                                className="mobile-input"
                                             />
                                         </div>
-                                        <InputField
-                                            label={"Enter your Donation:"}
-                                            placeholder={"Minimum 50 INR"}
-                                            name={"EnteryourDonation"}
-                                            sx={InputStyle}
+                                    </div>
+
+                                    <InputField
+                                        label={"PAN Card:"}
+                                        placeholder={
+                                            "Mandatory, if total number donations exceeds 80K INR in one financial year"
+                                        }
+                                        name={"pancard"}
+                                        sx={InputStyle}
+                                    />
+
+                                    <InputField
+                                        label={"Write a brief comment:"}
+                                        placeholder={"(Optional)"}
+                                        name={"comment"}
+                                        sx={InputStyle}
+                                    />
+                                    <div className='donation-type-div'>
+                                        <SelectField
+                                            label={"Payment Gateway:"}
+                                            name={"payment_type"}
+                                            sx={SelectStyle}
+                                            options={[
+                                                { label: "Bank Transfer ", value: "Bank_Transfer" },
+                                                { label: "UPI", value: "UPI" }
+                                            ]}
+                                        // onChange={(value) =>
+                                        //     setSelectedPaymentGateway(value)}
                                         />
-                                        <InputField
-                                            label={"Full Name:"}
-                                            //   placeholder={"General Donation"}
-                                            name={"FullNameDonation"}
-                                            sx={InputStyle}
-                                        />
+                                    </div>
+
+                                    {selectedPaymentGateway?.value === "Bank_Transfer" ? (
+                                        <div style={{ width: '100%', padding: '0 !important' }} className={selectedPaymentGateway?.value === "Bank_Transfer" ? "show-content" : "hide-content"}>
 
 
-                                        <div className="flex w-full gap-4 p-0 max-tablet:flex-col">
-                                            <div className="w-[50%] p-0 max-tablet:w-full max-tablet:mb-0 email-country-div">
-                                                <InputField
-                                                    label={"Email:"}
-                                                    //   placeholder={"Mandatory, if total number donations exceeds 80K INR in one financial year"}
-                                                    name={"Email"}
-                                                    sx={InputStyle}
-                                                />
-                                                <div className='donation-type-div country-select'>
-                                                    <CountrySelect label="Country:"
-                                                        name={"country"}
-                                                        sx={SelectStyle}
-                                                    />
-                                                </div>
+                                            <div className=" w-full min-h-[302px] h-full bg-[#F7FAFF]  border flex flex-col gap-7" style={{ borderRadius: '4px', padding: '8px 16px' }}>
+                                                <p className="text-[20px] font-medium font-[satoshi] max-desktop:text-[18px] max-tablet:text-[16px] text-[#00000080]">Bank Name: ICICI BANK</p>
+                                                <p className="text-[20px] font-medium font-[satoshi] max-desktop:text-[18px] max-tablet:text-[16px] text-[#00000080]">Branch: Pune</p>
+                                                <p className="text-[20px] font-medium font-[satoshi] max-desktop:text-[18px] max-tablet:text-[16px] text-[#00000080]">Name: Fairseed Technology Foundation</p>
+                                                <p className="text-[20px] font-medium font-[satoshi] max-desktop:text-[18px] max-tablet:text-[16px] text-[#00000080]">Account Number: 007405011500</p>
+                                                <p className="text-[20px] font-medium font-[satoshi] max-desktop:text-[18px] max-tablet:text-[16px] text-[#00000080]">Type: Current Account</p>
+                                                <p className="text-[20px] font-medium font-[satoshi] max-desktop:text-[18px] max-tablet:text-[16px] text-[#00000080]">IFSC: ICIC0000074</p>
+
                                             </div>
-                                            <div className="w-[50%] p-0 max-tablet:w-full max-tablet:mb-0 city-mobile">
-                                                <InputField
-                                                    label={"City:"}
-                                                    //   placeholder={"Mandatory, if total number donations exceeds 80K INR in one financial year"}
-                                                    name={"City"}
-                                                    sx={InputStyle}
-                                                />
 
+
+                                            <div className="w-full donate-date-div max-tablet:w-[100%] p-0">
                                                 <InputField
-                                                    label={"Mobile:"}
-                                                    //   placeholder={"Mandatory, if total number donations exceeds 80K INR in one financial year"}
-                                                    name={"Mobile"}
+                                                    type="date"
+                                                    name="end_date"
                                                     sx={InputStyle}
-                                                    className="mobile-input"
+                                                    inputProps={{ min: moment().format('YYYY-MM-DD') }}
+
+                                                    required={true}
+                                                    label="Accept Donations until (Select end date):"
                                                 />
                                             </div>
-                                        </div>
 
-                                        <InputField
-                                            label={"PAN Card:"}
-                                            placeholder={
-                                                "Mandatory, if total number donations exceeds 80K INR in one financial year"
-                                            }
-                                            name={"PANCardDonation"}
-                                            sx={InputStyle}
-                                        />
+                                            <InputField
+                                                label={"Bank Name:"}
 
-                                        <InputField
-                                            label={"Write a brief comment:"}
-                                            placeholder={"(Optional)"}
-                                            name={"Writeabriefcomment"}
-                                            sx={InputStyle}
-                                        />
-                                        <div className='donation-type-div'>
-                                            <SelectField
-                                                label={"Payment Gateway:"}
-                                                //   placeholder={"General Donation"}
-                                                name={"PaymentGateway"}
-                                                sx={SelectStyle}
-                                                options={[
-                                                    { label: "Bank Transfer", value: "bank_transfer" },
-                                                    { label: "Pay via Credit Card/Debit Card/Net Banking/UPI /QR Code", value: "net_banking" }
-                                                ]}
-                                                onChange={(value) =>
-                                                    setSelectedPaymentGateway(value)}
+                                                name={"bankname"}
+                                                sx={InputStyle}
                                             />
-                                            {console.log(selectedPaymentGateway, '<==================')}
+
+                                            <InputField
+                                                label={"Transaction ID:"}
+
+                                                name={"transactionid"}
+                                                sx={InputStyle}
+                                            />
+
+                                            <InputField
+                                                label={"Other Details:"}
+
+                                                name={"otherdetails"}
+                                                sx={InputStyle}
+                                            />
                                         </div>
+                                    ) : null}
 
-                                        {selectedPaymentGateway?.value === "net_banking" ? (
-                                            <div style={{ width: '100%', padding: '0 !important' }} className={selectedPaymentGateway?.value === "net_banking" ? "show-content" : "hide-content"}>
+                                    <div className="anonymous-donation-div">
+                                        <CheckBox
+                                            name={"is_anonymous"}
+                                            label={"Make Anonymous donation"}
 
+                                        /></div>
+                                    <div className="flex justify-center gap-3">
+                                        <SecondaryButton
+                                            onClick={() => navigate(-2)}
+                                            sx={styleSecondaryButton}
+                                        >
+                                            Back
+                                        </SecondaryButton>
 
-                                                <div className=" w-full min-h-[302px] h-full bg-[#F7FAFF]  border flex flex-col gap-7" style={{ borderRadius: '4px', padding: '8px 16px' }}>
-                                                    <p className="text-[20px] font-medium font-[satoshi] max-desktop:text-[18px] max-tablet:text-[16px] text-[#00000080]">Bank Name: ICICI BANK</p>
-                                                    <p className="text-[20px] font-medium font-[satoshi] max-desktop:text-[18px] max-tablet:text-[16px] text-[#00000080]">Branch: Pune</p>
-                                                    <p className="text-[20px] font-medium font-[satoshi] max-desktop:text-[18px] max-tablet:text-[16px] text-[#00000080]">Name: Fairseed Technology Foundation</p>
-                                                    <p className="text-[20px] font-medium font-[satoshi] max-desktop:text-[18px] max-tablet:text-[16px] text-[#00000080]">Account Number: 007405011500</p>
-                                                    <p className="text-[20px] font-medium font-[satoshi] max-desktop:text-[18px] max-tablet:text-[16px] text-[#00000080]">Type: Current Account</p>
-                                                    <p className="text-[20px] font-medium font-[satoshi] max-desktop:text-[18px] max-tablet:text-[16px] text-[#00000080]">IFSC: ICIC0000074</p>
+                                        <PrimaryButton type='submit' sx={stylePrimaryButton}>
+                                            Donate
+                                        </PrimaryButton>
+                                    </div>
 
-                                                </div>
-
-
-                                                <div className="w-full donate-date-div max-tablet:w-[100%] p-0">
-                                                    <InputField
-                                                        type="date"
-                                                        name="end_date"
-                                                        sx={InputStyle}
-                                                        inputProps={{ min: moment().format('YYYY-MM-DD') }}
-
-                                                        required={true}
-                                                        label="Accept Donations until (Select end date):"
-                                                    />
-                                                </div>
-
-                                                <InputField
-                                                    label={"Bank Name:"}
-
-                                                    name={"bankname"}
-                                                    sx={InputStyle}
-                                                />
-
-                                                <InputField
-                                                    label={"Transaction ID:"}
-
-                                                    name={"transactionid"}
-                                                    sx={InputStyle}
-                                                />
-
-                                                <InputField
-                                                    label={"Other Details:"}
-
-                                                    name={"otherdetails"}
-                                                    sx={InputStyle}
-                                                />
-                                            </div>
-                                        ) : null}
-
-                                        <div className="anonymous-donation-div">
-                                            <CheckBox
-                                                name={"MakeAnonymousdonation"}
-                                                label={"Make Anonymous donation"}
-
-                                            /></div>
-
-                                    </Form>
-                                )}
+                                </Form>
                             </Formik>
                         </div>
                         <div
@@ -416,26 +442,20 @@ function Index({
                                     </p>
                                 </div>
                             </div>
-
-
-
-
-
                         </div>
                     </div>
-                    <div className="flex justify-center gap-3">
+                    {/* <div className="flex justify-center gap-3">
                         <SecondaryButton
-                            //   disabled={activeStep === 0}
-                            //   onClick={handleBack}
+                             onClick={() => navigate(-2)}
                             sx={styleSecondaryButton}
                         >
                             Back
                         </SecondaryButton>
 
-                        <PrimaryButton sx={stylePrimaryButton} onClick={() => navigate(-2)}>
+                        <PrimaryButton type='submit' sx={stylePrimaryButton}>
                             Donate
                         </PrimaryButton>
-                    </div>
+                    </div> */}
                 </div>
             </div >
             <Footer />
