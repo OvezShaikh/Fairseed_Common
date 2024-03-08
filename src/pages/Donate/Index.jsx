@@ -84,7 +84,7 @@ function Index({
     const { pathname } = useLocation();
     const { id } = useParams();
     const [cardDetails, setCardDetails] = useState(null);
-    const [selectedPaymentGateway, setSelectedPaymentGateway] = useState(null);
+    const [selectedPaymentGateway, setSelectedPaymentGateway] = useState("");
 
 
     useEffect(() => {
@@ -110,18 +110,31 @@ function Index({
     })
 
     const handleSubmit = (values) => {
-       mutate(values , {
-        onSuccess:()=>{
-            toast.success("Donation Successfull !" ,{
-                position:'top-right'
-            })
-        }
+        const formData=new FormData();
+        formData.append('donation_type' , values?.donation_type?.value)
+        formData.append('full_name' , values?.full_name)
+        formData.append('amount' , values?.amount)
+        formData.append('city' , values?.city)
+        formData.append('email' , values?.email)
+        formData.append('pancard' , values?.pancard)
+        formData.append('country' , values?.country)
+        formData.append('comment' , values?.comment)
+        formData.append('payment_type' , values?.payment_type?.value)
+        formData.append('is_anonymous' , values?.is_anonymous)
+        formData.append('campaign' , cardDetails?.id )
+
+       mutate(formData , {
+        onSuccess:(Response)=>{
+            console.log(Response?.data?.pay_page_url, '===================')
+            window.location.href=Response?.data?.pay_page_url
+        }   
+
        })
     }
 
 
     const inititalValues = {
-        campaign: cardDetails?.id ,
+        campaign:"" ,
         donation_type: '',
         full_name: '',
         amount: '',
@@ -151,13 +164,13 @@ function Index({
                                 <Form>
                                     <div className='donation-type-div'>
                                         <SelectField
+                                         name={"donation_type"}
                                             label={"Donation Type:"}
                                             options={[
                                                 { label: "General Donation    ", value: "General_Donation" },
                                                 { label: "Zakat", value: "Zakat" },
                                                 { label: "Interest Offloading ", value: "Interest_Offloading" },
                                             ]}
-                                            name={"donation_type"}
                                             sx={SelectStyle}
 
                                         />
@@ -221,16 +234,16 @@ function Index({
                                         sx={InputStyle}
                                     />
                                     <div className='donation-type-div'>
-                                        <SelectField
+                                    
+                                    <SelectField
                                             label={"Payment Gateway:"}
+                                            options={[
+                                                { label: "BANK TRANSFER ", value: "Bank_Transfer" },
+                                                { label: "Pay via Credit Card/Debit Card/Net Banking/UPI /QR Code ", value: "UPI" },
+                                            ]}
                                             name={"payment_type"}
                                             sx={SelectStyle}
-                                            options={[
-                                                { label: "Bank Transfer ", value: "Bank_Transfer" },
-                                                { label: "UPI", value: "UPI" }
-                                            ]}
-                                        // onChange={(value) =>
-                                        //     setSelectedPaymentGateway(value)}
+
                                         />
                                     </div>
 
