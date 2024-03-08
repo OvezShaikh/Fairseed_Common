@@ -92,10 +92,7 @@ function Index({
             .get(`${process.env.REACT_APP_BE_BASE_URL}/campaign/campaign-details/${id}`)
             .then((res) => {
                 console.log("API Response:", res.data);
-
                 setCardDetails(res.data.data);
-
-                console.log("CURRENT CAMPAIGN ", cardDetails);
             })
             .catch((error) => {
                 console.error("API Error:", error);
@@ -109,7 +106,27 @@ function Index({
         url: `/donors/donate-money`
     })
 
-    const handleSubmit = (values) => {
+
+    // const options = {
+    //     method: 'post',
+    //     url: 'https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay',
+    //     headers: {
+    //         accept: 'text/plain',
+    //         'Content-Type': 'application/json',
+    //     },
+    //     data: {
+    //     }
+    // };
+    // axios
+    //     .request(options)
+    //     .then(function (response) {
+    //         console.log(response.data);
+    //     })
+    //     .catch(function (error) {
+    //         console.error(error);
+    //     });
+
+    const handleSubmit = (values ) => {
         const formData = new FormData();
         formData.append('donation_type', values?.donation_type?.value)
         formData.append('full_name', values?.full_name)
@@ -124,15 +141,15 @@ function Index({
         formData.append('campaign', cardDetails?.id)
 
         mutate(formData, {
-            onSuccess: (Response) => {
-                window.location.href = Response?.data?.pay_page_url
+            onSuccess: (response) => {
+                console.log('===================',response.data.pay_page_url)
+                const url =response?.data?.pay_page_url
+                window.location.href = url;
+
             }
 
         })
     }
-
-
-
 
 
     const inititalValues = {
@@ -149,7 +166,7 @@ function Index({
         payment_type: '',
         is_anonymous: false,
     }
-    console.log(inititalValues, '+++++++++')
+
 
     return (
         <>
