@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import AdminPage from "../src/pages/AdminPanel/AdminPage";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
@@ -38,6 +38,7 @@ import AdminPanelLandingPage from "./components/AdminPanelPages/AdminPanelLandin
 import Dashboard from "./components/layout/DashBoard";
 import UserPage from "./pages/User Page/User_page";
 import AddPages from "./pages/AboutUs/AddPages/Index";
+import { useGetAll } from "./Hooks";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -49,45 +50,57 @@ function ScrollToTop() {
   return null;
 }
 function App() {
-  let page = [
-    {
-      slug: "/Home/Zaid",
-      img: "sdsds",
-      title: "Zaid",
-      content:
-        "adsfiudshudhfkjdsnnncdsfoidhfoidshfdshfkdsklnflkdsnfjdshfuidshfiuhdsffdshfkjdsh",
-      footer: true,
-      navbar: true,
-    },
-    {
-      slug: "/Home/Hammad",
-      img: "sdsds",
-      title: "Hammad",
-      content:
-        "adsfiudshudhfkjdsnnncdsfoidhfoidshfdshfkdsklnflkdsnfjdshfuidshfiuhdsffdshfkjdsh",
+  // let page = [
+  //   {
+  //     slug: "/Home/Zaid",
+  //     img: "sdsds",
+  //     title: "Zaid",
+  //     content:
+  //       "adsfiudshudhfkjdsnnncdsfoidhfoidshfdshfkdsklnflkdsnfjdshfuidshfiuhdsffdshfkjdsh",
+  //     footer: true,
+  //     navbar: true,
+  //   },
+  //   {
+  //     slug: "/Home/Hammad",
+  //     img: "sdsds",
+  //     title: "Hammad",
+  //     content:
+  //       "adsfiudshudhfkjdsnnncdsfoidhfoidshfdshfkdsklnflkdsnfjdshfuidshfiuhdsffdshfkjdsh",
 
-      footer: true,
-      navbar: false,
+  //     footer: true,
+  //     navbar: false,
+  //   },
+  //   {
+  //     slug: "/Home/Azhar",
+  //     img: "https://images.pexels.com/photos/20141058/pexels-photo-20141058/free-photo-of-a-white-church-on-a-cliff-overlooking-the-ocean.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+  //     title: "azhar",
+  //     content:
+  //       "adsfiudshudhfkjdsnnncdsfoidhfoidshfdshfkdsklnflkdsnfjdshfuidshfiuhdsffdshfkjdsh",
+  //     footer: false,
+  //     navbar: true,
+  //   },
+  //   {
+  //     slug: "/Home/Rehaan",
+  //     img: "sdsds",
+  //     title: "rehaan",
+  //     content:
+  //       "adsfiudshudhfkjdsnnncdsfoidhfoidshfdshfkdsklnflkdsnfjdshfuidshfiuhdsffdshfkjdsh",
+  //     footer: false,
+  //     navbar: false,
+  //   },
+  // ];
+  const [page, setPage] = useState([]);
+  useGetAll({
+    key: `/admin-dashboard/pages?page=4&limit=8`,
+    enabled: true,
+
+    select: (data) => {
+      return data.data.rows;
     },
-    {
-      slug: "/Home/Azhar",
-      img: "https://images.pexels.com/photos/20141058/pexels-photo-20141058/free-photo-of-a-white-church-on-a-cliff-overlooking-the-ocean.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-      title: "azhar",
-      content:
-        "adsfiudshudhfkjdsnnncdsfoidhfoidshfdshfkdsklnflkdsnfjdshfuidshfiuhdsffdshfkjdsh",
-      footer: false,
-      navbar: true,
+    onSuccess: (data) => {
+      setPage(data);
     },
-    {
-      slug: "/Home/Rehaan",
-      img: "sdsds",
-      title: "rehaan",
-      content:
-        "adsfiudshudhfkjdsnnncdsfoidhfoidshfdshfkdsklnflkdsnfjdshfuidshfiuhdsffdshfkjdsh",
-      footer: false,
-      navbar: false,
-    },
-  ];
+  });
   return (
     <div className="container p-0">
       {/* <OnGoingCampaigns/> */}
@@ -196,19 +209,17 @@ function App() {
             path="/adminpanellandingpage"
             element={<AdminPanelLandingPage />}
           />
-          {page.map((item) => {
-            console.log(item?.slug, "==========>slug");
-
+          <Route path="/page/:slug" element={<AdminPanelLandingPage />} />
+          {page?.map((item) => {
             return (
               <Route
                 path={item.slug}
                 element={
                   <AddPages
-                    footer={item.footer}
-                    navbar={item.navbar}
-                    title={item.title}
-                    img={item.img}
-                    content={item.content}
+                    footer={item?.show_footer}
+                    navbar={item?.show_navbar}
+                    title={item?.title}
+                    content={item?.content}
                   />
                 }
               />

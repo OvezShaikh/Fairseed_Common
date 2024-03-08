@@ -17,6 +17,7 @@ import Divider from "@mui/material/Divider";
 import Settings from "@mui/icons-material/Settings";
 import { Search } from "../inputs/Search";
 import { useEffect } from "react";
+import { useGetAll } from "../../Hooks";
 // import images from "../../constants/images";
 
 const GetInvolved = [
@@ -76,22 +77,6 @@ const AboutUs = [
     name: "Objectives & Values",
     href: "/Home/About-Us/Objectives-&-values",
   },
-  {
-    name: "Zaid",
-    href: "/Home/Zaid",
-  },
-  {
-    name: "Hammad",
-    href: "/Home/Hammad",
-  },
-  {
-    name: "azhar",
-    href: "/Home/Azhar",
-  },
-  {
-    name: "Rehaan",
-    href: "/Home/Rehaan",
-  },
 ];
 
 function classNames(...classes) {
@@ -110,7 +95,18 @@ export default function Example() {
       position: "top-center",
     });
   }
+  const [page, setPage] = useState([]);
+  useGetAll({
+    key: `/admin-dashboard/pages?page=4&limit=8`,
+    enabled: true,
 
+    select: (data) => {
+      return data.data.rows;
+    },
+    onSuccess: (data) => {
+      setPage(data);
+    },
+  });
   const [showSearch, setShowSearch] = useState(false);
 
   const toggleSearch = () => {
@@ -248,6 +244,71 @@ export default function Example() {
                 </Popover.Panel>
               </Transition>
             </Popover>
+
+            {/* <Popover className="relative mt-1">
+              <Popover.Button
+                className="flex pt-2 nav_button items-center gap-x-1 text-[18px] font-medium font-[satoshi]  text-[#40444C]"
+                onclick="this.style.backgroundColor = (this.style.backgroundColor === '#40444C') ? 'blue' : '#40444C';"
+              >
+                Pages
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="21"
+                  viewBox="0 0 20 21"
+                  fill="none"
+                >
+                  <path
+                    d="M16.6927 8.44219L10.4427 14.6922C10.3846 14.7503 10.3157 14.7964 10.2398 14.8279C10.164 14.8593 10.0826 14.8755 10.0005 14.8755C9.91836 14.8755 9.83703 14.8593 9.76115 14.8279C9.68528 14.7964 9.61635 14.7503 9.5583 14.6922L3.3083 8.44219C3.2208 8.35478 3.16119 8.24337 3.13704 8.12207C3.11288 8.00076 3.12526 7.87502 3.1726 7.76076C3.21995 7.64649 3.30013 7.54884 3.403 7.48017C3.50587 7.41151 3.62681 7.3749 3.75049 7.375H16.2505C16.3742 7.3749 16.4951 7.41151 16.598 7.48017C16.7009 7.54884 16.781 7.64649 16.8284 7.76076C16.8757 7.87502 16.8881 8.00076 16.8639 8.12207C16.8398 8.24337 16.7802 8.35478 16.6927 8.44219Z"
+                    fill="url(#paint0_linear_126_1927)"
+                  />
+                  <defs>
+                    <linearGradient
+                      id="paint0_linear_126_1927"
+                      x1="3.125"
+                      y1="14.8755"
+                      x2="11.5086"
+                      y2="9.72552"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stop-color="#FF9F0A" />
+                      <stop offset="1" stop-color="#FF375F" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </Popover.Button>
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-500"
+                enterFrom="opacity-0 translate-y-1"
+                enterTo="opacity-100 translate-y-0"
+                leave="transition ease-in duration-150"
+                leaveFrom="opacity-100 translate-y-0"
+                leaveTo="opacity-0 translate-y-1"
+              >
+                <Popover.Panel className="absolute left-0 top-full z-10 mt-3 w-[250px] max-w-md overflow-hidden rounded bg-white shadow-lg ring-1 ring-gray-900/5">
+                  <div className="pl-3 pb-4">
+                    {page?.map((item) => (
+                      <div
+                        key={item.tile}
+                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+                        style={{ fontWeight: 400 }}
+                      >
+                        <div className="flex-auto">
+                          <NavLink
+                            to={item.slug}
+                            className="block font-semibold text-gray-900"
+                          >
+                            {item.title}
+                            <span className="absolute inset-0" />
+                          </NavLink>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </Popover.Panel>
+              </Transition>
+            </Popover> */}
             {/*  second button */}
 
             <Popover className="relative mt-1">
