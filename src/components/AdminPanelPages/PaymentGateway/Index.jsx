@@ -27,8 +27,8 @@ function Index() {
         key: `/admin-dashboard/phonepay`,
         enabled: true,
         select: (data) => {
-            console.log(data.data.rows, "++++++id++++++");
-            return data.data.rows[0];
+            console.log(data.data.data, "++++++id++++++");
+            return data?.data?.data;
         },
         onSuccess: (data) => {
             setDetails(data)
@@ -41,12 +41,13 @@ function Index() {
         url: `/admin-dashboard/phonepay`,
         method: 'put'
     })
+
     const initialValues = {
         phonepay_key: Details?.phonepay_key || "",
         phonepay_secret: Details?.phonepay_secret || "",
         fee_percent: Details?.fee_percent || '',
         fee_cents: Details?.fee_cents || '',
-        is_enabled: Details?.is_enabled || false,
+        is_enabled: false,
     }
 
     return (
@@ -55,12 +56,12 @@ function Index() {
             initialValues={initialValues}
             onSubmit={(values) => {
                 mutate(values, {
-                    onSuccess: (response) => {
+                    onSuccess: () => {
                         toast.success("Prefernces Saved Successfully !", {
                             position: "top-center",
                         })
                     },
-                    onError: (response) => {
+                    onError: () => {
                         toast.error("Could Not Save Preferences !", {
                             position: "top-center",
                         })

@@ -136,13 +136,14 @@ function Index() {
                             </div>
                             <div className="w-[49%] max-tablet:w-full">
                                 <InputField
-                                    type="date"
-                                    disabled={'true'}
-                                    value={values?.updated_on}
-                                    name="updated_on"
-                                    inputProps={{ min: moment().format('YYYY-MM-DD') }}
-                                    label="Approval Date:"
-                                />
+                                  value={values?.updated_on}
+                                  type={"date"}
+                                  disabled={'true'}
+                                  name={"updated_on"}
+                                  label="Approval Date:"
+                                />{
+                                    console.log(values?.updated_on , '<=============')
+                                }
 
                             </div>
                         </div>

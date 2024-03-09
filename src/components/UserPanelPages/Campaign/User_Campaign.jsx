@@ -137,6 +137,9 @@ const User_Campaign = () => {
                   <Link to="View" state={{ id: row?.id }} >
                     <SecondaryButton sx={{ height: '30px' }}>View Bank and KYC</SecondaryButton>
                   </Link>
+                  <Link to="EditCampaign" state={{ id: row?.id }} >
+                    <SecondaryButton sx={{ height: '30px' }}>Edit</SecondaryButton>
+                  </Link>
                 </>
               ) : (
                 <Link to="Edit" state={{ id: row?.id }} ><SecondaryButton sx={{ height: '30px' }} >Edit</SecondaryButton></Link>
@@ -160,7 +163,7 @@ const User_Campaign = () => {
         manualPagination
         title={"Campaign"}
         checkboxComponent={IndeterminateCheckbox}
-          url= {`/admin-dashboard/campaign`}
+          url= {`/user-dashboard/campaign`}
         extraQuery={{ inactive: true }}
         selectedRowID={selectedRowID}
       />

@@ -22,10 +22,6 @@ import Divider from "@mui/material/Divider";
 import Settings from "@mui/icons-material/Settings";
 import { Search } from "../inputs/Search";
 import { useEffect } from "react";
-import axios from "axios";
-import { Button } from "@mui/material";
-
-// import images from "../../constants/images";
 
 const GetInvolved = [
   {
@@ -39,10 +35,6 @@ const GetInvolved = [
   {
     name: "Internship",
     href: '/Home/GetInvolved/Internship',
-  },
-  {
-    name: "Create a campaign",
-    href: "/Home/Create-Campaign",
   },
   {
     name: "Support a campaign",
@@ -101,27 +93,14 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+const hasToken = !!localStorage.getItem('token');
 
-
-export default function Example(
-  {
-    key,
-  username,
-  cardImage,
-  goalAmount,
-  fundRaised,
-  daysLeft,
-  userCount,
-  location,
-  og_id,
-  }
-) {
+export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [perPage, setPerPage] = useState(100);
   const [page, setPage] = useState(1);
   
   function logout() {
-    // Remove the 'token' item from localStorage
     localStorage.removeItem("token");
     localStorage.removeItem("user_info");
     console.log(localStorage.getItem("token"));
@@ -138,9 +117,7 @@ export default function Example(
   };
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
-  // console.log(Data)
   useEffect(() => {
-    // Function to close the search bar when clicking anywhere on the app
     function handleClickOutside(event) {
       if (
         !event.target.closest(".search-container") &&
@@ -150,10 +127,8 @@ export default function Example(
       }
     }
 
-    // Add event listener when component mounts
     document.body.addEventListener("click", handleClickOutside);
 
-    // Remove event listener when component unmounts
     return () => {
       document.body.removeEventListener("click", handleClickOutside);
     };
@@ -198,17 +173,6 @@ export default function Example(
     }, text);
   };
 
-  useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`)
-      .then(response => {
-        setAllCards(response.data)
-        console.log(response.data, "data from API /")
-        const filtered = allCards.filter(card => card.rows.title.toLowerCase().includes(searchTerm.toLowerCase()));
-        setFilteredCards(filtered);
-        console.log(filtered, "set filtered")
-      })
-      .catch(error => console.error('Error fetching card titles:', error));
-  }, []);
 
   useGetAll({
     key: `/campaign/campaign?page=${page}&limit=${perPage}`,
@@ -225,6 +189,8 @@ export default function Example(
       console.error('Error fetching card titles:')
     }
   })
+
+
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -314,25 +280,41 @@ export default function Example(
                 leaveTo="opacity-0 translate-y-1"
               >
                 <Popover.Panel className="absolute left-0 top-full z-10 mt-3 w-[250px] max-w-md overflow-hidden rounded bg-white shadow-lg ring-1 ring-gray-900/5">
-                  <div className="pl-3 pb-4">
-                    {GetInvolved.map((item) => (
-                      <div
-                        key={item.name}
-                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
-                        style={{ fontWeight: 400 }}
-                      >
-                        <div className="flex-auto">
-                          <NavLink
-                            to={item.href}
-                            className="block font-semibold text-gray-900"
-                          >
-                            {item.name}
-                            <span className="absolute inset-0" />
-                          </NavLink>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                <div className="pl-3 pb-4">
+      {GetInvolved.map((item) => (
+        <div
+          key={item.name}
+          className="group relative flex items-center gap-x-6 pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+          style={{ fontWeight: 400 }}
+        >
+          <div className="flex-auto">
+            <NavLink
+              to={item.href}
+              className="block font-semibold text-gray-900"
+            >
+              {item.name}
+              <span className="absolute inset-0" />
+            </NavLink>
+          </div>
+        </div>
+      ))}
+      {hasToken && (
+        <div
+          className="group relative flex items-center gap-x-6 pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+          style={{ fontWeight: 400 }}
+        >
+          <div className="flex-auto">
+            <NavLink
+              to="/Home/Create-Campaign"
+              className="block font-semibold text-gray-900"
+            >
+              Create Campaign
+              <span className="absolute inset-0" />
+            </NavLink>
+          </div>
+        </div>
+      )}
+    </div>
                 </Popover.Panel>
               </Transition>
             </Popover>
@@ -509,11 +491,11 @@ export default function Example(
                   className="text-xs peer cursor-pointer relative mt-2 z-10 h-8 w-10  bg-transparent  pr-8 outline-none focus:rounded-r-none focus:w-full focus:cursor-text focus:border-taupeGray focus:px-3"
                   placeholder="Typing..."
                 />
-                <Button type="submit" className="absolute top-0 mt-2 right-0  bottom-0 my-auto h-8 w-10 px-3 bg-transparent rounded-lg peer-focus:relative peer-focus:rounded-l-none">
+                <button type="submit" className="absolute top-0 mt-2 right-0  bottom-0 my-auto h-8 w-10 px-3 bg-transparent rounded-lg peer-focus:relative peer-focus:rounded-l-none">
                   <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
                     <path d="M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z"></path>
                   </svg>
-                </Button> 
+                </button> 
               </form>
 
               {(searchTerm !== '' ? filteredCards : allCards).map(card => (
