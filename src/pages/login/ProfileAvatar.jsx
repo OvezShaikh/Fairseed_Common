@@ -38,8 +38,9 @@ export default function ProfileAvatar() {
     setAnchorEl(null);
   };
 
-  let userData = localStorage.getItem("user_info");
-  let Data = JSON.parse(userData);
+  let userData = localStorage.getItem('user_info')
+  let Data = JSON.parse(userData)
+  console.log(Data)
   let role = Data?.user_role;
   let image = Data?.profile_pic;
 
@@ -100,7 +101,7 @@ export default function ProfileAvatar() {
         {role === "Admin" && (
           <>
             <MenuItem onClick={handleClose}>
-              <Link to="/AdminPanel">
+              <Link className="flex items-center" to="/AdminPanel">
                 <ListItemIcon>
                   <Avatar src={img} />
                 </ListItemIcon>
@@ -112,7 +113,7 @@ export default function ProfileAvatar() {
         )}
 
         <MenuItem onClick={handleClose}>
-          <Link to={"/User"}>
+          <Link className="flex items-center" to={"/User"}>
             <ListItemIcon>
               <img src={images.Dashboard} alt="" />
             </ListItemIcon>
@@ -120,8 +121,8 @@ export default function ProfileAvatar() {
           </Link>
         </MenuItem>
 
-        <MenuItem onClick={handleClose}>
-          <Link to={"/account-settings"}>
+        <MenuItem className="flex items-center" onClick={handleClose}>
+          <Link className="flex items-center" to={"/account-settings"}>
             <ListItemIcon>
               <Settings fontSize="small" />
             </ListItemIcon>
@@ -129,7 +130,7 @@ export default function ProfileAvatar() {
           </Link>
         </MenuItem>
 
-        <MenuItem onClick={handleClose}>
+        <MenuItem className="flex items-center" onClick={handleClose}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

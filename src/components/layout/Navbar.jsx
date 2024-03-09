@@ -3,8 +3,6 @@ import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-// import someImage from "../../constants/images";
-// import { OutlineIconName } from "@heroicons/react/outline";
 import PrimaryButton from "../inputs/PrimaryButton";
 import images from "../../constants/images";
 import UserLogin from "../../pages/login/Login_page/Index";
@@ -17,11 +15,8 @@ import Logout from "@mui/icons-material/Logout";
 import Avatar from "@mui/material/Avatar";
 import Divider from "@mui/material/Divider";
 import Settings from "@mui/icons-material/Settings";
-// import images from "../../constants/images";
-
-const styleButton = {
-  color: "red",
-};
+import { Search } from "../inputs/Search";
+import { useEffect } from "react";
 
 const GetInvolved = [
   {
@@ -35,10 +30,6 @@ const GetInvolved = [
   {
     name: "Internship",
     href: "/Home/GetInvolved/Internships",
-  },
-  {
-    name: "Create a campaign",
-    href: "/Home/Create-Campaign",
   },
   {
     name: "Support a campaign",
@@ -86,10 +77,11 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+const hasToken = !!localStorage.getItem('token');
+
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   function logout() {
-    // Remove the 'token' item from localStorage
     localStorage.removeItem("token");
     localStorage.removeItem("user_info");
     console.log(localStorage.getItem("token"));
@@ -98,9 +90,30 @@ export default function Example() {
       position: "top-center",
     });
   }
+
+  const [showSearch, setShowSearch] = useState(false);
+
+  const toggleSearch = () => {
+    setShowSearch((prevState) => !prevState);
+  };
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
-  // console.log(Data)
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        !event.target.closest(".search-container") &&
+        !event.target.closest(".text-black")
+      ) {
+        setShowSearch(false);
+      }
+    }
+
+    document.body.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.body.removeEventListener("click", handleClickOutside);
+    };
+  }, [showSearch]);
   let role = Data?.user_role;
   let image = Data?.profile_pic;
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -125,8 +138,12 @@ export default function Example() {
       >
         <div className="flex lg:flex ">
           <NavLink to="/Home">
-            {/* <span className="sr-only">FairSeed </span> */}
-            <img src={images.Logo} alt="FairSeed" title="FairSeed" />
+            <img
+              className="max-tablet:w-20 max-tablet:h-9"
+              src={images.Logo}
+              alt="FairSeed"
+              title="FairSeed"
+            />
           </NavLink>
         </div>
 
@@ -187,25 +204,41 @@ export default function Example() {
                 leaveTo="opacity-0 translate-y-1"
               >
                 <Popover.Panel className="absolute left-0 top-full z-10 mt-3 w-[250px] max-w-md overflow-hidden rounded bg-white shadow-lg ring-1 ring-gray-900/5">
-                  <div className="pl-3 pb-4">
-                    {GetInvolved.map((item) => (
-                      <div
-                        key={item.name}
-                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
-                        style={{ fontWeight: 400 }}
-                      >
-                        <div className="flex-auto">
-                          <NavLink
-                            to={item.href}
-                            className="block font-semibold text-gray-900"
-                          >
-                            {item.name}
-                            <span className="absolute inset-0" />
-                          </NavLink>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                <div className="pl-3 pb-4">
+      {GetInvolved.map((item) => (
+        <div
+          key={item.name}
+          className="group relative flex items-center gap-x-6 pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+          style={{ fontWeight: 400 }}
+        >
+          <div className="flex-auto">
+            <NavLink
+              to={item.href}
+              className="block font-semibold text-gray-900"
+            >
+              {item.name}
+              <span className="absolute inset-0" />
+            </NavLink>
+          </div>
+        </div>
+      ))}
+      {hasToken && (
+        <div
+          className="group relative flex items-center gap-x-6 pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+          style={{ fontWeight: 400 }}
+        >
+          <div className="flex-auto">
+            <NavLink
+              to="/create-campaign"
+              className="block font-semibold text-gray-900"
+            >
+              Create Campaign
+              <span className="absolute inset-0" />
+            </NavLink>
+          </div>
+        </div>
+      )}
+    </div>
                 </Popover.Panel>
               </Transition>
             </Popover>
@@ -365,7 +398,7 @@ export default function Example() {
                   borderRadius: "var(--Pixels-8, 8px)",
                   fontWeight: 700,
                   fontSize: "18px",
-                  padding: "12px 20px",
+                  // padding: "12px 10px 12px 10px",
                 }}
               >
                 Start a Campaign
@@ -373,14 +406,19 @@ export default function Example() {
             )}
 
             <div className="flex space-x-8">
-              <button className=" text-black bg-transparent rounded-full ">
+              <button
+                onClick={toggleSearch}
+                className={`text-black bg-transparent rounded-full ${
+                  showSearch ? "hidden" : ""
+                } transition-all duration-500 ease-in-out`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-5 h-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  strokeWidth={2}
+                  strokeWidth="2"
                 >
                   <path
                     strokeLinecap="round"
@@ -389,6 +427,43 @@ export default function Example() {
                   />
                 </svg>
               </button>
+              <Transition
+                as={Fragment}
+                show={showSearch}
+                enter="transition ease-out duration-500"
+                enterFrom="opacity-0 translate-y-1"
+                enterTo="opacity-100 translate-y-0"
+                leave="transition ease-in duration-150"
+                leaveFrom="opacity-100 translate-y-0"
+                leaveTo="opacity-0 translate-y-1"
+              >
+                <div
+                  className={`search-container ${
+                    showSearch ? "show-search" : ""
+                  }transition-all duration-500 ease-in-out`}
+                >
+                  <div className="pt-2.5">
+                    <Search
+                      sx={{
+                        width: { xs: "200px", md: "300px" },
+                        "& .MuiInputBase-root .MuiOutlinedInput-notchedOutline":
+                          {
+                            border: `1px solid #cfcfcf`,
+                          },
+                        "& .MuiInputBase-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+                          {
+                            border: `2px solid #cfcfcf`,
+                          },
+                        "& .MuiInputBase-root input": {
+                          padding: 0,
+                          paddingLeft: "10px",
+                          fontSize: "0.9rem",
+                        },
+                      }}
+                    />
+                  </div>
+                </div>
+              </Transition>
               {localStorage.getItem("token") ? (
                 <ProfileAvatar />
               ) : (
@@ -529,15 +604,15 @@ export default function Example() {
                   How It works
                 </Link>
               </div>
-              <div className="py-6">
+              <div className="py-4">
                 {localStorage.getItem("token") ? (
                   <>
                     {role === "Admin" && (
                       <>
-                        <MenuItem onClick={handleClose}>
-                          <Link to="/AdminPanel">
-                            <ListItemIcon>
-                              <Avatar src={img} />
+                        <MenuItem>
+                          <Link className="flex  items-center" to="/AdminPanel">
+                            <ListItemIcon className="pr-2">
+                              <Avatar className="!w-7 !h-7" src={img} />
                             </ListItemIcon>
                             AdminPanel
                           </Link>
@@ -547,7 +622,7 @@ export default function Example() {
                     )}
 
                     <MenuItem onClick={handleClose}>
-                      <Link to={"/User"}>
+                      <Link className="flex items-center" to={"/User"}>
                         <ListItemIcon>
                           <img src={images.Dashboard} alt="" />
                         </ListItemIcon>
@@ -556,7 +631,10 @@ export default function Example() {
                     </MenuItem>
 
                     <MenuItem onClick={handleClose}>
-                      <Link to={"/account-settings"}>
+                      <Link
+                        className="flex items-center"
+                        to={"/account-settings"}
+                      >
                         <ListItemIcon>
                           <Settings fontSize="small" />
                         </ListItemIcon>
@@ -564,7 +642,10 @@ export default function Example() {
                       </Link>
                     </MenuItem>
 
-                    <MenuItem onClick={handleClose}>
+                    <MenuItem
+                      className="flex items-center"
+                      onClick={handleClose}
+                    >
                       <ListItemIcon>
                         <Logout fontSize="small" />
                       </ListItemIcon>

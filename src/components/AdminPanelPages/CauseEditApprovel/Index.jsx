@@ -116,7 +116,7 @@ function CauseEdit_Form() {
   });
 
     const { mutate } = useCreateOrUpdate({
-        url: `/admin-dashboard/cause-edit/${id}`,
+        url: `/admin-dashboard/campaign/${id}`,
         method: "put",
     })
 
@@ -133,20 +133,20 @@ function CauseEdit_Form() {
         status: user?.status || "",
         story: user?.story || "",
         documents: user?.documents || [],
-        approval_status:user?.approval_status 
-
+        approve_campaign:user?.approve_campaign 
     };
+
+
     console.log(initial_values);
     if (!isSuccess) {
         return <div>Loading...</div>;
     }
 
-  const handleSubmit = (values) => {
-    const formData = new FormData();
-    if (values?.campaign_image instanceof File) {
-      formData.append("campaign_image", values?.campaign_image);
-    }
-
+    const handleSubmit = (values) => {
+        const formData = new FormData();
+        if (values?.campaign_image instanceof File) {
+            formData.append('campaign_image', values?.campaign_image)
+        }
         formData.append('title', values?.title)
         formData.append('amount', values?.amount)
         formData.append('location', values?.location)
@@ -154,7 +154,7 @@ function CauseEdit_Form() {
         formData.append('summary', values?.summary)
         formData.append('story', values?.story)
         formData.append('category', values?.category?.id)
-        formData.append('approval_status', true)
+        formData.append('approve_campaign', true)
 
        
         mutate(formData, {
@@ -168,23 +168,27 @@ function CauseEdit_Form() {
     });
   };
 
-  return (
-    <Formik
-      initialValues={initial_values}
-      enableReinitialize={true}
-      onSubmit={(values) => handleSubmit(values)}
-    >
-      {({ values, setFieldValue, handleChange }) => (
-        <Form className="flex flex-col items-center">
-          <div className="flex w-[100%] mt-2 gap-14 max-tablet:flex-col max-desktop:flex-col">
-            <div className="flex flex-col w-[70%] max-tablet:w-[100%] max-desktop:w-[100%] gap-10 items-center">
-              <div className="desktop:py-[80px] max-desktop:py-[53px]">
-                <DropZone
-                  name="campaign_image"
-                  label={"campaign image"}
-                  onChange={onChange}
-                  initialPreview={srcImg}
-                />
+    return (
+        <Formik
+            initialValues={initial_values}
+            enableReinitialize={true}
+            onSubmit={(values) =>
+                handleSubmit(values)
+            }
+
+        >
+            {({ values, setFieldValue, handleChange }) => (
+
+                <Form className='flex flex-col items-center'>
+                    <div className="flex w-[100%] mt-2 gap-14 max-tablet:flex-col max-desktop:flex-col">
+                        <div className="flex flex-col w-[70%] max-tablet:w-[100%] max-desktop:w-[100%] gap-10 items-center">
+                            <div className="desktop:py-[80px] max-desktop:py-[53px]">
+                                <DropZone
+                                    name="campaign_image"
+                                    // label={'campaign image'}
+                                    onChange={onChange}
+                                    initialPreview={srcImg}
+                                />
 
                 {openCrop && (
                   <>
@@ -211,27 +215,19 @@ function CauseEdit_Form() {
                 />
               </div>
 
-              <SelectField
-                name={"category"}
-                required={true}
-                label="Choose a Category:"
-                getOptionLabel={(item) => {
-                  return item.name;
-                }}
-                value={values?.category}
-                options={Categories}
-              />
-              <div className="w-full">
-                <InputField
-                  type={"number"}
-                  onChange={handleChange}
-                  value={values?.amount}
-                  sx={InputStyle}
-                  name={"amount"}
-                  label={"Amount to be raised:"}
-                  placeholder={"Minimum 50 INR"}
-                />
-              </div>
+                            <SelectField
+                                name={"category"}
+                                required={true}
+                                label="Choose a Category:"
+                                getOptionLabel={(item) => {
+                                    return item?.name
+                                }}
+                                value={values?.category}
+                                options={Categories}
+                            />
+                            <div className="w-full">
+                                <InputField type={'number'} onChange={handleChange} value={values?.amount} sx={InputStyle} name={"amount"} label={"Amount to be raised:"} placeholder={"Minimum 50 INR"} />
+                            </div>
 
               <div className="w-full">
                 <InputField
@@ -320,8 +316,9 @@ function CauseEdit_Form() {
                 </FormLabel>
 
                                 <div className="flex gap-4">
+                                    
                                     {values?.documents?.map((imageUrl, index) => {
-                                        const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl.doc_file}`;
+                                        const documentLink = `${process.env.REACT_APP_BE_BASE_URL}+${imageUrl.doc_file}`;
                                         console.log(imageUrl.doc_file, "doc_file")
                                         return <Attachments key={index} imageUrl={documentLink} />;
                                     })}
@@ -329,17 +326,16 @@ function CauseEdit_Form() {
                             </div>
 
 
-              <div className="flex max-tablet:flex-col  w-[100%] gap-4">
-                <div className="w-[50%] max-tablet:w-full pt-1.5">
-                  <InputField
-                    value={values?.end_date}
-                    type={"date"}
-                    sx={InputStyleDate}
-                    name={"end_date"}
-                    label={"Accept Donations until (Select end date):"}
-                    placeholder={"Minimum 50 INR"}
-                  />
-                </div>
+                            <div className="flex max-tablet:flex-col  w-[100%] gap-4">
+                                <div className="w-[50%] max-tablet:w-full pt-1.5">
+                                    <InputField
+                                        value={values?.end_date}
+                                        type={"date"}
+                                        sx={InputStyleDate}
+                                        name={"end_date"} 
+                                        label={"Accept Donations until (Select end date):"}
+                                        placeholder={"Minimum 50 INR"} />
+                                </div>
 
                 <div className="w-[50%] max-tablet:w-full document-upload-div">
                   <UploadField
@@ -354,19 +350,20 @@ function CauseEdit_Form() {
                 </div>
               </div>
 
-              <div className="flex w-[100%] max-tablet:flex-col gap-4">
-                <div className="w-[50%] max-tablet:w-full">
-                  <SelectField
-                    value={values?.status}
-                    name={"status"}
-                    label={"Status:"}
-                    placeholder={"Minimum 50 INR"}
-                    options={[
-                      { label: "Pending", value: "Pending" },
-                      { label: "Active", value: "Active" },
-                    ]}
-                  />
-                </div>
+                            <div className="flex w-[100%] max-tablet:flex-col gap-4">
+                                <div className="w-[50%] max-tablet:w-full">
+                                    <SelectField
+                                        value={values?.status}
+                                        name={"status"}
+                                        label={"Status:"}
+                                        placeholder={"Minimum 50 INR"}
+                                        options={
+                                            [{ label: "Pending", value: 'Pending' },
+                                            { label: "Active", value: 'Active' },
+                                            { label: "Completed", value: 'Completed' }
+                                            ]}
+                                    />
+                                </div>
 
                 <div className="w-[50%] checkmark-div max-desktop:w-[46%] max-tablet:w-[100%]">
                   <FormLabel
@@ -417,42 +414,40 @@ function CauseEdit_Form() {
                 />
               </div>
 
-              <div className=" w-full ">
-                <RadioGroup
-                  name={"is_featured"}
-                  type="radio"
-                  sx={{ flexDirection: "column" }}
-                  onChange={handleChange}
-                  options={[
-                    { label: "On", value: true },
-                    { label: "Off", value: false },
-                  ]}
-                  label="Featured:"
-                  style={{ fontSize: "18px", fontWeight: 500 }}
-                  // onChange={onChange}
-                />
-              </div>
-            </div>
-            <div className="w-[30%] max-tablet:w-[100%] max-desktop:w-[100%] flex flex-col max-desktop:items-center  gap-8">
-              <div className=" w-[100%] max-desktop:w-[100%]">
-                <ImageEditor
-                  sx={{ maxWidth: "400px", minHeight: "600px" }}
-                  dataUrl={srcImg}
-                />
-                {/* {console.log(values?.cpg_image)} */}
-              </div>
-              <Link
-                to={"Revision-History"}
-                // state={id}
-              >
-                <PrimaryButton sx={{ borderRadius: "12px", width: "90%" }}>
-                  <h1 className="text-white font-medium py-2.5 text-[18px] font-[satoshi]">
-                    View Revision History
-                  </h1>
-                </PrimaryButton>
-              </Link>
-            </div>
-          </div>
+                            <div className=" w-full ">
+                                <RadioGroup
+                                    name={"is_featured"}
+                                    type='radio'
+                                    sx={{ flexDirection: 'column' }}
+                                    onChange={handleChange}
+                                    options={[
+                                        { label: "On", value: true },
+                                        { label: "Off", value: false },
+                                    ]}
+                                    label="Featured:"
+                                    style={{ fontSize: '18px', fontWeight: 500 }}
+                                />
+                            </div>
+                        </div>
+                        <div className="w-[30%] max-tablet:w-[100%] max-desktop:w-[100%] flex flex-col max-desktop:items-center  gap-8">
+                            <div className=" w-[100%] max-desktop:w-[100%]">
+                                <ImageEditor
+                                    sx={{ maxWidth: '400px', minHeight: '600px' }}
+                                    dataUrl={srcImg}
+                                />
+                               
+                            </div>
+                            <Link to={"Revision-History"}
+                            >
+                                <PrimaryButton sx={{ borderRadius: '12px', width: '90%' }}>
+                                    <h1 className='text-white font-medium py-2.5 text-[18px] font-[satoshi]'>View Revision History</h1>
+
+                                </PrimaryButton>
+                            </Link>
+                        </div>
+                    </div>
+
+
 
           <div className="flex gap-3 max-tablet:flex-col  max-tablet:items-center pt-5">
             <button

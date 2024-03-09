@@ -4,7 +4,7 @@ import InputField from '../../../components/inputs/InputField';
 import Avatar from '@mui/material/Avatar';
 import { useFormikContext } from "formik";
 import PrimaryButton from '../../../components/inputs/PrimaryButton';
-import { Grid, Container } from '@mui/material';
+import { Grid, Container, Button } from '@mui/material';
 import { toast } from 'react-toastify';
 import { SlPencil } from "react-icons/sl";
 import Modal from "../../../components/inputs/Modal/Index"
@@ -50,9 +50,9 @@ const SignUp = ({ handleNext }) => {
                 />
 
                 <div style={{ color: 'black', position: 'absolute', bottom: '10px', right: '20px', zIndex: 1, transform: 'translate(50%, 50%)' }}>
-                  <button onClick={() => imgRef.current.click()} style={{ background: 'white', border: 'none', padding: '0', borderRadius: '6rem', transform: 'translate(-50%, -50%)' }}>
+                  <Button onClick={() => imgRef.current.click()} style={{ background: 'white', border: 'none', padding: '0', borderRadius: '6rem', transform: 'translate(-50%, -50%)' }}>
                     <SlPencil />
-                  </button>
+                  </Button>
                 </div>
               </Avatar>
 
