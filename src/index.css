@@ -3,8 +3,7 @@
 @tailwind utilities;
 @import url("https://fonts.cdnfonts.com/css/satoshi");
 @import url("https://unpkg.com/leaflet@1.9.3/dist/leaflet.css");
-@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap");
 
 body {
   margin: 0;
@@ -66,7 +65,7 @@ body {
   height: 100% !important;
 }
 
-.ql-toolbar.ql-snow+.ql-container.ql-snow {
+.ql-toolbar.ql-snow + .ql-container.ql-snow {
   border-bottom-left-radius: 10px 10px;
   border-bottom-right-radius: 10px 10px;
 }
@@ -106,7 +105,7 @@ body {
   padding: 8px;
 }
 
-.normal-table>tbody>tr>td {
+.normal-table > tbody > tr > td {
   padding: 8px;
   border: 1px solid #d0e2ff;
 }
@@ -179,9 +178,11 @@ body {
   width: 48px;
   height: 48px;
   backdrop-filter: blur(20px);
-  background: linear-gradient(180deg,
-      rgba(255, 255, 255, 0.18) 0%,
-      rgba(255, 255, 255, 0.32) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.32) 100%
+  );
   border-radius: 50%;
   padding: 40px;
   overflow: hidden;
@@ -243,7 +244,7 @@ body {
   top: 260px;
 }
 
-.breadcrumbs_title>ol>.MuiBreadcrumbs-li:last-child {
+.breadcrumbs_title > ol > .MuiBreadcrumbs-li:last-child {
   color: #3366cc;
   text-decoration: underline;
 }
@@ -268,6 +269,30 @@ body {
   text-align: left;
 }
 
+.responsive-table {
+  width: 100%;
+}
+
+.responsive-table th,
+.responsive-table td {
+  padding: 10px;
+}
+
+.responsive-table th {
+  text-align: left;
+  width: 30%;
+  /* Adjust column width as needed */
+}
+
+.responsive-table td {
+  text-align: left;
+}
+
+/* Style for alternating row colors */
+.responsive-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
 .Upload_admin_field {
   border-radius: 4px;
 
@@ -289,7 +314,7 @@ body {
   color: rgba(149, 153, 157, 1);
 }
 
-.breadcrumbs_navigation>ol>.MuiBreadcrumbs-li:last-child {
+.breadcrumbs_navigation > ol > .MuiBreadcrumbs-li:last-child {
   font-weight: 700;
   color: rgba(97, 101, 106, 1);
 }
@@ -341,12 +366,6 @@ body {
   fill: rgba(244, 244, 244, 0.9);
 }
 
-
-
-
-
-
-
 /* .makeStyles-textField-1:focus-within {
   margin-top: -1px;
   border: 1px solid black;
@@ -360,16 +379,8 @@ body {
   background-repeat: no-repeat;
   margin-top: 11px;
   margin-right: 10px;
-  
 }
 
 .MuiAutocomplete-endAdornment button svg {
   display: none;
 }
-
-
-
-
-
-
-/* Select Field SVG end */

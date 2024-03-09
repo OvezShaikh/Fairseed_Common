@@ -117,7 +117,7 @@ function CauseEdit_Form() {
     });
 
     const { mutate } = useCreateOrUpdate({
-        url: `/admin-dashboard/campaign/${id}`,
+        url: `/admin-dashboard/cause-edit/${id}`,
         method: "put",
     })
 
@@ -133,7 +133,8 @@ function CauseEdit_Form() {
         end_date: user?.end_date || "",
         status: user?.status || "",
         story: user?.story || "",
-        documents: user?.documents || []
+        documents: user?.documents || [],
+        approval_status:user?.approval_status 
 
     };
     console.log(initial_values);
@@ -156,7 +157,9 @@ function CauseEdit_Form() {
         formData.append('summary', values?.summary)
         formData.append('story', values?.story)
         formData.append('category', values?.category?.id)
-        console.log(values?.category?.id, '<============')
+        formData.append('approval_status', true)
+
+       
         mutate(formData, {
             onSuccess: () => {
                 toast.success("Cause updated Succcessfully ! ", {
@@ -300,10 +303,10 @@ function CauseEdit_Form() {
 
                                 <div className="flex gap-4">
                                     {values?.documents?.map((imageUrl, index) => {
-                                        const documentLink =`${ process.env.REACT_APP_BE_BASE_URL}${imageUrl.doc_file}`;
+                                        const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl.doc_file}`;
                                         console.log(imageUrl.doc_file, "doc_file")
-                                    return <Attachments key={index} imageUrl={documentLink} />;
-                  })}
+                                        return <Attachments key={index} imageUrl={documentLink} />;
+                                    })}
                                 </div>
                             </div>
 

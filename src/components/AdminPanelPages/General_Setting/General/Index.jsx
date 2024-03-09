@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import FormLabel from "@mui/joy/FormLabel";
-import InputAdminField from "../../../inputs/InputAdminField/Index"
+import InputAdminField from "../../../inputs/InputAdminField/Index";
 import RadioGroup from "../../../inputs/radioGroupAdminPanel/index";
-import PrimaryButton from '../../../inputs/PrimaryButton'
-import ReactQuilTextField from '../../../inputs/ReactQuilTextField/Index.jsx'
+import PrimaryButton from "../../../inputs/PrimaryButton";
+import ReactQuilTextField from "../../../inputs/ReactQuilTextField/Index.jsx";
 import { Form, Formik, useFormikContext, values } from "formik";
 import { useCreateOrUpdate } from "../../../../Hooks/useCreateOrUpdate.js";
 import { toast } from "react-toastify";
@@ -14,8 +14,8 @@ import { useGetAll } from "../../../../Hooks/useGetAll.js";
 const styleLabel = {
   fontFamily: "satoshi",
   fontSize: 16,
-  paddingBottom: '5px',
-  paddingLeft: '5px',
+  paddingBottom: "5px",
+  paddingLeft: "5px",
   fontWeight: 700,
   color: "#404040",
 };
@@ -26,11 +26,8 @@ const styleInput = {
   fontWeight: "500",
 };
 
-
-
 function General() {
-
-  const [Details, setDetails] = useState({})
+  const [Details, setDetails] = useState({});
   const [value, setValue] = useState([]);
 
   const { data } = useGetAll({
@@ -41,15 +38,13 @@ function General() {
       return data.data.rows[0];
     },
     onSuccess: (data) => {
-      setDetails(data)
-    }
-
+      setDetails(data);
+    },
   });
 
-
   const { mutate } = useCreateOrUpdate({
-    url: `/admin-dashboard/gs`
-  })
+    url: `/admin-dashboard/gs`,
+  });
 
   const initialValues = {
     namesite: Details?.namesite || "",
@@ -67,9 +62,8 @@ function General() {
     email_verification_enabled: Details?.email_verification_enabled || false,
     facebook_login_enabled: Details?.facebook_login_enabled || false,
     google_login_enabled: Details?.google_login_enabled || false,
-  }
-  console.log(Details)
-
+  };
+  console.log(Details);
 
   return (
     <Formik
@@ -80,74 +74,110 @@ function General() {
           onSuccess: () => {
             toast.success("Prefernces Saved Successfully !", {
               position: "top-center",
-            })
+            });
           },
           onError: () => {
             toast.error("Could Not Save Preferences !", {
               position: "top-center",
-            })
-          }
+            });
+          },
         });
       }}
     >
       {({ values, setFieldValue, handleChange }) => (
-
         <Form>
           <div className="flex flex-wrap justify-between max-desktop:flex-col max-tablet:flex-col  max-desktop:pt-4 max-tablet:pt-4">
             <div className="w-[24%] max-desktop:w-full max-tablet:w-full">
-              <InputAdminField label={'Name Site'} onChange={handleChange} name={"namesite"} placeholder={'Placeholder Text'} value={values?.namesite} />
-
+              <InputAdminField
+                label={"Name Site"}
+                onChange={handleChange}
+                name={"namesite"}
+                placeholder={"Placeholder Text"}
+                value={values?.namesite}
+              />
             </div>
             <div className="w-[24%] max-desktop:w-full max-tablet:w-full">
-              <InputAdminField label={'Welcome Subtitle '} onChange={handleChange} name={"welcome_subtitle"} placeholder={'Placeholder Text'} value={values?.welcome_subtitle} />
+              <InputAdminField
+                label={"Welcome Subtitle "}
+                onChange={handleChange}
+                name={"welcome_subtitle"}
+                placeholder={"Placeholder Text"}
+                value={values?.welcome_subtitle}
+              />
             </div>
             <div className="w-[24%] max-desktop:w-full max-tablet:w-full">
-              <InputAdminField label={'Welcome Text'} name={"welcome_text"} onChange={handleChange} placeholder={'Placeholder Text'} value={values?.welcome_text} />
-
+              <InputAdminField
+                label={"Welcome Text"}
+                name={"welcome_text"}
+                onChange={handleChange}
+                placeholder={"Placeholder Text"}
+                value={values?.welcome_text}
+              />
             </div>
             <div className="w-[24%] max-desktop:w-full max-tablet:w-full">
-              <InputAdminField label={'Email No-reply'} name={"email_no_reply"} onChange={handleChange} placeholder={'Placeholder Text'} value={values?.email_no_reply} />
+              <InputAdminField
+                label={"Email No-reply"}
+                name={"email_no_reply"}
+                onChange={handleChange}
+                placeholder={"Placeholder Text"}
+                value={values?.email_no_reply}
+              />
             </div>
-          </div >
+          </div>
           <div className="w-[49%] max-desktop:w-full max-tablet:w-full pt-2">
             {/* <InputAdminField label={'Keywords'} name={"keywords_data"} onChange={handleChange} placeholder={'Add Tag'} 
             // value={values?.keywords_data} 
             /> */}
 
+            {console.log(values, "<===values")}
             <MultiKeyTextField
               name={"keywords_data"}
               label={"Keywords"}
               sx={styleLabel}
               onChange={handleChange}
               placeholder={"Add Tags"}
-              value={values?.keywords_data}
+              // value={values?.keywords_data}
             />
-
-
-
           </div>
           <div className="pt-7 mb-5 h-[200px]">
             <FormLabel style={styleLabel}>Description</FormLabel>
             {/* <TextEditor  /> */}
             <ReactQuilTextField
               theme={"snow"}
-              name={'description'}
+              name={"description"}
               value={values?.description}
               placeholder="Summarize in 100 words max."
-              style={{ '& .ql-editor': { minHeight: '50px' } }}
-              onChange={(value) => setFieldValue('description', value)}
+              style={{ "& .ql-editor": { minHeight: "50px" } }}
+              onChange={(value) => setFieldValue("description", value)}
             />
           </div>
           <div className="flex gap-4 pt-8  max-desktop:flex-col max-tablet:flex-col  max-desktop:pt-2 max-tablet:pt-12">
             <div className="w-[25%] max-desktop:w-full max-tablet:w-full">
-              <InputAdminField label={'Email Admin'} onChange={handleChange} name={"email_admin"} placeholder={'Placeholder Text'} value={values?.email_admin} />
-
+              <InputAdminField
+                label={"Email Admin"}
+                onChange={handleChange}
+                name={"email_admin"}
+                placeholder={"Placeholder Text"}
+                value={values?.email_admin}
+              />
             </div>
             <div className="w-[25%] max-desktop:w-full max-tablet:w-full">
-              <InputAdminField label={'Link to terms and conditions'} onChange={handleChange} name={"tandc_url"} placeholder={'Placeholder Text'} value={values?.tandc_url} />
+              <InputAdminField
+                label={"Link to terms and conditions"}
+                onChange={handleChange}
+                name={"tandc_url"}
+                placeholder={"Placeholder Text"}
+                value={values?.tandc_url}
+              />
             </div>
             <div className="w-[25%] max-desktop:w-full max-tablet:w-full">
-              <InputAdminField label={'Link to privacy policy'} name={"privacy_policy_url"} onChange={handleChange} placeholder={'Placeholder Text'} value={values?.privacy_policy_url} />
+              <InputAdminField
+                label={"Link to privacy policy"}
+                name={"privacy_policy_url"}
+                onChange={handleChange}
+                placeholder={"Placeholder Text"}
+                value={values?.privacy_policy_url}
+              />
             </div>
             <div className="w-[25%] max-desktop:w-full max-tablet:w-full">
               <InputAdminField
@@ -172,25 +202,22 @@ function General() {
               <RadioGroup
                 name={"new_registration_enabled"}
                 value={values?.new_registration_enabled}
-                onChange={
-                  (e) => {
-                    setFieldValue("new_registration_enabled", e === "true")
-                  }}
+                onChange={(e) => {
+                  setFieldValue("new_registration_enabled", e === "true");
+                }}
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
                 ]}
                 label="New Registrations"
-
               />
             </div>
             <div className="lg:w-[25%] max-tablet:w-full max-desktop:w-full">
               <RadioGroup
                 name={"auto_approve_enabled"}
-                onChange={
-                  (e) => {
-                    setFieldValue("auto_approve_enabled", e === "true")
-                  }}
+                onChange={(e) => {
+                  setFieldValue("auto_approve_enabled", e === "true");
+                }}
                 value={values?.auto_approve_enabled}
                 options={[
                   { label: "On", value: true },
@@ -203,10 +230,9 @@ function General() {
               <RadioGroup
                 name={"facebook_login_enabled"}
                 value={values?.facebook_login_enabled}
-                onChange={
-                  (e) => {
-                    setFieldValue("facebook_login_enabled", e === "true")
-                  }}
+                onChange={(e) => {
+                  setFieldValue("facebook_login_enabled", e === "true");
+                }}
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
@@ -214,10 +240,8 @@ function General() {
                 label="Facebook Login"
               />
             </div>
-
           </div>
           <div className="flex gap-32 pt-7  max-desktop:gap-4 max-tablet:gap-4 max-desktop:flex max-tablet:flex-col">
-
             <div className=" lg:w-[25%]  max-tablet:w-full max-desktop:w-full">
               <RadioGroup
                 name={"google_login_enabled"}
@@ -227,14 +251,12 @@ function General() {
                   { label: "Off", value: false },
                 ]}
                 label="Google Login"
-                onChange={
-                  (e) => {
-                    setFieldValue("google_login_enabled", e === "true")
-                  }}
+                onChange={(e) => {
+                  setFieldValue("google_login_enabled", e === "true");
+                }}
               />
             </div>
             <div className=" lg:w-[25%] max-tablet:w-full max-desktop:w-full">
-
               <RadioGroup
                 name={"New5"}
                 options={[
@@ -242,10 +264,10 @@ function General() {
                   { label: "Off", value: false },
                 ]}
                 label="Captcha"
-                onChange={
-                  (e) => {
-                    setFieldValue("New5", e === "true")
-                  }} />
+                onChange={(e) => {
+                  setFieldValue("New5", e === "true");
+                }}
+              />
             </div>
             <div className=" lg:w-[25%] max-tablet:w-full max-desktop:w-full">
               <RadioGroup
@@ -256,15 +278,15 @@ function General() {
                   { label: "Off", value: false },
                 ]}
                 label="Email Verifications"
-                onChange={
-                  (e) => {
-                    setFieldValue("email_verification_enabled", e === "true")
-                  }} />
+                onChange={(e) => {
+                  setFieldValue("email_verification_enabled", e === "true");
+                }}
+              />
             </div>
           </div>
           <div className="flex justify-center items-center pt-8 ">
             <PrimaryButton type="submit">
-              <h1 className='text-white font-semibold font-[satoshi]' >Save</h1>
+              <h1 className="text-white font-semibold font-[satoshi]">Save</h1>
             </PrimaryButton>
           </div>
         </Form>

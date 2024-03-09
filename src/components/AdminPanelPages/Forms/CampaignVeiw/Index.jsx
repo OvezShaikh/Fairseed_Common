@@ -75,7 +75,7 @@ function Index() {
     });
 
     const { mutate } = useCreateOrUpdate({
-        url: `/user-dashboard/campaign/${id}`,
+        url: `/admin-dashboard/cause-edit/${id}`,
         method: 'put'
     })
 
@@ -90,6 +90,7 @@ function Index() {
         summary: campaign?.summary || '',
         story: campaign?.story || '',
         campaign_image: image || '',
+        approval_status:false
     }
 
     const handleSubmit = (values) => {
@@ -102,6 +103,7 @@ function Index() {
         formData.append('summary', values?.summary)
         formData.append('story', values?.story)
         formData.append('category', values?.category)
+        formData.append('approval_status' , false);
 
         mutate(formData, {
             onSuccess: () => {
@@ -122,9 +124,9 @@ function Index() {
         >
             {({ values, setFieldValue, handleChange }) => (
 
-                <Form className='flex flex-col items-center'>
-                    <div className="flex w-[100%] mt-2 gap-14">
-                        <div className="flex flex-col w-[70%] gap-10 items-center">
+                <Form className='flex flex-col items-center  max-desktop:pt-6 max-tablet:pt-6'>
+                    <div className="flex w-[100%] mt-2 gap-14 max-desktop:flex-col max-tablet:flex-col">
+                        <div className="flex flex-col w-[70%] gap-10 items-center max-desktop:w-full max-tablet:w-full">
                             <div className="flex flex-col items-center">
                                 <div className="flex">
                                     <h1 className='text-[18px] font-[satoshi] font-medium text-[#000000] underline pr-2'> {values.title}</h1>
@@ -252,7 +254,7 @@ function Index() {
 
                         </div>
 
-                        <div className="w-[30%]">
+                        <div className="w-[30%] flex max-desktop:w-full max-tablet:w-full justify-center ">
                             <ImageEditor
                                 sx={{ maxWidth: '400px', minHeight: '600px' }}
                                 dataUrl={image}
@@ -264,6 +266,7 @@ function Index() {
                             <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
                         </button>
                         <SuccessButton type='submit' text={"Save & Approve"} icon={<PiCheckFat className='w-4 h-4 mt-1' />} />
+
                         <PrimaryButton >
                             <h1 className='text-white font-semibold font-[satoshi]'>Reject Modification Request</h1>
                         </PrimaryButton>

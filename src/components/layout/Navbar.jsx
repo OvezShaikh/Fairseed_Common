@@ -1,29 +1,31 @@
 import * as React from "react";
 import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
-import {
-  Bars3Icon,
-
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
-import {
-  ChevronDownIcon,
-
-} from "@heroicons/react/20/solid";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import PrimaryButton from "../inputs/PrimaryButton";
 import images from "../../constants/images";
-import UserLogin from '../../pages/login/Login_page/Index'
-import UserSignUp_02 from "../../pages/login/Sign_Up/Index";
-import { Link, NavLink } from "react-router-dom";
+import UserLogin from "../../pages/login/Login_page/Index";
+import { Link, NavLink,useParams } from "react-router-dom";
 import ProfileAvatar from "../../pages/login/ProfileAvatar";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Card from './Card'; 
+import { useGetAll } from "../../Hooks";
 
 
-const styleButton = {
-  color: 'red'
-}
+import MenuItem from "@mui/material/MenuItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import Logout from "@mui/icons-material/Logout";
+import Avatar from "@mui/material/Avatar";
+import Divider from "@mui/material/Divider";
+import Settings from "@mui/icons-material/Settings";
+import { Search } from "../inputs/Search";
+import { useEffect } from "react";
+import axios from "axios";
+import { Button } from "@mui/material";
+
+// import images from "../../constants/images";
 
 const GetInvolved = [
   {
@@ -40,7 +42,7 @@ const GetInvolved = [
   },
   {
     name: "Create a campaign",
-    href: '/Home/Create-Campaign',
+    href: "/Home/Create-Campaign",
   },
   {
     name: "Support a campaign",
@@ -62,13 +64,12 @@ const OurImpact = [
   },
   {
     name: "Stories of Change",
-    href: '/Home/Impact/StoriesOfChange',
+    href: "/Home/Impact/StoriesOfChange",
   },
   {
     name: "Reports",
-    href: '/Home/Impact/Reports',
+    href: "/Home/Impact/Reports",
   },
-
 ];
 const AboutUs = [
   {
@@ -81,7 +82,7 @@ const AboutUs = [
   },
   {
     name: "Objectives & Values",
-    href: '/Home/About-Us/Objectives-&-values',
+    href: "/Home/About-Us/Objectives-&-values",
   },
 
 
@@ -102,23 +103,84 @@ function classNames(...classes) {
 
 
 
-export default function Example() {
+export default function Example(
+  {
+    key,
+  username,
+  cardImage,
+  goalAmount,
+  fundRaised,
+  daysLeft,
+  userCount,
+  location,
+  og_id,
+  }
+) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [perPage, setPerPage] = useState(100);
+  const [page, setPage] = useState(1);
+  
+  function logout() {
+    // Remove the 'token' item from localStorage
+    localStorage.removeItem("token");
+    localStorage.removeItem("user_info");
+    console.log(localStorage.getItem("token"));
+    window.location.href = "/Home";
+    toast.error("Logout Successful !", {
+      position: "top-center",
+    });
+  }
+
+  const [showSearch, setShowSearch] = useState(false);
+
+  const toggleSearch = () => {
+    setShowSearch((prevState) => !prevState);
+  };
+  let userData = localStorage.getItem("user_info");
+  let Data = JSON.parse(userData);
+  // console.log(Data)
+  useEffect(() => {
+    // Function to close the search bar when clicking anywhere on the app
+    function handleClickOutside(event) {
+      if (
+        !event.target.closest(".search-container") &&
+        !event.target.closest(".text-black")
+      ) {
+        setShowSearch(false);
+      }
+    }
+
+    // Add event listener when component mounts
+    document.body.addEventListener("click", handleClickOutside);
+
+    // Remove event listener when component unmounts
+    return () => {
+      document.body.removeEventListener("click", handleClickOutside);
+    };
+  }, [showSearch]);
+  let role = Data?.user_role;
+  let image = Data?.profile_pic;
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  let img = `${process.env.REACT_APP_API_URL}` + image;
+
+
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredCards, setFilteredCards] = useState([]);
-  const allCards = [
-    // your card data array
-    // { title: 'Card 1', ... },
-    // { title: 'Card 2', ... },
-    // ...
-  ];
+  const { id } = useParams();
+  // const allCards = [
+  //   // your card data array
+  //   // { title: 'Card 1', ... },
+  //   // { title: 'Card 2', ... },
+  //   // ...
+  // ];
+  const [allCards, setAllCards] = useState([]);
+  
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-
-    const filtered = allCards.filter(card => card.title.toLowerCase().includes(searchTerm.toLowerCase()));
-    setFilteredCards(filtered);
-  };
+ 
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -131,37 +193,68 @@ export default function Example() {
   const highlightSearchResults = (text, results) => {
     return results.reduce((acc, result) => {
       const { word, position } = result;
-      const startTag = `<span class="highlight">${text.slice(position[0], position[1])}</span>`;
+      const startTag = <span class="highlight">${text.slice(position[0], position[1])}</span>;
       return acc.replace(word, startTag);
     }, text);
   };
 
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`)
+      .then(response => {
+        setAllCards(response.data)
+        console.log(response.data, "data from API /")
+        const filtered = allCards.filter(card => card.rows.title.toLowerCase().includes(searchTerm.toLowerCase()));
+        setFilteredCards(filtered);
+        console.log(filtered, "set filtered")
+      })
+      .catch(error => console.error('Error fetching card titles:', error));
+  }, []);
 
+  useGetAll({
+    key: `/campaign/campaign?page=${page}&limit=${perPage}`,
+    enabled: false,
+    select: (data) => {
+        return data?.data?.rows;
+    },
+    onSuccess: (data) => {
+      setAllCards(data);
+      setFilteredCards( allCards.filter(card => card.rows.title.toLowerCase().includes(searchTerm.toLowerCase())))
+     
+    },
+    onerror:()=>{
+      console.error('Error fetching card titles:')
+    }
+  })
 
-  // const [isClicked, setIsClicked] = useState(false);
-
-  // const handleButtonClick = () => {
-  //   setIsClicked(!isClicked);
-  // };
-
-  // const buttonStyles = {
-  //   color: isClicked
-  //     ? 'linear-gradient(45deg, #FF9F0A, #FF375F)'
-  //     : '#40444C',
-  // };
-
-
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const filtered = allCards.filter(card => card.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    setFilteredCards(filtered);
+    console.log(filtered, "set filtered")
+    
+  };
 
   return (
-    <header className="absolute top-0 left-0 right-0 bg-transparent z-10 container" style={{
-      backgroundColor: '#8EC5FC', backdropFilter: 'blur(10px)'
-    }}>      <nav
-      className="mx-auto flex max-w-9xl max-desktop:px-2 max-tablet:px-0  items-center justify-between p-6 lg:px-8"
-      aria-label="Global"
+    <header
+      className="absolute top-0 left-0 right-0 bg-transparent z-10 container"
+      style={{
+        backgroundColor: "#8EC5FC",
+        backdropFilter: "blur(10px)",
+      }}
     >
+      {" "}
+      <nav
+        className="mx-auto flex max-w-9xl max-desktop:px-2 max-tablet:px-0  items-center justify-between p-6 lg:px-8"
+        aria-label="Global"
+      >
         <div className="flex lg:flex ">
           <NavLink to="/Home">
-            <img src={images.Logo} alt="FairSeed" title="FairSeed" />
+            <img
+              className="max-tablet:w-20 max-tablet:h-9"
+              src={images.Logo}
+              alt="FairSeed"
+              title="FairSeed"
+            />
           </NavLink>
         </div>
 
@@ -228,7 +321,6 @@ export default function Example() {
                         className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
                         style={{ fontWeight: 400 }}
                       >
-
                         <div className="flex-auto">
                           <NavLink
                             to={item.href}
@@ -237,7 +329,6 @@ export default function Example() {
                             {item.name}
                             <span className="absolute inset-0" />
                           </NavLink>
-
                         </div>
                       </div>
                     ))}
@@ -294,7 +385,6 @@ export default function Example() {
                         className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
                         style={{ fontWeight: 400 }}
                       >
-
                         <div className="flex-auto">
                           <NavLink
                             to={item.href}
@@ -303,12 +393,10 @@ export default function Example() {
                             {item.name}
                             <span className="absolute inset-0" />
                           </NavLink>
-
                         </div>
                       </div>
                     ))}
                   </div>
-
                 </Popover.Panel>
               </Transition>
             </Popover>
@@ -361,7 +449,6 @@ export default function Example() {
                         className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[Satoshi] text-[#333] hover:bg-gray-50"
                         style={{ fontWeight: 400 }}
                       >
-
                         <div className="flex-auto">
                           <NavLink
                             to={item.href}
@@ -370,12 +457,10 @@ export default function Example() {
                             {item.name}
                             <span className="absolute inset-0" />
                           </NavLink>
-
                         </div>
                       </div>
                     ))}
                   </div>
-
                 </Popover.Panel>
               </Transition>
             </Popover>
@@ -386,31 +471,34 @@ export default function Example() {
               className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
             ><Link to="/Home/How-It-Works">How it Works</Link></button>
             {/* Fifth button */}
-
-
-            {
-              (localStorage.getItem('token')) ? (
-                <PrimaryButton
-                  sx={{ borderRadius: 'var(--Pixels-8, 8px)', fontWeight: 700, fontSize: '18px', padding: '12px 20px', }}>
-                  <NavLink to="/Home/Create-Campaign">
-                    Start a Campaign
-                  </NavLink>
-                </PrimaryButton>
-
-              ) : (
-                <PrimaryButton
-                  onClick={() => {
-                    toast.error("please login First !!! ", {
-                      position: 'top-center'
-                    })
-                  }}
-                  sx={{ borderRadius: 'var(--Pixels-8, 8px)', fontWeight: 700, fontSize: '18px', padding: '12px 20px', }}>
-                  Start a Campaign
-                </PrimaryButton>
-
-              )
-            }
-
+            {localStorage.getItem("token") ? (
+              <PrimaryButton
+                sx={{
+                  borderRadius: "var(--Pixels-8, 8px)",
+                  fontWeight: 700,
+                  fontSize: "18px",
+                  padding: "12px 20px",
+                }}
+              >
+                <NavLink to="/Home/Create-Campaign">Start a Campaign</NavLink>
+              </PrimaryButton>
+            ) : (
+              <PrimaryButton
+                onClick={() => {
+                  toast.error("please login First !!! ", {
+                    position: "top-center",
+                  });
+                }}
+                sx={{
+                  borderRadius: "var(--Pixels-8, 8px)",
+                  fontWeight: 700,
+                  fontSize: "18px",
+                  // padding: "12px 10px 12px 10px",
+                }}
+              >
+                Start a Campaign
+              </PrimaryButton>
+            )}
 
             <div className="flex space-x-8 mt-2">
               <form onSubmit={handleSearch} className="relative mx-auto flex">
@@ -421,11 +509,11 @@ export default function Example() {
                   className="text-xs peer cursor-pointer relative mt-2 z-10 h-8 w-10  bg-transparent  pr-8 outline-none focus:rounded-r-none focus:w-full focus:cursor-text focus:border-taupeGray focus:px-3"
                   placeholder="Typing..."
                 />
-                <button type="submit" className="absolute top-0 mt-2 right-0  bottom-0 my-auto h-8 w-10 px-3 bg-transparent rounded-lg peer-focus:relative peer-focus:rounded-l-none">
+                <Button type="submit" className="absolute top-0 mt-2 right-0  bottom-0 my-auto h-8 w-10 px-3 bg-transparent rounded-lg peer-focus:relative peer-focus:rounded-l-none">
                   <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
                     <path d="M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z"></path>
                   </svg>
-                </button>
+                </Button> 
               </form>
 
               {(searchTerm !== '' ? filteredCards : allCards).map(card => (
@@ -458,17 +546,18 @@ export default function Example() {
           </Popover.Group>
         </div>
       </nav>
-      <Dialog as="div" className="xl:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+      <Dialog
+        as="div"
+        className="xl:hidden"
+        open={mobileMenuOpen}
+        onClose={setMobileMenuOpen}
+      >
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <Link to="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto"
-                src={images.Logo}
-                alt=""
-              />
+              <img className="h-8 w-auto" src={images.Logo} alt="" />
             </Link>
             <button
               type="button"
@@ -485,10 +574,17 @@ export default function Example() {
                 <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
+                      <Disclosure.Button
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                          open ? " text-red-400" : ""
+                        }`}
+                      >
                         Get Involved
                         <ChevronDownIcon
-                          className={classNames(open ? 'rotate-180' : '', 'h-6 w-6 flex-none')}
+                          className={classNames(
+                            open ? "rotate-180" : "",
+                            "h-6 w-6 flex-none"
+                          )}
                           aria-hidden="true"
                         />
                       </Disclosure.Button>
@@ -510,10 +606,17 @@ export default function Example() {
                 <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
+                      <Disclosure.Button
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                          open ? " text-red-400" : ""
+                        }`}
+                      >
                         Our Impact
                         <ChevronDownIcon
-                          className={classNames(open ? 'rotate-180' : '', 'h-6 w-6 flex-none')}
+                          className={classNames(
+                            open ? "rotate-180" : "",
+                            "h-6 w-6 flex-none"
+                          )}
                           aria-hidden="true"
                         />
                       </Disclosure.Button>
@@ -536,10 +639,17 @@ export default function Example() {
                 <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
+                      <Disclosure.Button
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                          open ? " text-red-400" : ""
+                        }`}
+                      >
                         About Us
                         <ChevronDownIcon
-                          className={classNames(open ? 'rotate-180' : '', 'h-6 w-6 flex-none')}
+                          className={classNames(
+                            open ? "rotate-180" : "",
+                            "h-6 w-6 flex-none"
+                          )}
                           aria-hidden="true"
                         />
                       </Disclosure.Button>
@@ -558,29 +668,73 @@ export default function Example() {
                     </>
                   )}
                 </Disclosure>
-                <Link to={'/Home/How-It-Works'}
+                <Link
+                  to={"/Home/How-It-Works"}
                   className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[20px]  max-tablet:text-[18px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   How It works
                 </Link>
               </div>
-              <div className="py-6">
+              <div className="py-4">
+                {localStorage.getItem("token") ? (
+                  <>
+                    {role === "Admin" && (
+                      <>
+                        <MenuItem>
+                          <Link className="flex  items-center" to="/AdminPanel">
+                            <ListItemIcon className="pr-2">
+                              <Avatar className="!w-7 !h-7" src={img} />
+                            </ListItemIcon>
+                            AdminPanel
+                          </Link>
+                        </MenuItem>
+                        <Divider />
+                      </>
+                    )}
 
-                {
-                  (localStorage.getItem('token')) ?
-                    (<ProfileAvatar />)
-                    : (<Link to='/Home/Login'><button
-                      className="font-[satoshi] text-[22px] font-medium text-[#40444C]"
+                    <MenuItem onClick={handleClose}>
+                      <Link className="flex items-center" to={"/User"}>
+                        <ListItemIcon>
+                          <img src={images.Dashboard} alt="" />
+                        </ListItemIcon>
+                        Dashboard
+                      </Link>
+                    </MenuItem>
+
+                    <MenuItem onClick={handleClose}>
+                      <Link
+                        className="flex items-center"
+                        to={"/account-settings"}
+                      >
+                        <ListItemIcon>
+                          <Settings fontSize="small" />
+                        </ListItemIcon>
+                        Settings
+                      </Link>
+                    </MenuItem>
+
+                    <MenuItem
+                      className="flex items-center"
+                      onClick={handleClose}
                     >
+                      <ListItemIcon>
+                        <Logout fontSize="small" />
+                      </ListItemIcon>
+                      <button onClick={() => logout()}>Logout</button>
+                    </MenuItem>
+                  </>
+                ) : (
+                  <Link to="/Home/Login">
+                    <button className="font-[satoshi] text-[22px] font-medium text-[#40444C]">
                       Log In
-                    </button></Link>)
-                }
+                    </button>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
         </Dialog.Panel>
       </Dialog>
-
-    </header >
+    </header>
   );
 }

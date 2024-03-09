@@ -15,7 +15,6 @@ const Campaign = () => {
   let Data = JSON.parse(userData)
   let id = Data?.id
   const [selectedRowID, setSelectedRowID] = useState(null);
-  const { pathname } = useLocation();
   const getStatusCellStyle = (status) => {
     // let { state } = useLocation(); let { id } = state
     if (status === 'Pending') {
@@ -55,8 +54,8 @@ const Campaign = () => {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Id", 
-        accessor: "id", 
+        Header: "Id",
+        accessor: "id",
         Cell: ({ row }) => (
           <div>{row.index + 1}</div>
         ),
@@ -127,27 +126,16 @@ const Campaign = () => {
         accessor: 'actions',
 
 
-        minWidth: pathname === '/User/Campaigns' ? 180 : 100,
-        width: pathname === '/User/Campaigns' ? 180 : 100,
+        minWidth: 100,
+        width: 100,
 
         Cell: ({ row }) => {
           return (
-            <div className={`flex items-center gap-2 justify-center ${pathname === '/User/Campaigns' ? 'pl-0' : 'pl-6'} max-desktop:pl-0 max-tablet:pl-0`}
+            <div className='flex items-center gap-2 justify-center pl-6 max-desktop:pl-0 max-tablet:pl-0'
             >
 
-              {pathname === '/User/Campaigns' ? (
-                <>
-                  <Link to="Edit" state={{ id: row?.id }} >
-                    <SecondaryButton sx={{ height: '30px' }}>Edit Bank and KYC</SecondaryButton>
-                  </Link>
-                  <Link to="View" state={{ id: row?.id }} >
-                    <SecondaryButton sx={{ height: '30px' }}>View Bank and KYC</SecondaryButton>
-                  </Link>
-                </>
-              ) : (
-                <Link to="Edit" state={{ id: row?.id }} ><SecondaryButton sx={{ height: '30px' }} >Edit</SecondaryButton></Link>
+              <Link to="Edit" state={{ id: row?.id }} ><SecondaryButton sx={{ height: '30px' }} >Edit</SecondaryButton></Link>
 
-              )}
 
             </div >
           )

@@ -1,36 +1,44 @@
 import React from 'react'
 import ReactTable from '../../Table/index'
 import { useState } from 'react';
-import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
-import { LocationConfigurationDialog } from '../../admin-console/AddCategorydialog';
-import images from '../../../constants/images';
-import { GoDotFill } from "react-icons/go";
 import PrimaryButton from '../../inputs/PrimaryButton';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { GoDotFill } from "react-icons/go";
+
 
 
 const Withdrawals = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
-  const [get, setGet] = useState('')
-  let { pathname } = useLocation()
-
   const getStatusCellStyle = (status) => {
-    setGet(status)
+    // let { state } = useLocation(); let { id } = state
+    console.log('Status:', status);
+
     if (status === 'Pending') {
       return {
-        background: '#EBF0ED',
-        color: '#717171'
+
+
+
+        color: '#fa9820',
+        background: '#f5fabe  ',
       };
-    } else if (status === 'Active') {
+    } else if (status === 'Approved') {
       return {
         background: '#ECFDF3  ',
 
         color: '#037847',
       };
+    } else if (status === 'Rejected') {
+      return {
+        background: '#f5d0d0',
+        color: '#f03c24',
+      }
+    } else {
+      return {
+        background: '#EBF0ED',
+        color: '#717171'
+      }
     }
-    return {
-      color: 'gray'
-    };
+    ;
   };
 
 
@@ -40,82 +48,76 @@ const Withdrawals = () => {
       <span className='' style={getStatusCellStyle(value)}>{value}</span>
     </div>
   );
-
-
-
   const columns = React.useMemo(
     () => [
       {
         Header: "Id", // Row number header
-        accessor: "id", // Accessor for row number
+        accessor: "index", // Accessor for row number
         Cell: ({ row }) => (
+          // Display row number using index provided by React Table
           <div>{row.index + 1}</div>
         ),
         minWidth: 50,
         width: 50,
-        search: false
+        search: false,
+        sortable: false
       },
       {
-        Header: "Name",
-        accessor: "title",
-        minWidth: 100,
-        width: 100,
-
+        Header: "Full Name",
+        accessor: "full_name",
+        // minWidth: 150,
+        // width: 200,
+        nofilter: true,
 
       },
+      {
+        Header: "Campaign",
+        accessor: "campaign",
+        // minWidth: 200,
+        // width: 280,
 
+      },
       {
         Header: "Email",
-        accessor: "user.email",
-        minWidth: 100,
-        width: 100,
+        accessor: "email",
+        // minWidth: 150,
+        // width: 200,
+        nofilter: true,
 
       },
       {
-        Header: "Mobile",
-        accessor: "user.mobile_number",
-        minWidth: 100,
-        width: 100,
+        Header: "Donation",
+        accessor: "amount",
+        // minWidth: 200,
+        // width: 280,
 
       },
       {
-        Header: "Goal",
-        accessor: "goal_amount",
-        minWidth: 100,
-        width: 100,
+        Header: "Payment Type",
+        accessor: "payment_type",
+        // minWidth: 150,
+        // width: 200,
+        nofilter: true,
 
+      },
+      {
+        Header: "Date",
+        accessor: "created_on",
+        // minWidth: 200,
+        // width: 280,
+
+      },
+      {
+        Header: "Donation Type",
+        accessor: 'donation_type'
       },
       {
         Header: "Status",
         accessor: "status",
-        minWidth: 100,
-        width: 100,
+        // minWidth: 200,
+        // width: 280,
+        nofilter: true,
         Cell: StatusCell,
-      },
-      {
-        Header: "Date",
-        accessor: "end_date",
-        minWidth: 100,
-        width: 100,
-      },
-      {
-        Header: 'Causes',
-        accessor: 'causes',
-        minWidth: 100,
-        width: 100,
-        Cell: ({ row }) => {
-          return (
-            <div className='flex  '>
-              <div className="w-[80px] truncate">
-                {row?.original?.title}
-              </div>
-              <a href={`/campaign-details/${row.id}`}>
-                <img className='ml-2' src={images.CausesDetails} alt="CausesDetails" />
-              </a>
-            </div>
-          );
-        },
-
 
       },
       {
@@ -125,82 +127,37 @@ const Withdrawals = () => {
         nofilter: true,
         minWidth: 100,
         width: 100,
+        search: false,
         Cell: ({ row }) => {
           return (
             <div className='flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0'>
-              {pathname === '/User/Withdrawals' ? (
-                <>
-                  {get === 'Active' ? (
-                    <PrimaryButton
-                      sx={{
-                        height: '30px',
-                        width: '60px',
-                        background: 'red', // Corrected color value
-                        color: 'white',
-                        "& .MuiButton-root:hover": {
-                          background: "yellow"
-                        }
-                      }}
-                    >
-                      Delete
-                    </PrimaryButton>
-                  ) : (
-                    <PrimaryButton
-                      disabled
-                      sx={{
-                        height: '30px',
-                        width: '60px',
-                        background: 'green',
-                        color: 'white',
-                        "& .MuiButton-root:hover": {
-                          background: "yellow"
-                        }
-                      }}
-                    >
-                      Paid
-                    </PrimaryButton>
-                  )}
-                </>
-              ) : (
-                <Link to="View" state={{ id: row?.id }} >
-                  <PrimaryButton
-                    sx={{
-                      height: '30px',
-                      width: '60px',
-                      background: '#219D80',
-                      color: 'white',
-                      "& .MuiButton-root:hover": {
-                        background: "yellow"
-                      }
-                    }}
-                  >
-                    View
-                  </PrimaryButton>
-                </Link>
-              )}
-
+              <Link to="View" state={{ id: row?.id }}><PrimaryButton sx={{
+                height: '30px', width: '60px', background: '#219D80', color: 'white', "&  .MuiButton-root:hover": {
+                  background: "yellow"
+                }
+              }} text={'View'}>View</PrimaryButton></Link>
               {/* <SecondaryButton sx={{ height: '30px' }}>Edit Bank and KYC</SecondaryButton> */}
             </div >
           )
         }
       }
+
     ],
-    console.log(get, 'get+=================>')
+
+    []
   );
+
   return (
     <div>
       <ReactTable
         rows={[]}
         columns={columns}
-        showFilter
         manualPagination
-        title={"Campaign"}
-        checkboxComponent={IndeterminateCheckbox}
-        url={`/admin-dashboard/campaign`}
+        title={"Donations"}
+        url="/admin-dashboard/donors?page=1&limit=10"
         extraQuery={{ inactive: true }}
-        addButton={<LocationConfigurationDialog />}
-        // addButton={<Button>HElloooooo</Button>}
         selectedRowID={selectedRowID}
+        checkboxSelection={true}
       />
     </div>
   )

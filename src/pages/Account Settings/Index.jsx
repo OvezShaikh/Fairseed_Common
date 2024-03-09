@@ -47,19 +47,8 @@ function Index() {
         heading={"Account Settings"}
       />
       <div className='account-settings-div desktop:max-w-[832px] mx-auto desktop:mt-[128px] max-desktop:max-w-[470px] max-desktop:mt-[60px] max-tablet:mt-[40px] max-tablet:px-[16px]'>
-      {/* <Formik 
-      enableReinitialize={true}
-      initialValues={initial_values}
-      onSubmit={(values)=>handleSubmit(values)}
-      >
-        <Form> */}
         <SettingTabs />
-       
-        {/* </Form>
-       </Formik> */}
-
       </div>
-
       <Footer />
 
     </>

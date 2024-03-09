@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
-import images from "../../../constants/images";
 // import img from " /profile.jpg";
 const Avatar = ({img}) => {
   const [dialogs, setdialogs] = useState(false);
@@ -15,11 +14,11 @@ const Avatar = ({img}) => {
             height: "200px",
             borderRadius: "58%",
             objectFit: "cover",
+            margin:'auto'
           }}
           src={img}
           alt=""
         />
-        <Button onClick={() => setdialogs(true)}>dialog</Button>
         <Dialog
           visible={dialogs}
           header={() => (
