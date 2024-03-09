@@ -231,7 +231,7 @@ export default function Example() {
         >
           <div className="flex-auto">
             <NavLink
-              to="/Home/GetInvolved/create-campaign"
+              to="/Home/Create-Campaign"
               className="block font-semibold text-gray-900"
             >
               Create Campaign
