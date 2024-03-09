@@ -117,7 +117,7 @@ function CauseEdit_Form() {
     });
 
     const { mutate } = useCreateOrUpdate({
-        url: `/admin-dashboard/cause-edit/${id}`,
+        url: `/admin-dashboard/campaign/${id}`,
         method: "put",
     })
 
@@ -134,22 +134,20 @@ function CauseEdit_Form() {
         status: user?.status || "",
         story: user?.story || "",
         documents: user?.documents || [],
-        approval_status:user?.approval_status 
-
+        approve_campaign:user?.approve_campaign 
     };
+
+
     console.log(initial_values);
     if (!isSuccess) {
         return <div>Loading...</div>;
     }
 
     const handleSubmit = (values) => {
-
-
         const formData = new FormData();
         if (values?.campaign_image instanceof File) {
             formData.append('campaign_image', values?.campaign_image)
         }
-
         formData.append('title', values?.title)
         formData.append('amount', values?.amount)
         formData.append('location', values?.location)
@@ -157,7 +155,7 @@ function CauseEdit_Form() {
         formData.append('summary', values?.summary)
         formData.append('story', values?.story)
         formData.append('category', values?.category?.id)
-        formData.append('approval_status', true)
+        formData.append('approve_campaign', true)
 
        
         mutate(formData, {
@@ -186,7 +184,7 @@ function CauseEdit_Form() {
                             <div className="desktop:py-[80px] max-desktop:py-[53px]">
                                 <DropZone
                                     name="campaign_image"
-                                    label={'campaign image'}
+                                    // label={'campaign image'}
                                     onChange={onChange}
                                     initialPreview={srcImg}
                                 />
@@ -218,7 +216,7 @@ function CauseEdit_Form() {
                                 required={true}
                                 label="Choose a Category:"
                                 getOptionLabel={(item) => {
-                                    return item.name
+                                    return item?.name
                                 }}
                                 value={values?.category}
                                 options={Categories}
@@ -302,8 +300,9 @@ function CauseEdit_Form() {
 
 
                                 <div className="flex gap-4">
+                                    
                                     {values?.documents?.map((imageUrl, index) => {
-                                        const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl.doc_file}`;
+                                        const documentLink = `${process.env.REACT_APP_BE_BASE_URL}+${imageUrl.doc_file}`;
                                         console.log(imageUrl.doc_file, "doc_file")
                                         return <Attachments key={index} imageUrl={documentLink} />;
                                     })}
@@ -317,7 +316,8 @@ function CauseEdit_Form() {
                                         value={values?.end_date}
                                         type={"date"}
                                         sx={InputStyleDate}
-                                        name={"end_date"} label={"Accept Donations until (Select end date):"}
+                                        name={"end_date"} 
+                                        label={"Accept Donations until (Select end date):"}
                                         placeholder={"Minimum 50 INR"} />
                                 </div>
 
@@ -347,6 +347,7 @@ function CauseEdit_Form() {
                                         options={
                                             [{ label: "Pending", value: 'Pending' },
                                             { label: "Active", value: 'Active' },
+                                            { label: "Completed", value: 'Completed' }
                                             ]}
                                     />
                                 </div>
@@ -395,8 +396,6 @@ function CauseEdit_Form() {
                                     ]}
                                     label="Featured:"
                                     style={{ fontSize: '18px', fontWeight: 500 }}
-                                // onChange={onChange}
-
                                 />
                             </div>
                         </div>
@@ -406,10 +405,9 @@ function CauseEdit_Form() {
                                     sx={{ maxWidth: '400px', minHeight: '600px' }}
                                     dataUrl={srcImg}
                                 />
-                                {/* {console.log(values?.cpg_image)} */}
+                               
                             </div>
                             <Link to={"Revision-History"}
-                            // state={id}
                             >
                                 <PrimaryButton sx={{ borderRadius: '12px', width: '90%' }}>
                                     <h1 className='text-white font-medium py-2.5 text-[18px] font-[satoshi]'>View Revision History</h1>

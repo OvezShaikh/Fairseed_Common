@@ -33,10 +33,7 @@ const GetInvolved = [
     name: "Internship",
     href: "/Home/GetInvolved/Internship",
   },
-  {
-    name: "Create a campaign",
-    href: "/Home/Create-Campaign",
-  },
+
   {
     name: "Support a campaign",
     href: "/Home/GetInvolved/Support-a-campaign",
@@ -138,6 +135,7 @@ export default function Example() {
     setAnchorEl(null);
   };
   let img = `${process.env.REACT_APP_API_URL}` + image;
+  const hasToken = !!localStorage.getItem("token");
 
   return (
     <header
@@ -222,7 +220,7 @@ export default function Example() {
                     {GetInvolved.map((item) => (
                       <div
                         key={item.name}
-                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+                        className="group relative flex items-center gap-x-6 pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
                         style={{ fontWeight: 400 }}
                       >
                         <div className="flex-auto">
@@ -236,6 +234,22 @@ export default function Example() {
                         </div>
                       </div>
                     ))}
+                    {hasToken && (
+                      <div
+                        className="group relative flex items-center gap-x-6 pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+                        style={{ fontWeight: 400 }}
+                      >
+                        <div className="flex-auto">
+                          <NavLink
+                            to="/Home/Create-Campaign"
+                            className="block font-semibold text-gray-900"
+                          >
+                            Create Campaign
+                            <span className="absolute inset-0" />
+                          </NavLink>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </Popover.Panel>
               </Transition>
