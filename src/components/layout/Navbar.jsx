@@ -31,7 +31,7 @@ const GetInvolved = [
   },
   {
     name: "Internship",
-    href: "/Home/GetInvolved/Internships",
+    href: "/Home/GetInvolved/Internship",
   },
   {
     name: "Create a campaign",
