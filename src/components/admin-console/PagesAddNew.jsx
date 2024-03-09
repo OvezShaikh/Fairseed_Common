@@ -48,6 +48,7 @@ export const PagesAddNew = ({
   const { mutate } = useCreateOrUpdate({
     url: `/admin-dashboard/pages`,
   });
+  
   // const { mutate, isLoading } = useCreateOrUpdate({
   //   url: isUpdate ? `/admin/tooltip/${data?.id}` : "/admin/tooltip",
   //   method: isUpdate ? "put" : "post",

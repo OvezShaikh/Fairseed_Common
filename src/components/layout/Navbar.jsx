@@ -17,7 +17,6 @@ import Divider from "@mui/material/Divider";
 import Settings from "@mui/icons-material/Settings";
 import { Search } from "../inputs/Search";
 import { useEffect } from "react";
-// import images from "../../constants/images";
 
 const GetInvolved = [
   {
@@ -31,10 +30,6 @@ const GetInvolved = [
   {
     name: "Internship",
     href: "/Home/GetInvolved/Internships",
-  },
-  {
-    name: "Create a campaign",
-    href: "/Home/Create-Campaign",
   },
   {
     name: "Support a campaign",
@@ -82,10 +77,11 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+const hasToken = !!localStorage.getItem('token');
+
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   function logout() {
-    // Remove the 'token' item from localStorage
     localStorage.removeItem("token");
     localStorage.removeItem("user_info");
     console.log(localStorage.getItem("token"));
@@ -102,9 +98,7 @@ export default function Example() {
   };
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
-  // console.log(Data)
   useEffect(() => {
-    // Function to close the search bar when clicking anywhere on the app
     function handleClickOutside(event) {
       if (
         !event.target.closest(".search-container") &&
@@ -114,10 +108,8 @@ export default function Example() {
       }
     }
 
-    // Add event listener when component mounts
     document.body.addEventListener("click", handleClickOutside);
 
-    // Remove event listener when component unmounts
     return () => {
       document.body.removeEventListener("click", handleClickOutside);
     };
@@ -210,25 +202,41 @@ export default function Example() {
                 leaveTo="opacity-0 translate-y-1"
               >
                 <Popover.Panel className="absolute left-0 top-full z-10 mt-3 w-[250px] max-w-md overflow-hidden rounded bg-white shadow-lg ring-1 ring-gray-900/5">
-                  <div className="pl-3 pb-4">
-                    {GetInvolved.map((item) => (
-                      <div
-                        key={item.name}
-                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
-                        style={{ fontWeight: 400 }}
-                      >
-                        <div className="flex-auto">
-                          <NavLink
-                            to={item.href}
-                            className="block font-semibold text-gray-900"
-                          >
-                            {item.name}
-                            <span className="absolute inset-0" />
-                          </NavLink>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                <div className="pl-3 pb-4">
+      {GetInvolved.map((item) => (
+        <div
+          key={item.name}
+          className="group relative flex items-center gap-x-6 pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+          style={{ fontWeight: 400 }}
+        >
+          <div className="flex-auto">
+            <NavLink
+              to={item.href}
+              className="block font-semibold text-gray-900"
+            >
+              {item.name}
+              <span className="absolute inset-0" />
+            </NavLink>
+          </div>
+        </div>
+      ))}
+      {hasToken && (
+        <div
+          className="group relative flex items-center gap-x-6 pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+          style={{ fontWeight: 400 }}
+        >
+          <div className="flex-auto">
+            <NavLink
+              to="/create-campaign"
+              className="block font-semibold text-gray-900"
+            >
+              Create Campaign
+              <span className="absolute inset-0" />
+            </NavLink>
+          </div>
+        </div>
+      )}
+    </div>
                 </Popover.Panel>
               </Transition>
             </Popover>
