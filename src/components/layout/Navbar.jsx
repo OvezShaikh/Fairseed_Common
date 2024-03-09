@@ -73,6 +73,7 @@ const AboutUs = [
   },
 ];
 
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -80,7 +81,9 @@ function classNames(...classes) {
 const hasToken = !!localStorage.getItem('token');
 
 export default function Example() {
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   function logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("user_info");
@@ -98,6 +101,7 @@ export default function Example() {
   };
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (
@@ -227,7 +231,7 @@ export default function Example() {
         >
           <div className="flex-auto">
             <NavLink
-              to="/create-campaign"
+              to="/Home/GetInvolved/create-campaign"
               className="block font-semibold text-gray-900"
             >
               Create Campaign

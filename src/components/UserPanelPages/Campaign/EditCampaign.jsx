@@ -134,7 +134,6 @@ const EditCampaign = () => {
         status: user?.status || "",
         story: user?.story || "",
         documents: user?.documents || [],
-        approval_status:false
 
     };
     console.log(initial_values);
@@ -157,7 +156,6 @@ const EditCampaign = () => {
         formData.append('summary', values?.summary)
         formData.append('story', values?.story)
         formData.append('category', values?.category?.id)
-        formData.append('approval_status', true)
 
        
         mutate(formData, {
