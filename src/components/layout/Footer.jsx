@@ -379,7 +379,7 @@ function Footer() {
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="#"
+                  to="https://twitter.com/FairSeedTech"
                 >
                   <img src={icons.FooterIconTw} />
                 </Link>
@@ -390,7 +390,7 @@ function Footer() {
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="#"
+                  to="https://www.instagram.com/fairseedtechfoundation/"
                 >
                   <img src={icons.FooterIconIn} />
                 </Link>

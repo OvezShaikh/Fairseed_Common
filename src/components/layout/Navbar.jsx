@@ -97,8 +97,7 @@ const hasToken = !!localStorage.getItem('token');
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [perPage, setPerPage] = useState(100);
-  const [page, setPage] = useState(1);
+
   
   function logout() {
     localStorage.removeItem("token");
@@ -153,6 +152,9 @@ export default function Example() {
   //   // ...
   // ];
   const [allCards, setAllCards] = useState([]);
+  const page = 2;
+  const perPage = 10;
+
   
 
  
@@ -173,33 +175,34 @@ export default function Example() {
     }, text);
   };
 
-
+  
   useGetAll({
     key: `/campaign/campaign?page=${page}&limit=${perPage}`,
-    enabled: false,
+    enabled: true,
     select: (data) => {
+      console.log(data?.data?.rows, ">>>>>>>>>>>>")
         return data?.data?.rows;
     },
     onSuccess: (data) => {
+      console.log(data, ">>>>>>>>>>>>")
       setAllCards(data);
-      setFilteredCards( allCards.filter(card => card.rows.title.toLowerCase().includes(searchTerm.toLowerCase())))
-     
     },
     onerror:()=>{
       console.error('Error fetching card titles:')
     }
   })
 
-
-
-  const handleSearch = (e) => {
+  const handleSearch = async (e) => {
     e.preventDefault();
+    console.log(allCards)
     const filtered = allCards.filter(card => card.title.toLowerCase().includes(searchTerm.toLowerCase()));
     setFilteredCards(filtered);
-    console.log(filtered, "set filtered")
-    
+   
   };
 
+
+ 
+  
   return (
     <header
       className="absolute top-0 left-0 right-0 bg-transparent z-10 container"
