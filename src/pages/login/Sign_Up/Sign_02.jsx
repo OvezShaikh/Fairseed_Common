@@ -1,77 +1,43 @@
-import React from 'react';
-import { Formik, Form } from 'formik';
-import styled from '@emotion/styled';
-import { Container, Grid, Link, Typography } from '@mui/material';
-import InputField from '../../../components/inputs/InputField'
-import CountrySelect from '../../../components/inputs/countrySelect'
-import RadioGroup from '../../../components/inputs/radioGroup'
-import CheckBox from '../../../components/inputs/checkBox';
+import React from "react";
+import { Formik, Form } from "formik";
+import { Container, Grid, FormLabel } from "@mui/material";
+import InputField from "../../../components/inputs/InputField";
+import CountrySelect from "../../../components/inputs/countrySelect";
+import RadioGroup from "../../../components/inputs/radioGroup";
+import CheckBox from "../../../components/inputs/checkBox";
 import { useFormikContext } from "formik";
-import { Field } from 'formik';
-import PrimaryButton from '../../../components/inputs/PrimaryButton'
-import SecondaryButton from '../../../components/inputs/secondaryButton';
-import { toast } from 'react-toastify';
-
-
-
-const buttonContainerStyle = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  gap: '10px',
-};
-
-const StyledLabel_2 = styled(Typography)({
-  color: 'var(--Neutral - Neutral - 7, #717171)',
-  fontfamily: 'Satoshi Variable',
-  fontstyle: 'normal',
-  fontweight: '500',
-  fontSize: '22px',
-  letterSpacing: '0.88',
-  text: 'sm',
-});
-
-const StyledTypography = styled(Typography)({
-  background: 'var(--Linear-BG, linear-gradient(71deg, #FF9F0A 0%, #FF375F 62.9%))',
-  WebkitBackgroundClip: 'text',
-  color: 'transparent',
-
-  display: 'inline-block',
-  fontfamily: 'Epilogue',
-  fontWeight: 700,
-  fontStyle: 'normal',
-
-});
-
+import PrimaryButton from "../../../components/inputs/PrimaryButton";
+import SecondaryButton from "../../../components/inputs/secondaryButton";
+import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const Sign_02 = ({ handleBack, handleNext }) => {
-
   const { submitForm, setFieldValue, isValid } = useFormikContext();
 
-  
   const handleNextClick = () => {
     if (isValid) {
       // handleNext();
       submitForm();
     } else {
-      toast.error('Please fill all required fields.');
+      toast.error("Please fill all required fields.");
     }
   };
 
   return (
-    <Form className='pt-8'>
+    <Form className="pt-8">
       <Container>
-        <Grid container className='flex flex-col gap-3'>
+        <Grid container className="flex flex-col gap-3">
           <Grid xs={12}>
             <InputField
               label="Password"
               sx={{
-                padding: ' 16px 10px 16px var(--Spacing-20, 20px)', border: '2px solid var(--Linear-BG, #FF9F0A)',
-                borderImage: 'linear-gradient(#FF9F0A, red) 20',
+                padding: " 16px 10px 16px var(--Spacing-20, 20px)",
+                border: "2px solid var(--Linear-BG, #FF9F0A)",
+                borderImage: "linear-gradient(#FF9F0A, red) 20",
                 // borderWidth: '3px',
-                borderStyle: ' solid',
-                borderRadius: '4px'
+                borderStyle: " solid",
+                borderRadius: "4px",
               }}
-
               name={"password"}
               type="password"
               placeholder="************"
@@ -81,13 +47,13 @@ const Sign_02 = ({ handleBack, handleNext }) => {
             <InputField
               label="Confirm Password"
               sx={{
-                padding: ' 16px 10px 16px var(--Spacing-20, 20px)', border: '2px solid var(--Linear-BG, #FF9F0A)',
-                borderImage: 'linear-gradient(#FF9F0A, red) 20',
+                padding: " 16px 10px 16px var(--Spacing-20, 20px)",
+                border: "2px solid var(--Linear-BG, #FF9F0A)",
+                borderImage: "linear-gradient(#FF9F0A, red) 20",
                 // borderWidth: '3px',
-                borderStyle: ' solid',
-                borderRadius: '4px'
+                borderStyle: " solid",
+                borderRadius: "4px",
               }}
-
               name={"password2"}
               type="password"
               placeholder="************"
@@ -97,15 +63,12 @@ const Sign_02 = ({ handleBack, handleNext }) => {
             <CountrySelect
               label="Select Your Country"
               name={"country"}
-            // sx={{  border: "2px solid var(--Linear-BG, #FF9F0A)",borderRadius:'4px' }}
+              // sx={{  border: "2px solid var(--Linear-BG, #FF9F0A)",borderRadius:'4px' }}
             />
           </Grid>
           <Grid xs={12}>
-            <h1>
-            </h1>
-
             <RadioGroup
-              label={'I want to register as:'}
+              label={"I want to register as:"}
               onChange={(e) => {
                 setFieldValue("user_type", e.target.value);
               }}
@@ -119,54 +82,69 @@ const Sign_02 = ({ handleBack, handleNext }) => {
               }}
               options={[
                 { label: "Individual", value: "Individual" },
-                { label: "NGO", value: "NGO" }
+                { label: "NGO", value: "NGO" },
               ]}
             />
           </Grid>
 
-          <Grid xs={12} sx={{ display: 'flex', alignItems: 'center', }}
-          // aligns="center" justifyContent="space-between"  
+          <Grid
+            xs={12}
+            sx={{ display: "flex", alignItems: "center" }}
+            // aligns="center" justifyContent="space-between"
           >
-            <CheckBox label="I agree with the" name={"Policy_privacy"} />
-            <Link
-              href="#"
-              underline="always"
-              sx={{
-                width: "fit-content",
-                textAlign: "center",
-                color: "#FF9F0A",
-                fontSize: 20,
-                fontFamily: "Satoshi",
-                fontWeight: 700,
-                textDecoration: "underline",
-                background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
-                "-webkit-background-clip": "text",
-                "-webkit-text-fill-color": "transparent",
-                textDecoration: "underline",
+            <CheckBox label="I agree with the" name={"policy_privacy"} />
+            <Link to={"/Login/Privacy-Policy"}>
+              <FormLabel
+                underline="always"
+                sx={{
+                  width: "fit-content",
+                  textAlign: "center",
+                  color: "#FF9F0A",
+                  fontSize: 20,
+                  fontFamily: "Satoshi",
+                  fontWeight: 700,
+                  textDecoration: "underline",
+                  background:
+                    "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+                  "-webkit-background-clip": "text",
+                  "-webkit-text-fill-color": "transparent",
+                  textDecoration: "underline",
 
-                position: "relative",
-              }}
-
-            >
-              <p className="gradient-button mb-0">Privacy Policy</p>
+                  position: "relative",
+                }}
+              >
+                <p className="gradient-button mb-0">Privacy Policy</p>
+              </FormLabel>
             </Link>
           </Grid>
 
-          <Grid xs={12} flexDirection={'revert'} style={{ display: 'flex', justifyContent: 'space-between', gap: '10px' }}>
-
+          <Grid
+            xs={12}
+            flexDirection={"revert"}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: "10px",
+            }}
+          >
             <SecondaryButton
-              sx={{ width: '50%', padding: '12px 40px', borderRadius: '4px' }}
-              onClick={() => handleBack()}>
-              <h1 className='text-[22px] font-[satoshi] font-semibold text-black '>Back</h1>
-
+              sx={{ width: "50%", padding: "12px 40px", borderRadius: "4px" }}
+              onClick={() => handleBack()}
+            >
+              <h1 className="text-[22px] font-[satoshi] font-semibold text-black ">
+                Back
+              </h1>
             </SecondaryButton>
 
             <PrimaryButton
-              sx={{ width: '50%', padding: '12px 40px', }}
+              sx={{ width: "50%", padding: "12px 40px" }}
               disabled={!isValid}
-              onClick={handleNextClick}>
-              <h1 className='text-[22px] font-[satoshi] font-semibold text-whites '> SignUp</h1>
-
+              onClick={handleNextClick}
+            >
+              <h1 className="text-[22px] font-[satoshi] font-semibold text-whites ">
+                {" "}
+                SignUp
+              </h1>
             </PrimaryButton>
           </Grid>
         </Grid>

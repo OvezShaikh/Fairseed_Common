@@ -99,6 +99,7 @@ function App() {
             element={<CampaignsByCategory />}
           />
           <Route path="/Home/Login" element={<LoginOnSmallScreen />} />
+          <Route path="/Login/Privacy-Policy" element={<PrivacyPolicy />} />
           <Route
             path="/Home/RegisterSmallScreen"
             element={<RegisterSmallScreen />}

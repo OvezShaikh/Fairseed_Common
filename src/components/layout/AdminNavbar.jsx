@@ -18,20 +18,18 @@ const Navbar = () => {
   const isTab = useMediaQuery("(max-width: 1100px)");
   const sideBar = useMediaQuery("(max-width: 900px)");
 
-  let userData = localStorage.getItem('user_info')
-  let Data = JSON.parse(userData)
-  let username = Data?.username
-  let user_role = Data?.user_role
-  let profile_pic = Data?.profile_pic
-
- 
+  let userData = localStorage.getItem("user_info");
+  let Data = JSON.parse(userData);
+  let username = Data?.username;
+  let user_role = Data?.user_role;
+  let profile_pic = Data?.profile_pic;
 
   return (
     <>
       <nav className=" fixed top-0 left-0 right-0 z-10 pl-5 pr-5 bg-white border-b-2 border-[#D8DBDF] max-tablet:pl-2 border-solid justify-between  items-center inline-flex">
         <div className="w-[815.56px] self-stretch pt-2 pb-2 justify-start items-center gap-4 max-tablet:pl-0 flex">
           <div className="w-24 h-9 relative">
-            <Link to={'/Home'} >
+            <Link to={"/Home"}>
               <img src={images.Logo} alt="" />
             </Link>
           </div>
@@ -39,7 +37,7 @@ const Navbar = () => {
         <div className="w-auto self-stretch    pb-2 pt-2 rounded justify-start items-center flex">
           {/* <input className=' bg-gray-100 p-2 relative  ' placeholder='Search' /> */}
           {/* <Searchbar /> */}
-          <div className="mr-3 max-tablet:hidden">
+          {/* <div className="mr-3 max-tablet:hidden">
             <Search
               sx={{
                 width: '362px',
@@ -51,10 +49,8 @@ const Navbar = () => {
                   border: `none`,
                 },
               }} />
-          </div>
+          </div> */}
           <div className="flex-row ps-2 justify-start items-center inline-flex ">
-            
-
             <Grid
               item
               display={"flex"}
@@ -78,15 +74,14 @@ const Navbar = () => {
                   {username}
                 </p>
                 <p className="text-truncate m-0" style={{ maxWidth: "100%" }}>
-                {user_role}
+                  {user_role}
                 </p>
               </Stack>
-                <ProfileAvatar/>
+              <ProfileAvatar />
             </Grid>
           </div>
         </div>
       </nav>
-     
     </>
   );
 };

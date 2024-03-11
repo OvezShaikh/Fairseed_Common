@@ -50,7 +50,7 @@ const OurImpact = [
   },
   {
     name: "Successful Campaigns",
-    href: "/Home/Donate",
+    href: "/Home/OnGoingCampaigns",
   },
   {
     name: "Stories of Change",
@@ -82,6 +82,7 @@ function classNames(...classes) {
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   function logout() {
     // Remove the 'token' item from localStorage
     localStorage.removeItem("token");
@@ -255,7 +256,7 @@ export default function Example() {
               </Transition>
             </Popover>
 
-            <Popover className="relative mt-1">
+            {/* <Popover className="relative mt-1">
               <Popover.Button
                 className="flex pt-2 nav_button items-center gap-x-1 text-[18px] font-medium font-[satoshi]  text-[#40444C]"
                 onclick="this.style.backgroundColor = (this.style.backgroundColor === '#40444C') ? 'blue' : '#40444C';"
@@ -319,7 +320,7 @@ export default function Example() {
                   </div>
                 </Popover.Panel>
               </Transition>
-            </Popover>
+            </Popover> */}
             {/*  second button */}
 
             <Popover className="relative mt-1">
@@ -451,7 +452,7 @@ export default function Example() {
             {/* Fourth button */}
 
             <button className="font-[satoshi] text-[18px] font-medium text-[#40444C]">
-              How it Works
+              <Link to={"/Home/How-It-Works"}>How it Works</Link>
             </button>
             {/* Fifth button */}
             {localStorage.getItem("token") ? (
