@@ -95,7 +95,7 @@ function Index() {
 
   
 
-    const handleSubmit = (values) => {
+    const handleSubmit = (values ) => {
         const formData = new FormData();
         formData.append('campaign_image', values?.campaign_image)
         formData.append('title', values?.title)
@@ -107,10 +107,11 @@ function Index() {
         formData.append('category', values?.category)
         formData.append('approve_campaign' , true);
         mutate(formData, {
-            onSuccess: () => {
+            onSuccess: (response) => {
                 toast.success("Details Updated Successfully !!!", {
                     position: 'top-right'
                 })
+                
             }
         })
     }
