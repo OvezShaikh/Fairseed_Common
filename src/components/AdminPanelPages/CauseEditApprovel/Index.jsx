@@ -71,10 +71,7 @@ function CauseEdit_Form() {
     }, [])
 
 
-    const handleDelete = () => {
-        setDataUrl('')
-        setImageUrl('');
-    };
+   
 
     const onChange = (e) => {
         let files;
@@ -101,7 +98,7 @@ function CauseEdit_Form() {
             setUser(data);
             const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign_image || ""}`;
             setSrcImg(imageUrl);
-            setDataUrl(imageUrl)
+            setDocuments(data?.documents)
         },
     });
 
@@ -302,8 +299,8 @@ function CauseEdit_Form() {
                                 <div className="flex gap-4">
                                     
                                     {values?.documents?.map((imageUrl, index) => {
-                                        const documentLink = `${process.env.REACT_APP_BE_BASE_URL}+${imageUrl.doc_file}`;
-                                        console.log(imageUrl.doc_file, "doc_file")
+                                        const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl?.doc_file}`;
+                                        console.log(documentLink, "doc_file")
                                         return <Attachments key={index} imageUrl={documentLink} />;
                                     })}
                                 </div>

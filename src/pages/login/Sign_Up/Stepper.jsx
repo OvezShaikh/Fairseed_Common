@@ -201,21 +201,35 @@ const Sign_Stepper = () => {
     console.log(values);
     const formData = new FormData();
     if (activeStep === 1)
-      formData.append('profile_pic', values.profile_pic);
-    formData.append('email', values.email);
-    formData.append('username', values.username);
-    formData.append('password', values.password);
-    formData.append('country', values.country);
-    formData.append('user_type', values.user_type);
-    formData.append('country', values.country);
-    formData.append('mobile_number', values.mobile_number);
+      formData.append('profile_pic', values?.profile_pic);
+    formData.append('email', values?.email);
+    formData.append('username', values?.username);
+    formData.append('password', values?.password);
+    formData.append('country', values?.country);
+    formData.append('user_type', values?.user_type);
+    formData.append('country', values?.country);
+    formData.append('mobile_number', values?.mobile_number);
 
-    mutate(formData);
-    toast.success('Register Successfully');
-    window.location.href = '/Home';
-    console.log(formData);
+    mutate(formData, {
+      onSuccess: () => {
+        toast.success('Register Successfully',{
+          position:'top-right'
+        });
+        window.location.href = '/Home';
+
+      },
+      onerror:(response)=>{
+        toast.error('Registeration Failed !!!',{
+          position:'top-right'
+        });
+      }
+    }
+    
+    );
 
   }
+
+
   const getStepContent = (step) => {
 
     switch (step) {
@@ -247,23 +261,7 @@ const Sign_Stepper = () => {
       <Box sx={{ width: "100%", justifyContent: 'center', margin: 'auto' }}>
         {activeStep === steps.length ? (
           <React.Fragment>
-            {/* <Typography variant="h3" align="center">
-              <div className="w-full px-[140px] py-[89px] flex flex-col justify-center items-center gap-3">
-                <h7 className="text-[#06B217] text-[48px] font-[satoshi] font-bold">
-                  Success!
-                </h7>
-                <h6
-                  style={{
-                    background:
-                      "linear-gradient(71deg, #06B217 0%, #FF375F 62.9%)",
-                    "-webkit-background-clip": "text",
-                    "-webkit-text-fill-color": "transparent",
-                  }}
-                >
-                  Congratulations ! you have signed up Successfully
-                </h6>
-              </div>
-            </Typography> */}
+         
             <div className="flex ">
 
 
