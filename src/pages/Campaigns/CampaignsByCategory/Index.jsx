@@ -157,7 +157,7 @@ function Index() {
                   />
                 )}
               </div>
-              <div className="gap-4 pt-[2rem] flex flex-wrap justify-center desktop:w-[1900px]">
+              <div className="gap-4 pt-[2rem] flex flex-wrap justify-center desktop:w-[100%]">
                 {filteredUserList?.map((item) => {
                   return (
                     <Card
