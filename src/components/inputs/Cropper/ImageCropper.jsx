@@ -6,7 +6,6 @@ import {
   DialogContent,
   Grid,
 } from "@mui/material";
-
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import { useRef, useState } from "react";
@@ -22,7 +21,6 @@ export const ImageCropper = ({
   const [_, setCropData] = useState("#");
   const [cropper, setCropper] = useState();
   const { setFieldValue, values } = useFormikContext();
-  // const cropperRef = useRef(null);
 
   const getCropData = () => {
     if (typeof cropper !== "undefined") {

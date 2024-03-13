@@ -1,29 +1,20 @@
 import React, { useState } from "react";
-import InputField from "../../inputs/InputField";
+import InputField from "../../inputs/InputAdminField/Index";
 import { Form, Formik } from "formik";
 import { FormLabel } from "@mui/material";
-import UploadField from "../../inputs/UploadField/Index";
-import SelectField from "../../inputs/SelectField";
+import UploadField from "../../inputs/AdminUploadField/Index";
+import SelectField from "../../inputs/AdminSelectField/Index";
 import PrimaryButton from "../../inputs/PrimaryButton";
 import Attachments from "../../layout/Attachments/Index";
 import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import RadioGroup from "../../inputs/radioGroup";
-const InputStyle = {
-  borderRadius: "4px",
-  padding: "12px",
-  border: "1px solid #e2e2e2",
-  // },
-  "&:focus-within": {
-    boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
-    borderColor: "black",
-  },
-};
+import RadioGroup from "../../inputs/radioGroupAdminPanel/index";
+
 const InputCampaign = {
   borderRadius: "4px",
   background: "#D8DBDF",
-  padding: "12px",
+  padding: "10px",
   border: "1px solid #e2e2e2",
   // },
   "&:focus-within": {
@@ -34,7 +25,7 @@ const InputCampaign = {
     borderRadius: "3px",
     background: "#D8DBDF !important",
     position: "relative",
-    fontSize: "20px",
+    fontSize: "15px",
     color: "yellow !important",
     width: "100%",
   },
@@ -43,6 +34,7 @@ function CausesView() {
   let { state } = useLocation();
   let { id } = state;
   const [data, setData] = useState({});
+  const navigate = useNavigate();
 
   const [imgOne, setImgOne] = useState("");
   const [imgTwo, setImgTwo] = useState("");
@@ -66,6 +58,7 @@ function CausesView() {
     pan_card: data?.pan_card || "",
     adhar_card: data?.adhar_card || "",
     other: "",
+    rasing_for: data.rasing_for || "",
   };
 
   useGetAll({
@@ -100,11 +93,11 @@ function CausesView() {
       initialValues={initial_values}
       onSubmit={(values) => handleSubmit(values)}
     >
-      {({ values, handleChange }) => (
+      {({ values, handleChange, setFieldValue }) => (
         <Form>
           <div className="p-4 w-[100%] ">
-            <div className="flex flex-col gap-7  w-[70%] max-desktop:w-full max-tablet:w-[100%]">
-              <div className="flex flex-col gap-7">
+            <div className="flex flex-col gap-2  w-[70%] max-desktop:w-full max-tablet:w-[100%]">
+              <div className="flex flex-col gap-2">
                 <div className="w-full">
                   <InputField
                     sx={InputCampaign}
@@ -117,7 +110,6 @@ function CausesView() {
                 </div>
                 <div className="w-full">
                   <InputField
-                    sx={InputStyle}
                     label={"Aadhar Card:"}
                     name={"adhar_card"}
                     value={values?.adhaar_num}
@@ -126,7 +118,6 @@ function CausesView() {
                 </div>
                 <div className="w-full">
                   <InputField
-                    sx={InputStyle}
                     label={"Account Holder Name:"}
                     name={"account_holder_name"}
                     value={values?.account_holder_name}
@@ -135,7 +126,6 @@ function CausesView() {
                 </div>
                 <div className="w-full">
                   <InputField
-                    sx={InputStyle}
                     label={"Beneficiary Bank Account Number::"}
                     name={"account_number"}
                     value={values?.account_number}
@@ -144,7 +134,6 @@ function CausesView() {
                 </div>
                 <div className="w-full">
                   <InputField
-                    sx={InputStyle}
                     label={"Bank Name:"}
                     name={"bank_name"}
                     value={values?.bank_name}
@@ -153,7 +142,6 @@ function CausesView() {
                 </div>
                 <div className="w-full">
                   <InputField
-                    sx={InputStyle}
                     label={"Branch Name:"}
                     name={"branch_name"}
                     value={values?.branch_name}
@@ -162,7 +150,6 @@ function CausesView() {
                 </div>
                 <div className="w-full">
                   <InputField
-                    sx={InputStyle}
                     label={"IFSC Code:"}
                     name={"ifsc_code"}
                     value={values?.ifsc_code}
@@ -171,7 +158,6 @@ function CausesView() {
                 </div>
                 <div className="w-full">
                   <InputField
-                    sx={InputStyle}
                     label={"Pan Card Number:"}
                     name={"pan_number"}
                     value={values?.pan_card}
@@ -180,7 +166,6 @@ function CausesView() {
                 </div>
                 <div className="w-full">
                   <InputField
-                    sx={InputStyle}
                     label={"Adhar Number:"}
                     name={"adhaar_num"}
                     value={values?.adhar_card}
@@ -189,7 +174,6 @@ function CausesView() {
                 </div>
                 <div className="w-full">
                   <InputField
-                    sx={InputStyle}
                     label={"Other Details (Optional)::"}
                     name={"other"}
                     value={values?.other}
@@ -199,7 +183,7 @@ function CausesView() {
                 <div className="w-full">
                   <FormLabel
                     sx={{
-                      fontSize: "20px",
+                      fontSize: "16px",
                       fontFamily: "satoshi",
                       fontWeight: 700,
                       color: "#383A42",
@@ -213,7 +197,7 @@ function CausesView() {
                       <Attachments imageUrl={"passbook_image"} />
                       <FormLabel
                         sx={{
-                          fontSize: "20px",
+                          fontSize: "16px",
                           fontFamily: "satoshi",
                           fontWeight: 700,
                           color: "#383A42",
@@ -227,7 +211,7 @@ function CausesView() {
                       <Attachments imageUrl={{}} />
                       <FormLabel
                         sx={{
-                          fontSize: "20px",
+                          fontSize: "16px",
                           fontFamily: "satoshi",
                           fontWeight: 700,
                           color: "#383A42",
@@ -241,7 +225,7 @@ function CausesView() {
                       <Attachments imageUrl={{}} />
                       <FormLabel
                         sx={{
-                          fontSize: "20px",
+                          fontSize: "16px",
                           fontFamily: "satoshi",
                           fontWeight: 700,
                           color: "#383A42",
@@ -274,7 +258,9 @@ function CausesView() {
                   />
                 </div>
                 <RadioGroup
-                  // onChange={(e) => { setFieldValue("rasing_for", e.target.value) }}
+                  onChange={(e) => {
+                    setFieldValue("rasing_for", e.target.value);
+                  }}
                   name="rasing_for"
                   required={true}
                   options={[
@@ -288,7 +274,10 @@ function CausesView() {
                 />
                 <div className="flex flex-row gap-4 mt-12">
                   <button className="w-[69px] h-[32px] bg-[#F7F7F7]">
-                    <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
+                    <h1
+                      onClick={() => navigate(-1)}
+                      className="text-[#000000] font-medium text-[14px] font-[satoshi]"
+                    >
                       Cancel
                     </h1>
                   </button>

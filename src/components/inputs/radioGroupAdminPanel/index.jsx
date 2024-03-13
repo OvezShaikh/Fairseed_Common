@@ -7,8 +7,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { colors } from "../../../constants/theme";
-import { pink, red, blue } from "@mui/material/colors";
-
+import { red } from "@mui/material/colors";
 
 const RadioGroup = ({ label, options, onChange, sx, ...otherProps }) => {
   return (
@@ -26,11 +25,11 @@ const RadioGroup = ({ label, options, onChange, sx, ...otherProps }) => {
         className="text-capitalize font-medium d-flex a mb-1 me-4"
         sx={{
           color: colors.text.main,
-          fontSize: "16px",
+          fontSize: "16px !important",
           fontWeight: 700,
-          fontFamily: 'satoshi',
+          fontFamily: "satoshi",
           height: "22px",
-          ...sx
+          ...sx,
         }}
         id={`demo-radio-buttons-group-label-${label}`}
       >
@@ -66,7 +65,7 @@ const RadioGroup = ({ label, options, onChange, sx, ...otherProps }) => {
                 sx={{
                   // color: red[500],
                   "&.Mui-checked": {
-                    color: blue[500],
+                    color: red[500],
                   },
                 }}
               />
@@ -75,7 +74,7 @@ const RadioGroup = ({ label, options, onChange, sx, ...otherProps }) => {
           />
         ))}
       </MuiRadioGroup>
-    </FormControl >
+    </FormControl>
   );
 };
 

@@ -38,21 +38,28 @@ function YourComponent({ imageUrl }) {
     };
 
 
-    const downloadImage = () => {
+    const downloadDocument = () => {
         // Create a temporary anchor element
         const downloadLink = document.createElement('a');
         downloadLink.href = imageUrl;
-
+    
+        // Extract the filename from the URL
+        const urlParts = imageUrl.split('/');
+        const filename = urlParts[urlParts.length - 1];
+    
         // Set the download attribute to specify the filename
-        downloadLink.download = 'image.jpg'; // You can adjust the filename as needed
-
-        // Append the anchor to the body and trigger a click event to start the download
+        downloadLink.download = filename;
+    
+        // Append the anchor to the body
         document.body.appendChild(downloadLink);
+    
+        // Trigger a click event to start the download
         downloadLink.click();
-
+    
         // Clean up: remove the anchor from the body
         document.body.removeChild(downloadLink);
     };
+        
 
     const handleOk = () => {
         setDeleteSuccess(false);
@@ -92,7 +99,7 @@ function YourComponent({ imageUrl }) {
                             <RiDownload2Line
                                 className='cursor-pointer text-white mt-2'
                                 style={{ fontSize: '24px' }}
-                                onClick={downloadImage}
+                                onClick={downloadDocument}
                             />
                         </div>
                     </div>

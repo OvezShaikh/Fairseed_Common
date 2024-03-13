@@ -1,6 +1,6 @@
 import React from "react";
-import InputField from "../../../inputs/InputField/index";
-import SelectField from "../../../inputs/SelectField/index";
+import InputField from "../../../inputs/InputAdminField/Index";
+import SelectField from "../../../inputs/AdminSelectField/Index";
 import PrimaryButton from "../../../inputs/PrimaryButton";
 import CheckBox from "../../../inputs/checkBox";
 import { FormLabel } from "@mui/material";
@@ -11,7 +11,7 @@ import ReactQuilTextField from "../../../inputs/ReactQuilTextField/Index";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import SuccessButton from "../../../inputs/SuccessButton/Index";
 import { PiCheckFat } from "react-icons/pi";
-import { pink, red } from "@mui/material/colors";
+import { red } from "@mui/material/colors";
 import ErrorIcon from "@mui/icons-material/Error";
 import ImageEditor from "../../../layout/ImageEditor/Index";
 import Attachments from "../../../layout/Attachments/Index";
@@ -19,16 +19,6 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useCreateOrUpdate, useGetAll } from "../../../../Hooks";
 import { toast } from "react-toastify";
-
-const InputStyle = {
-  padding: "20px",
-  border: "1px solid #e2e2e2",
-  // },
-  "&:focus-within": {
-    boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
-    borderColor: "black",
-  },
-};
 
 function Index() {
   let { state } = useLocation();
@@ -114,11 +104,11 @@ function Index() {
     >
       {({ values, setFieldValue, handleChange }) => (
         <Form className="flex flex-col items-center  max-desktop:pt-6 max-tablet:pt-6">
-          <div className="flex w-[100%] mt-2 gap-14 max-desktop:flex-col max-tablet:flex-col">
-            <div className="flex flex-col w-[70%] gap-10 items-center max-desktop:w-full max-tablet:w-full">
+          <div className="flex w-[100%] mt-2 gap-6 max-desktop:flex-col max-tablet:flex-col">
+            <div className="flex flex-col w-[70%] gap-2 items-center max-desktop:w-full max-tablet:w-full">
               <div className="flex flex-col items-center">
                 <div className="flex">
-                  <h1 className="text-[18px] font-[satoshi] font-medium text-[#000000] underline pr-2">
+                  <h1 className="text-[16px] font-[satoshi] font-medium text-[#000000] underline pr-2">
                     {" "}
                     {values.title}
                   </h1>
@@ -127,13 +117,12 @@ function Index() {
                     <img src={images.CausesDetails} alt="" />{" "}
                   </a>
                 </div>
-                <p className="text-[18px] font-[satoshi] font-medium text-[#000000] ">
+                <p className="text-[16px] font-[satoshi] font-medium text-[#000000] ">
                   Note: Labels in red color indicates that the field is changed.{" "}
                 </p>
               </div>
               <div className="w-full">
                 <InputField
-                  sx={InputStyle}
                   onChange={handleChange}
                   value={values?.title}
                   name={"title"}
@@ -154,7 +143,6 @@ function Index() {
               />
               <div className="w-full">
                 <InputField
-                  sx={InputStyle}
                   onChange={handleChange}
                   type="number"
                   name={"goal_amount"}
@@ -166,7 +154,6 @@ function Index() {
               <div className="w-full">
                 <InputField
                   name={"location"}
-                  sx={InputStyle}
                   onChange={handleChange}
                   value={values?.location}
                   label={"Location:"}
@@ -175,7 +162,6 @@ function Index() {
               <div className="flex w-[100%] gap-4">
                 <div className="w-[50%]">
                   <InputField
-                    sx={InputStyle}
                     onChange={handleChange}
                     type={"date"}
                     name={"end_date"}
@@ -184,13 +170,13 @@ function Index() {
                     placeholder={"Minimum 50 INR"}
                   />
                 </div>
-                <div className="w-[50%] checkmark-div max-desktop:w-[46%] max-tablet:w-[100%]">
+                <div className="w-[50%] pt-3 checkmark-div max-desktop:w-[46%] max-tablet:w-[100%]">
                   <FormLabel
-                    className="text-capitalize mb-4 font-medium d-flex align-items-center"
+                    className="text-capitalize   font-medium d-flex align-items-center"
                     style={{
                       padding: "4px 8px 8px 8px",
                       color: colors.text.main,
-                      fontSize: "20px",
+                      fontSize: "16px",
                       fontWeight: 700,
                       fontFamily: "satoshi",
                       fontStyle: "normal",
@@ -223,7 +209,7 @@ function Index() {
                     fontFamily: "satoshi",
                     fontStyle: "normal",
                     // height: '22px',
-                    fontSize: "18px",
+                    fontSize: "16px",
                   }}
                 >
                   About the Campaign:
@@ -262,16 +248,6 @@ function Index() {
                   infoText={"Please be careful while adding AD Path."}
                   rows={5}
                   placeholder="Placeholder text"
-                  sx={{
-                    padding: "20px",
-                    border: "1px solid #e2e2e2",
-                    // },
-                    "&:focus-within": {
-                      boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
-                      borderColor: "black",
-                    },
-                    "& input": { height: "100px" },
-                  }}
                 />
               </div>
               <div className="w-full flex flex-col">
@@ -284,7 +260,7 @@ function Index() {
                     fontFamily: "satoshi",
                     fontStyle: "normal",
                     height: "22px",
-                    fontSize: "18px",
+                    fontSize: "16px",
                   }}
                 >
                   Attachments:
@@ -300,7 +276,7 @@ function Index() {
 
             <div className="w-[30%] flex max-desktop:w-full max-tablet:w-full justify-center ">
               <ImageEditor
-                sx={{ maxWidth: "400px", minHeight: "600px" }}
+                sx={{ maxWidth: "500px", minHeight: "500px" }}
                 dataUrl={image}
               />
             </div>
