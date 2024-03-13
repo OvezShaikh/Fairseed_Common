@@ -1,23 +1,13 @@
 import { Form, Formik } from "formik";
 import React, { useState } from "react";
-import InputField from "../../../inputs/InputField/index";
-import SelectField from "../../../inputs/SelectField/index";
+import InputField from "../../../inputs/InputAdminField/Index";
+import SelectField from "../../../inputs/AdminSelectField/Index";
 import PrimaryButton from "../../../inputs/PrimaryButton";
 import { useLocation, useNavigate } from "react-router-dom";
 import ImageEditor from "../../../layout/ImageEditor/Index";
 import images from "../../../../constants/images";
 import { useCreateOrUpdate, useGetAll } from "../../../../Hooks";
 import { toast } from "react-toastify";
-
-const InputStyle = {
-  padding: "15px",
-  border: "1px solid #e2e2e2",
-  // },
-  "&:focus-within": {
-    boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
-    borderColor: "black",
-  },
-};
 
 function Index() {
   const [User, setUser] = useState({});
@@ -109,7 +99,7 @@ function Index() {
           {({ values }) => (
             <Form className="flex flex-col w-[100%] gap-4 items-center">
               <div className="w-full">
-                <InputField sx={InputStyle} name={"name"} label={"Name:"} />
+                <InputField name={"name"} label={"Name:"} />
               </div>
               <SelectField
                 name={"role"}
@@ -122,18 +112,10 @@ function Index() {
                 }))}
               />
               <div className="w-full">
-                <InputField
-                  sx={InputStyle}
-                  name={"email"}
-                  label={"Email Id:"}
-                />
+                <InputField name={"email"} label={"Email Id:"} />
               </div>
               <div className="w-full">
-                <InputField
-                  sx={InputStyle}
-                  name={"password"}
-                  label={"Password:"}
-                />
+                <InputField name={"password"} label={"Password:"} />
               </div>
               <div className="flex flex-row gap-4 mt-12">
                 <button

@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik, Form } from "formik";
-import { Container, Grid, FormLabel } from "@mui/material";
+import { Container, div, FormLabel } from "@mui/material";
 import InputField from "../../../components/inputs/InputField";
 import CountrySelect from "../../../components/inputs/countrySelect";
 import RadioGroup from "../../../components/inputs/radioGroup";
@@ -25,9 +25,9 @@ const Sign_02 = ({ handleBack, handleNext }) => {
 
   return (
     <Form className="pt-8">
-      <Container>
-        <Grid container className="flex flex-col gap-3">
-          <Grid xs={12}>
+      <div>
+        <div className="flex flex-col gap-3">
+          <div>
             <InputField
               label="Password"
               sx={{
@@ -42,8 +42,8 @@ const Sign_02 = ({ handleBack, handleNext }) => {
               type="password"
               placeholder="************"
             />
-          </Grid>
-          <Grid xs={12}>
+          </div>
+          <div>
             <InputField
               label="Confirm Password"
               sx={{
@@ -58,15 +58,15 @@ const Sign_02 = ({ handleBack, handleNext }) => {
               type="password"
               placeholder="************"
             />
-          </Grid>
-          <Grid xs={12}>
+          </div>
+          <div>
             <CountrySelect
               label="Select Your Country"
               name={"country"}
               // sx={{  border: "2px solid var(--Linear-BG, #FF9F0A)",borderRadius:'4px' }}
             />
-          </Grid>
-          <Grid xs={12}>
+          </div>
+          <div>
             <RadioGroup
               label={"I want to register as:"}
               onChange={(e) => {
@@ -85,13 +85,9 @@ const Sign_02 = ({ handleBack, handleNext }) => {
                 { label: "NGO", value: "NGO" },
               ]}
             />
-          </Grid>
+          </div>
 
-          <Grid
-            xs={12}
-            sx={{ display: "flex", alignItems: "center" }}
-            // aligns="center" justifyContent="space-between"
-          >
+          <div className="flex justify-between">
             <CheckBox label="I agree with the" name={"policy_privacy"} />
             <Link to={"/Login/Privacy-Policy"}>
               <FormLabel
@@ -116,11 +112,9 @@ const Sign_02 = ({ handleBack, handleNext }) => {
                 <p className="gradient-button mb-0">Privacy Policy</p>
               </FormLabel>
             </Link>
-          </Grid>
+          </div>
 
-          <Grid
-            xs={12}
-            flexDirection={"revert"}
+          <div
             style={{
               display: "flex",
               justifyContent: "space-between",
@@ -146,9 +140,9 @@ const Sign_02 = ({ handleBack, handleNext }) => {
                 SignUp
               </h1>
             </PrimaryButton>
-          </Grid>
-        </Grid>
-      </Container>
+          </div>
+        </div>
+      </div>
     </Form>
   );
 };

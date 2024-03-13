@@ -54,27 +54,27 @@ function YourComponent({ imageUrl ,id }) {
       );
 
 
-    const downloadDocument = () => {
-        // Create a temporary anchor element
-        const downloadLink = document.createElement('a');
-        downloadLink.href = imageUrl;
+    // const downloadDocument = () => {
+    //     // Create a temporary anchor element
+    //     const downloadLink = document.createElement('a');
+    //     downloadLink.href = imageUrl;
     
-        // Extract the filename from the URL
-        const urlParts = imageUrl.split('/');
-        const filename = urlParts[urlParts.length - 1];
+    //     // Extract the filename from the URL
+    //     const urlParts = imageUrl.split('/');
+    //     const filename = urlParts[urlParts.length - 1];
     
-        // Set the download attribute to specify the filename
-        downloadLink.download = filename;
+    //     // Set the download attribute to specify the filename
+    //     downloadLink.download = filename;
     
-        // Append the anchor to the body
-        document.body.appendChild(downloadLink);
+    //     // Append the anchor to the body
+    //     document.body.appendChild(downloadLink);
     
-        // Trigger a click event to start the download
-        downloadLink.click();
+    //     // Trigger a click event to start the download
+    //     downloadLink.click();
     
-        // Clean up: remove the anchor from the body
-        document.body.removeChild(downloadLink);       
-    };
+    //     // Clean up: remove the anchor from the body
+    //     document.body.removeChild(downloadLink);       
+    // };
         
 
     const handleOk = () => {

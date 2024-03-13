@@ -9,6 +9,7 @@ import {
   Step,
   StepLabel,
   Box,
+  Grid,
 } from "@mui/material";
 import { Formik } from "formik";
 import styled from "@emotion/styled";
@@ -93,6 +94,17 @@ const styleStep = {
     },
   },
 };
+const StyledTypography = styled(Typography)({
+  background:
+    "var(--Linear-BG, linear-gradient(71deg, #FF9F0A 0%, #FF375F 62.9%))",
+  WebkitBackgroundClip: "text",
+  fontSize: "46px",
+  color: "transparent",
+  display: "inline-block",
+  fontfamily: "Epilogue",
+  fontWeight: 700,
+  fontStyle: "normal",
+});
 
 const INITIAL_VALUE = {
   email: "",
@@ -167,35 +179,29 @@ const Sign_Stepper = () => {
   const submitForm = (values) => {
     console.log(values);
     const formData = new FormData();
-    if (activeStep === 1)
-      formData.append('profile_pic', values?.profile_pic);
-    formData.append('email', values?.email);
-    formData.append('username', values?.username);
-    formData.append('password', values?.password);
-    formData.append('country', values?.country);
-    formData.append('user_type', values?.user_type);
-    formData.append('country', values?.country);
-    formData.append('mobile_number', values?.mobile_number);
+    if (activeStep === 1) formData.append("profile_pic", values?.profile_pic);
+    formData.append("email", values?.email);
+    formData.append("username", values?.username);
+    formData.append("password", values?.password);
+    formData.append("country", values?.country);
+    formData.append("user_type", values?.user_type);
+    formData.append("country", values?.country);
+    formData.append("mobile_number", values?.mobile_number);
 
     mutate(formData, {
       onSuccess: () => {
-        toast.success('Register Successfully',{
-          position:'top-right'
+        toast.success("Register Successfully", {
+          position: "top-right",
         });
-        window.location.href = '/Home';
-
+        window.location.href = "/Home";
       },
-      onerror:(response)=>{
-        toast.error('Registeration Failed !!!',{
-          position:'top-right'
+      onerror: (response) => {
+        toast.error("Registeration Failed !!!", {
+          position: "top-right",
         });
-      }
-    }
-    
-    );
-
-  }
-
+      },
+    });
+  };
 
   const getStepContent = (step) => {
     switch (step) {
@@ -210,8 +216,28 @@ const Sign_Stepper = () => {
     }
   };
   return (
-    <>
-      <Box sx={{ width: "100%", justifyContent: "center", margin: "auto" }}>
+    <div className="w-[65%]">
+      <div>
+        <StyledTypography
+          component="h4"
+          variant="h4"
+          sx={{
+            paddingBottom: "10px",
+            fontFamily: "Epilogue",
+          }}
+        >
+          Sign Up
+        </StyledTypography>
+        <hr className="text-gray-500  " />
+      </div>
+      <Box
+        sx={{
+          width: "100%",
+          justifyContent: "center",
+          margin: "auto",
+          paddingTop: "20px",
+        }}
+      >
         <Stepper activeStep={activeStep} sx={styleStep}>
           {steps.map((step, index) => {
             const labelProps = {};
@@ -227,11 +253,7 @@ const Sign_Stepper = () => {
       <Box sx={{ width: "100%", justifyContent: "center", margin: "auto" }}>
         {activeStep === steps.length ? (
           <React.Fragment>
-         
-            <div className="flex ">
-
-
-            </div>
+            <div className="flex "></div>
           </React.Fragment>
         ) : (
           <React.Fragment>
@@ -247,7 +269,7 @@ const Sign_Stepper = () => {
           </React.Fragment>
         )}
       </Box>
-    </>
+    </div>
   );
 };
 

@@ -4,7 +4,7 @@ import InputField from "../../../components/inputs/InputField";
 import Avatar from "@mui/material/Avatar";
 import { useFormikContext } from "formik";
 import PrimaryButton from "../../../components/inputs/PrimaryButton";
-import { Grid, Container, Button } from "@mui/material";
+import { div, Container, Button } from "@mui/material";
 import { toast } from "react-toastify";
 import { SlPencil } from "react-icons/sl";
 import Modal from "../../../components/inputs/Modal/Index";
@@ -26,14 +26,10 @@ const SignUp = ({ handleNext }) => {
 
   return (
     <Form className="pt-8 max-tablet:pl-7">
-      <Container>
-        <Grid container spacing={4}>
-          <Grid container spacing={3}>
-            <Grid
-              item
-              xs={12}
-              className="flex flex-col justify-center items-center"
-            >
+      <div>
+        <div className="flex flex-col gap-8">
+          <div className="flex flex-col justify-center items-center">
+            <div>
               <Avatar
                 alt="Remy Sharp"
                 src={
@@ -46,6 +42,7 @@ const SignUp = ({ handleNext }) => {
                   height: "150px",
                   position: "relative",
                   overflow: "hidden",
+                  // color: "red",
                 }}
               >
                 <input
@@ -54,7 +51,7 @@ const SignUp = ({ handleNext }) => {
                   ref={imgRef}
                   sx={{
                     padding: "16px 10px 16px var(--Spacing-20, 20px)",
-                    border: "2px solid var(--Linear-BG, #FF9F0A)",
+                    border: "2px solid red",
                     borderRadius: "4px",
                   }}
                   name={"profile_pic"}
@@ -76,68 +73,70 @@ const SignUp = ({ handleNext }) => {
                   <Button
                     onClick={() => imgRef.current.click()}
                     style={{
-                      background: "white",
+                      // background: "white",
                       border: "none",
                       padding: "0",
                       borderRadius: "6rem",
-                      transform: "translate(-50%, -50%)",
+                      transform: "translate(-35%, -40%)",
                     }}
                   >
-                    <SlPencil />
+                    <SlPencil className="w-7 h-8 text-[white] " />
                   </Button>
                 </div>
               </Avatar>
-            </Grid>
-            <Grid item xs={12}>
-              <InputField
-                label="Name"
-                sx={{
-                  padding: " 16px 10px 16px var(--Spacing-20, 20px)",
-                  border: "2px solid var(--Linear-BG, #FF9F0A)",
-                  borderImage: "linear-gradient(#FF9F0A, red) 20",
-                  // borderWidth: '3px',
+            </div>
+            <div className="w-full space-y-4">
+              <div>
+                <InputField
+                  label="Name"
+                  sx={{
+                    padding: " 16px 10px 16px var(--Spacing-20, 20px)",
+                    border: "2px solid var(--Linear-BG, #FF9F0A)",
+                    borderImage: "linear-gradient(#FF9F0A, red) 20",
+                    // borderWidth: '3px',
 
-                  borderRadius: "4px",
-                }}
-                name={"username"}
-                placeholder="Enter your username"
-              />
-            </Grid>
+                    borderRadius: "4px",
+                  }}
+                  name={"username"}
+                  placeholder="Enter your username"
+                />
+              </div>
 
-            <Grid item xs={12}>
-              <InputField
-                label="Email"
-                name={"email"}
-                sx={{
-                  padding: " 16px 10px 16px var(--Spacing-20, 20px)",
-                  border: "2px solid var(--Linear-BG, #FF9F0A)",
-                  borderImage: "linear-gradient(#FF9F0A, red) 20",
-                  // borderWidth: '3px',
+              <div>
+                <InputField
+                  label="Email"
+                  name={"email"}
+                  sx={{
+                    padding: " 16px 10px 16px var(--Spacing-20, 20px)",
+                    border: "2px solid var(--Linear-BG, #FF9F0A)",
+                    borderImage: "linear-gradient(#FF9F0A, red) 20",
+                    // borderWidth: '3px',
 
-                  borderRadius: "4px",
-                }}
-                placeholder="Enter your username"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <InputField
-                label="Mobile Number"
-                // type="number"
-                sx={{
-                  padding: " 16px 10px 16px var(--Spacing-20, 20px)",
-                  border: "2px solid var(--Linear-BG, #FF9F0A)",
-                  borderImage: "linear-gradient(#FF9F0A, red) 20",
-                  // borderWidth: '3px',
+                    borderRadius: "4px",
+                  }}
+                  placeholder="Enter your username"
+                />
+              </div>
+              <div>
+                <InputField
+                  label="Mobile Number"
+                  // type="number"
+                  sx={{
+                    padding: " 16px 10px 16px var(--Spacing-20, 20px)",
+                    border: "2px solid var(--Linear-BG, #FF9F0A)",
+                    borderImage: "linear-gradient(#FF9F0A, red) 20",
+                    // borderWidth: '3px',
 
-                  borderRadius: "4px",
-                }}
-                name={"mobile_number"}
-                fullWidth
-                placeholder="Enter your mobile number"
-              />
-            </Grid>
-          </Grid>
-          <Grid xs={12}>
+                    borderRadius: "4px",
+                  }}
+                  name={"mobile_number"}
+                  fullWidth
+                  placeholder="Enter your mobile number"
+                />
+              </div>
+            </div>
+          </div>
+          <div xs={12}>
             <PrimaryButton
               disabled={!isValid}
               sx={{
@@ -152,9 +151,9 @@ const SignUp = ({ handleNext }) => {
             >
               Next
             </PrimaryButton>
-          </Grid>
-        </Grid>
-      </Container>
+          </div>
+        </div>
+      </div>
     </Form>
   );
 };
