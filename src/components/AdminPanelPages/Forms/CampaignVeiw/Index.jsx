@@ -90,10 +90,12 @@ function Index() {
         summary: campaign?.summary || '',
         story: campaign?.story || '',
         campaign_image: image || '',
-        approval_status:false
+        approve_campaign:false
     }
 
-    const handleSubmit = (values) => {
+  
+
+    const handleSubmit = (values ) => {
         const formData = new FormData();
         formData.append('campaign_image', values?.campaign_image)
         formData.append('title', values?.title)
@@ -103,13 +105,13 @@ function Index() {
         formData.append('summary', values?.summary)
         formData.append('story', values?.story)
         formData.append('category', values?.category)
-        formData.append('approval_status' , false);
-
+        formData.append('approve_campaign' , true);
         mutate(formData, {
-            onSuccess: () => {
+            onSuccess: (response) => {
                 toast.success("Details Updated Successfully !!!", {
                     position: 'top-right'
                 })
+                
             }
         })
     }

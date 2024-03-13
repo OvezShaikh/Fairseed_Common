@@ -48,6 +48,7 @@ export const PagesAddNew = ({
   const { mutate } = useCreateOrUpdate({
     url: `/admin-dashboard/pages`,
   });
+  
   // const { mutate, isLoading } = useCreateOrUpdate({
   //   url: isUpdate ? `/admin/tooltip/${data?.id}` : "/admin/tooltip",
   //   method: isUpdate ? "put" : "post",
@@ -138,7 +139,7 @@ export const PagesAddNew = ({
                   <RadioGroup
                     name={"show_navbar"}
                     onChange={(e) => {
-                      setFieldValue("show_navbar", e==='true');
+                      setFieldValue("show_navbar", e === 'true');
                     }}
                     options={[
                       { label: "On", value: true },
@@ -154,7 +155,7 @@ export const PagesAddNew = ({
                   <RadioGroup
                     name={"show_footer"}
                     onChange={(e) => {
-                      setFieldValue("show_footer", e==='true');
+                      setFieldValue("show_footer", e === 'true');
                     }}
                     options={[
                       { label: "On", value: true },
@@ -169,7 +170,7 @@ export const PagesAddNew = ({
                 <div className=" lg:w-[25%] ">
                   <RadioGroup
                     onChange={(e) => {
-                      setFieldValue("show_page", e==='true');
+                      setFieldValue("show_page", e === 'true');
                     }}
                     name={"show_page"}
                     options={[
