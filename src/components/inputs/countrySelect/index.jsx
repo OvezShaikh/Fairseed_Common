@@ -45,7 +45,6 @@ const CountrySelect = ({
       >
         {label}
         {required ? <span className="text-red-600">*</span> : ""}
-
       </FormLabel>
       <ReactFlagsSelect
         selected={field.value}
@@ -55,16 +54,7 @@ const CountrySelect = ({
         }}
         searchable
         id="react-flag-select"
-        style={{ border: '1px solid red' }}
-
-        //   "& #rfs-btn": {
-        //     border: "1px solid #e2e2e2",
-        //     outerHeight: "5rem",
-        //     borderRadius: '50%',
-        //     padding: "50px",
-        //     sx,
-        //   },
-        // }}
+        style={{ border: "1px solid red" }}
         {...configTextfield}
       />
       <ErrorMessage

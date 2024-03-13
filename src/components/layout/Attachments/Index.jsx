@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { RiDeleteBin6Line, RiCloseLine, RiDownload2Line } from 'react-icons/ri';
 import images from '../../../constants/images';
+import { useDownloadFile } from '../../../Hooks/useDownloadFile';
+import SecondaryButton from '../../inputs/secondaryButton';
+import { Button } from 'react-bootstrap';
 
-function YourComponent({ imageUrl }) {
+function YourComponent({ imageUrl ,id }) {
     const [isImageDeleted, setIsImageDeleted] = useState(false);
     const [isFullScreen, setIsFullScreen] = useState(false);
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
@@ -37,6 +40,19 @@ function YourComponent({ imageUrl }) {
         }
     };
 
+    const url = `/admin-dashboard/campaign/${id}`;
+    
+    const { refetch:Filerefetch , isFetching:Fileloading } = useDownloadFile(
+      url,
+        {
+            download: true,
+        },
+        () => {
+
+          console.log('File download successful');
+        }
+      );
+
 
     const downloadDocument = () => {
         // Create a temporary anchor element
@@ -57,7 +73,7 @@ function YourComponent({ imageUrl }) {
         downloadLink.click();
     
         // Clean up: remove the anchor from the body
-        document.body.removeChild(downloadLink);
+        document.body.removeChild(downloadLink);       
     };
         
 
@@ -96,11 +112,13 @@ function YourComponent({ imageUrl }) {
                                 style={{ fontSize: '24px' }}
                                 onClick={toggleFullScreen}
                             />
-                            <RiDownload2Line
-                                className='cursor-pointer text-white mt-2'
-                                style={{ fontSize: '24px' }}
-                                onClick={downloadDocument}
-                            />
+                            <Button
+                            onClick={() => Filerefetch()} isLoading={Fileloading}
+                            color='#40444C'
+                            >
+                         
+                            Download
+                            </Button>
                         </div>
                     </div>
                 </div>
