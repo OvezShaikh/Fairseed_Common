@@ -278,7 +278,13 @@ function CauseEdit_Form() {
                   {values?.documents?.map((imageUrl, index) => {
                     const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl?.doc_file}`;
                     console.log(documentLink, "doc_file");
-                    return <Attachments key={index} imageUrl={documentLink} />;
+                    return (
+                      <Attachments
+                        key={index}
+                        id={id}
+                        imageUrl={documentLink}
+                      />
+                    );
                   })}
                 </div>
               </div>

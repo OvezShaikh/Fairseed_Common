@@ -19,7 +19,7 @@ import ImageEditor from "../../layout/ImageEditor/Index";
 import ImageDisplay from "../../layout/CropAddImage/Index";
 import { useState } from "react";
 import ImageBackgroundWithDeleteButton from "../../layout/CropAddImage/Index";
-import Attachments from "../../layout/Attachments/Index";
+import Attachments from "../../../layout/Attachments/Index";
 import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
 
 import { height } from "@mui/system";
@@ -224,7 +224,7 @@ function Index() {
                 </FormLabel>
                 <div className="flex gap-4 max-tablet:flex-col">
                   {img.map((imageUrl, index) => (
-                    <Attachments key={index} imageUrl={imageUrl} />
+                    <Attachments key={index} imageUrl={imageUrl} id={id} />
                   ))}
                 </div>
               </div>

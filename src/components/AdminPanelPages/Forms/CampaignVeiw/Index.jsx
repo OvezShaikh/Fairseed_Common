@@ -85,10 +85,9 @@ function Index() {
     formData.append("summary", values?.summary);
     formData.append("story", values?.story);
     formData.append("category", values?.category);
-    formData.append("approval_status", false);
-
+    formData.append("approve_campaign", true);
     mutate(formData, {
-      onSuccess: () => {
+      onSuccess: (response) => {
         toast.success("Details Updated Successfully !!!", {
           position: "top-right",
         });

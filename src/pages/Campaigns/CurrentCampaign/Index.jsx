@@ -11,9 +11,9 @@ import React, { useContext, useMemo } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Avatar } from "@mui/material";
-import UserNavbar from '../../login/UserNavbar';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import UserNavbar from "../../login/UserNavbar";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function CurrentCampaign({
   key,
@@ -35,22 +35,20 @@ function CurrentCampaign({
   // const page=1;
 
   const copy_current_url = () => {
-
-
     const currentPageUrl = window.location.href;
 
     // Use the Clipboard API to copy the URL to the clipboard
     navigator.clipboard.writeText(currentPageUrl);
     toast.info("Link Copied !", {
-      position: 'top-center'
+      position: "top-center",
     });
-
-  }
-
+  };
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BE_BASE_URL}/campaign/campaign-details/${id}`)
+      .get(
+        `${process.env.REACT_APP_BE_BASE_URL}/campaign/campaign-details/${id}`
+      )
       .then((res) => {
         console.log("API Response:", res.data);
 
@@ -105,7 +103,7 @@ function CurrentCampaign({
           flexDirection={"column"}
           alignItems="start"
           className=" "
-        // title={title}
+          // title={title}
         >
           <div className="text-capitalize text-truncate max-tablet:flex max-tablet:flex-col-reverse max-desktop:flex max-desktop:flex-col-reverse">
             <div className="py-3" onClick={() => navigate(-1)}>
@@ -113,14 +111,24 @@ function CurrentCampaign({
             </div>
             <div
               className="flex flex-col text-black/70 "
-              style={{ fontFamily: "satoshi", fontSize: 20, fontWeight: 700, color: '#95999D' }}
+              style={{
+                fontFamily: "satoshi",
+                fontSize: 20,
+                fontWeight: 700,
+                color: "#95999D",
+              }}
             >
               <div className="flex">
-                Home/<span className="text-[#61656A] w-[130px] truncate" style={{ textOverflow: 'ellipsis' }}>{cardDetails?.title}</span>
+                Home/
+                <span
+                  className="text-[#61656A] w-[130px] truncate"
+                  style={{ textOverflow: "ellipsis" }}
+                >
+                  {cardDetails?.title}
+                </span>
               </div>
             </div>
           </div>
-
         </Typography>
         <h1
           className="text-5xl text-black font-bold max-tablet:text-3xl max-desktop:text-[44px] max-tablet:text-[28px]"
@@ -132,14 +140,20 @@ function CurrentCampaign({
         <div className="w-full desktop:h-[862px] max-desktop:gap-3 desktop:gap-[36px] desktop:flex max-desktop:flex-col  max-desktop:place-content-center max-desktop:w-full">
           <img
             className="w-[65%] rounded-3xl max-desktop:w-full desktop:object-cover max-desktop:pb-[48px]  max-desktop:rounded max-tablet:pb-[28px] max-tablet:rounded-[5px]"
-            src={`${process.env.REACT_APP_API_URL}` + cardDetails?.campaign_image}
+            src={
+              `${process.env.REACT_APP_API_URL}` + cardDetails?.campaign_image
+            }
             alt="Img"
           />
           <div
             className="flex flex-col rounded-3xl justify-center items-center w-[35%] max-desktop:w-full pb-[24px] px-[48px]"
             style={{ border: "1px solid red" }}
           >
-            <img className="desktop:mt-8 max-desktop:mt-8 max-tablet:mt-[24px] max-tablet:w-[94px]" src={images.Logo} alt="Logo" />
+            <img
+              className="desktop:mt-8 max-desktop:mt-8 max-tablet:mt-[24px] max-tablet:w-[94px]"
+              src={images.Logo}
+              alt="Logo"
+            />
             <div
               className="m-10 max-tablet:mt-[24px] max-tablet:mb-[16px]"
               style={{
@@ -202,14 +216,29 @@ function CurrentCampaign({
             <div className="desktop:mb-5 max-desktop:mb-5 w-full h-[30px] max-desktop:w-full max-tablet:h-[11px] max-tablet:mb-[15px]">
               {/* <LinearWithValueLabel className='!h-9' height={'30px'} value={30} /> */}
               <LinearProgress
-                style={{ backgroundColor: '#EDEEF1' }}
+                style={{ backgroundColor: "#EDEEF1" }}
                 variant="determinate"
-                sx={{ height: "100%", borderRadius: "16px", background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${((fundRaised / goalAmount) * 100)}%, #e0e0e0 ${((fundRaised / goalAmount) * 100)}%)`, "& .MuiLinearProgress-bar": { backgroundColor: '#0DC7B1 !important' } }}
-                value={(cardDetails?.fund_raised / cardDetails?.goal_amount) * 100}
+                sx={{
+                  height: "100%",
+                  borderRadius: "16px",
+                  background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${
+                    (fundRaised / goalAmount) * 100
+                  }%, #e0e0e0 ${(fundRaised / goalAmount) * 100}%)`,
+                  "& .MuiLinearProgress-bar": {
+                    backgroundColor: "#0DC7B1 !important",
+                  },
+                }}
+                value={
+                  (cardDetails?.fund_raised / cardDetails?.goal_amount) * 100
+                }
               />
             </div>
             <div className="flex" style={{ display: "inline-flex" }}>
-              <img className="w-[17%] pr-2 max-tablet:w-[20%]" src={images.SedalCheck} alt="" />
+              <img
+                className="w-[17%] pr-2 max-tablet:w-[20%]"
+                src={images.SedalCheck}
+                alt=""
+              />
               <h1
                 className="text-3xl w-[80%] flex justify-items-start  pb-2  "
                 style={{
@@ -221,7 +250,9 @@ function CurrentCampaign({
                   "-webkit-text-fill-color": "transparent",
                 }}
               >
-                <p className="text-2xl max-tablet:text-[20px] font-bold">Zakah Eligible !</p>
+                <p className="text-2xl max-tablet:text-[20px] font-bold">
+                  Zakah Eligible !
+                </p>
               </h1>
             </div>
             <p
@@ -235,24 +266,26 @@ function CurrentCampaign({
               {cardDetails?.end_date}
             </p>
             <Link to={`/Home/donate/${id}`}>
-              <PrimaryButton className="w-full max-desktop:w-full"
+              <PrimaryButton
+                className="w-full max-desktop:w-full"
                 sx={{ padding: "16px", borderRadius: "8px" }}
-              // style={{
+                // style={{
 
-              //   paddingTop: 16,
-              //   paddingBottom: 16,
-              //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
-              //   borderRadius: 8,
-              //   justifyContent: "center",
-              //   alignItems: "center",
-              //   gap: 10,
-              //   display: "inline-flex",
-              // }}
+                //   paddingTop: 16,
+                //   paddingBottom: 16,
+                //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
+                //   borderRadius: 8,
+                //   justifyContent: "center",
+                //   alignItems: "center",
+                //   gap: 10,
+                //   display: "inline-flex",
+                // }}
               >
                 <div style={{ width: 38, position: "relative" }}>
                   <img src={images.coins2} alt="" />
                 </div>
-                <div className="desktop:text-2xl max-desktop:text-[20px] max-tablet:text-base"
+                <div
+                  className="desktop:text-2xl max-desktop:text-[20px] max-tablet:text-base"
                   style={{
                     color: "rgba(255, 255, 255, 0.90)",
 
@@ -270,11 +303,9 @@ function CurrentCampaign({
         <div className="flex justify-start gap-5 w-full max-desktop:flex-col">
           <div className="flex flex-col w-[70%] max-desktop:w-full">
             <div className="flex justify-between max-tablet:flex-col">
-
               <div className="flex">
                 <div className="desktop:w-[96px] desktop:h-[96px] max-desktop:w-[70px] max-desktop:h-[70px]">
                   <Avatar
-
                     className="desktop:w-[96px] desktop:h-[96px] max-desktop:w-[70px]"
                     alt="Remy Sharp"
                     src="/static/images/avatar/1.jpg"
@@ -299,11 +330,12 @@ function CurrentCampaign({
                     gap: 12,
                     display: "inline-flex",
                   }}
-
                   onClick={copy_current_url}
-
                 >
-                  <div className="w-[32px] h-[32px] max-tablet:w-[20px] max-tablet:h-[20px]" style={{ position: "relative" }}>
+                  <div
+                    className="w-[32px] h-[32px] max-tablet:w-[20px] max-tablet:h-[20px]"
+                    style={{ position: "relative" }}
+                  >
                     <img src={images.ShareNetwork} alt="" />
                   </div>
                   <div
@@ -324,13 +356,19 @@ function CurrentCampaign({
                 </button>
               </div>
             </div>
-            <div className="pt-4" style={{
-              fontFamily: "satoshi",
-            }}>
+            <div
+              className="pt-4"
+              style={{
+                fontFamily: "satoshi",
+              }}
+            >
               {cardDetails?.story && (
-                <div className="pt-4" dangerouslySetInnerHTML={{ __html: cardDetails.story }} style={{ whiteSpace: "pre-line" }}></div>
+                <div
+                  className="pt-4"
+                  dangerouslySetInnerHTML={{ __html: cardDetails.story }}
+                  style={{ whiteSpace: "pre-line" }}
+                ></div>
               )}
-
             </div>
           </div>
           <div
@@ -361,22 +399,27 @@ function CurrentCampaign({
             </div>
           </div>
         </div>
-      </div >
+      </div>
       <div className="flex justify-center gap-4 max-desktop:hidden">
-        <Link to={`/donate/${id}`}>
+        <Link to={`/Home/donate/${id}`}>
           <PrimaryButton
-            sx={{ padding: "16px", borderRadius: "8px", paddingLeft: "43px", paddingRight: "43px", }}
-          // style={{
+            sx={{
+              padding: "16px",
+              borderRadius: "8px",
+              paddingLeft: "43px",
+              paddingRight: "43px",
+            }}
+            // style={{
 
-          //   paddingTop: 16,
-          //   paddingBottom: 16,
-          //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
-          //   borderRadius: 8,
-          //   justifyContent: "center",
-          //   alignItems: "center",
-          //   gap: 10,
-          //   display: "inline-flex",
-          // }}
+            //   paddingTop: 16,
+            //   paddingBottom: 16,
+            //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
+            //   borderRadius: 8,
+            //   justifyContent: "center",
+            //   alignItems: "center",
+            //   gap: 10,
+            //   display: "inline-flex",
+            // }}
           >
             <div style={{ width: 38, position: "relative" }}>
               <img src={images.coins2} alt="" />
@@ -395,18 +438,24 @@ function CurrentCampaign({
           </PrimaryButton>
         </Link>
         <SecondaryButton
-          sx={{ padding: "16px", borderRadius: "8px", background: "#FFF6F5", paddingLeft: "30px", paddingRight: "30px", }}
-        // style={{
+          sx={{
+            padding: "16px",
+            borderRadius: "8px",
+            background: "#FFF6F5",
+            paddingLeft: "30px",
+            paddingRight: "30px",
+          }}
+          // style={{
 
-        //   paddingTop: 16,
-        //   paddingBottom: 16,
-        //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
-        //   borderRadius: 8,
-        //   justifyContent: "center",
-        //   alignItems: "center",
-        //   gap: 10,
-        //   display: "inline-flex",
-        // }}
+          //   paddingTop: 16,
+          //   paddingBottom: 16,
+          //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
+          //   borderRadius: 8,
+          //   justifyContent: "center",
+          //   alignItems: "center",
+          //   gap: 10,
+          //   display: "inline-flex",
+          // }}
         >
           <div style={{ width: 38, position: "relative" }}>
             <img className="text-3xl font-[40px]" src={images?.Coins} alt="" />
