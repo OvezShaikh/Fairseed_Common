@@ -36,16 +36,12 @@ function CausesView() {
   const [data, setData] = useState({});
   const navigate = useNavigate();
 
-  const [imgOne, setImgOne] = useState("");
-  const [imgTwo, setImgTwo] = useState("");
-  const [imgThree, setImgThree] = useState("");
+  const [adhaar_image , setAdhaar_image] = useState('');
+  const [pan_image , setPan_image] = useState('');
+  const [passbook_image , setPassbook_image] = useState('');
 
-  const img = [
-    "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-    "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-    "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-  ];
 
+ 
   const initial_values = {
     account_holder_name: data?.account_holder_name || "",
     account_number: data?.account_number || "",
@@ -59,6 +55,9 @@ function CausesView() {
     adhar_card: data?.adhar_card || "",
     other: "",
     rasing_for: data.rasing_for || "",
+    adhar_card_image:'',
+    pan_card_image:'',
+    passbook_image:'',
   };
 
   useGetAll({
@@ -70,21 +69,54 @@ function CausesView() {
     },
     onSuccess: (data) => {
       setData(data);
+      const Adhaar = `${process.env.REACT_APP_BASE_URL}${data?.adhar_card_image}`
+      setAdhaar_image(Adhaar)
+      const Pan = `${process.env.REACT_APP_BASE_URL}${data?.pan_card_image}`
+      setPan_image(Pan)
+      const Passbook = `${process.env.REACT_APP_BASE_URL}${data?.passbook_image}`
+      setPassbook_image(Passbook)
     },
   });
+  
   const { mutate } = useCreateOrUpdate({
     url: `/user-dashboard/edit-bankkyc/${id}`,
     method: "put",
   });
 
   const handleSubmit = (values) => {
-    mutate(values, {
+
+    const formData = new FormData();
+    formData.append('account_holder_name' , values?.account_holder_name)
+    formData.append('account_number' , values?.account_number)
+    formData.append('bank_data' , values?.bank_data)
+    formData.append('bank_name' , values?.bank_name)
+    formData.append('branch_name' , values?.branch_name)
+    formData.append('title' , values?.title)
+    formData.append('ifsc_code' , values?.ifsc_code)
+    formData.append('status' , values?.status)
+    formData.append('pan_card' , values?.pan_card)
+    formData.append('adhar_card' , values?.adhar_card)
+    formData.append('other' , values?.other)
+    formData.append('rasing_for' , values?.rasing_for)
+    formData.append('adhar_card_image' , values?.adhar_card_image)
+    formData.append('pan_card_image' , values?.pan_card_image)
+    formData.append('passbook_image' , values?.passbook_image)
+    mutate(formData, {
       onSuccess: (response) => {
-        toast.success("Details Updated Successfully ! ", {
+        toast.success(response?.message, {
           position: "top-right",
         });
       },
-    });
+    },{
+      onerror:(response)=>{
+        toast.error(response?.message,{
+          position:'top-right'
+        } )
+      }
+    }
+    
+    
+    );
   };
 
   return (
@@ -112,7 +144,7 @@ function CausesView() {
                   <InputField
                     label={"Aadhar Card:"}
                     name={"adhar_card"}
-                    value={values?.adhaar_num}
+                    value={values?.adhar_card}
                     onChange={handleChange}
                   />
                 </div>
@@ -194,7 +226,8 @@ function CausesView() {
                   </FormLabel>
                   <div className="flex gap-4 pt-2 max-tablet:flex-col">
                     <div className="flex flex-col gap-2">
-                      <Attachments imageUrl={"passbook_image"} />
+                     <a href={adhaar_image}>
+                     <img src={adhaar_image} />
                       <FormLabel
                         sx={{
                           fontSize: "16px",
@@ -206,9 +239,12 @@ function CausesView() {
                       >
                         PAN Card
                       </FormLabel>
+
+                     </a>
                     </div>
                     <div className="flex flex-col gap-2">
-                      <Attachments imageUrl={{}} />
+                   <a href={pan_image}>
+                   <img src={pan_image} />
                       <FormLabel
                         sx={{
                           fontSize: "16px",
@@ -220,9 +256,11 @@ function CausesView() {
                       >
                         Adhar Card
                       </FormLabel>
+                   </a>
                     </div>
                     <div className="flex flex-col gap-2">
-                      <Attachments imageUrl={{}} />
+                   <a href={passbook_image}>
+                   <img src={passbook_image} />
                       <FormLabel
                         sx={{
                           fontSize: "16px",
@@ -234,17 +272,30 @@ function CausesView() {
                       >
                         Passbook
                       </FormLabel>
+                   </a>
                     </div>
                   </div>
                 </div>
                 <div className="w-full">
-                  <UploadField label="Upload PAN Card Copy:" name={"pan"} />
+                  <UploadField label="Upload PAN Card Copy:"
+                   name={"adhar_card_image"}
+                   multiple={false}
+                   onChange={(value) => setFieldValue('adhar_card_image', value)}
+                   />
                 </div>
                 <div className="w-full">
-                  <UploadField label="Upload Aadhar Card Copy:" name={"pan"} />
+                  <UploadField label="Upload Aadhar Card Copy:"
+                   name={"pan_card_image"}
+                   multiple={false}
+                   onChange={(value) => setFieldValue('pan_card_image', value)}
+                   />
                 </div>
                 <div className="w-full">
-                  <UploadField label="Upload Passbook Copy:" name={"pan"} />
+                  <UploadField label="Upload Passbook Copy:"
+                   name={"passbook_image"}
+                   multiple={false}
+                   onChange={(value) => setFieldValue('passbook_image', value)}
+                  />
                 </div>
                 <div className="w-full">
                   <SelectField
@@ -269,8 +320,6 @@ function CausesView() {
                     { label: "Charity", value: "Charity" },
                   ]}
                   label="Raising this Campaign for:"
-                  //   onChange={formik.handleChange}
-                  //   value={formik.values.rasing_for}
                 />
                 <div className="flex flex-row gap-4 mt-12">
                   <button className="w-[69px] h-[32px] bg-[#F7F7F7]">

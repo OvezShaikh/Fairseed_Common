@@ -230,7 +230,7 @@ export default function HorizontalLinearStepper() {
   };
 
   const { mutate } = useCreateOrUpdate({
-    url: '/campaign/add-campaign',
+    url: '/add-campaign',
     onSuccess: async (data, Values) => {
       handleNext()
     },

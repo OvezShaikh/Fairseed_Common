@@ -104,7 +104,6 @@ function CauseEdit_Form() {
     status: user?.status || "",
     story: user?.story || "",
     documents: user?.documents || [],
-    approve_campaign: user?.approve_campaign,
   };
 
   console.log(initial_values);
@@ -124,11 +123,12 @@ function CauseEdit_Form() {
     formData.append("summary", values?.summary);
     formData.append("story", values?.story);
     formData.append("category", values?.category?.id);
-    formData.append("approve_campaign", true);
+    formData.append("status", values?.status?.value);
+    formData.append("zakat_eligible" , values?.zakat_eligible)
 
     mutate(formData, {
-      onSuccess: () => {
-        toast.success("Cause updated Succcessfully ! ", {
+      onSuccess: (response) => {
+        toast.success("Campaign Updated/Approved successfully !", {
           position: "top-right",
         });
         navigate(-1);
@@ -406,14 +406,9 @@ function CauseEdit_Form() {
             </button>
             <SuccessButton
               type="submit"
-              text={"Save & Approve"}
+              text={"Save"}
               icon={<PiCheckFat className="w-4 h-4 mt-1" />}
             />
-            <PrimaryButton>
-              <h1 className="text-white font-semibold font-[satoshi]">
-                Reject Modification Request
-              </h1>
-            </PrimaryButton>
           </div>
         </Form>
       )}
