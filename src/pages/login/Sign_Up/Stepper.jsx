@@ -216,8 +216,8 @@ const Sign_Stepper = () => {
     }
   };
   return (
-    <div className="w-[65%]">
-      <div>
+    <div className="w-[65%] max-desktop:w-full max-tablet:full">
+      <div className="max-desktop:hidden max-tablet:hidden">
         <StyledTypography
           component="h4"
           variant="h4"

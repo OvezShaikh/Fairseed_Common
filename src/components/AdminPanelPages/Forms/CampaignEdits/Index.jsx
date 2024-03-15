@@ -224,7 +224,7 @@ function Index() {
                 </FormLabel>
                 <div className="flex gap-4 max-tablet:flex-col">
                   {img.map((imageUrl, index) => (
-                    <Attachments key={index} imageUrl={imageUrl} id={id} />
+                    <Attachments key={index} imageUrl={imageUrl} />
                   ))}
                 </div>
               </div>
