@@ -35,10 +35,6 @@ let id = Data?.id;
 
 
 
-
-
-
-
 const Account = () => {
 
   const [Details , setDetails ] = useState({})

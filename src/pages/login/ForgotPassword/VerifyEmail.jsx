@@ -44,6 +44,8 @@ function VerifyEmail() {
                 })
             }
         ,
+        
+
         refetch: null // You can provide refetch function if needed
     });
 

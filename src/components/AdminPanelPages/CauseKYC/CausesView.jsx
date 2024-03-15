@@ -300,6 +300,7 @@ function CausesView() {
                 <div className="w-full">
                   <SelectField
                     label={"Status"}
+                    value={values?.status}
                     name={"status"}
                     type="radio"
                     options={[
@@ -312,8 +313,9 @@ function CausesView() {
                   onChange={(e) => {
                     setFieldValue("rasing_for", e.target.value);
                   }}
-                  name="rasing_for"
+                  name={"rasing_for"}
                   required={true}
+                  value={values?.rasing_for}
                   options={[
                     { label: "Self", value: "Self" },
                     { label: "Family/Friends", value: "Family" },
