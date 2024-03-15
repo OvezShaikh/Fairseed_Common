@@ -14,6 +14,11 @@ import { Avatar } from "@mui/material";
 import UserNavbar from "../../login/UserNavbar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { GiHazardSign } from "react-icons/gi";
+import { Dialog } from "../../../components/layout/dialogBox";
+import InputField from "../../../components/inputs/InputField";
+import { Form, Formik } from "formik";
+import ErrorIcon from "@mui/icons-material/Error";
 
 function CurrentCampaign({
   key,
@@ -394,8 +399,78 @@ function CurrentCampaign({
             >
               Recent Donors:
             </h1>
-            <div className="">
+            <div className="space-y-4 flex flex-col justify-center items-center">
               <Doner data={cardDetails?.donor} />
+
+              <Dialog
+                button={
+                  <SecondaryButton
+                    sx={{
+                      border: "1px solid red",
+                      fontWeight: 700,
+                      fontSize: "20px",
+                      fontFamily: "satoshi",
+                    }}
+                    color="red"
+                  >
+                    <GiHazardSign className="text-[red] mr-1" />
+                    Report
+                  </SecondaryButton>
+                } // Pass the button element as a prop
+                title="Reporte Cause"
+                maxWidth="md"
+                onCloseCall={() => console.log("Dialog closed")}
+              >
+                {/* Content of the dialog */}
+                <Formik initialValues={{ message: "" }} validationSchema={{}}>
+                  {({ onClose }) => (
+                    <Form className="flex flex-col justify-center items-center gap-10">
+                      <div className="w-full px-2">
+                        <InputField
+                          required={"true"}
+                          multiline
+                          info
+                          CustomInfoIcon={
+                            <ErrorIcon
+                              className="ms-1"
+                              style={{
+                                color: "red",
+                                cursor: "pointer",
+                                height: "18px",
+                              }}
+                            />
+                          }
+                          infoText={"Please be careful while adding AD Path."}
+                          rows={5}
+                          sx={{
+                            padding: "20px",
+                            border: "1px solid #e2e2e2",
+                            // },
+                            "&:focus-within": {
+                              boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
+                              borderColor: "black",
+                            },
+                          }}
+                          label={"Message:"}
+                          name={"message"}
+                          placeholder={"write why you report this cause?"}
+                        />
+                      </div>
+                      <div className="flex gap-4">
+                        <PrimaryButton>
+                          <GiHazardSign
+                            className="mr-1"
+                            onClick={() => {
+                              onClose();
+                            }}
+                          />
+                          Report
+                        </PrimaryButton>
+                      </div>
+                    </Form>
+                  )}
+                </Formik>
+              </Dialog>
             </div>
           </div>
         </div>

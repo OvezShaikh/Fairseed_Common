@@ -22,6 +22,7 @@ function VerifyEmail() {
   const [step, setStep] = useState(1);
   const [isVerified, setIsVerified] = useState(false);
   const [newPassword, setNewPassword] = useState(false);
+  // const [isVerified, setIsVerified] = useState(false);
   const [otpState, setOtpState] = useState([
     { index: 0, value: "" },
     { index: 1, value: "" },
@@ -29,21 +30,26 @@ function VerifyEmail() {
     { index: 3, value: "" },
   ]);
   const [backendOTP, setBackendOTP] = useState("");
-  const [Email, setEmail] = useState("");
-  const location = useLocation();
+  const [Email, setEmail] = useState(" ");
 
   const verifyEmailMutation = useCreateOrUpdate({
-    url: "/accounts/forgetpassword/nt/",
+    url: `/accounts/forgetpassword/nt/`,
     method: "post",
-    onSuccess: (response) => {
-      toast.success(response?.data?.Success, {
+    onSuccess: (values, response) => {
+      toast.success(`OTP sent successfully to `, {
         position: "top-center",
       });
+
       setIsVerified(true);
-      setEmail(response.data.email);
+
+      console.log("values.data.OTP", values.data.OTP);
+      console.log(response.email, "======================>");
+      setBackendOTP(values.data.OTP);
+      const key = response.email;
+      setEmail(key);
     },
-    onError: (response) => {
-      toast.error(response?.data, {
+    onError: () => {
+      toast.error(`Fail to sent OTP`, {
         position: "top-center",
       });
       setIsVerified(false);
@@ -80,7 +86,7 @@ function VerifyEmail() {
   };
 
   const compareOTP = () => {
-    if (getJoinedOTP() !== backendOTP) {
+    if (getJoinedOTP() != backendOTP) {
       toast.error("OTP didn't match", { position: "top-center" });
     } else if (getJoinedOTP() === "") {
       toast.error("please enter otp", { position: "top-center" });
@@ -102,30 +108,16 @@ function VerifyEmail() {
       console.log("oldvoldoldold", old);
       return old;
     });
-    if (index !== 3) {
+    if (index != 3) {
       event.target.nextElementSibling.focus();
     }
   };
+  console.log(Email);
 
-  const resendOTP = async () => {
-    try {
-      const response = await fetch("/accounts/reset-pass/nt/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email: Email }),
-      });
-      if (response.ok) {
-        toast.success("OTP resent successfully", { position: "top-center" });
-      } else {
-        throw new Error("Failed to resend OTP");
-      }
-    } catch (error) {
-      console.error("Error resending OTP:", error);
-      toast.error("Failed to resend OTP", { position: "top-center" });
-    }
-  };
+  // const handleNewPassword = () => {
+  //     setStep(3);
+  //     setNewPassword(true);
+  // }
 
   return (
     <>
@@ -198,15 +190,16 @@ function VerifyEmail() {
                             onChange={(event) =>
                               handleOTPChange(event, item.index)
                             }
-                            maxLength={1}
+                            maxlength="1"
                             value={item.value}
                             autoComplete="one-time-code"
+                            maxLength={1}
                           />
                         );
                       })}
                     </div>
                     <ResendOTP
-                      onResendClick={resendOTP}
+                      onResendClick={() => handleVerifyEmail()}
                       style={{
                         // Inline styles for ResendOTP component
                         color: "#0466C8",

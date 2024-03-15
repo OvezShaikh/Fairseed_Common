@@ -86,7 +86,6 @@ const Index = () => {
               // onClick={() => setSelectedRowID(row?.original?.id)}
               // onSuccess={() => setSelectedRowID(null)}
               // onClose={() => setSelectedRowID(null)}
-
               refetchUrl={"/admin-dashboard/category"}
             >
               <p>Are you sure to delete this category!</p>

@@ -30,122 +30,123 @@ import CampaignView from "../../components/AdminPanelPages/Forms/CampaignVeiw/In
 
 function AdminPage() {
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <AdminLayout>
-            <Dashboard />
-          </AdminLayout>
-        }
-      />
+    <div className="container">
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <AdminLayout>
+              <Dashboard />
+            </AdminLayout>
+          }
+        />
 
-      <Route
-        path="/General-Settings/*"
-        element={
-          <AdminLayout>
-            <AdminRoutes />
-          </AdminLayout>
-        }
-      />
+        <Route
+          path="/General-Settings/*"
+          element={
+            <AdminLayout>
+              <AdminRoutes />
+            </AdminLayout>
+          }
+        />
 
-      <Route
-        path="/Dashboard"
-        element={
-          <AdminLayout>
-            <h1>Dashboard</h1>
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Landing-Page"
-        element={
-          <AdminLayout>
-            <LandingPage />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Categories"
-        element={
-          <AdminLayout>
-            <Categories />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Categories/Edit"
-        element={
-          <AdminLayout>
-            <CategoryEdit />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Campaigns"
-        element={
-          <AdminLayout>
-            <Campaign />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Campaigns/Edit"
-        element={
-          <AdminLayout>
-            <CauseEdit />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Campaigns/Edit/Revision-History"
-        element={
-          <AdminLayout>
-            <RevisionHistory />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Causes-Edit-Approval"
-        element={
-          <AdminLayout>
-            <CauseEdit_Form />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Causes-Edit-Approval/View"
-        element={
-          <AdminLayout>
-            <CampaignView />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Scholarship-Cause"
-        element={
-          <AdminLayout>
-            <Scholarship />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Scholarship-Cause/View"
-        element={
-          <AdminLayout>
-            <View />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Reported-Cause"
-        element={
-          <AdminLayout>
-            <ReportedCauses />
-          </AdminLayout>
-        }
-      />
-      {/* <Route
+        <Route
+          path="/Dashboard"
+          element={
+            <AdminLayout>
+              <h1>Dashboard</h1>
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Landing-Page"
+          element={
+            <AdminLayout>
+              <LandingPage />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Categories"
+          element={
+            <AdminLayout>
+              <Categories />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Categories/Edit"
+          element={
+            <AdminLayout>
+              <CategoryEdit />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Campaigns"
+          element={
+            <AdminLayout>
+              <Campaign />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Campaigns/Edit"
+          element={
+            <AdminLayout>
+              <CauseEdit />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Campaigns/Edit/Revision-History"
+          element={
+            <AdminLayout>
+              <RevisionHistory />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Causes-Edit-Approval"
+          element={
+            <AdminLayout>
+              <CauseEdit_Form />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Causes-Edit-Approval/View"
+          element={
+            <AdminLayout>
+              <CampaignView />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Scholarship-Cause"
+          element={
+            <AdminLayout>
+              <Scholarship />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Scholarship-Cause/View"
+          element={
+            <AdminLayout>
+              <View />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Reported-Cause"
+          element={
+            <AdminLayout>
+              <ReportedCauses />
+            </AdminLayout>
+          }
+        />
+        {/* <Route
         path="/Reported-Cause/View"
         element={
           <AdminLayout>
@@ -153,112 +154,113 @@ function AdminPage() {
           </AdminLayout>
         }
       /> */}
-      <Route
-        path="/Withdrawals"
-        element={
-          <AdminLayout>
-            <Withdrawals />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Withdrawals/View"
-        element={
-          <AdminLayout>
-            <View />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Cause-KYC"
-        element={
-          <AdminLayout>
-            <Campaign_Kyc />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Cause-KYC/View"
-        element={
-          <AdminLayout>
-            <CausesView />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Donations"
-        element={
-          <AdminLayout>
-            <Donation />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Donations/View"
-        element={
-          <AdminLayout>
-            <DonationView />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Users"
-        element={
-          <AdminLayout>
-            <Users />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Users/Edit-User"
-        element={
-          <AdminLayout>
-            <UserEdit />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Scholarships"
-        element={
-          <AdminLayout>
-            <Scholarships />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Scholarships/View"
-        element={
-          <AdminLayout>
-            <View />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Pages"
-        element={
-          <AdminLayout>
-            <Pages />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Pages/Edit-Pages"
-        element={
-          <AdminLayout>
-            <PagesEdit />
-          </AdminLayout>
-        }
-      />
+        <Route
+          path="/Withdrawals"
+          element={
+            <AdminLayout>
+              <Withdrawals />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Withdrawals/View"
+          element={
+            <AdminLayout>
+              <View />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Cause-KYC"
+          element={
+            <AdminLayout>
+              <Campaign_Kyc />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Cause-KYC/View"
+          element={
+            <AdminLayout>
+              <CausesView />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Donations"
+          element={
+            <AdminLayout>
+              <Donation />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Donations/View"
+          element={
+            <AdminLayout>
+              <DonationView />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Users"
+          element={
+            <AdminLayout>
+              <Users />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Users/Edit-User"
+          element={
+            <AdminLayout>
+              <UserEdit />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Scholarships"
+          element={
+            <AdminLayout>
+              <Scholarships />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Scholarships/View"
+          element={
+            <AdminLayout>
+              <View />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Pages"
+          element={
+            <AdminLayout>
+              <Pages />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Pages/Edit-Pages"
+          element={
+            <AdminLayout>
+              <PagesEdit />
+            </AdminLayout>
+          }
+        />
 
-      <Route
-        path="/PG-Setting/PhonePe"
-        element={
-          <AdminLayout>
-            <PaymentGateway />
-          </AdminLayout>
-        }
-      />
-    </Routes>
+        <Route
+          path="/PG-Setting/PhonePe"
+          element={
+            <AdminLayout>
+              <PaymentGateway />
+            </AdminLayout>
+          }
+        />
+      </Routes>
+    </div>
   );
 }
 

@@ -30,47 +30,27 @@ function VerifyEmail() {
   const verifyEmailMutation = useCreateOrUpdate({
     url: "/accounts/forgetpassword/nt/",
     method: "post",
-    onSuccess: (response) => {
-      console.log(response, "======================>");
-      toast.success(response?.data?.Success, {
+    onSuccess: (values, response) => {
+      toast.success(response?.data?.success, {
         position: "top-center",
       });
-
       setIsVerified(true);
-
-      console.log(response.email, "======================>");
+      console.log("values.data.OTP", values.data.OTP);
+      console.log(response?.data?.success, "======================>");
+      setBackendOTP(values.data.OTP);
+      const key = response.email;
+      setEmail(key);
     },
-    onError: (response) => {
-      console.log(response, "=================>response+++++++");
+    onerror: (response) => {
       toast.error(response?.data, {
-        position: "top-center",
+        position: "top-right",
       });
-      setIsVerified(false);
     },
+    refetch: null, // You can provide refetch function if needed
   });
 
-  const resendOTP = async () => {
-    try {
-      const response = await fetch("/accounts/reset-pass/nt/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email: Email }),
-      });
-      if (response.ok) {
-        toast.success("OTP resent successfully", { position: "top-center" });
-      } else {
-        throw new Error("Failed to resend OTP");
-      }
-    } catch (error) {
-      console.error("Error resending OTP:", error);
-      toast.error("Failed to resend OTP", { position: "top-center" });
-    }
-  };
-
   const resetPasswordMutation = useCreateOrUpdate({
-    url: "/accounts/reset-pass",
+    url: "/accounts/reset-pass/nt/",
     method: "post",
     onSuccess: () => {
       toast.success("Password reset successfully", {
@@ -121,6 +101,7 @@ function VerifyEmail() {
       event.target.nextElementSibling.focus();
     }
   };
+  console.log(Email);
 
   return (
     <div className="flex flex-col gap-2 w-[90%]">
@@ -216,7 +197,7 @@ function VerifyEmail() {
                   })}
                 </div>
                 <ResendOTP
-                  onResendClick={resendOTP}
+                  onResendClick={() => console.log("Resend clicked")}
                   style={{
                     // Inline styles for ResendOTP component
                     color: "#0466C8",
