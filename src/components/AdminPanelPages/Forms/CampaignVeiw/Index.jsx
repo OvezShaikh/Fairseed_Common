@@ -26,7 +26,7 @@ function Index() {
 
   const [campaign, setCampaign] = useState({});
   const [Category, setCategory] = useState([]);
-  const [ approval , setApproval ] = useState(false);
+  const [approval, setApproval] = useState(false);
 
   const navigate = useNavigate();
 
@@ -63,8 +63,6 @@ function Index() {
     campaign?.campaign_image || ""
   }`;
 
-
-
   const initial_value = {
     title: campaign?.title || "",
     category: campaign?.category || "",
@@ -77,31 +75,28 @@ function Index() {
     approval_status: false,
   };
 
-    const handleSubmit = (values ) => {
-        const formData = new FormData();
-        formData.append('campaign_image', values?.campaign_image)
-        formData.append('title', values?.title)
-        formData.append('goal_amount', values?.goal_amount)
-        formData.append('location', values?.location)
-        formData.append('end_date', values?.end_date)
-        formData.append('summary', values?.summary)
-        formData.append('story', values?.story)
-        formData.append('category', values?.category)
-        {
-          approval &&
-          formData.append('approve_campaign' , true);
-        }
-        
-        mutate(formData, {
-            onSuccess: (response) => {
-                toast.success("Details Updated Successfully !!!", {
-                    position: 'top-right'
-                })
-                
-            }
-        })
+  const handleSubmit = (values) => {
+    const formData = new FormData();
+    formData.append("campaign_image", values?.campaign_image);
+    formData.append("title", values?.title);
+    formData.append("goal_amount", values?.goal_amount);
+    formData.append("location", values?.location);
+    formData.append("end_date", values?.end_date);
+    formData.append("summary", values?.summary);
+    formData.append("story", values?.story);
+    formData.append("category", values?.category);
+    {
+      approval && formData.append("approve_campaign", true);
     }
 
+    mutate(formData, {
+      onSuccess: (response) => {
+        toast.success("Details Updated Successfully !!!", {
+          position: "top-right",
+        });
+      },
+    });
+  };
 
   return (
     <Formik
@@ -147,7 +142,7 @@ function Index() {
                   label: item.name,
                   value: item.id,
                 }))}
-                onChange={(value)=>setFieldValue("category" , value)}
+                onChange={(value) => setFieldValue("category", value)}
               />
               <div className="w-full">
                 <InputField
@@ -278,7 +273,13 @@ function Index() {
                   {values?.documents?.map((imageUrl, index) => {
                     const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl?.doc_file}`;
                     console.log(documentLink, "doc_file");
-                    return <Attachments key={index} id={id} imageUrl={documentLink} />;
+                    return (
+                      <Attachments
+                        key={index}
+                        id={id}
+                        imageUrl={documentLink}
+                      />
+                    );
                   })}
                 </div>
               </div>
@@ -302,12 +303,12 @@ function Index() {
             </button>
             <SuccessButton
               type="submit"
-              onClick={()=>setApproval(true)}
+              onClick={() => setApproval(true)}
               text={"Save & Approve"}
               icon={<PiCheckFat className="w-4 h-4 mt-1" />}
             />
 
-            <PrimaryButton type='submit'>
+            <PrimaryButton type="submit">
               <h1 className="text-white font-semibold font-[satoshi]">
                 Reject Modification Request
               </h1>

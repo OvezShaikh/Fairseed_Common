@@ -66,7 +66,7 @@ const CheckBox = ({
             "& .MuiFormControlLabel-label": {
               ...style,
               color: colors.text.main,
-              fontSize: "20px !important",
+              fontSize: "20px",
               fontWeight: "700  !important",
               fontFamily: "satoshi !important",
               fontStyle: "normal !important",
@@ -87,7 +87,7 @@ const CheckBox = ({
               // onChange={(_, checked) => onChange(checked)}
             />
           }
-          className={root}
+          // className={root}
         />
       </FormGroup>
       <ErrorMessage

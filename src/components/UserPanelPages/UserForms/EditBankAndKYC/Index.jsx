@@ -10,6 +10,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import RadioGroup from "../../../inputs/radioGroupAdminPanel/index";
 import CheckBox from "../../../inputs/checkBox";
+import { red } from "@mui/material/colors";
+import * as Yup from "yup";
 
 function CausesView() {
   let { state } = useLocation();
@@ -17,8 +19,20 @@ function CausesView() {
 
   const [data, setData] = useState({});
   let navigate = useNavigate();
- 
+  // const [imgOne, setImgOne] = useState('');
+  // const [imgTwo, setImgTwo] = useState('');
+  // const [imgThree, setImgThree] = useState('');
 
+  const img = [
+    "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+    "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+    "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+  ];
+  const validationSchema = Yup.object().shape({
+    declaration: Yup.boolean()
+      .required("You must give consent by checking the checkbox")
+      .oneOf([true], "You must give consent by checking the checkbox"),
+  });
   const initial_values = {
     account_holder_name: data?.account_holder_name || "",
     account_number: data?.account_number || "",
@@ -30,8 +44,9 @@ function CausesView() {
     status: data?.status || false,
     pan_card: data?.pan_card || "",
     adhar_card: data?.adhar_card || "",
-    tandc_accept: data?.tandc_accept || false,
+    tandc_accept: data?.tandc_accept || "",
     other: data?.other || "",
+    declaration: false,
   };
 
   useGetAll({
@@ -53,7 +68,8 @@ function CausesView() {
   const handleSubmit = (values) => {
     mutate(values, {
       onSuccess: (response) => {
-        toast.success(response?.data?.message,
+        toast.success(
+          "Your changes has been recorded and is sent for approval to Admin ",
           {
             position: "top-right",
           }
@@ -66,6 +82,7 @@ function CausesView() {
   return (
     <Formik
       enableReinitialize={true}
+      validationSchema={validationSchema}
       initialValues={initial_values}
       onSubmit={(values) => handleSubmit(values)}
     >
@@ -214,7 +231,7 @@ function CausesView() {
                 </div>
                 <RadioGroup
                   onChange={(e) => {
-                    setFieldValue("rasing_for", e === "true");
+                    setFieldValue("tandc_accept", e.target.value);
                   }}
                   name="rasing_for"
                   value={values?.tandc_accept}
@@ -229,8 +246,14 @@ function CausesView() {
                   //   value={formik.values.rasing_for}
                 />
                 <CheckBox
-                  sx={{ paddingLeft: "15px" }}
-                  style={{ fontSize: "18px !important" }}
+                  value={values?.declaration}
+                  sx={{
+                    paddingLeft: "16px !important",
+                    "&.Mui-checked": {
+                      color: red[500],
+                    },
+                  }}
+                  style={{ fontSize: "14px !important" }}
                   name="declaration"
                   label={
                     "I give my consent by sharing my Aadhar details with the team for verification"

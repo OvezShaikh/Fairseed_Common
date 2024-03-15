@@ -25,7 +25,7 @@ const SignUp = ({ handleNext }) => {
   };
 
   return (
-    <Form className="pt-8 max-tablet:pl-7">
+    <Form className="pt-8 px-2  ">
       <div>
         <div className="flex flex-col gap-8">
           <div className="flex flex-col justify-center items-center">
