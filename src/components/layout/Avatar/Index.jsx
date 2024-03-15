@@ -5,7 +5,6 @@ import DropZone from "../../inputs/Cropper/CropDrop";
 import {ImageCropper} from '../../inputs/Cropper/ImageCropper'
 import ImagePreviewDialog from '../../inputs/Cropper/ImagePreview'
 
-// import img from " /profile.jpg";
 const Profile_Avatar = ({ img }) => {
   const [srcImg, setSrcImg] = useState("");
   const [openCrop, setOpenCrop] = useState(false);
