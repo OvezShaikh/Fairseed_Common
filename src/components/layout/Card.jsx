@@ -28,23 +28,23 @@ function Card({
         className="card rounded-xl font-bold w-[600px] desktop:max-w-[408px] max-desktop:max-w-[355px]"
         style={{ fontFamily: "satoshi" }}
       >
-
         <Link to={`/campaign-details/${og_id}`}>
           <img
             src={`${process.env.REACT_APP_API_URL}` + cardImage}
             className="card-img-top h-80 w-full"
             alt="..."
-
           />
         </Link>
         <div className="card-body">
           <div className="flex flex-row">
             <img className="w-[32px] h-[32px]" src={images.Airlogo} />
-            <p className="text-black/40 pl-2 text-[16px] max-desktop:text-[14px]">{username}</p>
+            <p className="text-black/40 pl-2 text-[16px] max-desktop:text-[14px]">
+              {username}
+            </p>
           </div>
           <p
-            className="card-text w-full pt-2 text-[24px] font-bold max-desktop:text-[20px] max-tablet:text-[18px]"
-            style={{ fontWeight: "700", marginBottom }}
+            className="card-text w-full pt-2 text-[24px] truncate font-bold max-desktop:text-[20px] max-tablet:text-[18px]"
+            style={{ fontWeight: "700", marginBottom: "2rem" }}
           >
             {title}
           </p>
@@ -55,11 +55,18 @@ function Card({
           {/* <img className="pt-1 pb-6" src={images?.range2}></img> */}
           <div className="pt-1 pb-4 ">
             <LinearProgress
-
               variant="determinate"
-              sx={{ height: "10px", borderRadius: "16px", background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${((fundRaised / goalAmount) * 100)}%, #e0e0e0 ${((fundRaised / goalAmount) * 100)}%)`, "& .MuiLinearProgress-bar": { backgroundColor: '#0DC7B1 !important  ' } }}
+              sx={{
+                height: "10px",
+                borderRadius: "16px",
+                background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${
+                  (fundRaised / goalAmount) * 100
+                }%, #e0e0e0 ${(fundRaised / goalAmount) * 100}%)`,
+                "& .MuiLinearProgress-bar": {
+                  backgroundColor: "#0DC7B1 !important  ",
+                },
+              }}
               value={(fundRaised / goalAmount) * 100}
-
             />
             {/* <ProgressBar/> */}
           </div>
@@ -94,7 +101,9 @@ function Card({
                 <div className="flex pl-1 pr-2 py-1 max-desktop:justify-center">
                   <img className="" src={images?.Coins} />
                   <Link to={`/Home/donate/${og_id}`}>
-                    <p className="pl-1   text-[18px] max-tablet:text-[16px]">Donate</p>
+                    <p className="pl-1   text-[18px] max-tablet:text-[16px]">
+                      Donate
+                    </p>
                   </Link>
                 </div>
               </button>

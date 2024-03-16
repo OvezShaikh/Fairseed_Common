@@ -38,9 +38,9 @@ export default function ProfileAvatar() {
     setAnchorEl(null);
   };
 
-  let userData = localStorage.getItem('user_info')
-  let Data = JSON.parse(userData)
-  console.log(Data)
+  let userData = localStorage.getItem("user_info");
+  let Data = JSON.parse(userData);
+  console.log(Data);
   let role = Data?.user_role;
   let image = Data?.profile_pic;
 
@@ -84,7 +84,7 @@ export default function ProfileAvatar() {
             "&::before": {
               content: '""',
               display: "block",
-              position: "absolute",
+              position: "fixed",
               top: 0,
               right: 14,
               width: 10,

@@ -19,7 +19,7 @@ import ImageEditor from "../../layout/ImageEditor/Index";
 import ImageDisplay from "../../layout/CropAddImage/Index";
 import { useState } from "react";
 import ImageBackgroundWithDeleteButton from "../../layout/CropAddImage/Index";
-import Attachments from "../../layout/Attachments/Index";
+import Attachments from "../../../layout/Attachments/Index";
 import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
 
 import { height } from "@mui/system";

@@ -467,7 +467,7 @@ export default function Example() {
                   padding: "12px 20px",
                 }}
               >
-                <NavLink to="/Home/Create-Campaign">Start a Campaign</NavLink>
+                <NavLink to="/Home/Create-Campaign"> Start a Campaign</NavLink>
               </PrimaryButton>
             ) : (
               <PrimaryButton
@@ -549,7 +549,7 @@ export default function Example() {
               {localStorage.getItem("token") ? (
                 <ProfileAvatar />
               ) : (
-                <button className="font-[satoshi] text-[18px] font-medium text-[#40444C]">
+                <button className="font-[satoshi] text-[18px] font-medium text-[#40444C]" >
                   <UserLogin />
                 </button>
               )}

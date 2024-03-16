@@ -15,99 +15,101 @@ import EditCampaign from "../../components/UserPanelPages/Campaign/EditCampaign"
 
 function UserPage() {
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <UserPanel>
-            <User_Dashboard />
-          </UserPanel>
-        }
-      />
+    <div className="container">
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <UserPanel>
+              <User_Dashboard />
+            </UserPanel>
+          }
+        />
 
-      <Route
-        path="/Dashboard"
-        element={
-          <UserPanel>
-            <User_Dashboard />
-          </UserPanel>
-        }
-      />
-      <Route
-        path="/Campaigns"
-        element={
-          <UserPanel>
-            <User_Campaign />
-          </UserPanel>
-        }
-      />
-      <Route
-        path="/Campaigns/View"
-        element={
-          <UserPanel>
-            <ViewBankandKYC />
-          </UserPanel>
-        }
-      />
-      <Route
-        path="/Campaigns/Edit"
-        element={
-          <UserPanel>
-            <EditBankAndKYC />
-          </UserPanel>
-        }
-      />
-      <Route
-        path="/Campaigns/Edit-Campaign"
-        element={
-          <UserPanel>
-            <EditCampaign />
-          </UserPanel>
-        }
-      />
+        <Route
+          path="/Dashboard"
+          element={
+            <UserPanel>
+              <User_Dashboard />
+            </UserPanel>
+          }
+        />
+        <Route
+          path="/Campaigns"
+          element={
+            <UserPanel>
+              <User_Campaign />
+            </UserPanel>
+          }
+        />
+        <Route
+          path="/Campaigns/View"
+          element={
+            <UserPanel>
+              <ViewBankandKYC />
+            </UserPanel>
+          }
+        />
+        <Route
+          path="/Campaigns/Edit"
+          element={
+            <UserPanel>
+              <EditBankAndKYC />
+            </UserPanel>
+          }
+        />
+        <Route
+          path="/Campaigns/Edit-Campaign"
+          element={
+            <UserPanel>
+              <EditCampaign />
+            </UserPanel>
+          }
+        />
 
-      <Route
-        path="/Donations"
-        element={
-          <UserPanel>
-            <User_Donation />
-          </UserPanel>
-        }
-      />
-      <Route
-        path="/Donations/View"
-        element={
-          <UserPanel>
-            <DonationView />
-          </UserPanel>
-        }
-      />
-      <Route
-        path="/My-Donations"
-        element={
-          <UserPanel>
-            <MyDonation />
-          </UserPanel>
-        }
-      />
+        <Route
+          path="/Donations"
+          element={
+            <UserPanel>
+              <User_Donation />
+            </UserPanel>
+          }
+        />
+        <Route
+          path="/Donations/View"
+          element={
+            <UserPanel>
+              <DonationView />
+            </UserPanel>
+          }
+        />
+        <Route
+          path="/My-Donations"
+          element={
+            <UserPanel>
+              <MyDonation />
+            </UserPanel>
+          }
+        />
 
-      <Route
-        path="/Withdrawals"
-        element={
-          <UserPanel>
-            <Withdrawals />
-          </UserPanel>
-        }
-      />
-      <Route
-        path="/Scholarships"
-        element={
-          <UserPanel>
-            <ScholarshipCause />
-          </UserPanel>
-        }
-      />
-    </Routes>
+        <Route
+          path="/Withdrawals"
+          element={
+            <UserPanel>
+              <Withdrawals />
+            </UserPanel>
+          }
+        />
+        <Route
+          path="/Scholarships"
+          element={
+            <UserPanel>
+              <ScholarshipCause />
+            </UserPanel>
+          }
+        />
+      </Routes>
+    </div>
   );
 }
 

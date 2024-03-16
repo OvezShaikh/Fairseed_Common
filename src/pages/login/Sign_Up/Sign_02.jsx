@@ -24,7 +24,7 @@ const Sign_02 = ({ handleBack, handleNext }) => {
   };
 
   return (
-    <Form className="pt-8">
+    <Form className="pt-8 px-2">
       <div>
         <div className="flex flex-col gap-3">
           <div>

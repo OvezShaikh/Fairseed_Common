@@ -104,7 +104,6 @@ function CauseEdit_Form() {
     status: user?.status || "",
     story: user?.story || "",
     documents: user?.documents || [],
-    approve_campaign: user?.approve_campaign,
   };
 
   console.log(initial_values);
@@ -124,11 +123,12 @@ function CauseEdit_Form() {
     formData.append("summary", values?.summary);
     formData.append("story", values?.story);
     formData.append("category", values?.category?.id);
-    formData.append("approve_campaign", true);
+    formData.append("status", values?.status?.value);
+    formData.append("zakat_eligible", values?.zakat_eligible);
 
     mutate(formData, {
-      onSuccess: () => {
-        toast.success("Cause updated Succcessfully ! ", {
+      onSuccess: (response) => {
+        toast.success("Campaign Updated/Approved successfully !", {
           position: "top-right",
         });
         navigate(-1);
@@ -145,7 +145,7 @@ function CauseEdit_Form() {
       {({ values, setFieldValue, handleChange }) => (
         <Form className="flex flex-col items-center">
           <div className="flex w-[100%] mt-2 gap-14 max-tablet:flex-col max-desktop:flex-col">
-            <div className="flex flex-col w-[70%] max-tablet:w-[100%] max-desktop:w-[100%] gap-4 items-center">
+            <div className="flex flex-col w-[70%] max-tablet:w-[100%] max-desktop:w-[100%] gap-2 items-center">
               <div className="desktop:py-[80px] max-desktop:py-[53px] p-0">
                 <DropZone
                   name="campaign_image"
@@ -233,7 +233,7 @@ function CauseEdit_Form() {
                 </div>
               </div>
 
-              <div className="w-full mt-5">
+              <div className="w-full mt-5 max-tablet:pt-4">
                 <InputField
                   onChange={handleChange}
                   value={values?.summary}
@@ -278,7 +278,20 @@ function CauseEdit_Form() {
                   {values?.documents?.map((imageUrl, index) => {
                     const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl?.doc_file}`;
                     console.log(documentLink, "doc_file");
-                    return <Attachments key={index} id={id} imageUrl={documentLink} />;
+                    return (
+                      <Attachments
+                        key={index}
+                        id={id}
+                        imageUrl={documentLink}
+                      />
+                    );
+                    return (
+                      <Attachments
+                        key={index}
+                        id={id}
+                        imageUrl={documentLink}
+                      />
+                    );
                   })}
                 </div>
               </div>
@@ -406,14 +419,9 @@ function CauseEdit_Form() {
             </button>
             <SuccessButton
               type="submit"
-              text={"Save & Approve"}
+              text={"Save"}
               icon={<PiCheckFat className="w-4 h-4 mt-1" />}
             />
-            <PrimaryButton>
-              <h1 className="text-white font-semibold font-[satoshi]">
-                Reject Modification Request
-              </h1>
-            </PrimaryButton>
           </div>
         </Form>
       )}

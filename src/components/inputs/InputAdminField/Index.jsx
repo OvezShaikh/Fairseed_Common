@@ -18,10 +18,10 @@ const InputField = ({
   required,
   ...otherProps
 }) => {
-  // const [field, meta] = useField(name);
+  const [field, meta] = useField(name);
 
   const configTextfield = {
-    // ...field,
+    // ...field,  
     ...otherProps,
     fullWidth: true,
     variant: variant ? variant : "outlined",

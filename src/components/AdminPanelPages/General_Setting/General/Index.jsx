@@ -56,7 +56,7 @@ function General() {
     email_admin: Details?.email_admin || "",
     tandc_url: Details?.tandc_url || "",
     email_no_reply: Details?.email_no_reply || "",
-    // keywords_data: Details?.keywords_data || [], // Set initial value as an empty array
+    keywords_data: Keywords || [], // Set initial value as an empty array
     privacy_policy_url: Details?.privacy_policy_url || "",
     date_time: Details?.date_time || "",
     new_registration_enabled: Details?.new_registration_enabled || false,
@@ -126,16 +126,16 @@ function General() {
             </div>
           </div>
           <div className="w-[49%] max-desktop:w-full max-tablet:w-full pt-2">           
+
             <MultiKeyTextField
               name={"keywords_data"}
               label={"Keywords"}
               sx={styleLabel}
-              onChange={handleChange}
               placeholder={"Add Tags"}
-              value={Keywords?.map((item)=>
-                item?.name
-              )}
+              value={values?.keywords_data}
+              onChange={(e)=>setFieldValue('keywords_data' , e.value)}
             />
+            
           </div>
           <div className="pt-7 mb-5 h-[200px]">
             <FormLabel style={styleLabel}>Description</FormLabel>
@@ -248,9 +248,7 @@ function General() {
                   { label: "Off", value: false },
                 ]}
                 label="Google Login"
-                onChange={(e) => {
-                  setFieldValue("google_login_enabled", e === "true");
-                }}
+                onChange={(e) => { setFieldValue("google_login_enabled", e === "true")}}
               />
             </div>
             <div className=" lg:w-[25%] max-tablet:w-full max-desktop:w-full">

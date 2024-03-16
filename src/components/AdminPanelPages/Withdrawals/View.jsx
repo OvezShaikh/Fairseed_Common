@@ -40,7 +40,7 @@ function View() {
 
 
     useGetAll({
-        // key: `/admin-dashboard/landing-page?page=1&limit=4`,
+        key: `/admin-dashboard/landing-page/${id}`,
         enabled: true,
         select: (data) => {
             console.log(data)

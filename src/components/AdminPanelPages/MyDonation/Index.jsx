@@ -152,7 +152,7 @@ const Index = () => {
                 columns={columns}
                 manualPagination
                 title={"Donations"}
-                url="/user-dashboard/my-donations/e5477dc6-2ae9-4622-93f3-ae68162b7007"
+                url="/user-dashboard/my-donations"
                 extraQuery={{ inactive: true }}
                 // addButton={<LocationConfigurationDialog />}
                 // addButton={<Button>HElloooooo</Button>}

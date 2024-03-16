@@ -177,7 +177,7 @@ const Sign_Stepper = () => {
   const { mutate } = useCreateOrUpdate({ url: "/accounts/register/nt/" });
 
   const submitForm = (values) => {
-    console.log(values);
+    // console.log(values);
     const formData = new FormData();
     if (activeStep === 1) formData.append("profile_pic", values?.profile_pic);
     formData.append("email", values?.email);
@@ -189,14 +189,14 @@ const Sign_Stepper = () => {
     formData.append("mobile_number", values?.mobile_number);
 
     mutate(formData, {
-      onSuccess: () => {
-        toast.success("Register Successfully", {
+      onSuccess: (response) => {
+        toast.success(response?.data?.email, {
           position: "top-right",
         });
-        window.location.href = "/Home";
+        // window.location.href = "/Home";
       },
       onerror: (response) => {
-        toast.error("Registeration Failed !!!", {
+        toast.error(response?.data?.email, {
           position: "top-right",
         });
       },
@@ -216,8 +216,8 @@ const Sign_Stepper = () => {
     }
   };
   return (
-    <div className="w-[65%]">
-      <div>
+    <div className="w-[65%] max-desktop:w-full max-tablet:full">
+      <div className="max-desktop:hidden max-tablet:hidden">
         <StyledTypography
           component="h4"
           variant="h4"

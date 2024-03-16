@@ -102,14 +102,14 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                           {values?.filters.map((filter, index) => (
                             <Grid
                               container
-                              columnSpacing={2}
+                              columnSpacing={{ xs: 4, lg: 2, md: 4 }}
                               display={"flex"}
                               justifyContent={"space-between"}
                               className="mb-3"
                               key={filter?.id}
                             >
                               {console.log(allColumns || [])}
-                              <Grid item xs={3}>
+                              <Grid item xs={12} md={12} lg={4} xl={4}>
                                 <SelectField
                                   name={`filters[${index}].column`}
                                   label="Column"
@@ -158,7 +158,7 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                                 />
                               </Grid>
                               {!values?.filters[index]?.column?.apiURL && (
-                                <Grid item xs={3}>
+                                <Grid item xs={12} md={12} lg={4} xl={4}>
                                   <OperatorSelectField
                                     label="operator"
                                     value={values?.filters[index]?.operator}
@@ -170,7 +170,7 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                                 </Grid>
                               )}
 
-                              <Grid item xs={3}>
+                              <Grid item xs={12} md={12} lg={4} xl={4}>
                                 {values?.filters[index]?.column?.apiURL ||
                                 values?.filters[index]?.column?.options ? (
                                   <MultipleSelectField
@@ -239,7 +239,7 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                               </Grid>
                               <Grid
                                 item
-                                xs={2}
+                                xs={1}
                                 display="flex"
                                 alignItems="center"
                               >
