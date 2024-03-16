@@ -6,8 +6,6 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./pages/LandingPage/index";
 import CreateCampaigns from "./pages/Campaigns/CreateCampaigns/Index";
 import CurrentCampaign from "./pages/Campaigns/CurrentCampaign/Index";
-// import Donet from "./pages/Campaigns/Donet/Index";
-// import DonateSettings from "./pages/Campaigns/Donet/DonateSettings/Index";
 import CampaignsByCategory from "./pages/Campaigns/CampaignsByCategory/Index";
 import OnGoingCampaigns from "./pages/Campaigns/OnGoingCampaigns/Index";
 import LoginOnSmallScreen from "./pages/login/Login_page/LoginOnSmallScreen";
@@ -15,7 +13,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "react-image-crop/dist/ReactCrop.css";
 import RegisterSmallScreen from "./pages/login/Sign_Up/RegisterSmallScreen";
-import AdminLayout from "./components/layout/AdminLayout/Index";
 
 import StoriesOfChange from "./pages/StaticPages/StoriesOfChange/Index";
 import Associateship from "./pages/GetInvolved/Associateship";
@@ -37,7 +34,7 @@ import Donate from "./pages/Donate/Index";
 import AdminPanelLandingPage from "./components/AdminPanelPages/AdminPanelLandingPage/Index";
 import Dashboard from "./components/layout/DashBoard";
 import UserPage from "./pages/User Page/User_page";
-import AddPages from "./pages/AboutUs/AddPages/Index";
+import AddPages from "./pages/AddPages/Index";
 import { useGetAll } from "./Hooks";
 
 function ScrollToTop() {
@@ -50,45 +47,6 @@ function ScrollToTop() {
   return null;
 }
 function App() {
-  // let page = [
-  //   {
-  //     slug: "/Home/Zaid",
-  //     img: "sdsds",
-  //     title: "Zaid",
-  //     content:
-  //       "adsfiudshudhfkjdsnnncdsfoidhfoidshfdshfkdsklnflkdsnfjdshfuidshfiuhdsffdshfkjdsh",
-  //     footer: true,
-  //     navbar: true,
-  //   },
-  //   {
-  //     slug: "/Home/Hammad",
-  //     img: "sdsds",
-  //     title: "Hammad",
-  //     content:
-  //       "adsfiudshudhfkjdsnnncdsfoidhfoidshfdshfkdsklnflkdsnfjdshfuidshfiuhdsffdshfkjdsh",
-
-  //     footer: true,
-  //     navbar: false,
-  //   },
-  //   {
-  //     slug: "/Home/Azhar",
-  //     img: "https://images.pexels.com/photos/20141058/pexels-photo-20141058/free-photo-of-a-white-church-on-a-cliff-overlooking-the-ocean.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-  //     title: "azhar",
-  //     content:
-  //       "adsfiudshudhfkjdsnnncdsfoidhfoidshfdshfkdsklnflkdsnfjdshfuidshfiuhdsffdshfkjdsh",
-  //     footer: false,
-  //     navbar: true,
-  //   },
-  //   {
-  //     slug: "/Home/Rehaan",
-  //     img: "sdsds",
-  //     title: "rehaan",
-  //     content:
-  //       "adsfiudshudhfkjdsnnncdsfoidhfoidshfdshfkdsklnflkdsnfjdshfuidshfiuhdsffdshfkjdsh",
-  //     footer: false,
-  //     navbar: false,
-  //   },
-  // ];
   const [page, setPage] = useState([]);
   useGetAll({
     key: `/admin-dashboard/pages?page=4&limit=8`,
@@ -141,6 +99,7 @@ function App() {
             element={<CampaignsByCategory />}
           />
           <Route path="/Home/Login" element={<LoginOnSmallScreen />} />
+          <Route path="/Login/Privacy-Policy" element={<PrivacyPolicy />} />
           <Route
             path="/Home/RegisterSmallScreen"
             element={<RegisterSmallScreen />}
@@ -212,21 +171,6 @@ function App() {
             element={<AdminPanelLandingPage />}
           />
           <Route path="/Home/page/:slug" element={<AddPages />} />
-          {/* {page?.map((item) => {
-            return (
-              <Route
-                path={item.slug}
-                element={
-                  <AddPages
-                    footer={item?.show_footer}
-                    navbar={item?.show_navbar}
-                    title={item?.title}
-                    content={item?.content}
-                  />
-                }
-              />
-            );
-          })} */}
         </Routes>
       </BrowserRouter>
     </div>

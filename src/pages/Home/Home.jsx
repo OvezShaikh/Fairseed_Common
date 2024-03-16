@@ -35,6 +35,7 @@ function Home() {
   const [campaignCount, setCampaignCount] = useState(0);
   const [showOptions, setShowOptions] = useState(false);
   const [perPage, setPerPage] = useState(100);
+  const [tabName, setTabName] = useState("newly_added");
 
   const [categoryDataFromChild, setCategoryDataFromChild] = useState('');
   const [locationDataFromChild, setLocationDataFromChild] = useState('');
@@ -48,7 +49,7 @@ function Home() {
 
 
 
-    
+
     setCategoryDataFromChild(categoryData);
 
 
@@ -58,8 +59,35 @@ function Home() {
 
 
 
-    
+
     setLocationDataFromChild(locationData);
+
+
+  };
+
+
+  const handleTabChange = (index, label) => {
+    console.log('Selected Tab Index:', index);
+    console.log('Selected Tab Label:', label);
+    // You can perform any logic with the selected index and label here
+
+    switch (label) {
+      case 'Newly Added':
+        setTabName("newly_added");
+        break;
+      case 'Most Supported':
+        setTabName("most_supported");
+        break;
+      case 'Needs Love':
+        setTabName("needs_love");
+        break;
+      case 'Expiring Soon':
+        setTabName("expiring_soon");
+        break;
+      default:
+        setTabName("newly_added");
+    }
+
 
 
   };
@@ -69,12 +97,6 @@ function Home() {
   const filteredUserList = Array.from(
     new Set(
       userList.filter((item) => {
-
-
-
-
-
-
 
         const isDataMatch = (((categoryDataFromChild.length === 0) && (locationDataFromChild.length === 0)) || ((categoryDataFromChild.includes(item.category.name)) && (locationDataFromChild.length === 0))) || (((locationDataFromChild.includes(item.location)) && (categoryDataFromChild.length === 0))) || ((categoryDataFromChild.includes(item.category.name)) && (locationDataFromChild.includes(item.location)));
 
@@ -88,23 +110,6 @@ function Home() {
 
 
 
-  useEffect(() => {
-
-    //console.log("DATA FROM CHILD ", dataFromChild)
-
-    if (filteredCardCount <= 8) {
-      
-      //setPerPage([perPage+12]);
-      // fetchUserList();
-
-
-    }
-    //  else{
-    //   setPerPage(8);
-    //  }
-
-
-  }, [categoryDataFromChild, locationDataFromChild]);
 
 
   const filterToggle = () => {
@@ -115,7 +120,7 @@ function Home() {
   const loadMore = () => {
 
 
-    console.log("LOAD MORE CLICKED");
+
 
     setVisibleCards((prevVisibleCards) => prevVisibleCards + 4);
 
@@ -132,16 +137,48 @@ function Home() {
 
   };
 
+  const fetchUserListFromTabs = async () => {
+    try {
+      
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/campaign/campaign-filter?page=${page}&limit=${perPage}&filter=${tabName}`
+      );
+      
+      const res = response.data;
+
+      console.log("RES ----->",res);
+      if (Array.isArray(res.rows)) {
+        setTotalPages(res.pages_count);
+        setUserList(res.rows);
+        setCampaignCount(res.count);
+
+
+
+
+      } else {
+        console.error("Invalid data structure. Expected an array:", res.data);
+      }
+    } catch (error) {
+      console.error("Error fetching user list:", error);
+    }
+  };
+
+
+
+
+
+
+
   const fetchUserList = async () => {
     try {
-      // const perPage = 100;
+      
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
+        `${process.env.REACT_APP_API_URL}/campaign/campaign-filter?page=${page}&limit=${perPage}&filter=${tabName}`
       );
+      
       const res = response.data;
-      console.log(res, "cards");
-      console.log(res.rows);
-      // `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
+
+      console.log("RES ----->",res);
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList([...userList, ...res.rows]);
@@ -161,6 +198,15 @@ function Home() {
     fetchUserList();
 
   }, [page]);
+
+
+  useEffect(() => {
+    fetchUserListFromTabs();
+
+  }, [tabName]);
+
+
+
   let bnk = [
     {
       title: "Help me fund my College Fees for Harvard University",
@@ -171,6 +217,16 @@ function Home() {
       daysLeft: "10 Days Left",
     },
   ];
+
+
+
+
+
+
+
+
+
+
   return (
     <>
       <div className="">
@@ -231,7 +287,7 @@ function Home() {
 
       <div className="flex flex-col flex-wrap w-full mb-[128px] items-center max-tablet:mb-[48px]">
         <div className="flex  desktop:ml-[-30px] desktop:max-w-[1760px] desktop:w-full desktop:justify-end max-desktop:w-[90%] max-desktop:flex-col max-desktop:items-end max-desktop:gap-y-[48px] max-tablet:mb-[50px] max-tablet:gap-y-[20px] scrollable-tabs-class ">
-          <ScrollableTabsButtonForce />
+          <ScrollableTabsButtonForce onTabChange={handleTabChange} />
           <button
             className="flex items-center ml-2 px-3 py-1.5 max-w-[115px] gap-x-[12px] max-desktop:px-[20px] max-desktop:py-[17px] max-tablet:py-[6px]"
             style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}

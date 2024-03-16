@@ -1,50 +1,42 @@
-import React from 'react';
-import SideImage from '../../assets/SideImage.jpg';
-import { Grid, Paper, Typography } from '@mui/material';
-import { styled } from '@mui/system';
-import Slider from 'react-slick';
-
-
+import React from "react";
+import SideImage from "../../assets/SideImage.jpg";
+import { Grid, Paper, Typography } from "@mui/material";
+import { styled } from "@mui/system";
+import Slider from "react-slick";
 
 const StyledSlider = styled(Slider)({
-  width: '200%',
-  height: '100%', // Set your desired height here
+  width: "100%",
+  height: "100%", // Set your desired height here
   // height:'full',
-  position: 'relative',
-  overflowX: 'hidden',
-  objectFit: 'contain',
-  '& .slick-dots': {
-    bottom: '5rem', // Adjust dot position if needed
+  position: "relative",
+  overflowX: "hidden",
+  objectFit: "contain",
+  "& .slick-dots": {
+    bottom: "5rem", // Adjust dot position if needed
   },
- 
-
 });
 
-const OverlayContainer = styled('div')({
-  position: 'absolute',
-  width: '630px',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'flex-end', // Adjusted to align at the bottom
+const OverlayContainer = styled("div")({
+  position: "absolute",
+  width: "630px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "flex-end", // Adjusted to align at the bottom
   zIndex: 1,
-  
 });
 
-const OverlayBox = styled('div')({
- 
-  width: '80%',
-  background: 'linear-gradient(92deg, rgba(255, 255, 255, 0.27) 0%, rgba(255, 255, 255, 0.16) 100%)',
-  color: '#fff',
-  padding: '20px',
-  textAlign: 'center',
-  maxWidth: '80%',
-  margin: '0 auto',
-  backdropFilter: 'blur(15px)',
+const OverlayBox = styled("div")({
+  width: "80%",
+  background:
+    "linear-gradient(92deg, rgba(255, 255, 255, 0.27) 0%, rgba(255, 255, 255, 0.16) 100%)",
+  color: "#fff",
+  padding: "20px",
+  textAlign: "center",
+  maxWidth: "80%",
+  margin: "0 auto",
+  backdropFilter: "blur(15px)",
   // zIndex: 1,
 });
-
-
-
 
 const FormSlider = ({ isSmallScreen }) => {
   const settings = {
@@ -64,26 +56,27 @@ const FormSlider = ({ isSmallScreen }) => {
     ],
   };
 
-
   return (
     <>
       {!isSmallScreen && (
-        <Grid item xs={12} sm={12} md={6}  >
+        <div>
           <StyledSlider {...settings}>
             <img src={SideImage} />
             <img src={SideImage} />
             <img src={SideImage} />
             <img src={SideImage} />
-            </StyledSlider>
-            <OverlayContainer sx={{ bottom:'4rem', right:'1', marginLeft:'60px' }}> 
-              <OverlayBox sx={{ borderRadius:'10px' }} >
-                <Typography variant="h6" style={{ color: '#fff' }}>
-                  "Empower minds, transform lives. Support <br />
-                  education today for a brighter tomorrow."
-                </Typography>
-              </OverlayBox>
-            </OverlayContainer>
-        </Grid>
+          </StyledSlider>
+          <OverlayContainer
+            sx={{ bottom: "4rem", right: "1", marginLeft: "60px" }}
+          >
+            <OverlayBox sx={{ borderRadius: "10px" }}>
+              <Typography variant="h6" style={{ color: "#fff" }}>
+                "Empower minds, transform lives. Support <br />
+                education today for a brighter tomorrow."
+              </Typography>
+            </OverlayBox>
+          </OverlayContainer>
+        </div>
       )}
     </>
   );
