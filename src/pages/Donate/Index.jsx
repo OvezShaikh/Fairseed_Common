@@ -112,18 +112,23 @@ function Index({
         formData.append('pancard', values?.pancard)
         formData.append('country', values?.country)
         formData.append('comment', values?.comment)
-        formData.append('payment_type', values?.payment_type?.value)
+        formData.append('payment_type', selectedPaymentGateway)
         formData.append('is_anonymous', values?.is_anonymous)
         formData.append('campaign', cardDetails?.id)
+        formData.append('mobile',  values?.mobile)
+        formData.append('transaction_date ',  values?.transaction_date )
+        formData.append('bank_name',  values?.bank_name)
         formData.append('user', user_id)
 
         mutate(formData, {
             onSuccess: (response) => {
-                const url =response?.data?.pay_page_url
-                window.location.href = url;
-
+                if(selectedPaymentGateway === 'Bank_Transfer'){
+                    window.location.href = '/Home';
+                }else{
+                    const url =response?.data?.pay_page_url
+                    window.location.href = url;
+                }
             }
-
         })
     }
 
@@ -142,6 +147,10 @@ function Index({
         comment: '',
         payment_type: '',
         is_anonymous: false,
+        transaction_date :'',
+        bank_name:'',
+        other_details:''
+        
     }
 
 
@@ -172,7 +181,7 @@ function Index({
                                         />
                                     </div>
                                     <InputField
-                                        label={"Enter your Donation:"}
+                                        label={"Enter your Amount:"}
                                         placeholder={"Minimum 50 INR"}
                                         name={"amount"}
                                         sx={InputStyle}
@@ -237,6 +246,7 @@ function Index({
                                                 { label: "BANK TRANSFER", value: "Bank_Transfer" },
                                                 { label: "Pay via Credit Card/Debit Card/Net Banking/UPI /QR Code", value: "UPI" },
                                             ]}
+                                            onChange={(value)=>setSelectedPaymentGateway(value.value)}
                                             name={"payment_type"}
                                             sx={SelectStyle}
                                         />
@@ -260,33 +270,32 @@ function Index({
                                             <div className="w-full donate-date-div max-tablet:w-[100%] p-0">
                                                 <InputField
                                                     type="date"
-                                                    name="end_date"
+                                                    name={"transaction_date "}
                                                     sx={InputStyle}
                                                     inputProps={{ min: moment().format('YYYY-MM-DD') }}
-
                                                     required={true}
-                                                    label="Accept Donations until (Select end date):"
+                                                    label="Date of Transaction"
                                                 />
                                             </div>
 
                                             <InputField
                                                 label={"Bank Name:"}
 
-                                                name={"bankname"}
+                                                name={"bank_name"}
                                                 sx={InputStyle}
                                             />
 
                                             <InputField
                                                 label={"Transaction ID:"}
 
-                                                name={"transactionid"}
+                                                name={"transaction_ids"}
                                                 sx={InputStyle}
                                             />
 
                                             <InputField
                                                 label={"Other Details:"}
 
-                                                name={"otherdetails"}
+                                                name={"other_details"}
                                                 sx={InputStyle}
                                             />
                                         </div>

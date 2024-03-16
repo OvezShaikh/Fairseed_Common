@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import AdminPage from "../src/pages/AdminPanel/AdminPage";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
-
 import HomePage from "./pages/LandingPage/index";
 import CreateCampaigns from "./pages/Campaigns/CreateCampaigns/Index";
 import CurrentCampaign from "./pages/Campaigns/CurrentCampaign/Index";
@@ -13,7 +12,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "react-image-crop/dist/ReactCrop.css";
 import RegisterSmallScreen from "./pages/login/Sign_Up/RegisterSmallScreen";
-
 import StoriesOfChange from "./pages/StaticPages/StoriesOfChange/Index";
 import Associateship from "./pages/GetInvolved/Associateship";
 import Supportacampaign from "./pages/GetInvolved/Supportacampaign";
@@ -32,10 +30,8 @@ import ForgotPasswordSmScreen from "./pages/login/ForgotPassword/ForgotPasswordS
 import Account from "./pages/Account Settings/Index";
 import Donate from "./pages/Donate/Index";
 import AdminPanelLandingPage from "./components/AdminPanelPages/AdminPanelLandingPage/Index";
-import Dashboard from "./components/layout/DashBoard";
 import UserPage from "./pages/User Page/User_page";
 import AddPages from "./pages/AddPages/Index";
-import { useGetAll } from "./Hooks";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -47,29 +43,11 @@ function ScrollToTop() {
   return null;
 }
 function App() {
-  const [page, setPage] = useState([]);
-  useGetAll({
-    key: `/admin-dashboard/pages?page=4&limit=8`,
-    enabled: true,
 
-    select: (data) => {
-      return data.data.rows;
-    },
-    onSuccess: (data) => {
-      setPage(data);
-    },
-  });
 
-  console.log(page, "<=====paggegegeg");
   return (
     <div className="container p-0">
-      {/* <OnGoingCampaigns/> */}
-      {/* <CreateCampaigns/> */}
-      {/* <BrowserRouter>
-        <div className="container">
-          <AdminPage />
-        </div>
-      </BrowserRouter> */}
+      
       <BrowserRouter>
         <ToastContainer
           position="bottom-center"
@@ -92,8 +70,7 @@ function App() {
           <Route path="/Home/OnGoingCampaigns" element={<OnGoingCampaigns />} />
           <Route path="/AdminPanel/*" element={<AdminPage />} />
           <Route path="/User/*" element={<UserPage />} />
-          {/* <Route path="/Home/Donate" element={<Donet />} />
-          <Route path="/Home/DonateSettings" element={<DonateSettings />} /> */}
+         
           <Route
             path="/Home/CampaignsByCategory/:id"
             element={<CampaignsByCategory />}
