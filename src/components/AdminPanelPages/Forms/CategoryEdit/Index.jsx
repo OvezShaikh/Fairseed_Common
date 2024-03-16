@@ -69,7 +69,7 @@ function AddNew() {
                 </div>
                 <div className="flex w-full mt-8 gap-4">
                     <div className="w-full " Style>
-                        <AdminUploadField name={"thumbnail"} value={values?.thumbnail}   onChange={handleChange} label='Thumbnail (Optainal)' />
+                        <AdminUploadField name={"thumbnail"} value={values?.thumbnail}   onChange={(value) => setFieldValue('documents', value)} label='Thumbnail (Optainal)' />
                     </div>
                     <div className=" w-full ">
                         <RadioGroup
