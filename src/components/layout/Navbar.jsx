@@ -93,6 +93,9 @@ export default function Example() {
       position: "top-center",
     });
   }
+
+  
+
   const { data: page } = useGetAll({
     key: `/admin-dashboard/pages?page=4&limit=8`,
     enabled: true,

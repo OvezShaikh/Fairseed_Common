@@ -37,12 +37,12 @@ function Index() {
   };
 
   const receiveCategoryFromChild = (categoryData) => {
-    console.log("DATA FROM CHILD Category ", categoryData);
+   
     setCategoryDataFromChild(categoryData);
   };
 
   const receiveLocationFromChild = (locationData) => {
-    console.log("DATA FROM CHILD Location ", locationData);
+   
     setLocationDataFromChild(locationData);
   };
 
@@ -66,32 +66,7 @@ function Index() {
     )
   ).map((id) => categoryCampaignList.find((item) => item.id === id));
 
-  const fetchUserList = async () => {
-    try {
-      const perPage = 100;
-      const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/campaign/category?page=${page}&limit=${perPage}`
-      );
-      const res = response.data;
-      console.log(res, "cards");
-      console.log(res.rows, "------------------->");
-
-      if (Array.isArray(res.rows)) {
-        setTotalPages(res.pages_count);
-        setUserList([...userList, ...res.rows]);
-        setData(res.rows);
-      }
-      //  else {
-      //   console.error("Invalid data structure. Expected an array:");
-      // }
-    } catch (error) {
-      console.error("Error fetching user list:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchUserList();
-  }, [page]);
+  
 
   const fetchCategoryDetail = async () => {
     const perPage = 4;
@@ -102,8 +77,9 @@ function Index() {
       setTotalPages(res.data.pages_count);
       setCategoryCampaignList([...categoryCampaignList, ...res.data.rows]);
       setCategoryDetail(res.data.category_data);
+      console.log("FETCH CATEGORY DETAIL =================>",res.data);
     } else {
-      console.error("Invalid data structure. Expected an array:", res.data);
+      console.error("Invalid data structure. Expected an array:", res.data.category_data);
     }
     // console.log(res.data.rows);
     // setCategoryCampaignList(res.data.rows)
