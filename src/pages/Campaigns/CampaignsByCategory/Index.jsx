@@ -137,16 +137,16 @@ function Index() {
                 {filteredUserList?.map((item) => {
                   return (
                     <Card
-                      key={item.id}
-                      username={item.user.username}
-                      title={item.title}
-                      og_id={item.id}
-                      cardImage={item.campaign_image}
-                      goalAmount={item.goal_amount}
-                      fundRaised={item.fund_raised}
-                      daysLeft={item.days_left}
-                      userCount={item.donor_count}
-                      location={item.location}
+                      key={item?.id}
+                      username={item?.user?.username}
+                      title={item?.title}
+                      og_id={item?.id}
+                      cardImage={item?.campaign_image}
+                      goalAmount={item?.goal_amount}
+                      fundRaised={item?.fund_raised}
+                      daysLeft={item?.days_left}
+                      userCount={item?.donor_count}
+                      location={item?.location}
                     />
                   );
                 })}

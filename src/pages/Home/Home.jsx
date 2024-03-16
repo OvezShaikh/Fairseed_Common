@@ -106,11 +106,6 @@ function Home() {
 
   const filteredCardCount = filteredUserList.length;
 
-
-
-
-
-
   const filterToggle = () => {
 
     setShowOptions(!showOptions);
@@ -246,7 +241,7 @@ function Home() {
       </div>
 
       <div className="flex flex-col flex-wrap w-full mb-[128px] items-center max-tablet:mb-[48px]">
-        <div className="flex  desktop:ml-[-30px] desktop:max-w-[1760px] desktop:w-full desktop:justify-end max-desktop:w-[90%] max-desktop:flex-col max-desktop:items-end max-desktop:gap-y-[48px] max-tablet:mb-[50px] max-tablet:gap-y-[20px] scrollable-tabs-class ">
+        <div className="flex  desktop:ml-[-30px] desktop:max-w-[1760px] desktop:w-full desktop:justify-between max-desktop:w-[90%] max-desktop:flex-col max-desktop:items-end max-desktop:gap-y-[48px] max-tablet:mb-[50px] max-tablet:gap-y-[20px] scrollable-tabs-class ">
           <ScrollableTabsButtonForce onTabChange={handleTabChange} />
           <button
             className="flex items-center ml-2 px-3 py-1.5 max-w-[115px] gap-x-[12px] max-desktop:px-[20px] max-desktop:py-[17px] max-tablet:py-[6px]"

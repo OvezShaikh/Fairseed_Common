@@ -16,9 +16,6 @@ const User = () => {
     console.log('user_type', user_type);
     if (user_type === 'NGO') {
       return {
-
-
-
         color: '#fa9820',
         background: '#f5fabe  ',
       };
@@ -47,7 +44,6 @@ const User = () => {
         Header: "Id", // Row number header
         accessor: "index", // Accessor for row number
         Cell: ({ row }) => (
-          // Display row number using index provided by React Table
           <div>{row.index + 1}</div>
         ),
         minWidth: 50,

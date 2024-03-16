@@ -69,22 +69,19 @@ const stylePrimaryButton = {
 };
 
 function Index({
-    key,
-    username,
-    cardImage,
     goalAmount,
     fundRaised,
-    daysLeft,
-    userCount,
-    location,
-    og_id,
-
+   
 }) {
     const navigate = useNavigate();
     const { pathname } = useLocation();
     const { id } = useParams();
     const [cardDetails, setCardDetails] = useState(null);
     const [selectedPaymentGateway, setSelectedPaymentGateway] = useState("");
+
+    let userData = localStorage.getItem("user_info");
+    let Data = JSON.parse(userData);
+    let user_id = Data?.id;
 
 
     useEffect(() => {
@@ -100,33 +97,12 @@ function Index({
     }, [id]);
 
 
-    console.log(cardDetails?.id, '<========')
-
     const { mutate } = useCreateOrUpdate({
         url: `/donors/donate-money`
     })
 
-
-    // const options = {
-    //     method: 'post',
-    //     url: 'https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay',
-    //     headers: {
-    //         accept: 'text/plain',
-    //         'Content-Type': 'application/json',
-    //     },
-    //     data: {
-    //     }
-    // };
-    // axios
-    //     .request(options)
-    //     .then(function (response) {
-    //         console.log(response.data);
-    //     })
-    //     .catch(function (error) {
-    //         console.error(error);
-    //     });
-
     const handleSubmit = (values ) => {
+
         const formData = new FormData();
         formData.append('donation_type', values?.donation_type?.value)
         formData.append('full_name', values?.full_name)
@@ -139,10 +115,10 @@ function Index({
         formData.append('payment_type', values?.payment_type?.value)
         formData.append('is_anonymous', values?.is_anonymous)
         formData.append('campaign', cardDetails?.id)
+        formData.append('user', user_id)
 
         mutate(formData, {
             onSuccess: (response) => {
-                console.log('===================',response.data.pay_page_url)
                 const url =response?.data?.pay_page_url
                 window.location.href = url;
 
@@ -153,6 +129,7 @@ function Index({
 
 
     const inititalValues = {
+        user :"",
         campaign: "",
         donation_type: '',
         full_name: '',
