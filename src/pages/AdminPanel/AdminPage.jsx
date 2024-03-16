@@ -12,7 +12,6 @@ import ReportedCauses from "../../components/AdminPanelPages/ReportedCauses/inde
 import DonationView from "../../components/AdminPanelPages/Donation/DonationView";
 import Withdrawals from "../../components/AdminPanelPages/Withdrawals/Index";
 import Users from "../../components/AdminPanelPages/Users/Index";
-import CauseEditApprovel from "../../components/AdminPanelPages/CauseEditApprovel/Index";
 import CategoryEdit from "../../components/AdminPanelPages/Forms/CategoryEdit/Index";
 import Scholarship from "../../components/AdminPanelPages/Scholarship Cause/Index";
 import RevisionHistory from "../../components/AdminPanelPages/Forms/RevisionHistory/Index";
@@ -146,14 +145,7 @@ function AdminPage() {
             </AdminLayout>
           }
         />
-        {/* <Route
-        path="/Reported-Cause/View"
-        element={
-          <AdminLayout>
-            <ReportedCauses />
-          </AdminLayout>
-        }
-      /> */}
+
         <Route
           path="/Withdrawals"
           element={

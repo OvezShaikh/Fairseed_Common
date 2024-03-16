@@ -1,7 +1,6 @@
 import React from "react";
 import icons from "../../constants/icons";
 import images from "../../constants/images";
-// import ProgressBar from '../ProgressBar'
 import { useState, useEffect } from "react";
 import { LinearProgress } from "@mui/material";
 import { Link } from "react-router-dom";

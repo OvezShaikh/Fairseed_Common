@@ -18,7 +18,6 @@ export default function ProfileAvatar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   function logout() {
-    // Remove the 'token' item from localStorage
     localStorage.removeItem("token");
     localStorage.removeItem("user_info");
     console.log(localStorage.getItem("token"));
@@ -54,7 +53,6 @@ export default function ProfileAvatar() {
           <IconButton
             onClick={handleClick}
             size="small"
-            // sx={{ ml: 2 }}
             aria-controls={open ? "account-menu" : undefined}
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}

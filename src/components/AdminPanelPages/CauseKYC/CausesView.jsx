@@ -5,7 +5,6 @@ import { FormLabel } from "@mui/material";
 import UploadField from "../../inputs/AdminUploadField/Index";
 import SelectField from "../../inputs/AdminSelectField/Index";
 import PrimaryButton from "../../inputs/PrimaryButton";
-import Attachments from "../../layout/Attachments/Index";
 import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";

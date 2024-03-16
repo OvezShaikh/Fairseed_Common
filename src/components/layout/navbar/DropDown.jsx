@@ -5,7 +5,6 @@ import { LogoutOutlined } from "@mui/icons-material";
 
 const DropDown = ({ children }) => {
   const authContext = useContext(AuthContext);
-  // const { Logout } = authContext;
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const dropDownOpen = Boolean(anchorEl);

@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import Navbar from "../../../components/layout/Navbar";
-import Footer from "../../../components/layout/Footer";
-import { Field, Form, Formik, useFormik, useFormikContext } from "formik";
+import {  Form, Formik, useFormik } from "formik";
 import DropZone from "../../inputs/dragAndDrop";
 import Box from "@mui/material/Box";
 import UploadField from "../../inputs/UploadField/Index";
@@ -10,7 +8,6 @@ import InputField from "../../inputs/InputField";
 import PrimaryButton from "../../inputs/PrimaryButton";
 import AdminNavbar from "../../layout/AdminNavbar";
 import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
-import { useLoaderData, useLocation } from "react-router-dom";
 
 const InputStyle = {
   padding: "0px 16px",

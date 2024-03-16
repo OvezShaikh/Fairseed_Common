@@ -1,10 +1,8 @@
-// import Swiper core and required modules
 import { Navigation, Pagination, A11y } from "swiper/modules";
 import PrimaryButton from "../inputs/PrimaryButton";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -46,7 +44,7 @@ export default () => {
 
 
 
-          // return `<div class="custom-pagination">${current} / ${total}</div>`;
+        
         },
       }
 

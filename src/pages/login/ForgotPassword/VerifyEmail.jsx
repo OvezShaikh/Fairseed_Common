@@ -49,7 +49,7 @@ function VerifyEmail() {
         ,
         
 
-        refetch: null // You can provide refetch function if needed
+        refetch: null 
     });
 
   const resetPasswordMutation = useCreateOrUpdate({

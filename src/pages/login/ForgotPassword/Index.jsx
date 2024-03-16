@@ -1,16 +1,12 @@
 import React from 'react'
 import { Dialog, Button, Grid, DialogContent, DialogTitle, Typography } from '@mui/material/'
 import { useState } from 'react';
-// import {createTheme } from '@mui/system'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import FormSlider from '../FormSlider';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import styled from '@emotion/styled';
 import VerifyEmail from './VerifyEmail';
-// import Sign_Stepper from './Stepper';
-
-
 
 const StyledTypography = styled(Typography)({
     background: 'var(--Linear-BG, linear-gradient(71deg, #FF9F0A 0%, #FF375F 62.9%))',

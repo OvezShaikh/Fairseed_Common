@@ -29,20 +29,6 @@ const stylePrimaryButton = {
 function YourStory({ handleBack, handleNext }) {
     const { setFieldValue, values } = useFormikContext();
 
-    // const formik = useFormik({
-    //     initialValues: {
-    //         story: '',
-    //         summary: '',
-    //         document: null,
-    //     },
-    //     onSubmit: (values) => {
-    //         // Handle form submission here
-    //         console.log('Form Values:', values);
-    //     },
-    // });
-
-
-
     return (
         <form className="py-[80px] flex flex-col gap-y-[80px]">
             <div className="">
@@ -110,19 +96,9 @@ Make an Appeal.`}
             </div>
 
             <div className='document-upload-div'>
-                {/* <Field
-                    name="document"
-                    render={({ field }) => (
-                        <>
-                            <UploadField
-                                onChange={(value) => setFieldValue('document', value)}
-                            />
-                        </>
-                    )}
-                /> */}
+                
                 <UploadField
                     label="Document:"
-                    // onChange={(file) => formik.setFieldValue("adhar", file)}
                     name="documents"
                     required={'true'}
                     placeholder="Upload marksheets, Medical records, Fees Structure etc."
@@ -134,7 +110,6 @@ Make an Appeal.`}
             </div>
             <div className="flex mt-4 desktop:gap-x-[40px] max-desktop:gap-x-[24px]">
                 <SecondaryButton
-                    // disabled={activeStep === 0}
                     onClick={handleBack}
                     sx={styleSecondaryButton}
                 >

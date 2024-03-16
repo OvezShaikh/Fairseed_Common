@@ -11,10 +11,9 @@ const Reported_Causes = () => {
 
   const columns = React.useMemo(() => [
     {
-      Header: "Id", // Row number header
-      accessor: "index", // Accessor for row number
+      Header: "Id", 
+      accessor: "index", 
       Cell: ({ row }) => (
-        // Display row number using index provided by React Table
         <div>{row.index + 1}</div>
       ),
       minWidth: 50,

@@ -6,21 +6,18 @@ import CheckBox from "../../inputs/checkBox";
 import { FormLabel } from "@mui/material";
 import { colors } from "../../../constants/theme";
 import { Formik, Form, Field, useFormikContext } from "formik";
-import images from "../../../constants/images";
 import ReactQuilTextField from "../../inputs/ReactQuilTextField/Index";
-import { RiDeleteBin6Line } from "react-icons/ri";
 import SuccessButton from "../../inputs/SuccessButton/Index";
 import { PiCheckFat } from "react-icons/pi";
-import { pink, red } from "@mui/material/colors";
+import { red } from "@mui/material/colors";
 import UploadField from "../../inputs/UploadField/Index";
 import RadioGroup from "../../inputs/radioGroup/index";
 import ErrorIcon from "@mui/icons-material/Error";
 import ImageEditor from "../../layout/ImageEditor/Index";
-import ImageDisplay from "../../layout/CropAddImage/Index";
 import { useState } from "react";
 import ImageBackgroundWithDeleteButton from "../../layout/CropAddImage/Index";
 import Attachments from "../../../layout/Attachments/Index";
-import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
+import {  useGetAll } from "../../../Hooks";
 
 import { height } from "@mui/system";
 const InputStyle = {
@@ -64,11 +61,10 @@ function Index() {
 
   const [imageUrl, setImageUrl] = useState(
     "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-  ); // State to store the image URL
+  );
 
   const handleDelete = () => {
-    // Logic to delete the image from the backend goes here
-    // After successful deletion, update the imageUrl state
+    
     setImageUrl("");
   };
 

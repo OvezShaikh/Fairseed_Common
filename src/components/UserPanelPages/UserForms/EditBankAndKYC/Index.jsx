@@ -19,9 +19,7 @@ function CausesView() {
 
   const [data, setData] = useState({});
   let navigate = useNavigate();
-  // const [imgOne, setImgOne] = useState('');
-  // const [imgTwo, setImgTwo] = useState('');
-  // const [imgThree, setImgThree] = useState('');
+
 
   const img = [
     "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
