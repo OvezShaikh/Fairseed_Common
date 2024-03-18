@@ -21,7 +21,7 @@ function KnowingFairseed({ title, content, navbar, footer }) {
       </div>
 
       <div
-        className="pt-12 flex flex-col items-center text-start text-ellipsis   max-w:[1920px] max-desktop:w-[718px] max-tablet:w-[370px] gap-[10px] px-10 max-desktop:px-2 desktop:text-[28px] text-[satoshi] max-tablet:px-2"
+        className="pt-12 flex flex-col  text-start text-ellipsis   max-w:[1920px] max-desktop:w-[718px] max-tablet:w-[370px] gap-[10px] px-10 max-desktop:px-2 desktop:text-[28px] text-[satoshi] max-tablet:px-2"
         dangerouslySetInnerHTML={{ __html: contentData?.content }}
       ></div>
       {contentData?.show_footer && <Footer />}

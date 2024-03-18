@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./App.css";
 import AdminPage from "../src/pages/AdminPanel/AdminPage";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
@@ -15,15 +15,6 @@ import RegisterSmallScreen from "./pages/login/Sign_Up/RegisterSmallScreen";
 import StoriesOfChange from "./pages/StaticPages/StoriesOfChange/Index";
 import Associateship from "./pages/GetInvolved/Associateship";
 import Supportacampaign from "./pages/GetInvolved/Supportacampaign";
-import Internship from "./pages/GetInvolved/Intership";
-import Careers from "./pages/GetInvolved/Careers";
-import Partnerwithus from "./pages/GetInvolved/Partnerwithus";
-import Reports from "./pages/Our Impact/Reports";
-import KnowingFairseed from "./pages/AboutUs/KnowingFairseed";
-import VisionMission from "./pages/AboutUs/Vision&mission";
-import Objectivesandvalues from "./pages/AboutUs/Objectives&values";
-import OurTeam from "./pages/AboutUs/OurTeam";
-import HowItWorks from "./pages/HowItWorks/HowItWorks";
 import PrivacyPolicy from "./pages/login/Sign_Up/PrivacyPolicy";
 import "react-toastify/dist/ReactToastify.css";
 import ForgotPasswordSmScreen from "./pages/login/ForgotPassword/ForgotPasswordSmScreens";
@@ -32,6 +23,7 @@ import Donate from "./pages/Donate/Index";
 import AdminPanelLandingPage from "./components/AdminPanelPages/AdminPanelLandingPage/Index";
 import UserPage from "./pages/User Page/User_page";
 import AddPages from "./pages/AddPages/Index";
+import PageDoesNotExists from "./pages/PageDoesNotExists/NotFoundPage";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -143,6 +135,7 @@ function App() {
             element={<AdminPanelLandingPage />}
           />
           <Route path="/Home/:slug" element={<AddPages />} />
+          <Route path="*" element={<PageDoesNotExists />} />
         </Routes>
       </BrowserRouter>
     </div>
