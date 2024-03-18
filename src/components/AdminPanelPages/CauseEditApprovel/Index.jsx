@@ -381,7 +381,7 @@ function CauseEdit_Form() {
                     { label: "On", value: true },
                     { label: "Off", value: false },
                   ]}
-                  value={values?.is_featured}
+                  value={values?.is_featuredn}
                   label="Featured:"
                   style={{ fontSize: "18px", fontWeight: 500 }}
                 />
