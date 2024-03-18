@@ -65,14 +65,16 @@ function Index() {
 
   const initial_value = {
     title: campaign?.title || "",
-    category: campaign?.category || "",
-    goal_amount: campaign?.goal_amount || 0,
+    category: campaign?.category?.name || "",
+    goal_amount: campaign?.goal_amount || "",
     location: campaign?.location || "",
     end_date: campaign?.end_date,
     summary: campaign?.summary || "",
     story: campaign?.story || "",
     campaign_image: image || "",
     approval_status: false,
+    is_featured:campaign?.is_featured || false,
+    zakat_eligible:campaign?.zakat_eligible || false
   };
 
   const handleSubmit = (values) => {
@@ -85,15 +87,18 @@ function Index() {
     formData.append("summary", values?.summary);
     formData.append("story", values?.story);
     formData.append("category", values?.category);
+    formData.append("zakat_eligible", values?.zakat_eligible);
     {
       approval && formData.append("approve_campaign", true);
     }
 
     mutate(formData, {
       onSuccess: (response) => {
-        toast.success("Details Updated Successfully !!!", {
+        console.log(response, "{{{{{{")
+        toast.success(response?.data?.data, {
           position: "top-right",
         });
+        // navigate(-1);
       },
     });
   };
@@ -137,7 +142,7 @@ function Index() {
                 name={"category"}
                 required={true}
                 label="Choose a Category:"
-                value={values?.category?.name}
+                value={values?.category}
                 options={Category.map((item) => ({
                   label: item.name,
                   value: item.id,
@@ -197,6 +202,8 @@ function Index() {
                       },
                     }}
                     name="zakat_eligible"
+                    checked={values?.zakat_eligible}
+                    onChange={handleChange}
                     label={"Yes"}
                   />
                 </div>
@@ -223,7 +230,6 @@ function Index() {
                     theme="snow"
                     name="summary"
                     value={values?.summary}
-                    // placeholder="Summarize in 100 words max."
                     style={{ "& .ql-editor": { minHeight: "50px" } }}
                     onChange={(value) => setFieldValue("summary", value)}
                   />
@@ -272,7 +278,6 @@ function Index() {
                 <div className="flex gap-4 max-tablet:flex-col">
                   {values?.documents?.map((imageUrl, index) => {
                     const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl?.doc_file}`;
-                    console.log(documentLink, "doc_file");
                     return (
                       <Attachments
                         key={index}
@@ -308,7 +313,7 @@ function Index() {
               icon={<PiCheckFat className="w-4 h-4 mt-1" />}
             />
 
-            <PrimaryButton type="submit">
+            <PrimaryButton type="submit"  >
               <h1 className="text-white font-semibold font-[satoshi]">
                 Reject Modification Request
               </h1>

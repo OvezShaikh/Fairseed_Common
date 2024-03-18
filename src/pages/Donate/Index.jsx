@@ -79,6 +79,7 @@ function Index({
     const [cardDetails, setCardDetails] = useState(null);
     const [selectedPaymentGateway, setSelectedPaymentGateway] = useState("");
 
+    
     let userData = localStorage.getItem("user_info");
     let Data = JSON.parse(userData);
     let user_id = Data?.id;
@@ -118,7 +119,11 @@ function Index({
         formData.append('mobile',  values?.mobile)
         formData.append('transaction_date ',  values?.transaction_date )
         formData.append('bank_name',  values?.bank_name)
-        formData.append('user', user_id)
+        {
+            localStorage.getItem('token') &&
+            formData.append('user', user_id)
+        }
+        
 
         mutate(formData, {
             onSuccess: (response) => {
@@ -254,8 +259,6 @@ function Index({
 
                                     {selectedPaymentGateway === "Bank_Transfer" ? (
                                         <div style={{ width: '100%', padding: '0 !important' }} className={selectedPaymentGateway === "Bank_Transfer" ? "show-content" : "hide-content"}>
-
-
                                             <div className=" w-full min-h-[302px] h-full bg-[#F7FAFF]  border flex flex-col gap-7" style={{ borderRadius: '4px', padding: '8px 16px' }}>
                                                 <p className="text-[20px] font-medium font-[satoshi] max-desktop:text-[18px] max-tablet:text-[16px] text-[#00000080]">Bank Name: ICICI BANK</p>
                                                 <p className="text-[20px] font-medium font-[satoshi] max-desktop:text-[18px] max-tablet:text-[16px] text-[#00000080]">Branch: Pune</p>
@@ -265,8 +268,6 @@ function Index({
                                                 <p className="text-[20px] font-medium font-[satoshi] max-desktop:text-[18px] max-tablet:text-[16px] text-[#00000080]">IFSC: ICIC0000074</p>
 
                                             </div>
-
-
                                             <div className="w-full donate-date-div max-tablet:w-[100%] p-0">
                                                 <InputField
                                                     type="date"
@@ -277,30 +278,23 @@ function Index({
                                                     label="Date of Transaction"
                                                 />
                                             </div>
-
                                             <InputField
                                                 label={"Bank Name:"}
-
                                                 name={"bank_name"}
                                                 sx={InputStyle}
                                             />
-
                                             <InputField
                                                 label={"Transaction ID:"}
-
                                                 name={"transaction_ids"}
                                                 sx={InputStyle}
                                             />
-
                                             <InputField
                                                 label={"Other Details:"}
-
                                                 name={"other_details"}
                                                 sx={InputStyle}
                                             />
                                         </div>
                                     ) : null}
-
                                     <div className="anonymous-donation-div">
                                         <CheckBox
                                             name={"is_anonymous"}
@@ -314,12 +308,10 @@ function Index({
                                         >
                                             Back
                                         </SecondaryButton>
-
                                         <PrimaryButton type='submit' sx={stylePrimaryButton}>
                                             Donate
                                         </PrimaryButton>
                                     </div>
-
                                 </Form>
                             </Formik>
                         </div>
@@ -386,7 +378,6 @@ function Index({
                             >
                                 funded of ₹ {cardDetails?.goal_amount}
                             </p>
-
                             <div className="desktop:mb-5 max-desktop:mb-5 w-full h-[30px] max-desktop:w-full max-tablet:h-[11px] max-tablet:mb-[15px]">
                                 {/* <LinearWithValueLabel className='!h-9' height={'30px'} value={30} /> */}
                                 <LinearProgress
@@ -411,13 +402,7 @@ function Index({
                                 >
                                     <p className="text-2xl max-tablet:text-[18px] font-bold">Zakah Eligible !</p>
                                 </h1>
-
-
-
-
-
                             </div>
-
                             <div className="flex gap-x-[12px] mt-[46px]">
                                 <Avatar
 
@@ -426,22 +411,17 @@ function Index({
                                     src="/static/images/avatar/1.jpg"
                                     sx={{ width: "32px", height: "32px" }}
                                 />
-
                                 <span className="font-[satoshi] font-medium text-[20px] text-[#8E95A2]">
                                     {cardDetails?.user}
                                 </span>
                             </div>
-
                             <div className="mt-[40px] font-bold font-[satoshi] text-[30px] text-[#383A42]">{cardDetails?.title}</div>
-
-
                             <div className="flex flex-wrap justify-center gap-[20px] mt-[50px]">
                                 <div className="flex">
                                     <img className=" w-[28px] h-[26px] mr-[10px]" src={icons?.Threeuser} />
                                     <p className="text-[#6B7280] text-[20px]">
                                         {cardDetails?.donor_count}
                                     </p>
-
                                 </div>
                                 <div className="flex">
                                     <img className="w-[24px] h-[27px] mr-[10px]" src={icons?.Clock} />
@@ -449,10 +429,8 @@ function Index({
                                     <p className="text-[#6B7280] text-[20px]">
                                         {cardDetails?.days_left} days left
                                     </p>
-
                                 </div>
                                 <div className="flex">
-
                                     <img className="  w-[20px] h-[36px] mr-[10px]" src={images?.MapPin2} />
                                     <p className="text-[#6B7280] text-[20px]">
                                         {cardDetails?.location}

@@ -128,7 +128,7 @@ function CauseEdit_Form() {
 
     mutate(formData, {
       onSuccess: (response) => {
-        toast.success("Campaign Updated/Approved successfully !", {
+        toast.success(response?.data?.message, {
           position: "top-right",
         });
         navigate(-1);
@@ -285,13 +285,6 @@ function CauseEdit_Form() {
                         imageUrl={documentLink}
                       />
                     );
-                    return (
-                      <Attachments
-                        key={index}
-                        id={id}
-                        imageUrl={documentLink}
-                      />
-                    );
                   })}
                 </div>
               </div>
@@ -353,13 +346,14 @@ function CauseEdit_Form() {
                   </FormLabel>
                   <CheckBox
                     sx={{
-                      paddingLeft: "16px !important",
+                      paddingLeft: "15px",
                       "&.Mui-checked": {
                         color: red[500],
                       },
                     }}
                     name="zakat_eligible"
-                    value={values?.zakat_eligible}
+                    checked={values?.zakat_eligible}
+                    // onChange={handleChange}
                     label={"Yes"}
                   />
                 </div>
@@ -387,6 +381,7 @@ function CauseEdit_Form() {
                     { label: "On", value: true },
                     { label: "Off", value: false },
                   ]}
+                  value={values?.is_featured}
                   label="Featured:"
                   style={{ fontSize: "18px", fontWeight: 500 }}
                 />
