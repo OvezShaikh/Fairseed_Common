@@ -43,11 +43,8 @@ function ScrollToTop() {
   return null;
 }
 function App() {
-
-
   return (
     <div className="container p-0">
-      
       <BrowserRouter>
         <ToastContainer
           position="bottom-center"
@@ -70,7 +67,7 @@ function App() {
           <Route path="/Home/OnGoingCampaigns" element={<OnGoingCampaigns />} />
           <Route path="/AdminPanel/*" element={<AdminPage />} />
           <Route path="/User/*" element={<UserPage />} />
-         
+
           <Route
             path="/Home/CampaignsByCategory/:id"
             element={<CampaignsByCategory />}
@@ -99,7 +96,7 @@ function App() {
             element={<Supportacampaign />}
           />
 
-          <Route path="/Home/GetInvolved/Internship" element={<Internship />} />
+          {/* <Route path="/Home/GetInvolved/Internship" element={<Internship />} />
 
           <Route path="/Home/GetInvolved/Careers" element={<Careers />} />
 
@@ -127,13 +124,11 @@ function App() {
 
           <Route path="/Home/About-Us/Our-Team" element={<OurTeam />} />
 
-          <Route path="/Home/How-It-Works" element={<HowItWorks />} />
-
           <Route
             path="/Home/Sign-Up/Privacy-Policy"
             element={<PrivacyPolicy />}
-          />
-          <Route path="/Home/How-It-Works" element={<HowItWorks />} />
+          /> */}
+          {/* <Route path="/Home/How-It-Works" element={<HowItWorks />} /> */}
           <Route
             path="/Home/Password-Reset"
             element={<ForgotPasswordSmScreen />}
@@ -147,7 +142,7 @@ function App() {
             path="/adminpanellandingpage"
             element={<AdminPanelLandingPage />}
           />
-          <Route path="/Home/page/:slug" element={<AddPages />} />
+          <Route path="/Home/:slug" element={<AddPages />} />
         </Routes>
       </BrowserRouter>
     </div>

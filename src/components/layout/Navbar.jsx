@@ -22,24 +22,24 @@ import { useGetAll } from "../../Hooks";
 const GetInvolved = [
   {
     name: "Associateship",
-    href: "/Home/GetInvolved/Associateship",
+    href: "/Home/Associateship",
   },
   {
     name: "Partner with us",
-    href: "/Home/GetInvolved/Partner-with-us",
+    href: "/Home/Partner-with-us",
   },
   {
     name: "Internship",
-    href: "/Home/GetInvolved/Internship",
+    href: "/Home/Internship",
   },
 
   {
     name: "Support a campaign",
-    href: "/Home/GetInvolved/Support-a-campaign",
+    href: "/Home/Support-a-campaign",
   },
   {
     name: "Careers",
-    href: "/Home/GetInvolved/Careers",
+    href: "/Home/Careers",
   },
 ];
 const OurImpact = [
@@ -53,25 +53,25 @@ const OurImpact = [
   },
   {
     name: "Stories of Change",
-    href: "/Home/Impact/StoriesOfChange",
+    href: "/Home/Stories-Of-Change",
   },
   {
     name: "Reports",
-    href: "/Home/Impact/Reports",
+    href: "/Home/Reports",
   },
 ];
 const AboutUs = [
   {
     name: "Knowing Fairseed",
-    href: "/Home/About-Us/Knowing-Fairseed",
+    href: "/Home/Knowing-Fairseed",
   },
   {
     name: "Vision & Mission",
-    href: "/Home/About-Us/Vision-&-Mission",
+    href: "/Home/Vision-&-Mission",
   },
   {
     name: "Objectives & Values",
-    href: "/Home/About-Us/Objectives-&-values",
+    href: "/Home/Objectives-&-values",
   },
 ];
 
@@ -92,8 +92,6 @@ export default function Example() {
       position: "top-center",
     });
   }
-
-  
 
   const { data: page } = useGetAll({
     key: `/admin-dashboard/pages?page=4&limit=8`,
@@ -257,7 +255,6 @@ export default function Example() {
                 </Popover.Panel>
               </Transition>
             </Popover>
-
             {/* <Popover className="relative mt-1">
               <Popover.Button
                 className="flex pt-2 nav_button items-center gap-x-1 text-[18px] font-medium font-[satoshi]  text-[#40444C]"
@@ -322,9 +319,7 @@ export default function Example() {
                   </div>
                 </Popover.Panel>
               </Transition>
-            </Popover> */}
-            {/*  second button */}
-
+            </Popover>{" "} */}
             <Popover className="relative mt-1">
               <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium font-[satoshi] text-[#40444C]">
                 Our Impact
@@ -387,7 +382,6 @@ export default function Example() {
                 </Popover.Panel>
               </Transition>
             </Popover>
-
             {/* third button */}
             <Popover className="relative mt-1">
               <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium  font-[satoshi] text-[#40444C]">
@@ -452,7 +446,6 @@ export default function Example() {
               </Transition>
             </Popover>
             {/* Fourth button */}
-
             <button className="font-[satoshi] text-[18px] font-medium text-[#40444C]">
               <Link to={"/Home/How-It-Works"}>How it Works</Link>
             </button>
@@ -485,7 +478,6 @@ export default function Example() {
                 Start a Campaign
               </PrimaryButton>
             )}
-
             <div className="flex space-x-8">
               <button
                 onClick={toggleSearch}
@@ -548,7 +540,7 @@ export default function Example() {
               {localStorage.getItem("token") ? (
                 <ProfileAvatar />
               ) : (
-                <button className="font-[satoshi] text-[18px] font-medium text-[#40444C]" >
+                <button className="font-[satoshi] text-[18px] font-medium text-[#40444C]">
                   <UserLogin />
                 </button>
               )}

@@ -29,7 +29,7 @@ import CampaignView from "../../components/AdminPanelPages/Forms/CampaignVeiw/In
 
 function AdminPage() {
   return (
-    <div className="container">
+    <div className="">
       <Routes>
         <Route
           path="/"

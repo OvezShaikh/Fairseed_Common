@@ -14,7 +14,7 @@ import EditCampaign from "../../components/UserPanelPages/Campaign/EditCampaign"
 
 function UserPage() {
   return (
-    <div className="container">
+    <div className="">
       <Routes>
         <Route
           path="/"

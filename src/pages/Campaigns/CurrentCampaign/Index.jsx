@@ -421,7 +421,6 @@ function CurrentCampaign({
                 maxWidth="md"
                 onCloseCall={() => console.log("Dialog closed")}
               >
-                {/* Content of the dialog */}
                 <Formik initialValues={{ message: "" }} validationSchema={{}}>
                   {({ onClose }) => (
                     <Form className="flex flex-col justify-center items-center gap-10">
@@ -484,17 +483,6 @@ function CurrentCampaign({
               paddingLeft: "43px",
               paddingRight: "43px",
             }}
-            // style={{
-
-            //   paddingTop: 16,
-            //   paddingBottom: 16,
-            //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
-            //   borderRadius: 8,
-            //   justifyContent: "center",
-            //   alignItems: "center",
-            //   gap: 10,
-            //   display: "inline-flex",
-            // }}
           >
             <div style={{ width: 38, position: "relative" }}>
               <img src={images.coins2} alt="" />
@@ -520,17 +508,6 @@ function CurrentCampaign({
             paddingLeft: "30px",
             paddingRight: "30px",
           }}
-          // style={{
-
-          //   paddingTop: 16,
-          //   paddingBottom: 16,
-          //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
-          //   borderRadius: 8,
-          //   justifyContent: "center",
-          //   alignItems: "center",
-          //   gap: 10,
-          //   display: "inline-flex",
-          // }}
         >
           <div style={{ width: 38, position: "relative" }}>
             <img className="text-3xl font-[40px]" src={images?.Coins} alt="" />

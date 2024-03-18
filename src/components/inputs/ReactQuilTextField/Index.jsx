@@ -1,57 +1,66 @@
-import { useState } from "react";
-
+import React, { useState } from "react";
 import ReactQuill from "react-quill";
-// import { SketchPicker } from 'react-color';
 import "react-quill/dist/quill.snow.css";
 import { ErrorMessage } from "formik";
 
 const QuillEditor = ({ value, onChange, placeholder, name }) => {
+  const colorOptions = [
+    "#000000",
+    "#111111",
+    "#222222",
+    "#ff0000",
+    "#ff3333",
+    "#ff6666",
+    "#00ff00",
+    "#33ff33",
+    "#66ff66",
+    "#0000ff",
+    "#3333ff",
+    "#6666ff",
+  ];
 
-    const [showColorSelect, setShowColorSelect] = useState(false);
-    const [currentColor, setCurrentColor] = useState('#000000'); // Default color
-  
-    const handleColorChange = (color) => {
-      setCurrentColor(color);
-      setShowColorSelect(false);
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, 3, false] }],
+      ["bold", "italic", "underline", "strike"],
+      [{ color: colorOptions }],
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["link", "image"],
+      ["clean"],
+      [{ align: [] }],
+      [{ indent: "-1" }, { indent: "+1" }],
+      [{ script: "sub" }, { script: "super" }],
+      ["blockquote", "code-block"],
+      [{ direction: "rtl" }],
+    ],
+  };
 
-    };
-
-    const colorOptions = ['#000000', '#ff0000', '#00ff00', '#0000ff']; // Add your desired color options
-
-
-    const modules = {
-        toolbar: [
-            [{ 'header': [1, 2, 3, false] }],
-            ['bold', 'italic', 'underline', 'strike'],
-            [{ 'color': colorOptions }], 
-            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-            ['link', 'image'],
-            ['clean'],
-            // [{ 'colorSelect': colorOptions }],
-        ],
-    };
-
-
-
-    return (
-        <>
-            <ReactQuill
-                theme="snow"
-                value={value}
-                onChange={onChange}
-                placeholder={placeholder}
-                modules={modules}
-            />
-            <ErrorMessage
-                name={name}
-                render={(msg) => (
-                    <div style={{ color: "red", fontSize: "1rem", paddingLeft: '5px', fontFamily: 'satoshi' }}>
-                        {typeof msg === "object" ? Object?.values(msg)[0] : msg}
-                    </div>
-                )}
-            />
-        </>
-    );
+  return (
+    <>
+      <ReactQuill
+        theme="snow"
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        modules={modules}
+      />
+      <ErrorMessage
+        name={name}
+        render={(msg) => (
+          <div
+            style={{
+              color: "red",
+              fontSize: "1rem",
+              paddingLeft: "5px",
+              fontFamily: "satoshi",
+            }}
+          >
+            {typeof msg === "object" ? Object?.values(msg)[0] : msg}
+          </div>
+        )}
+      />
+    </>
+  );
 };
 
 export default QuillEditor;
