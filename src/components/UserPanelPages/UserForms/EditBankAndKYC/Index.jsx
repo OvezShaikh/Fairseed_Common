@@ -21,11 +21,7 @@ function CausesView() {
   let navigate = useNavigate();
 
 
-  const img = [
-    "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-    "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-    "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-  ];
+ 
   const validationSchema = Yup.object().shape({
     declaration: Yup.boolean()
       .required("You must give consent by checking the checkbox")
@@ -244,7 +240,7 @@ function CausesView() {
                   //   value={formik.values.rasing_for}
                 />
                 <CheckBox
-                  value={values?.declaration}
+                  checked={values.field == 'true' ? true : false}
                   sx={{
                     paddingLeft: "16px !important",
                     "&.Mui-checked": {

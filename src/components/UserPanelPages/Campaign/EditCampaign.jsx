@@ -26,15 +26,10 @@ import DropZone from "../../inputs/Cropper/CropDrop";
 const EditCampaign = () => {
   let { state } = useLocation();
   let { id } = state;
-  const [documents, setDocuments] = useState([]);
+  const navigate = useNavigate();
   const [dataUrl, setDataUrl] = useState(null);
   const [Categories, setCategories] = useState([]);
-
-  const handleDocumentUpload = (documentUrl) => {
-    setDocuments([...documents, documentUrl]);
-  };
-  const navigate = useNavigate();
-
+  const [Documents , setDocuments ] = useState([])
   const [user, setUser] = useState({});
   const [imageUrl, setImageUrl] = useState();
   const [srcImg, setSrcImg] = useState("");
@@ -73,6 +68,7 @@ const EditCampaign = () => {
     },
     onSuccess: (data) => {
       setUser(data);
+      setDocuments(data?.documents)
       const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${
         data?.campaign_image || ""
       }`;
@@ -103,13 +99,13 @@ const EditCampaign = () => {
     amount: user.goal_amount || "",
     location: user.location || "",
     category: user?.category || " ",
-    is_featured: false,
+    is_featured:user?.is_featured || false,
     summary: user?.summary || "",
-    zakat_eligible: false,
     end_date: user?.end_date || "",
     status: user?.status || "",
     story: user?.story || "",
     documents: user?.documents || [],
+    zakat_eligible:user?.zakat_eligible || false
   };
   console.log(initial_values);
   if (!isSuccess) {
@@ -129,13 +125,22 @@ const EditCampaign = () => {
     formData.append("summary", values?.summary);
     formData.append("story", values?.story);
     formData.append("category", values?.category?.id);
+    formData.append("zakat_eligible", values?.zakat_eligible);
+    formData.append("documents", values?.documents);
+    formData.append("is_featured", values?.is_featured);
 
+  
     mutate(formData, {
-      onSuccess: () => {
-        toast.success("Cause updated Succcessfully ! ", {
+      onSuccess: (response) => {
+        toast.success(response?.data?.message, {
           position: "top-right",
         });
       },
+      onError:(response)=>{
+        toast.error(response?.data?.message, {
+          position:'top-right'
+        })
+      }
     });
   };
 
@@ -278,9 +283,8 @@ const EditCampaign = () => {
                 </FormLabel>
 
                 <div className="flex gap-4">
-                  {values?.documents?.map((imageUrl, index) => {
+                  {values?.Documents?.map((imageUrl, index) => {
                     const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl.doc_file}`;
-                    console.log(imageUrl.doc_file, "doc_file");
                     return <Attachments key={index} imageUrl={documentLink} />;
                   })}
                 </div>
@@ -299,12 +303,11 @@ const EditCampaign = () => {
                 <div className="w-[50%] max-tablet:w-full document-upload-div">
                   <UploadField
                     label="Upload Attachment:"
-                    onDocumentUpload={handleDocumentUpload}
-                    name="document"
+                    name="documents"
                     placeholder="Upload marksheets, Medical records, Fees Structure etc."
                     sx={{ padding: "20px" }}
                     multiple={false}
-                    onChange={(value) => setFieldValue("document", value)}
+                    onChange={(value) => setFieldValue("documents", value)}
                   />
                 </div>
               </div>
@@ -319,6 +322,7 @@ const EditCampaign = () => {
                       { label: "Pending", value: "Pending" },
                       { label: "Active", value: "Active" },
                       { label: "Completed", value: "Completed" },
+                      { label: "Rejected", value: "Rejected" },
                     ]}
                   />
                 </div>
@@ -347,7 +351,8 @@ const EditCampaign = () => {
                       },
                     }}
                     name="zakat_eligible"
-                    value={values?.zakat_eligible}
+                    checked={values?.zakat_eligible}
+                    onChange={handleChange}
                     label={"Yes"}
                   />
                 </div>
@@ -366,16 +371,16 @@ const EditCampaign = () => {
               <div className=" w-full ">
                 <RadioGroup
                   name={"is_featured"}
+                  value={values?.is_featured}
                   type="radio"
                   sx={{ flexDirection: "column" }}
-                  onChange={handleChange}
+                  onChange={(e)=>{setFieldValue("is_featured", e === "true");}}
                   options={[
                     { label: "On", value: true },
                     { label: "Off", value: false },
                   ]}
                   label="Featured:"
                   style={{ fontSize: "18px", fontWeight: 500 }}
-                  // onChange={onChange}
                 />
               </div>
             </div>
@@ -385,11 +390,9 @@ const EditCampaign = () => {
                   sx={{ maxWidth: "400px", minHeight: "400px" }}
                   dataUrl={srcImg}
                 />
-                {/* {console.log(values?.cpg_image)} */}
               </div>
               <Link
                 to={"Revision-History"}
-                // state={id}
               >
                 <PrimaryButton sx={{ borderRadius: "12px", width: "90%" }}>
                   <h1 className="text-white font-medium py-2.5 text-[18px] font-[satoshi]">
