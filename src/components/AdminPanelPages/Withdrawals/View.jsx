@@ -22,15 +22,14 @@ function View() {
     let { id } = state;
     const navigate = useNavigate();
 
-    const [data, setData] = useState({});
+    const [bankdata, setBankdata] = useState({});
+    const [campaigndata, setcampaigndata] = useState({});
 
     const copyRowToClipboard = () => {
         const rowData = document.getElementById('table-row').innerText;
         navigator.clipboard.writeText(rowData)
             .then(() => {
-                console.log('Row copied to clipboard');
                 toast.success('Copy to clipborad', { position: "bottom-center" })
-                // Optionally, you can show a success message here
             })
             .catch(error => {
                 console.error('Failed to copy row: ', error);
@@ -38,29 +37,37 @@ function View() {
             });
     };
 
-
     useGetAll({
-        key: `/admin-dashboard/landing-page/${id}`,
+        key: `/admin-dashboard/withdrawals/${id}`,
         enabled: true,
         select: (data) => {
-            console.log(data)
-            return data.data.rows[0];
+            return data?.data;
         },
         onSuccess: (data) => {
-            console.log(data)
-            setData(data);
+            setBankdata(data?.bank_data);
+            setcampaigndata(data?.campaign_data);
         },
     })
 
+const initialValues = {
+        id : campaigndata?.id || '',
+
+
+}
+
+
     return (
         <Formik
-            initialValues={{}}
+        enableReinitialize={true}
+            initialValues={initialValues}
         >
-            <Form className='flex flex-col items-center '>
+           {({values  })=>(
+
+          <Form className='flex flex-col items-center '>
                 <div className="flex gap-4 w-full max-desktop:flex-col max-desktop:gap-0 max-tablet:flex-col">
                     <div className="flex w-full gap-4 max-desktop:gap-0 max-tablet:flex-col">
                         <div className="w-full">
-                            .<InputField name={"id"} placeholder={"Placeholder Text"} label={"ID:"} />
+                            .<InputField name={"id"} value={values?.id}  placeholder={"Placeholder Text"} label={"ID:"} />
                         </div>
                         <div className="w-full">
                             .<InputField name={"Bank Details:"} placeholder={"Placeholder Text "} label={"Bank Details:"} />
@@ -69,7 +76,7 @@ function View() {
                     <div className="flex w-full gap-4 max-desktop:gap-0 max-tablet:flex-col">
 
                         <div className="w-full">
-                            .<InputField name={"amount"} placeholder={"Add Tag"} label={"Amount:"} />
+                            .<InputField name={"amount"} value={values?.amount} placeholder={"Add Tag"} label={"Amount:"} />
                         </div>
                         <div className="w-full flex flex-col items-end justify-end max-tablet:pt-5">
                             <AdminSelectField name={"PaymentGateway"} placeholder={"Placeholder Text"} label={"Payment Gateway:"} />
@@ -80,18 +87,18 @@ function View() {
                     <div className="flex w-full gap-4 max-desktop:gap-0 max-tablet:flex-col">
 
                         <div className="w-full">
-                            .<InputField name={"PaymentDate"} type={'date'} placeholder={"Placeholder Text"} label={"Payment Date:    "} />
+                            .<InputField name={"PaymentDate"} value={values?.created_on} type={'date'} placeholder={"Placeholder Text"} label={"Payment Date:    "} />
                         </div>
                         <div className="w-full">
-                            .<InputField name={"Status"} placeholder={"Placeholder Text "} label={"Status:"} />
+                            .<InputField name={"Status"} value={values?.withdrawal_status} placeholder={"Placeholder Text "} label={"Status:"} />
                         </div>
                     </div>
                     <div className="flex w-full gap-4 max-desktop:gap-0 max-tablet:flex-col">
 
                         <div className="w-full">
-                            .<InputField name={"Link to privacy policy"} placeholder={"Placeholder Text"} label={"Link to privacy policy:"} />
+                            .<InputField name={"Date Paid"} value={values?.created_on} placeholder={"Date Paid"} label={"Date Paid :"} />
                         </div><div className="w-full flex flex-col items-end justify-end max-tablet:pt-5">
-                            <AdminSelectField name={"Date Format"} placeholder={"Placeholder Text"} label={"Date Format:"} />
+                            <AdminSelectField name={"Payment Details"}  placeholder={"Payment Details"} label={"Payment Details :"} />
                         </div>
                     </div>
 
@@ -109,12 +116,12 @@ function View() {
                                 <td className='w-[40%] text-black/70 font-[satoshi] font-[300px] text-[16px]'></td>
                             </tr>
                             <tr id="table-row">
-                                <td className='text-black/80'>2044</td>
-                                <td className='text-black/80'>AKA</td>
-                                <td className='text-black/80' >123456789</td>
-                                <td className='text-black/80'>SBI</td>
-                                <td className='text-black/80'>SBIN0007881</td>
-                                <td className='text-black/80'></td>
+                                <td className='text-black/80'>{campaigndata?.id}</td>
+                                <td className='text-black/80'>{bankdata?.account_holder_name}</td>
+                                <td className='text-black/80' >{bankdata?.account_number}</td>
+                                <td className='text-black/80'>{bankdata?.bank_name}</td>
+                                <td className='text-black/80'>{bankdata?.ifsc_code}</td>
+                                <td className='text-black/80'>{bankdata?.other_deailts}</td>
                                 <td className='text-black/80'>
                                     <SuccessButton text={"Copy Row"} onClick={copyRowToClipboard} />
                                 </td>
@@ -125,27 +132,27 @@ function View() {
                         <tbody>
                             <tr>
                                 <th>ID</th>
-                                <td className='text-black/80'>2044</td>
+                                <td className='text-black/80'>{campaigndata?.id}</td>
                             </tr>
                             <tr>
                                 <th>Beneficiary Name</th>
-                                <td className='text-black/80'>AKA</td>
+                                <td className='text-black/80'>{bankdata?.account_holder_name}</td>
                             </tr>
                             <tr>
                                 <th>Account No</th>
-                                <td className='text-black/80'>123456789</td>
+                                <td className='text-black/80'>{bankdata?.account_number}</td>
                             </tr>
                             <tr>
                                 <th>Bank Name</th>
-                                <td className='text-black/80'>SBI</td>
+                                <td className='text-black/80'>{bankdata?.bank_name}</td>
                             </tr>
                             <tr>
                                 <th>IFSC</th>
-                                <td className='text-black/80'>SBIN0007881</td>
+                                <td className='text-black/80'>{bankdata?.ifsc_code}</td>
                             </tr>
                             <tr>
                                 <th>Other Details</th>
-                                <td className='text-black/80'></td>
+                                <td className='text-black/80'>{bankdata?.other_deailts} </td>
                             </tr>
                             <tr>
                                 <th></th>
@@ -186,7 +193,7 @@ function View() {
                 </div>
 
             </Form>
-
+              )}
         </Formik>
     )
 }

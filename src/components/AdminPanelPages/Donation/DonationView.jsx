@@ -33,7 +33,7 @@ function Index() {
   const navigate = useNavigate();
 
   useGetAll({
-    key: `/admin-dashboard/donors?page=1&limit=10/${id}`,
+    key: `/admin-dashboard/donors/${id}`,
     enabled: true,
     select: (data) => {
       console.log(data);

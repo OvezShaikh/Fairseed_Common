@@ -70,7 +70,6 @@ function Index() {
     url: `/admin-dashboard/users/${id}`,
   });
 
-  console.log(role);
 
   const initialvalues = {
     name: User.username || "",

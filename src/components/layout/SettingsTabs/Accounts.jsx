@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Formik, Form } from 'formik';
 import Profile_Avatar from '../../layout/Avatar/Index'
 import InputField from '../../inputs/InputField';
@@ -7,6 +7,10 @@ import { useCreateOrUpdate, useGetAll } from '../../../Hooks';
 import { toast } from 'react-toastify';
 import PrimaryButton from '../../inputs/PrimaryButton';
 import Dropzone from '../../inputs/Cropper/CropDrop'
+import { Avatar, Button } from '@mui/material';
+import DropZone from '../../inputs/Cropper/CropDrop';
+import { ImageCropper } from '../../inputs/Cropper/ImageCropper';
+import ImagePreviewDialog from '../../inputs/Cropper/ImagePreview';
 
 
 const InputStyle =
@@ -36,37 +40,53 @@ let id = Data?.id;
 
 
 const Account = () => {
+  const [Details, setDetails] = useState({})
+  const [srcImg, setSrcImg] = useState("");
+  const [openCrop, setOpenCrop] = useState(false);
 
-  const [Details , setDetails ] = useState({})
-  const [image , setImage] = useState(''); 
+  useGetAll({
+    key: `/accounts/user/${id}`,
+    enabled: true,
+    select: (data) => {
+      return data.data.data;
+    },
+    onSuccess: (data) => {
+      setDetails(data);
+      const img = `${process.env.REACT_APP_BASE_URL}` + data?.profile_pic;
+    setSrcImg(img);
+    },
+  })
+  useEffect(() => {
+    const img = `${process.env.REACT_APP_BASE_URL}` + Details?.profile_pic;
+    setSrcImg(img);
+  })
 
-useGetAll({
-  key: `/accounts/user/${id}`,
-  enabled: true,
-  select: (data) => {
-    console.log(data)
-    return data.data.data;
-  },
-  onSuccess: (data) => {
-    setDetails(data);
-  },
-})
-useEffect(()=>{
-  const img = `${process.env.REACT_APP_BASE_URL}`+ Details?.profile_pic;
-setImage(img);
-})
-
-const initial_values = {
-  username: Details?.username || '',
-  email: Details?.email || '',
-  mobile_number: Details?.mobile_number || '',
-  country: Details?.country || '',
-}
+  const initial_values = {
+    username: Details?.username || '',
+    email: Details?.email || '',
+    mobile_number: Details?.mobile_number || '',
+    country: Details?.country || '',
+    image:Details?.profile_pic  || ''
+  }
 
   const { mutate } = useCreateOrUpdate({
     url: `/accounts/user/${id}`,
     method: 'put'
   })
+
+  const onChange = (e) => {
+    let files;
+    if (e) {
+      files = e;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      setSrcImg(reader.result);
+    };
+    reader.readAsDataURL(files[0]);
+    setOpenCrop(true);
+  };
+
 
   return (
     <Formik
@@ -85,7 +105,26 @@ const initial_values = {
 
       {({ values, handleChange }) => (
         <Form>
-          <Profile_Avatar img={image}/>
+           <DropZone
+                  name="image"
+                  onChange={onChange}
+                  initialPreview={values?.image}
+                />
+
+                {openCrop && (
+                  <>
+                    <ImageCropper
+                      srcImg={srcImg}
+                      setOpenCrop={setOpenCrop}
+                      setsrcImg={setSrcImg}
+                    />
+                  </>
+                )}
+
+                {srcImg && <>
+                  <ImagePreviewDialog croppedImage={srcImg} />
+                </> }
+
           <InputField
             onChange={handleChange}
             value={values?.username}
