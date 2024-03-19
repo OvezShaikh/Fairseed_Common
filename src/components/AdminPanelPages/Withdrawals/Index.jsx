@@ -10,20 +10,15 @@ import { GoDotFill } from "react-icons/go";
 const Withdrawals = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
   const getStatusCellStyle = (status) => {
-    console.log('Status:', status);
-
+    
     if (status === 'Pending') {
       return {
-
-
-
         color: '#fa9820',
         background: '#f5fabe  ',
       };
     } else if (status === 'Approved') {
       return {
         background: '#ECFDF3  ',
-
         color: '#037847',
       };
     } else if (status === 'Rejected') {
@@ -51,9 +46,8 @@ const Withdrawals = () => {
     () => [
       {
         Header: "Id", // Row number header
-        accessor: "index", // Accessor for row number
+        accessor: "id", // Accessor for row number
         Cell: ({ row }) => (
-          // Display row number using index provided by React Table
           <div>{row.index + 1}</div>
         ),
         minWidth: 50,
@@ -63,7 +57,7 @@ const Withdrawals = () => {
       },
       {
         Header: "Full Name",
-        accessor: "full_name",
+        accessor: "campaign.user.username",
         // minWidth: 150,
         // width: 200,
         nofilter: true,
@@ -71,29 +65,29 @@ const Withdrawals = () => {
       },
       {
         Header: "Campaign",
-        accessor: "campaign",
+        accessor: "campaign.title",
         // minWidth: 200,
         // width: 280,
 
       },
       {
         Header: "Email",
-        accessor: "email",
+        accessor: "campaign.user.email",
         // minWidth: 150,
         // width: 200,
         nofilter: true,
 
       },
       {
-        Header: "Donation",
-        accessor: "amount",
+        Header: "Mobile",
+        accessor: "campaign.user.mobile_number",
         // minWidth: 200,
         // width: 280,
 
       },
       {
-        Header: "Payment Type",
-        accessor: "payment_type",
+        Header: "Amount",
+        accessor: "campaign.goal_amount",
         // minWidth: 150,
         // width: 200,
         nofilter: true,
@@ -101,18 +95,18 @@ const Withdrawals = () => {
       },
       {
         Header: "Date",
-        accessor: "created_on",
+        accessor: "updated_on",
         // minWidth: 200,
         // width: 280,
 
       },
-      {
-        Header: "Donation Type",
-        accessor: 'donation_type'
-      },
+      // {
+      //   Header: "Donation Type",
+      //   accessor: 'donation_type'
+      // },
       {
         Header: "Status",
-        accessor: "status",
+        accessor: "withdrawal_status",
         // minWidth: 200,
         // width: 280,
         nofilter: true,
@@ -135,7 +129,6 @@ const Withdrawals = () => {
                   background: "yellow"
                 }
               }} text={'View'}>View</PrimaryButton></Link>
-              {/* <SecondaryButton sx={{ height: '30px' }}>Edit Bank and KYC</SecondaryButton> */}
             </div >
           )
         }
@@ -152,8 +145,8 @@ const Withdrawals = () => {
         rows={[]}
         columns={columns}
         manualPagination
-        title={"Donations"}
-        url="/admin-dashboard/donors?page=1&limit=10"
+        title={"withdrawals"}
+        url={"/admin-dashboard/withdrawals"}
         extraQuery={{ inactive: true }}
         selectedRowID={selectedRowID}
         checkboxSelection={true}

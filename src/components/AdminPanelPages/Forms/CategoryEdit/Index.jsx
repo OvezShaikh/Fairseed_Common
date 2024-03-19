@@ -46,7 +46,9 @@ function AddNew() {
         const formData = new FormData();
         formData.append('name' , values?.name)
         formData.append('slug' , values?.slug)
-        formData.append('image' , values?.image)
+        if (values?.image instanceof File){
+            formData.append('image' , values?.image)
+        }
         formData.append('is_active' , values?.is_active)
         
         mutate(formData , {
