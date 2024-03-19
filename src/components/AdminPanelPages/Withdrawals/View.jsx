@@ -51,7 +51,8 @@ function View() {
 
 const initialValues = {
         id : campaigndata?.id || '',
-
+        updated_on:bankdata?.updated_on || '',
+        withdrawal_status:campaigndata?.withdrawal_status || ''
 
 }
 
@@ -87,7 +88,7 @@ const initialValues = {
                     <div className="flex w-full gap-4 max-desktop:gap-0 max-tablet:flex-col">
 
                         <div className="w-full">
-                            .<InputField name={"PaymentDate"} value={values?.created_on} type={'date'} placeholder={"Placeholder Text"} label={"Payment Date:    "} />
+                            .<InputField name={"updated_on"} value={values?.updated_on} type={'date'} placeholder={"Placeholder Text"} label={"Payment Date:    "} />
                         </div>
                         <div className="w-full">
                             .<InputField name={"Status"} value={values?.withdrawal_status} placeholder={"Placeholder Text "} label={"Status:"} />
@@ -96,7 +97,7 @@ const initialValues = {
                     <div className="flex w-full gap-4 max-desktop:gap-0 max-tablet:flex-col">
 
                         <div className="w-full">
-                            .<InputField name={"Date Paid"} value={values?.created_on} placeholder={"Date Paid"} label={"Date Paid :"} />
+                            .<InputField name={"updated_on"} value={values?.updated_on} placeholder={"Date Paid"} label={"Date Paid :"} />
                         </div><div className="w-full flex flex-col items-end justify-end max-tablet:pt-5">
                             <AdminSelectField name={"Payment Details"}  placeholder={"Payment Details"} label={"Payment Details :"} />
                         </div>
@@ -191,7 +192,6 @@ const initialValues = {
                     </PrimaryButton>
 
                 </div>
-
             </Form>
               )}
         </Formik>
