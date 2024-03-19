@@ -61,7 +61,7 @@ function App() {
           <Route path="/User/*" element={<UserPage />} />
 
           <Route
-            path="/Home/CampaignsByCategory/:id"
+            path="/Home/CampaignsByCategory/:name"
             element={<CampaignsByCategory />}
           />
           <Route path="/Home/Login" element={<LoginOnSmallScreen />} />
@@ -73,54 +73,6 @@ function App() {
 
           <Route path="/campaign-details/:id" element={<CurrentCampaign />} />
 
-          <Route
-            path="/Home/Impact/StoriesOfChange"
-            element={<StoriesOfChange />}
-          />
-
-          <Route
-            path="/Home/GetInvolved/Associateship"
-            element={<Associateship />}
-          />
-
-          <Route
-            path="/Home/GetInvolved/Support-a-campaign"
-            element={<Supportacampaign />}
-          />
-
-          {/* <Route path="/Home/GetInvolved/Internship" element={<Internship />} />
-
-          <Route path="/Home/GetInvolved/Careers" element={<Careers />} />
-
-          <Route
-            path="/Home/GetInvolved/Partner-with-us"
-            element={<Partnerwithus />}
-          />
-
-          <Route path="/Home/Impact/Reports" element={<Reports />} />
-
-          <Route
-            path="/Home/About-Us/Knowing-Fairseed"
-            element={<KnowingFairseed />}
-          />
-
-          <Route
-            path="/Home/About-Us/Vision-&-Mission"
-            element={<VisionMission />}
-          />
-
-          <Route
-            path="/Home/About-Us/Objectives-&-values"
-            element={<Objectivesandvalues />}
-          />
-
-          <Route path="/Home/About-Us/Our-Team" element={<OurTeam />} />
-
-          <Route
-            path="/Home/Sign-Up/Privacy-Policy"
-            element={<PrivacyPolicy />}
-          /> */}
-          {/* <Route path="/Home/How-It-Works" element={<HowItWorks />} /> */}
           <Route
             path="/Home/Password-Reset"
             element={<ForgotPasswordSmScreen />}

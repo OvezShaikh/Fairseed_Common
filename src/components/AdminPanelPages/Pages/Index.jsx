@@ -14,10 +14,7 @@ const Page = () => {
     {
       Header: "Id", // Row number header
       accessor: "index", // Accessor for row number
-      Cell: ({ row }) => (
-   
-        <div>{row.index + 1}</div>
-      ),
+      Cell: ({ row }) => <div>{row.index + 1}</div>,
       minWidth: 50,
       width: 50,
       search: false,
@@ -47,7 +44,7 @@ const Page = () => {
       Cell: ({ row }) => {
         return (
           <div className="flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0">
-            <Link to="Edit-Pages" state={{ id: row?.id }}>
+            <Link to="Edit" state={{ id: row?.id }}>
               <SecondaryButton sx={{ height: "30px" }}>Edit</SecondaryButton>
             </Link>
             <DeleteBox

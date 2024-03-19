@@ -11,6 +11,7 @@ import User_Campaign from "../../components/UserPanelPages/Campaign/User_Campaig
 import User_Donation from "../../components/UserPanelPages/Donation/User_Donation";
 import ScholarshipCause from "../../components/AdminPanelPages/Scholarship Cause/Index";
 import EditCampaign from "../../components/UserPanelPages/Campaign/EditCampaign";
+import PageDoesNotExists from "../../pages/PageDoesNotExists/NotFoundPage";
 
 function UserPage() {
   return (
@@ -107,6 +108,7 @@ function UserPage() {
             </UserPanel>
           }
         />
+        <Route path="*" element={<PageDoesNotExists />} />
       </Routes>
     </div>
   );
