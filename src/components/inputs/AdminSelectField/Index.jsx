@@ -66,6 +66,7 @@ const SelectField = ({
   noLabel,
   sideBarSelectfield,
   label,
+  color,
   ...otherProps
 }) => {
   const [field, meta] = useField(name);
@@ -143,7 +144,7 @@ const SelectField = ({
                 className="text-capitalize font-medium d-flex align-items-center"
                 sx={{
                   padding: "4px 8px 4px 8px",
-                  color: colors.text.main,
+                  color: color || colors.text.main, // Use color prop if provided, else fallback to default color
                   fontSize: "16px",
                   fontWeight: 700,
                   fontFamily: "satoshi",

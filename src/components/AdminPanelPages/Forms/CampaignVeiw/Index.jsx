@@ -19,6 +19,7 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useCreateOrUpdate, useGetAll } from "../../../../Hooks";
 import { toast } from "react-toastify";
+import { color } from "@mui/system";
 
 function Index() {
   let { state } = useLocation();
@@ -27,7 +28,7 @@ function Index() {
   const [campaign, setCampaign] = useState({});
   const [Category, setCategory] = useState([]);
   const [approval, setApproval] = useState(false);
-
+  const [campaignData, setCampaignData] = useState({});
   const navigate = useNavigate();
 
   useGetAll({
@@ -46,11 +47,11 @@ function Index() {
     key: `/admin-dashboard/cause-edit/${id}`,
     enabled: true,
     select: (data) => {
-      console.log(data.data.data);
       return data.data.data;
     },
     onSuccess: (data) => {
       setCampaign(data);
+      setCampaignData(data?.campaign_data);
     },
   });
 
@@ -73,8 +74,8 @@ function Index() {
     story: campaign?.story || "",
     campaign_image: image || "",
     approval_status: false,
-    is_featured:campaign?.is_featured || false,
-    zakat_eligible:campaign?.zakat_eligible || false
+    is_featured: campaign?.is_featured || false,
+    zakat_eligible: campaign?.zakat_eligible || false,
   };
 
   const handleSubmit = (values) => {
@@ -94,14 +95,16 @@ function Index() {
 
     mutate(formData, {
       onSuccess: (response) => {
-        console.log(response, "{{{{{{")
+        console.log(response, "{{{{{{");
         toast.success(response?.data?.data, {
           position: "top-right",
         });
-        // navigate(-1);
+        navigate(-1);
       },
     });
   };
+
+  console.log(campaignData, "++++++++++++++++++++=");
 
   return (
     <Formik
@@ -130,17 +133,17 @@ function Index() {
               </div>
               <div className="w-full">
                 <InputField
+                  color={campaignData?.title ? "red" : undefined}
                   onChange={handleChange}
                   value={values?.title}
                   name={"title"}
                   label={"Title of Campaign:"}
-                  required={"true"}
                   placeholder={"Minimum 50 INR"}
                 />
               </div>
               <SelectField
+                color={campaignData?.category ? "red" : undefined}
                 name={"category"}
-                required={true}
                 label="Choose a Category:"
                 value={values?.category}
                 options={Category.map((item) => ({
@@ -151,6 +154,7 @@ function Index() {
               />
               <div className="w-full">
                 <InputField
+                  color={campaignData?.amount ? "red" : undefined}
                   onChange={handleChange}
                   type="number"
                   name={"goal_amount"}
@@ -161,6 +165,8 @@ function Index() {
               </div>
               <div className="w-full">
                 <InputField
+                  // color={"red"}
+                  color={campaignData?.location ? "red" : undefined}
                   name={"location"}
                   onChange={handleChange}
                   value={values?.location}
@@ -170,6 +176,7 @@ function Index() {
               <div className="flex w-[100%] gap-4">
                 <div className="w-[50%]">
                   <InputField
+                    color={campaignData?.end_date ? "red" : undefined}
                     onChange={handleChange}
                     type={"date"}
                     name={"end_date"}
@@ -183,7 +190,9 @@ function Index() {
                     className="text-capitalize   font-medium d-flex align-items-center"
                     style={{
                       padding: "4px 8px 8px 8px",
-                      color: colors.text.main,
+                      color: campaignData?.zakat_eligible
+                        ? "red"
+                        : colors.text.main,
                       fontSize: "16px",
                       fontWeight: 700,
                       fontFamily: "satoshi",
@@ -192,7 +201,6 @@ function Index() {
                     }}
                   >
                     Is the Campaign Zakaat eligible?
-                    <span className="text-red-600">*</span>
                   </FormLabel>
                   <CheckBox
                     sx={{
@@ -213,7 +221,7 @@ function Index() {
                   className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
                   style={{
                     padding: "4px 8px 8px 8px",
-                    color: colors.text.main,
+                    color: campaignData?.story ? "red" : colors.text.main,
 
                     fontWeight: 700,
                     fontFamily: "satoshi",
@@ -223,20 +231,20 @@ function Index() {
                   }}
                 >
                   About the Campaign:
-                  <span className="text-red-600">*</span>
                 </FormLabel>
                 <div className="h-[332px] summary-div">
                   <ReactQuilTextField
                     theme="snow"
-                    name="summary"
-                    value={values?.summary}
+                    name="story"
+                    value={values?.story}
                     style={{ "& .ql-editor": { minHeight: "50px" } }}
-                    onChange={(value) => setFieldValue("summary", value)}
+                    onChange={(value) => setFieldValue("story", value)}
                   />
                 </div>
               </div>
               <div className="w-full mt-5">
                 <InputField
+                  color={campaignData?.summary ? "red" : undefined}
                   name={"summary"}
                   onChange={handleChange}
                   value={values?.summary}
@@ -264,7 +272,7 @@ function Index() {
                   className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
                   style={{
                     padding: "4px 8px 16px 8px",
-                    color: colors.text.main,
+                    color: campaignData?.documents ? "red" : colors.text.main,
                     fontWeight: 700,
                     fontFamily: "satoshi",
                     fontStyle: "normal",
@@ -273,7 +281,6 @@ function Index() {
                   }}
                 >
                   Attachments:
-                  <span className="text-red-600">*</span>
                 </FormLabel>
                 <div className="flex gap-4 max-tablet:flex-col">
                   {values?.documents?.map((imageUrl, index) => {
@@ -313,7 +320,7 @@ function Index() {
               icon={<PiCheckFat className="w-4 h-4 mt-1" />}
             />
 
-            <PrimaryButton type="submit"  >
+            <PrimaryButton type="submit">
               <h1 className="text-white font-semibold font-[satoshi]">
                 Reject Modification Request
               </h1>

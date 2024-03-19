@@ -29,7 +29,7 @@ const EditCampaign = () => {
   const navigate = useNavigate();
   const [dataUrl, setDataUrl] = useState(null);
   const [Categories, setCategories] = useState([]);
-  const [Documents , setDocuments ] = useState([])
+  const [Documents, setDocuments] = useState([]);
   const [user, setUser] = useState({});
   const [imageUrl, setImageUrl] = useState();
   const [srcImg, setSrcImg] = useState("");
@@ -68,7 +68,7 @@ const EditCampaign = () => {
     },
     onSuccess: (data) => {
       setUser(data);
-      setDocuments(data?.documents)
+      setDocuments(data?.documents);
       const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${
         data?.campaign_image || ""
       }`;
@@ -99,13 +99,13 @@ const EditCampaign = () => {
     amount: user.goal_amount || "",
     location: user.location || "",
     category: user?.category || " ",
-    is_featured:user?.is_featured || false,
+    is_featured: user?.is_featured || false,
     summary: user?.summary || "",
     end_date: user?.end_date || "",
     status: user?.status || "",
     story: user?.story || "",
     documents: user?.documents || [],
-    zakat_eligible:user?.zakat_eligible || false
+    zakat_eligible: user?.zakat_eligible || false,
   };
   console.log(initial_values);
   if (!isSuccess) {
@@ -129,18 +129,18 @@ const EditCampaign = () => {
     formData.append("documents", values?.documents);
     formData.append("is_featured", values?.is_featured);
 
-  
     mutate(formData, {
       onSuccess: (response) => {
         toast.success(response?.data?.message, {
           position: "top-right",
         });
+        navigate(-1);
       },
-      onError:(response)=>{
+      onError: (response) => {
         toast.error(response?.data?.message, {
-          position:'top-right'
-        })
-      }
+          position: "top-right",
+        });
+      },
     });
   };
 
@@ -374,7 +374,9 @@ const EditCampaign = () => {
                   value={values?.is_featured}
                   type="radio"
                   sx={{ flexDirection: "column" }}
-                  onChange={(e)=>{setFieldValue("is_featured", e === "true");}}
+                  onChange={(e) => {
+                    setFieldValue("is_featured", e === "true");
+                  }}
                   options={[
                     { label: "On", value: true },
                     { label: "Off", value: false },
@@ -391,9 +393,7 @@ const EditCampaign = () => {
                   dataUrl={srcImg}
                 />
               </div>
-              <Link
-                to={"Revision-History"}
-              >
+              <Link to={"Revision-History"}>
                 <PrimaryButton sx={{ borderRadius: "12px", width: "90%" }}>
                   <h1 className="text-white font-medium py-2.5 text-[18px] font-[satoshi]">
                     View Revision History
