@@ -12,10 +12,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "react-image-crop/dist/ReactCrop.css";
 import RegisterSmallScreen from "./pages/login/Sign_Up/RegisterSmallScreen";
-import StoriesOfChange from "./pages/StaticPages/StoriesOfChange/Index";
-import Associateship from "./pages/GetInvolved/Associateship";
-import Supportacampaign from "./pages/GetInvolved/Supportacampaign";
-import PrivacyPolicy from "./pages/login/Sign_Up/PrivacyPolicy";
+
 import "react-toastify/dist/ReactToastify.css";
 import ForgotPasswordSmScreen from "./pages/login/ForgotPassword/ForgotPasswordSmScreens";
 import Account from "./pages/Account Settings/Index";
@@ -65,11 +62,7 @@ function App() {
             element={<CampaignsByCategory />}
           />
           <Route path="/Home/Login" element={<LoginOnSmallScreen />} />
-          <Route path="/Login/Privacy-Policy" element={<PrivacyPolicy />} />
-          <Route
-            path="/Home/RegisterSmallScreen"
-            element={<RegisterSmallScreen />}
-          />
+          <Route path="/Home/Register" element={<RegisterSmallScreen />} />
 
           <Route path="/campaign-details/:id" element={<CurrentCampaign />} />
 

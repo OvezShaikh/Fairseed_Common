@@ -14,10 +14,8 @@ import CampaignDetails from "../../../pages/Campaigns/CreateCampaigns/CreateCamp
 import { useCreateOrUpdate } from "../../../Hooks/useCreateOrUpdate";
 import { useNavigate } from "react-router-dom";
 import { Formik } from "formik";
-import * as yup from 'yup';
+import * as yup from "yup";
 import "./Stepper.css";
-
-
 
 const styleStep = {
   "& .MuiStepLabel-label.Mui-active": {
@@ -56,7 +54,7 @@ const styleStep = {
         fill: "#06B217",
       },
     },
-   
+
     "& .MuiStepConnector-line": {
       borderColor: "#06B217",
     },
@@ -101,8 +99,8 @@ const initialValues = {
   category: "",
   zakat_eligible: false,
   end_date: "",
-  story: '',
-  summary: '',
+  story: "",
+  summary: "",
   documents: "",
   rasing_for: "",
   account_holder_name: "",
@@ -115,74 +113,93 @@ const initialValues = {
   adhar_card_image: "",
   pan_card: "",
   pan_card_image: "",
-  declaration:false,
-}
+  declaration: false,
+};
 
-const validations = [yup.object({
- 
-  title: yup.string().required("title is required"),
-  goal_amount: yup.number()
-    .max(100000, 'Amount must be less than or equal to 100,000')
-    .required('Amount is required'),
-  location: yup.string().required("location is required"),
-  category: yup
-    .object({
-      value: yup.string().required("Category is required!"),
-      label: yup.string().required("Category is required!"),
-    })
-    .nullable()
-    .required("Category is required!"),
-  zakat_eligible: yup.boolean()
-    .oneOf([true], 'You must agree to the terms and conditions')
-    .required('You must agree to the terms and conditions'),
-  end_date: yup.string().required("End date is required"),
-}),
-yup.object({
-  story: yup.string().required("Story is required"),
-  summary: yup.string().required("Summary is required"),
- 
+const validations = [
+  yup.object({
+    title: yup.string().required("title is required"),
+    goal_amount: yup
+      .number()
+      .max(100000, "Amount must be less than or equal to 100,000")
+      .required("Amount is required"),
+    location: yup.string().required("location is required"),
+    category: yup
+      .object({
+        value: yup.string().required("Category is required!"),
+        label: yup.string().required("Category is required!"),
+      })
+      .nullable()
+      .required("Category is required!"),
+    zakat_eligible: yup
+      .boolean()
+      .oneOf([true], "You must agree to the terms and conditions")
+      .required("You must agree to the terms and conditions"),
+    end_date: yup.string().required("End date is required"),
+  }),
+  yup.object({
+    story: yup.string().required("Story is required"),
+    summary: yup.string().required("Summary is required"),
+    // documents: yup.mixed().required("Please upload a file"),
+  }),
+  yup.object({
+    rasing_for: yup.string().required(" is required"),
+    account_holder_name: yup
+      .string()
+      .required("account holder name is required"),
+    account_number: yup
+      .string()
+      .required("Account number is required")
+      .min(11)
+      .max(16),
+    bank_name: yup.string().required("Bank name is required"),
+    branch_name: yup.string().required("Branch name is required"),
+    ifsc_code: yup.string().required("IFSC Code is required"),
+  }),
+  yup.object({
+    adhar_card: yup
+      .string()
+      .required("Adhar Card number is required")
+      .max(12, "Maximum 12 Number allowed"),
 
-}),
-yup.object({
-  rasing_for: yup.string().required(" is required"),
-  account_holder_name: yup.string().required("account holder name is required"),
-  account_number: yup.string().required("Account number is required").min(11).max(16),
-  bank_name: yup.string().required("Bank name is required"),
-  branch_name: yup.string().required("Branch name is required"),
-  ifsc_code: yup.string().required("IFSC Code is required"),
- 
-}),
-yup.object({
-  adhar_card: yup.string().required("Adhar Card number is required").max(12, 'Maximum 12 Number allowed'),
-
-  pan_card: yup.string().required("Pan Card number is required").max(10, 'Maximum 10 Character allowed'),
- 
-
-}),]
-
+    pan_card: yup
+      .string()
+      .required("Pan Card number is required")
+      .max(10, "Maximum 10 Character allowed"),
+  }),
+];
 
 export default function HorizontalLinearStepper() {
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
   const getSteps = () => {
-    return ["Campaign Details", "Your Story", "Account Details", "Complete KYC"];
-  }
+    return [
+      "Campaign Details",
+      "Your Story",
+      "Account Details",
+      "Complete KYC",
+    ];
+  };
 
   const getStepContent = (step) => {
     switch (step) {
       case 0:
-        return <CampaignDetails handleBack={handleBack} handleNext={handleNext} />;
+        return (
+          <CampaignDetails handleBack={handleBack} handleNext={handleNext} />
+        );
 
       case 1:
         return <YourStory handleBack={handleBack} handleNext={handleNext} />;
       case 2:
-        return <AccountDetails handleBack={handleBack} handleNext={handleNext} />;
+        return (
+          <AccountDetails handleBack={handleBack} handleNext={handleNext} />
+        );
       case 3:
         return <CompleteKYC handleBack={handleBack} handleNext={handleNext} />;
       default:
         return "unknown step";
     }
-  }
+  };
   const steps = getSteps();
 
   const handleBack = () => {
@@ -194,73 +211,49 @@ export default function HorizontalLinearStepper() {
   };
 
   const { mutate } = useCreateOrUpdate({
-    url: '/add-campaign',
+    url: "/add-campaign",
     onSuccess: async (data, Values) => {
-      handleNext()
+      handleNext();
     },
     onError: (data) => {
-      console.log(data)
-    }
+      console.log(data);
+    },
   });
 
-
   const onSubmit = (Values) => {
-    console.log('Values', Values)
+    console.log("Values", Values);
     const formData = new FormData();
     for (const key in Values) {
-      if (key == 'category') {
-        formData.append('category', Values['category']['value'])
-
-      }
-      else {
+      if (key == "category") {
+        formData.append("category", Values["category"]["value"]);
+      } else {
         formData.append(key, Values[key]);
       }
     }
     mutate(formData);
-  }
-
-
-
+  };
 
   return (
     <Box sx={{ width: "100%" }} className="stepper-box">
       <div className="steps-counter-div">
-
-
-      <StepLabel>
-        {activeStep === 4
-          ? "All Steps Completed"
-          : `${activeStep + 1} of ${steps.length} steps`}
-      </StepLabel>
-
-     
+        <StepLabel>
+          {activeStep === 4
+            ? "All Steps Completed"
+            : `${activeStep + 1} of ${steps.length} steps`}
+        </StepLabel>
       </div>
 
       <Stepper activeStep={activeStep} sx={styleStep} className="stepper-div">
-
-      
-
-
         {steps.map((step, index) => {
           const stepProps = {};
           const labelProps = {};
-          
+
           return (
-            
-            
-              
-
-
-
             <Step {...stepProps} key={index} className="step-div">
-
-            
-
-
-
-              <StepLabel className="step-label" {...labelProps}>{step}</StepLabel>
+              <StepLabel className="step-label" {...labelProps}>
+                {step}
+              </StepLabel>
             </Step>
-            
           );
         })}
       </Stepper>
@@ -307,10 +300,7 @@ export default function HorizontalLinearStepper() {
                   skip
                 </Button>
               )} */}
-            <PrimaryButton
-              sx={stylePrimaryButton}
-              onClick={() => navigate(-1)}
-            >
+            <PrimaryButton sx={stylePrimaryButton} onClick={() => navigate(-1)}>
               Home
             </PrimaryButton>
           </div>

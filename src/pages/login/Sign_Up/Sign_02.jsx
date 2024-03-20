@@ -58,10 +58,7 @@ const Sign_02 = ({ handleBack, handleNext }) => {
             />
           </div>
           <div>
-            <CountrySelect
-              label="Select Your Country"
-              name={"country"}
-            />
+            <CountrySelect label="Select Your Country" name={"country"} />
           </div>
           <div>
             <RadioGroup
@@ -84,7 +81,7 @@ const Sign_02 = ({ handleBack, handleNext }) => {
 
           <div className="flex justify-between">
             <CheckBox label="I agree with the" name={"policy_privacy"} />
-            <Link to={"/Login/Privacy-Policy"}>
+            <Link to={"Privacy-Policy"}>
               <FormLabel
                 underline="always"
                 sx={{
