@@ -7,7 +7,8 @@ import PrimaryButton from '../../inputs/PrimaryButton'
 import ErrorIcon from "@mui/icons-material/Error";
 import { useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { useGetAll } from '../../../Hooks'
+import { useCreateOrUpdate, useGetAll } from '../../../Hooks'
+import { Button } from '@mui/material'
 
 
 
@@ -24,6 +25,7 @@ function View() {
 
     const [bankdata, setBankdata] = useState({});
     const [campaigndata, setcampaigndata] = useState({});
+    const [Paid , setPaid ] = useState(false)
 
     const copyRowToClipboard = () => {
         const rowData = document.getElementById('table-row').innerText;
@@ -51,8 +53,40 @@ function View() {
 
 const initialValues = {
         id : campaigndata?.id || '',
-        updated_on:bankdata?.updated_on || '',
-        withdrawal_status:campaigndata?.withdrawal_status || ''
+        withdrawal_status:campaigndata?.withdrawal_status || '',
+        transfer_details : '',
+}
+
+const { mutate } = useCreateOrUpdate({
+    url:`/admin-dashboard/withdrawals/${id}`,
+    method:'put'
+})
+
+
+const handleSubmit = (values)=>{
+
+    const formData = new FormData();
+    formData.append('id' , values?.id);
+    if(Paid){
+     formData.append('withdrawal_status' ,"Paid");
+    }else{
+        formData.append('withdrawal_status' ,"Rejected");
+    }
+    formData.append('transfer_details' , values?.transfer_details);
+
+    mutate(formData , {
+        onSuccess:(response)=>{
+           toast.success("Marked As Paid !",{
+            position:'top-right'
+           })
+           navigate(-1);
+        },
+        onError:()=>{
+            toast.error("Ran into Some error",{
+                position:'top-right'
+            })
+        }
+    })
 
 }
 
@@ -61,6 +95,7 @@ const initialValues = {
         <Formik
         enableReinitialize={true}
             initialValues={initialValues}
+            onSubmit={(values)=>handleSubmit(values)}
         >
            {({values  })=>(
 
@@ -91,7 +126,7 @@ const initialValues = {
                             .<InputField name={"updated_on"} value={values?.updated_on} type={'date'} placeholder={"Placeholder Text"} label={"Payment Date:    "} />
                         </div>
                         <div className="w-full">
-                            .<InputField name={"Status"} value={values?.withdrawal_status} placeholder={"Placeholder Text "} label={"Status:"} />
+                            .<InputField name={"withdrawal_status"} value={values?.withdrawal_status} placeholder={"Placeholder Text "} label={"Status:"} />
                         </div>
                     </div>
                     <div className="flex w-full gap-4 max-desktop:gap-0 max-tablet:flex-col">
@@ -164,9 +199,10 @@ const initialValues = {
                         </tbody>
                     </table>
                 </div>
-
-                <div className="w-full pt-5">
-                    <InputField name={"transfer"} multiline
+                {
+                    values?.withdrawal_status ==='pending' && <>
+                     <div className="w-full pt-5">
+                    <InputField name={"transfer_details"} multiline
                         info
                         CustomInfoIcon={
                             <ErrorIcon
@@ -182,14 +218,25 @@ const initialValues = {
                         rows={5}
                         placeholder="Placeholder text" label={"Transfer Details"} />
                 </div>
+                    </>
+
+                }
+               
                 <div className="flex gap-3 pt-5">
-                    <button onClick={() => navigate(-1)} className='w-[69px] content-stretch h-[32px] bg-[#F7F7F7]'>
+                    <Button onClick={() => navigate(-1)} className='w-[69px] content-stretch h-[32px] bg-[#F7F7F7]'>
                         <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>Cancel</h1>
-                    </button>
-                    <SuccessButton onClick={() => { }} text={"Mark as Paid"} />
-                    <PrimaryButton onClick={() => { }}  >
+                    </Button>
+                    {
+                            values?.withdrawal_status === 'pending' &&
+                        <>
+                         <SuccessButton  type='submit' onClick={() => setPaid(true)} text={"Mark as Paid"} />
+                    <PrimaryButton type='submit' >
                         <h1 className='text-white font-semibold font-[satoshi]'>Reject</h1>
                     </PrimaryButton>
+                        </>
+
+                    }
+                   
 
                 </div>
             </Form>

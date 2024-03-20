@@ -59,20 +59,14 @@ function Index() {
 
   const { submitForm } = useFormikContext;
 
-  const [imageUrl, setImageUrl] = useState(
-    "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-  );
+  const [imageUrl, setImageUrl] = useState("");
 
   const handleDelete = () => {
     
     setImageUrl("");
   };
 
-  const img = [
-    "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-    "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-    "https://images.pexels.com/photos/20197333/pexels-photo-20197333/free-photo-of-a-man-in-cowboy-hat-riding-a-horse-in-a-field.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-  ];
+
   const { data, isSuccess } = useGetAll({
     key: `/admin-dashboard/campaign/16399639-ba2c-44e4-94a6-294e11cb06a3
         `,

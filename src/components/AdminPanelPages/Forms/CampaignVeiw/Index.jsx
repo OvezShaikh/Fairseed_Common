@@ -60,9 +60,7 @@ function Index() {
     method: "put",
   });
 
-  const image = `${process.env.REACT_APP_BE_BASE_URL}${
-    campaign?.campaign_image || ""
-  }`;
+  const image = `${process.env.REACT_APP_BE_BASE_URL}${campaign?.campaign_image || ""}`;
 
   const initial_value = {
     title: campaign?.title || "",
@@ -76,6 +74,7 @@ function Index() {
     approval_status: false,
     is_featured: campaign?.is_featured || false,
     zakat_eligible: campaign?.zakat_eligible || false,
+    documents : campaign?.documents || []
   };
 
   const handleSubmit = (values) => {
@@ -104,7 +103,6 @@ function Index() {
     });
   };
 
-  console.log(campaignData, "++++++++++++++++++++=");
 
   return (
     <Formik

@@ -178,7 +178,6 @@ const Withdrawals = () => {
         },
       },
     ],
-    console.log(get, "get+=================>")
   );
   return (
     <div>
@@ -191,7 +190,7 @@ const Withdrawals = () => {
         checkboxComponent={IndeterminateCheckbox}
         url={`/admin-dashboard/campaign`}
         extraQuery={{ inactive: true }}
-        addButton={<LocationConfigurationDialog />}
+        // addButton={<LocationConfigurationDialog />}
         // addButton={<Button>HElloooooo</Button>}
         selectedRowID={selectedRowID}
       />
