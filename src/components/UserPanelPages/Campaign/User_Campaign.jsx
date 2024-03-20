@@ -5,6 +5,7 @@ import IndeterminateCheckbox from "../../Table/IndeterminateCheckbox";
 import SecondaryButton from "../../inputs/secondaryButton";
 import { GoDotFill } from "react-icons/go";
 import { Link, useLocation } from "react-router-dom";
+import images from "../../../constants/images";
 
 const User_Campaign = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
@@ -61,6 +62,20 @@ const User_Campaign = () => {
     {
       Header: "Title",
       accessor: "title",
+      Cell: ({ row }) => {
+        return (
+          <div className="flex  ">
+            <div className="w-[80px] truncate">{row?.original?.title}</div>
+            <a href={`/campaign-details/${row.id}`}>
+              <img
+                className="ml-2"
+                src={images.CausesDetails}
+                alt="CausesDetails"
+              />
+            </a>
+          </div>
+        );
+      },
 
       minWidth: 100,
       width: 100,
@@ -117,34 +132,40 @@ const User_Campaign = () => {
 
       Cell: ({ row }) => {
         return (
-          <div
-            className={`flex items-center gap-2 justify-center ${
-              pathname === "/User/Campaigns" ? "pl-0" : "pl-6"
-            } max-desktop:pl-0 max-tablet:pl-0`}
-          >
-            {pathname === "/User/Campaigns" ? (
-              <>
-                <Link to="Edit" state={{ id: row?.id }}>
-                  <SecondaryButton sx={{ height: "30px" }}>
-                    Edit Bank and KYC
-                  </SecondaryButton>
-                </Link>
-                <Link to="View" state={{ id: row?.id }}>
-                  <SecondaryButton sx={{ height: "30px" }}>
-                    View Bank and KYC
-                  </SecondaryButton>
-                </Link>
-                <Link to="Edit-Campaign" state={{ id: row?.id }}>
-                  <SecondaryButton sx={{ height: "30px" }}>
-                    Edit
-                  </SecondaryButton>
-                </Link>
-              </>
-            ) : (
-              <Link to="Edit" state={{ id: row?.id }}>
-                <SecondaryButton sx={{ height: "30px" }}>Edit</SecondaryButton>
-              </Link>
-            )}
+          <div className={`flex items-center gap-2 justify-center pl-6 max-desktop:pl-0 max-tablet:pl-0`}>
+            {
+              row?.status !== 'Active' ? (
+                <>
+                  <Link to="Edit-Campaign" state={{ id: row?.id }}>
+                    <SecondaryButton sx={{ height: "30px" }}>
+                      Edit
+                    </SecondaryButton>
+                  </Link>
+                  <Link to="View" state={{ id: row?.id }}>
+                    <SecondaryButton sx={{ height: "30px" }}>
+                      Finalize Campaign
+                    </SecondaryButton>
+                  </Link>
+                </>
+
+              ) : (
+
+                <>
+                  <Link to="View" state={{ id: row?.id }}>
+                    <SecondaryButton sx={{ height: "30px" }}>
+                      Make Withdrawl
+                    </SecondaryButton>
+                  </Link>
+
+                </>
+              )
+            }
+
+            <Link to="Edit" state={{ id: row?.id }}>
+              <SecondaryButton sx={{ height: "30px" }}>
+                Edit Bank and KYC
+              </SecondaryButton>
+            </Link>
           </div>
         );
       },

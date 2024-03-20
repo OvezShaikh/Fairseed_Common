@@ -38,6 +38,7 @@ function CausesView() {
   const [adhaar_image , setAdhaar_image] = useState('');
   const [pan_image , setPan_image] = useState('');
   const [passbook_image , setPassbook_image] = useState('');
+  const [status , setStatus ] = useState(false)
 
 
  
@@ -63,7 +64,6 @@ function CausesView() {
     key: `/admin-dashboard/campaign-kyc/${id}`,
     enabled: true,
     select: (data) => {
-      console.log(data);
       return data.data.data;
     },
     onSuccess: (data) => {
@@ -110,19 +110,24 @@ function CausesView() {
 
     mutate(formData, {
       onSuccess: (response) => {
-        toast.success(response?.message, {
+        console.log(response , '<==========>')
+        toast.success(response?.data?.data, {
           position: "top-right",
         });
+        navigate(-1)
       },
     },{
       onerror:(response)=>{
-        toast.error(response?.message,{
+        toast.error(response?.data?.message,{
           position:'top-right'
         } )
       }
     }
     );
   };
+
+
+
 
   return (
     <Formik
