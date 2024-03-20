@@ -106,7 +106,7 @@ function LoginOnSmallScreen() {
                     </PrimaryButton>
                   </Grid>
                   <Grid item>
-                    <Link to="/Home/RegisterSmallScreen">
+                    <Link to="/Home/Register">
                       <span
                         style={{
                           fontSize: "22px",

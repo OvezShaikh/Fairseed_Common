@@ -93,19 +93,19 @@ function Card({
               </div>
             </div>
             <div className="w-[35%] max-desktop:w-full">
-              <button
-                className=" border-2   rounded-lg border-red-400 px-2 py-1 max-desktop:w-full max-desktop:mt-[16px]"
-                style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
-              >
-                <div className="flex pl-1 pr-2 py-1 max-desktop:justify-center">
-                  <img className="" src={images?.Coins} />
-                  <Link to={`/Home/donate/${og_id}`}>
+              <Link to={`/Home/donate/${og_id}`}>
+                <button
+                  className=" border-2   rounded-lg border-red-400 px-2 py-1 max-desktop:w-full max-desktop:mt-[16px]"
+                  style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
+                >
+                  <div className="flex pl-1 pr-2 py-1 max-desktop:justify-center">
+                    <img className="" src={images?.Coins} />
                     <p className="pl-1   text-[18px] max-tablet:text-[16px]">
                       Donate
                     </p>
-                  </Link>
-                </div>
-              </button>
+                  </div>
+                </button>
+              </Link>
             </div>
           </div>
         </div>

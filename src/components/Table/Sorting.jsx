@@ -4,7 +4,7 @@ import React from "react";
 
 const Sorting = ({ column, order, sortField, handleSortingChange }) => {
   return (
-    <div className="sort-container">
+    <div className="sort-container max-tablet:hidden max-desktop:hidden">
       <Stack>
         <ArrowDropUp
           fontSize="small"

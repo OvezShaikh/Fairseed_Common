@@ -40,8 +40,9 @@ export function SideBar({ mobileOpen, setMobileOpen }) {
             display: { xs: "block", sm: "block", md: "none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
+              // position: mobileOpen ? "absolute" : "" ,
               left: mobileOpen ? "0px" : "273px",
-              // width: mobileOpen ? "273px" : "0px",
+              width: mobileOpen ? "273px" : "0px",
             },
           }}
         >

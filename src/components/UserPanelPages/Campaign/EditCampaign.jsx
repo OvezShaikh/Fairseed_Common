@@ -241,7 +241,7 @@ const EditCampaign = () => {
                 </div>
               </div>
 
-              <div className="w-full mt-5">
+              <div className="w-full mt-5 max-tablet:pt-12">
                 <InputField
                   onChange={handleChange}
                   value={values?.summary}

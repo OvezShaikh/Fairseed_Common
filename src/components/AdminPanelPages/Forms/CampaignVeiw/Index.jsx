@@ -203,6 +203,7 @@ function Index() {
                     Is the Campaign Zakaat eligible?
                   </FormLabel>
                   <CheckBox
+                    fontSize={"16px !important"}
                     sx={{
                       paddingLeft: "15px",
                       "&.Mui-checked": {
@@ -232,7 +233,7 @@ function Index() {
                 >
                   About the Campaign:
                 </FormLabel>
-                <div className="h-[332px] summary-div">
+                <div className="h-[200px] summary-div">
                   <ReactQuilTextField
                     theme="snow"
                     name="story"
@@ -242,7 +243,7 @@ function Index() {
                   />
                 </div>
               </div>
-              <div className="w-full mt-5">
+              <div className="w-full mt-5 max-tablet:pt-12">
                 <InputField
                   color={campaignData?.summary ? "red" : undefined}
                   name={"summary"}
@@ -304,7 +305,7 @@ function Index() {
               />
             </div>
           </div>
-          <div className="flex gap-3 pt-5">
+          <div className="flex gap-3 pt-5 max-tablet:flex-col max-tablet:items-center">
             <button
               onClick={() => navigate(-1)}
               className="w-[69px] content-stretch h-[32px] bg-[#F7F7F7]"
