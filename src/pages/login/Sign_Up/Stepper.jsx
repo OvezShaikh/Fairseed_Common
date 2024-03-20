@@ -180,26 +180,11 @@ const Sign_Stepper = () => {
           position: "top-right",
         });
         navigate("/Home");
+        // window.location.href = "/Home";
       },
       onError: (response) => {
         console.log(response);
 
-        // const emailError = response?.response?.data?.email[0];
-        // const mobileNumberError = response?.response?.data?.mobile_number[0];
-
-        // if (emailError && mobileNumberError) {
-        //   toast.error(`${emailError} ${mobileNumberError}`, {
-        //     position: "top-right",
-        //   });
-        // } else if (emailError) {
-        //   toast.error(emailError, {
-        //     position: "top-right",
-        //   });
-        // } else if (mobileNumberError) {
-        //   toast.error(mobileNumberError, {
-        //     position: "top-right",
-        //   });
-        // }
         toast.error(`${response?.response?.data?.email[0]}`, {
           position: "top-right",
         });
