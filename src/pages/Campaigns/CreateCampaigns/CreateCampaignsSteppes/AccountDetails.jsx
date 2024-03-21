@@ -5,6 +5,7 @@ import UploadField from "../../../../components/inputs/UploadField/Index";
 import RadioGroup from "../../../../components/inputs/radioGroup";
 import SecondaryButton from "../../../../components/inputs/secondaryButton";
 import PrimaryButton from "../../../../components/inputs/PrimaryButton";
+
 const InputStyle = {
   padding: "20px",
   border: "1px solid #e2e2e2",
@@ -23,6 +24,7 @@ const styleSecondaryButton = {
   fontWeight: 700,
   borderRadius: "12px",
 };
+
 const stylePrimaryButton = {
   width: "100%",
   height: "100%",
@@ -31,8 +33,22 @@ const stylePrimaryButton = {
   fontWeight: 700,
   borderRadius: "12px",
 };
+
 function AccountDetails({ handleBack, handleNext }) {
-  const { setFieldValue } = useFormikContext();
+  const { setFieldValue, values } = useFormikContext();
+
+  const isFormValid = () => {
+    // Check if the required fields are empty
+    return (
+      !!values.rasing_for &&
+      !!values.account_holder_name &&
+      !!values.account_number &&
+      !!values.bank_name &&
+      !!values.branch_name &&
+      !!values.ifsc_code &&
+      !!values.passbook_image
+    );
+  };
 
   return (
     <Form className="">
@@ -114,8 +130,11 @@ function AccountDetails({ handleBack, handleNext }) {
         <PrimaryButton
           sx={stylePrimaryButton}
           onClick={() => {
-            handleNext();
+            if (isFormValid()) {
+              handleNext();
+            }
           }}
+          disabled={!isFormValid()}
         >
           Next
         </PrimaryButton>

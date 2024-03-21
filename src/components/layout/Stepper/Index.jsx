@@ -16,6 +16,8 @@ import { useNavigate } from "react-router-dom";
 import { Formik } from "formik";
 import * as yup from "yup";
 import "./Stepper.css";
+import { toast } from "react-toastify";
+import { positions } from "@mui/system";
 
 const styleStep = {
   "& .MuiStepLabel-label.Mui-active": {
@@ -118,6 +120,18 @@ const initialValues = {
 
 const validations = [
   yup.object({
+    campaign_image: yup
+      .mixed()
+      .test("fileFormat", "Invalid file format", (value) => {
+        if (!value) return true; // Allow empty value
+        const acceptedFormats = ["image/jpeg", "image/png", "image/gif"];
+        return value && acceptedFormats.includes(value.type);
+      })
+      .test("fileSize", "File size too large", (value) => {
+        if (!value) return true; // Allow empty value
+        const maxSize = 5 * 1024 * 1024; // 5 MB in bytes
+        return value && value.size <= maxSize;
+      }),
     title: yup.string().required("title is required"),
     goal_amount: yup
       .number()
@@ -160,12 +174,18 @@ const validations = [
     adhar_card: yup
       .string()
       .required("Adhar Card number is required")
-      .max(12, "Maximum 12 Number allowed"),
+      .max(12, "Maximum 12 Number allowed")
+      .min(12, "Minimun 12 Number allowed"),
 
     pan_card: yup
       .string()
       .required("Pan Card number is required")
-      .max(10, "Maximum 10 Character allowed"),
+      .max(10, "Maximum 10 Character allowed")
+      .min(10, "Minimum 10 character allowed"),
+    declaration: yup
+      .boolean()
+      .oneOf([true], "You must agree to the terms and conditions")
+      .required("You must agree to the terms and conditions"),
   }),
 ];
 
@@ -213,10 +233,16 @@ export default function HorizontalLinearStepper() {
   const { mutate } = useCreateOrUpdate({
     url: "/add-campaign",
     onSuccess: async (data, Values) => {
+      toast.success(`${data.data.message} `, {
+        position: "top-center",
+      });
       handleNext();
     },
-    onError: (data) => {
-      console.log(data);
+    onError: async (data) => {
+      toast.error(`${data.data.message} error`, {
+        position: "top-center",
+      });
+      console.log(data, "===========campaignResponse");
     },
   });
 
@@ -285,7 +311,6 @@ export default function HorizontalLinearStepper() {
           <div className="flex desktop:gap-x-[40px] max-desktop:gap-x-[24px]">
             <SecondaryButton
               disabled={activeStep === 0}
-              onClick={handleBack}
               sx={styleSecondaryButton}
             >
               Back

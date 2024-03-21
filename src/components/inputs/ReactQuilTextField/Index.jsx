@@ -17,8 +17,8 @@ const QuillEditor = ({ value, onChange, placeholder, name }) => {
     "#0000ff",
     "#3333ff",
     "#6666ff",
-    "red",
-    "green",
+    "#ee2d",
+    "#fff",
   ];
 
   const modules = {

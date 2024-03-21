@@ -402,3 +402,20 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.nav_button {
+  border: none;
+}
+.nav_button:focus {
+  outline: none; /* Optional: Remove the default focus outline */
+  border-image: linear-gradient(
+      to right,
+      rgb(255, 159, 10) 0%,
+      rgb(255, 55, 95) 62.9%
+    )
+    1;
+}
+
+.nav_button:focus {
+  border-width: 2px; /* Set border width as needed */
+}

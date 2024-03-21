@@ -5,11 +5,11 @@ import PrimaryButton from "../../inputs/PrimaryButton";
 import CheckBox from "../../inputs/checkBox";
 import { FormLabel } from "@mui/material";
 import { colors } from "../../../constants/theme";
-import { Formik, Form, } from "formik";
+import { Formik, Form } from "formik";
 import ReactQuilTextField from "../../inputs/ReactQuilTextField/Index";
 import SuccessButton from "../../inputs/SuccessButton/Index";
 import { PiCheckFat } from "react-icons/pi";
-import {  red } from "@mui/material/colors";
+import { red } from "@mui/material/colors";
 import UploadField from "../../inputs/AdminUploadField/Index";
 import RadioGroup from "../../inputs/radioGroupAdminPanel/index";
 import ErrorIcon from "@mui/icons-material/Error";
@@ -22,7 +22,7 @@ import { toast } from "react-toastify";
 import { ImageCropper } from "../../inputs/Cropper/ImageCropper";
 import { ImagePreviewDialog } from "../../inputs/PreviewImage/PreviewImage";
 import DropZone from "../../inputs/Cropper/CropDrop";
-
+import { CloudDataOps } from "@carbon/icons-react";
 function CauseEdit_Form() {
   let { state } = useLocation();
   let { id } = state;
@@ -64,6 +64,7 @@ function CauseEdit_Form() {
       return data.data.data;
     },
     onSuccess: (data) => {
+      console.log(data);
       setUser(data);
       const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${
         data?.campaign_image || ""
@@ -87,6 +88,13 @@ function CauseEdit_Form() {
   const { mutate } = useCreateOrUpdate({
     url: `/admin-dashboard/campaign/${id}`,
     method: "put",
+    onSuccess: (response) => {
+      toast.success(`Update Successfully `);
+    },
+    onError: (response) => {
+      console.log(response, "===========>Respose");
+      toast.error(`${response.status[0]}error`);
+    },
   });
 
   const initial_values = {

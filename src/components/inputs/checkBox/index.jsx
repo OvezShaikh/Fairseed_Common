@@ -77,17 +77,14 @@ const CheckBox = ({
           control={
             <Checkbox
               sx={{
-                // color: red[500],
                 "&.Mui-checked": {
-                  color: "red[500] !important",
+                  color: red[500],
                 },
               }}
               checked={checked}
               {...configCheckbox}
-              // onChange={(_, checked) => onChange(checked)}
             />
           }
-          // className={root}
         />
       </FormGroup>
       <ErrorMessage

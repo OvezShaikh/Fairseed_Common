@@ -79,7 +79,7 @@ export const LocationConfigurationDialog = ({
         >
           {({ setFieldValue }) => (
             <Form className="flex flex-col items-center px-4">
-              <div className="flex w-full gap-4">
+              <div className="flex w-full gap-4 max-desktop:flex-col max-tablet:flex-col">
                 <div className="w-full">
                   <InputAdminField
                     name={"name"}
@@ -95,7 +95,7 @@ export const LocationConfigurationDialog = ({
                   />
                 </div>
               </div>
-              <div className="flex w-full mt-8 gap-4">
+              <div className="flex w-full mt-8 gap-4 max-desktop:flex-col max-tablet:flex-col">
                 <div className="w-full " Style>
                   <AdminUploadField
                     label="Thumbnail (Optional)"

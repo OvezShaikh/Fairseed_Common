@@ -12,15 +12,18 @@ import ImagePreviewDialog from "../../../components/inputs/Cropper/ImagePreview"
 
 const SignUp = ({ handleNext }) => {
   const imgRef = useRef(null);
-  const [openModal, setOpenModal] = useState(false);
-
   const { isValid, setFieldValue, values } = useFormikContext();
 
+  // Check if all required fields are filled
+  const isFormValid = () => {
+    return values.username && values.email && values.mobile_number;
+  };
+
   const handleNextClick = () => {
-    if (isValid) {
+    if (isFormValid()) {
       handleNext();
     } else {
-      toast.error("Please fill all required fields.");
+      alert("Please fill in all required fields.");
     }
   };
 
@@ -87,6 +90,7 @@ const SignUp = ({ handleNext }) => {
               <div>
                 <InputField
                   label="Name"
+                  required={true}
                   sx={{
                     padding: " 16px 10px 16px var(--Spacing-20, 20px)",
                     border: "2px solid var(--Linear-BG, #FF9F0A)",
@@ -101,7 +105,9 @@ const SignUp = ({ handleNext }) => {
               <div>
                 <InputField
                   label="Email"
+                  type="email"
                   name={"email"}
+                  required={true}
                   sx={{
                     padding: " 16px 10px 16px var(--Spacing-20, 20px)",
                     border: "2px solid var(--Linear-BG, #FF9F0A)",
@@ -114,6 +120,8 @@ const SignUp = ({ handleNext }) => {
               <div>
                 <InputField
                   label="Mobile Number"
+                  required={true}
+                  type="number"
                   sx={{
                     padding: " 16px 10px 16px var(--Spacing-20, 20px)",
                     border: "2px solid var(--Linear-BG, #FF9F0A)",
@@ -129,7 +137,6 @@ const SignUp = ({ handleNext }) => {
           </div>
           <div xs={12}>
             <PrimaryButton
-              disabled={!isValid}
               sx={{
                 width: "100%",
                 top: "2rem",
@@ -138,6 +145,7 @@ const SignUp = ({ handleNext }) => {
                 fontWeight: 900,
                 fontFamily: "satoshi",
               }}
+              disabled={!isValid || !isFormValid()}
               onClick={handleNextClick}
             >
               Next
