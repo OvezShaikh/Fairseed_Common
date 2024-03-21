@@ -18,7 +18,6 @@ import Settings from "@mui/icons-material/Settings";
 import { Search } from "../inputs/Search";
 import { useEffect } from "react";
 import { useGetAll } from "../../Hooks";
-// import images from "../../constants/images";
 
 const GetInvolved = [
   {

@@ -4,23 +4,18 @@ import { Navbar } from "react-bootstrap";
 import {
   Grid,
   IconButton,
+  ToggleButton,
   Toolbar,
   Typography,
   useMediaQuery,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import MenuIcon from "@mui/icons-material/Menu";
 import { useLocation, useNavigate } from "react-router-dom";
-// import Dropdown from "./DropDown";
-// import AuthContext from "../../../authContext/AuthContext";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import SettingsIcon from "@mui/icons-material/Settings";
-import { LuPanelRight } from "react-icons/lu";
 import Link from "@mui/material/Link";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import { LuPanelRight } from "react-icons/lu";
 
 
 
@@ -29,7 +24,6 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 const NavbarContainer = ({ handleDrawerToggle, mobileOpen }) => {
 
-  // const { user } = useContext(AuthContext);
   const sideBar = useMediaQuery("(max-width: 0px)");
   const [alignment, setAlignment] = React.useState("web");
 

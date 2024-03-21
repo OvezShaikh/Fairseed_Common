@@ -8,7 +8,6 @@ import {
   Typography,
 } from "@mui/material/";
 import { useState } from "react";
-// import {createTheme } from '@mui/system'
 import useMediaQuery from "@mui/material/useMediaQuery";
 import FormSlider from "../FormSlider";
 import IconButton from "@mui/material/IconButton";

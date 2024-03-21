@@ -31,6 +31,7 @@ function Index() {
 
   const [categoryDataFromChild, setCategoryDataFromChild] = useState("");
   const [locationDataFromChild, setLocationDataFromChild] = useState("");
+  const [tabName, setTabName] = useState("newly_added");
 
   const filterToggle = () => {
     setShowOptions(!showOptions);
@@ -88,6 +89,25 @@ function Index() {
     fetchCategoryDetail();
   }, [page]);
 
+  const handleTabChange = (index, label) => {
+    switch (label) {
+      case 'Newly Added':
+        setTabName("newly_added");
+        break;
+      case 'Most Supported':
+        setTabName("most_supported");
+        break;
+      case 'Needs Love':
+        setTabName("needs_love");
+        break;
+      case 'Expiring Soon':
+        setTabName("expiring_soon");
+        break;
+      default:
+        setTabName("newly_added");
+    }
+  };
+
   return (
     <div>
       <Navbar />
@@ -98,7 +118,7 @@ function Index() {
         />
 
         <div className="mx-auto max-w-[91%] flex max-desktop:flex-col max-desktop:gap-y-[48px] max-desktop:items-end max-tablet:gap-y-[20px] mt-[50px]">
-          <ScrollableTabsButtonForce />
+        <ScrollableTabsButtonForce onTabChange={handleTabChange} />
           <button
             className="flex items-center ml-2 px-3 py-1.5 max-w-[115px] gap-x-[12px] max-desktop:px-[20px] max-desktop:py-[17px] max-tablet:py-[6px]"
             style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
@@ -137,16 +157,16 @@ function Index() {
                 {filteredUserList?.map((item) => {
                   return (
                     <Card
-                      key={item.id}
-                      username={item.user.username}
-                      title={item.title}
-                      og_id={item.id}
-                      cardImage={item.campaign_image}
-                      goalAmount={item.goal_amount}
-                      fundRaised={item.fund_raised}
-                      daysLeft={item.days_left}
-                      userCount={item.donor_count}
-                      location={item.location}
+                      key={item?.id}
+                      username={item?.user?.username}
+                      title={item?.title}
+                      og_id={item?.id}
+                      cardImage={item?.campaign_image}
+                      goalAmount={item?.goal_amount}
+                      fundRaised={item?.fund_raised}
+                      daysLeft={item?.days_left}
+                      userCount={item?.donor_count}
+                      location={item?.location}
                     />
                   );
                 })}

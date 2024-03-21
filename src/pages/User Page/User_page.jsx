@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import UserPanel from "../../components/layout/User Dashboard/Index";
 import MyDonation from "../../components/AdminPanelPages/MyDonation/Index";
 import Withdrawals from "../../components/UserPanelPages/Withdrawls/Index";
-import Scholarship from "../../components/AdminPanelPages/Scholarship Cause/Index";
 import DonationView from "../../components/UserPanelPages/UserForms/DonationView/Index";
 import ViewBankandKYC from "../../components/UserPanelPages/UserForms/ViewBankandKYC/Index";
 import EditBankAndKYC from "../../components/UserPanelPages/UserForms/EditBankAndKYC/Index";

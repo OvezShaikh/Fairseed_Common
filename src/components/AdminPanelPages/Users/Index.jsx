@@ -6,7 +6,6 @@ import { AddUser } from '../../admin-console/AddUser';
 import SecondaryButton from '../../inputs/secondaryButton';
 import { Link } from 'react-router-dom';
 import { GoDotFill } from "react-icons/go";
-import PrimaryButton from '../../inputs/PrimaryButton';
 import { DeleteBox } from '../../layout/dialogBox/delete';
 
 const User = () => {
@@ -14,13 +13,9 @@ const User = () => {
 
 
   const getStatusCellStyle = (user_type) => {
-    // let { state } = useLocation(); let { id } = state
     console.log('user_type', user_type);
     if (user_type === 'NGO') {
       return {
-
-
-
         color: '#fa9820',
         background: '#f5fabe  ',
       };
@@ -49,7 +44,6 @@ const User = () => {
         Header: "Id", // Row number header
         accessor: "index", // Accessor for row number
         Cell: ({ row }) => (
-          // Display row number using index provided by React Table
           <div>{row.index + 1}</div>
         ),
         minWidth: 50,

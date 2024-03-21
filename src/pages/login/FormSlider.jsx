@@ -7,7 +7,6 @@ import Slider from "react-slick";
 const StyledSlider = styled(Slider)({
   width: "100%",
   height: "100%", // Set your desired height here
-  // height:'full',
   position: "relative",
   overflowX: "hidden",
   objectFit: "contain",

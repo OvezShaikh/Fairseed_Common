@@ -7,13 +7,11 @@ import { toast } from "react-toastify";
 import { useCreateOrUpdate } from "../../../Hooks";
 import * as Yup from "yup";
 import OTPInput, { ResendOTP } from "otp-input-react";
-import { useLocation } from "react-router-dom";
 
 const inputStyle = {
   padding: " 16px 10px 16px var(--Spacing-20, 20px)",
   border: "2px solid var(--Linear-BG, #FF9F0A)",
   borderImage: "linear-gradient(#FF9F0A, red) 20",
-  // borderWidth: '3px',
   borderStyle: " solid",
   borderRadius: "4px",
 };

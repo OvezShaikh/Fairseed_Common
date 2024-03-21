@@ -67,7 +67,8 @@ function Home() {
 
 
   const handleTabChange = (index, label) => {
-    
+    console.log('Selected Tab Index:', index);
+    console.log('Selected Tab Label:', label);
 
     switch (label) {
       case 'Newly Added':
@@ -105,21 +106,12 @@ function Home() {
 
   const filteredCardCount = filteredUserList.length;
 
-
-
-
-
-
   const filterToggle = () => {
 
     setShowOptions(!showOptions);
   };
 
   const loadMore = () => {
-
-
-
-
     setVisibleCards((prevVisibleCards) => prevVisibleCards + 4);
 
     if (page < totalPages) {
@@ -129,10 +121,6 @@ function Home() {
     if (visibleCards >= perPage) {
       setPerPage(perPage + 100)
     }
-
-
-
-
   };
 
   const fetchUserListFromTabs = async () => {
@@ -149,10 +137,6 @@ function Home() {
         setTotalPages(res.pages_count);
         setUserList(res.rows);
         setCampaignCount(res.count);
-
-
-
-
       } else {
         console.error("Invalid data structure. Expected an array:", res.data);
       }
@@ -161,30 +145,17 @@ function Home() {
     }
   };
 
-
-
-
-
-
-
   const fetchUserList = async () => {
-    try {
-      
+    try {  
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/campaign/campaign-filter?page=${page}&limit=${perPage}&filter=${tabName}`
       );
-      
       const res = response.data;
-
       console.log("RES ----->",res);
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList([...userList, ...res.rows]);
         setCampaignCount(res.count);
-
-
-
-
       } else {
         console.error("Invalid data structure. Expected an array:", res.data);
       }
@@ -196,8 +167,6 @@ function Home() {
     fetchUserList();
 
   }, [page]);
-
-
   useEffect(() => {
     fetchUserListFromTabs();
 
@@ -216,15 +185,6 @@ function Home() {
     },
   ];
 
-
-
-
-
-
-
-
-
-
   return (
     <>
       <div className="">
@@ -241,8 +201,6 @@ function Home() {
         style={{
           width: "100%",
           height: "100%",
-
-
           alignItems: "flex-start",
           display: "flex",
         }}
@@ -260,7 +218,6 @@ function Home() {
           <div className="flex flex-col  text-center text-black/100 mb-[64px] max-tablet:mb-[52px]">
             <Link
               style={{
-
                 width: "100%",
                 textAlign: "center",
                 fontSize: 24,
@@ -289,12 +246,9 @@ function Home() {
           <button
             className="flex items-center ml-2 px-3 py-1.5 max-w-[115px] gap-x-[12px] max-desktop:px-[20px] max-desktop:py-[17px] max-tablet:py-[6px]"
             style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
-
             onClick={filterToggle}
-
           >
             <img src={images.Funnel} />
-            {/* <img src={images.Filter} /> */}
             <p className="text-[18px]" style={{
               background:
                 "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
@@ -308,14 +262,8 @@ function Home() {
 
         </div>
         {showOptions && (
-
           <FilterField sendCategoryToParent={receiveCategoryFromChild} sendLocationToParent={receiveLocationFromChild} />
-
-
         )}
-
-
-
         <div className="desktop:gap-x-[36px] desktop:gap-y-[48px] mt-[48px]  flex flex-wrap w-full justify-center desktop:max-w-[1740px] max-desktop:gap-x-[16px]  max-desktop:gap-y-[24px] max-tablet:gap-y-[48px]">
           {filteredUserList?.slice(0, visibleCards).map((item) => {
             return (
@@ -377,7 +325,6 @@ function Home() {
               <div className="max-w-[120px] mx-auto max-tablet:max-w-[75px]">
                 <img className="" src={images.person} alt="" />
               </div>
-              {/* <div className="grid grid-cols-12 mt-4"> */}
               <div className="flex justify-between mt-[48px] gap-x-[20px]">
                 <div>
                   <img className="mr-3 col-span-2" src={images.one} alt="" />
@@ -419,7 +366,6 @@ function Home() {
               <div className="desktop:max-w-[120px] max-tablet:max-w-[75px]">
                 <img className="" src={images.pencicon} alt="" />
               </div>
-              {/* <div className="grid grid-cols-12 mt-4"> */}
               <div className="flex justify-between grid-cols-12 mt-[48px] gap-x-[20px]">
                 <div>
                   <img className=" mr-3 col-span-2" src={images.two} alt="" />
@@ -461,7 +407,6 @@ function Home() {
               <div className="desktop:max-w-[120px] max-tablet:max-w-[75px]">
                 <img className="" src={images.Home} alt="" />
               </div>
-              {/* <div className="grid grid-cols-12 mt-4"> */}
               <div className="flex justify-between grid-cols-12 mt-[48px] gap-x-[20px]">
                 <div className="desktop:max-w-[120px]">
                   <img className="" src={images.three} alt="" />
@@ -544,11 +489,6 @@ function Home() {
       <div className="">
         <Footer />
       </div>
-
-
-
-
-
     </>
   );
 }

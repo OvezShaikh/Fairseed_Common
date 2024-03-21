@@ -15,7 +15,7 @@ const Page = () => {
       Header: "Id", // Row number header
       accessor: "index", // Accessor for row number
       Cell: ({ row }) => (
-        // Display row number using index provided by React Table
+   
         <div>{row.index + 1}</div>
       ),
       minWidth: 50,
@@ -54,10 +54,6 @@ const Page = () => {
               url={`/admin-dashboard/pages`}
               data={row?.original?.id}
               title={"Pages"}
-              // onClick={() => setSelectedRowID(row?.original?.id)}
-              // onSuccess={() => setSelectedRowID(null)}
-              // onClose={() => setSelectedRowID(null)}
-
               refetchUrl={"/admin-dashboard/pages"}
             ></DeleteBox>
           </div>
@@ -75,9 +71,7 @@ const Page = () => {
         title={"Campaign"}
         checkboxComponent={IndeterminateCheckbox}
         url={`/admin-dashboard/pages`}
-        // extraQuery={{ inactive: true }}
         addButton={<PagesAddNew />}
-        // addButton={<Button>HElloooooo</Button>}
         selectedRowID={selectedRowID}
       />
     </div>

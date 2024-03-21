@@ -2,13 +2,10 @@ import React from "react";
 
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-// import Navbar from "./Navbar";
 import DrawerBody from "./DrawerBody";
 import Navbar from "../navbar/index";
-import AdminNavbar from "../AdminNavbar";
 
 export function SideBar({ mobileOpen, setMobileOpen }) {
-  // const [mobileOpen, setMobileOpen] = React.useState(false);
   const container = React.useRef(null);
 
   const handleDrawerToggle = () => {

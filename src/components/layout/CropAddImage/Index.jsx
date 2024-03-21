@@ -1,17 +1,12 @@
 import React, { useRef } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import PrimaryButton from "../../inputs/PrimaryButton";
-import SuccessButton from "../../inputs/SuccessButton/Index";
-import { ImageCropper } from "../../inputs/Cropper/ImageCropper";
-import { ImagePreviewDialog } from "../../inputs/PreviewImage/PreviewImage";
 import { useState } from "react";
-import DropZone from "../../inputs/dragAndDrop/index";
 import Modal from "../../inputs/Modal/Index";
 
 function ImageBackgroundWithDeleteButton({ imgUrl, onDelete, setDataUrl, name , setImage }) {
   console.log(imgUrl, "imgUrl in CauseEditApproval");
   const [srcImg, setSrcImg] = useState("");
-  // const [openCrop, setOpenCrop] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const closeModal = () => {
     setOpenModal(false);

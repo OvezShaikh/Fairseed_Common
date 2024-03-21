@@ -42,7 +42,6 @@ const SignUp = ({ handleNext }) => {
                   height: "150px",
                   position: "relative",
                   overflow: "hidden",
-                  // color: "red",
                 }}
               >
                 <input
@@ -73,7 +72,6 @@ const SignUp = ({ handleNext }) => {
                   <Button
                     onClick={() => imgRef.current.click()}
                     style={{
-                      // background: "white",
                       border: "none",
                       padding: "0",
                       borderRadius: "6rem",
@@ -93,8 +91,6 @@ const SignUp = ({ handleNext }) => {
                     padding: " 16px 10px 16px var(--Spacing-20, 20px)",
                     border: "2px solid var(--Linear-BG, #FF9F0A)",
                     borderImage: "linear-gradient(#FF9F0A, red) 20",
-                    // borderWidth: '3px',
-
                     borderRadius: "4px",
                   }}
                   name={"username"}
@@ -110,8 +106,6 @@ const SignUp = ({ handleNext }) => {
                     padding: " 16px 10px 16px var(--Spacing-20, 20px)",
                     border: "2px solid var(--Linear-BG, #FF9F0A)",
                     borderImage: "linear-gradient(#FF9F0A, red) 20",
-                    // borderWidth: '3px',
-
                     borderRadius: "4px",
                   }}
                   placeholder="Enter your username"
@@ -120,13 +114,10 @@ const SignUp = ({ handleNext }) => {
               <div>
                 <InputField
                   label="Mobile Number"
-                  // type="number"
                   sx={{
                     padding: " 16px 10px 16px var(--Spacing-20, 20px)",
                     border: "2px solid var(--Linear-BG, #FF9F0A)",
                     borderImage: "linear-gradient(#FF9F0A, red) 20",
-                    // borderWidth: '3px',
-
                     borderRadius: "4px",
                   }}
                   name={"mobile_number"}

@@ -1,11 +1,8 @@
-import { Upload, Url } from "@carbon/icons-react";
 import { Button, FormHelperText, Typography } from "@mui/material";
 import { useFormikContext } from "formik";
 import { useEffect, useState } from "react";
 import Dropzone from "react-dropzone";
 import Label from "../Label/Label";
-import { urPK } from "@mui/x-date-pickers";
-import images from "../../../constants/images"
 
 
 const DropZone = ({ name, label, onChange, initialPreview, ...otherProps }) => {

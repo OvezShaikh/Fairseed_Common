@@ -5,7 +5,6 @@ import { FormLabel } from "@mui/material";
 import UploadField from "../../inputs/AdminUploadField/Index";
 import SelectField from "../../inputs/AdminSelectField/Index";
 import PrimaryButton from "../../inputs/PrimaryButton";
-import Attachments from "../../layout/Attachments/Index";
 import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -53,11 +52,11 @@ function CausesView() {
     status: data?.status || "",
     pan_card: data?.pan_card || "",
     adhar_card: data?.adhar_card || "",
-    other: "",
+    other:data?.other ||  "",
     rasing_for: data.rasing_for || "",
-    adhar_card_image:'',
-    pan_card_image:'',
-    passbook_image:'',
+    adhar_card_image:data?.adhar_card_image || '',
+    pan_card_image:data?.pan_card_image || '',
+    passbook_image:data?.passbook_image || '',
   };
 
   useGetAll({
@@ -79,7 +78,7 @@ function CausesView() {
   });
   
   const { mutate } = useCreateOrUpdate({
-    url: `/user-dashboard/edit-bankkyc/${id}`,
+    url: `/admin-dashboard/campaign-kyc/${id}`,
     method: "put",
   });
 
@@ -88,19 +87,27 @@ function CausesView() {
     const formData = new FormData();
     formData.append('account_holder_name' , values?.account_holder_name)
     formData.append('account_number' , values?.account_number)
-    formData.append('bank_data' , values?.bank_data)
     formData.append('bank_name' , values?.bank_name)
     formData.append('branch_name' , values?.branch_name)
     formData.append('title' , values?.title)
     formData.append('ifsc_code' , values?.ifsc_code)
-    formData.append('status' , values?.status)
+    formData.append('status' , values?.status?.value)
     formData.append('pan_card' , values?.pan_card)
     formData.append('adhar_card' , values?.adhar_card)
     formData.append('other' , values?.other)
     formData.append('rasing_for' , values?.rasing_for)
-    formData.append('adhar_card_image' , values?.adhar_card_image)
-    formData.append('pan_card_image' , values?.pan_card_image)
-    formData.append('passbook_image' , values?.passbook_image)
+    if (values?.adhar_card_image instanceof File){
+      formData.append('adhar_card_image' , values?.adhar_card_image)
+    }
+    if (values?.pan_card_image instanceof File){
+      formData.append('pan_card_image' , values?.pan_card_image)
+    }
+    if (values?.passbook_image instanceof File){
+      formData.append('passbook_image' , values?.passbook_image)
+}
+    formData.append('approve_kyc ' ,true)
+
+
     mutate(formData, {
       onSuccess: (response) => {
         toast.success(response?.message, {
@@ -114,8 +121,6 @@ function CausesView() {
         } )
       }
     }
-    
-    
     );
   };
 
@@ -280,21 +285,22 @@ function CausesView() {
                   <UploadField label="Upload PAN Card Copy:"
                    name={"adhar_card_image"}
                    multiple={false}
-                   onChange={(value) => setFieldValue('adhar_card_image', value)}
+                   value={values?.adhar_card_image}
                    />
                 </div>
                 <div className="w-full">
                   <UploadField label="Upload Aadhar Card Copy:"
                    name={"pan_card_image"}
                    multiple={false}
-                   onChange={(value) => setFieldValue('pan_card_image', value)}
-                   />
+                   value={values?.pan_card_image}
+                     />
+
                 </div>
                 <div className="w-full">
                   <UploadField label="Upload Passbook Copy:"
                    name={"passbook_image"}
                    multiple={false}
-                   onChange={(value) => setFieldValue('passbook_image', value)}
+                   value={values?.passbook_image}
                   />
                 </div>
                 <div className="w-full">
@@ -304,8 +310,8 @@ function CausesView() {
                     name={"status"}
                     type="radio"
                     options={[
-                      { label: "Approved", value: "approved" },
-                      { label: "Pending", value: "pending" },
+                      { label: "Approved", value: "Approved" },
+                      { label: "Pending", value: "Pending" },
                     ]}
                   />
                 </div>

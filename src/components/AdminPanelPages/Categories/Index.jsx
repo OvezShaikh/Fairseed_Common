@@ -51,8 +51,8 @@ const Index = () => {
         search: false,
       },
       {
-        Header: "Id", // Row number header
-        accessor: "id", // Accessor for row number
+        Header: "Id",
+        accessor: "id", 
         Cell: ({ row }) => <div>{row.index + 1}</div>,
         minWidth: 50,
         width: 50,
@@ -104,13 +104,12 @@ const Index = () => {
   return (
     <div>
       <ReactTable
-        // rows={tableData}
+      
         rows={[]}
         columns={columns}
         manualPagination
         title={"Categories"}
         url="/admin-dashboard/category"
-        // extraQuery={{ inactive: true }}
         addButton={<LocationConfigurationDialog />}
         selectedRowID={selectedRowID}
         checkboxSelection={true}

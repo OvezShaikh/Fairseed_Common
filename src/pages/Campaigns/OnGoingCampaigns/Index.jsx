@@ -10,16 +10,6 @@ import ScrollableTabsButtonForce from '../../../components/layout/ScrollableTabs
 import FilterField from "../../../components/inputs/FilterField/Index";
 
 
-// import {
-//   PiTrendUpDuotone,
-//   PiStudentDuotone,
-//   PiHandCoinsDuotone,
-//   PiGenderFemaleDuotone,
-//   PiMegaphoneSimpleDuotone,
-//   PiMosqueDuotone,
-//   PiAlarmDuotone,
-//   PiHeartDuotone,
-// } from "react-icons/pi";
 
 
 function Index() {
@@ -39,14 +29,12 @@ function Index() {
 
   const fetchUserList = async () => {
     try {
-      // const perPage = 100;
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
       );
       const res = response.data;
       console.log(res, "cards");
       console.log(res.rows);
-      // `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList([...userList, ...res.rows]);

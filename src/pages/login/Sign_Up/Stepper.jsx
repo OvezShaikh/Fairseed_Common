@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import {
   Typography,
-  // TextField,
   Link,
   Button,
   Stepper,
@@ -62,17 +61,7 @@ const styleStep = {
         fill: "#06B217",
       },
     },
-    // "& .MuiStepLebal-root .MuiStepLabel-labelContainer .MuiStepLabel-label":{
-    //   color:'green'
-    // },
-    // "& .MuiStepLabel-root .MuiStepLabel-alternativeLabel":{
-    //     color:'red'
-    // },
-    // "& .MuiStepLabel-labelContainer": {
-    //   color: "red",
-    // },
-
-    "& .MuiStepConnector-line": {
+     "& .MuiStepConnector-line": {
       borderColor: "#06B217",
       paddingLeft: "0px !important",
     },
@@ -150,10 +139,7 @@ const formValidation = [
     password2: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must be match")
       .required("Required"),
-    // register_as: Yup.string().required("Required"),
-    // Country: Yup.string().required("required"),
-    policy_privacy: Yup.string().required("Required"),
-    // Policy_privacy: Yup.required("Required"),
+      policy_privacy: Yup.string().required("Required"),
   }),
 ];
 
@@ -177,7 +163,6 @@ const Sign_Stepper = () => {
   const { mutate } = useCreateOrUpdate({ url: "/accounts/register/nt/" });
 
   const submitForm = (values) => {
-    // console.log(values);
     const formData = new FormData();
     if (activeStep === 1) formData.append("profile_pic", values?.profile_pic);
     formData.append("email", values?.email);
@@ -193,7 +178,7 @@ const Sign_Stepper = () => {
         toast.success(response?.data?.email, {
           position: "top-right",
         });
-        // window.location.href = "/Home";
+        window.location.href = "/Home";
       },
       onerror: (response) => {
         toast.error(response?.data?.email, {

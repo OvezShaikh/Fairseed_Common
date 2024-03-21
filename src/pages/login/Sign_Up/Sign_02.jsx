@@ -16,7 +16,6 @@ const Sign_02 = ({ handleBack, handleNext }) => {
 
   const handleNextClick = () => {
     if (isValid) {
-      // handleNext();
       submitForm();
     } else {
       toast.error("Please fill all required fields.");
@@ -50,7 +49,6 @@ const Sign_02 = ({ handleBack, handleNext }) => {
                 padding: " 16px 10px 16px var(--Spacing-20, 20px)",
                 border: "2px solid var(--Linear-BG, #FF9F0A)",
                 borderImage: "linear-gradient(#FF9F0A, red) 20",
-                // borderWidth: '3px',
                 borderStyle: " solid",
                 borderRadius: "4px",
               }}
@@ -63,7 +61,6 @@ const Sign_02 = ({ handleBack, handleNext }) => {
             <CountrySelect
               label="Select Your Country"
               name={"country"}
-              // sx={{  border: "2px solid var(--Linear-BG, #FF9F0A)",borderRadius:'4px' }}
             />
           </div>
           <div>
@@ -74,10 +71,8 @@ const Sign_02 = ({ handleBack, handleNext }) => {
               }}
               name="user_type"
               sx={{
-                // marginLeft: '40px',
                 "& .MuiTypography-root": {
                   fontSize: "20px",
-                  // padding: "9px",
                 },
               }}
               options={[
