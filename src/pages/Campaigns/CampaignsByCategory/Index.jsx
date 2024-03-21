@@ -1,29 +1,22 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Footer from "../../../components/layout/Footer";
 import Navbar from "../../../components/layout/Navbar";
 import images from "../../../constants/images";
-import SecondaryButton from "../../../components/inputs/secondaryButton";
 import Card from "../../../components/layout/Card";
-import icons from "../../../constants/icons";
 import Navigation from "../../../components/layout/Navigation/Index";
 import axios from "axios";
-import CountrySelect from "../../../components/inputs/countrySelect";
-import OptionsButton from "../../../components/inputs/OptionsButton/Index";
+
 import NoCampaign from "./NoCampaign";
 import FilterField from "../../../components/inputs/FilterField/Index";
-import ScrollbleTabsButtonForce from "../../../components/layout/ScrollableTabsButtonAuto";
 import "./CampaignsByCategory.css";
 import ScrollableTabsButtonForce from "../../../components/layout/ScrollableTabsButtonAuto";
 
 function Index() {
-  const { id } = useParams();
-  const [data, setData] = useState([]);
+  const { name } = useParams();
   const [categoryCampaignList, setCategoryCampaignList] = useState([]);
   const [categoryDetail, setCategoryDetail] = useState(null);
 
-  const [userList, setUserList] = useState([]);
-  const [visibleCards, setVisibleCards] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
 
@@ -38,12 +31,10 @@ function Index() {
   };
 
   const receiveCategoryFromChild = (categoryData) => {
-   
     setCategoryDataFromChild(categoryData);
   };
 
   const receiveLocationFromChild = (locationData) => {
-   
     setLocationDataFromChild(locationData);
   };
 
@@ -67,23 +58,21 @@ function Index() {
     )
   ).map((id) => categoryCampaignList.find((item) => item.id === id));
 
-  
-
   const fetchCategoryDetail = async () => {
     const perPage = 4;
     const res = await axios.get(
-      `${process.env.REACT_APP_API_URL}/campaign/category?category=${id}&page=${page}&limit=${perPage}`
+      `${process.env.REACT_APP_API_URL}/campaign/category?name=${name}&page=${page}&limit=${perPage}`
     );
     if (Array.isArray(res.data.rows)) {
       setTotalPages(res.data.pages_count);
       setCategoryCampaignList([...categoryCampaignList, ...res.data.rows]);
-      setCategoryDetail(res.data.category_data);
-      console.log("FETCH CATEGORY DETAIL =================>",res.data);
+      setCategoryDetail(res.data.rows[0]);
+      console.log("FETCH CATEGORY DETAIL =================>", res.data.rows[0]);
     } else {
-      console.error("Invalid data structure. Expected an array:", res.data.category_data);
+      // console.error("Invalid data structure. Expected an array:", res.data.category_data);
     }
-    // console.log(res.data.rows);
-    // setCategoryCampaignList(res.data.rows)
+    console.log(res.data.rows);
+    setCategoryCampaignList(res.data.rows);
   };
   useEffect(() => {
     fetchCategoryDetail();
@@ -112,10 +101,8 @@ function Index() {
     <div>
       <Navbar />
       <div className="flex flex-col ">
-        <Navigation
-          label={"ReligiousEducationCampaigns"}
-          heading={categoryDetail?.name}
-        />
+        <Navigation label={"ReligiousEducationCampaigns"} heading={name} />
+        {console.log(categoryDetail, "===========category")}
 
         <div className="mx-auto max-w-[91%] flex max-desktop:flex-col max-desktop:gap-y-[48px] max-desktop:items-end max-tablet:gap-y-[20px] mt-[50px]">
         <ScrollableTabsButtonForce onTabChange={handleTabChange} />
@@ -197,13 +184,9 @@ function Index() {
               </button>
             </div>
           ) : (
-            <div>
-              {/* <h1 className="z-40"> No data Found</h1> */}
-              {<NoCampaign />}
-            </div>
+            <div>{<NoCampaign />}</div>
           )}
         </div>
-        {/* <NoCampaign /> */}
       </div>
 
       <Footer />

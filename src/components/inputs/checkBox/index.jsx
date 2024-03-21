@@ -34,6 +34,7 @@ const CheckBox = ({
   legend,
   checked,
   onChange,
+  fontSize,
   ...otherProps
 }) => {
   const { setFieldValue } = useFormikContext();
@@ -64,9 +65,8 @@ const CheckBox = ({
           label={label}
           sx={{
             "& .MuiFormControlLabel-label": {
-              ...style,
               color: colors.text.main,
-              fontSize: "20px",
+              fontSize: fontSize || "20px",
               fontWeight: "700  !important",
               fontFamily: "satoshi !important",
               fontStyle: "normal !important",

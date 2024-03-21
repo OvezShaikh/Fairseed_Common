@@ -26,10 +26,11 @@ import CauseEdit_Form from "../../components/AdminPanelPages/CauseEditApprovel/C
 import CauseEdit from "../../components/AdminPanelPages/CauseEditApprovel/Index";
 import Scholarships from "../../components/AdminPanelPages/Scholarships/Index";
 import CampaignView from "../../components/AdminPanelPages/Forms/CampaignVeiw/Index";
+import PageDoesNotExists from "../../pages/PageDoesNotExists/NotFoundPage";
 
 function AdminPage() {
   return (
-    <div className="container">
+    <div className="">
       <Routes>
         <Route
           path="/"
@@ -203,7 +204,7 @@ function AdminPage() {
           }
         />
         <Route
-          path="/Users/Edit-User"
+          path="/Users/Edit"
           element={
             <AdminLayout>
               <UserEdit />
@@ -235,7 +236,7 @@ function AdminPage() {
           }
         />
         <Route
-          path="/Pages/Edit-Pages"
+          path="/Pages/Edit"
           element={
             <AdminLayout>
               <PagesEdit />
@@ -251,6 +252,7 @@ function AdminPage() {
             </AdminLayout>
           }
         />
+        <Route path="*" element={<PageDoesNotExists />} />
       </Routes>
     </div>
   );

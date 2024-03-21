@@ -13,6 +13,7 @@ const InputField = ({
   infoText,
   characterCount,
   label,
+  color,
   style,
   sx,
   required,
@@ -21,7 +22,7 @@ const InputField = ({
   const [field, meta] = useField(name);
 
   const configTextfield = {
-    // ...field,  
+    // ...field,
     ...otherProps,
     fullWidth: true,
     variant: variant ? variant : "outlined",
@@ -130,7 +131,7 @@ const InputField = ({
           className="text-capitalize font-medium d-flex align-items-center"
           sx={{
             padding: "4px 8px 0px 8px",
-            color: colors.text.main,
+            color: color || colors.text.main, // Use color prop if provided, else fallback to default color
             fontSize: "16px",
             fontWeight: 700,
             fontFamily: "satoshi",

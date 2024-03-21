@@ -1,17 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../../components/layout/Navbar";
 import Navigation from "../../components/layout/Navigation/Index";
 import Footer from "../../components/layout/Footer";
 import { useGetAll } from "../../Hooks";
 import { useParams } from "react-router-dom";
+import NotFoundPage from "../../pages/PageDoesNotExists/NotFoundPage";
 
 function KnowingFairseed({ title, content, navbar, footer }) {
   const { slug } = useParams();
-  const { data: contentData } = useGetAll({
-    key: `/admin-dashboard/slug/${slug}`,
+  const [contentData, setContentData] = useState(null); // Initialize contentData as null
+  const { data, error } = useGetAll({
+    key: `/campaign/slug/${slug}`,
     select: (data) => data?.data?.data,
   });
-  console.log(contentData?.show_navbar, "<====contentData.navbar");
+
+  useEffect(() => {
+    if (data) {
+      setContentData(data);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (error) {
+      // Handle error here if needed
+      console.error("Error fetching data:", error);
+    }
+  }, [error]);
+
+  if (!contentData && !error) {
+    // Return a loading spinner while data is being fetched
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="loader"></div>
+      </div>
+    );
+  }
+
+  if (error || !contentData?.show_page) {
+    return <NotFoundPage />;
+  }
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -21,8 +48,7 @@ function KnowingFairseed({ title, content, navbar, footer }) {
       </div>
 
       <div
-        className="pt-8 flex-row text-left  max-w:[1920px] max-desktop:w-[718px] max-tablet:w-[400px] gap-[10px] px-10 max-desktop:px-2 max-tablet:px-6"
-        style={{ whiteSpace: "pre-line", fontFamily: "satoshi" }}
+        className="pt-12 flex flex-col text-start text-ellipsis max-w-[1920px] max-desktop:w-[718px] max-tablet:w-[370px] gap-[10px] px-10 max-desktop:px-2 desktop:text-[22px] text-[satoshi] max-tablet:px-2"
         dangerouslySetInnerHTML={{ __html: contentData?.content }}
       ></div>
       {contentData?.show_footer && <Footer />}

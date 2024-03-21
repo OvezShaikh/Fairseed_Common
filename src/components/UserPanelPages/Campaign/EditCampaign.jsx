@@ -26,15 +26,10 @@ import DropZone from "../../inputs/Cropper/CropDrop";
 const EditCampaign = () => {
   let { state } = useLocation();
   let { id } = state;
-  const [documents, setDocuments] = useState([]);
+  const navigate = useNavigate();
   const [dataUrl, setDataUrl] = useState(null);
   const [Categories, setCategories] = useState([]);
-
-  const handleDocumentUpload = (documentUrl) => {
-    setDocuments([...documents, documentUrl]);
-  };
-  const navigate = useNavigate();
-
+  const [Documents, setDocuments] = useState([]);
   const [user, setUser] = useState({});
   const [imageUrl, setImageUrl] = useState();
   const [srcImg, setSrcImg] = useState("");
@@ -73,6 +68,7 @@ const EditCampaign = () => {
     },
     onSuccess: (data) => {
       setUser(data);
+      setDocuments(data?.documents);
       const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${
         data?.campaign_image || ""
       }`;
@@ -103,41 +99,89 @@ const EditCampaign = () => {
     amount: user.goal_amount || "",
     location: user.location || "",
     category: user?.category || " ",
-    is_featured: false,
+    is_featured: user?.is_featured || false,
     summary: user?.summary || "",
-    zakat_eligible: false,
     end_date: user?.end_date || "",
     status: user?.status || "",
     story: user?.story || "",
     documents: user?.documents || [],
+    zakat_eligible: user?.zakat_eligible || false,
   };
   console.log(initial_values);
   if (!isSuccess) {
     return <div>Loading...</div>;
   }
 
+  // const handleSubmit = (values) => {
+  //   const formData = new FormData();
+  //   if (values?.campaign_image instanceof File) {
+  //     formData.append("campaign_image", values?.campaign_image);
+  //   }
+
+  //   formData.append("title", values?.title);
+  //   formData.append("amount", values?.amount);
+  //   formData.append("location", values?.location);
+  //   formData.append("end_date", values?.end_date);
+  //   formData.append("summary", values?.summary);
+  //   formData.append("story", values?.story);
+  //   formData.append("category", values?.category?.id);
+  //   formData.append("zakat_eligible", values?.zakat_eligible);
+  //   formData.append("documents", values?.documents);
+  //   formData.append("is_featured", values?.is_featured);
+
+  //   mutate(formData, {
+  //     onSuccess: (response) => {
+  //       toast.success(response?.data?.message, {
+  //         position: "top-right",
+  //       });
+  //       navigate(-1);
+  //     },
+  //     onError: (response) => {
+  //       toast.error(response?.data?.message, {
+  //         position: "top-right",
+  //       });
+  //     },
+  //   });
+  // };
+  
+
   const handleSubmit = (values) => {
+    const changedValues = Object.keys(values).filter(
+      key => values[key] !== initial_values[key]
+    );
+    // Prepare payload with only changed values
+    const payload = {};
+    changedValues.forEach(key => {
+      payload[key] = values[key];
+    });
+    // Make API request with payload
     const formData = new FormData();
-    if (values?.campaign_image instanceof File) {
-      formData.append("campaign_image", values?.campaign_image);
-    }
-
-    formData.append("title", values?.title);
-    formData.append("amount", values?.amount);
-    formData.append("location", values?.location);
-    formData.append("end_date", values?.end_date);
-    formData.append("summary", values?.summary);
-    formData.append("story", values?.story);
-    formData.append("category", values?.category?.id);
-
+    Object.entries(payload).forEach(([key, value]) => {
+      // Check if the value is a File instance before appending
+      if (value instanceof File) {
+        formData.append(key, value);
+      } else {
+        formData.append(key, JSON.stringify(value));
+      }
+    });
+    formData.append('approve_kyc', true); 
     mutate(formData, {
-      onSuccess: () => {
-        toast.success("Cause updated Succcessfully ! ", {
+      onSuccess: (response) => {
+        console.log(response, '<==========>');
+        toast.success(response?.data?.message, {
           position: "top-right",
+        });
+        navigate(-1);
+      },
+      onError: (error) => {
+        console.error('There was a problem updating the data:', error);
+        toast.error(error?.data?.message, {
+          position: 'top-right',
         });
       },
     });
   };
+  
 
   return (
     <Formik
@@ -236,7 +280,7 @@ const EditCampaign = () => {
                 </div>
               </div>
 
-              <div className="w-full mt-5">
+              <div className="w-full mt-5 max-tablet:pt-12">
                 <InputField
                   onChange={handleChange}
                   value={values?.summary}
@@ -280,8 +324,11 @@ const EditCampaign = () => {
                 <div className="flex gap-4">
                   {values?.documents?.map((imageUrl, index) => {
                     const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl.doc_file}`;
-                    console.log(imageUrl.doc_file, "doc_file");
-                    return <Attachments key={index} imageUrl={documentLink} />;
+                    return <Attachments
+                    key={index}
+                    id={id}
+                    imageUrl={documentLink}
+                  />
                   })}
                 </div>
               </div>
@@ -299,12 +346,11 @@ const EditCampaign = () => {
                 <div className="w-[50%] max-tablet:w-full document-upload-div">
                   <UploadField
                     label="Upload Attachment:"
-                    onDocumentUpload={handleDocumentUpload}
-                    name="document"
+                    name="documents"
                     placeholder="Upload marksheets, Medical records, Fees Structure etc."
                     sx={{ padding: "20px" }}
                     multiple={false}
-                    onChange={(value) => setFieldValue("document", value)}
+                    onChange={(value) => setFieldValue("documents", value)}
                   />
                 </div>
               </div>
@@ -319,6 +365,7 @@ const EditCampaign = () => {
                       { label: "Pending", value: "Pending" },
                       { label: "Active", value: "Active" },
                       { label: "Completed", value: "Completed" },
+                      { label: "Rejected", value: "Rejected" },
                     ]}
                   />
                 </div>
@@ -347,7 +394,8 @@ const EditCampaign = () => {
                       },
                     }}
                     name="zakat_eligible"
-                    value={values?.zakat_eligible}
+                    checked={values?.zakat_eligible}
+                    onChange={handleChange}
                     label={"Yes"}
                   />
                 </div>
@@ -366,16 +414,18 @@ const EditCampaign = () => {
               <div className=" w-full ">
                 <RadioGroup
                   name={"is_featured"}
+                  value={values?.is_featured}
                   type="radio"
                   sx={{ flexDirection: "column" }}
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    setFieldValue("is_featured", e === "true");
+                  }}
                   options={[
                     { label: "On", value: true },
                     { label: "Off", value: false },
                   ]}
                   label="Featured:"
                   style={{ fontSize: "18px", fontWeight: 500 }}
-                  // onChange={onChange}
                 />
               </div>
             </div>
@@ -385,12 +435,8 @@ const EditCampaign = () => {
                   sx={{ maxWidth: "400px", minHeight: "400px" }}
                   dataUrl={srcImg}
                 />
-                {/* {console.log(values?.cpg_image)} */}
               </div>
-              <Link
-                to={"Revision-History"}
-                // state={id}
-              >
+              <Link to={"Revision-History"}>
                 <PrimaryButton sx={{ borderRadius: "12px", width: "90%" }}>
                   <h1 className="text-white font-medium py-2.5 text-[18px] font-[satoshi]">
                     View Revision History

@@ -19,6 +19,7 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useCreateOrUpdate, useGetAll } from "../../../../Hooks";
 import { toast } from "react-toastify";
+import { color } from "@mui/system";
 
 function Index() {
   let { state } = useLocation();
@@ -27,7 +28,7 @@ function Index() {
   const [campaign, setCampaign] = useState({});
   const [Category, setCategory] = useState([]);
   const [approval, setApproval] = useState(false);
-
+  const [campaignData, setCampaignData] = useState({});
   const navigate = useNavigate();
 
   useGetAll({
@@ -46,11 +47,11 @@ function Index() {
     key: `/admin-dashboard/cause-edit/${id}`,
     enabled: true,
     select: (data) => {
-      console.log(data.data.data);
       return data.data.data;
     },
     onSuccess: (data) => {
       setCampaign(data);
+      setCampaignData(data?.campaign_data);
     },
   });
 
@@ -59,20 +60,21 @@ function Index() {
     method: "put",
   });
 
-  const image = `${process.env.REACT_APP_BE_BASE_URL}${
-    campaign?.campaign_image || ""
-  }`;
+  const image = `${process.env.REACT_APP_BE_BASE_URL}${campaign?.campaign_image || ""}`;
 
   const initial_value = {
     title: campaign?.title || "",
-    category: campaign?.category || "",
-    goal_amount: campaign?.goal_amount || 0,
+    category: campaign?.category?.name || "",
+    goal_amount: campaign?.goal_amount || "",
     location: campaign?.location || "",
     end_date: campaign?.end_date,
     summary: campaign?.summary || "",
     story: campaign?.story || "",
     campaign_image: image || "",
     approval_status: false,
+    is_featured: campaign?.is_featured || false,
+    zakat_eligible: campaign?.zakat_eligible || false,
+    documents : campaign?.documents || []
   };
 
   const handleSubmit = (values) => {
@@ -85,18 +87,22 @@ function Index() {
     formData.append("summary", values?.summary);
     formData.append("story", values?.story);
     formData.append("category", values?.category);
+    formData.append("zakat_eligible", values?.zakat_eligible);
     {
       approval && formData.append("approve_campaign", true);
     }
 
     mutate(formData, {
       onSuccess: (response) => {
-        toast.success("Details Updated Successfully !!!", {
+        console.log(response, "{{{{{{");
+        toast.success(response?.data?.data, {
           position: "top-right",
         });
+        navigate(-1);
       },
     });
   };
+
 
   return (
     <Formik
@@ -125,19 +131,19 @@ function Index() {
               </div>
               <div className="w-full">
                 <InputField
+                  color={campaignData?.title ? "red" : undefined}
                   onChange={handleChange}
                   value={values?.title}
                   name={"title"}
                   label={"Title of Campaign:"}
-                  required={"true"}
                   placeholder={"Minimum 50 INR"}
                 />
               </div>
               <SelectField
+                color={campaignData?.category ? "red" : undefined}
                 name={"category"}
-                required={true}
                 label="Choose a Category:"
-                value={values?.category?.name}
+                value={values?.category}
                 options={Category.map((item) => ({
                   label: item.name,
                   value: item.id,
@@ -146,6 +152,7 @@ function Index() {
               />
               <div className="w-full">
                 <InputField
+                  color={campaignData?.amount ? "red" : undefined}
                   onChange={handleChange}
                   type="number"
                   name={"goal_amount"}
@@ -156,6 +163,8 @@ function Index() {
               </div>
               <div className="w-full">
                 <InputField
+                  // color={"red"}
+                  color={campaignData?.location ? "red" : undefined}
                   name={"location"}
                   onChange={handleChange}
                   value={values?.location}
@@ -165,6 +174,7 @@ function Index() {
               <div className="flex w-[100%] gap-4">
                 <div className="w-[50%]">
                   <InputField
+                    color={campaignData?.end_date ? "red" : undefined}
                     onChange={handleChange}
                     type={"date"}
                     name={"end_date"}
@@ -178,7 +188,9 @@ function Index() {
                     className="text-capitalize   font-medium d-flex align-items-center"
                     style={{
                       padding: "4px 8px 8px 8px",
-                      color: colors.text.main,
+                      color: campaignData?.zakat_eligible
+                        ? "red"
+                        : colors.text.main,
                       fontSize: "16px",
                       fontWeight: 700,
                       fontFamily: "satoshi",
@@ -187,9 +199,9 @@ function Index() {
                     }}
                   >
                     Is the Campaign Zakaat eligible?
-                    <span className="text-red-600">*</span>
                   </FormLabel>
                   <CheckBox
+                    fontSize={"16px !important"}
                     sx={{
                       paddingLeft: "15px",
                       "&.Mui-checked": {
@@ -197,6 +209,8 @@ function Index() {
                       },
                     }}
                     name="zakat_eligible"
+                    checked={values?.zakat_eligible}
+                    onChange={handleChange}
                     label={"Yes"}
                   />
                 </div>
@@ -206,7 +220,7 @@ function Index() {
                   className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
                   style={{
                     padding: "4px 8px 8px 8px",
-                    color: colors.text.main,
+                    color: campaignData?.story ? "red" : colors.text.main,
 
                     fontWeight: 700,
                     fontFamily: "satoshi",
@@ -216,21 +230,20 @@ function Index() {
                   }}
                 >
                   About the Campaign:
-                  <span className="text-red-600">*</span>
                 </FormLabel>
-                <div className="h-[332px] summary-div">
+                <div className="h-[200px] summary-div">
                   <ReactQuilTextField
                     theme="snow"
-                    name="summary"
-                    value={values?.summary}
-                    // placeholder="Summarize in 100 words max."
+                    name="story"
+                    value={values?.story}
                     style={{ "& .ql-editor": { minHeight: "50px" } }}
-                    onChange={(value) => setFieldValue("summary", value)}
+                    onChange={(value) => setFieldValue("story", value)}
                   />
                 </div>
               </div>
-              <div className="w-full mt-5">
+              <div className="w-full mt-5 max-tablet:pt-12">
                 <InputField
+                  color={campaignData?.summary ? "red" : undefined}
                   name={"summary"}
                   onChange={handleChange}
                   value={values?.summary}
@@ -258,7 +271,7 @@ function Index() {
                   className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
                   style={{
                     padding: "4px 8px 16px 8px",
-                    color: colors.text.main,
+                    color: campaignData?.documents ? "red" : colors.text.main,
                     fontWeight: 700,
                     fontFamily: "satoshi",
                     fontStyle: "normal",
@@ -267,12 +280,10 @@ function Index() {
                   }}
                 >
                   Attachments:
-                  <span className="text-red-600">*</span>
                 </FormLabel>
                 <div className="flex gap-4 max-tablet:flex-col">
                   {values?.documents?.map((imageUrl, index) => {
                     const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl?.doc_file}`;
-                    console.log(documentLink, "doc_file");
                     return (
                       <Attachments
                         key={index}
@@ -292,7 +303,7 @@ function Index() {
               />
             </div>
           </div>
-          <div className="flex gap-3 pt-5">
+          <div className="flex gap-3 pt-5 max-tablet:flex-col max-tablet:items-center">
             <button
               onClick={() => navigate(-1)}
               className="w-[69px] content-stretch h-[32px] bg-[#F7F7F7]"

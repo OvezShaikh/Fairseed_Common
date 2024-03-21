@@ -1,16 +1,15 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import InputField from "../../inputs/InputAdminField/Index";
 import SelectField from "../../inputs/AdminSelectField/Index";
 import PrimaryButton from "../../inputs/PrimaryButton";
 import CheckBox from "../../inputs/checkBox";
 import { FormLabel } from "@mui/material";
 import { colors } from "../../../constants/theme";
-import { Formik, Form, Field, useFormikContext } from "formik";
+import { Formik, Form, } from "formik";
 import ReactQuilTextField from "../../inputs/ReactQuilTextField/Index";
-import { RiDeleteBin6Line } from "react-icons/ri";
 import SuccessButton from "../../inputs/SuccessButton/Index";
 import { PiCheckFat } from "react-icons/pi";
-import { pink, red } from "@mui/material/colors";
+import {  red } from "@mui/material/colors";
 import UploadField from "../../inputs/AdminUploadField/Index";
 import RadioGroup from "../../inputs/radioGroupAdminPanel/index";
 import ErrorIcon from "@mui/icons-material/Error";
@@ -55,11 +54,10 @@ function CauseEdit_Form() {
       setSrcImg(reader.result);
     };
     reader.readAsDataURL(files[0]);
-
     setOpenCrop(true);
   };
 
-  const { data, isSuccess, refetch } = useGetAll({
+  const { isSuccess, refetch } = useGetAll({
     key: `/admin-dashboard/campaign/${id}`,
     enabled: false,
     select: (data) => {
@@ -128,7 +126,7 @@ function CauseEdit_Form() {
 
     mutate(formData, {
       onSuccess: (response) => {
-        toast.success("Campaign Updated/Approved successfully !", {
+        toast.success(response?.data?.message, {
           position: "top-right",
         });
         navigate(-1);
@@ -285,13 +283,6 @@ function CauseEdit_Form() {
                         imageUrl={documentLink}
                       />
                     );
-                    return (
-                      <Attachments
-                        key={index}
-                        id={id}
-                        imageUrl={documentLink}
-                      />
-                    );
                   })}
                 </div>
               </div>
@@ -331,6 +322,7 @@ function CauseEdit_Form() {
                       { label: "Pending", value: "Pending" },
                       { label: "Active", value: "Active" },
                       { label: "Completed", value: "Completed" },
+                      { label: "Rejected", value: "Rejected" },
                     ]}
                   />
                 </div>
@@ -353,13 +345,14 @@ function CauseEdit_Form() {
                   </FormLabel>
                   <CheckBox
                     sx={{
-                      paddingLeft: "16px !important",
+                      paddingLeft: "15px",
                       "&.Mui-checked": {
                         color: red[500],
                       },
                     }}
                     name="zakat_eligible"
-                    value={values?.zakat_eligible}
+                    checked={values?.zakat_eligible}
+                    // onChange={handleChange}
                     label={"Yes"}
                   />
                 </div>
@@ -387,6 +380,7 @@ function CauseEdit_Form() {
                     { label: "On", value: true },
                     { label: "Off", value: false },
                   ]}
+                  value={values?.is_featured}
                   label="Featured:"
                   style={{ fontSize: "18px", fontWeight: 500 }}
                 />
