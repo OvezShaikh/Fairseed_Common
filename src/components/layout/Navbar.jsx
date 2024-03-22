@@ -1,17 +1,21 @@
 import * as React from "react";
-import { Fragment, useState } from "react";
+import { Fragment, useState, } from "react";
+// import { createContext } from "react"
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import PrimaryButton from "../inputs/PrimaryButton";
 import images from "../../constants/images";
 import UserLogin from "../../pages/login/Login_page/Index";
-import { Link, NavLink,useParams } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import ProfileAvatar from "../../pages/login/ProfileAvatar";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import Card from './Card'; 
-import { useGetAll } from "../../Hooks";
+import Card from './Card';
+import { useGetAll, useOutsideClick } from "../../Hooks";
+// import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
+
 
 
 import MenuItem from "@mui/material/MenuItem";
@@ -22,7 +26,7 @@ import Divider from "@mui/material/Divider";
 import Settings from "@mui/icons-material/Settings";
 import { Search } from "../inputs/Search";
 import { useEffect } from "react";
-import { useGetAll } from "../../Hooks";
+import { Hidden } from "@mui/material";
 
 const GetInvolved = [
   {
@@ -35,9 +39,8 @@ const GetInvolved = [
   },
   {
     name: "Internship",
-    href: '/Home/GetInvolved/Internship',
+    href: '/Home/Internship',
   },
-
   {
     name: "Support a campaign",
     href: "/Home/Support-a-campaign",
@@ -54,11 +57,11 @@ const OurImpact = [
   },
   {
     name: "Successful Campaigns",
-    href: "/Home/OnGoingCampaigns",
+    href: "/Home/Donate",
   },
   {
     name: "Stories of Change",
-    href: "/Home/Stories-Of-Change",
+    href: "/Home/Stories-of-Change",
   },
   {
     name: "Reports",
@@ -91,133 +94,146 @@ const HowItWorks = [
 
 ];
 
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+const hasToken = !!localStorage.getItem('token');
 
-  
-  function logout() {
-    // Remove the 'token' item from localStorage
-    localStorage.removeItem("token");
-    localStorage.removeItem("user_info");
-    console.log(localStorage.getItem("token"));
-    window.location.href = "/Home";
-    toast.error("Logout Successful !", {
-      position: "top-center",
-    });
-  }
-
-  const { data: page } = useGetAll({
-    key: `/admin-dashboard/pages?page=4&limit=8`,
-    enabled: true,
-    select: (data) => {
-      return data.data.rows?.filter((item) => item?.show_page);
-    },
-    onSuccess: (data) => {},
+function logout() {
+  localStorage.removeItem("token");
+  localStorage.removeItem("user_info");
+  window.location.href = "/Home";
+  toast.error("Logout Successful !", {
+    position: "top-center",
   });
-  const [showSearch, setShowSearch] = useState(false);
+}
 
-  const toggleSearch = () => {
-    setShowSearch((prevState) => !prevState);
-  };
+
+export default function Example(
+
+) {
+
+
+  const page = 2;
+  const perPage = 10;
+
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredCards, setFilteredCards] = useState([]);
+  const [allCards, setAllCards] = useState([]);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [searchSuggestions, setSearchSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(true);
+  const [showSearch, setShowSearch] = useState(false);
+  // const [isInputFocused, setInputFocused] = useState(false);
+  // const [isInputVisible, setInputVisible] = useState(true);
+  const [isInputFocused, setIsInputFocused] = useState("");
+
+  const ref = useRef(null);
+  const suggestionRef = useRef(null);
+  const navigate = useNavigate();
+
+
+
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
-  // console.log(Data)
-  useEffect(() => {
-    // Function to close the search bar when clicking anywhere on the app
-    function handleClickOutside(event) {
-      if (
-        !event.target.closest(".search-container") &&
-        !event.target.closest(".text-black")
-      ) {
-        setShowSearch(false);
-      }
-    }
-
-    // Add event listener when component mounts
-    document.body.addEventListener("click", handleClickOutside);
-
-    // Remove event listener when component unmounts
-    return () => {
-      document.body.removeEventListener("click", handleClickOutside);
-    };
-  }, [showSearch]);
   let role = Data?.user_role;
   let image = Data?.profile_pic;
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  let img = `${process.env.REACT_APP_API_URL}` + image;
+
 
   const handleClose = () => {
     setAnchorEl(null);
   };
-  let img = `${process.env.REACT_APP_API_URL}` + image;
-  const hasToken = !!localStorage.getItem("token");
+
+  const toggleSearch = () => {
+    setShowSearch((prevState) => !prevState);
+    setShowSuggestions(false);
+  };
 
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredCards, setFilteredCards] = useState([]);
-  const { id } = useParams();
-  // const allCards = [
-  //   // your card data array
-  //   // { title: 'Card 1', ... },
-  //   // { title: 'Card 2', ... },
-  //   // ...
-  // ];
-  const [allCards, setAllCards] = useState([]);
-  // const page = 2;
-  // const perPage = 10;
 
-  
-
- 
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
+    setShowSuggestions(true);
+    setIsInputFocused(true);
+
+
   };
 
-  const findSearchResults = (term) => {
-    return [];
+  const handleInputFocus = () => {
+    setIsInputFocused(true);
+
+  };
+
+  const handleInputBlur = (event) => {
+    const relatedTarget = event.relatedTarget;
+    if (relatedTarget && suggestionRef.current && suggestionRef.current.contains(relatedTarget)) {
+
+      return;
+    }
+    else {
+      setIsInputFocused(false);
+      setSearchTerm("");
+    }
+
+
   };
 
 
-  const highlightSearchResults = (text, results) => {
-    return results.reduce((acc, result) => {
-      const { word, position } = result;
-      const startTag = <span class="highlight">${text.slice(position[0], position[1])}</span>;
-      return acc.replace(word, startTag);
-    }, text);
+  //   const handleInputBlur = (event) => {
+  //     const relatedTarget = event.relatedTarget;
+  //     if (relatedTarget && suggestionRef.current && suggestionRef.current.contains(relatedTarget)) {
+  //         if (relatedTarget.classList.contains('suggestion')) {
+  //             return;
+  //         }
+  //     }
+  //     setIsInputFocused(false);
+  //     setSearchTerm("");
+  //     setShowSuggestions(false);
+  // };
+
+
+
+
+  const handleSuggestionClick = () => {
+    setIsInputFocused(true); 
   };
 
-  
+  // const toggleInputVisibility = () => {
+  //   setInputVisible(!isInputVisible);
+  // };
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    const filtered = allCards.filter(card => card.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    setFilteredCards(filtered);
+    const suggestion = allCards.map((card) => ({ id: card.id, title: card.title }));
+    setSearchSuggestions(suggestion);
+    console.log(suggestion);
+    setIsInputFocused(true);
+  };
+
   useGetAll({
     key: `/campaign/campaign?page=${page}&limit=${perPage}`,
     enabled: true,
     select: (data) => {
-      console.log(data?.data?.rows, ">>>>>>>>>>>>")
-        return data?.data?.rows;
+      return data?.data?.rows;
+
     },
     onSuccess: (data) => {
-      console.log(data, ">>>>>>>>>>>>")
       setAllCards(data);
     },
-    onerror:()=>{
+    onerror: () => {
       console.error('Error fetching card titles:')
     }
   })
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    console.log(allCards)
-    const filtered = allCards.filter(card => card.title.toLowerCase().includes(searchTerm.toLowerCase()));
-    setFilteredCards(filtered);
-   
-  };
 
-
- 
-  
   return (
+
     <header
       className="absolute top-0 left-0 right-0 bg-transparent z-10 container"
       style={{
@@ -297,109 +313,46 @@ export default function Example() {
                 leaveTo="opacity-0 translate-y-1"
               >
                 <Popover.Panel className="absolute left-0 top-full z-10 mt-3 w-[250px] max-w-md overflow-hidden rounded bg-white shadow-lg ring-1 ring-gray-900/5">
-                <div className="pl-3 pb-4">
-      {GetInvolved.map((item) => (
-        <div
-          key={item.name}
-          className="group relative flex items-center gap-x-6 pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
-          style={{ fontWeight: 400 }}
-        >
-          <div className="flex-auto">
-            <NavLink
-              to={item.href}
-              className="block font-semibold text-gray-900"
-            >
-              {item.name}
-              <span className="absolute inset-0" />
-            </NavLink>
-          </div>
-        </div>
-      ))}
-      {hasToken && (
-        <div
-          className="group relative flex items-center gap-x-6 pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
-          style={{ fontWeight: 400 }}
-        >
-          <div className="flex-auto">
-            <NavLink
-              to="/Home/Create-Campaign"
-              className="block font-semibold text-gray-900"
-            >
-              Create Campaign
-              <span className="absolute inset-0" />
-            </NavLink>
-          </div>
-        </div>
-      )}
-    </div>
-                </Popover.Panel>
-              </Transition>
-            </Popover>
-            {/* <Popover className="relative mt-1">
-              <Popover.Button
-                className="flex pt-2 nav_button items-center gap-x-1 text-[18px] font-medium font-[satoshi]  text-[#40444C]"
-                onclick="this.style.backgroundColor = (this.style.backgroundColor === '#40444C') ? 'blue' : '#40444C';"
-              >
-                Pages
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="21"
-                  viewBox="0 0 20 21"
-                  fill="none"
-                >
-                  <path
-                    d="M16.6927 8.44219L10.4427 14.6922C10.3846 14.7503 10.3157 14.7964 10.2398 14.8279C10.164 14.8593 10.0826 14.8755 10.0005 14.8755C9.91836 14.8755 9.83703 14.8593 9.76115 14.8279C9.68528 14.7964 9.61635 14.7503 9.5583 14.6922L3.3083 8.44219C3.2208 8.35478 3.16119 8.24337 3.13704 8.12207C3.11288 8.00076 3.12526 7.87502 3.1726 7.76076C3.21995 7.64649 3.30013 7.54884 3.403 7.48017C3.50587 7.41151 3.62681 7.3749 3.75049 7.375H16.2505C16.3742 7.3749 16.4951 7.41151 16.598 7.48017C16.7009 7.54884 16.781 7.64649 16.8284 7.76076C16.8757 7.87502 16.8881 8.00076 16.8639 8.12207C16.8398 8.24337 16.7802 8.35478 16.6927 8.44219Z"
-                    fill="url(#paint0_linear_126_1927)"
-                  />
-                  <defs>
-                    <linearGradient
-                      id="paint0_linear_126_1927"
-                      x1="3.125"
-                      y1="14.8755"
-                      x2="11.5086"
-                      y2="9.72552"
-                      gradientUnits="userSpaceOnUse"
-                    >
-                      <stop stop-color="#FF9F0A" />
-                      <stop offset="1" stop-color="#FF375F" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </Popover.Button>
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-500"
-                enterFrom="opacity-0 translate-y-1"
-                enterTo="opacity-100 translate-y-0"
-                leave="transition ease-in duration-150"
-                leaveFrom="opacity-100 translate-y-0"
-                leaveTo="opacity-0 translate-y-1"
-              >
-                <Popover.Panel className="absolute left-0 top-full z-10 mt-3 w-[250px] max-w-md overflow-hidden rounded bg-white shadow-lg ring-1 ring-gray-900/5">
                   <div className="pl-3 pb-4">
-                    {page?.map((item) => (
+                    {GetInvolved.map((item) => (
                       <div
-                        key={item.tile}
-                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+                        key={item.name}
+                        className="group relative flex items-center gap-x-6 pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
                         style={{ fontWeight: 400 }}
                       >
                         <div className="flex-auto">
                           <NavLink
-                            // to={item.slug}
-                            to={`/Home/page/${item?.slug}`}
+                            to={item.href}
                             className="block font-semibold text-gray-900"
                           >
-                            {item.title}
+                            {item.name}
                             <span className="absolute inset-0" />
                           </NavLink>
                         </div>
                       </div>
                     ))}
+                    {hasToken && (
+                      <div
+                        className="group relative flex items-center gap-x-6 pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+                        style={{ fontWeight: 400 }}
+                      >
+                        <div className="flex-auto">
+                          <NavLink
+                            to="/Home/Create-Campaign"
+                            className="block font-semibold text-gray-900"
+                          >
+                            Create Campaign
+                            <span className="absolute inset-0" />
+                          </NavLink>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </Popover.Panel>
               </Transition>
-            </Popover>{" "} */}
+            </Popover>
+            {/*  second button */}
+
             <Popover className="relative mt-1">
               <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium font-[satoshi] text-[#40444C]">
                 Our Impact
@@ -462,6 +415,7 @@ export default function Example() {
                 </Popover.Panel>
               </Transition>
             </Popover>
+
             {/* third button */}
             <Popover className="relative mt-1">
               <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium  font-[satoshi] text-[#40444C]">
@@ -541,7 +495,7 @@ export default function Example() {
                   padding: "12px 20px",
                 }}
               >
-                <NavLink to="/Home/Create-Campaign"> Start a Campaign</NavLink>
+                <NavLink to="/Home/Create-Campaign">Start a Campaign</NavLink>
               </PrimaryButton>
             ) : (
               <PrimaryButton
@@ -561,36 +515,75 @@ export default function Example() {
               </PrimaryButton>
             )}
 
-            <div className="flex space-x-8 mt-2">
-              <form onSubmit={handleSearch} className="relative mx-auto flex">
-                <input
-                  type="search"
-                  value={searchTerm}
-                  onChange={handleInputChange}
-                  className="text-xs peer cursor-pointer relative mt-2 z-10 h-8 w-10  bg-transparent  pr-8 outline-none focus:rounded-r-none focus:w-full focus:cursor-text focus:border-taupeGray focus:px-3"
-                  placeholder="Typing..."
-                />
-                <button type="submit" className="absolute top-0 mt-2 right-0  bottom-0 my-auto h-8 w-10 px-3 bg-transparent rounded-lg peer-focus:relative peer-focus:rounded-l-none">
-                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
-                    <path d="M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z"></path>
-                  </svg>
-                </button> 
-              </form>
+            <div className="flex space-x-2 mt-2">
+              <div className="flex-col relative">
+                <form onSubmit={handleSearch} className="relative mx-auto flex ">
+                  <input
+                    ref={ref}
+                    type="search"
+                    onFocus={handleInputFocus}
+                    onBlur={handleInputBlur}
+                    value={searchTerm}
+                    onChange={handleInputChange}
+                    className="text-xs peer cursor-pointer relative mt-2 z-10 h-8 w-10  bg-transparent border rounded  pr-8 outline-none focus:rounded-r-none focus:w-full focus:cursor-text focus:border-taupeGray focus:px-3"
+                    placeholder="Typing..."
+                    required
+                  />
 
-              {(searchTerm !== '' ? filteredCards : allCards).map(card => (
-                <Card
-                  key={card.id}
-                  title={card.title}
-                  username={card.username}
-                  cardImage={card.cardImage}
-                  goalAmount={card.goalAmount}
-                  fundRaised={card.fundRaised}
-                  daysLeft={card.daysLeft}
-                  userCount={card.userCount}
-                  location={card.location}
-                  og_id={card.og_id}
-                />
-              ))}
+
+                  {isInputFocused && searchTerm && (
+                    // <div className="absolute float-left flex-row focus:w-full">
+                    <ul
+                      className={`search-suggestions focus:w-full pt-7 mt-2 pb-2 h-8 flex flex-col absolute`}
+                      tabIndex="-1"
+                      onClick={handleSuggestionClick}
+                      onBlur={handleInputBlur}
+                      ref={suggestionRef}
+                    >
+                      {filteredCards.map((card, index) => (
+                        <Link to={`/campaign-details/${card?.id}`}>
+                          <li
+                            
+                            key={index} className="pt-4 font-bold bg-gray-200 " 
+                            onClick={(event) => event.stopPropagation()}
+                            >
+
+                            {card.title}
+
+                          </li>
+                        </Link>
+                      ))}
+                    </ul>
+                    // </div>
+                  )}
+                  <button type="submit" className="absolute top-0 mt-2 mr-2 right-0  bottom-0 my-auto h-8 w-10 px-3 bg-transparent rounded-lg peer-focus:relative peer-focus:rounded-l-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
+                      <path d="M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z"></path>
+                    </svg>
+                  </button>
+
+                  {isInputFocused && searchTerm && (
+                    <ul
+                      className={`search-suggestions pt-7 mt-2 pb-2 h-8 w-auto flex flex-col absolute`}
+                      tabIndex="-1" 
+                      onClick={handleSuggestionClick}
+                      ref={suggestionRef}
+                    >
+                      {filteredCards.map((card, index) => (
+                        <Link to={`/campaign-details/${card?.id}`}>
+                        <li 
+                        key={index} className="pt-4 font-bold bg-gray-200">
+                          
+                            {card.title}
+                          
+                        </li>
+                        </Link>
+                      ))}
+                    </ul>
+                  )}
+                </form>
+              </div>
+
 
               {
                 (localStorage.getItem('token')) ?
@@ -601,8 +594,6 @@ export default function Example() {
                     <UserLogin />
                   </button>)
               }
-
-
             </div>
           </Popover.Group>
         </div>
@@ -636,9 +627,8 @@ export default function Example() {
                   {({ open }) => (
                     <>
                       <Disclosure.Button
-                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
-                          open ? " text-red-400" : ""
-                        }`}
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? " text-red-400" : ""
+                          }`}
                       >
                         Get Involved
                         <ChevronDownIcon
@@ -668,9 +658,8 @@ export default function Example() {
                   {({ open }) => (
                     <>
                       <Disclosure.Button
-                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
-                          open ? " text-red-400" : ""
-                        }`}
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? " text-red-400" : ""
+                          }`}
                       >
                         Our Impact
                         <ChevronDownIcon
@@ -701,9 +690,8 @@ export default function Example() {
                   {({ open }) => (
                     <>
                       <Disclosure.Button
-                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
-                          open ? " text-red-400" : ""
-                        }`}
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? " text-red-400" : ""
+                          }`}
                       >
                         About Us
                         <ChevronDownIcon

@@ -192,7 +192,7 @@ function Footer() {
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="/Home/About-Us/Knowing-Fairseed"
+                  to="/Home/Knowing-Fairseed"
                 >
                   About Us
                 </Link>
