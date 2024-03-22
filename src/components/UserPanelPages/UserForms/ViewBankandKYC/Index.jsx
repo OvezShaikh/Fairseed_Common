@@ -10,7 +10,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useGetAll } from '../../../../Hooks';
 import Attachments from '../../../layout/Attachments/Index'
 
-// import dayjs from 'dayjs';
+
 
 const styleLabel = {
     fontFamily: "satoshi",

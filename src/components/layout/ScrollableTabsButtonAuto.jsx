@@ -16,12 +16,18 @@ import {
 export default function ScrollableTabsButtonForce({
   name,
   label,
-  icone
+  icone,
+  onTabChange
 }) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+
+    const label =event.currentTarget.textContent;
+
+    
+    onTabChange(newValue, label);
   };
 
   // const col = {
@@ -74,27 +80,7 @@ export default function ScrollableTabsButtonForce({
                 style={{ color: "red" }}
                 className="icon pr-2 w-7 h-7"
               />
-              Trending
-            </Box>
-          }
-        />
-        <Tab
-          style={{
-            color: "var(--cool-grey-cool-grey-10, #383A42)",
-            borderRadius: "var(--Spacing-24, 50px)",
-            border: "1.5px solid rgb(248, 85, 85)",
-            fontFamily: "Satoshi",
-            fontSize: "18px",
-            marginLeft: "12px",
-            fontStyle: "normal",
-          }}
-          label={
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiStudentDuotone
-                style={{ color: "red" }}
-                className="icon pr-2 w-7 h-7"
-              />
-              Scholarship
+              Newly Added
             </Box>
           }
         />
@@ -115,6 +101,43 @@ export default function ScrollableTabsButtonForce({
                 className="icon pr-2 w-7 h-7"
               />
               Most Supported
+            </Box>
+          }
+        />
+        <Tab
+          style={{
+            color: "var(--cool-grey-cool-grey-10, #383A42)",
+            borderRadius: "var(--Spacing-24, 50px)",
+            border: "1.5px solid rgb(248, 85, 85)",
+            marginLeft: "12px",
+            fontFamily: "Satoshi",
+            fontSize: "18px",
+            fontStyle: "normal",
+          }}
+          label={
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <PiMosqueDuotone
+                style={{ color: "red" }}
+                className="icon pr-2 w-7 h-7"
+              />
+              Needs Love
+            </Box>
+          }
+        />
+        <Tab
+          style={{
+            color: "var(--cool-grey-cool-grey-10, #383A42)",
+            borderRadius: "var(--Spacing-24, 50px)",
+            border: "1.5px solid rgb(248, 85, 85)",
+            marginLeft: "12px",
+            fontFamily: "Satoshi",
+            fontSize: "18px",
+            fontStyle: "normal",
+          }}
+          label={
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <PiAlarmDuotone style={{ color: "red" }} className="icon pr-2 w-7 h-7" />
+              Expiring Soon
             </Box>
           }
         />
@@ -158,120 +181,7 @@ export default function ScrollableTabsButtonForce({
             </Box>
           }
         />
-        <Tab
-          style={{
-            color: "var(--cool-grey-cool-grey-10, #383A42)",
-            borderRadius: "var(--Spacing-24, 50px)",
-            border: "1.5px solid rgb(248, 85, 85)",
-            marginLeft: "12px",
-            fontFamily: "Satoshi",
-            fontSize: "18px",
-            fontStyle: "normal",
-          }}
-          label={
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiMosqueDuotone
-                style={{ color: "red" }}
-                className="icon pr-2 w-7 h-7"
-              />
-              Religious Studies
-            </Box>
-          }
-        />
-        <Tab
-          style={{
-            color: "var(--cool-grey-cool-grey-10, #383A42)",
-            borderRadius: "var(--Spacing-24, 50px)",
-            border: "1.5px solid rgb(248, 85, 85)",
-            marginLeft: "12px",
-            fontFamily: "Satoshi",
-            fontSize: "18px",
-            fontStyle: "normal",
-          }}
-          label={
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiAlarmDuotone style={{ color: "red" }} className="icon pr-2 w-7 h-7" />
-              Expiring Soon
-            </Box>
-          }
-        />
-        <Tab
-          style={{
-            color: "var(--cool-grey-cool-grey-10, #383A42)",
-            borderRadius: "var(--Spacing-24, 50px)",
-            border: "1.5px solid rgb(248, 85, 85)",
-            marginLeft: "12px",
-            fontFamily: "Satoshi",
-            fontSize: "18px",
-            fontStyle: "normal",
-          }}
-          label={
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              < PiHeartDuotone style={{ color: "red" }} className="icon pr-2 w-7 h-7" />
-              Needs Love
-            </Box>
-          }
-        />
-        {/* <Tab
-          style={{
-            color: "var(--cool-grey-cool-grey-10, #383A42)",
-            borderRadius: "var(--Spacing-24, 50px)",
-            border: "1.5px solid rgb(248, 85, 85)",
-            marginLeft: "12px",
-            fontSize: "18px",
-            fontFamily: "Satoshi",
-            fontStyle: "normal",
-          }}
-          label={
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiTrendUpDuotone
-                style={{ color: "red" }}
-                className="icon pr-2 w-7 h-7"
-              />
-              Trending
-            </Box>
-          }
-        />
-        <Tab
-          style={{
-            color: "var(--cool-grey-cool-grey-10, #383A42)",
-            borderRadius: "var(--Spacing-24, 50px)",
-            border: "1.5px solid rgb(248, 85, 85)",
-            marginLeft: "12px",
-            fontFamily: "Satoshi",
-            fontSize: "18px",
-            fontStyle: "normal",
-          }}
-          label={
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiTrendUpDuotone
-                style={{ color: "red" }}
-                className="icon pr-2 w-7 h-7"
-              />
-              Trending
-            </Box>
-          }
-        />
-        <Tab
-          style={{
-            color: "var(--cool-grey-cool-grey-10, #383A42)",
-            borderRadius: "var(--Spacing-24, 50px)",
-            border: "1.5px solid rgb(248, 85, 85)",
-            marginLeft: "12px",
-            fontFamily: "Satoshi",
-            fontSize: "18px",
-            fontStyle: "normal",
-          }}
-          label={
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiTrendUpDuotone
-                style={{ color: "red" }}
-                className="icon pr-2 w-7 h-7"
-              />
-              Trending
-            </Box>
-          }
-        /> */}
+        
       </Tabs>
     </Box>
   );

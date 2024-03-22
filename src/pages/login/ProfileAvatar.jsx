@@ -18,7 +18,6 @@ export default function ProfileAvatar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   function logout() {
-    // Remove the 'token' item from localStorage
     localStorage.removeItem("token");
     localStorage.removeItem("user_info");
     console.log(localStorage.getItem("token"));
@@ -38,9 +37,9 @@ export default function ProfileAvatar() {
     setAnchorEl(null);
   };
 
-  let userData = localStorage.getItem('user_info')
-  let Data = JSON.parse(userData)
-  console.log(Data)
+  let userData = localStorage.getItem("user_info");
+  let Data = JSON.parse(userData);
+  console.log(Data);
   let role = Data?.user_role;
   let image = Data?.profile_pic;
 
@@ -54,7 +53,6 @@ export default function ProfileAvatar() {
           <IconButton
             onClick={handleClick}
             size="small"
-            // sx={{ ml: 2 }}
             aria-controls={open ? "account-menu" : undefined}
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
@@ -84,7 +82,7 @@ export default function ProfileAvatar() {
             "&::before": {
               content: '""',
               display: "block",
-              position: "absolute",
+              position: "fixed",
               top: 0,
               right: 14,
               width: 10,

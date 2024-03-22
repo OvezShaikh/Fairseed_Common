@@ -7,14 +7,9 @@ import SmallScreensVerifyEmail from './SmallScreensVerifyEmail'
 function ForgotPasswordSmScreens() {
     return (
         <div>
-
             <Navbar />
-
             <SmallScreensVerifyEmail />
-
-
             <Footer />
-
         </div>
     )
 }

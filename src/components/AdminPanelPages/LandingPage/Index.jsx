@@ -8,7 +8,6 @@ import { colors } from '../../../constants/theme'
 import { Formik, Form } from 'formik'
 import images from '../../../constants/images'
 import ReactQuilTextField from '../../inputs/ReactQuilTextField/Index'
-import { RiDeleteBin6Line } from "react-icons/ri";
 import SuccessButton from '../../inputs/SuccessButton/Index'
 import { PiCheckFat } from "react-icons/pi";
 import { pink, red } from "@mui/material/colors";
@@ -18,9 +17,6 @@ import Attachments from "../../layout/Attachments/Index"
 import { useState } from 'react'
 
 
-
-
-import { height } from '@mui/system'
 const InputStyle =
 {
     padding: '20px', border: "1px solid #e2e2e2",

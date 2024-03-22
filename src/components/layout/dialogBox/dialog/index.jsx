@@ -33,7 +33,7 @@ export const Dialog = ({
 
   return (
     <>
-      {cloneElement(button, {
+      {button && cloneElement(button, {
         onClick: () => {
           onOpen();
           buttonOnClick && buttonOnClick();

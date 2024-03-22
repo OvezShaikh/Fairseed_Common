@@ -1,5 +1,4 @@
 // import CloseIcon from "./CloseIcon";
-import ImageCrop from "../CropImage/ImageCrop";
 // import ImageCropper from "../Cropper/ImageCropper"
 import { FaTimes } from "react-icons/fa";
 
@@ -25,7 +24,7 @@ const Modal = ({closeModal,setDataUrl , name ,setImage}) => {
                 <span className="sr-only">Close menu</span>
                 <FaTimes />
               </button>
-              <ImageCrop  name ={name}closeModal={closeModal} setDataUrl={setDataUrl} setImage={setImage} />
+              {/* <ImageCrop  name ={name}closeModal={closeModal} setDataUrl={setDataUrl} setImage={setImage} /> */}
             </div>
           </div>
         </div>

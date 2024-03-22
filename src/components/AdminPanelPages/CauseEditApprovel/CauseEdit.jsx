@@ -52,8 +52,8 @@ const Campaign = () => {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Id", // Row number header
-        accessor: "index", // Accessor for row number
+        Header: "Id",
+        accessor: "index", 
         Cell: ({ row }) => (
           <div>{row.index + 1}</div>
         ),
@@ -65,7 +65,6 @@ const Campaign = () => {
       {
         Header: "Title",
         accessor: "title",
-        // apiURL: `/admin-dashboard/campaign`,
         minWidth: 100,
         width: 100,
 
@@ -74,7 +73,6 @@ const Campaign = () => {
       {
         Header: "User",
         accessor: "user.username",
-        // apiURL: `/admin-dashboard/campaign`,
         minWidth: 100,
         width: 100,
 
@@ -82,7 +80,6 @@ const Campaign = () => {
       {
         Header: "Email",
         accessor: "user.email",
-        // apiURL: `/admin-dashboard/campaign`,
         minWidth: 100,
         width: 100,
 
@@ -90,7 +87,6 @@ const Campaign = () => {
       {
         Header: "Mobile",
         accessor: "user.mobile_number",
-        // apiURL: `/admin-dashboard/campaign`,
         minWidth: 100,
         width: 100,
 
@@ -98,7 +94,6 @@ const Campaign = () => {
       {
         Header: "Goal",
         accessor: "goal_amount",
-        // apiURL: `/admin-dashboard/campaign`,
         minWidth: 100,
         width: 100,
 
@@ -106,7 +101,6 @@ const Campaign = () => {
       {
         Header: "Status",
         accessor: "status",
-        // apiURL: `/admin-dashboard/campaign
         minWidth: 100,
         width: 100,
         Cell: StatusCell,
@@ -114,7 +108,6 @@ const Campaign = () => {
       {
         Header: "Deadline",
         accessor: "end_date",
-        // apiURL: `/admin-dashboard/campaign`,
 
         minWidth: 100,
         width: 100,
@@ -150,8 +143,6 @@ const Campaign = () => {
         checkboxComponent={IndeterminateCheckbox}
         url={`/admin-dashboard/cause-edit`}
         extraQuery={{ inactive: true }}
-        // addButton={<LocationConfigurationDialog />}
-        // addButton={<Button>HElloooooo</Button>}
         selectedRowID={selectedRowID}
       />
     </div>

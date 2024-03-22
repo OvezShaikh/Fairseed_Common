@@ -17,44 +17,56 @@ function AddNew() {
     const [Category , setCategory ] = useState({});
 
     const navigate = useNavigate();
+
     useGetAll({
         key: `/admin-dashboard/category/${id}`,
         enabled: true,
         select: (data) => {
             console.log(data.data.data);
-            return data.data.data;
+            return data?.data?.data;
         },
         onSuccess: (data) => {
             setCategory(data);
-
         },
     });
     const initialValues = {
-        name:Category.name ||  "",
-        url:Category.slug || "",
-        thumbnail:Category.image || "",
-        is_active:Category.is_active ||  false
+        name:Category?.name ||  "",
+        slug:Category?.slug || "",
+        image:Category?.image || "",
+        is_active:Category?.is_active ||  false
     }
 
     const { mutate } = useCreateOrUpdate({
         url:`/admin-dashboard/category/${id}`,
         method:'put'
     })
+
+    const handleSubmit =(values)=>{
+
+        const formData = new FormData();
+        formData.append('name' , values?.name)
+        formData.append('slug' , values?.slug)
+        if (values?.image instanceof File){
+            formData.append('image' , values?.image)
+        }
+        formData.append('is_active' , values?.is_active)
+        
+        mutate(formData , {
+            onSuccess:()=>{
+                toast.success("Category Updated Successfully ! " ,{
+                    position:'top-right'
+                })
+            }
+        })
+
+    }
  
+    
     return (
         <Formik
            enableReinitialize={true} 
             initialValues={initialValues}
-            onSubmit={(values)=>{
-                mutate(values , {
-                    onSuccess:()=>{
-                        toast.success("Category Updated Successfully ! " ,{
-                            position:'top-right'
-                        })
-                    }
-                })
-            }}
-
+            onSubmit={(values)=>handleSubmit(values)}
         >
               {({ values, setFieldValue, handleChange }) => (
             <Form className='flex flex-col items-center px-4'>
@@ -63,13 +75,20 @@ function AddNew() {
                         <InputAdminField name={"name"} value={values?.name} onChange={handleChange} label={"Name"} placeholder={"Placeholder Text"} />
                     </div>
                     <div className="w-full">
-                        <InputAdminField name={"url"} label={"Slug/URL"} value={values?.url}  onChange={handleChange} placeholder={"Placeholder Text"} />
+                        <InputAdminField name={"slug"} label={"Slug/URL"} value={values?.slug}  onChange={handleChange} placeholder={"Placeholder Text"} />
                     </div>
 
                 </div>
                 <div className="flex w-full mt-8 gap-4">
                     <div className="w-full " Style>
-                        <AdminUploadField name={"thumbnail"} value={values?.thumbnail}   onChange={handleChange} label='Thumbnail (Optainal)' />
+                    <AdminUploadField
+                    label="Thumbnail (Optional)"
+                    placeholder="Recommended size: 150x50 px (PNG)"
+                    sx={{ padding: "20px" }}
+                    multiple={false}
+                    name={"image"}
+                    value={values?.image}
+                  />
                     </div>
                     <div className=" w-full ">
                         <RadioGroup

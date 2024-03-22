@@ -4,12 +4,11 @@ import InputAdminField from "../../../inputs/InputAdminField/Index";
 import RadioGroup from "../../../inputs/radioGroupAdminPanel/index";
 import PrimaryButton from "../../../inputs/PrimaryButton";
 import ReactQuilTextField from "../../../inputs/ReactQuilTextField/Index.jsx";
-import { Form, Formik, useFormikContext, values } from "formik";
+import { Form, Formik } from "formik";
 import { useCreateOrUpdate } from "../../../../Hooks/useCreateOrUpdate.js";
 import { toast } from "react-toastify";
 import MultiKeyTextField from "../../../inputs/MultiAddTags/Index.jsx";
 import { useGetAll } from "../../../../Hooks/useGetAll.js";
-// import { Chips } from "primereact/chips";
 
 const styleLabel = {
   fontFamily: "satoshi",
@@ -28,17 +27,19 @@ const styleInput = {
 
 function General() {
   const [Details, setDetails] = useState({});
-  const [value, setValue] = useState([]);
+  const [Keywords , setkeywords]= useState([])
 
   const { data } = useGetAll({
     key: `/admin-dashboard/gs`,
     enabled: true,
     select: (data) => {
-      console.log(data.data.rows);
+      // console.log(data.data.rows);
       return data.data.rows[0];
     },
     onSuccess: (data) => {
       setDetails(data);
+      // console.log(data?.keywords_data , '<=====')
+      setkeywords(data?.keywords_data)
     },
   });
 
@@ -54,7 +55,7 @@ function General() {
     email_admin: Details?.email_admin || "",
     tandc_url: Details?.tandc_url || "",
     email_no_reply: Details?.email_no_reply || "",
-    keywords_data: Details?.keywords_data || [], // Set initial value as an empty array
+    keywords_data: Keywords || [], // Set initial value as an empty array
     privacy_policy_url: Details?.privacy_policy_url || "",
     date_time: Details?.date_time || "",
     new_registration_enabled: Details?.new_registration_enabled || false,
@@ -63,7 +64,6 @@ function General() {
     facebook_login_enabled: Details?.facebook_login_enabled || false,
     google_login_enabled: Details?.google_login_enabled || false,
   };
-  console.log(Details);
 
   return (
     <Formik
@@ -124,24 +124,20 @@ function General() {
               />
             </div>
           </div>
-          <div className="w-[49%] max-desktop:w-full max-tablet:w-full pt-2">
-            {/* <InputAdminField label={'Keywords'} name={"keywords_data"} onChange={handleChange} placeholder={'Add Tag'} 
-            // value={values?.keywords_data} 
-            /> */}
+          <div className="w-[49%] max-desktop:w-full max-tablet:w-full pt-2">           
 
-            {console.log(values, "<===values")}
             <MultiKeyTextField
               name={"keywords_data"}
               label={"Keywords"}
               sx={styleLabel}
-              onChange={handleChange}
               placeholder={"Add Tags"}
-              // value={values?.keywords_data}
+              value={values?.keywords_data}
+              onChange={(e)=>setFieldValue('keywords_data' , e.value)}
             />
+            
           </div>
           <div className="pt-7 mb-5 h-[200px]">
             <FormLabel style={styleLabel}>Description</FormLabel>
-            {/* <TextEditor  /> */}
             <ReactQuilTextField
               theme={"snow"}
               name={"description"}
@@ -251,9 +247,7 @@ function General() {
                   { label: "Off", value: false },
                 ]}
                 label="Google Login"
-                onChange={(e) => {
-                  setFieldValue("google_login_enabled", e === "true");
-                }}
+                onChange={(e) => { setFieldValue("google_login_enabled", e === "true")}}
               />
             </div>
             <div className=" lg:w-[25%] max-tablet:w-full max-desktop:w-full">

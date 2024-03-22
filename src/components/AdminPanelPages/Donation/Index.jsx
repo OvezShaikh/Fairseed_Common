@@ -10,7 +10,7 @@ import { GoDotFill } from "react-icons/go";
 const Index = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
   const getStatusCellStyle = (status) => {
-    // let { state } = useLocation(); let { id } = state
+  
     console.log('Status:', status);
     if (status === 'Pending') {
       return {

@@ -30,22 +30,11 @@ const stylePrimaryButton = {
     borderRadius: "12px",
 };
 
-// const initialValues = {
-//     adhar_card: "",
-//     adhar: null,
-//     pan_card: "",
-//     pan_card_image: null,
-// };
+
 
 function CompleteKYC({ handleBack, handleNext }) {
     const { submitForm, setFieldValue } = useFormikContext();
-    // const formik = useFormik({
-    //     initialValues,
-    //     onSubmit: (values) => {
-    //         // Handle form submission
-    //         console.log(values);
-    //     },
-    // });
+   
 
     return (
         <form >
@@ -60,14 +49,12 @@ function CompleteKYC({ handleBack, handleNext }) {
                         placeholder="xxxx xxxx xxxx"
                         sx={InputStyle}
 
-                    // {...formik.getFieldProps("adhar_card")}
                     />
                 </div>
                 <UploadField
                     required={'true'}
 
                     name={'adhar_card_image'}
-                    // onChange={(file) => formik.setFieldValue("adhar", file)}
                     label="Upload Aadhar Card (Front and Back):"
                     placeholder="Allowed format: JPEG, PDF and PNG and Maximum size 5 mb."
                     sx={{ padding: '20px' }}
@@ -86,11 +73,9 @@ function CompleteKYC({ handleBack, handleNext }) {
                         sx={InputStyle}
 
                         placeholder="xxxxxxxxxxx"
-                    // {...formik.getFieldProps("pan_card")}
                     /></div>
 
                 <UploadField
-                    // onChange={(file) => formik.setFieldValue("pan_card_image", file)}
                     name={'pan_card_image'}
                     required={'true'}
 
@@ -110,7 +95,6 @@ function CompleteKYC({ handleBack, handleNext }) {
             </div>
             <div className="flex mt-4 desktop:gap-x-[40px] max-desktop:gap-x-[24px]">
                 <SecondaryButton
-                    // disabled={activeStep === 0}
                     onClick={handleBack}
                     sx={styleSecondaryButton}
                 >

@@ -14,10 +14,7 @@ const Page = () => {
     {
       Header: "Id", // Row number header
       accessor: "index", // Accessor for row number
-      Cell: ({ row }) => (
-        // Display row number using index provided by React Table
-        <div>{row.index + 1}</div>
-      ),
+      Cell: ({ row }) => <div>{row.index + 1}</div>,
       minWidth: 50,
       width: 50,
       search: false,
@@ -47,17 +44,13 @@ const Page = () => {
       Cell: ({ row }) => {
         return (
           <div className="flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0">
-            <Link to="Edit-Pages" state={{ id: row?.id }}>
+            <Link to="Edit" state={{ id: row?.id }}>
               <SecondaryButton sx={{ height: "30px" }}>Edit</SecondaryButton>
             </Link>
             <DeleteBox
               url={`/admin-dashboard/pages`}
               data={row?.original?.id}
               title={"Pages"}
-              // onClick={() => setSelectedRowID(row?.original?.id)}
-              // onSuccess={() => setSelectedRowID(null)}
-              // onClose={() => setSelectedRowID(null)}
-
               refetchUrl={"/admin-dashboard/pages"}
             ></DeleteBox>
           </div>
@@ -75,9 +68,7 @@ const Page = () => {
         title={"Campaign"}
         checkboxComponent={IndeterminateCheckbox}
         url={`/admin-dashboard/pages`}
-        // extraQuery={{ inactive: true }}
         addButton={<PagesAddNew />}
-        // addButton={<Button>HElloooooo</Button>}
         selectedRowID={selectedRowID}
       />
     </div>

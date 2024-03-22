@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./App.css";
 import AdminPage from "../src/pages/AdminPanel/AdminPage";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
-
 import HomePage from "./pages/LandingPage/index";
 import CreateCampaigns from "./pages/Campaigns/CreateCampaigns/Index";
 import CurrentCampaign from "./pages/Campaigns/CurrentCampaign/Index";
-// import Donet from "./pages/Campaigns/Donet/Index";
-// import DonateSettings from "./pages/Campaigns/Donet/DonateSettings/Index";
 import CampaignsByCategory from "./pages/Campaigns/CampaignsByCategory/Index";
 import OnGoingCampaigns from "./pages/Campaigns/OnGoingCampaigns/Index";
 import LoginOnSmallScreen from "./pages/login/Login_page/LoginOnSmallScreen";
@@ -15,28 +12,18 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "react-image-crop/dist/ReactCrop.css";
 import RegisterSmallScreen from "./pages/login/Sign_Up/RegisterSmallScreen";
-import AdminLayout from "./components/layout/AdminLayout/Index";
-
 import StoriesOfChange from "./pages/StaticPages/StoriesOfChange/Index";
 import Associateship from "./pages/GetInvolved/Associateship";
 import Supportacampaign from "./pages/GetInvolved/Supportacampaign";
-import Internship from "./pages/GetInvolved/Intership";
-import Careers from "./pages/GetInvolved/Careers";
-import Partnerwithus from "./pages/GetInvolved/Partnerwithus";
-import Reports from "./pages/Our Impact/Reports";
-import KnowingFairseed from "./pages/AboutUs/KnowingFairseed";
-import VisionMission from "./pages/AboutUs/Vision&mission";
-import Objectivesandvalues from "./pages/AboutUs/Objectives&values";
-import OurTeam from "./pages/AboutUs/OurTeam";
-import HowItWorks from "./pages/HowItWorks/HowItWorks";
 import PrivacyPolicy from "./pages/login/Sign_Up/PrivacyPolicy";
 import "react-toastify/dist/ReactToastify.css";
 import ForgotPasswordSmScreen from "./pages/login/ForgotPassword/ForgotPasswordSmScreens";
 import Account from "./pages/Account Settings/Index";
 import Donate from "./pages/Donate/Index";
 import AdminPanelLandingPage from "./components/AdminPanelPages/AdminPanelLandingPage/Index";
-import Dashboard from "./components/layout/DashBoard";
 import UserPage from "./pages/User Page/User_page";
+import AddPages from "./pages/AddPages/Index";
+import PageDoesNotExists from "./pages/PageDoesNotExists/NotFoundPage";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -50,13 +37,6 @@ function ScrollToTop() {
 function App() {
   return (
     <div className="container p-0">
-      {/* <OnGoingCampaigns/> */}
-      {/* <CreateCampaigns/> */}
-      {/* <BrowserRouter>
-        <div className="container">
-          <AdminPage />
-        </div>
-      </BrowserRouter> */}
       <BrowserRouter>
         <ToastContainer
           position="bottom-center"
@@ -79,13 +59,13 @@ function App() {
           <Route path="/Home/OnGoingCampaigns" element={<OnGoingCampaigns />} />
           <Route path="/AdminPanel/*" element={<AdminPage />} />
           <Route path="/User/*" element={<UserPage />} />
-          {/* <Route path="/Home/Donate" element={<Donet />} />
-          <Route path="/Home/DonateSettings" element={<DonateSettings />} /> */}
+
           <Route
-            path="/Home/CampaignsByCategory/:id"
+            path="/Home/CampaignsByCategory/:name"
             element={<CampaignsByCategory />}
           />
           <Route path="/Home/Login" element={<LoginOnSmallScreen />} />
+          <Route path="/Login/Privacy-Policy" element={<PrivacyPolicy />} />
           <Route
             path="/Home/RegisterSmallScreen"
             element={<RegisterSmallScreen />}
@@ -93,56 +73,6 @@ function App() {
 
           <Route path="/campaign-details/:id" element={<CurrentCampaign />} />
 
-          <Route
-            path="/Home/Impact/StoriesOfChange"
-            element={<StoriesOfChange />}
-          />
-
-          <Route
-            path="/Home/GetInvolved/Associateship"
-            element={<Associateship />}
-          />
-
-          <Route
-            path="/Home/GetInvolved/Support-a-campaign"
-            element={<Supportacampaign />}
-          />
-
-          <Route path="/Home/GetInvolved/Internship" element={<Internship />} />
-
-          <Route path="/Home/GetInvolved/Careers" element={<Careers />} />
-
-          <Route
-            path="/Home/GetInvolved/Partner-with-us"
-            element={<Partnerwithus />}
-          />
-
-          <Route path="/Home/Impact/Reports" element={<Reports />} />
-
-          <Route
-            path="/Home/About-Us/Knowing-Fairseed"
-            element={<KnowingFairseed />}
-          />
-
-          <Route
-            path="/Home/About-Us/Vision-&-Mission"
-            element={<VisionMission />}
-          />
-
-          <Route
-            path="/Home/About-Us/Objectives-&-values"
-            element={<Objectivesandvalues />}
-          />
-
-          <Route path="/Home/About-Us/Our-Team" element={<OurTeam />} />
-
-          <Route path="/Home/How-It-Works" element={<HowItWorks />} />
-
-          <Route
-            path="/Home/Sign-Up/Privacy-Policy"
-            element={<PrivacyPolicy />}
-          />
-          <Route path="/Home/How-It-Works" element={<HowItWorks />} />
           <Route
             path="/Home/Password-Reset"
             element={<ForgotPasswordSmScreen />}
@@ -156,6 +86,8 @@ function App() {
             path="/adminpanellandingpage"
             element={<AdminPanelLandingPage />}
           />
+          <Route path="/Home/:slug" element={<AddPages />} />
+          <Route path="*" element={<PageDoesNotExists />} />
         </Routes>
       </BrowserRouter>
     </div>
@@ -163,10 +95,3 @@ function App() {
 }
 
 export default App;
-{
-  /* <Route path='/Home/CurrentCampaign' element={<CurrentCampaign/>}/> */
-}
-
-{
-  /* <Route path='/Home/ReligiousEducationCampaigns/:id' element={<ReligiousEducationCampaigns/>}/>  */
-}

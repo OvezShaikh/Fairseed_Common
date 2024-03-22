@@ -1,12 +1,8 @@
 import React from 'react';
 import ReactTable from '../../Table/index';
 import { useState } from 'react';
-import { Button, Checkbox } from '@mui/material';
 import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
-import { LocationConfigurationDialog } from '../../admin-console/AddCategorydialog';
-import Columnfilter from '../../Table/Columnfilter'
 import SecondaryButton from '../../inputs/secondaryButton';
-import CauseEdit from '../CauseEditApprovel/Index';
 import { GoDotFill } from "react-icons/go";
 import { Link, useLocation } from 'react-router-dom';
 

@@ -14,11 +14,6 @@ function Index() {
     () =>
       `${
         pathname
-        //   .replace("/", "")
-        //   .replace(/\/*\[[^\]]*]/g, "")
-        //   .replace(/-/g, " ")
-        //   .replace(/\//g, "  ")
-        // .replace("General Settings"," ")
       }`,
 
     [pathname]

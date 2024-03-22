@@ -119,33 +119,7 @@ const initialValues = {
 }
 
 const validations = [yup.object({
-  // campaign_image: yup.mixed()
-  //   .required('Image is required')
-  //   .test(
-  //     'fileSize',
-  //     'The image must be less than 5 MB',
-  //     (value) => value && value.size <= 5 * 1024 * 1024
-  //   )
-  //   .test(
-  //     'fileDimensions',
-  //     'Recommended size is 850x550. Minimum height is 550 and minimum width is 850',
-  //     (value) => {
-  //       if (!value) return false;
-
-  //       const image = new Image();
-  //       image.src = URL.createObjectURL(value);
-
-  //       const minHeight = 550;
-  //       const minWidth = 850;
-
-  //       return (
-  //         image.height >= minHeight &&
-  //         image.width >= minWidth &&
-  //         value.width >= minWidth &&
-  //         value.height >= minHeight
-  //       );
-  //     }
-  //   ),
+ 
   title: yup.string().required("title is required"),
   goal_amount: yup.number()
     .max(100000, 'Amount must be less than or equal to 100,000')
@@ -166,17 +140,7 @@ const validations = [yup.object({
 yup.object({
   story: yup.string().required("Story is required"),
   summary: yup.string().required("Summary is required"),
-  // document: yup.mixed()
-  //   .required('Campaign image is required')
-  //   .test('fileSize', 'File size is too large', (value) => {
-  //     // Check if the file size is less than or equal to a specific limit (e.g., 5 MB)
-  //     return value && value.size <= 5 * 1024 * 1024; // 5 MB in bytes
-  //   })
-  //   .test('fileType', 'Invalid file type. Only PNG files are allowed', (value) => {
-  //     // Check if the file type is valid (e.g., only allow PNG files)
-  //     return value && value.type === 'image/png';
-  //   }),
-  // document: yup.,
+ 
 
 }),
 yup.object({
@@ -186,13 +150,13 @@ yup.object({
   bank_name: yup.string().required("Bank name is required"),
   branch_name: yup.string().required("Branch name is required"),
   ifsc_code: yup.string().required("IFSC Code is required"),
-  // passbook_image: yup.string().required("Passbook Image is required"),
+ 
 }),
 yup.object({
   adhar_card: yup.string().required("Adhar Card number is required").max(12, 'Maximum 12 Number allowed'),
-  // adhar: yup.string().required("Adhar card Image is required"),x
+
   pan_card: yup.string().required("Pan Card number is required").max(10, 'Maximum 10 Character allowed'),
-  // pan_card_image: yup.string().required("Pan Card Image is required"),
+ 
 
 }),]
 
@@ -230,7 +194,7 @@ export default function HorizontalLinearStepper() {
   };
 
   const { mutate } = useCreateOrUpdate({
-    url: '/campaign/add-campaign',
+    url: '/add-campaign',
     onSuccess: async (data, Values) => {
       handleNext()
     },

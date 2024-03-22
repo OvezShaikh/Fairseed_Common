@@ -4,10 +4,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import images from "../../../constants/images";
 import Link from "@mui/material/Link";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 function Index({ label, heading, titleName }) {
-  // const [IdName, setIdName] = useState('')
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const title = useMemo(
@@ -18,7 +16,6 @@ function Index({ label, heading, titleName }) {
         .replace(/\/*\[[^\]]*]/g, "")
         .replace(/-/g, " ")
         .replace(/\//g, "  ")
-        // .replace("General Settings"," ")
         .slice(1)}`,
 
     [pathname]

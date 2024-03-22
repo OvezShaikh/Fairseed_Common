@@ -2,14 +2,10 @@ import React from "react";
 
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-// import Navbar from "./Navbar";
 import DrawerBody from "./DrawerBody";
 import Navbar from "../navbar/index";
-import AdminNavbar from '../AdminNavbar'
-
 
 export function SideBar({ mobileOpen, setMobileOpen }) {
-  // const [mobileOpen, setMobileOpen] = React.useState(false);
   const container = React.useRef(null);
 
   const handleDrawerToggle = () => {
@@ -17,7 +13,7 @@ export function SideBar({ mobileOpen, setMobileOpen }) {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex" }} className="container">
       {/* <CssBaseline /> */}
       <Navbar handleDrawerToggle={handleDrawerToggle} mobileOpen={mobileOpen} />
       <Box
@@ -38,7 +34,7 @@ export function SideBar({ mobileOpen, setMobileOpen }) {
             keepMounted: true,
           }}
           PaperProps={{
-            className: "transition-all duration-500 ease-in-out"
+            className: "transition-all duration-500 ease-in-out",
           }}
           sx={{
             display: { xs: "block", sm: "block", md: "none" },
@@ -53,7 +49,7 @@ export function SideBar({ mobileOpen, setMobileOpen }) {
         </Drawer>
         <Drawer
           PaperProps={{
-            className: "!transition-all !duration-500 !ease-in-out"
+            className: "!transition-all !duration-500 !ease-in-out",
           }}
           variant="permanent"
           sx={{
@@ -62,7 +58,7 @@ export function SideBar({ mobileOpen, setMobileOpen }) {
               boxSizing: "border-box",
               // width: mobileOpen ? `273px` : '0px',
               left: mobileOpen ? "0px" : "-285px",
-              top: '59px'
+              top: "59px",
             },
           }}
           open

@@ -1,8 +1,7 @@
-import { Add, Edit } from "@carbon/icons-react";
-import { Grid, Box, Button } from "@mui/material";
+import { Add } from "@carbon/icons-react";
 import React from "react";
 import * as yup from "yup";
-import { Form, Formik, useFormikContext } from "formik";
+import { Form, Formik } from "formik";
 import { useQueryClient } from "react-query";
 import { Dialog } from "../layout/dialogBox/dialog";
 import { useCreateOrUpdate } from "../../Hooks/useCreateOrUpdate";
@@ -38,7 +37,13 @@ export const PagesAddNew = ({
   };
   const validationSchema = yup.object().shape({
     title: yup.string().required("Title is required"),
-    slug: yup.string().required("Slug/URL is required"),
+    slug: yup
+      .string()
+      .required("Slug/URL is required")
+      .matches(
+        /^[^\s_0-9]+$/,
+        "Slug/URL cannot contain spaces, underscores, or numbers"
+      ),
     show_navbar: yup.boolean().required("Show Navbar is required"),
     show_footer: yup.boolean().required("Show Footer is required"),
     show_page: yup.boolean().required("Show Page is required"),
@@ -48,7 +53,7 @@ export const PagesAddNew = ({
   const { mutate } = useCreateOrUpdate({
     url: `/admin-dashboard/pages`,
   });
-  
+
   // const { mutate, isLoading } = useCreateOrUpdate({
   //   url: isUpdate ? `/admin/tooltip/${data?.id}` : "/admin/tooltip",
   //   method: isUpdate ? "put" : "post",
@@ -100,16 +105,12 @@ export const PagesAddNew = ({
                 });
                 queryClient.refetchQueries({
                   queryKey: ["/admin-dashboard/pages"],
-                  // stale: true,
                   exact: false,
-                  // predicate: (query) => !query?.options?.params?.download,
                 });
                 onClose();
-                // console.log(response);imageUrl
-                // Handle successful API response here
               },
-              onError: () => {
-                toast.error("Somthing is wrong please try again later", {
+              onError: (response) => {
+                toast.error("Pages with this slug alreay exists", {
                   position: "top-right",
                 });
               },
@@ -139,7 +140,7 @@ export const PagesAddNew = ({
                   <RadioGroup
                     name={"show_navbar"}
                     onChange={(e) => {
-                      setFieldValue("show_navbar", e === 'true');
+                      setFieldValue("show_navbar", e === "true");
                     }}
                     options={[
                       { label: "On", value: true },
@@ -155,7 +156,7 @@ export const PagesAddNew = ({
                   <RadioGroup
                     name={"show_footer"}
                     onChange={(e) => {
-                      setFieldValue("show_footer", e === 'true');
+                      setFieldValue("show_footer", e === "true");
                     }}
                     options={[
                       { label: "On", value: true },
@@ -170,7 +171,7 @@ export const PagesAddNew = ({
                 <div className=" lg:w-[25%] ">
                   <RadioGroup
                     onChange={(e) => {
-                      setFieldValue("show_page", e === 'true');
+                      setFieldValue("show_page", e === "true");
                     }}
                     name={"show_page"}
                     options={[
