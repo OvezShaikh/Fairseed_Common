@@ -106,7 +106,7 @@ export default function ProfileAvatar() {
                 AdminPanel
               </Link>
             </MenuItem>
-            <Divider />
+            <hr />
           </>
         )}
 

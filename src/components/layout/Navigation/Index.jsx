@@ -5,19 +5,27 @@ import images from "../../../constants/images";
 import Link from "@mui/material/Link";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 
-function Index({ label, heading, titleName }) {
+function Index({ label, heading, titleName, remove }) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const title = useMemo(
-    () => `${pathname.replace("%20", "").replace("/Home", "Home")}`,
+  const title = useMemo(() => {
+    let modifiedPathname = pathname
+      .replace("%20", "")
+      .replace("/Home", "Home")
+      .replace("CampaignsByCategory", "Campaigns By Category");
 
-    [pathname]
-  );
-  function handleClick(event, path) {
-    navigate(`/${path}`);
-    event.preventDefault();
-    console.info("You clicked a breadcrumb.");
-  }
+    // Check if the 'remove' prop is true and remove the last part of the pathname
+    if (remove) {
+      modifiedPathname = modifiedPathname.split("/").slice(0, -1).join("/");
+    }
+
+    return modifiedPathname;
+  }, [pathname, remove]);
+  // function handleClick(event, path) {
+  //   navigate(`/${path}`);
+  //   event.preventDefault();
+  //   console.info("You clicked a breadcrumb.");
+  // }
   return (
     <div>
       <div
@@ -71,9 +79,7 @@ function Index({ label, heading, titleName }) {
                 separator="/"
                 aria-label="breadcrumb"
               >
-                {/* {breadcrumbs} */}
                 {title?.split("/")?.map((item, i) => {
-                  // Check if the current index is not the last item in the array
                   return (
                     <Link
                       underline="hover"

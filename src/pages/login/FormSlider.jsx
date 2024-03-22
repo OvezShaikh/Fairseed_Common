@@ -1,6 +1,6 @@
 import React from "react";
 import SideImage from "../../assets/SideImage.jpg";
-import { Grid, Paper, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import Slider from "react-slick";
 

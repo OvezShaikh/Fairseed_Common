@@ -23,6 +23,16 @@ const initialValues = {
   image: "",
   is_active: false,
 };
+const validationSchema = yup.object().shape({
+  title: yup.string().required("Title is required"),
+  url: yup
+    .string()
+    .required("Slug/URL is required")
+    .matches(
+      /^[^\s_0-9]+$/,
+      "Slug/URL cannot contain spaces, underscores, or numbers"
+    ),
+});
 
 export const LocationConfigurationDialog = ({
   isUpdate = false,
@@ -75,6 +85,7 @@ export const LocationConfigurationDialog = ({
       {({ onClose }) => (
         <Formik
           initialValues={initialValues}
+          // validationSchema={validationSchema}
           onSubmit={(values) => handleSubmit(values)}
         >
           {({ setFieldValue }) => (
@@ -89,7 +100,7 @@ export const LocationConfigurationDialog = ({
                 </div>
                 <div className="w-full">
                   <InputAdminField
-                    name={"url"}
+                    name={"slug"}
                     label={"Slug/URL"}
                     placeholder={"Placeholder Text"}
                   />

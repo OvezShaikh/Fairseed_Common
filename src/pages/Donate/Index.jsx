@@ -148,6 +148,7 @@ function Index({ goalAmount, fundRaised }) {
       <Navbar />
       <div className="flex flex-col ">
         <Navigation
+          remove={"remove"}
           label={"Donate"}
           heading={"Donate"}
           titleName={cardDetails?.user}
@@ -166,12 +167,12 @@ function Index({ goalAmount, fundRaised }) {
                       label={"Donation Type:"}
                       options={[
                         {
-                          label: "General Donation    ",
+                          label: "General Donation",
                           value: "General_Donation",
                         },
                         { label: "Zakat", value: "Zakat" },
                         {
-                          label: "Interest Offloading ",
+                          label: "Interest Offloading",
                           value: "Interest_Offloading",
                         },
                       ]}

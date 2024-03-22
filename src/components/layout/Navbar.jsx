@@ -608,62 +608,49 @@ export default function Example() {
                 </Disclosure>
                 <Link
                   to={"/Home/How-It-Works"}
-                  className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[20px]  max-tablet:text-[18px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block rounded-lg px-2.5 py-2 max-desktop:text-[20px]  max-tablet:text-[18px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   How It works
                 </Link>
               </div>
+              <hr />
               <div className="py-4">
                 {localStorage.getItem("token") ? (
-                  <>
+                  <div className="max-desktop:text-[20px] font-[satoshi] text-gray-900 font-semibold  space-y-2 max-tablet:text-[18px]">
                     {role === "Admin" && (
                       <>
-                        <MenuItem>
-                          <Link className="flex  items-center" to="/AdminPanel">
-                            <ListItemIcon className="pr-2">
-                              <Avatar className="!w-7 !h-7" src={img} />
-                            </ListItemIcon>
-                            AdminPanel
-                          </Link>
-                        </MenuItem>
-                        <Divider />
+                        <Link
+                          className="flex  items-center hover:text-pink-400"
+                          to="/AdminPanel"
+                        >
+                          Admin Panel
+                        </Link>
                       </>
                     )}
 
-                    <MenuItem onClick={handleClose}>
-                      <Link className="flex items-center" to={"/User"}>
-                        <ListItemIcon>
-                          <img src={images.Dashboard} alt="" />
-                        </ListItemIcon>
-                        Dashboard
-                      </Link>
-                    </MenuItem>
-
-                    <MenuItem onClick={handleClose}>
-                      <Link
-                        className="flex items-center"
-                        to={"/account-settings"}
-                      >
-                        <ListItemIcon>
-                          <Settings fontSize="small" />
-                        </ListItemIcon>
-                        Settings
-                      </Link>
-                    </MenuItem>
-
-                    <MenuItem
-                      className="flex items-center"
-                      onClick={handleClose}
+                    <Link
+                      className="flex items-center hover:text-pink-400"
+                      to={"/User"}
                     >
+                      Dashboard
+                    </Link>
+
+                    <Link
+                      className="flex items-center"
+                      to={"/account-settings"}
+                    >
+                      Settings
+                    </Link>
+                    <div className="flex justify-start items-center space-x-2">
+                      <button onClick={() => logout()}>Logout</button>
                       <ListItemIcon>
                         <Logout fontSize="small" />
                       </ListItemIcon>
-                      <button onClick={() => logout()}>Logout</button>
-                    </MenuItem>
-                  </>
+                    </div>
+                  </div>
                 ) : (
                   <Link to="/Home/Login">
-                    <button className="font-[satoshi] text-[22px] font-medium text-[#40444C]">
+                    <button className="font-[satoshi] text-[22px] font-medium hover:text-pink-400 text-[#40444C] ">
                       Log In
                     </button>
                   </Link>
