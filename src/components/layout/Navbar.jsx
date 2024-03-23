@@ -627,7 +627,7 @@ export default function Example(
                   {({ open }) => (
                     <>
                       <Disclosure.Button
-                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? " text-red-400" : ""
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] max-tablet:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? " text-red-400" : ""
                           }`}
                       >
                         Get Involved
@@ -730,7 +730,7 @@ export default function Example(
                     {role === "Admin" && (
                       <>
                         <MenuItem>
-                          <Link className="flex  items-center" to="/AdminPanel">
+                          <Link className="flex  items-center max-desktop:font-[satoshi]" to="/AdminPanel">
                             <ListItemIcon className="pr-2">
                               <Avatar className="!w-7 !h-7" src={img} />
                             </ListItemIcon>
@@ -742,7 +742,7 @@ export default function Example(
                     )}
 
                     <MenuItem onClick={handleClose}>
-                      <Link className="flex items-center" to={"/User"}>
+                      <Link className="flex items-center max-desktop:font-[satoshi]" to={"/User"}>
                         <ListItemIcon>
                           <img src={images.Dashboard} alt="" />
                         </ListItemIcon>
@@ -752,7 +752,7 @@ export default function Example(
 
                     <MenuItem onClick={handleClose}>
                       <Link
-                        className="flex items-center"
+                        className="flex items-center max-desktop:font-[satoshi]"
                         to={"/account-settings"}
                       >
                         <ListItemIcon>
@@ -763,13 +763,13 @@ export default function Example(
                     </MenuItem>
 
                     <MenuItem
-                      className="flex items-center"
+                      className="flex items-center max-desktop:font-[satoshi]"
                       onClick={handleClose}
                     >
                       <ListItemIcon>
                         <Logout fontSize="small" />
                       </ListItemIcon>
-                      <button onClick={() => logout()}>Logout</button>
+                      <button className="max-desktop:font-[satoshi]" onClick={() => logout()}>Logout</button>
                     </MenuItem>
                   </>
                 ) : (

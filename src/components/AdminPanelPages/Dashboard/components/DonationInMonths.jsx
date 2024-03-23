@@ -14,92 +14,6 @@ import {
 } from "recharts";
 import "./DonationInMonths.css";
 
-const data = [
-  {
-    date: "2023-01",
-    uv: 4000,
-
-    amt: 2400,
-  },
-  {
-    date: "2023-02",
-    uv: 3000,
-
-    amt: 2210,
-  },
-  {
-    date: "2023-03",
-    uv: 2023,
-
-    amt: 2290,
-  },
-  {
-    date: "2023-04",
-    uv: 2780,
-
-    amt: 2023,
-  },
-  {
-    date: "2023-05",
-    uv: 1890,
-
-    amt: 2181,
-  },
-  {
-    date: "2023-06",
-    uv: 2390,
-
-    amt: 2500,
-  },
-  {
-    date: "2023-07",
-    uv: 3490,
-
-    amt: 2100,
-  },
-  {
-    date: "2023-08",
-    uv: 2390,
-
-    amt: 2500,
-  },
-  {
-    date: "2023-09",
-    uv: 3490,
-
-    amt: 2100,
-  },
-  {
-    date: "2023-10",
-    uv: 2390,
-
-    amt: 2500,
-  },
-  {
-    date: "2023-11",
-    uv: 3490,
-
-    amt: 2100,
-  },
-  {
-    date: "2023-12",
-    uv: 2390,
-
-    amt: 2500,
-  },
-  {
-    date: "2023-13",
-    uv: 3490,
-
-    amt: 2100,
-  },
-];
-
-const monthTickFormatter = (tick) => {
-  const date = new Date(tick);
-
-  return date.getMonth() + 1;
-};
 
 const renderQuarterTick = (tickProps) => {
   const { x, y, payload } = tickProps;
@@ -108,10 +22,6 @@ const renderQuarterTick = (tickProps) => {
   const month = date.getMonth();
   const quarterNo = Math.floor(month / 3) + 1;
   const isMidMonth = month % 3 === 1;
-
-  // if (month % 3 === 1) {
-  //   return <text x={x} y={y - 4} textAnchor="middle">{Q${quarterNo}}</text>;
-  // }
 
   const isLast = month === 11;
 
@@ -147,7 +57,6 @@ const LinearGradientBar = (props) => {
         ry={cornerRadius}
         fill={`url(#gradient-${x})`}
       />
-      {/* <ReferenceDot x={x + barWidth / 2} y={y} r={2} fill="red" /> */}
     </g>
   );
 };
@@ -155,29 +64,21 @@ const LinearGradientBar = (props) => {
 export default function DonationInMonths() {
 
   const [dataObject, setDataObject] = useState([]);
+  const [fundRaised, setFundRaised] = useState(50000);
+  const [goalAmount, setGoalAmount] = useState(100000);
+
 
   useGetAll({
     key: `/admin-dashboard/donation-api`,
     enabled: true,
    
     select: (data) => {
-      
       return data.data.fundraised_data;
     },
     onSuccess: (data) => {
-      
       setDataObject(data);
     },
   });
-
-
-
-
-
-
-
-  const [fundRaised, setFundRaised] = useState(5000);
-  const [goalAmount, setGoalAmount] = useState(10000);
 
   return (
     <div className="rounded-md shadow-md p-5 ">
@@ -186,18 +87,13 @@ export default function DonationInMonths() {
         <BarChart
           width={500}
           height={200}
-          data={data}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 30,
-            bottom: 5,
-          }}
+          data={dataObject}
+          margin={{top: 20, right: 20, bottom: 20, left: 20}}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" tickFormatter={monthTickFormatter} />
+          <XAxis dataKey='date' angle={-45} textAnchor="end" />
           <XAxis
-            dataKey="date"
+            dataKey='total_amount'
             axisLine={false}
             tickLine={false}
             interval={0}
@@ -209,15 +105,14 @@ export default function DonationInMonths() {
           <YAxis />
           <Tooltip />
           <Legend />
-          {/* <Bar className='recharts-layer recharts-bar-rectangle rounded' dataKey="pv"  /> */}
           <Bar
             className="w-5"
-            dataKey={dataObject?.total_amount}
+            dataKey='total_amount'
             shape={(props) => (
               <LinearGradientBar
                 fundRaised={fundRaised}
                 goalAmount={goalAmount}
-                customWidth={20}
+                customWidth={15}
                 {...props}
               />
             )}
