@@ -23,7 +23,6 @@ const InputField = ({
   const [field, meta] = useField(name);
 
   const styles = {
-
     minHeight: "43.95px",
     "label + &": {
       marginTop: "0.3rem",
@@ -58,7 +57,7 @@ const InputField = ({
     },
     "& input::placeholder": {
       fontSize: "20px",
-      fontStyle: 'satoshi'
+      fontStyle: "satoshi",
     },
     // "& .MuiInputBase-input.Mui-disabled": {
     //   WebkitTextFillColor: configTextfield?.disabledColor
@@ -82,8 +81,7 @@ const InputField = ({
       borderBottomLeftRadius: theme.shape.borderRadius + "px",
     },
     ...sx,
-  }
-
+  };
 
   const configTextfield = {
     ...field,
@@ -119,9 +117,6 @@ const InputField = ({
     }
   }
 
-
-
-
   // const tooltipData = localStorage.getItem("tooltipData")
   //   ? JSON.parse(localStorage.getItem("tooltipData"))?.filter(
   //       (item) =>
@@ -149,7 +144,7 @@ const InputField = ({
             fontFamily: "satoshi",
             fontStyle: "normal",
             height: "22px",
-            width: '100%'
+            width: "100%",
           }}
         >
           {label}
@@ -166,7 +161,16 @@ const InputField = ({
       <ErrorMessage
         name={name}
         render={(msg) => (
-          <div style={{ fontFamily: 'satoshi', color: "red", fontSize: "1rem", paddingLeft: '5px' }}>{msg}</div>
+          <div
+            style={{
+              fontFamily: "satoshi",
+              color: "red",
+              fontSize: "1rem",
+              paddingLeft: "5px",
+            }}
+          >
+            {msg}
+          </div>
         )}
       />
     </>

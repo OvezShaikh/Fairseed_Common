@@ -9,23 +9,14 @@ function Index({ label, heading, titleName }) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const title = useMemo(
-    () =>
-      `${pathname
-        .replace("/", "")
-        .replace("Password-Reset", "Password Reset")
-        .replace(/\/*\[[^\]]*]/g, "")
-        .replace(/-/g, " ")
-        .replace(/\//g, "  ")
-        .slice(1)}`,
+    () => `${pathname.replace("%20", "").replace("/Home", "Home")}`,
 
     [pathname]
-
   );
   function handleClick(event, path) {
-    navigate(`/${path}`)
+    navigate(`/${path}`);
     event.preventDefault();
     console.info("You clicked a breadcrumb.");
-
   }
   return (
     <div>
@@ -39,7 +30,8 @@ function Index({ label, heading, titleName }) {
           alignItems: "flex-start",
 
           display: "inline-flex",
-        }}>
+        }}
+      >
         <Typography
           variant="h6"
           noWrap
@@ -50,47 +42,51 @@ function Index({ label, heading, titleName }) {
           flexDirection={"column"}
           alignItems="start"
           className="text-capitalize text-truncate"
-        // title={title}
+          // title={title}
         >
           <div className="text-capitalize text-truncate max-tablet:flex max-tablet:flex-col-reverse max-desktop:flex max-desktop:flex-col-reverse">
-            <div className=" pb-4 max-desktop:pt-0 max-tablet:pt-0" onClick={() => navigate(-1)}>
+            <div
+              className=" pb-4 max-desktop:pt-0 max-tablet:pt-0"
+              onClick={() => navigate(-1)}
+            >
               <img src={images.ArrowBack} alt="" />
             </div>
             <div
               className="flex flex-col text-black/70 max-desktop:pb-0 max-tablet:pb-0 bread-crumbs-div"
-              style={{ fontFamily: "satoshi", fontSize: 20, fontWeight: 700, paddingBottom: '30px' }}
+              style={{
+                fontFamily: "satoshi",
+                fontSize: 20,
+                fontWeight: 700,
+                paddingBottom: "30px",
+              }}
             >
               <Breadcrumbs
-
                 className="breadcrumbs_navigation"
                 sx={{
-                  color: '#B6BAC3',
+                  color: "#B6BAC3",
                   fontSize: 16,
-                  fontFamily: 'Satoshi',
-                  fontWeight: 500
+                  fontFamily: "Satoshi",
+                  fontWeight: 500,
                 }}
-                separator='/' aria-label="breadcrumb"
-
+                separator="/"
+                aria-label="breadcrumb"
               >
                 {/* {breadcrumbs} */}
-                {pathname?.substr(1)?.split('/')?.map((item, i) => {
+                {title?.split("/")?.map((item, i) => {
                   // Check if the current index is not the last item in the array
                   return (
                     <Link
                       underline="hover"
-                      style={{ cursor: 'pointer' }}
+                      style={{ cursor: "pointer" }}
                       key={i}
                       color="inherit"
-                    // onClick={(e) => handleClick(e, item)}
+                      // onClick={(e) => handleClick(e, item)}
                     >
                       {item}
-
                     </Link>
                   );
                 })}
-                {console.log(titleName, '=+=+=+Pathname=+=+=+')}
               </Breadcrumbs>
-
             </div>
           </div>
         </Typography>
@@ -104,7 +100,6 @@ function Index({ label, heading, titleName }) {
         <h1
           className="max-tablet:text-[24px] max-desktop:text-[34px] font-[satoshi] text-[48px] font-bold desktop:font-black"
           style={{
-
             background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
             "-webkit-background-clip": "text",
             "-webkit-text-fill-color": "transparent",
@@ -118,4 +113,3 @@ function Index({ label, heading, titleName }) {
 }
 
 export default Index;
-
