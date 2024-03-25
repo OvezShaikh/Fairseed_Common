@@ -239,8 +239,8 @@ function CurrentCampaign({
             </div>
             <div className="flex" style={{ display: "inline-flex" }}>
               <img
-                className="w-[17%] pr-2 max-tablet:w-[20%]"
-                src={images.SedalCheck}
+                className="w-[17%] pr-2 mb-2 max-tablet:w-[20%]"
+                src={images.SealCheck}
                 alt=""
               />
               <h1

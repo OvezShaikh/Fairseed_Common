@@ -112,73 +112,52 @@ const EditCampaign = () => {
     return <div>Loading...</div>;
   }
 
-  // const handleSubmit = (values) => {
-  //   const formData = new FormData();
-  //   if (values?.campaign_image instanceof File) {
-  //     formData.append("campaign_image", values?.campaign_image);
-  //   }
-  //   formData.append("title", values?.title);
-  //   formData.append("amount", values?.amount);
-  //   formData.append("location", values?.location);
-  //   formData.append("end_date", values?.end_date);
-  //   formData.append("summary", values?.summary);
-  //   formData.append("story", values?.story);
-  //   formData.append("category", values?.category?.id);
-  //   formData.append("zakat_eligible", values?.zakat_eligible);
-  //   formData.append("documents", values?.documents);
-  //   formData.append("is_featured", values?.is_featured);
 
-  //   mutate(formData, {
-  //     onSuccess: (response) => {
-  //       toast.success(response?.data?.message, {
-  //         position: "top-right",
-  //       });
-  //       navigate(-1);
-  //     },
-  //     onError: (response) => {
-  //       toast.error(response?.data?.message, {
-  //         position: "top-right",
-  //       });
-  //     },
-  //   });
-  // };
-  
+ const handleSubmit = (values) => {
+  const changedValues = Object.keys(values).filter(
+    key => values[key] !== initial_values[key]
+  );
 
-  const handleSubmit = (values) => {
-    const changedValues = Object.keys(values).filter(
-      key => values[key] !== initial_values[key]
-    );
-    // Prepare payload with only changed values
-    const payload = {};
-    changedValues.forEach(key => {
-      payload[key] = values[key];
-    });
-    // Make API request with payload
-    const formData = new FormData();
+  // Prepare payload with only changed values
+  const payload = {};
+  changedValues.forEach(key => {
+    payload[key] = values[key];
+  });
 
-    Object.entries(payload).forEach(([key, value]) => {
-      // Check if the value is a File instance before appending
-      if (value instanceof File) {
-        formData.append(key, value);
-      } else {
-        formData.append(key, JSON.stringify(value));
-      }
-    });
-    mutate(formData, {
-      onSuccess: (response) => {
-        toast.success(response?.data?.message, {
-          position: "top-right",
-        });
-        navigate(-1);
-      },
-      onError: (error) => {
-        console.error('There was a problem updating the data:', error);
-        toast.error(error?.data?.message, {
-          position: 'top-right',
-        });
-      },
-    });
-  };
+  // Make API request with payload
+  const formData = new FormData();
+
+  // Convert FileList to an array if it exists
+  const documentsArray = values.documents ? Array.from(values.documents) : [];
+
+  // Append each document file to formData
+  documentsArray.forEach((file, index) => {
+    formData.append(`documents`, file);
+  });
+
+  // Append other fields to formData
+  Object.entries(payload).forEach(([key, value]) => {
+    if (key !== 'documents') {
+      formData.append(key, value instanceof File ? value : JSON.stringify(value));
+    }
+  });
+
+  mutate(formData, {
+    onSuccess: (response) => {
+      toast.success(response?.data?.message, {
+        position: "top-right",
+      });
+      navigate(-1);
+    },
+    onError: (error) => {
+      console.error('There was a problem updating the data:', error);
+      toast.error(error?.data?.message, {
+        position: 'top-right',
+      });
+    },
+  });
+};
+
   
 
   return (
@@ -343,10 +322,10 @@ const EditCampaign = () => {
                 <div className="w-[50%] max-tablet:w-full document-upload-div">
                   <UploadField
                     label="Upload Attachment:"
-                    name="documents"
+                    name={"documents"}
                     placeholder="Upload marksheets, Medical records, Fees Structure etc."
                     sx={{ padding: "20px" }}
-                    // multiple={true}
+                    multiple={true}
                     onChange={(value) => setFieldValue("documents", value)}
                   />
                 </div>

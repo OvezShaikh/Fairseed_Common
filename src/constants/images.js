@@ -94,6 +94,8 @@ import Vector from "../assets/Vector.svg";
 
 export default {
   SealCheck,
+  // SealCheck2,
+  // SealCheck3,
   Student,
   UsersThree,
   HandCoins,

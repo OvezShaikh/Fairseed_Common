@@ -9,11 +9,40 @@ import "swiper/css/pagination";
 import images from "../../constants/images";
 import "./Homestyles.css";
 import { Link } from "react-router-dom";
+import { useGetAll } from "../../Hooks";
+import { useState } from "react";
+
+
 
 
 
 
 export default () => {
+  const [allCards, setAllCards] = useState([]);
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(100);
+
+
+
+
+  useGetAll({
+    key: `/campaign/featured-campaign?page=${page}&limit=${perPage}`,
+    enabled: true,
+    select: (data) => {
+      console.log(data?.data?.rows,">>>>>>>>>>>");
+      return data?.data?.rows;
+      
+
+    },
+    onSuccess: (data) => {
+      setAllCards(data);
+    },
+    onerror: () => {
+      console.error('Error fetching card titles:')
+    }
+  })
+
+
   return (
     <Swiper
       // install Swiper modules
@@ -77,7 +106,7 @@ export default () => {
                 lineHeight: "64px",
               }}
             >
-              Help rebuild earthquake hit schools in Morocco!
+              Help rebuild earthquake hit schools in Morocco! 
             </h1>
             <p
               className="max-[999px]:text-center text-4xl  mx-auto min-[1000px]:text-left"
