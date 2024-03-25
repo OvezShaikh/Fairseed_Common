@@ -89,9 +89,13 @@ import riseArrow from "../assets/riseArrow.png";
 import StaticGraph from "../assets/StaticGraph.png";
 import ThreeUser from "../assets/ThreeUser.svg";
 import Coins from "../assets/Coins.svg";
+import SealCheck2 from "../assets/SealCheck2.svg"
+import SealCheck3 from "../assets/SealCheck3.svg"
 
 export default {
   SealCheck,
+  SealCheck2,
+  SealCheck3,
   Student,
   UsersThree,
   HandCoins,

@@ -424,7 +424,7 @@ function Index({ goalAmount, fundRaised }) {
               <div className="flex">
                 <img
                   className="w-[32px] h-[32px] mr-[18px] max-tablet:w-[20%]"
-                  src={images.SedalCheck}
+                  src={images.SealCheck}
                   alt=""
                 />
                 <h1
@@ -461,7 +461,7 @@ function Index({ goalAmount, fundRaised }) {
                 <div className="flex">
                   <img
                     className=" w-[28px] h-[26px] mr-[10px]"
-                    src={icons?.Threeuser}
+                    src={icons?.UsersThree}
                   />
                   <p className="text-[#6B7280] text-[20px]">
                     {cardDetails?.donor_count}

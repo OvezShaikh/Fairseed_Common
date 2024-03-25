@@ -50,7 +50,7 @@ const Dashboard = () => {
       DashBoardText: "Donors",
     },
     {
-      DashBoardImg: images.SealCheck,
+      DashBoardImg: images.SealCheck3,
       DashBoardTotal: dashboardData.successfulCampaign,
       DashBoardText: "Successful Campaigns",
     },
