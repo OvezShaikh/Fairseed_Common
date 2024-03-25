@@ -61,7 +61,7 @@ const EditCampaign = () => {
   };
 
   const { data, isSuccess, refetch } = useGetAll({
-    key: `/admin-dashboard/campaign/${id}`,
+    key: `/user-dashboard/campaign/${id}`,
     enabled: false,
     select: (data) => {
       return data.data.data;
@@ -89,7 +89,7 @@ const EditCampaign = () => {
   });
 
   const { mutate } = useCreateOrUpdate({
-    url: `/user-dashboard/campaign/${id}`,
+    url: `/user-dashboard/cause-edit/${id}`,
     method: "put",
   });
 
@@ -104,7 +104,7 @@ const EditCampaign = () => {
     end_date: user?.end_date || "",
     status: user?.status || "",
     story: user?.story || "",
-    documents: user?.documents || [],
+    documents:  [],
     zakat_eligible: user?.zakat_eligible || false,
   };
   console.log(initial_values);
@@ -117,7 +117,6 @@ const EditCampaign = () => {
   //   if (values?.campaign_image instanceof File) {
   //     formData.append("campaign_image", values?.campaign_image);
   //   }
-
   //   formData.append("title", values?.title);
   //   formData.append("amount", values?.amount);
   //   formData.append("location", values?.location);
@@ -156,6 +155,7 @@ const EditCampaign = () => {
     });
     // Make API request with payload
     const formData = new FormData();
+
     Object.entries(payload).forEach(([key, value]) => {
       // Check if the value is a File instance before appending
       if (value instanceof File) {
@@ -164,10 +164,8 @@ const EditCampaign = () => {
         formData.append(key, JSON.stringify(value));
       }
     });
-    formData.append('approve_kyc', true); 
     mutate(formData, {
       onSuccess: (response) => {
-        console.log(response, '<==========>');
         toast.success(response?.data?.message, {
           position: "top-right",
         });
@@ -320,9 +318,8 @@ const EditCampaign = () => {
                   Attachments:
                   <span className="text-red-600">*</span>
                 </FormLabel>
-
                 <div className="flex gap-4">
-                  {values?.documents?.map((imageUrl, index) => {
+                  {Documents?.map((imageUrl, index) => {
                     const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl.doc_file}`;
                     return <Attachments
                     key={index}
@@ -349,7 +346,7 @@ const EditCampaign = () => {
                     name="documents"
                     placeholder="Upload marksheets, Medical records, Fees Structure etc."
                     sx={{ padding: "20px" }}
-                    multiple={false}
+                    // multiple={true}
                     onChange={(value) => setFieldValue("documents", value)}
                   />
                 </div>

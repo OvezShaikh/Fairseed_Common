@@ -64,7 +64,7 @@ const Campaign = () => {
 
       {
         Header: "Title",
-        accessor: "title",
+        accessor: "campaign.title",
         minWidth: 100,
         width: 100,
 
@@ -72,42 +72,42 @@ const Campaign = () => {
       },
       {
         Header: "User",
-        accessor: "user.username",
+        accessor: "campaign.user.username",
         minWidth: 100,
         width: 100,
 
       },
       {
         Header: "Email",
-        accessor: "user.email",
+        accessor: "campaign.user.email",
         minWidth: 100,
         width: 100,
 
       },
       {
         Header: "Mobile",
-        accessor: "user.mobile_number",
+        accessor: "campaign.user.mobile_number",
         minWidth: 100,
         width: 100,
 
       },
       {
         Header: "Goal",
-        accessor: "goal_amount",
+        accessor: "campaign.goal_amount",
         minWidth: 100,
         width: 100,
 
       },
       {
         Header: "Status",
-        accessor: "status",
+        accessor: "campaign.status",
         minWidth: 100,
         width: 100,
         Cell: StatusCell,
       },
       {
         Header: "Deadline",
-        accessor: "end_date",
+        accessor: "campaign.end_date",
 
         minWidth: 100,
         width: 100,

@@ -44,12 +44,12 @@ const Dashboard = () => {
       DashBoardText: "Funds Raised",
     },
     {
-      DashBoardImg: images.UsersThree,
+      DashBoardImg: images.ThreeUser,
       DashBoardTotal: dashboardData.donorCount,
       DashBoardText: "Donors",
     },
     {
-      DashBoardImg: images.SedalCheck,
+      DashBoardImg: images.SealCheck,
       DashBoardTotal: dashboardData.successfulCampaign,
       DashBoardText: "Successful Campaigns",
     },

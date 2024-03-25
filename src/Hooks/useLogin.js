@@ -35,6 +35,7 @@ const useLogin = () => {
       console.log(userinfo);
 
       navigate("/");
+      window.location.href = "/Home";
       console.log(localStorage.getItem("token"));
       // console.log(localStorage.getItem("userRole"));
     } catch (error) {

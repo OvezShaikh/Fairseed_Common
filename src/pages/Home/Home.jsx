@@ -217,6 +217,7 @@ function Home() {
           </h1>
           <div className="flex flex-col  text-center text-black/100 mb-[64px] max-tablet:mb-[52px]">
             <Link
+              to='/Home/OnGoingCampaigns'
               style={{
                 width: "100%",
                 textAlign: "center",

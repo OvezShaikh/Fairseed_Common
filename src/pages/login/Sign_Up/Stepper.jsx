@@ -173,7 +173,7 @@ const Sign_Stepper = () => {
           position: "top-right",
         });
         navigate("/Home");
-        // window.location.href = "/Home";
+        window.location.href = "/Home";
       },
       onError: (response) => {
         console.log(response);
