@@ -113,43 +113,51 @@ const EditCampaign = () => {
   }
 
 
-  const handleSubmit = (values) => {
-    const changedValues = Object.keys(values).filter(
-      key => values[key] !== initial_values[key]
-    );
-    // Prepare payload with only changed values
-    const payload = {};
-    changedValues.forEach(key => {
-      payload[key] = values[key];
-    });
-    // Make API request with payload
-    const formData = new FormData();
+ const handleSubmit = (values) => {
+  const changedValues = Object.keys(values).filter(
+    key => values[key] !== initial_values[key]
+  );
 
-    Object.entries(payload).forEach(([key, value]) => {
-      // Check if the value is a File instance before appending
-      if (value instanceof File) {
-        formData.append(key, value);
-      } else {
-        formData.append(key, JSON.stringify(value));
-      }
+  // Prepare payload with only changed values
+  const payload = {};
+  changedValues.forEach(key => {
+    payload[key] = values[key];
+  });
 
-    });
+  // Make API request with payload
+  const formData = new FormData();
 
-    mutate(formData, {
-      onSuccess: (response) => {
-        toast.success(response?.data?.message, {
-          position: "top-right",
-        });
-        navigate(-1);
-      },
-      onError: (error) => {
-        console.error('There was a problem updating the data:', error);
-        toast.error(error?.data?.message, {
-          position: 'top-right',
-        });
-      },
-    });
-  };
+  // Convert FileList to an array if it exists
+  const documentsArray = values.documents ? Array.from(values.documents) : [];
+
+  // Append each document file to formData
+  documentsArray.forEach((file, index) => {
+    formData.append(`documents`, file);
+  });
+
+  // Append other fields to formData
+  Object.entries(payload).forEach(([key, value]) => {
+    if (key !== 'documents') {
+      formData.append(key, value instanceof File ? value : JSON.stringify(value));
+    }
+  });
+
+  mutate(formData, {
+    onSuccess: (response) => {
+      toast.success(response?.data?.message, {
+        position: "top-right",
+      });
+      navigate(-1);
+    },
+    onError: (error) => {
+      console.error('There was a problem updating the data:', error);
+      toast.error(error?.data?.message, {
+        position: 'top-right',
+      });
+    },
+  });
+};
+
   
 
   return (

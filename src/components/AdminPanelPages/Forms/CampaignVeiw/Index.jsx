@@ -57,7 +57,7 @@ function Index() {
       const image = `${process.env.REACT_APP_BE_BASE_URL}${ data?.campaign?.campaign_image || ""}`;
       setC_image(image)
       }
-      setDocuments(data?.campaign?.documents)
+      setDocuments(data?.campaign?.documents);
       setCampaignData(data?.campaign_data);
     },
   });
@@ -81,7 +81,6 @@ function Index() {
     approval_status: campaign?.campaign_data?.approval_status || (campaign?.campaign?.approval_status ||  false),
     is_featured:campaign?.campaign_data?.is_featured ||  (campaign?.campaign?.is_featured || false),
     zakat_eligible: campaign?.campaign_data?.zakat_eligible ||  (campaign?.campaign?.zakat_eligible || false),
-    
     documents : campaign?.documents || []
   };
 
