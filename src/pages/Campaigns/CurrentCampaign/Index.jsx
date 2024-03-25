@@ -270,39 +270,41 @@ function CurrentCampaign({
               - This campaign will collect all funds raised by{" "}
               {cardDetails?.end_date}
             </p>
-            <Link to={`/Home/donate/${id}`}>
-              <PrimaryButton
-                className="w-full max-desktop:w-full"
-                sx={{ padding: "16px", borderRadius: "8px" }}
-                // style={{
+            <div className="w-full">
+              <Link to={`/Home/donate/${id}`}>
+                <PrimaryButton
+                  className="w-full max-desktop:w-full"
+                  sx={{ padding: "16px", borderRadius: "8px", width: "%" }}
+                  // style={{
 
-                //   paddingTop: 16,
-                //   paddingBottom: 16,
-                //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
-                //   borderRadius: 8,
-                //   justifyContent: "center",
-                //   alignItems: "center",
-                //   gap: 10,
-                //   display: "inline-flex",
-                // }}
-              >
-                <div style={{ width: 38, position: "relative" }}>
-                  <img src={images.coins2} alt="" />
-                </div>
-                <div
-                  className="desktop:text-2xl max-desktop:text-[20px] max-tablet:text-base"
-                  style={{
-                    color: "rgba(255, 255, 255, 0.90)",
-
-                    fontFamily: "Satoshi ",
-                    fontWeight: "900",
-                    wordWrap: "break-word",
-                  }}
+                  //   paddingTop: 16,
+                  //   paddingBottom: 16,
+                  //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
+                  //   borderRadius: 8,
+                  //   justifyContent: "center",
+                  //   alignItems: "center",
+                  //   gap: 10,
+                  //   display: "inline-flex",
+                  // }}
                 >
-                  Support Cause
-                </div>
-              </PrimaryButton>
-            </Link>
+                  <div style={{ width: 38, position: "relative" }}>
+                    <img src={images.coins2} alt="" />
+                  </div>
+                  <div
+                    className="desktop:text-2xl max-desktop:text-[20px] max-tablet:text-base"
+                    style={{
+                      color: "rgba(255, 255, 255, 0.90)",
+
+                      fontFamily: "Satoshi ",
+                      fontWeight: "900",
+                      wordWrap: "break-word",
+                    }}
+                  >
+                    Support Cause
+                  </div>
+                </PrimaryButton>
+              </Link>
+            </div>
           </div>
         </div>
         <div className="flex justify-start gap-5 w-full max-desktop:flex-col">
@@ -474,7 +476,7 @@ function CurrentCampaign({
           </div>
         </div>
       </div>
-      <div className="flex justify-center gap-4 max-desktop:hidden">
+      <div className="flex justify-center mt-4 gap-4 max-desktop:hidden">
         <Link to={`/Home/donate/${id}`}>
           <PrimaryButton
             sx={{

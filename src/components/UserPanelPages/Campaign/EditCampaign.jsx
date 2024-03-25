@@ -112,37 +112,6 @@ const EditCampaign = () => {
     return <div>Loading...</div>;
   }
 
-  // const handleSubmit = (values) => {
-  //   const formData = new FormData();
-  //   if (values?.campaign_image instanceof File) {
-  //     formData.append("campaign_image", values?.campaign_image);
-  //   }
-  //   formData.append("title", values?.title);
-  //   formData.append("amount", values?.amount);
-  //   formData.append("location", values?.location);
-  //   formData.append("end_date", values?.end_date);
-  //   formData.append("summary", values?.summary);
-  //   formData.append("story", values?.story);
-  //   formData.append("category", values?.category?.id);
-  //   formData.append("zakat_eligible", values?.zakat_eligible);
-  //   formData.append("documents", values?.documents);
-  //   formData.append("is_featured", values?.is_featured);
-
-  //   mutate(formData, {
-  //     onSuccess: (response) => {
-  //       toast.success(response?.data?.message, {
-  //         position: "top-right",
-  //       });
-  //       navigate(-1);
-  //     },
-  //     onError: (response) => {
-  //       toast.error(response?.data?.message, {
-  //         position: "top-right",
-  //       });
-  //     },
-  //   });
-  // };
-  
 
   const handleSubmit = (values) => {
     const changedValues = Object.keys(values).filter(
@@ -163,7 +132,9 @@ const EditCampaign = () => {
       } else {
         formData.append(key, JSON.stringify(value));
       }
+
     });
+
     mutate(formData, {
       onSuccess: (response) => {
         toast.success(response?.data?.message, {
@@ -343,10 +314,10 @@ const EditCampaign = () => {
                 <div className="w-[50%] max-tablet:w-full document-upload-div">
                   <UploadField
                     label="Upload Attachment:"
-                    name="documents"
+                    name={"documents"}
                     placeholder="Upload marksheets, Medical records, Fees Structure etc."
                     sx={{ padding: "20px" }}
-                    // multiple={true}
+                    multiple={true}
                     onChange={(value) => setFieldValue("documents", value)}
                   />
                 </div>

@@ -28,6 +28,7 @@ function Index() {
   const [approval, setApproval] = useState(false);
   const [campaignData, setCampaignData] = useState({});
   const [Documents , setDocuments ] = useState([]);
+  const [c_image , setC_image] = useState('');
   const navigate = useNavigate();
 
   useGetAll({
@@ -49,30 +50,37 @@ function Index() {
     },
     onSuccess: (data) => {
       setCampaign(data);
+      if(data?.campaign_image){
+        const image = `${process.env.REACT_APP_BE_BASE_URL}${ data?.campaign_image}`;
+        setC_image(image)
+      }else{
+      const image = `${process.env.REACT_APP_BE_BASE_URL}${ data?.campaign?.campaign_image || ""}`;
+      setC_image(image)
+      }
       setDocuments(data?.campaign?.documents)
       setCampaignData(data?.campaign_data);
     },
   });
+
 
   const { mutate } = useCreateOrUpdate({
     url: `/admin-dashboard/cause-edit/${id}`,
     method: "put",
   });
 
-  const image = `${process.env.REACT_APP_BE_BASE_URL}${campaign?.campaign_image || ""}`;
-
+ 
   const initial_value = {
-    title: campaign?.campaign_data?.title ||  (campaign?.title || ""),
-    category: campaign?.campaign_data?.category?.name || ( campaign?.category?.name || ""),
-    goal_amount:campaign?.campaign_data?.goal_amount || ( campaign?.goal_amount || ""),
-    location: campaign?.campaign_data?.location ||  ( campaign?.location || ""),
-    end_date: campaign?.campaign_data?.end_date ||  (campaign?.end_date || ""),
-    summary: campaign?.campaign_data?.summary ||  (campaign?.summary || ""),
-    story: campaign?.campaign_data?.story || (campaign?.story || ""),
-    campaign_image: image || "",
-    approval_status: campaign?.campaign_data?.approval_status || (campaign?.approval_status ||  false),
-    is_featured:campaign?.campaign_data?.is_featured ||  (campaign?.is_featured || false),
-    zakat_eligible: campaign?.campaign_data?.zakat_eligible ||  (campaign?.zakat_eligible || false),
+    title: campaign?.campaign_data?.title ||  (campaign?.campaign?.title || ""),
+    category: campaign?.campaign_data?.category?.name || ( campaign?.campaign?.category?.name || ""),
+    goal_amount:campaign?.campaign_data?.goal_amount || ( campaign?.campaign?.goal_amount || ""),
+    location: campaign?.campaign_data?.location ||  ( campaign?.campaign?.location || ""),
+    end_date: campaign?.campaign_data?.end_date ||  (campaign?.campaign?.end_date || ""),
+    summary: campaign?.campaign_data?.summary ||  (campaign?.campaign?.summary || ""),
+    story: campaign?.campaign_data?.story || (campaign?.campaign?.story || ""),
+    campaign_image: c_image || "",
+    approval_status: campaign?.campaign_data?.approval_status || (campaign?.campaign?.approval_status ||  false),
+    is_featured:campaign?.campaign_data?.is_featured ||  (campaign?.campaign?.is_featured || false),
+    zakat_eligible: campaign?.campaign_data?.zakat_eligible ||  (campaign?.campaign?.zakat_eligible || false),
     
     documents : campaign?.documents || []
   };
@@ -88,13 +96,14 @@ function Index() {
     formData.append("story", values?.story);
     formData.append("category", values?.category);
     formData.append("zakat_eligible", values?.zakat_eligible);
+    formData.append("document", values?.category);
+
     {
       approval && formData.append("approve_campaign", true);
     }
 
     mutate(formData, {
       onSuccess: (response) => {
-        console.log(response, "{{{{{{");
         toast.success(response?.data?.data, {
           position: "top-right",
         });
@@ -300,7 +309,7 @@ function Index() {
             <div className="w-[30%] flex max-desktop:w-full max-tablet:w-full justify-center ">
               <ImageEditor
                 sx={{ maxWidth: "500px", minHeight: "500px" }}
-                dataUrl={image}
+                dataUrl={c_image}
               />
             </div>
           </div>

@@ -7,6 +7,7 @@ import PrimaryButton from "../../../inputs/PrimaryButton";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useCreateOrUpdate, useGetAll } from "../../../../Hooks";
 import { toast } from "react-toastify";
+import * as yup from "yup";
 
 function AddNew() {
   let { state } = useLocation();
@@ -33,6 +34,16 @@ function AddNew() {
     image: Category?.image || "",
     is_active: Category?.is_active || false,
   };
+  const validationSchema = yup.object().shape({
+    title: yup.string().required("Title is required"),
+    slug: yup
+      .string()
+      .required("Slug/URL is required")
+      .matches(
+        /^[^\s_0-9]+$/,
+        "Slug/URL cannot contain spaces, underscores, or numbers"
+      ),
+  });
 
   const { mutate } = useCreateOrUpdate({
     url: `/admin-dashboard/category/${id}`,
@@ -53,6 +64,11 @@ function AddNew() {
         toast.success("Category Updated Successfully ! ", {
           position: "top-right",
         });
+        navigate(-1);
+      },
+      onError: (response) => {
+        console.log(response);
+        toast.error(`${response.data}Error`);
       },
     });
   };
@@ -60,6 +76,7 @@ function AddNew() {
   return (
     <Formik
       enableReinitialize={true}
+      validationSchema={validationSchema}
       initialValues={initialValues}
       onSubmit={(values) => handleSubmit(values)}
     >

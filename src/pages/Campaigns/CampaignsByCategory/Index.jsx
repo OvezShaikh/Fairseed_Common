@@ -81,7 +81,11 @@ function Index() {
     <div>
       <Navbar />
       <div className="flex flex-col ">
-        <Navigation label={"ReligiousEducationCampaigns"} heading={name} />
+        <Navigation
+          label={"ReligiousEducationCampaigns"}
+          heading={name}
+          remove={"remove"}
+        />
         {console.log(categoryDetail, "===========category")}
 
         <div className="mx-auto max-w-[91%] flex max-desktop:flex-col max-desktop:gap-y-[48px] max-desktop:items-end max-tablet:gap-y-[20px] mt-[50px]">
