@@ -1,15 +1,6 @@
 import React, { useState } from "react";
 import * as Yup from "yup";
-import {
-  Typography,
-  Link,
-  Button,
-  Stepper,
-  Step,
-  StepLabel,
-  Box,
-  Grid,
-} from "@mui/material";
+import { Typography, Stepper, Step, StepLabel, Box } from "@mui/material";
 import { Formik } from "formik";
 import styled from "@emotion/styled";
 import { useCreateOrUpdate } from "../../../Hooks/useCreateOrUpdate";
@@ -140,7 +131,9 @@ const formValidation = [
     password2: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must be match")
       .required("Required"),
-    policy_privacy: Yup.string().required("Required"),
+    policy_privacy: Yup.boolean()
+      .oneOf([true], "You must agree to the terms and conditions")
+      .required("You must agree to the terms and conditions"),
   }),
 ];
 const getSteps = () => {
@@ -180,7 +173,7 @@ const Sign_Stepper = () => {
           position: "top-right",
         });
         navigate("/Home");
-        // window.location.href = "/Home";
+        window.location.href = "/Home";
       },
       onError: (response) => {
         console.log(response);

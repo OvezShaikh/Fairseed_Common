@@ -60,8 +60,11 @@ function Index() {
 
   const fetchCategoryDetail = async () => {
     const perPage = 4;
+    // const res = await axios.get(
+    //   `${process.env.REACT_APP_API_URL}/campaign/category?name=${name}&page=${page}&limit=${perPage}`
+    // );
     const res = await axios.get(
-      `${process.env.REACT_APP_API_URL}/campaign/category?name=${name}&page=${page}&limit=${perPage}`
+      `${process.env.REACT_APP_API_URL}/campaign/category-filter?page=${page}&limit=${perPage}&filter=${tabName}&category=${name}`
     );
     if (Array.isArray(res.data.rows)) {
       setTotalPages(res.data.pages_count);

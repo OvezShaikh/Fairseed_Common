@@ -16,10 +16,10 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { ImageCropper } from "../../../../components/inputs/Cropper/ImageCropper";
 import { ImagePreviewDialog } from "../../../../components/inputs/PreviewImage/PreviewImage";
+
 const InputStyle = {
   padding: "20px",
   border: "1px solid #e2e2e2",
-  // },
   "&:focus-within": {
     boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
     borderColor: "black",
@@ -45,9 +45,10 @@ const stylePrimaryButton = {
 
 const Test = ({ handleBack, handleNext }) => {
   const [category, setCategory] = useState([]);
-  const { setFieldValue, values } = useFormikContext();
   const [srcImg, setSrcImg] = useState("");
   const [openCrop, setOpenCrop] = useState(false);
+
+  const formik = useFormikContext();
 
   const onChange = (e) => {
     let files;
@@ -76,13 +77,26 @@ const Test = ({ handleBack, handleNext }) => {
         console.error("Error fetching category data:", error);
       });
   }, []);
+  const { setFieldValue, values } = useFormikContext();
+
+  const isFormValid = () => {
+    // Check if the required fields are empty
+    return (
+      !!values.campaign_image &&
+      !!values.title &&
+      !!values.goal_amount &&
+      !!values.location &&
+      !!values.category &&
+      !!values.zakat_eligible &&
+      !!values.end_date
+    );
+  };
 
   return (
     <Form className="flex flex-col gap-4 campagin-form">
       <Box className="desktop:py-[80px] max-desktop:py-[53px] flex flex-col items-center">
         <DropZone
           name="campaign_image"
-          // label={'campaign image'}
           onChange={onChange}
           initialPreview={srcImg}
         />
@@ -131,7 +145,6 @@ const Test = ({ handleBack, handleNext }) => {
           name="category"
           required={true}
           label="Choose a Category:"
-          // onChange={Formik.value.category}
           options={category.map((item) => ({
             label: item.name,
             value: item.id,
@@ -161,7 +174,7 @@ const Test = ({ handleBack, handleNext }) => {
             name="zakat_eligible"
             label={"Yes"}
           />
-          <span class="checkmark"></span>
+          <span className="checkmark"></span>
         </div>
         <div className="w-[50%] campaign-input-div campaign-date-div max-tablet:w-[100%]">
           <InputField
@@ -182,17 +195,11 @@ const Test = ({ handleBack, handleNext }) => {
         <PrimaryButton
           sx={stylePrimaryButton}
           onClick={() => {
-            handleNext();
+            if (isFormValid()) {
+              handleNext();
+            }
           }}
-          // onClick={() => {
-          //     if (value === 0) {
-          //         alert('All fields are filled. Moving to the next step!');
-          //         handleNext();
-          //     } else {
-          //         alert('Please fill in all required fields.');
-          //     }
-          // }}
-          // disabled={}
+          disabled={!isFormValid()}
         >
           Next
         </PrimaryButton>
