@@ -219,7 +219,6 @@ function CurrentCampaign({
             </p>
 
             <div className="desktop:mb-5 max-desktop:mb-5 w-full h-[30px] max-desktop:w-full max-tablet:h-[11px] max-tablet:mb-[15px]">
-              {/* <LinearWithValueLabel className='!h-9' height={'30px'} value={30} /> */}
               <LinearProgress
                 style={{ backgroundColor: "#EDEEF1" }}
                 variant="determinate"

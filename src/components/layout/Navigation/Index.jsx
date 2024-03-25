@@ -11,6 +11,7 @@ function Index({ label, heading, titleName, remove }) {
   const title = useMemo(() => {
     let modifiedPathname = pathname
       .replace("%20", "")
+      .replace("-", " ")
       .replace("/Home", "Home")
       .replace("CampaignsByCategory", "Campaigns By Category");
 

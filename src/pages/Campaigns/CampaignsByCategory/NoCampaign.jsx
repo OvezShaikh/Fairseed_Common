@@ -12,13 +12,14 @@ const style = {
 };
 function NoCampaign() {
   return (
-    <div className="flex flex-col gap-20 justify-center items-center flex-wrap text-center">
+    <div className="flex flex-col gap-10 justify-center items-center flex-wrap text-center">
       <img src={images.Vector} alt="" />
       <p className="text-[ var(--Neutral-Neutral-7, #717171)] w-[50%] font-[satoshi] text-[44px] font-semibold">
         Sorry! No campaigns found for this category. Please try again later.
       </p>
-      <Link to="/"><PrimaryButton sx={style}>Back</PrimaryButton></Link>
-
+      <Link to="/">
+        <PrimaryButton sx={style}>Back</PrimaryButton>
+      </Link>
     </div>
   );
 }

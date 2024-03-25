@@ -90,6 +90,7 @@ import StaticGraph from "../assets/StaticGraph.png";
 import ThreeUser from "../assets/ThreeUser.svg";
 import Coins from "../assets/Coins.svg";
 import CompleteVector from "../assets/CompleteVector.svg";
+import Vector from "../assets/Vector.svg";
 
 export default {
   SealCheck,
@@ -182,4 +183,5 @@ export default {
   ThreeUser,
   Coins,
   CompleteVector,
+  Vector,
 };
