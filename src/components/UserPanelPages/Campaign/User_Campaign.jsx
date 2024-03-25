@@ -61,7 +61,7 @@ const User_Campaign = () => {
 
     {
       Header: "Title",
-      accessor: "title",
+      accessor: "campaign.title",
       Cell: ({ row }) => {
         return (
           <div className="flex  ">
