@@ -1,5 +1,5 @@
-import Clock from '../assets/Clock.png'
-import Threeuser from '../assets/Threeuser.png'
+import Clock from '../assets/Clock.svg'
+import UsersThree from '../assets/UsersThree.svg'
 import FooterIconTw from '../assets/FooterIconTw.svg'
 import FooterIconIn from '../assets/FooterIconIn.svg'
 import FooterIconPi from '../assets/FooterIconPi.svg'
@@ -9,7 +9,7 @@ import MapPin from '../assets/MapPin.svg'
 
 export default{
  Clock,
- Threeuser,
+ UsersThree,
  FooterIconTw,
  FooterIconIn,
  FooterIconPi,

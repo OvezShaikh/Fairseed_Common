@@ -73,6 +73,7 @@ function Index() {
     approval_status: campaign?.campaign_data?.approval_status || (campaign?.approval_status ||  false),
     is_featured:campaign?.campaign_data?.is_featured ||  (campaign?.is_featured || false),
     zakat_eligible: campaign?.campaign_data?.zakat_eligible ||  (campaign?.zakat_eligible || false),
+    
     documents : campaign?.documents || []
   };
 

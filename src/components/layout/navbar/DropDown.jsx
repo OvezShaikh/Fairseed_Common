@@ -25,7 +25,7 @@ const DropDown = ({ children }) => {
         onClick={handleClick}
         sx={{ cursor: "pointer", fontSize: 14 }}
         variant="contained"
-        className="text-capitalize d-inline dark font-light"
+        className="text-capitalize d-inline dark font-light max-desktop:font-[satoshi]"
       >
         {children}
       </Box>
@@ -62,7 +62,7 @@ const DropDown = ({ children }) => {
         }}
       >
         <MenuItem
-          className="dark"
+          className="dark max-desktop:font-[satoshi]"
           sx={{
             cursor: "pointer",
             fontSize: 14,

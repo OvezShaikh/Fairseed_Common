@@ -73,7 +73,7 @@ function Card({
             <div className="flex flex-col w-[65%]">
               <div className="flex pl-1  flex-row max-desktop:justify-center">
                 <div className="flex justify-center items-center text-center ">
-                  <img className=" pt-2 " src={icons?.Threeuser} />
+                  <img className=" pt-2 " src={icons?.UsersThree} />
                   <p className="text-black/40 pt-2 pl-1 text-[15px]">
                     {userCount}
                   </p>

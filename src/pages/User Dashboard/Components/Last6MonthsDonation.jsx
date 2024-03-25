@@ -1,4 +1,5 @@
 import React, { PureComponent, useState } from "react";
+import { useGetAll } from "../../../../Hooks";
 
 import {
   BarChart,
@@ -11,7 +12,7 @@ import {
   ResponsiveContainer,
   ReferenceDot,
 } from "recharts";
-import { useGetAll } from "../../../Hooks";
+import "./DonationInMonths.css";
 
 
 const renderQuarterTick = (tickProps) => {
@@ -60,19 +61,19 @@ const LinearGradientBar = (props) => {
   );
 };
 
-export default function DonationInLastMonth() {
+export default function DonationInMonths() {
 
   const [dataObject, setDataObject] = useState([]);
-  const [fundRaised, setFundRaised] = useState(50);
-  const [goalAmount, setGoalAmount] = useState(100);
+  const [fundRaised, setFundRaised] = useState(5000);
+  const [goalAmount, setGoalAmount] = useState(10000);
 
 
   useGetAll({
-    key: `/user-dashboard/fundraiser-data`,
+    key: `/admin-dashboard/donation-api`,
     enabled: true,
    
     select: (data) => {
-      return data.data.fundraiser_data;
+      return data.data.fundraised_data;
     },
     onSuccess: (data) => {
       setDataObject(data);

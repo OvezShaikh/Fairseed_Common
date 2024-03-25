@@ -84,7 +84,7 @@ const UserLogin = () => {
           }}
         >
           <div className="flex w-full">
-            <div className="w-1/2 flex flex-col justify-center items-center">
+            <div className="w-1/2 flex flex-col justify-center items-center max-desktop:font-[satoshi]">
               {/* <Grid
                 item
                 xs={12}
