@@ -1,5 +1,4 @@
 import React, { PureComponent, useState } from "react";
-import { useGetAll } from "../../../../Hooks";
 
 import {
   BarChart,
@@ -12,7 +11,7 @@ import {
   ResponsiveContainer,
   ReferenceDot,
 } from "recharts";
-import "./DonationInMonths.css";
+import { useGetAll } from "../../../Hooks";
 
 
 const renderQuarterTick = (tickProps) => {
@@ -33,10 +32,13 @@ const renderQuarterTick = (tickProps) => {
   return null;
 };
 
+const chartStyle = {
+  "recharts-cartesian-axis-tick-line": "none"
+};
 const LinearGradientBar = (props) => {
   const { fill, x, y, customWidth, height, fundRaised, goalAmount } = props;
   const barWidth = customWidth || 20;
-  const cornerRadius = 10;
+  const cornerRadius = 20;
   const completionPercentage = (fundRaised / goalAmount) * 100;
   const colorStops = `0% ${Math.min(completionPercentage, 100)}%, 100%`;
 
@@ -61,38 +63,53 @@ const LinearGradientBar = (props) => {
   );
 };
 
-export default function DonationInMonths() {
+export default function DonationInLastMonth() {
 
   const [dataObject, setDataObject] = useState([]);
-  const [fundRaised, setFundRaised] = useState(5000);
-  const [goalAmount, setGoalAmount] = useState(10000);
+  const [fundRaised, setFundRaised] = useState(50);
+  const [goalAmount, setGoalAmount] = useState(100);
 
 
   useGetAll({
-    key: `/admin-dashboard/donation-api`,
+    key: `/user-dashboard/donation-data`,
     enabled: true,
    
     select: (data) => {
-      return data.data.fundraised_data;
+      console.log(data.data.donation_data,"Donation data for 6 months");
+      return data.data.donation_data;
     },
     onSuccess: (data) => {
       setDataObject(data);
     },
   });
 
+  const customTickFormatter = (value) => {
+    const date = new Date(value);
+    const formattedDate = date.toLocaleDateString('en-US', {
+      day: '2-digit',
+      month: 'short',
+    });
+    return formattedDate;
+  };
+
+  const formatYAxisTick = (value) => `${value / 1000}k`;
+
+
+
   return (
-    <div className="rounded-md shadow-md p-5 ">
-      <p className={"mb-3 text-lg font-semibold"}>Donation In Months(lacs): </p>
-      <ResponsiveContainer width="100%" height={300}>
+    <div className="font-semibold text-lg">My Donations in last 6 months
+    <div className=" shadow-md p-3 rounded-[20px] border-l">
+      {/* <p className={"mb-3 text-lg font-semibold"}>My Donations in last 6 months </p> */}
+      <ResponsiveContainer width="100%" height={340}>
         <BarChart
           width={500}
-          height={200}
+          height={100}
           data={dataObject}
           margin={{top: 20, right: 20, bottom: 20, left: 20}}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey='date' angle={-45} textAnchor="end" />
-          <XAxis
+          <XAxis dataKey='date' tickFormatter={customTickFormatter} interval={5} height={1}  textAnchor="start" style={chartStyle} tickLine={false} axisLine={false}/>
+          {/* <XAxis
             dataKey='total_amount'
             axisLine={false}
             tickLine={false}
@@ -101,24 +118,25 @@ export default function DonationInMonths() {
             height={1}
             scale="band"
             xAxisId="quarter"
-          />
-          <YAxis />
+          /> */}
+          <YAxis className="pr-5" style={chartStyle} tickLine={false} axisLine={false} tickFormatter={formatYAxisTick} />
           <Tooltip />
           <Legend />
           <Bar
-            className="w-5"
-            dataKey='total_amount'
+            className="w-5 rounded-[20px]"
+            dataKey='donation_count'
             shape={(props) => (
               <LinearGradientBar
                 fundRaised={fundRaised}
                 goalAmount={goalAmount}
-                customWidth={15}
+                customWidth={30}
                 {...props}
               />
             )}
           />
         </BarChart>
       </ResponsiveContainer>
+    </div>
     </div>
   );
 }

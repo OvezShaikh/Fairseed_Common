@@ -32,6 +32,9 @@ const renderQuarterTick = (tickProps) => {
   return null;
 };
 
+const chartStyle = {
+  "recharts-cartesian-axis-tick-line": "none"
+};
 const LinearGradientBar = (props) => {
   const { fill, x, y, customWidth, height, fundRaised, goalAmount } = props;
   const barWidth = customWidth || 20;
@@ -79,19 +82,30 @@ export default function DonationInLastMonth() {
     },
   });
 
+  const customTickFormatter = (value) => {
+    const date = new Date(value);
+    const formattedDate = date.toLocaleDateString('en-US', {
+      day: '2-digit',
+      month: 'short',
+    });
+    return formattedDate;
+  };
+
+
+
   return (
-    <div className="rounded-md shadow-md p-5 ">
+    <div className="rounded-md shadow-md p-3 ">
       <p className={"mb-3 text-lg font-semibold"}>Donation In Months(lacs): </p>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart
           width={500}
-          height={200}
+          height={300}
           data={dataObject}
           margin={{top: 20, right: 20, bottom: 20, left: 20}}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey='date' angle={-45} textAnchor="end" />
-          <XAxis
+          <XAxis dataKey='date' tickFormatter={customTickFormatter} interval={5} height={1}  textAnchor="start" style={chartStyle} tickLine={false} axisLine={false}/>
+          {/* <XAxis
             dataKey='total_amount'
             axisLine={false}
             tickLine={false}
@@ -100,7 +114,7 @@ export default function DonationInLastMonth() {
             height={1}
             scale="band"
             xAxisId="quarter"
-          />
+          /> */}
           <YAxis />
           <Tooltip />
           <Legend />
