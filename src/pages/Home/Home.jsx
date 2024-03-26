@@ -144,6 +144,10 @@ function Home() {
       console.error("Error fetching user list:", error);
     }
   };
+  useEffect(() => {
+    fetchUserListFromTabs();
+
+  }, [tabName]);
 
   const fetchUserList = async () => {
     try {  
@@ -167,10 +171,7 @@ function Home() {
     fetchUserList();
 
   }, [page]);
-  useEffect(() => {
-    fetchUserListFromTabs();
-
-  }, [tabName]);
+ 
 
 
 

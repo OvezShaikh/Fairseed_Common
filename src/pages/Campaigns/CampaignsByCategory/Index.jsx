@@ -58,6 +58,33 @@ function Index() {
     )
   ).map((id) => categoryCampaignList.find((item) => item.id === id));
 
+
+
+  const fetchUserListFromTabs = async () => {
+    const perPage = 4;
+    const res = await axios.get(
+      // `${process.env.REACT_APP_API_URL}/campaign/category?name=${name}&page=${page}&limit=${perPage}`
+      `${process.env.REACT_APP_API_URL}/campaign/category-filter?name=${name}&page=${page}&limit=${perPage}&filter=${tabName}`
+    );
+    if (Array.isArray(res.data.rows)) {
+      setTotalPages(res.data.pages_count);
+      
+      setCategoryCampaignList(res.data.rows);
+      setCategoryDetail(res.data.category_data);
+    } else {
+      console.error("Invalid data structure. Expected an array:", res.data);
+    }
+    // console.log(res.data.rows);
+    // setCategoryCampaignList(res.data.rows)
+  };
+  useEffect(() => {
+    fetchUserListFromTabs();
+
+  }, [tabName]);
+
+
+
+
   const fetchCategoryDetail = async () => {
     const perPage = 4;
     const res = await axios.get(
