@@ -60,22 +60,20 @@ function Index() {
 
   const fetchCategoryDetail = async () => {
     const perPage = 4;
-    // const res = await axios.get(
-    //   `${process.env.REACT_APP_API_URL}/campaign/category?name=${name}&page=${page}&limit=${perPage}`
-    // );
     const res = await axios.get(
-      `${process.env.REACT_APP_API_URL}/campaign/category-filter?page=${page}&limit=${perPage}&filter=${tabName}&category=${name}`
+      // `${process.env.REACT_APP_API_URL}/campaign/category?name=${name}&page=${page}&limit=${perPage}`
+      `${process.env.REACT_APP_API_URL}/campaign/category-filter?name=${name}&page=${page}&limit=${perPage}&filter=${tabName}`
     );
     if (Array.isArray(res.data.rows)) {
       setTotalPages(res.data.pages_count);
+      console.log("CATEGORY CAMPAIGN",res.data.rows)
       setCategoryCampaignList([...categoryCampaignList, ...res.data.rows]);
-      setCategoryDetail(res.data.rows[0]);
-      console.log("FETCH CATEGORY DETAIL =================>", res.data.rows[0]);
+      setCategoryDetail(res.data.category_data);
     } else {
-      // console.error("Invalid data structure. Expected an array:", res.data.category_data);
+      console.error("Invalid data structure. Expected an array:", res.data);
     }
-    console.log(res.data.rows);
-    setCategoryCampaignList(res.data.rows);
+    // console.log(res.data.rows);
+    // setCategoryCampaignList(res.data.rows)
   };
   useEffect(() => {
     fetchCategoryDetail();
@@ -96,7 +94,7 @@ function Index() {
         setTabName("expiring_soon");
         break;
       default:
-        setTabName("newly_added");
+        setTabName("");
     }
   };
 

@@ -84,7 +84,7 @@ function Home() {
         setTabName("expiring_soon");
         break;
       default:
-        setTabName("newly_added");
+        setTabName("");
     }
 
 

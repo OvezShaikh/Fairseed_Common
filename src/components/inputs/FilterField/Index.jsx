@@ -82,10 +82,13 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
   useEffect(() => {
     const fetchLocationList = async () => {
       try {
-        const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/campaign/campaign-category?page=${page}&limit=${limit}`;
+        // const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/campaign/campaign-category?page=${page}&limit=${limit}`;
+        const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/campaign/campaign-category?page=1&limit=1000`;
         const response = await axios.get(API_ENDPOINT);
         setLocationList(response.data.rows);
+        console.log('Category LIST ---------->',response.data.rows);
         setLoading(false);
+        
       } catch (error) {
         setError(error.message);
         setLoading(false);
@@ -93,6 +96,7 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
     };
 
     fetchLocationList();
+    
   }, []);
 
 
@@ -102,7 +106,8 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
     try {
       const perPage = 100;
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
+        // `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
+        `${process.env.REACT_APP_API_URL}/campaign/campaign-filter?page=1&limit=${1000}&filter`
       );
       const res = response.data;
 
@@ -110,6 +115,9 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
       if (Array.isArray(res.rows)) {
 
         setCategoryList([...CategoryList, ...res.rows]);
+
+        
+       
 
       } else {
         console.error("Invalid data structure. Expected an array:", res.data);
@@ -126,7 +134,7 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
   const uniqueCategory = Array.from(new Set(LocationList.map((item) => item.name)));
   const uniqueLocations = Array.from(new Set(CategoryList.map((item) => item.location)));
 
-
+  
 
   return (
     <>
