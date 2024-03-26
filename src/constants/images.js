@@ -71,10 +71,10 @@ import HomePageHero from "../assets/HomePageHero.png";
 import HomePageHeroTab from "../assets/HomePageHeroTab.png";
 import LeftArrowBottomSlider from "../assets/leftarrowbs.png";
 import sliderimg2 from "../assets/sliderimg2.png";
-import Knowingfairseed from "../assets/Knowingfairseed.png"
-import VissionMission from "../assets/VissionMission.png"
-import valuepage from "../assets/valuepage.png"
-import ourteam from "../assets/ourteam.png"
+import Knowingfairseed from "../assets/Knowingfairseed.png";
+import VissionMission from "../assets/VissionMission.png";
+import valuepage from "../assets/valuepage.png";
+import ourteam from "../assets/ourteam.png";
 import DashedImageUpload from "../assets/Dashed Image Upload.png";
 import UploadIcon from "../assets/UploadIcon.png";
 import CausesDetails from "../assets/CausesDetails.svg";
@@ -89,6 +89,8 @@ import riseArrow from "../assets/riseArrow.png";
 import StaticGraph from "../assets/StaticGraph.png";
 import ThreeUser from "../assets/ThreeUser.svg";
 import Coins from "../assets/Coins.svg";
+import CompleteVector from "../assets/CompleteVector.svg";
+import Vector from "../assets/Vector.svg";
 import SealCheck2 from "../assets/SealCheck2.svg"
 import SealCheck3 from "../assets/SealCheck3.svg"
 
@@ -183,5 +185,7 @@ export default {
   riseArrow,
   StaticGraph,
   ThreeUser,
-  Coins
+  Coins,
+  CompleteVector,
+  Vector,
 };

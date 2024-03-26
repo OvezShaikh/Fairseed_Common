@@ -121,6 +121,10 @@ function Index({ goalAmount, fundRaised }) {
           window.location.href = url;
         }
       },
+      onError: (response) => {
+        console.log(response.response.data.error, "==========>ErrorMessage");
+        toast.error(`${response.response.data.error}Error`);
+      },
     });
   };
 

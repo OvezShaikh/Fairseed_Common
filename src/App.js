@@ -21,6 +21,7 @@ import AdminPanelLandingPage from "./components/AdminPanelPages/AdminPanelLandin
 import UserPage from "./pages/User Page/User_page";
 import AddPages from "./pages/AddPages/Index";
 import PageDoesNotExists from "./pages/PageDoesNotExists/NotFoundPage";
+import SuccessfulCampaign from "./pages/Campaigns/SuccessfulCampaign/Index";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -78,6 +79,10 @@ function App() {
           <Route
             path="/adminpanellandingpage"
             element={<AdminPanelLandingPage />}
+          />
+          <Route
+            path="/Home/Successful-campaign"
+            element={<SuccessfulCampaign />}
           />
           <Route path="/Home/:slug" element={<AddPages />} />
           <Route path="*" element={<PageDoesNotExists />} />
