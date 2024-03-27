@@ -119,7 +119,8 @@ export default function DonationInLastMonth() {
             scale="band"
             xAxisId="quarter"
           /> */}
-          <YAxis  domain={[0, 100]} style={chartStyle} tickLine={false} axisLine={false}  />
+          {/* domain={[0, 100]} */}
+          <YAxis   style={chartStyle} tickLine={false} axisLine={false}  />
           <Tooltip />
           <Legend />
           <Bar

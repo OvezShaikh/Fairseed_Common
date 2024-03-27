@@ -89,14 +89,14 @@ export default function DonationInMonths() {
   });
 
   return (
-    <div className="rounded-md shadow-md p-5 ">
+    <div className="rounded-md shadow-md p-2 ">
       <p className={"mb-3 text-lg font-semibold"}>Donation In Months(lacs): </p>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart
           width={500}
           height={200}
           data={dataObject}
-          margin={{top: 20, right: 20, bottom: 20, left: 1}}
+          margin={{top: 20, right: 20, bottom: 20, left: 0}}
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis className="mt-2" dataKey='date' axisLine={false} tickLine={false} tickFormatter={customTickFormatter} interval={2} textAnchor="start" />
