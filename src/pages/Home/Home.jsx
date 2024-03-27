@@ -46,29 +46,16 @@ function Home() {
 
 
   const receiveCategoryFromChild = (categoryData) => {
-
-
-
-
     setCategoryDataFromChild(categoryData);
-
-
   };
 
   const receiveLocationFromChild = (locationData) => {
-
-
-
-
-    setLocationDataFromChild(locationData);
-
-
+setLocationDataFromChild(locationData);
   };
 
 
   const handleTabChange = (index, label) => {
-    console.log('Selected Tab Index:', index);
-    console.log('Selected Tab Label:', label);
+   
 
     switch (label) {
       case 'Newly Added':
@@ -149,7 +136,7 @@ function Home() {
 
   }, [tabName]);
 
-  const fetchUserList = async () => {
+  const fetchCampaigns = async () => {
     try {  
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/campaign/campaign-filter?page=${page}&limit=${perPage}&filter=${tabName}`
@@ -168,7 +155,7 @@ function Home() {
     }
   };
   useEffect(() => {
-    fetchUserList();
+    fetchCampaigns();
 
   }, [page]);
  
@@ -218,6 +205,7 @@ function Home() {
           </h1>
           <div className="flex flex-col  text-center text-black/100 mb-[64px] max-tablet:mb-[52px]">
             <Link
+              to='/Home/OnGoingCampaigns'
               style={{
                 width: "100%",
                 textAlign: "center",

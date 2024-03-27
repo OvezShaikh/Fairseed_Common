@@ -121,6 +121,10 @@ function Index({ goalAmount, fundRaised }) {
           window.location.href = url;
         }
       },
+      onError: (response) => {
+        console.log(response.response.data.error, "==========>ErrorMessage");
+        toast.error(`${response.response.data.error}Error`);
+      },
     });
   };
 
@@ -148,6 +152,7 @@ function Index({ goalAmount, fundRaised }) {
       <Navbar />
       <div className="flex flex-col ">
         <Navigation
+          remove={"remove"}
           label={"Donate"}
           heading={"Donate"}
           titleName={cardDetails?.user}
@@ -166,12 +171,12 @@ function Index({ goalAmount, fundRaised }) {
                       label={"Donation Type:"}
                       options={[
                         {
-                          label: "General Donation    ",
+                          label: "General Donation",
                           value: "General_Donation",
                         },
                         { label: "Zakat", value: "Zakat" },
                         {
-                          label: "Interest Offloading ",
+                          label: "Interest Offloading",
                           value: "Interest_Offloading",
                         },
                       ]}
@@ -424,7 +429,7 @@ function Index({ goalAmount, fundRaised }) {
               <div className="flex">
                 <img
                   className="w-[32px] h-[32px] mr-[18px] max-tablet:w-[20%]"
-                  src={images.SedalCheck}
+                  src={images.SealCheck}
                   alt=""
                 />
                 <h1
@@ -461,7 +466,7 @@ function Index({ goalAmount, fundRaised }) {
                 <div className="flex">
                   <img
                     className=" w-[28px] h-[26px] mr-[10px]"
-                    src={icons?.Threeuser}
+                    src={icons?.UsersThree}
                   />
                   <p className="text-[#6B7280] text-[20px]">
                     {cardDetails?.donor_count}

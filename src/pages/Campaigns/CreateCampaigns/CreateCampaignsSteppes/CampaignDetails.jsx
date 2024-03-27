@@ -47,6 +47,7 @@ const Test = ({ handleBack, handleNext }) => {
   const [category, setCategory] = useState([]);
   const [srcImg, setSrcImg] = useState("");
   const [openCrop, setOpenCrop] = useState(false);
+  const [data, setCity] = useState(false);
 
   const formik = useFormikContext();
 
@@ -77,6 +78,17 @@ const Test = ({ handleBack, handleNext }) => {
         console.error("Error fetching category data:", error);
       });
   }, []);
+
+  useEffect(() => {
+    axios
+      .get("https://countriesnow.space/api/v0.1/countries")
+      .then((res) => {
+        setCity(res.data.data, "==========>Response");
+      })
+      .catch((error) => {
+        console.error("Error fetching category data:", error);
+      });
+  }, []);
   const { setFieldValue, values } = useFormikContext();
 
   const isFormValid = () => {
@@ -91,6 +103,8 @@ const Test = ({ handleBack, handleNext }) => {
       !!values.end_date
     );
   };
+  console.log(data, "============City+");
+  console.log(category);
 
   return (
     <Form className="flex flex-col gap-4 campagin-form">
@@ -150,6 +164,17 @@ const Test = ({ handleBack, handleNext }) => {
             value: item.id,
           }))}
         />
+        {/* {Array.isArray(data) && (
+          <SelectField
+            name="location"
+            required={true}
+            label="Location:"
+            options={data.map((item) => ({
+              label: item.country,
+              value: item.iso2,
+            }))}
+          />
+        )} */}
       </div>
 
       <div className="flex desktop:gap-5 w-full campaign-input-div max-desktop:gap-x-0 max-tablet:flex-col max-tablet:gap-y-[50px]">

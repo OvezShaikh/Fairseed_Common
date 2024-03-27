@@ -20,7 +20,6 @@ export default function ProfileAvatar() {
   function logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("user_info");
-    console.log(localStorage.getItem("token"));
     window.location.href = "/Home";
     toast.error("Logout Successful !", {
       position: "top-center",
@@ -39,12 +38,10 @@ export default function ProfileAvatar() {
 
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
-  console.log(Data);
   let role = Data?.user_role;
   let image = Data?.profile_pic;
 
   let img = `${process.env.REACT_APP_API_URL}` + image;
-  console.log(img, "<======");
 
   return (
     <React.Fragment>
@@ -106,7 +103,7 @@ export default function ProfileAvatar() {
                 AdminPanel
               </Link>
             </MenuItem>
-            <Divider />
+            <hr />
           </>
         )}
 

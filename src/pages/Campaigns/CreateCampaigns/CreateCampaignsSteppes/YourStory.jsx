@@ -69,7 +69,7 @@ Make an Appeal.`}
         </div>
       </div>
 
-      <div className="">
+      <div className="max-tablet:pt-4">
         <FormLabel
           className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
           style={{
@@ -96,7 +96,7 @@ Make an Appeal.`}
         </div>
       </div>
 
-      <div className="document-upload-div">
+      <div className="document-upload-div max-tablet:pt-4">
         <UploadField
           label="Document:"
           name="documents"

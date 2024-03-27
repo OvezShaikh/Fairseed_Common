@@ -6,7 +6,7 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import PrimaryButton from "../inputs/PrimaryButton";
 import images from "../../constants/images";
 import UserLogin from "../../pages/login/Login_page/Index";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import ProfileAvatar from "../../pages/login/ProfileAvatar";
 import { toast } from "react-toastify";
 import MenuItem from "@mui/material/MenuItem";
@@ -17,7 +17,8 @@ import Divider from "@mui/material/Divider";
 import Settings from "@mui/icons-material/Settings";
 import { Search } from "../inputs/Search";
 import { useEffect } from "react";
-import { useGetAll } from "../../Hooks";
+import { useGetAll } from "../../Hooks/useGetAll";
+import { Hidden } from "@mui/material";
 
 const GetInvolved = [
   {
@@ -32,7 +33,6 @@ const GetInvolved = [
     name: "Internship",
     href: "/Home/Internship",
   },
-
   {
     name: "Support a campaign",
     href: "/Home/Support-a-campaign",
@@ -49,11 +49,11 @@ const OurImpact = [
   },
   {
     name: "Successful Campaigns",
-    href: "/Home/OnGoingCampaigns",
+    href: "/Home/Successful-campaign",
   },
   {
     name: "Stories of Change",
-    href: "/Home/Stories-Of-Change",
+    href: "/Home/Stories-of-Change",
   },
   {
     name: "Reports",
@@ -83,10 +83,8 @@ export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   function logout() {
-    // Remove the 'token' item from localStorage
     localStorage.removeItem("token");
     localStorage.removeItem("user_info");
-    console.log(localStorage.getItem("token"));
     window.location.href = "/Home";
     toast.error("Logout Successful !", {
       position: "top-center",
@@ -108,26 +106,6 @@ export default function Example() {
   };
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
-  // console.log(Data)
-  useEffect(() => {
-    // Function to close the search bar when clicking anywhere on the app
-    function handleClickOutside(event) {
-      if (
-        !event.target.closest(".search-container") &&
-        !event.target.closest(".text-black")
-      ) {
-        setShowSearch(false);
-      }
-    }
-
-    // Add event listener when component mounts
-    document.body.addEventListener("click", handleClickOutside);
-
-    // Remove event listener when component unmounts
-    return () => {
-      document.body.removeEventListener("click", handleClickOutside);
-    };
-  }, [showSearch]);
   let role = Data?.user_role;
   let image = Data?.profile_pic;
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -318,6 +296,7 @@ export default function Example() {
                 </Popover.Panel>
               </Transition>
             </Popover>
+
             {/* third button */}
             <Popover className="relative mt-1">
               <Popover.Button className="flex pt-2 nav_button items-center gap-x-1 text-[18px] font-medium  font-[satoshi] text-[#40444C]">
@@ -395,7 +374,7 @@ export default function Example() {
                   padding: "12px 20px",
                 }}
               >
-                <NavLink to="/Home/Create-Campaign"> Start a Campaign</NavLink>
+                <NavLink to="/Home/Create-Campaign">Start a Campaign</NavLink>
               </PrimaryButton>
             ) : (
               <PrimaryButton
@@ -608,62 +587,49 @@ export default function Example() {
                 </Disclosure>
                 <Link
                   to={"/Home/How-It-Works"}
-                  className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[20px]  max-tablet:text-[18px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block rounded-lg px-2.5 py-2 max-desktop:text-[20px]  max-tablet:text-[18px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   How It works
                 </Link>
               </div>
+              <hr />
               <div className="py-4">
                 {localStorage.getItem("token") ? (
-                  <>
+                  <div className="max-desktop:text-[20px] font-[satoshi] text-gray-900 font-semibold  space-y-2 max-tablet:text-[18px]">
                     {role === "Admin" && (
                       <>
-                        <MenuItem>
-                          <Link className="flex  items-center" to="/AdminPanel">
-                            <ListItemIcon className="pr-2">
-                              <Avatar className="!w-7 !h-7" src={img} />
-                            </ListItemIcon>
-                            AdminPanel
-                          </Link>
-                        </MenuItem>
-                        <Divider />
+                        <Link
+                          className="flex  items-center hover:text-pink-400"
+                          to="/AdminPanel"
+                        >
+                          Admin Panel
+                        </Link>
                       </>
                     )}
 
-                    <MenuItem onClick={handleClose}>
-                      <Link className="flex items-center" to={"/User"}>
-                        <ListItemIcon>
-                          <img src={images.Dashboard} alt="" />
-                        </ListItemIcon>
-                        Dashboard
-                      </Link>
-                    </MenuItem>
-
-                    <MenuItem onClick={handleClose}>
-                      <Link
-                        className="flex items-center"
-                        to={"/account-settings"}
-                      >
-                        <ListItemIcon>
-                          <Settings fontSize="small" />
-                        </ListItemIcon>
-                        Settings
-                      </Link>
-                    </MenuItem>
-
-                    <MenuItem
-                      className="flex items-center"
-                      onClick={handleClose}
+                    <Link
+                      className="flex items-center hover:text-pink-400"
+                      to={"/User"}
                     >
+                      Dashboard
+                    </Link>
+
+                    <Link
+                      className="flex items-center"
+                      to={"/account-settings"}
+                    >
+                      Settings
+                    </Link>
+                    <div className="flex justify-start items-center space-x-2">
+                      <button onClick={() => logout()}>Logout</button>
                       <ListItemIcon>
                         <Logout fontSize="small" />
                       </ListItemIcon>
-                      <button onClick={() => logout()}>Logout</button>
-                    </MenuItem>
-                  </>
+                    </div>
+                  </div>
                 ) : (
                   <Link to="/Home/Login">
-                    <button className="font-[satoshi] text-[22px] font-medium text-[#40444C]">
+                    <button className="font-[satoshi] text-[22px] font-medium hover:text-pink-400 text-[#40444C] ">
                       Log In
                     </button>
                   </Link>

@@ -19,10 +19,14 @@ const UploadField = ({
   const [field, meta, handlers] = useField(name);
 
   const handleFileChange = (event) => {
-    const file = multiple ? event.target.files : event.target.files[0];
+    const files = multiple ? event.target.files : [event.target.files[0]];
+  
+    if (files && files.length > 0) {
+      const fileList = Array.from(files); 
+      console.log(fileList ,"<===========")
 
-    if (file) {
-      handlers.setValue(file);
+
+      handlers.setValue(fileList);
       handlers.setTouched(true);
     }
   };
@@ -78,12 +82,13 @@ const UploadField = ({
             type="file"
             ref={ref}
             style={{ display: "none" }}
-            id={`file - input - ${name}`} // Unique ID for each input
+            id={`file - input - ${name}`} 
+            multiple='true'
             onChange={handleFileChange}
           />
 
           <label
-            htmlFor={`file - input - ${name}`} // Matching ID for the corresponding input
+            htmlFor={`file - input - ${name}`} 
             className="flex justify-center gap-2 items-center"
           >
             {field.value ? (
@@ -97,7 +102,6 @@ const UploadField = ({
             ) : (
               ""
             )}
-            {/* You may want to add onClick for focusing on the input */}
             <img
               width={49}
               height={37}

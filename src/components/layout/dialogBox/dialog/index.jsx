@@ -15,6 +15,7 @@ export const Dialog = ({
   buttonOnClick,
   maxWidth = "md",
   onClose: onCloseCall,
+  onCloseDialog, // Added prop for onClose function
 }) => {
   const [container, setContainer] = useState(null);
   const [open, setOpen] = useState(false);
@@ -33,12 +34,13 @@ export const Dialog = ({
 
   return (
     <>
-      {button && cloneElement(button, {
-        onClick: () => {
-          onOpen();
-          buttonOnClick && buttonOnClick();
-        },
-      })}
+      {button &&
+        cloneElement(button, {
+          onClick: () => {
+            onOpen();
+            buttonOnClick && buttonOnClick();
+          },
+        })}
 
       <MuiDialog
         fullWidth
@@ -62,7 +64,7 @@ export const Dialog = ({
             </DialogTitle>
             <DialogContent className="overflow-y-auto  mt-5 ps-0 pe-0">
               {typeof children === "function"
-                ? children({ onClose })
+                ? children({ onClose: onCloseDialog }) // Pass onCloseDialog to children
                 : children}
             </DialogContent>
           </div>

@@ -6,7 +6,22 @@ import SecondaryButton from "../../inputs/secondaryButton";
 import { GoDotFill } from "react-icons/go";
 import { Link, useLocation } from "react-router-dom";
 import images from "../../../constants/images";
-
+import { Dialog } from "../../../components/layout/dialogBox";
+import PrimaryButton from "../../inputs/PrimaryButton";
+const style = {
+  padding: "4px 48px",
+  color: "white",
+  fontSize: "18px",
+  fontWeight: 700,
+  fontFamily: "satoshi",
+};
+const style2 = {
+  padding: "4px 48px",
+  color: "black",
+  fontSize: "18px",
+  fontWeight: 700,
+  fontFamily: "satoshi",
+};
 const User_Campaign = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
   const { pathname } = useLocation();
@@ -61,7 +76,7 @@ const User_Campaign = () => {
 
     {
       Header: "Title",
-      accessor: "title",
+      accessor: "campaign.title",
       Cell: ({ row }) => {
         return (
           <div className="flex  ">
@@ -132,34 +147,52 @@ const User_Campaign = () => {
 
       Cell: ({ row }) => {
         return (
-          <div className={`flex items-center gap-2 justify-center pl-6 max-desktop:pl-0 max-tablet:pl-0`}>
-            {
-              row?.status !== 'Active' ? (
-                <>
-                  <Link to="Edit-Campaign" state={{ id: row?.id }}>
-                    <SecondaryButton sx={{ height: "30px" }}>
-                      Edit
-                    </SecondaryButton>
-                  </Link>
-                  <Link to="View" state={{ id: row?.id }}>
+          <div
+            className={`flex items-center gap-2 justify-center pl-6 max-desktop:pl-0 max-tablet:pl-0`}
+          >
+            {row?.status !== "Active" ? (
+              <>
+                <Link to="Edit-Campaign" state={{ id: row?.id }}>
+                  <SecondaryButton sx={{ height: "30px" }}>
+                    Edit
+                  </SecondaryButton>
+                </Link>
+                {/* <Link to="View" state={{ id: row?.id }}> */}
+
+                <Dialog
+                  button={
                     <SecondaryButton sx={{ height: "30px" }}>
                       Finalize Campaign
                     </SecondaryButton>
-                  </Link>
-                </>
+                  }
+                  maxWidth="md"
+                  onCloseCall={() => console.log("Dialog closed")}
+                  // onCloseDialog={onClose}
+                >
+                  <div className="flex flex-col gap-10 justify-center items-center flex-wrap text-center pb-4">
+                    <img src={images.Vector} alt="" />
+                    <p className="text-[ var(--Neutral-Neutral-7, #717171)] w-[65%] font-[satoshi] text-[34px] font-semibold max-tablet:text-[18px]">
+                      Are you Sure you want to finalize the cause. This action
+                      can’t be undone.
+                    </p>
+                    <div className="flex justify-center gap-4 max-tablet:flex-col">
+                      <SecondaryButton sx={style2}>Cancel</SecondaryButton>
+                      <PrimaryButton sx={style}>Finalize</PrimaryButton>
+                    </div>
+                  </div>
+                </Dialog>
 
-              ) : (
-
-                <>
-                  <Link to="View" state={{ id: row?.id }}>
-                    <SecondaryButton sx={{ height: "30px" }}>
-                      Make Withdrawl
-                    </SecondaryButton>
-                  </Link>
-
-                </>
-              )
-            }
+                {/* </Link> */}
+              </>
+            ) : (
+              <>
+                <Link to="View" state={{ id: row?.id }}>
+                  <SecondaryButton sx={{ height: "30px" }}>
+                    Make Withdrawl
+                  </SecondaryButton>
+                </Link>
+              </>
+            )}
 
             <Link to="Edit" state={{ id: row?.id }}>
               <SecondaryButton sx={{ height: "30px" }}>

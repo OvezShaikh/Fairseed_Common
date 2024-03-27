@@ -1,12 +1,12 @@
-import SedalCheck from "../assets/SealCheck.png";
-import Student from "../assets/Student.png";
+import SealCheck from "../assets/SealCheck.svg";
+import Student from "../assets/Student.svg";
 import UsersThree from "../assets/UsersThree.png";
-import HandCoins from "../assets/HandCoins.png";
-import HandShake from "../assets/Handshake.png";
+import HandCoins from "../assets/HandCoins.svg";
+import HandShake from "../assets/HandShake.svg";
 import TextSeeAll from "../assets/TextSeeAll.png";
 import Alarm from "../assets/Alarm.png";
 import CaretRight from "../assets/CaretRight.png";
-import Funnel from "../assets/Funnel.png";
+import Funnel from "../assets/Funnel.svg";
 import GenderFemale from "../assets/GenderFemale.png";
 import Heart from "../assets/Heart.png";
 import Megaphonesimple from "../assets/MegaphoneSimple.png";
@@ -18,7 +18,7 @@ import Tag from "../assets/Tag.png";
 import Frame1 from "../assets/Frame1.png";
 import range from "../assets/range.png";
 import CardText from "../assets/CardText.png";
-import Coins from "../assets/Coins.png";
+import Coins2 from "../assets/Coins2.svg";
 import Maskgroup2 from "../assets/Maskgroup2.png";
 import Frame2 from "../assets/Frame2.png";
 import range2 from "../assets/range2.png";
@@ -50,7 +50,7 @@ import pencicon from "../assets/pencicon.svg";
 import Home from "../assets/Home.svg";
 import FooterLogo from "../assets/FooterLogo.png";
 import HeaderColor from "../assets/HeaderColor.svg";
-import RocketLaunch from "../assets/RocketLaunch.png";
+import RocketLaunch from "../assets/RocketLaunch.svg";
 import coins2 from "../assets/Coins2.svg";
 import RocketLaunch2 from "../assets/RocketLaunch2.svg";
 import ShareNetwork from "../assets/ShareNetwork.svg";
@@ -71,14 +71,14 @@ import HomePageHero from "../assets/HomePageHero.png";
 import HomePageHeroTab from "../assets/HomePageHeroTab.png";
 import LeftArrowBottomSlider from "../assets/leftarrowbs.png";
 import sliderimg2 from "../assets/sliderimg2.png";
-import Knowingfairseed from "../assets/Knowingfairseed.png"
-import VissionMission from "../assets/VissionMission.png"
-import valuepage from "../assets/valuepage.png"
-import ourteam from "../assets/ourteam.png"
+import Knowingfairseed from "../assets/Knowingfairseed.png";
+import VissionMission from "../assets/VissionMission.png";
+import valuepage from "../assets/valuepage.png";
+import ourteam from "../assets/ourteam.png";
 import DashedImageUpload from "../assets/Dashed Image Upload.png";
 import UploadIcon from "../assets/UploadIcon.png";
 import CausesDetails from "../assets/CausesDetails.svg";
-import Vector from "../assets/Vector.svg";
+import Clock from "../assets/Clock.svg";
 import done from "../assets/done.gif";
 import ColorFullDownArrow from "../assets/ColorfulDownArrow.png";
 import CheckBoxGradient from "../assets/CheckBoxGradient.png";
@@ -87,9 +87,17 @@ import Dashboard from "../assets/Dashboard.svg";
 import DownArrow from "../assets/DownArrow.png";
 import riseArrow from "../assets/riseArrow.png";
 import StaticGraph from "../assets/StaticGraph.png";
+import ThreeUser from "../assets/ThreeUser.svg";
+import Coins from "../assets/Coins.svg";
+import CompleteVector from "../assets/CompleteVector.svg";
+import Vector from "../assets/Vector.svg";
+import SealCheck2 from "../assets/SealCheck2.svg"
+import SealCheck3 from "../assets/SealCheck3.svg"
 
 export default {
-  SedalCheck,
+  SealCheck,
+  SealCheck2,
+  SealCheck3,
   Student,
   UsersThree,
   HandCoins,
@@ -109,7 +117,7 @@ export default {
   Frame1,
   range,
   CardText,
-  Coins,
+  Coins2,
   Maskgroup2,
   Frame2,
   range2,
@@ -170,10 +178,14 @@ export default {
   CausesDetails,
   ColorFullDownArrow,
   CheckBoxGradient,
-  Vector,
+  Clock,
   AdminPanelDropzone,
   Dashboard,
   DownArrow,
   riseArrow,
   StaticGraph,
+  ThreeUser,
+  Coins,
+  CompleteVector,
+  Vector,
 };

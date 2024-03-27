@@ -98,6 +98,7 @@ function CauseEdit_Form() {
   });
 
   const initial_values = {
+    
     campaign_image: user.campaign_image || "",
     title: user.title || "",
     amount: user.goal_amount || "",
@@ -141,6 +142,7 @@ function CauseEdit_Form() {
       },
     });
   };
+  console.log(initial_values)
 
   return (
     <Formik
@@ -321,6 +323,9 @@ function CauseEdit_Form() {
 
               <div className="flex w-[100%] max-tablet:flex-col gap-4">
                 <div className="w-[50%] max-tablet:w-full">
+                {
+                  console.log(values?.status , '++++++')
+                }
                   <SelectField
                     value={values?.status}
                     name={"status"}
