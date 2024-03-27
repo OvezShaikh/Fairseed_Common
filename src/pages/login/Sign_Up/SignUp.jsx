@@ -8,7 +8,7 @@ import { div, Container, Button } from "@mui/material";
 import { toast } from "react-toastify";
 import { SlPencil } from "react-icons/sl";
 import Modal from "../../../components/inputs/Modal/Index";
-import ImagePreviewDialog from "../../../components/inputs/Cropper/ImagePreview";
+import ImagePreviewDialog from "../../../components/inputs/ImageCropper/ImagePreview";
 
 const SignUp = ({ handleNext }) => {
   const imgRef = useRef(null);

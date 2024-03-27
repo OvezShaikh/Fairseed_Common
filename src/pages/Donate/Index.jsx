@@ -428,7 +428,7 @@ function Index({ goalAmount, fundRaised }) {
               </div>
               <div className="flex">
                 <img
-                  className="w-[32px] h-[32px] mr-[18px] max-tablet:w-[20%]"
+                  className="w-[32px] h-[32px] mr-[18px] max-tablet:mr-[10px] max-tablet:w-[20%]"
                   src={images.SealCheck}
                   alt=""
                 />
@@ -443,7 +443,7 @@ function Index({ goalAmount, fundRaised }) {
                     "-webkit-text-fill-color": "transparent",
                   }}
                 >
-                  <p className="text-2xl max-tablet:text-[18px] font-bold">
+                  <p className="text-2xl max-tablet:text-[17px] font-bold">
                     Zakah Eligible !
                   </p>
                 </h1>

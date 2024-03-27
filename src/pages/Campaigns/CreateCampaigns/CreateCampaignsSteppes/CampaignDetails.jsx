@@ -3,7 +3,7 @@ import { Field, Form, Formik, useFormikContext } from "formik";
 import InputField from "../../../../components/inputs/InputField";
 import { FormLabel } from "react-bootstrap";
 import { colors } from "../../../../constants/theme";
-import DropZone from "../../../../components/inputs/Cropper/CropDrop";
+import DropZone from "../../../../components/inputs/ImageCropper/CropDrop";
 import SelectField from "../../../../components/inputs/SelectField";
 import CheckBox from "../../../../components/inputs/checkBox";
 import Box from "@mui/material/Box";
@@ -14,7 +14,7 @@ import "../CreateCampaigns.css";
 
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { ImageCropper } from "../../../../components/inputs/Cropper/ImageCropper";
+import { ImageCropper } from "../../../../components/inputs/ImageCropper/ImageCropper";
 import { ImagePreviewDialog } from "../../../../components/inputs/PreviewImage/PreviewImage";
 
 const InputStyle = {

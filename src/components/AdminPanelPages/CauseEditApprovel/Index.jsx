@@ -19,9 +19,9 @@ import Attachments from "../../layout/Attachments/Index";
 import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { ImageCropper } from "../../inputs/Cropper/ImageCropper";
+import { ImageCropper } from "../../inputs/ImageCropper/ImageCropper";
 import { ImagePreviewDialog } from "../../inputs/PreviewImage/PreviewImage";
-import DropZone from "../../inputs/Cropper/CropDrop";
+import DropZone from "../../inputs/ImageCropper/CropDrop";
 import { CloudDataOps } from "@carbon/icons-react";
 function CauseEdit_Form() {
   let { state } = useLocation();
@@ -98,7 +98,6 @@ function CauseEdit_Form() {
   });
 
   const initial_values = {
-    
     campaign_image: user.campaign_image || "",
     title: user.title || "",
     amount: user.goal_amount || "",
@@ -142,7 +141,7 @@ function CauseEdit_Form() {
       },
     });
   };
-  console.log(initial_values)
+  console.log(initial_values);
 
   return (
     <Formik
@@ -323,9 +322,7 @@ function CauseEdit_Form() {
 
               <div className="flex w-[100%] max-tablet:flex-col gap-4">
                 <div className="w-[50%] max-tablet:w-full">
-                {
-                  console.log(values?.status , '++++++')
-                }
+                  {console.log(values?.status, "++++++")}
                   <SelectField
                     value={values?.status}
                     name={"status"}
