@@ -125,9 +125,7 @@ function General() {
               />
             </div>
           </div>
-          {
-              console.log(values?.keywords_data , '<=========')
-            }
+         
           <div className="w-[49%] max-desktop:w-full max-tablet:w-full pt-2">           
             <MultiKeyTextField
               name={"keywords_data"}

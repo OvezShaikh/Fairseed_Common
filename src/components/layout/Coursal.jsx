@@ -6,16 +6,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import images from "../../constants/images";
 import "./Homestyles.css";
 import { Link } from "react-router-dom";
 import { useGetAll } from "../../Hooks";
 import { useState } from "react";
-
-
-
-
-
 
 export default () => {
   const [allCards, setAllCards] = useState([]);
