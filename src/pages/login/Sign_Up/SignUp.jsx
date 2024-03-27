@@ -4,11 +4,8 @@ import InputField from "../../../components/inputs/InputField";
 import Avatar from "@mui/material/Avatar";
 import { useFormikContext } from "formik";
 import PrimaryButton from "../../../components/inputs/PrimaryButton";
-import { div, Container, Button } from "@mui/material";
-import { toast } from "react-toastify";
+import {  Button } from "@mui/material";
 import { SlPencil } from "react-icons/sl";
-import Modal from "../../../components/inputs/Modal/Index";
-import ImagePreviewDialog from "../../../components/inputs/Cropper/ImagePreview";
 
 const SignUp = ({ handleNext }) => {
   const imgRef = useRef(null);

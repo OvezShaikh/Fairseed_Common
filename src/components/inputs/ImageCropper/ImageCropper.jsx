@@ -51,8 +51,9 @@ export const ImageCropper = ({ srcImg, setOpenCrop, setsrcImg }) => {
             <Cropper
               style={{ height: "100%", width: "100%" }}
               zoomTo={0.5}
-              aspectRatio={3}
-              initialAspectRatio={1}
+              // initialAspectRatio={800 / 400}
+              // aspectRatio={3}
+              // initialAspectRatio={1}
               preview=".img-preview"
               src={srcImg}
               viewMode={1}

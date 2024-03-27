@@ -19,9 +19,9 @@ import Attachments from "../../layout/Attachments/Index";
 import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { ImageCropper } from "../../inputs/Cropper/ImageCropper";
+import { ImageCropper } from "../../inputs/ImageCropper/ImageCropper";
 import { ImagePreviewDialog } from "../../inputs/PreviewImage/PreviewImage";
-import DropZone from "../../inputs/Cropper/CropDrop";
+import DropZone from "../../inputs/ImageCropper/CropDrop";
 
 
 
@@ -145,7 +145,6 @@ function CauseEdit_Form() {
     });
   };
 
-  console.log(initial_values , '<========')
 
   return (
     <Formik

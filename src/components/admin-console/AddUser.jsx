@@ -1,6 +1,6 @@
 import { Add, Edit } from "@carbon/icons-react";
 import { Grid, Box, Button } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import * as yup from "yup";
 import { Form, Formik, useFormikContext } from "formik";
 import { useQueryClient } from "react-query";
@@ -13,6 +13,7 @@ import ReactQuilTextField from "../inputs/ReactQuilTextField/Index"
 import { FormLabel } from '@mui/material'
 import { toast } from "react-toastify";
 import AdminSelectField from "../inputs/AdminSelectField/Index";
+import { useGetAll } from "../../Hooks";
 
 
 export const AddUser = ({
@@ -23,6 +24,9 @@ export const AddUser = ({
     onClose,
 }) => {
     const queryClient = useQueryClient();
+    const [role , setRole] = useState([]);
+
+
     const styleLabel = {
         fontFamily: "satoshi",
         fontSize: 16,
@@ -37,10 +41,21 @@ export const AddUser = ({
         email: "",
         password: "",
         user_role: "",
-        user_type: "",
+        user_type:'',
+}
 
+    useGetAll({
+        key: `/admin-dashboard/user-roles?page=1&limit=10`,
+        enabled: true,
+        select: (data) => {
+          return data.data.rows;
+        },
+        onSuccess: (data) => {
+          setRole(data);
+         
+        },
+      });
 
-    }
     const validationSchema = yup.object().shape({
         username: yup.string().required("username is required"),
         mobile_number: yup.string().required("mobile_number is required"),
@@ -67,6 +82,7 @@ export const AddUser = ({
     //     method: isUpdate ? "put" : "post",
     //     onSuccess: () => onSuccess && onSuccess(),
     // });
+
 
     return (
         <Dialog
@@ -105,28 +121,26 @@ export const AddUser = ({
                 <Formik
                     initialValues={initialValues}
                     // validationSchema={validationSchema}
-                    onSubmit={(values) => {
-                        mutate({ ...values, user_type: values?.user_type?.value }, {
+                    onSubmit={(values) =>  
+                        mutate({ ...values, user_type: values?.user_type?.value , user_role: values?.user_role?.value }, {
                             onSuccess: (response) => {
                                 toast.success('User create successfully', { position: 'top-right' });
                                 queryClient.refetchQueries({
                                     queryKey: ['/admin-dashboard/users'],
                                     exact: false,
-                                   
                                 })
                                 onClose()
-                               
                             },
                             onError: () => {
                                 toast.error('Somthing is wrong please try again later', { position: 'top-right' })
                             }
-
-                        });
-                    }}
+                
+                        })
+                    }
 
 
                 >
-                    {({ setFieldValue, values, errors, touched }) => (
+                    {({ setFieldValue, errors, touched }) => (
 
                         <Form className='flex flex-col items-center px-4 pt-2'>
                             <div className='flex w-full max-desktop:flex-col max-tablet:flex-col  gap-4'>
@@ -146,13 +160,10 @@ export const AddUser = ({
                                 </div>
                                 <div className="w-full">
                                     <AdminSelectField label={"Role"} name={"user_role"} placeholder={"Placeholder Text"}
-                                        options={[
-                                            { label: "Normal(it can only publish campaigns)", values: "normal" },
-                                            { label: "Admin", values: "admin" },
-                                            { label: "Campaign Approver", values: "campaign_approver" },
-                                            { label: "Campaign Manager", values: "campaign_manager" },
-
-                                        ]}
+                                    options={role.map((item) => ({
+                                        label: item.role_name,
+                                        value: item.id,
+                                      }))}
                                     />
                                 </div>
 
@@ -163,7 +174,7 @@ export const AddUser = ({
                                     <InputAdminField label={"Password"} name={"password"} placeholder={"Placeholder Text"} />
                                 </div>
                                 <div className="w-full">
-                                    <InputAdminField label={"Confirm Password"} name={"confirm_password"} placeholder={"Placeholder Text"} />
+                                    <InputAdminField label={"Confirm Password"} name={"password"} placeholder={"Placeholder Text"} />
                                 </div>
 
                             </div>
