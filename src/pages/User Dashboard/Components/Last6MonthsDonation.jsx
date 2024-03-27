@@ -92,7 +92,7 @@ export default function DonationInLastMonth() {
     return formattedDate;
   };
 
-  const formatYAxisTick = (value) => `${value / 1000}k`;
+  // const formatYAxisTick = (value) => `${value * 10}k`;
 
 
 
@@ -105,10 +105,10 @@ export default function DonationInLastMonth() {
           width={500}
           height={100}
           data={dataObject}
-          margin={{top: 20, right: 20, bottom: 20, left: 20}}
+          margin={{top: 20, right: 20, bottom: 20, left: 1}}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey='date' tickFormatter={customTickFormatter} interval={5} height={1}  textAnchor="start" style={chartStyle} tickLine={false} axisLine={false}/>
+          <XAxis className="mt-2" dataKey='date' tickFormatter={customTickFormatter} interval={5} height={2}  textAnchor="start" style={chartStyle} tickLine={false} axisLine={false}/>
           {/* <XAxis
             dataKey='total_amount'
             axisLine={false}
@@ -119,7 +119,7 @@ export default function DonationInLastMonth() {
             scale="band"
             xAxisId="quarter"
           /> */}
-          <YAxis className="pr-5" style={chartStyle} tickLine={false} axisLine={false} tickFormatter={formatYAxisTick} />
+          <YAxis  domain={[0, 100]} style={chartStyle} tickLine={false} axisLine={false}  />
           <Tooltip />
           <Legend />
           <Bar
