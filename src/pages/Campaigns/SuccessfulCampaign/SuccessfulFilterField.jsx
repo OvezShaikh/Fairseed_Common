@@ -8,7 +8,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
 import images from "../../../constants/images";
-import "./FilterField.css";
+import "./SuccessfulFilterField.css";
 import axios from "axios";
 
 
@@ -82,8 +82,10 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
   useEffect(() => {
     const fetchLocationList = async () => {
       try {
-        // const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/campaign/campaign-category?page=${page}&limit=${limit}`;
-        const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/campaign/campaign-category?page=1&limit=1000`;
+        
+        // const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/campaign/campaign-category?page=1&limit=1000`;
+        const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/campaign/successful-campaign?page=1&limit=1000`;
+
         const response = await axios.get(API_ENDPOINT);
         setLocationList(response.data.rows);
         
@@ -107,7 +109,7 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
       const perPage = 100;
       const response = await axios.get(
         // `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
-        `${process.env.REACT_APP_API_URL}/campaign/campaign-filter?page=1&limit=${1000}&filter`
+        `${process.env.REACT_APP_API_URL}/campaign/successful-campaign?page=1&limit=1000`
       );
       const res = response.data;
 
@@ -131,7 +133,7 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
   }, [page]);
 
 
-  const uniqueCategory = Array.from(new Set(LocationList.map((item) => item.name)));
+  const uniqueCategory = Array.from(new Set(LocationList.map((item) =>  item.category.name)));
   const uniqueLocations = Array.from(new Set(CategoryList.map((item) => item.location)));
 
   

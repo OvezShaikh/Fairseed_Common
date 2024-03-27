@@ -46,29 +46,16 @@ function Home() {
 
 
   const receiveCategoryFromChild = (categoryData) => {
-
-
-
-
     setCategoryDataFromChild(categoryData);
-
-
   };
 
   const receiveLocationFromChild = (locationData) => {
-
-
-
-
-    setLocationDataFromChild(locationData);
-
-
+setLocationDataFromChild(locationData);
   };
 
 
   const handleTabChange = (index, label) => {
-    console.log('Selected Tab Index:', index);
-    console.log('Selected Tab Label:', label);
+   
 
     switch (label) {
       case 'Newly Added':
@@ -84,7 +71,7 @@ function Home() {
         setTabName("expiring_soon");
         break;
       default:
-        setTabName("newly_added");
+        setTabName("");
     }
 
 
@@ -144,8 +131,12 @@ function Home() {
       console.error("Error fetching user list:", error);
     }
   };
+  useEffect(() => {
+    fetchUserListFromTabs();
 
-  const fetchUserList = async () => {
+  }, [tabName]);
+
+  const fetchCampaigns = async () => {
     try {  
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/campaign/campaign-filter?page=${page}&limit=${perPage}&filter=${tabName}`
@@ -164,13 +155,10 @@ function Home() {
     }
   };
   useEffect(() => {
-    fetchUserList();
+    fetchCampaigns();
 
   }, [page]);
-  useEffect(() => {
-    fetchUserListFromTabs();
-
-  }, [tabName]);
+ 
 
 
 
