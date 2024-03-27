@@ -11,34 +11,30 @@ import { ImagePreviewDialog } from '../../inputs/PreviewImage/PreviewImage';
 
 
 
-const InputStyle =
-{
-  padding: '20px', border: "1px solid #e2e2e2",
+const InputStyle = {
+  padding: "20px",
+  border: "1px solid #e2e2e2",
   // },
   "&:focus-within": {
     boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
     borderColor: "black",
   },
-
-}
-const SelectStyle =
-{
-  padding: '0px', border: "none",
+};
+const SelectStyle = {
+  padding: "0px",
+  border: "none",
   "&:focus-within": {
     boxShadow: `none`,
     borderColor: "none",
   },
+};
 
-}
-
-let userData = localStorage.getItem('user_info')
-let Data = JSON.parse(userData)
+let userData = localStorage.getItem("user_info");
+let Data = JSON.parse(userData);
 let id = Data?.id;
 
-
-
 const Account = () => {
-  const [Details, setDetails] = useState({})
+  const [Details, setDetails] = useState({});
   const [srcImg, setSrcImg] = useState("");
   const [openCrop, setOpenCrop] = useState(false);
 
@@ -58,7 +54,7 @@ const Account = () => {
   useEffect(() => {
     const img = `${process.env.REACT_APP_BASE_URL}` + Details?.profile_pic;
     setSrcImg(img);
-  })
+  });
 
   const initial_values = {
     username: Details?.username || '',
@@ -70,8 +66,8 @@ const Account = () => {
 
   const { mutate } = useCreateOrUpdate({
     url: `/accounts/user/${id}`,
-    method: 'put'
-  })
+    method: "put",
+  });
 
   const onChange = (e) => {
     let files;
@@ -110,7 +106,6 @@ const Account = () => {
       initialValues={initial_values}
       onSubmit={(values)=>handleSubmit(values)}
     >
-
       {({ values, handleChange }) => (
         <Form>
          <ProfilePicDropZone
@@ -119,15 +114,15 @@ const Account = () => {
                   initialPreview={srcImg}
                 />
 
-                {openCrop && (
-                  <>
-                    <ImageCropper
-                      srcImg={srcImg}
-                      setOpenCrop={setOpenCrop}
-                      setsrcImg={setSrcImg}
-                    />
-                  </>
-                )}
+          {openCrop && (
+            <>
+              <ImageCropper
+                srcImg={srcImg}
+                setOpenCrop={setOpenCrop}
+                setsrcImg={setSrcImg}
+              />
+            </>
+          )}
 
                 {srcImg && <ImagePreviewDialog croppedImage={srcImg} />}
 
@@ -149,12 +144,12 @@ const Account = () => {
             onChange={handleChange}
             value={values?.mobile_number}
             name={"mobile_number"}
-            type='number'
+            type="number"
             label={"Mobile:"}
             placeholder={"(Optional)"}
             sx={InputStyle}
           />
-          <div className='country-select-div'>
+          <div className="country-select-div">
             <CountrySelect
               onChange={handleChange}
               value={values?.country}
@@ -164,12 +159,14 @@ const Account = () => {
             />
           </div>
           <div className="mx-auto flex justify-center">
-            <PrimaryButton type='submit' className="mx-auto">Save Changes</PrimaryButton>
+            <PrimaryButton type="submit" className="mx-auto">
+              Save Changes
+            </PrimaryButton>
           </div>
         </Form>
       )}
     </Formik>
-  )
-}
+  );
+};
 
-export default Account
+export default Account;

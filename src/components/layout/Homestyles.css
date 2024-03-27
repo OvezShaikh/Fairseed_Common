@@ -1,7 +1,7 @@
-.homeHerotab {
+/* .homeHerotab {
   background-image: url(../../assets/HomePageHeroTab.png);
   display: none;
-}
+} */
 .swiper-button-next:after,
 .swiper-rtl .swiper-button-prev:after {
   content: "";
@@ -55,19 +55,19 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
 
 @media only screen and (max-width: 1365px) {
   .swiper-pagination {
-    bottom: 450px !important;
+    bottom: 230px !important;
   }
-
+  /* 
   .homeHerotab {
     background-image: url(../../assets/HomePageHeroTab.png);
     display: block;
     min-height: 1136px;
     background-size: cover;
     padding-top: 120px;
-  }
-  .home-hero-desktop {
+  } */
+  /* .home-hero-desktop {
     display: none;
-  }
+  } */
 
   .swiper-button-next:after,
   .swiper-rtl .swiper-button-prev:after,
@@ -115,14 +115,10 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
   justify-content: center;
 }
 
-
 .bottom-slider-div {
   position: relative;
   max-width: 86%;
-
 }
-
-
 
 .bottom-slider-div .swiper-button-prev:after {
   background: url(../../assets/leftarrowbs.png);
@@ -217,28 +213,18 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
   padding-left: 15px;
 }
 
-
-
-
-
 .swiper-pagination-bottom.swiper-pagination-custom.swiper-pagination-horizontal {
-    margin-top: 90px;
+  margin-top: 90px;
 }
 
-
-
-
 @media only screen and (max-width: 1365px) {
-    .swiper-pagination-bottom.swiper-pagination-custom.swiper-pagination-horizontal {
-        margin-top: 40px !important;
-    }
+  .swiper-pagination-bottom.swiper-pagination-custom.swiper-pagination-horizontal {
+    margin-top: 40px !important;
+  }
 }
 
 @media only screen and (max-width: 700px) {
-    .swiper-pagination-bottom.swiper-pagination-custom.swiper-pagination-horizontal {
-        margin-top: 30px !important;
-    }
+  .swiper-pagination-bottom.swiper-pagination-custom.swiper-pagination-horizontal {
+    margin-top: 30px !important;
+  }
 }
-  
-
-

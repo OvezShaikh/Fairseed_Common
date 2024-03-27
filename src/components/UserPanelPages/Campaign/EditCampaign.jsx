@@ -40,7 +40,6 @@ const EditCampaign = () => {
     refetchCategories();
   }, []);
 
- 
   const onChange = (e) => {
     let files;
 
@@ -100,57 +99,56 @@ const EditCampaign = () => {
     end_date: user?.end_date || "",
     status: user?.status || "",
     story: user?.story || "",
-    documents:  [],
+    documents: [],
     zakat_eligible: user?.zakat_eligible || false,
   };
 
-  
   if (!isSuccess) {
     return <div>Loading...</div>;
   }
 
+  const handleSubmit = (values) => {
+    const changedValues = Object.keys(values).filter(
+      (key) => values[key] !== initial_values[key]
+    );
 
- const handleSubmit = (values) => {
-  const changedValues = Object.keys(values).filter(
-    key => values[key] !== initial_values[key]
-  );
+    const payload = {};
+    changedValues.forEach((key) => {
+      payload[key] = values[key];
+    });
 
-  const payload = {};
-  changedValues.forEach(key => {
-    payload[key] = values[key];
-  });
+    const formData = new FormData();
 
-  const formData = new FormData();
+    const documentsArray = values.documents ? Array.from(values.documents) : [];
 
-  const documentsArray = values.documents ? Array.from(values.documents) : [];
+    documentsArray.forEach((file, index) => {
+      formData.append(`documents`, file);
+    });
 
-  documentsArray.forEach((file, index) => {
-    formData.append(`documents`, file);
-  });
+    Object.entries(payload).forEach(([key, value]) => {
+      if (key !== "documents") {
+        formData.append(
+          key,
+          value instanceof File ? value : JSON.stringify(value)
+        );
+      }
+    });
 
-  Object.entries(payload).forEach(([key, value]) => {
-    if (key !== 'documents') {
-      formData.append(key, value instanceof File ? value : JSON.stringify(value));
-    }
-  });
-
-  mutate(formData, {
-    onSuccess: (response) => {
-      toast.success(response?.data?.message, {
-        position: "top-right",
-      });
-      navigate(-1);
-    },
-    onError: (error) => {
-      console.error('There was a problem updating the data:', error);
-      toast.error(error?.data?.message, {
-        position: 'top-right',
-      });
-    },
-  });
-};
-
-  
+    mutate(formData, {
+      onSuccess: (response) => {
+        toast.success(response?.data?.message, {
+          position: "top-right",
+        });
+        navigate(-1);
+      },
+      onError: (error) => {
+        console.error("There was a problem updating the data:", error);
+        toast.error(error?.data?.message, {
+          position: "top-right",
+        });
+      },
+    });
+  };
 
   return (
     <Formik
@@ -292,11 +290,13 @@ const EditCampaign = () => {
                 <div className="flex gap-4">
                   {Documents?.map((imageUrl, index) => {
                     const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl.doc_file}`;
-                    return <Attachments
-                    key={index}
-                    id={id}
-                    imageUrl={documentLink}
-                  />
+                    return (
+                      <Attachments
+                        key={index}
+                        id={id}
+                        imageUrl={documentLink}
+                      />
+                    );
                   })}
                 </div>
               </div>

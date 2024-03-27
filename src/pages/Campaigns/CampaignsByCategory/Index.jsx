@@ -24,6 +24,7 @@ function Index() {
 
   const [categoryDataFromChild, setCategoryDataFromChild] = useState("");
   const [locationDataFromChild, setLocationDataFromChild] = useState("");
+  const [tabName, setTabName] = useState("newly_added");
 
   const filterToggle = () => {
     setShowOptions(!showOptions);
@@ -57,25 +58,72 @@ function Index() {
     )
   ).map((id) => categoryCampaignList.find((item) => item.id === id));
 
-  const fetchCategoryDetail = async () => {
+
+
+  const fetchUserListFromTabs = async () => {
     const perPage = 4;
     const res = await axios.get(
-      `${process.env.REACT_APP_API_URL}/campaign/category?name=${name}&page=${page}&limit=${perPage}`
+      // `${process.env.REACT_APP_API_URL}/campaign/category?name=${name}&page=${page}&limit=${perPage}`
+      `${process.env.REACT_APP_API_URL}/campaign/category-filter?name=${name}&page=${page}&limit=${perPage}&filter=${tabName}`
     );
     if (Array.isArray(res.data.rows)) {
       setTotalPages(res.data.pages_count);
-      setCategoryCampaignList([...categoryCampaignList, ...res.data.rows]);
-      setCategoryDetail(res.data.rows[0]);
-      console.log("FETCH CATEGORY DETAIL =================>", res.data.rows[0]);
+      
+      setCategoryCampaignList(res.data.rows);
+      setCategoryDetail(res.data.category_data);
     } else {
-      // console.error("Invalid data structure. Expected an array:", res.data.category_data);
+      console.error("Invalid data structure. Expected an array:", res.data);
     }
-    console.log(res.data.rows);
-    setCategoryCampaignList(res.data.rows);
+    // console.log(res.data.rows);
+    // setCategoryCampaignList(res.data.rows)
+  };
+  useEffect(() => {
+    fetchUserListFromTabs();
+
+  }, [tabName]);
+
+
+
+
+  const fetchCategoryDetail = async () => {
+    const perPage = 4;
+    const res = await axios.get(
+      // `${process.env.REACT_APP_API_URL}/campaign/category?name=${name}&page=${page}&limit=${perPage}`
+      `${process.env.REACT_APP_API_URL}/campaign/category-filter?name=${name}&page=${page}&limit=${perPage}&filter=${tabName}`
+    );
+    if (Array.isArray(res.data.rows)) {
+      setTotalPages(res.data.pages_count);
+      console.log("CATEGORY CAMPAIGN",res.data.rows)
+      setCategoryCampaignList([...categoryCampaignList, ...res.data.rows]);
+      setCategoryDetail(res.data.category_data);
+    } else {
+      console.error("Invalid data structure. Expected an array:", res.data);
+    }
+    // console.log(res.data.rows);
+    // setCategoryCampaignList(res.data.rows)
   };
   useEffect(() => {
     fetchCategoryDetail();
   }, [page]);
+
+  const handleTabChange = (index, label) => {
+    switch (label) {
+      case 'Newly Added':
+        setTabName("newly_added");
+        break;
+      case 'Most Supported':
+        setTabName("most_supported");
+        break;
+      case 'Needs Love':
+        setTabName("needs_love");
+        break;
+      case 'Expiring Soon':
+        setTabName("expiring_soon");
+        break;
+      default:
+        setTabName("");
+    }
+  };
 
   return (
     <div>
@@ -89,7 +137,7 @@ function Index() {
         {console.log(categoryDetail, "===========category")}
 
         <div className="mx-auto max-w-[91%] flex max-desktop:flex-col max-desktop:gap-y-[48px] max-desktop:items-end max-tablet:gap-y-[20px] mt-[50px]">
-          <ScrollableTabsButtonForce />
+        <ScrollableTabsButtonForce onTabChange={handleTabChange} />
           <button
             className="flex items-center ml-2 px-3 py-1.5 max-w-[115px] gap-x-[12px] max-desktop:px-[20px] max-desktop:py-[17px] max-tablet:py-[6px]"
             style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
