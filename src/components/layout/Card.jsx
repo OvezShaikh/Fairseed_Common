@@ -2,7 +2,7 @@ import React from "react";
 import icons from "../../constants/icons";
 import images from "../../constants/images";
 import { useState, useEffect } from "react";
-import { LinearProgress } from "@mui/material";
+import { Avatar, LinearProgress } from "@mui/material";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -15,6 +15,7 @@ function Card({
   fundRaised,
   daysLeft,
   userCount,
+  userProfile,
   location,
   og_id,
 }) {
@@ -26,6 +27,8 @@ function Card({
       position: "top-center",
     });
   };
+  const fullNameWords = username?.split(" ");
+  const firstLetter = fullNameWords?.[0]?.charAt(0)?.toUpperCase() ?? "";
   return (
     <>
       <div
@@ -49,9 +52,20 @@ function Card({
           )}
         </Link>
         <div className="card-body">
-          <div className="flex flex-row">
-            <img className="w-[32px] h-[32px]" src={images.Airlogo} alt="" />
-            <p className="text-black/40 pl-2 text-[16px] max-desktop:text-[14px]">
+          <div className="flex items-center">
+            <Avatar
+              className="desktop:w-[96px] desktop:h-[96px] max-desktop:w-[70px] text-[30px]"
+              alt={username}
+              src="/static/images/avatar/1.jpg"
+              sx={{
+                width: "30px",
+                height: "30px",
+                fontSize: "15px !important",
+              }}
+            >
+              {firstLetter}
+            </Avatar>{" "}
+            <p className="text-black/40 pl-2 text-[20px] max-desktop:text-[14px]">
               {username}
             </p>
           </div>

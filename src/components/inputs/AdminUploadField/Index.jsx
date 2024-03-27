@@ -19,16 +19,19 @@ const UploadField = ({
   const [field, meta, handlers] = useField(name);
 
   const handleFileChange = (event) => {
-    const files = multiple ? event.target.files : [event.target.files[0]];
-  
-    if (files && files.length > 0) {
-      const fileList = Array.from(files); 
-      console.log(fileList ,"<===========")
+    const files = event.target.files;
 
-
+    if (multiple && files.length > 1) {
+      // Multiple files selected
+      const fileList = Array.from(files);
       handlers.setValue(fileList);
-      handlers.setTouched(true);
+    } else {
+      // Single file selected or multiple allowed but only one selected
+      handlers.setValue(files[0]);
     }
+
+    handlers.setTouched(true);
+
   };
 
   const configTextfield = {
@@ -82,13 +85,13 @@ const UploadField = ({
             type="file"
             ref={ref}
             style={{ display: "none" }}
-            id={`file - input - ${name}`} 
-            multiple='true'
+            id={`file - input - ${name}`}
+            multiple={multiple}
             onChange={handleFileChange}
           />
 
           <label
-            htmlFor={`file - input - ${name}`} 
+            htmlFor={`file - input - ${name}`}
             className="flex justify-center gap-2 items-center"
           >
             {field.value ? (

@@ -40,11 +40,6 @@ const EditCampaign = () => {
     refetchCategories();
   }, []);
 
-  const handleDelete = () => {
-    setDataUrl("");
-    setImageUrl("");
-  };
-
   const onChange = (e) => {
     let files;
 
@@ -107,7 +102,7 @@ const EditCampaign = () => {
     documents: [],
     zakat_eligible: user?.zakat_eligible || false,
   };
-  console.log(initial_values);
+
   if (!isSuccess) {
     return <div>Loading...</div>;
   }
@@ -117,24 +112,19 @@ const EditCampaign = () => {
       (key) => values[key] !== initial_values[key]
     );
 
-    // Prepare payload with only changed values
     const payload = {};
     changedValues.forEach((key) => {
       payload[key] = values[key];
     });
 
-    // Make API request with payload
     const formData = new FormData();
 
-    // Convert FileList to an array if it exists
     const documentsArray = values.documents ? Array.from(values.documents) : [];
 
-    // Append each document file to formData
     documentsArray.forEach((file, index) => {
       formData.append(`documents`, file);
     });
 
-    // Append other fields to formData
     Object.entries(payload).forEach(([key, value]) => {
       if (key !== "documents") {
         formData.append(

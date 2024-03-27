@@ -22,7 +22,7 @@ import { toast } from "react-toastify";
 import { ImageCropper } from "../../inputs/ImageCropper/ImageCropper";
 import { ImagePreviewDialog } from "../../inputs/PreviewImage/PreviewImage";
 import DropZone from "../../inputs/ImageCropper/CropDrop";
-import { CloudDataOps } from "@carbon/icons-react";
+
 function CauseEdit_Form() {
   let { state } = useLocation();
   let { id } = state;
@@ -92,7 +92,6 @@ function CauseEdit_Form() {
       toast.success(`Update Successfully `);
     },
     onError: (response) => {
-      console.log(response, "===========>Respose");
       toast.error(`${response.status[0]}error`);
     },
   });
@@ -129,7 +128,7 @@ function CauseEdit_Form() {
     formData.append("summary", values?.summary);
     formData.append("story", values?.story);
     formData.append("category", values?.category?.id);
-    formData.append("status", values?.status?.value);
+    formData.append("status", values?.status);
     formData.append("zakat_eligible", values?.zakat_eligible);
 
     mutate(formData, {
@@ -141,7 +140,8 @@ function CauseEdit_Form() {
       },
     });
   };
-  console.log(initial_values);
+
+  console.log(initial_values, "<========");
 
   return (
     <Formik
@@ -156,7 +156,6 @@ function CauseEdit_Form() {
               <div className="desktop:py-[80px] max-desktop:py-[53px] p-0">
                 <DropZone
                   name="campaign_image"
-                  // label={'campaign image'}
                   onChange={onChange}
                   initialPreview={srcImg}
                 />
@@ -284,7 +283,6 @@ function CauseEdit_Form() {
                 <div className="flex gap-4 max-tablet:flex-col">
                   {values?.documents?.map((imageUrl, index) => {
                     const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl?.doc_file}`;
-                    console.log(documentLink, "doc_file");
                     return (
                       <Attachments
                         key={index}
@@ -322,7 +320,6 @@ function CauseEdit_Form() {
 
               <div className="flex w-[100%] max-tablet:flex-col gap-4">
                 <div className="w-[50%] max-tablet:w-full">
-                  {console.log(values?.status, "++++++")}
                   <SelectField
                     value={values?.status}
                     name={"status"}

@@ -12,7 +12,7 @@ const Index = () => {
   const [userList, setUserList] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
-  const [visibleCards, setVisibleCards] = useState(8);
+  const [visibleCards, setVisibleCards] = useState(4);
   const [showOptions, setShowOptions] = useState(false);
   const [perPage, setPerPage] = useState(100);
   const [campaignCount, setCampaignCount] = useState(0);
@@ -97,35 +97,13 @@ const Index = () => {
           heading={"Successful Campaign"}
         />
 
-        <div className="flex flex-col flex-wrap w-full mb-[128px] items-center max-tablet:mb-[48px]">
-          <div className="flex  desktop:ml-[-30px] mt-[50px] desktop:max-w-[1760px] desktop:w-full desktop:justify-end max-desktop:w-[90%] max-desktop:flex-col max-desktop:items-end max-desktop:gap-y-[48px] max-tablet:mb-[50px] max-tablet:gap-y-[20px] scrollable-tabs-class ">
-            <button
-              className="flex items-center ml-2 px-3 py-1.5 max-w-[115px] gap-x-[12px] max-desktop:px-[20px] max-desktop:py-[17px] max-tablet:py-[6px]"
-              style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
-              onClick={filterToggle}
-            >
-              <img src={images.Funnel} />
-              <p
-                className="text-[18px]"
-                style={{
-                  background:
-                    "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
-                  "-webkit-background-clip": "text",
-                  "-webkit-text-fill-color": "transparent",
-                  "font-family": "Satoshi",
-                  "font-weight": "700",
-                }}
-              >
-                Filter
-              </p>
-            </button>
-          </div>
-          {showOptions && (
+        <div className="flex flex-col flex-wrap w-full mb-[128px] items-center max-tablet:mb-[48px] mt-[100px]">
+          <div className="w-[90%] flex justify-end ">
             <SuccessFilterField
               sendCategoryToParent={receiveCategoryFromChild}
               sendLocationToParent={receiveLocationFromChild}
             />
-          )}
+          </div>
           <div className="desktop:gap-x-[36px] desktop:gap-y-[48px] mt-[48px]  flex flex-wrap w-full justify-center desktop:max-w-[1740px] max-desktop:gap-x-[16px]  max-desktop:gap-y-[24px] max-tablet:gap-y-[48px]">
             {filteredUserList?.slice(0, visibleCards).map((item) => {
               return (
@@ -164,7 +142,7 @@ const Index = () => {
               "-webkit-text-fill-color": "transparent",
               textDecoration: "underline",
               display:
-                visibleCards >= campaignCount || filteredCardCount < 8
+                visibleCards >= campaignCount || filteredCardCount < 4
                   ? "none"
                   : "block",
               position: "relative",

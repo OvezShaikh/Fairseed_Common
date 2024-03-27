@@ -38,23 +38,22 @@ function CausesView() {
   const [adhaar_image , setAdhaar_image] = useState('');
   const [pan_image , setPan_image] = useState('');
   const [passbook_image , setPassbook_image] = useState('');
-  const [status , setStatus ] = useState(false)
 
 
  
   const initial_values = {
-    account_holder_name: data?.account_holder_name || "",
-    account_number: data?.account_number || "",
-    bank_data: data?.bank_data || "",
-    bank_name: data?.bank_name || "",
-    branch_name: data?.branch_name || "",
-    title: data?.campaign?.title || "",
-    ifsc_code: data?.ifsc_code || "",
-    status: data?.status || "",
-    pan_card: data?.pan_card || "",
-    adhar_card: data?.adhar_card || "",
-    other:data?.other ||  "",
-    rasing_for: data.rasing_for || "",
+    account_holder_name: data?.bank_kyc?.account_holder_name || "",
+    account_number: data?.bank_kyc?.account_number || "",
+    bank_data: data?.bank_kyc?.bank_data || "",
+    bank_name: data?.bank_kyc?.bank_name || "",
+    branch_name: data?.bank_kyc?.branch_name || "",
+    title: data?.bank_kyc?.title || "",
+    ifsc_code: data?.bank_kyc?.ifsc_code || "",
+    status: data?.bank_kyc?.status || "",
+    pan_card: data?.bank_kyc?.pan_card || "",
+    adhar_card: data?.bank_kyc?.adhar_card || "",
+    other:data?.bank_kyc?.other ||  "",
+    rasing_for: data?.bank_kyc?.rasing_for || "",
     adhar_card_image:data?.adhar_card_image || '',
     pan_card_image:data?.pan_card_image || '',
     passbook_image:data?.passbook_image || '',

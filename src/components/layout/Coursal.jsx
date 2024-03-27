@@ -4,11 +4,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import images from "../../constants/images";
 import "./Homestyles.css";
 import { Link } from "react-router-dom";
 import { useGetAll } from "../../Hooks";
 import { useState } from "react";
+import images from "../../constants/images";
 
 const style = {
   fontSize: "24px",
@@ -86,7 +86,11 @@ const HomeSwiper = () => {
                 ></div>
                 <div
                   className="w-1/2 bg-no-repeat bg-cover "
-                  style={{ backgroundImage: `url(${image})` }}
+                  style={{
+                    backgroundImage: `url(${image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
                 ></div>
               </div>
 
@@ -142,7 +146,7 @@ const HomeSwiper = () => {
                 </div>
               </div>
               <div
-                className="w-full h-[353px] bg-no-repeat bg-cover"
+                className="w-full h-[383px] bg-no-repeat bg-cover"
                 style={{
                   backgroundImage: `url(${image})`,
                   backgroundSize: "cover",

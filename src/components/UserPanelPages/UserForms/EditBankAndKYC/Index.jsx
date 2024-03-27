@@ -18,15 +18,20 @@ function CausesView() {
   let { id } = state;
 
   const [data, setData] = useState({});
+  const [adhar_card_image , setAdhar_card_image] = useState('');
+  const [pan_card_image , setPan_card_image] = useState(''); 
+  const [passbook_image , setPassbook_image] = useState('');
+
   let navigate = useNavigate();
 
 
  
   const validationSchema = Yup.object().shape({
-    declaration: Yup.boolean()
-      .required("You must give consent by checking the checkbox")
-      .oneOf([true], "You must give consent by checking the checkbox"),
+    declaration: Yup.boolean().test('consent', 'You must give consent by checking the checkbox', value => value === true),
   });
+  
+
+
   const initial_values = {
     account_holder_name: data?.account_holder_name || "",
     account_number: data?.account_number || "",
@@ -39,46 +44,75 @@ function CausesView() {
     pan_card: data?.pan_card || "",
     adhar_card: data?.adhar_card || "",
     tandc_accept: data?.tandc_accept || "",
+    pan_card_image:pan_card_image || '',
+    passbook_image : passbook_image ||'',
+    adhar_card_image:adhar_card_image ||'',
     other: data?.other || "",
-    declaration: false,
+    rasing_for: data?.rasing_for || '', 
   };
 
   useGetAll({
     key: `/user-dashboard/edit-bankkyc/${id}`,
     enabled: true,
     select: (data) => {
-      console.log(data);
       return data.data.data;
     },
     onSuccess: (data) => {
       setData(data);
+      const img1= `${process.env.REACT_APP_BASE_URL}${data?.adhar_card_image}`
+      setAdhar_card_image(img1);
+      const img2= `${process.env.REACT_APP_BASE_URL}${data?.pan_card_image}`
+      setPan_card_image(img2)
+      const img3= `${process.env.REACT_APP_BASE_URL}${data?.passbook_image}`
+      setPassbook_image(img3)
     },
   });
+
+
   const { mutate } = useCreateOrUpdate({
     url: `/user-dashboard/edit-bankkyc/${id}`,
     method: "put",
   });
 
   const handleSubmit = (values) => {
-    mutate(values, {
+    const changedValues = Object.keys(values).filter(
+      key => values[key] !== initial_values[key]
+    );
+  
+    const payload = {};
+    changedValues.forEach(key => {
+      payload[key] = values[key];
+    });
+  
+    const formData = new FormData();
+    Object.entries(payload).forEach(([key, value]) => {
+        formData.append(key, value instanceof File ? value : JSON.stringify(value));
+    });
+  
+    mutate(formData, {
       onSuccess: (response) => {
-        toast.success(
-          "Your changes has been recorded and is sent for approval to Admin ",
-          {
-            position: "top-right",
-          }
-        );
+        toast.success(response?.data?.message, {
+          position: "top-right",
+        });
         navigate(-1);
+      },
+      onError: (error) => {
+        console.error('There was a problem updating the data:', error);
+        toast.error(error?.data?.message, {
+          position: 'top-right',
+        });
       },
     });
   };
+  
 
   return (
     <Formik
       enableReinitialize={true}
-      validationSchema={validationSchema}
+      // validationSchema={validationSchema}
       initialValues={initial_values}
       onSubmit={(values) => handleSubmit(values)}
+      // onSubmit={(values)=> console.log(values , "<<<<<<")}
     >
       {({ values, handleChange, setFieldValue }) => (
         <Form>
@@ -171,7 +205,7 @@ function CausesView() {
                   </FormLabel>
                   <div className="flex gap-4 pt-2 max-tablet:flex-col">
                     <div className="flex flex-col gap-2">
-                      <Attachments imageUrl={data.passbook_image} />
+                      <Attachments imageUrl={values?.passbook_image} />
                       <FormLabel
                         sx={{
                           fontSize: "16px",
@@ -185,7 +219,7 @@ function CausesView() {
                       </FormLabel>
                     </div>
                     <div className="flex flex-col gap-2">
-                      <Attachments imageUrl={data.adhar_card_image} />
+                      <Attachments imageUrl={values?.adhar_card_image} />
                       <FormLabel
                         sx={{
                           fontSize: "16px",
@@ -199,7 +233,7 @@ function CausesView() {
                       </FormLabel>
                     </div>
                     <div className="flex flex-col gap-2">
-                      <Attachments imageUrl={{}} />
+                      <Attachments imageUrl={values?.pan_card_image} />
                       <FormLabel
                         sx={{
                           fontSize: "16px",
@@ -215,20 +249,20 @@ function CausesView() {
                   </div>
                 </div>
                 <div className="w-full">
-                  <UploadField label="Upload PAN Card Copy:" name={"pan"} />
+                  <UploadField label="Upload PAN Card Copy:" multiple={false} name={"pan_card_image"} />
                 </div>
                 <div className="w-full">
-                  <UploadField label="Upload Aadhar Card Copy:" name={"pan"} />
+                  <UploadField label="Upload Aadhar Card Copy:" multiple={false} name={"adhar_card_image"} />
                 </div>
                 <div className="w-full">
-                  <UploadField label="Upload Passbook Copy:" name={"pan"} />
+                  <UploadField label="Upload Passbook Copy:" multiple={false} name={"passbook_image"} />
                 </div>
                 <RadioGroup
-                  onChange={(e) => {
-                    setFieldValue("tandc_accept", e.target.value);
+                  onChange={(value) => {
+                    setFieldValue("rasing_for", value);
                   }}
                   name="rasing_for"
-                  value={values?.tandc_accept}
+                  value={values?.rasing_for}
                   required={true}
                   options={[
                     { label: "Self", value: "Self" },
@@ -236,11 +270,8 @@ function CausesView() {
                     { label: "Charity", value: "Charity" },
                   ]}
                   label="Raising this Campaign for:"
-                  //   onChange={formik.handleChange}
-                  //   value={formik.values.rasing_for}
                 />
                 <CheckBox
-                  checked={values.field == 'true' ? true : false}
                   sx={{
                     paddingLeft: "16px !important",
                     "&.Mui-checked": {
@@ -248,7 +279,8 @@ function CausesView() {
                     },
                   }}
                   style={{ fontSize: "14px !important" }}
-                  name="declaration"
+                  name="tandc_accept"
+                  checked={values?.tandc_accept}
                   label={
                     "I give my consent by sharing my Aadhar details with the team for verification"
                   }
