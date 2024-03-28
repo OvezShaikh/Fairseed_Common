@@ -72,7 +72,7 @@ function App() {
             element={<ForgotPasswordSmScreen />}
           />
 
-          <Route path="/account-settings" element={<Account />} />
+          <Route path="/Home/account-settings" element={<Account />} />
           <Route path="/Home/donate" element={<Donate />} />
           <Route path="/Home/donate/:id" element={<Donate />} />
 

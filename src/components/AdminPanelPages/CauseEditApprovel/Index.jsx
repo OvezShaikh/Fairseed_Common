@@ -141,8 +141,6 @@ function CauseEdit_Form() {
     });
   };
 
-  console.log(initial_values, "<========");
-
   return (
     <Formik
       initialValues={initial_values}

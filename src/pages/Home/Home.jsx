@@ -4,7 +4,7 @@ import "./Home.css";
 import button from "../../constants/button";
 import Card from "../../components/layout/Card";
 import ScrollableTabsButtonForce from "../../components/layout/ScrollableTabsButtonAuto";
-import Coursal from "../../components/layout/Coursal";
+import Carousal from "../../components/layout/Carousal";
 import Footer from "../../components/layout/Footer";
 import Navbar from "../../components/layout/Navbar";
 import DashBoard from "../../components/layout/DashBoard";
@@ -165,7 +165,7 @@ function Home() {
         <Navbar />
       </div>
       <div>
-        <Coursal />
+        <Carousal />
       </div>
       <div
         className="bg-[#FFF6F5] desktop:justify-between max-desktop:flex-wrap max-desktop:justify-center max-desktop:gap-y-[64px] desktop:px-[48px] desktop:py-[48px] max-desktop:py-[80px] max-tablet:py-[60px] max-tablet:gap-y-[32px]"

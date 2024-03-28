@@ -117,7 +117,7 @@ export default function ProfileAvatar() {
         </MenuItem>
 
         <MenuItem className="flex items-center" onClick={handleClose}>
-          <Link className="flex items-center" to={"/account-settings"}>
+          <Link className="flex items-center" to={"/Home/account-settings"}>
             <ListItemIcon>
               <Settings fontSize="small" />
             </ListItemIcon>

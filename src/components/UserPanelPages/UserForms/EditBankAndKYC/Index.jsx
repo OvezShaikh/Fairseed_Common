@@ -112,7 +112,6 @@ function CausesView() {
       // validationSchema={validationSchema}
       initialValues={initial_values}
       onSubmit={(values) => handleSubmit(values)}
-      // onSubmit={(values)=> console.log(values , "<<<<<<")}
     >
       {({ values, handleChange, setFieldValue }) => (
         <Form>

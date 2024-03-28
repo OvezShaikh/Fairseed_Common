@@ -1,16 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Formik, Form } from "formik";
-import Profile_Avatar from "../../layout/Avatar/Index";
 import InputField from "../../inputs/InputField";
 import CountrySelect from "../../inputs/countrySelect/index";
 import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
 import { toast } from "react-toastify";
 import PrimaryButton from "../../inputs/PrimaryButton";
-import Dropzone from "../../inputs/ImageCropper/CropDrop";
-import { Avatar, Button } from "@mui/material";
-import DropZone from "../../inputs/ImageCropper/CropDrop";
+import ProfilePicDropZone from "../../inputs/ImageCropper/ProfilePicDropZone";
 import { ImageCropper } from "../../inputs/ImageCropper/ImageCropper";
-import ImagePreviewDialog from "../../inputs/ImageCropper/ImagePreview";
+import { ImagePreviewDialog } from "../../inputs/PreviewImage/PreviewImage";
 
 const InputStyle = {
   padding: "20px",
@@ -43,14 +40,13 @@ const Account = () => {
     key: `/accounts/user/${id}`,
     enabled: true,
     select: (data) => {
-      return data.data.data;
+      return data?.data?.data;
     },
     onSuccess: (data) => {
       setDetails(data);
-      const img = `${process.env.REACT_APP_BASE_URL}` + data?.profile_pic;
-      setSrcImg(img);
     },
   });
+
   useEffect(() => {
     const img = `${process.env.REACT_APP_BASE_URL}` + Details?.profile_pic;
     setSrcImg(img);
@@ -61,7 +57,7 @@ const Account = () => {
     email: Details?.email || "",
     mobile_number: Details?.mobile_number || "",
     country: Details?.country || "",
-    image: Details?.profile_pic || "",
+    image: srcImg || "",
   };
 
   const { mutate } = useCreateOrUpdate({
@@ -71,6 +67,7 @@ const Account = () => {
 
   const onChange = (e) => {
     let files;
+
     if (e) {
       files = e;
     }
@@ -82,26 +79,35 @@ const Account = () => {
     setOpenCrop(true);
   };
 
+  const handleSubmit = (values) => {
+    const formData = new FormData();
+    formData.append("username", values?.username);
+    formData.append("email", values?.email);
+    formData.append("mobile_number", values?.mobile_number);
+    formData.append("country", values?.country);
+    formData.append("image", values?.image);
+
+    mutate(formData, {
+      onSuccess: () => {
+        toast.success(" Details Updated Successfully !", {
+          position: "top-right",
+        });
+      },
+    });
+  };
+
   return (
     <Formik
       enableReinitialize={true}
       initialValues={initial_values}
-      onSubmit={(values) => {
-        mutate(values, {
-          onSuccess: () => {
-            toast.success(" Details Updated Successfully !", {
-              position: "top-right",
-            });
-          },
-        });
-      }}
+      onSubmit={(values) => handleSubmit(values)}
     >
       {({ values, handleChange }) => (
         <Form>
-          <DropZone
+          <ProfilePicDropZone
             name="image"
             onChange={onChange}
-            initialPreview={values?.image}
+            initialPreview={srcImg}
           />
 
           {openCrop && (
@@ -114,11 +120,7 @@ const Account = () => {
             </>
           )}
 
-          {srcImg && (
-            <>
-              <ImagePreviewDialog croppedImage={srcImg} />
-            </>
-          )}
+          {srcImg && <ImagePreviewDialog croppedImage={srcImg} />}
 
           <InputField
             onChange={handleChange}

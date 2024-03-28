@@ -616,7 +616,7 @@ export default function Example() {
 
                     <Link
                       className="flex items-center"
-                      to={"/account-settings"}
+                      to={"/Home/account-settings"}
                     >
                       Settings
                     </Link>

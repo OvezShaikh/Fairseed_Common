@@ -11,7 +11,6 @@ import SecondaryButton from "../../../../components/inputs/secondaryButton";
 import PrimaryButton from "../../../../components/inputs/PrimaryButton";
 import moment from "moment";
 import "../CreateCampaigns.css";
-
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { ImageCropper } from "../../../../components/inputs/ImageCropper/ImageCropper";
