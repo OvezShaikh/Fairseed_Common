@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { useGetAll } from "../../Hooks";
 import { useState } from "react";
 import images from "../../constants/images";
+import removeTags from "../../utils/Removetag";
 
 const style = {
   fontSize: "24px",
@@ -28,6 +29,9 @@ const style1 = {
 };
 const HomeSwiper = () => {
   const [allCards, setAllCards] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(100);
 
@@ -40,11 +44,38 @@ const HomeSwiper = () => {
     },
     onSuccess: (data) => {
       setAllCards(data);
+      setLoading(false);
     },
-    onerror: () => {
+    onError: () => {
       console.error("Error fetching card data");
+      setLoading(false);
+      setError(true);
     },
   });
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-[753px]">
+        <div className="loader"></div>
+      </div>
+    ); // Show loading indicator
+  }
+
+  if (error) {
+    return (
+      <div className=" flex flex-col items-center ">
+        {/* Show classic style error image and message */}
+        <img
+          className="w-full h-[733px] max-tablet:h-[600px]"
+          src={images.NoData}
+          alt="Error"
+        />
+        <p className="text-[40px] font-[satoshi] font-bold max-desktop:text-[22px] max-tablet:text-[14px]">
+          Oops! Something went wrong. Please try again later.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <Swiper
@@ -99,7 +130,7 @@ const HomeSwiper = () => {
                   {item?.title}
                 </h1>
                 <p className="text-[28px] font-medium font-[satoshi]  max-tablet:text-[18px]  max-desktop:w-[630px] max-tablet:w-full text-[#8E95A2] ">
-                  {item?.summary}
+                  {removeTags(item?.summary)}
                 </p>
                 <div className="">
                   <Link to={`/Home/donate/${item?.id}`} className="mx-auto">
@@ -124,7 +155,7 @@ const HomeSwiper = () => {
                     {item?.title}
                   </h1>
                   <p className="text-[28px] font-medium font-[satoshi]  max-tablet:text-[18px]  max-tablet:w-full text-[#8E95A2] ">
-                    {item?.summary}
+                    {removeTags(item?.summary)}
                   </p>
                   <div className="max-tablet:hidden">
                     <Link to={`/Home/donate/${item?.id}`} className="mx-auto">
@@ -155,7 +186,7 @@ const HomeSwiper = () => {
               ></div>
 
               <div className="max-w-[1920px]  max-tablet:w-full w-full h-[753px]  z-18 absolute top-0 left-0 bg-gradient-to-b from-transparent via-blur-white to-transparent "></div>
-            </div>
+            </div>{" "}
           </SwiperSlide>
         );
       })}

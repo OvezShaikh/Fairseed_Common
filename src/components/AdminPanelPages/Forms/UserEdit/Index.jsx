@@ -6,8 +6,9 @@ import PrimaryButton from "../../../inputs/PrimaryButton";
 import { useLocation, useNavigate } from "react-router-dom";
 import ImageEditor from "../../../layout/ImageEditor/Index";
 import images from "../../../../constants/images";
-import { useCreateOrUpdate, useGetAll } from "../../../../Hooks";
+import { useCreateOrUpdate, useDelete, useGetAll } from "../../../../Hooks";
 import { toast } from "react-toastify";
+import { DeleteBox } from "../../../layout/dialogBox/delete";
 
 function Index() {
   const [User, setUser] = useState({});
@@ -15,7 +16,7 @@ function Index() {
   const [, setIsImageDeleted] = useState(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [deleteSuccess, setDeleteSuccess] = useState(false);
-  const [pass , setPass] = useState(false)
+  const [pass, setPass] = useState(false);
   let { state } = useLocation();
   let { id } = state;
 
@@ -69,9 +70,8 @@ function Index() {
 
   const { mutate } = useCreateOrUpdate({
     url: `/admin-dashboard/users/${id}`,
-    method:'put'
+    method: "put",
   });
-
 
   const initialvalues = {
     username: User.username || "",
@@ -107,9 +107,10 @@ function Index() {
         toast.success("Details Updated Successfully !", {
           position: "top-right",
         });
+        navigate(-1);
       },
     });
-  }
+  };
 
   return (
     <div className="flex w-[100%] pt-3 gap-24 max-tablet:flex-col max-desktop:flex-col">
@@ -117,9 +118,9 @@ function Index() {
         <Formik
           enableReinitialize={true}
           initialValues={initialvalues}
-          onSubmit={(values) => handleSubmit(values) }
+          onSubmit={(values) => handleSubmit(values)}
         >
-          {({ values , setFieldValue }) => (
+          {({ values, setFieldValue }) => (
             <Form className="flex flex-col w-[100%] gap-4 items-center">
               <div className="w-full">
                 <InputField name={"username"} label={"Name:"} />
@@ -209,12 +210,15 @@ function Index() {
             </div>
           </div>
           <div className="flex pt-14 justify-center">
-            <PrimaryButton
-              onClick={handleDelete}
-              sx={{ borderRadius: "10px", padding: "10px 30px" }}
-            >
-              <p className="text-[18px] font-medium font-[satoshi]">Delete</p>
-            </PrimaryButton>
+            <DeleteBox
+              url={`/admin-dashboard/users`}
+              data={id}
+              title={"User"}
+              // onClick={() => setSelectedRowID(row?.original?.id)}
+              // onSuccess={() => setSelectedRowID(null)}
+              onClose={() => navigate(-1)}
+              refetchUrl={"/admin-dashboard/users"}
+            ></DeleteBox>
           </div>
           {showDeleteConfirmation && (
             <div

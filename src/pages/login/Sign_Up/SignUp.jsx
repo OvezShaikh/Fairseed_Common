@@ -4,7 +4,7 @@ import InputField from "../../../components/inputs/InputField";
 import Avatar from "@mui/material/Avatar";
 import { useFormikContext } from "formik";
 import PrimaryButton from "../../../components/inputs/PrimaryButton";
-import {  Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { SlPencil } from "react-icons/sl";
 
 const SignUp = ({ handleNext }) => {

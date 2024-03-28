@@ -85,11 +85,11 @@ const Account = () => {
 
   const handleSubmit = (values) =>{
     const formData = new FormData();
-    formData.append('username' , values?.username)
-    formData.append('email' , values?.email)
-    formData.append('mobile_number' , values?.mobile_number)
-    formData.append('country' , values?.country)
-    formData.append('image' , values?.image)
+    formData.append("username", values?.username);
+    formData.append("email", values?.email);
+    formData.append("mobile_number", values?.mobile_number);
+    formData.append("country", values?.country);
+    formData.append("image", values?.image);
 
       mutate(formData, {
         onSuccess: () => {

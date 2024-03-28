@@ -15,7 +15,7 @@ import UserNavbar from "../../login/UserNavbar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GiHazardSign } from "react-icons/gi";
-import { Dialog } from "../../../components/layout/dialogBox";
+import { Dialog } from "../../../components/layout/dialogBox/dialog";
 import InputField from "../../../components/inputs/InputField";
 import { Form, Formik } from "formik";
 import ErrorIcon from "@mui/icons-material/Error";
@@ -412,6 +412,7 @@ function CurrentCampaign({
               <Doner data={cardDetails?.donor} />
 
               <Dialog
+                // onClose={() => onClose && onClose()}
                 button={
                   <SecondaryButton
                     sx={{
@@ -466,12 +467,7 @@ function CurrentCampaign({
                       </div>
                       <div className="flex gap-4">
                         <PrimaryButton>
-                          <GiHazardSign
-                            className="mr-1"
-                            onClick={() => {
-                              onClose();
-                            }}
-                          />
+                          <GiHazardSign className="mr-1" />
                           Report
                         </PrimaryButton>
                       </div>
