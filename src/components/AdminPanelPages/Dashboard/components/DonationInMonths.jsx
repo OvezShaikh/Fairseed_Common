@@ -66,6 +66,14 @@ export default function DonationInMonths() {
   const [dataObject, setDataObject] = useState([]);
   const [fundRaised, setFundRaised] = useState(50000);
   const [goalAmount, setGoalAmount] = useState(100000);
+  const customTickFormatter = (value) => {
+    const date = new Date(value);
+    const formattedDate = date.toLocaleDateString('en-US', {
+      day: '2-digit',
+      month: 'short',
+    });
+    return formattedDate;
+  };
 
 
   useGetAll({
@@ -73,7 +81,7 @@ export default function DonationInMonths() {
     enabled: true,
    
     select: (data) => {
-      return data.data.fundraised_data;
+      return data.data.fundraiser_data;
     },
     onSuccess: (data) => {
       setDataObject(data);
@@ -81,18 +89,18 @@ export default function DonationInMonths() {
   });
 
   return (
-    <div className="rounded-md shadow-md p-5 ">
+    <div className="rounded-md shadow-md p-2 ">
       <p className={"mb-3 text-lg font-semibold"}>Donation In Months(lacs): </p>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart
           width={500}
           height={200}
           data={dataObject}
-          margin={{top: 20, right: 20, bottom: 20, left: 20}}
+          margin={{top: 20, right: 20, bottom: 20, left: 0}}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey='date' angle={-45} textAnchor="end" />
-          <XAxis
+          <XAxis className="mt-2" dataKey='date' axisLine={false} tickLine={false} tickFormatter={customTickFormatter} interval={2} textAnchor="start" />
+          {/* <XAxis
             dataKey='total_amount'
             axisLine={false}
             tickLine={false}
@@ -101,7 +109,7 @@ export default function DonationInMonths() {
             height={1}
             scale="band"
             xAxisId="quarter"
-          />
+          /> */}
           <YAxis />
           <Tooltip />
           <Legend />
