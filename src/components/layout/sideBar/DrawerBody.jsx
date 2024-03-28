@@ -35,7 +35,7 @@ import {
   UserIcon,
   ScholarshipsIcon,
   PagesIcon,
-  PgSettingsIcon
+  PgSettingsIcon,
 } from "../../../utils/Icons";
 import { colors } from "../../../constants/theme";
 import SearchIcon from "@mui/icons-material/Search";
@@ -77,7 +77,9 @@ let Icons = {
   CategorysIcon: (isActive) => <CategorysIcon isActive={isActive} />,
   CausesIcon: (isActive) => <CausesIcon isActive={isActive} />,
   CausesApprovalIcon: (isActive) => <CausesApprovalIcon isActive={isActive} />,
-  ScholarshipCausesIcon: (isActive) => <ScholarshipCausesIcon isActive={isActive} />,
+  ScholarshipCausesIcon: (isActive) => (
+    <ScholarshipCausesIcon isActive={isActive} />
+  ),
   ReportedIcon: (isActive) => <ReportedIcon isActive={isActive} />,
   CampaignIcon: (isActive) => <CampaignIcon isActive={isActive} />,
   WithdrawalsIcon: (isActive) => <WithdrawalsIcon isActive={isActive} />,
@@ -87,7 +89,6 @@ let Icons = {
   PagesIcon: (isActive) => <PagesIcon isActive={isActive} />,
   PgSettingsIcon: (isActive) => <PgSettingsIcon isActive={isActive} />,
   DashboardIcon: (isActive) => <DashboardIcon isActive={isActive} />,
-
 };
 
 const CollapsibleMenuItem = ({
@@ -107,7 +108,6 @@ const CollapsibleMenuItem = ({
           setSelectedMenu((prev) => (prev !== item.path ? item.path : ""))
         }
         key={item.title + index}
-
       >
         <ListItemButton className="pl-8 ">
           {item.icon && (
@@ -133,7 +133,6 @@ const CollapsibleMenuItem = ({
           ) : (
             <KeyboardArrowDownIcon />
           )}
-
         </ListItemButton>
       </ListItem>
       <Collapse
@@ -178,9 +177,6 @@ const CollapsibleMenuItem = ({
                       />
                     </svg>
                   )}
-
-
-
 
                   <ListItemButton className="pl-8">
                     <RiArrowRightSFill className="text-[#B6BAC3]" />
@@ -229,10 +225,7 @@ const DrawerBody = () => {
           path: "/AdminPanel/General-Settings/Limits",
           title: "Limits",
         },
-        // {
-        //   path: "/admin-console/reports",
-        //   title: "Reports",
-        // },
+       
         {
           path: "/AdminPanel/General-Settings/Profiles-Social",
           title: "Profiles Social",
@@ -306,17 +299,7 @@ const DrawerBody = () => {
     },
   ];
 
-  // {
-  //   icon: "PolicyIcon",
-  //   path: "/teams-policy-settings",
-  //   title: "Teams Policy Settings",
-  // },
-
-  // {
-  //   icon: "PolicyIcon",
-  //   path: "/teams-policy-settings",
-  //   title: "Teams Policy Settings",
-  // },
+ 
 
   const [selectedPath, setSelectedMenu] = useState("");
 

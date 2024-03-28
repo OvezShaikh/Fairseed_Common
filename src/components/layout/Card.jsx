@@ -2,8 +2,9 @@ import React from "react";
 import icons from "../../constants/icons";
 import images from "../../constants/images";
 import { useState, useEffect } from "react";
-import { LinearProgress } from "@mui/material";
+import { Avatar, LinearProgress } from "@mui/material";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Card({
   key,
@@ -14,12 +15,20 @@ function Card({
   fundRaised,
   daysLeft,
   userCount,
+  userProfile,
   location,
   og_id,
 }) {
   const image = process.env.REACT_APP_API_URL + cardImage;
   const [campaignData, setCampaignData] = useState([]);
   const marginBottom = title.length > 41 ? "2.5rem" : "4.3rem";
+  const handleClick = () => {
+    toast.success("Campaign already completed!", {
+      position: "top-center",
+    });
+  };
+  const fullNameWords = username?.split(" ");
+  const firstLetter = fullNameWords?.[0]?.charAt(0)?.toUpperCase() ?? "";
   return (
     <>
       <div
@@ -30,14 +39,33 @@ function Card({
         <Link to={`/campaign-details/${og_id}`}>
           <img
             src={`${process.env.REACT_APP_API_URL}` + cardImage}
-            className="card-img-top h-80 w-full"
+            className="card-img-top h-80 w-full relative"
             alt="..."
           />
+          {goalAmount === fundRaised && (
+            <div className="absolute z-20 top-4 left-4 w-[104px] h-[27px] gap-1 flex justify-center items-center bg-[#1ABD54] rounded">
+              <img src={images.CompleteVector} alt="" />
+              <p className="font-[satoshi] font-medium text-[#FFFFFF] text-[14px]">
+                Completed
+              </p>
+            </div>
+          )}
         </Link>
         <div className="card-body">
-          <div className="flex flex-row">
-            <img className="w-[32px] h-[32px]" src={images.Airlogo} />
-            <p className="text-black/40 pl-2 text-[16px] max-desktop:text-[14px]">
+          <div className="flex items-center">
+            <Avatar
+              className="desktop:w-[96px] desktop:h-[96px] max-desktop:w-[70px] text-[30px]"
+              alt={username}
+              src="/static/images/avatar/1.jpg"
+              sx={{
+                width: "30px",
+                height: "30px",
+                fontSize: "15px !important",
+              }}
+            >
+              {firstLetter}
+            </Avatar>{" "}
+            <p className="text-black/40 pl-2 text-[20px] max-desktop:text-[14px]">
               {username}
             </p>
           </div>
@@ -73,39 +101,43 @@ function Card({
             <div className="flex flex-col w-[65%]">
               <div className="flex pl-1  flex-row max-desktop:justify-center">
                 <div className="flex justify-center items-center text-center ">
-                  <img className=" pt-2 " src={icons?.UsersThree} />
+                  <img className=" pt-2 " src={icons?.UsersThree} alt="" />
                   <p className="text-black/40 pt-2 pl-1 text-[15px]">
                     {userCount}
                   </p>
                 </div>
                 <div className="flex pl-3 justify-center items-center text-center ">
-                  <img className=" pt-2 pl-3  " src={icons?.Clock} />
+                  <img className=" pt-2 pl-3  " src={icons?.Clock} alt="" />
                 </div>
                 <p className="text-black/40 pt-2 pl-1 text-[15px] ">
                   {daysLeft} days left
                 </p>
                 {/* <p className="text-black/40 pt-1.5 pl-1 text-[15px]">17</p> */}
               </div>
-              <div className="flex justify-start max-desktop:justify-center">
-                <img className="pt-2 w-7  h-7 " src={images?.MapPin2} />
-                <p className="text-black/40 pt-2  text-[16px] ">{location}</p>
+              <div className="flex justify-start items-center max-desktop:justify-center">
+                <img className="pt-2 w-7  h-7 " src={images?.MapPin2} alt="" />
+                <p className="text-black/40 pt-2  text-[16px] truncate">
+                  {location}
+                </p>
                 {/* <p className="text-black/40 pt-1.5 pl-1 text-[15px]">Pune,India</p> */}
               </div>
             </div>
             <div className="w-[35%] max-desktop:w-full">
-              <button
-                className=" border-2   rounded-lg border-red-400 px-2 py-1 max-desktop:w-full max-desktop:mt-[16px]"
-                style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
-              >
-                <div className="flex pl-1 pr-2 py-1 max-desktop:justify-center">
-                  <img className="" src={images?.Coins} />
-                  <Link to={`/Home/donate/${og_id}`}>
+              <Link to={`/Home/donate/${og_id}`}>
+                <button
+                  disabled={fundRaised === goalAmount}
+                  // onClick={fundRaised === goalAmount ? handleClick : null}
+                  className=" border-2   rounded-lg border-red-400 px-2 py-1 max-desktop:w-full max-desktop:mt-[16px]"
+                  style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
+                >
+                  <div className="flex pl-1 pr-2 py-1 max-desktop:justify-center">
+                    <img className="" src={images?.Coins} alt="" />
                     <p className="pl-1   text-[18px] max-tablet:text-[16px]">
                       Donate
                     </p>
-                  </Link>
-                </div>
-              </button>
+                  </div>
+                </button>
+              </Link>
             </div>
           </div>
         </div>

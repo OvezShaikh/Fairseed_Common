@@ -28,6 +28,7 @@ const Sign_02 = ({ handleBack, handleNext }) => {
         <div className="flex flex-col gap-3">
           <div>
             <InputField
+              required={true}
               label="Password"
               sx={{
                 padding: " 16px 10px 16px var(--Spacing-20, 20px)",
@@ -44,6 +45,7 @@ const Sign_02 = ({ handleBack, handleNext }) => {
           </div>
           <div>
             <InputField
+              required={true}
               label="Confirm Password"
               sx={{
                 padding: " 16px 10px 16px var(--Spacing-20, 20px)",
@@ -61,10 +63,12 @@ const Sign_02 = ({ handleBack, handleNext }) => {
             <CountrySelect
               label="Select Your Country"
               name={"country"}
+              required={true}
             />
           </div>
           <div>
             <RadioGroup
+              required={true}
               label={"I want to register as:"}
               onChange={(e) => {
                 setFieldValue("user_type", e.target.value);
@@ -84,7 +88,7 @@ const Sign_02 = ({ handleBack, handleNext }) => {
 
           <div className="flex justify-between">
             <CheckBox label="I agree with the" name={"policy_privacy"} />
-            <Link to={"/Login/Privacy-Policy"}>
+            <a href={"/Home/Privacy-Policy"}>
               <FormLabel
                 underline="always"
                 sx={{
@@ -106,7 +110,7 @@ const Sign_02 = ({ handleBack, handleNext }) => {
               >
                 <p className="gradient-button mb-0">Privacy Policy</p>
               </FormLabel>
-            </Link>
+            </a>
           </div>
 
           <div

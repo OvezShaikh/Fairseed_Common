@@ -27,7 +27,7 @@ const styleInput = {
 
 function General() {
   const [Details, setDetails] = useState({});
-  const [Keywords , setkeywords]= useState([])
+  // const [Keywords , setkeywords]= useState([])
 
   const { data } = useGetAll({
     key: `/admin-dashboard/gs`,
@@ -39,7 +39,7 @@ function General() {
     onSuccess: (data) => {
       setDetails(data);
       // console.log(data?.keywords_data , '<=====')
-      setkeywords(data?.keywords_data)
+      // setkeywords(data?.keywords_data)
     },
   });
 
@@ -55,7 +55,7 @@ function General() {
     email_admin: Details?.email_admin || "",
     tandc_url: Details?.tandc_url || "",
     email_no_reply: Details?.email_no_reply || "",
-    keywords_data: Keywords || [], // Set initial value as an empty array
+    keywords_data:Details?.keywords_data || [], // Set initial value as an empty array
     privacy_policy_url: Details?.privacy_policy_url || "",
     date_time: Details?.date_time || "",
     new_registration_enabled: Details?.new_registration_enabled || false,
@@ -114,6 +114,7 @@ function General() {
                 value={values?.welcome_text}
               />
             </div>
+           
             <div className="w-[24%] max-desktop:w-full max-tablet:w-full">
               <InputAdminField
                 label={"Email No-reply"}
@@ -124,17 +125,17 @@ function General() {
               />
             </div>
           </div>
+         
           <div className="w-[49%] max-desktop:w-full max-tablet:w-full pt-2">           
-
             <MultiKeyTextField
               name={"keywords_data"}
               label={"Keywords"}
               sx={styleLabel}
               placeholder={"Add Tags"}
-              value={values?.keywords_data}
-              onChange={(e)=>setFieldValue('keywords_data' , e.value)}
+              value={values?.keywords_data || []} 
+              // onChange={(value)=>setFieldValue('keywords_data' , value)}
             />
-            
+           
           </div>
           <div className="pt-7 mb-5 h-[200px]">
             <FormLabel style={styleLabel}>Description</FormLabel>

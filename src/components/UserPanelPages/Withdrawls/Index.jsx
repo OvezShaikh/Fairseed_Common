@@ -172,7 +172,6 @@ const Withdrawals = () => {
                 </>
               )}
 
-              {/* <SecondaryButton sx={{ height: '30px' }}>Edit Bank and KYC</SecondaryButton> */}
             </div>
           );
         },

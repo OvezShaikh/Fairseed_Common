@@ -19,12 +19,19 @@ const UploadField = ({
   const [field, meta, handlers] = useField(name);
 
   const handleFileChange = (event) => {
-    const file = multiple ? event.target.files : event.target.files[0];
+    const files = event.target.files;
 
-    if (file) {
-      handlers.setValue(file);
-      handlers.setTouched(true);
+    if (multiple && files.length > 1) {
+      // Multiple files selected
+      const fileList = Array.from(files);
+      handlers.setValue(fileList);
+    } else {
+      // Single file selected or multiple allowed but only one selected
+      handlers.setValue(files[0]);
     }
+
+    handlers.setTouched(true);
+
   };
 
   const configTextfield = {
@@ -78,12 +85,13 @@ const UploadField = ({
             type="file"
             ref={ref}
             style={{ display: "none" }}
-            id={`file - input - ${name}`} // Unique ID for each input
+            id={`file - input - ${name}`}
+            multiple={multiple}
             onChange={handleFileChange}
           />
 
           <label
-            htmlFor={`file - input - ${name}`} // Matching ID for the corresponding input
+            htmlFor={`file - input - ${name}`}
             className="flex justify-center gap-2 items-center"
           >
             {field.value ? (
@@ -97,7 +105,6 @@ const UploadField = ({
             ) : (
               ""
             )}
-            {/* You may want to add onClick for focusing on the input */}
             <img
               width={49}
               height={37}

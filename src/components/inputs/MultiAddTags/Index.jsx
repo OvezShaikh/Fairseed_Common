@@ -13,11 +13,11 @@ const CustomChips = ({
     ...otherProps
 }) => {
     const [field, meta, helpers] = useField(name);
-    const [value, setValue] = useState([]);
+    const [value, setValue] = useState(Array.isArray(field.value) ? field.value : []);
 
     const handleChange = (e) => {
         setValue(e.value);
-        helpers.setValue(e.value); // Update Formik field value
+        helpers.setValue(e.value); 
     };
 
     return (
@@ -43,4 +43,3 @@ const CustomChips = ({
 };
 
 export default CustomChips;
-

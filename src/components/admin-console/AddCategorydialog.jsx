@@ -23,6 +23,16 @@ const initialValues = {
   image: "",
   is_active: false,
 };
+const validationSchema = yup.object().shape({
+  title: yup.string().required("Title is required"),
+  url: yup
+    .string()
+    .required("Slug/URL is required")
+    .matches(
+      /^[^\s_0-9]+$/,
+      "Slug/URL cannot contain spaces, underscores, or numbers"
+    ),
+});
 
 export const LocationConfigurationDialog = ({
   isUpdate = false,
@@ -75,11 +85,12 @@ export const LocationConfigurationDialog = ({
       {({ onClose }) => (
         <Formik
           initialValues={initialValues}
+          // validationSchema={validationSchema}
           onSubmit={(values) => handleSubmit(values)}
         >
           {({ setFieldValue }) => (
             <Form className="flex flex-col items-center px-4">
-              <div className="flex w-full gap-4">
+              <div className="flex w-full gap-4 max-desktop:flex-col max-tablet:flex-col">
                 <div className="w-full">
                   <InputAdminField
                     name={"name"}
@@ -89,13 +100,13 @@ export const LocationConfigurationDialog = ({
                 </div>
                 <div className="w-full">
                   <InputAdminField
-                    name={"url"}
+                    name={"slug"}
                     label={"Slug/URL"}
                     placeholder={"Placeholder Text"}
                   />
                 </div>
               </div>
-              <div className="flex w-full mt-8 gap-4">
+              <div className="flex w-full mt-8 gap-4 max-desktop:flex-col max-tablet:flex-col">
                 <div className="w-full " Style>
                   <AdminUploadField
                     label="Thumbnail (Optional)"

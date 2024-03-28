@@ -15,6 +15,7 @@ function Index() {
   const [, setIsImageDeleted] = useState(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [deleteSuccess, setDeleteSuccess] = useState(false);
+  const [pass , setPass] = useState(false)
   let { state } = useLocation();
   let { id } = state;
 
@@ -68,16 +69,37 @@ function Index() {
 
   const { mutate } = useCreateOrUpdate({
     url: `/admin-dashboard/users/${id}`,
+    method:'put'
   });
 
 
   const initialvalues = {
-    name: User.username || "",
-    role: User.user_role || "",
+    username: User.username || "",
+    user_role: User.user_role || "",
     email: User.email || "",
     password: "",
-    // created_on: User.created_on || "",
   };
+
+  const handleSubmit = (values)=>{
+   
+  
+    const formData = new FormData();
+    {
+      pass && formData.append('password' , values?.password)
+    }
+    formData.append('username' , values?.username)
+    formData.append('user_role' , values?.user_role?.value)
+    formData.append('email' , values?.email)
+   
+
+    mutate(formData, {
+      onSuccess: (response) => {
+        toast.success("Details Updated Successfully !", {
+          position: "top-right",
+        });
+      },
+    });
+  }
 
   return (
     <div className="flex w-[100%] pt-3 gap-24 max-tablet:flex-col max-desktop:flex-col">
@@ -85,36 +107,30 @@ function Index() {
         <Formik
           enableReinitialize={true}
           initialValues={initialvalues}
-          onSubmit={(values) => {
-            mutate(values, {
-              onSuccess: (response) => {
-                toast.success("Details Updated Successfully !", {
-                  position: "top-right",
-                });
-              },
-            });
-          }}
+          onSubmit={(values) => handleSubmit(values) }
         >
-          {({ values }) => (
+          {({ values , setFieldValue }) => (
             <Form className="flex flex-col w-[100%] gap-4 items-center">
               <div className="w-full">
-                <InputField name={"name"} label={"Name:"} />
+                <InputField name={"username"} label={"Name:"} />
               </div>
               <SelectField
-                name={"role"}
+                name={"user_role"}
                 label={"Role:"}
                 required={true}
-                value={values?.role}
+                value={values?.user_role}
                 options={role.map((item) => ({
                   label: item.role_name,
-                  value: item.role_name,
+                  value: item.id,
                 }))}
+
+                onChange={(value)=>setFieldValue('user_role', value)}
               />
               <div className="w-full">
                 <InputField name={"email"} label={"Email Id:"} />
               </div>
               <div className="w-full">
-                <InputField name={"password"} label={"Password:"} />
+                <InputField name={"password"} label={"Password:"}  onChange={(value)=>setPass(true)}/>
               </div>
               <div className="flex flex-row gap-4 mt-12">
                 <button

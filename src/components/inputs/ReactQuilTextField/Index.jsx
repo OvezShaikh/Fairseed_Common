@@ -17,11 +17,13 @@ const QuillEditor = ({ value, onChange, placeholder, name }) => {
     "#0000ff",
     "#3333ff",
     "#6666ff",
+    "#ee2d",
+    "#fff",
   ];
 
   const modules = {
     toolbar: [
-      [{ header: [1, 2, 3, false] }],
+      [{ header: [1, 2, 3, 4, 5, 6] }],
       ["bold", "italic", "underline", "strike"],
       [{ color: colorOptions }],
       [{ list: "ordered" }, { list: "bullet" }],

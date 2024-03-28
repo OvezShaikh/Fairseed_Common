@@ -121,6 +121,10 @@ function Index({ goalAmount, fundRaised }) {
           window.location.href = url;
         }
       },
+      onError: (response) => {
+        console.log(response.response.data.error, "==========>ErrorMessage");
+        toast.error(`${response.response.data.error}Error`);
+      },
     });
   };
 
@@ -148,6 +152,7 @@ function Index({ goalAmount, fundRaised }) {
       <Navbar />
       <div className="flex flex-col ">
         <Navigation
+          remove={"remove"}
           label={"Donate"}
           heading={"Donate"}
           titleName={cardDetails?.user}
@@ -166,12 +171,12 @@ function Index({ goalAmount, fundRaised }) {
                       label={"Donation Type:"}
                       options={[
                         {
-                          label: "General Donation    ",
+                          label: "General Donation",
                           value: "General_Donation",
                         },
                         { label: "Zakat", value: "Zakat" },
                         {
-                          label: "Interest Offloading ",
+                          label: "Interest Offloading",
                           value: "Interest_Offloading",
                         },
                       ]}
@@ -423,7 +428,7 @@ function Index({ goalAmount, fundRaised }) {
               </div>
               <div className="flex">
                 <img
-                  className="w-[32px] h-[32px] mr-[18px] max-tablet:w-[20%]"
+                  className="w-[32px] h-[32px] mr-[18px] max-tablet:mr-[10px] max-tablet:w-[20%]"
                   src={images.SealCheck}
                   alt=""
                 />
@@ -438,7 +443,7 @@ function Index({ goalAmount, fundRaised }) {
                     "-webkit-text-fill-color": "transparent",
                   }}
                 >
-                  <p className="text-2xl max-tablet:text-[18px] font-bold">
+                  <p className="text-2xl max-tablet:text-[17px] font-bold">
                     Zakah Eligible !
                   </p>
                 </h1>

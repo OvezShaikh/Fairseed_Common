@@ -19,9 +19,9 @@ import Attachments from "../../layout/Attachments/Index";
 import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { ImageCropper } from "../../inputs/Cropper/ImageCropper";
+import { ImageCropper } from "../../inputs/ImageCropper/ImageCropper";
 import { ImagePreviewDialog } from "../../inputs/PreviewImage/PreviewImage";
-import DropZone from "../../inputs/Cropper/CropDrop";
+import DropZone from "../../inputs/ImageCropper/CropDrop";
 
 const EditCampaign = () => {
   let { state } = useLocation();
@@ -40,11 +40,6 @@ const EditCampaign = () => {
     refetchCategories();
   }, []);
 
-  const handleDelete = () => {
-    setDataUrl("");
-    setImageUrl("");
-  };
-
   const onChange = (e) => {
     let files;
 
@@ -61,7 +56,7 @@ const EditCampaign = () => {
   };
 
   const { data, isSuccess, refetch } = useGetAll({
-    key: `/admin-dashboard/campaign/${id}`,
+    key: `/user-dashboard/campaign/${id}`,
     enabled: false,
     select: (data) => {
       return data.data.data;
@@ -89,7 +84,7 @@ const EditCampaign = () => {
   });
 
   const { mutate } = useCreateOrUpdate({
-    url: `/user-dashboard/campaign/${id}`,
+    url: `/user-dashboard/cause-edit/${id}`,
     method: "put",
   });
 
@@ -104,84 +99,56 @@ const EditCampaign = () => {
     end_date: user?.end_date || "",
     status: user?.status || "",
     story: user?.story || "",
-    documents: user?.documents || [],
+    documents: [],
     zakat_eligible: user?.zakat_eligible || false,
   };
-  console.log(initial_values);
+
   if (!isSuccess) {
     return <div>Loading...</div>;
   }
 
-  // const handleSubmit = (values) => {
-  //   const formData = new FormData();
-  //   if (values?.campaign_image instanceof File) {
-  //     formData.append("campaign_image", values?.campaign_image);
-  //   }
-
-  //   formData.append("title", values?.title);
-  //   formData.append("amount", values?.amount);
-  //   formData.append("location", values?.location);
-  //   formData.append("end_date", values?.end_date);
-  //   formData.append("summary", values?.summary);
-  //   formData.append("story", values?.story);
-  //   formData.append("category", values?.category?.id);
-  //   formData.append("zakat_eligible", values?.zakat_eligible);
-  //   formData.append("documents", values?.documents);
-  //   formData.append("is_featured", values?.is_featured);
-
-  //   mutate(formData, {
-  //     onSuccess: (response) => {
-  //       toast.success(response?.data?.message, {
-  //         position: "top-right",
-  //       });
-  //       navigate(-1);
-  //     },
-  //     onError: (response) => {
-  //       toast.error(response?.data?.message, {
-  //         position: "top-right",
-  //       });
-  //     },
-  //   });
-  // };
-  
-
   const handleSubmit = (values) => {
     const changedValues = Object.keys(values).filter(
-      key => values[key] !== initial_values[key]
+      (key) => values[key] !== initial_values[key]
     );
-    // Prepare payload with only changed values
+
     const payload = {};
-    changedValues.forEach(key => {
+    changedValues.forEach((key) => {
       payload[key] = values[key];
     });
-    // Make API request with payload
+
     const formData = new FormData();
+
+    const documentsArray = values.documents ? Array.from(values.documents) : [];
+
+    documentsArray.forEach((file, index) => {
+      formData.append(`documents`, file);
+    });
+
     Object.entries(payload).forEach(([key, value]) => {
-      // Check if the value is a File instance before appending
-      if (value instanceof File) {
-        formData.append(key, value);
-      } else {
-        formData.append(key, JSON.stringify(value));
+      if (key !== "documents") {
+        formData.append(
+          key,
+          value instanceof File ? value : JSON.stringify(value)
+        );
       }
     });
-    formData.append('approve_kyc', true); 
+
     mutate(formData, {
       onSuccess: (response) => {
-        console.log(response, '<==========>');
         toast.success(response?.data?.message, {
           position: "top-right",
         });
         navigate(-1);
       },
       onError: (error) => {
-        console.error('There was a problem updating the data:', error);
+        console.error("There was a problem updating the data:", error);
         toast.error(error?.data?.message, {
-          position: 'top-right',
+          position: "top-right",
         });
       },
     });
   };
-  
 
   return (
     <Formik
@@ -280,7 +247,7 @@ const EditCampaign = () => {
                 </div>
               </div>
 
-              <div className="w-full mt-5">
+              <div className="w-full mt-5 max-tablet:pt-12">
                 <InputField
                   onChange={handleChange}
                   value={values?.summary}
@@ -320,15 +287,16 @@ const EditCampaign = () => {
                   Attachments:
                   <span className="text-red-600">*</span>
                 </FormLabel>
-
                 <div className="flex gap-4">
-                  {values?.documents?.map((imageUrl, index) => {
+                  {Documents?.map((imageUrl, index) => {
                     const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl.doc_file}`;
-                    return <Attachments
-                    key={index}
-                    id={id}
-                    imageUrl={documentLink}
-                  />
+                    return (
+                      <Attachments
+                        key={index}
+                        id={id}
+                        imageUrl={documentLink}
+                      />
+                    );
                   })}
                 </div>
               </div>
@@ -346,10 +314,10 @@ const EditCampaign = () => {
                 <div className="w-[50%] max-tablet:w-full document-upload-div">
                   <UploadField
                     label="Upload Attachment:"
-                    name="documents"
+                    name={"documents"}
                     placeholder="Upload marksheets, Medical records, Fees Structure etc."
                     sx={{ padding: "20px" }}
-                    multiple={false}
+                    multiple={true}
                     onChange={(value) => setFieldValue("documents", value)}
                   />
                 </div>

@@ -1,15 +1,6 @@
 import React, { useState } from "react";
 import * as Yup from "yup";
-import {
-  Typography,
-  Link,
-  Button,
-  Stepper,
-  Step,
-  StepLabel,
-  Box,
-  Grid,
-} from "@mui/material";
+import { Typography, Stepper, Step, StepLabel, Box } from "@mui/material";
 import { Formik } from "formik";
 import styled from "@emotion/styled";
 import { useCreateOrUpdate } from "../../../Hooks/useCreateOrUpdate";
@@ -17,6 +8,7 @@ import SignUp from "./SignUp";
 import Sign_02 from "./Sign_02";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const styleStep = {
   "  .MuiStep-root .MuiStepLabel-root ": {
@@ -61,7 +53,7 @@ const styleStep = {
         fill: "#06B217",
       },
     },
-     "& .MuiStepConnector-line": {
+    "& .MuiStepConnector-line": {
       borderColor: "#06B217",
       paddingLeft: "0px !important",
     },
@@ -139,10 +131,11 @@ const formValidation = [
     password2: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must be match")
       .required("Required"),
-      policy_privacy: Yup.string().required("Required"),
+    policy_privacy: Yup.boolean()
+      .oneOf([true], "You must agree to the terms and conditions")
+      .required("You must agree to the terms and conditions"),
   }),
 ];
-
 const getSteps = () => {
   return ["Details", "Information"];
 };
@@ -175,13 +168,20 @@ const Sign_Stepper = () => {
 
     mutate(formData, {
       onSuccess: (response) => {
-        toast.success(response?.data?.email, {
+        console.log(response);
+        toast.success(`${response?.data?.message}`, {
           position: "top-right",
         });
+        navigate("/Home");
         window.location.href = "/Home";
       },
-      onerror: (response) => {
-        toast.error(response?.data?.email, {
+      onError: (response) => {
+        console.log(response);
+
+        toast.error(`${response?.response?.data?.email[0]}`, {
+          position: "top-right",
+        });
+        toast.error(`${response?.response?.data?.mobile_number[0]}`, {
           position: "top-right",
         });
       },
@@ -200,6 +200,8 @@ const Sign_Stepper = () => {
         return "unknown step";
     }
   };
+  const navigate = useNavigate();
+
   return (
     <div className="w-[65%] max-desktop:w-full max-tablet:full">
       <div className="max-desktop:hidden max-tablet:hidden">

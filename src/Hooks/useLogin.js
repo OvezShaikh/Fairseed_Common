@@ -3,9 +3,8 @@ import serverAPI from "../config/serverAPI";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-     
+
 const useLogin = () => {
-  
   const Initial_value = {
     email: "",
     password: "",
@@ -22,7 +21,6 @@ const useLogin = () => {
   const navigate = useNavigate();
 
   const loginData = async (data) => {
-   
     console.log(data, "dadata");
     try {
       const res = await serverAPI.post("/accounts/login/nt/", data);
@@ -31,14 +29,13 @@ const useLogin = () => {
         position: "top-center",
       });
       const userinfo = res.data.user_info;
-      const info = JSON.stringify(userinfo)
+      const info = JSON.stringify(userinfo);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user_info", info);
-      console.log(userinfo)
+      console.log(userinfo);
 
-      setTimeout(() => {
-        window.location.href = "/Home";
-      }, 2000);
+      navigate("/");
+      window.location.href = "/Home";
       console.log(localStorage.getItem("token"));
       // console.log(localStorage.getItem("userRole"));
     } catch (error) {

@@ -14,8 +14,9 @@ const SecondaryButton = ({
 }) => {
   return (
     <Button
+      className="max-tablet:text:[14px]"
       sx={{
-        color: color || 'black',
+        color: color || "black",
         // height: "36px",
         // fontSize: {
         //   xs: "0.6rem",

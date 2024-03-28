@@ -549,33 +549,35 @@ const ReactTable = ({
                         height: "77px",
                         alignItems: "start",
                         fontWeight: 500,
-                        flexDirection: "column",
+                        // flexDirection: "column",
                         padding: "5px 10px 0px 10px",
                         overflowX: "hidden",
+                        display: "flex",
+                        flexDirection: "row",
                       },
                       className: "!max-tablet:text-[5px]",
                     })}
                     key={column?.id}
                   >
-                    <div className="flex">
-                      <div className="pt-1 max-table:w-[10px] overflow-hidden  ">
+                    <div className="flex flex-col  max-w-[200px] w-full">
+                      <div className="pt-1 max-tablet:w-[70px] w-[100px] max-desktop:text-[16px] max-tablet:text-[14px]  truncate">
                         {column.render("Header")}
                       </div>
-                      {column?.sortable !== false && (
-                        <Sorting
-                          column={column}
-                          order={order}
-                          sortField={sortField}
-                          handleSortingChange={handleSortingChange}
-                        />
-                      )}{" "}
-                    </div>
-                    <div className="pt-2">
-                      {column?.search !== false && (
-                        <Columnfilter column={column} />
-                      )}
-                    </div>
 
+                      <div className="pt-2">
+                        {column?.search !== false && (
+                          <Columnfilter column={column} />
+                        )}
+                      </div>
+                    </div>
+                    {column?.sortable !== false && (
+                      <Sorting
+                        column={column}
+                        order={order}
+                        sortField={sortField}
+                        handleSortingChange={handleSortingChange}
+                      />
+                    )}{" "}
                     <div
                       {...column.getResizerProps()}
                       className={`resizer ${
