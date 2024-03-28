@@ -8,6 +8,11 @@ import { Link, useLocation } from "react-router-dom";
 import images from "../../../constants/images";
 import { Dialog } from "../../../components/layout/dialogBox";
 import PrimaryButton from "../../inputs/PrimaryButton";
+import { Form, Formik } from "formik";
+import { useCreateOrUpdate } from "../../../Hooks";
+import { toast } from "react-toastify";
+import { handleBreakpoints } from "@mui/system";
+import axios from "axios";
 const style = {
   padding: "4px 48px",
   color: "white",
@@ -22,9 +27,16 @@ const style2 = {
   fontWeight: 700,
   fontFamily: "satoshi",
 };
+
+
+
 const User_Campaign = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
+  const [rowId, setRowId] = useState('')
+
+
   const { pathname } = useLocation();
+
   const getStatusCellStyle = (status) => {
     if (status === "Pending") {
       return {
@@ -63,6 +75,12 @@ const User_Campaign = () => {
       </span>
     </div>
   );
+
+ 
+  const finaize = async(id)=>{
+    axios.post(`/user-dashboard/finalize-campaign/${id}`)
+  }
+
 
   const columns = React.useMemo(() => [
     {
@@ -157,17 +175,16 @@ const User_Campaign = () => {
                     Edit
                   </SecondaryButton>
                 </Link>
-                {/* <Link to="View" state={{ id: row?.id }}> */}
 
+              
                 <Dialog
                   button={
-                    <SecondaryButton sx={{ height: "30px" }}>
+                    <SecondaryButton sx={{ height: "30px" }} onClick={() => setRowId(row?.id)}>
                       Finalize Campaign
                     </SecondaryButton>
                   }
-                  maxWidth="md"
+                  maxWidth="sm"
                   onCloseCall={() => console.log("Dialog closed")}
-                  // onCloseDialog={onClose}
                 >
                   <div className="flex flex-col gap-10 justify-center items-center flex-wrap text-center pb-4">
                     <img src={images.Vector} alt="" />
@@ -177,10 +194,11 @@ const User_Campaign = () => {
                     </p>
                     <div className="flex justify-center gap-4 max-tablet:flex-col">
                       <SecondaryButton sx={style2}>Cancel</SecondaryButton>
-                      <PrimaryButton sx={style}>Finalize</PrimaryButton>
+                      <PrimaryButton sx={style} onClick={()=>finaize(row?.id)} >Finalize</PrimaryButton>
                     </div>
                   </div>
                 </Dialog>
+                
 
                 {/* </Link> */}
               </>

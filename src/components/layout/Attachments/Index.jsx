@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RiDeleteBin6Line, RiCloseLine, RiDownload2Line } from "react-icons/ri";
 import images from "../../../constants/images";
 import { useDownloadFile } from "../../../Hooks/useDownloadFile";
 import SecondaryButton from "../../inputs/secondaryButton";
 import { Button } from "react-bootstrap";
+import PrimaryButton from "../../inputs/PrimaryButton";
 
 function YourComponent({ imageUrl, id }) {
   const [isImageDeleted, setIsImageDeleted] = useState(false);
@@ -52,27 +53,7 @@ function YourComponent({ imageUrl, id }) {
     }
   );
 
-  // const downloadDocument = () => {
-  //     // Create a temporary anchor element
-  //     const downloadLink = document.createElement('a');
-  //     downloadLink.href = imageUrl;
 
-  //     // Extract the filename from the URL
-  //     const urlParts = imageUrl.split('/');
-  //     const filename = urlParts[urlParts.length - 1];
-
-  //     // Set the download attribute to specify the filename
-  //     downloadLink.download = filename;
-
-  //     // Append the anchor to the body
-  //     document.body.appendChild(downloadLink);
-
-  //     // Trigger a click event to start the download
-  //     downloadLink.click();
-
-  //     // Clean up: remove the anchor from the body
-  //     document.body.removeChild(downloadLink);
-  // };
 
   const handleOk = () => {
     setDeleteSuccess(false);
@@ -129,13 +110,12 @@ function YourComponent({ imageUrl, id }) {
                 style={{ fontSize: "24px" }}
                 onClick={toggleFullScreen}
               />
-              <Button
+              <PrimaryButton
                 onClick={() => Filerefetch()}
                 isLoading={Fileloading}
-                color="#40444C"
               >
                 Download
-              </Button>
+              </PrimaryButton>
             </div>
           </div>
         </div>

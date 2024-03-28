@@ -11,19 +11,17 @@ export const useDownloadFile = (path, params, onSuccess) => {
       const fileData =  data?.documents[0].doc_file;
 
       let a = document.createElement("a");
-      
-      a.href = `${process.env.REACT_APP_BASE_URL}${fileData}`;
-      
+
+      a.setAttribute("download" , true)
+      a.setAttribute("href", `${process.env.REACT_APP_BASE_URL}${fileData}`)
+      // a.href = `${process.env.REACT_APP_BASE_URL}${fileData}`;
+
       a.target = "_blank";
       
-      a.download = fileData.split("/")[fileData.split("/")?.length - 1];
+      // a.download = fileData.split("/")[fileData.split("/")?.length - 1];
 
-      document.body.appendChild(a);
-      
-      console.log( a.download, 'llllinkkkkkk')
-      
-      console.log(a.href, 'hrefff')
-      
+      // document.body.appendChild(a);
+            
       a.click();
       
       onSuccess && onSuccess();

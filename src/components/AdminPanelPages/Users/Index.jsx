@@ -126,9 +126,7 @@ const User = () => {
         title={"User"}
         checkboxComponent={IndeterminateCheckbox}
         url={`/admin-dashboard/users`}
-        // extraQuery={{ inactive: true }}
         addButton={<AddUser />}
-        // addButton={<Button>HElloooooo</Button>}
         selectedRowID={selectedRowID}
       />
     </div>
