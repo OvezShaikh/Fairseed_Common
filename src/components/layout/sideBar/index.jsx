@@ -14,7 +14,6 @@ export function SideBar({ mobileOpen, setMobileOpen }) {
 
   return (
     <Box sx={{ display: "flex" }} className="container">
-      {/* <CssBaseline /> */}
       <Navbar handleDrawerToggle={handleDrawerToggle} mobileOpen={mobileOpen} />
       <Box
         component="nav"

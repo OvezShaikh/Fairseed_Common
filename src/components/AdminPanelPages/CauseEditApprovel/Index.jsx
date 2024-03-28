@@ -70,8 +70,7 @@ function CauseEdit_Form() {
       console.log(data);
       setUser(data);
       const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${
-        data?.campaign_image || ""
-      }`;
+        data?.campaign_image || ""}`;
       setSrcImg(imageUrl);
       setDocuments(data?.documents);
     },

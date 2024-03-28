@@ -34,11 +34,10 @@ function Index() {
     const navigate = useNavigate()
 
     useGetAll({
-        key: `/admin-dashboard/donors?page=1&limit=10/${id}`,
+        key: `/user-dashboard/donations/${id}`,
         enabled: true,
         select: (data) => {
-            console.log(data)
-            return data.data.data;
+            return data.data.rows[0];
         },
         onSuccess: (data) => {
             setData(data);
@@ -46,13 +45,27 @@ function Index() {
     })
 
     const initial_values = {
+        campaign : data?.campaign || '',
+        transaction_id:data?.transaction_id || '',
+        pancard : data?.pancard || '',
+        amount : data?.amount || '',
+        payment_type : data?.payment_type || '',
+        comment : data?.comment || '',
+        updated_on : data?.updated_on || '',
+        is_anonymous : data?.is_anonymous || '',
+        full_name:data?.full_name || '',
 
     }
 
     return (
         <Formik
-            initialValues={{}}
+            enableReinitialize={true}
+            initialValues={initial_values}
+
         >
+            {({values })=>(
+
+       
             <Form className='flex flex-col items-center gap-[30px] max-desktop:pt-4 max-tablet:4'>
 
                 <div className="flex max-desktop:flex-col max-tablet:flex-col w-full gap-3">
@@ -61,21 +74,24 @@ function Index() {
                         <div className="w-[49%] max-tablet:w-full">
                             <FormLabel sx={styleLabel}>Campaign:</FormLabel>
                             <div className="flex">
-                                <h1 className='text-[16px] font-[satoshi] pt-3  font-medium max-tablet:pl-2 max-tablet:pb-2'>Causes</h1>
+                                <h1 className='text-[16px] font-[satoshi] pt-3  font-medium max-tablet:pl-2 max-tablet:pb-2'>{values?.campaign}</h1>
+                                <a href={`/campaign-details/${id}`} target='_blank'>
                                 <img className='pt-2 pl-2' src={images.CausesDetails} alt="" />
+                                </a>
+                                
                             </div>
                         </div>
                         <div className="w-[49%] max-tablet:w-full">
-                            <InputField name={"transaction"} label={"ID:"} placeholder={'Placeholder Text'} />
+                            <InputField name={"transaction_id"} value={values?.transaction_id} label={"ID:"} placeholder={'Placeholder Text'} />
                         </div>
                     </div>
                     <div className="flex justify-between w-[50%] max-desktop:w-full max-tablet:flex-col max-tablet:gap-3">
 
                         <div className="w-[49%] max-tablet:w-full">
-                            <InputField name={"FullName"} label={"Full Name:"} placeholder={'Placeholder Text'} />
+                            <InputField name={"full_name"} value={values?.full_name} label={"Full Name:"} placeholder={'Placeholder Text'} />
                         </div>
                         <div className="w-[49%] max-tablet:w-full">
-                            <InputField name={"Email"} label={"Pan Card:"} placeholder={'Placeholder Text'} />
+                            <InputField name={"pancard"} label={"Pan Card:"} value={values?.pancard} placeholder={'Placeholder Text'} />
                         </div>
                     </div>
                 </div>
@@ -83,23 +99,23 @@ function Index() {
                 <div className="flex max-desktop:flex-col max-tablet:flex-col w-full gap-3">
                     <div className="flex justify-between w-[50%] max-desktop:w-full max-tablet:flex-col max-tablet:gap-3">
                         <div className="w-[49%] max-tablet:w-full">
-                            <InputField name={"TransactionConfirmation"} label={"Donation:"} placeholder={'Placeholder Text'} />
+                            <InputField name={"amount"} value={values?.amount} label={"Donation:"} placeholder={'Placeholder Text'} />
 
                         </div>
                         <div className="w-[49%] max-tablet:w-full">
-                            <InputField name={"TransactionConfirmation"} label={"Payment Gateway:"} placeholder={'Placeholder Text'} />
+                            <InputField name={"payment_type"}  value={values?.payment_type} label={"Payment Gateway:"} placeholder={'Placeholder Text'} />
                         </div>
                     </div>
                     <div className="flex  justify-between w-[50%] max-desktop:w-full max-tablet:flex-col max-tablet:gap-3">
                         <div className="w-[49%] max-tablet:w-full">
-                            <InputField name={"Reward"} label={"Comments:"} placeholder={'Placeholder Text'} />
+                            <InputField name={"comment"} label={"Comments:"} value={values?.comment} placeholder={'Placeholder Text'} />
                         </div>
                         <div className="w-[49%] max-tablet:w-full">
                             <InputField
                                 type="date"
                                 // defaultValue={yesterday}
-
-                                name="TransactionDate"
+                                value={values?.updated_on}
+                                name="updated_on"
                                 inputProps={{ min: moment().format('YYYY-MM-DD') }}
 
                                 required={true}
@@ -112,7 +128,7 @@ function Index() {
                 </div>
                 <div className="flex w-full max-desktop:w-full max-tablet:flex-col  gap-3">
                     <div className="w-[25%] max-desktop:w-1/2 max-tablet:w-full">
-                        <SelectField name={"Preferred"} label={"Anonymous:"} placeholder={'Placeholder Text'} />
+                        <SelectField name={"is_anonymous"} label={"Anonymous:"}  value={values?.updated_on ? 'Yes' : 'NO'} placeholder={'Placeholder Text'} />
                     </div>
                     <div className="w-[25%] max-desktop:w-1/2 max-tablet:w-full">
                         <InputField name={"PreferredDonation"} label={"Reward:"} placeholder={'Placeholder Text'} />
@@ -124,6 +140,7 @@ function Index() {
                 </button>
 
             </Form>
+                 )}
         </Formik>
     )
 }
