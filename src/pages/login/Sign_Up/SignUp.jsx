@@ -6,12 +6,12 @@ import { useFormikContext } from "formik";
 import PrimaryButton from "../../../components/inputs/PrimaryButton";
 import { Button } from "@mui/material";
 import { SlPencil } from "react-icons/sl";
+import Profile from "../../../components/inputs/AvatarCrop/Profile";
 
 const SignUp = ({ handleNext }) => {
   const imgRef = useRef(null);
   const { isValid, setFieldValue, values } = useFormikContext();
 
-  // Check if all required fields are filled
   const isFormValid = () => {
     return values.username && values.email && values.mobile_number;
   };
@@ -30,7 +30,7 @@ const SignUp = ({ handleNext }) => {
         <div className="flex flex-col gap-8">
           <div className="flex flex-col justify-center items-center">
             <div>
-              <Avatar
+              {/* <Avatar
                 alt="Remy Sharp"
                 src={
                   values.profile_pic
@@ -57,8 +57,9 @@ const SignUp = ({ handleNext }) => {
                   onChange={(event) =>
                     setFieldValue("profile_pic", event.target.files[0])
                   }
-                />
+                /> */}
 
+              {/*                
                 <div
                   style={{
                     color: "black",
@@ -81,7 +82,12 @@ const SignUp = ({ handleNext }) => {
                     <SlPencil className="w-7 h-8 text-[white] " />
                   </Button>
                 </div>
-              </Avatar>
+              </Avatar> */}
+
+              <Profile
+                name={"profile_pic"}
+              />
+
             </div>
             <div className="w-full space-y-4">
               <div>

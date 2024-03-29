@@ -2,29 +2,35 @@ import React, { useEffect, useState } from "react";
 import { RiDeleteBin6Line, RiCloseLine, RiDownload2Line } from "react-icons/ri";
 import images from "../../../constants/images";
 import { useDownloadFile } from "../../../Hooks/useDownloadFile";
-import SecondaryButton from "../../inputs/secondaryButton";
-import { Button } from "react-bootstrap";
 import PrimaryButton from "../../inputs/PrimaryButton";
+import { useDelete } from "../../../Hooks";
 
 function YourComponent({ imageUrl, id }) {
   const [isImageDeleted, setIsImageDeleted] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [deleteSuccess, setDeleteSuccess] = useState(false);
+ 
+
+  const { delete : documentdelete } = useDelete({
+    url:`/admin-dashboard/documents/${id}`,
+  })
 
   const handleDelete = () => {
     setShowDeleteConfirmation(true);
   };
 
-  const confirmDelete = () => {
-    // Simulate deletion by setting isImageDeleted to true
-    setIsImageDeleted(true);
-    setDeleteSuccess(true); // Set delete success to true
+  const confirmDelete =  () => {
+      documentdelete();
+      setIsImageDeleted(true);
+      setDeleteSuccess(true);
   };
 
   const cancelDelete = () => {
     setShowDeleteConfirmation(false);
   };
+
+
   const toggleFullScreen = () => {
     // Check if the element with the class 'small-screen' exists
     const isSmallScreen =

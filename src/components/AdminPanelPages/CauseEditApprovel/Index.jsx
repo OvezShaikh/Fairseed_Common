@@ -283,6 +283,7 @@ function CauseEdit_Form() {
 
                 <div className="flex gap-4 max-tablet:flex-col">
                   {values?.documents?.map((imageUrl, index) => {
+                    console.log(imageUrl , "imageUrl")
                     const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl?.doc_file}`;
                     return (
                       <Attachments

@@ -8,6 +8,7 @@ import PrimaryButton from '../../inputs/PrimaryButton';
 import ProfilePicDropZone from '../../inputs/ImageCropper/ProfilePicDropZone';
 import { ImageCropper } from '../../inputs/ImageCropper/ImageCropper';
 import { ImagePreviewDialog } from '../../inputs/PreviewImage/PreviewImage';
+import Profile from '../../inputs/AvatarCrop/Profile';
 
 
 
@@ -61,7 +62,7 @@ const Account = () => {
     email: Details?.email || '',
     mobile_number: Details?.mobile_number || '',
     country: Details?.country || '',
-    image: srcImg  || ''
+    profile_pic: srcImg  || ''
   }
 
   const { mutate } = useCreateOrUpdate({
@@ -89,7 +90,7 @@ const Account = () => {
     formData.append("email", values?.email);
     formData.append("mobile_number", values?.mobile_number);
     formData.append("country", values?.country);
-    formData.append("image", values?.image);
+    formData.append("profile_pic", values?.profile_pic);
 
       mutate(formData, {
         onSuccess: () => {
@@ -108,23 +109,10 @@ const Account = () => {
     >
       {({ values, handleChange }) => (
         <Form>
-         <ProfilePicDropZone
-                  name="image"
-                  onChange={onChange}
-                  initialPreview={srcImg}
-                />
-
-          {openCrop && (
-            <>
-              <ImageCropper
-                srcImg={srcImg}
-                setOpenCrop={setOpenCrop}
-                setsrcImg={setSrcImg}
-              />
-            </>
-          )}
-
-                {srcImg && <ImagePreviewDialog croppedImage={srcImg} />}
+        <Profile 
+        name={"profile_pic"}
+        value= {values?.profile_pic}
+        />
 
           <InputField
             onChange={handleChange}

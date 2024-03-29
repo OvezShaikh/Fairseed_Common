@@ -8,10 +8,6 @@ import { Link, useLocation } from "react-router-dom";
 import images from "../../../constants/images";
 import { Dialog } from "../../../components/layout/dialogBox";
 import PrimaryButton from "../../inputs/PrimaryButton";
-import { Form, Formik } from "formik";
-import { useCreateOrUpdate } from "../../../Hooks";
-import { toast } from "react-toastify";
-import { handleBreakpoints } from "@mui/system";
 import axios from "axios";
 const style = {
   padding: "4px 48px",
@@ -78,7 +74,9 @@ const User_Campaign = () => {
 
  
   const finaize = async(id)=>{
-    axios.post(`/user-dashboard/finalize-campaign/${id}`)
+    await axios.post(`/user-dashboard/finalize-campaign/${id}`).then((response)=>{
+      console.log(response ,"<====")  
+    });
   }
 
 
