@@ -562,7 +562,7 @@ export default function Example(
                     </svg>
                   </button>
 
-                  {isInputFocused && searchTerm && (
+                  {/* {isInputFocused && searchTerm && (
                     <ul
                       className={`search-suggestions pt-7 mt-2 pb-2 h-8 w-auto flex flex-col absolute`}
                       tabIndex="-1" 
@@ -580,7 +580,7 @@ export default function Example(
                         </Link>
                       ))}
                     </ul>
-                  )}
+                  )} */}
                 </form>
               </div>
 

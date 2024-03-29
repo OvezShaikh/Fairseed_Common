@@ -12,6 +12,7 @@ import {
   ReferenceDot,
 } from "recharts";
 import { useGetAll } from "../../../Hooks";
+import "./Last6MonthsDonation.css"
 
 
 const renderQuarterTick = (tickProps) => {
@@ -98,7 +99,7 @@ export default function DonationInLastMonth() {
 
   return (
     <div className="font-semibold text-lg">My Donations in last 6 months
-    <div className=" shadow-md p-3 rounded-[20px] border-l">
+    <div className=" shadow-md p-3 rounded-[20px] border-l max-tablet:overflow-x-scroll">
       {/* <p className={"mb-3 text-lg font-semibold"}>My Donations in last 6 months </p> */}
       <ResponsiveContainer width="100%" height={340}>
         <BarChart
@@ -120,11 +121,11 @@ export default function DonationInLastMonth() {
             xAxisId="quarter"
           /> */}
           {/* domain={[0, 100]} */}
-          <YAxis   style={chartStyle} tickLine={false} axisLine={false}  />
+          <YAxis  style={chartStyle} tickLine={false} axisLine={false}  />
           <Tooltip />
           <Legend />
           <Bar
-            className="w-5 rounded-[20px]"
+            className="w-5 rounded-[20px] pl-1"
             dataKey='donation_count'
             shape={(props) => (
               <LinearGradientBar

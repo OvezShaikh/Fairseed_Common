@@ -380,6 +380,7 @@ function Footer() {
                     textTransform: "capitalize",
                   }}
                   to="https://twitter.com/FairSeedTech"
+                  target="_blank"
                 >
                   <img src={icons.FooterIconTw} />
                 </Link>
@@ -391,6 +392,7 @@ function Footer() {
                     textTransform: "capitalize",
                   }}
                   to="https://www.instagram.com/fairseedtechfoundation/"
+                  target="_blank"
                 >
                   <img src={icons.FooterIconIn} />
                 </Link>
