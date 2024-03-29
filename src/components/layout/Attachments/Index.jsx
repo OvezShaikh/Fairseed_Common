@@ -1,42 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { RiDeleteBin6Line, RiCloseLine, RiDownload2Line } from "react-icons/ri";
-import images from "../../../constants/images";
+import React, { useState } from "react";
+import { RiCloseLine } from "react-icons/ri";
 import { useDownloadFile } from "../../../Hooks/useDownloadFile";
-import SecondaryButton from "../../inputs/secondaryButton";
-import { Button } from "react-bootstrap";
 import PrimaryButton from "../../inputs/PrimaryButton";
+import { DeleteBox } from "../dialogBox/delete";
 
 function YourComponent({ imageUrl, id }) {
   const [isImageDeleted, setIsImageDeleted] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
-  const [deleteSuccess, setDeleteSuccess] = useState(false);
 
-  const handleDelete = () => {
-    setShowDeleteConfirmation(true);
-  };
-
-  const confirmDelete = () => {
-    // Simulate deletion by setting isImageDeleted to true
-    setIsImageDeleted(true);
-    setDeleteSuccess(true); // Set delete success to true
-  };
-
-  const cancelDelete = () => {
-    setShowDeleteConfirmation(false);
-  };
   const toggleFullScreen = () => {
-    // Check if the element with the class 'small-screen' exists
     const isSmallScreen =
       document.documentElement.classList.contains("small-screen");
 
-    // Toggle full screen based on screen size
     if (isSmallScreen) {
       setIsFullScreen(!isFullScreen);
     } else {
-      // Handle full screen toggling for large screens as before
-      // For example:
-      // setIsFullScreen(!isFullScreen);
       setIsFullScreen(!isFullScreen);
     }
   };
@@ -53,12 +31,8 @@ function YourComponent({ imageUrl, id }) {
     }
   );
 
-
-
-  const handleOk = () => {
-    setDeleteSuccess(false);
-    setIsImageDeleted(true); // Actually delete the image
-    setShowDeleteConfirmation(false); // Close the confirmation dialog
+  const handleDeleteSuccess = () => {
+    setIsImageDeleted(true);
   };
 
   return (
@@ -84,11 +58,21 @@ function YourComponent({ imageUrl, id }) {
             onClick={toggleFullScreen}
           />
           {!isFullScreen && (
-            <RiDeleteBin6Line
-              className="absolute top-0 right-0 m-1 cursor-pointer"
-              style={{ color: "white" }}
-              onClick={handleDelete}
-            />
+            <div className="absolute right-1 top-2">
+              <DeleteBox
+                url={`/admin-dashboard/documents`}
+                data={id}
+                iconDelete={true}
+                title={"document"}
+                onSuccess={handleDeleteSuccess}
+                refetchUrl={"/admin-dashboard/documents"}
+              >
+                <p>Are you sure to delete this document!</p>
+                <p className="text-red-500">
+                  Once you delete this document you can't undo that document!
+                </p>
+              </DeleteBox>
+            </div>
           )}
         </div>
       )}
@@ -117,63 +101,6 @@ function YourComponent({ imageUrl, id }) {
                 Download
               </PrimaryButton>
             </div>
-          </div>
-        </div>
-      )}
-      {showDeleteConfirmation && (
-        <div
-          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center "
-          style={{ zIndex: 12344 }}
-        >
-          <div className="bg-white p-4 rounded shadow-md flex flex-col items-center justify-center text-center">
-            {!deleteSuccess ? (
-              <>
-                <img
-                  src={images.Vector}
-                  className="w-[50px] h-[50px] mb-2"
-                  alt=""
-                />
-
-                <h1 className="pb-2 text-[30px] font-[satoshi] font-black ">
-                  Are you sure?
-                </h1>
-                <p className="text-black/40 text-[20px] font-[satoshi] font-medium">
-                  Once deleted, you will not be able to recover this document.
-                </p>
-                <div className="mt-4">
-                  <button
-                    onClick={cancelDelete}
-                    className="bg-gray-300 px-4 py-2  text-[20px] mr-2 font-[satoshi] font-medium rounded"
-                  >
-                    No, cancel!
-                  </button>
-                  <button
-                    onClick={confirmDelete}
-                    className="bg-green-500 text-white text-[20px] font-[satoshi] font-medium px-4 py-2  rounded"
-                  >
-                    Yes, delete it!
-                  </button>
-                </div>
-              </>
-            ) : (
-              <>
-                <img src={images.done} alt="" />
-                <h1 className="text-green-400 pb-2 text-[30px] font-[satoshi] font-black ">
-                  Success!
-                </h1>
-                <p className="text-[18px] text-black/40 font-medium font-[satoshi]">
-                  Document deleted successfully.
-                </p>
-                <div className="mt-4">
-                  <button
-                    onClick={handleOk}
-                    className="bg-green-500 text-white text-[20px] font-[satoshi] font-medium px-4 py-2  rounded"
-                  >
-                    OK
-                  </button>
-                </div>
-              </>
-            )}
           </div>
         </div>
       )}

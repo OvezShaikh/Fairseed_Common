@@ -144,6 +144,7 @@ const InputField = ({
         </FormLabel>
       )}
       <InputBase
+        removeTags
         sx={styles}
         // style={{ ...configTextfield?.style }}
         {...textFieldConfig}

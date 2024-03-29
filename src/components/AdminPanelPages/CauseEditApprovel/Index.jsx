@@ -237,7 +237,7 @@ function CauseEdit_Form() {
                 </div>
               </div>
 
-              <div className="w-full mt-5 max-tablet:pt-4">
+              <div className="w-full mt-5 max-tablet:pt-10 max-desktop:pt-5">
                 <InputField
                   onChange={handleChange}
                   value={values?.summary}
@@ -280,11 +280,12 @@ function CauseEdit_Form() {
 
                 <div className="flex gap-4 max-tablet:flex-col">
                   {values?.documents?.map((imageUrl, index) => {
+                    console.log(imageUrl.id, "==========>Documents");
                     const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl?.doc_file}`;
                     return (
                       <Attachments
                         key={index}
-                        id={id}
+                        id={imageUrl?.id}
                         imageUrl={documentLink}
                       />
                     );
