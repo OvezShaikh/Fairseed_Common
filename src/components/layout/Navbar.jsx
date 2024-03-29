@@ -707,65 +707,43 @@ export default function Example() {
                   How It works
                 </Link>
               </div>
-              <div className="py-4">
+              <div className="py-2 ">
                 {localStorage.getItem("token") ? (
-                  <>
+                  <div className="space-y-1">
                     {role === "Admin" && (
                       <>
-                        <MenuItem>
-                          <Link
-                            className="flex  items-center max-desktop:font-[satoshi]"
-                            to="/AdminPanel"
-                          >
-                            <ListItemIcon className="pr-2">
-                              <Avatar className="!w-7 !h-7" src={img} />
-                            </ListItemIcon>
-                            AdminPanel
-                          </Link>
-                        </MenuItem>
-                        <Divider />
+                        <Link
+                          className="flex text-[satoshi] text-[20px] items-center max-desktop:font-[satoshi] font-medium text-black"
+                          to="/AdminPanel"
+                        >
+                          AdminPanel
+                        </Link>
                       </>
                     )}
 
-                    <MenuItem onClick={handleClose}>
-                      <Link
-                        className="flex items-center max-desktop:font-[satoshi]"
-                        to={"/User"}
-                      >
-                        <ListItemIcon>
-                          <img src={images.Dashboard} alt="" />
-                        </ListItemIcon>
-                        Dashboard
-                      </Link>
-                    </MenuItem>
-
-                    <MenuItem onClick={handleClose}>
-                      <Link
-                        className="flex items-center max-desktop:font-[satoshi]"
-                        to={"/account-settings"}
-                      >
-                        <ListItemIcon>
-                          <Settings fontSize="small" />
-                        </ListItemIcon>
-                        Settings
-                      </Link>
-                    </MenuItem>
-
-                    <MenuItem
-                      className="flex items-center max-desktop:font-[satoshi]"
-                      onClick={handleClose}
+                    <Link
+                      className="flex text-[satoshi] text-[20px] items-center max-desktop:font-[satoshi] font-medium text-black"
+                      to={"/User"}
                     >
-                      <ListItemIcon>
-                        <Logout fontSize="small" />
-                      </ListItemIcon>
+                      Dashboard
+                    </Link>
+
+                    <Link
+                      className="flex text-[satoshi] text-[20px] items-center max-desktop:font-[satoshi] font-medium text-black"
+                      to={"/account-settings"}
+                    >
+                      Settings
+                    </Link>
+                    <div className="flex items-center">
                       <button
-                        className="max-desktop:font-[satoshi]"
+                        className="max-desktop:font-[satoshi] text-[satoshi] text-[20px] font-medium text-black pr-1 "
                         onClick={() => logout()}
                       >
                         Logout
                       </button>
-                    </MenuItem>
-                  </>
+                      <Logout fontSize="small" />
+                    </div>
+                  </div>
                 ) : (
                   <Link to="/Home/Login">
                     <button className="font-[satoshi] text-[22px] font-medium text-[#40444C]">

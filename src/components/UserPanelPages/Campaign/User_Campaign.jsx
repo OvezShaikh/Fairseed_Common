@@ -8,10 +8,6 @@ import { Link, useLocation } from "react-router-dom";
 import images from "../../../constants/images";
 import { Dialog } from "../../../components/layout/dialogBox";
 import PrimaryButton from "../../inputs/PrimaryButton";
-import { Form, Formik } from "formik";
-import { useCreateOrUpdate } from "../../../Hooks";
-import { toast } from "react-toastify";
-import { handleBreakpoints } from "@mui/system";
 import axios from "axios";
 const style = {
   padding: "4px 48px",
@@ -28,12 +24,9 @@ const style2 = {
   fontFamily: "satoshi",
 };
 
-
-
 const User_Campaign = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
-  const [rowId, setRowId] = useState('')
-
+  const [rowId, setRowId] = useState("");
 
   const { pathname } = useLocation();
 
@@ -76,11 +69,15 @@ const User_Campaign = () => {
     </div>
   );
 
- 
-  const finaize = async(id)=>{
-    axios.post(`/user-dashboard/finalize-campaign/${id}`)
-  }
-
+  const finaize = async (id) => {
+    await axios
+      .post(
+        `http://143.110.253.227:8000/user-dashboard/finalize-campaign/${id}`
+      )
+      .then((response) => {
+        console.log(response, "<====");
+      });
+  };
 
   const columns = React.useMemo(() => [
     {
@@ -176,29 +173,40 @@ const User_Campaign = () => {
                   </SecondaryButton>
                 </Link>
 
-              
                 <Dialog
+                  onClose={onclose}
                   button={
-                    <SecondaryButton sx={{ height: "30px" }} onClick={() => setRowId(row?.id)}>
+                    <SecondaryButton
+                      sx={{ height: "30px" }}
+                      onClick={() => setRowId(row?.id)}
+                    >
                       Finalize Campaign
                     </SecondaryButton>
                   }
                   maxWidth="sm"
                   onCloseCall={() => console.log("Dialog closed")}
                 >
-                  <div className="flex flex-col gap-10 justify-center items-center flex-wrap text-center pb-4">
-                    <img src={images.Vector} alt="" />
-                    <p className="text-[ var(--Neutral-Neutral-7, #717171)] w-[65%] font-[satoshi] text-[34px] font-semibold max-tablet:text-[18px]">
-                      Are you Sure you want to finalize the cause. This action
-                      can’t be undone.
-                    </p>
-                    <div className="flex justify-center gap-4 max-tablet:flex-col">
-                      <SecondaryButton sx={style2}>Cancel</SecondaryButton>
-                      <PrimaryButton sx={style} onClick={()=>finaize(row?.id)} >Finalize</PrimaryButton>
+                  {(onClose) => (
+                    <div className="flex flex-col gap-10 justify-center items-center flex-wrap text-center pb-4">
+                      <img src={images.Vector} alt="" />
+                      <p className="text-[ var(--Neutral-Neutral-7, #717171)] w-[65%] font-[satoshi] text-[34px] font-semibold max-tablet:text-[18px]">
+                        Are you Sure you want to finalize the cause. This action
+                        can’t be undone.
+                      </p>
+                      <div className="flex justify-center gap-4 max-tablet:flex-col">
+                        <SecondaryButton onClick={onClose} sx={style2}>
+                          Cancel
+                        </SecondaryButton>
+                        <PrimaryButton
+                          sx={style}
+                          onClick={() => finaize(row?.id)}
+                        >
+                          Finalize
+                        </PrimaryButton>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </Dialog>
-                
 
                 {/* </Link> */}
               </>

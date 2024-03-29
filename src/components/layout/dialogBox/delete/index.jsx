@@ -77,7 +77,7 @@ export const DeleteBox = ({
       title={`Delete ${title}` || "Delete"}
     >
       <p className="m-0">
-        {children || "Are you sure do you want to delete this item?"}{" "}
+        {children || "Are you sure do you want to delete this item?"}
       </p>
     </Confirm>
   );
