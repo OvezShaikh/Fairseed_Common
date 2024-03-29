@@ -5,9 +5,6 @@ import CountrySelect from '../../inputs/countrySelect/index';
 import { useCreateOrUpdate, useGetAll } from '../../../Hooks';
 import { toast } from 'react-toastify';
 import PrimaryButton from '../../inputs/PrimaryButton';
-import ProfilePicDropZone from '../../inputs/ImageCropper/ProfilePicDropZone';
-import { ImageCropper } from '../../inputs/ImageCropper/ImageCropper';
-import { ImagePreviewDialog } from '../../inputs/PreviewImage/PreviewImage';
 import Profile from '../../inputs/AvatarCrop/Profile';
 
 
@@ -111,7 +108,7 @@ const Account = () => {
         <Form>
         <Profile 
         name={"profile_pic"}
-        value= {values?.profile_pic}
+        value={values?.profile_pic}
         />
 
           <InputField
