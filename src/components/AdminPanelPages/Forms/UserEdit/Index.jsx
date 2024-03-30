@@ -92,13 +92,13 @@ function Index() {
     });
   
     const formData = new FormData();
+
     Object.entries(payload).forEach(([key, value]) => {
       if(key === 'user_role'){
-        formData.append('user_role' , value?.user_role)
+        formData.append('user_role' , value?.value )
       }else{
-        formData.append(key, value instanceof File ? value : JSON.stringify(value));
+        formData.append(key, value instanceof File ? value : value);
       }
-       
     });
    
 
