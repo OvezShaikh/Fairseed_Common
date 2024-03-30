@@ -5,7 +5,6 @@ import CountrySelect from "../../inputs/countrySelect/index";
 import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
 import { toast } from "react-toastify";
 import PrimaryButton from "../../inputs/PrimaryButton";
-
 import Profile from "../../inputs/AvatarCrop/Profile";
 
 const InputStyle = {
@@ -102,7 +101,7 @@ const Account = () => {
       onSubmit={(values) => handleSubmit(values)}
     >
       {({ values, handleChange }) => (
-        <Form className="space-y-2">
+        <Form>
           <Profile name={"profile_pic"} value={values?.profile_pic} />
 
           <InputField

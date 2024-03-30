@@ -5,7 +5,6 @@ import ReactCrop, {
   makeAspectCrop,
 } from "react-image-crop";
 import setCanvasPreview from "./setCanvasPreview";
-import { useFormikContext } from "formik";
 import PrimaryButton from "../PrimaryButton";
 
 const ASPECT_RATIO = 1;
@@ -17,7 +16,6 @@ const ImageCropper = ({ closeModal, updateAvatar, name }) => {
   const [imgSrc, setImgSrc] = useState("");
   const [crop, setCrop] = useState();
   const [error, setError] = useState("");
-  const { setFieldValue } = useFormikContext();
 
   const onSelectFile = (e) => {
     const file = e.target.files?.[0];
@@ -40,7 +38,6 @@ const ImageCropper = ({ closeModal, updateAvatar, name }) => {
       setImgSrc(imageUrl);
     });
     reader.readAsDataURL(file);
-    setFieldValue(name, file);
   };
 
   const onImageLoad = (e) => {
@@ -104,6 +101,7 @@ const ImageCropper = ({ closeModal, updateAvatar, name }) => {
                 )
               );
               const dataUrl = previewCanvasRef.current.toDataURL();
+
               updateAvatar(dataUrl);
               closeModal();
             }}
