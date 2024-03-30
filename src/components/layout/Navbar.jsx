@@ -486,8 +486,8 @@ export default function Example() {
               </PrimaryButton>
             )}
 
-            <div className="flex space-x-2 mt-2">
-              <div className="flex-col relative">
+            <div className="flex space-x-0  ">
+              <div className="flex-col relative pr-4">
                 <form
                   onSubmit={handleSearch}
                   className="relative mx-auto flex "
@@ -504,31 +504,6 @@ export default function Example() {
                     required
                   />
 
-                  {/* {isInputFocused && searchTerm && (
-                    // <div className="absolute float-left flex-row focus:w-full">
-                    <ul
-                      className={`search-suggestions focus:w-full pt-7 mt-2 pb-2 h-8 flex flex-col absolute`}
-                      tabIndex="-1"
-                      onClick={handleSuggestionClick}
-                      onBlur={handleInputBlur}
-                      ref={suggestionRef}
-                    >
-                      {filteredCards.map((card, index) => (
-                        <Link to={`/campaign-details/${card?.id}`}>
-                          <li
-                            
-                            key={index} className="pt-4 font-bold bg-gray-200 " 
-                            onClick={(event) => event.stopPropagation()}
-                            >
-
-                            {card.title}
-
-                          </li>
-                        </Link>
-                      ))}
-                    </ul>
-                    // </div>
-                  )} */}
                   <button
                     type="submit"
                     className="absolute top-0 mt-2 mr-2 right-0  bottom-0 my-auto h-8 w-10 px-3 bg-transparent rounded-lg peer-focus:relative peer-focus:rounded-l-none"
@@ -570,7 +545,7 @@ export default function Example() {
               {localStorage.getItem("token") ? (
                 <ProfileAvatar />
               ) : (
-                <button className="font-[satoshi] text-[18px] font-medium text-[#40444C]">
+                <button className="font-[satoshi] text-[18px]  font-medium text-[#40444C]">
                   <UserLogin />
                 </button>
               )}

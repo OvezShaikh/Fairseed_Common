@@ -86,9 +86,13 @@ const Sign_02 = ({ handleBack, handleNext }) => {
             />
           </div>
 
-          <div className="flex justify-between">
+          <div className="flex items-center">
             <CheckBox label="I agree with the" name={"policy_privacy"} />
-            <a href={"/Home/Privacy-Policy"}>
+            <a
+              href={"/Home/Privacy-Policy"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FormLabel
                 underline="always"
                 sx={{
