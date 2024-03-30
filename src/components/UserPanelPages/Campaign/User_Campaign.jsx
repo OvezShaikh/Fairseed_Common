@@ -74,9 +74,7 @@ const User_Campaign = () => {
 
  
   const finaize = async(id)=>{
-    await axios.post(`/user-dashboard/finalize-campaign/${id}`).then((response)=>{
-      console.log(response ,"<====")  
-    });
+    await axios.post(`/user-dashboard/finalize-campaign/${id}`);
   }
 
 

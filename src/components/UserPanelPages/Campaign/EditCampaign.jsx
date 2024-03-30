@@ -23,7 +23,7 @@ import { ImageCropper } from "../../inputs/ImageCropper/ImageCropper";
 import { ImagePreviewDialog } from "../../inputs/PreviewImage/PreviewImage";
 import DropZone from "../../inputs/ImageCropper/CropDrop";
 
-const EditCampaign = () => {
+const   EditCampaign = () => {
   let { state } = useLocation();
   let { id } = state;
   const navigate = useNavigate();
@@ -111,29 +111,33 @@ const EditCampaign = () => {
     const changedValues = Object.keys(values).filter(
       (key) => values[key] !== initial_values[key]
     );
-
+  
     const payload = {};
     changedValues.forEach((key) => {
       payload[key] = values[key];
     });
-
+  
     const formData = new FormData();
-
+  
     const documentsArray = values.documents ? Array.from(values.documents) : [];
-
+  
     documentsArray.forEach((file, index) => {
       formData.append(`documents`, file);
     });
-
+  
     Object.entries(payload).forEach(([key, value]) => {
-      if (key !== "documents") {
+      if (key !== "documents" && key !== "status") { // Exclude status from payload
         formData.append(
           key,
           value instanceof File ? value : JSON.stringify(value)
         );
       }
     });
-
+  
+    if (!formData.has('status')) {
+      formData.append('status', values.status.value);
+    }
+  
     mutate(formData, {
       onSuccess: (response) => {
         toast.success(response?.data?.message, {
@@ -149,6 +153,7 @@ const EditCampaign = () => {
       },
     });
   };
+  
 
   return (
     <Formik

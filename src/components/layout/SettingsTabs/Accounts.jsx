@@ -46,13 +46,11 @@ const Account = () => {
       setDetails(data);
     },
   })
-
-
   
   useEffect(() => {
     const img = `${process.env.REACT_APP_BASE_URL}` + Details?.profile_pic;
     setSrcImg(img);
-  });
+  },[Details?.profile_pic]);
 
   const initial_values = {
     username: Details?.username || '',
@@ -61,6 +59,7 @@ const Account = () => {
     country: Details?.country || '',
     profile_pic: srcImg  || ''
   }
+  
 
   const { mutate } = useCreateOrUpdate({
     url: `/accounts/user/${id}`,
@@ -69,7 +68,6 @@ const Account = () => {
 
   const onChange = (e) => {
     let files;
-
     if (e) {
       files = e;
     }
@@ -98,6 +96,7 @@ const Account = () => {
       })
   }
 
+  
   return (
     <Formik
       enableReinitialize={true}
@@ -109,6 +108,8 @@ const Account = () => {
         <Profile 
         name={"profile_pic"}
         value={values?.profile_pic}
+        srcImg={srcImg}
+        setSrcImg={setSrcImg}
         />
 
           <InputField

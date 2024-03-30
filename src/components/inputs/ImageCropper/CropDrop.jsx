@@ -25,6 +25,7 @@ const DropZone = ({ name, label, onChange, initialPreview, ...otherProps }) => {
         'image/jpg': ['.jpg'],
         'image/jpeg': ['.jpeg'],
       }}
+      
       onDrop={(acceptedFiles, rejectedFiles) => {
         if (!acceptedFiles.length) {
           let err = [];
@@ -38,7 +39,6 @@ const DropZone = ({ name, label, onChange, initialPreview, ...otherProps }) => {
 
         } else {
           setFieldValue(name, acceptedFiles[0]);
-
         }
         onChange && onChange(acceptedFiles, rejectedFiles);
         setError([]);

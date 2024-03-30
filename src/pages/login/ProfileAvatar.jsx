@@ -40,7 +40,6 @@ export default function ProfileAvatar() {
   let Data = JSON.parse(userData);
   let role = Data?.user_role;
   let image = Data?.profile_pic;
-
   let img = `${process.env.REACT_APP_API_URL}` + image;
 
   return (

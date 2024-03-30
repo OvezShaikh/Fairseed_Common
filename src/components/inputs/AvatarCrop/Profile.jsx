@@ -3,21 +3,21 @@ import { LuPencil } from "react-icons/lu";
 import Modal from "./Modal";
 import { useFormikContext } from "formik";
 
-const Profile = ({ name  }) => {
+const Profile = ({ name , value  , setSrcImg ,srcImg }) => {
   const { setFieldValue , values } = useFormikContext();
-
-  const avatarFile = useRef(null);
+  const [avatarFile , setAvatarFile] = useState(srcImg);
   const [modalOpen, setModalOpen] = useState(false);
+ 
 
   const updateAvatar = (file) => {
     let cropped_file =  base64toFile(file , name )
-    console.log(cropped_file ,"cropped_file")
-    avatarFile.current = file;
+    console.log(file ,"file")
+    setSrcImg(cropped_file);
     setFieldValue(name, cropped_file); 
   };
 
   const base64toFile = (dataurl, name) => {
-    console.log(name , "name")
+    if (typeof name !== "null"){
     const arr = dataurl.split(",");
     const mime = arr[0].match(/:(.*?);/)[1];
     const bstr = atob(arr[1]);
@@ -26,21 +26,19 @@ const Profile = ({ name  }) => {
     while (n--) {
       u8arr[n] = bstr.charCodeAt(n);
     }
-
-    const fileName = values?.profile_pic === null || values?.profile_pic === undefined 
-  ? "example.png"
-  : values.profile_pic;
-  
+    const fileName = name
+    ? value
+    :  "example.png";
     return new File([u8arr], fileName, { type: mime });
+  }
   };
 
- 
 
   return (
     <div className="flex flex-col items-center pt-12">
       <div className="relative">
         <img
-          src={avatarFile.current}
+          src={srcImg}
           alt="Avatar"
           className="w-[150px] h-[150px] rounded-full border-2 border-gray-400"
         />
