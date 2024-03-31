@@ -11,9 +11,47 @@ import { Container } from "@mui/system";
 import { Link } from "react-router-dom";
 import ForgotPassword from "../ForgotPassword/Index";
 
+const StyledTypography = styled(Typography)({
+  background:
+    "var(--Linear-BG, linear-gradient(71deg, #FF9F0A 0%, #FF375F 62.9%))",
+  WebkitBackgroundClip: "text",
+  fontSize: "46px",
+  color: "transparent",
+  display: "inline-block",
+  fontfamily: "Epilogue",
+  fontWeight: 700,
+  fontStyle: "normal",
+});
+
 const Formcom = ({ Initial_value, formValidation, loginData }) => {
   return (
-    <>
+    <div className="w-[65%] ">
+      <div className="flex flex-col w-full">
+        <StyledTypography
+          component="h4"
+          variant="h4"
+          sx={{
+            marginTop: "38px",
+            fontFamily: "Epilogue",
+          }}
+        >
+          Login
+        </StyledTypography>
+        <hr className="text-gray-500  pt-2" />
+        <h1
+          style={{
+            fontSize: "20px",
+            fontWeight: 500,
+            color: "var(--Neutral-Neutral-7, #717171)",
+            fontFamily: "satoshi",
+            letterSpacing: "0.88px",
+            padding: "10px 0 30px 0",
+          }}
+        >
+          Welcome Back! Please enter you details
+        </h1>
+      </div>
+
       <Formik
         initialValues={Initial_value}
         validationSchema={formValidation}
@@ -22,8 +60,8 @@ const Formcom = ({ Initial_value, formValidation, loginData }) => {
         }}
       >
         <Form>
-          <Container>
-            <Grid container spacing={3}>
+          <div>
+            <Grid container spacing={4}>
               <Grid item xs={12}>
                 <InputField
                   label="Email"
@@ -84,10 +122,10 @@ const Formcom = ({ Initial_value, formValidation, loginData }) => {
                 <UserSignUp_02 />
               </Grid>
             </Grid>
-          </Container>
+          </div>
         </Form>
       </Formik>
-    </>
+    </div>
   );
 };
 

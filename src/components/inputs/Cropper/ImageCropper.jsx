@@ -6,7 +6,6 @@ import {
   DialogContent,
   Grid,
 } from "@mui/material";
-
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import { useState } from "react";

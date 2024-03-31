@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import { RiDeleteBin6Line, RiCloseLine } from "react-icons/ri";
 
 function YourComponent({ dataUrl, sx }) {
@@ -13,7 +12,7 @@ function YourComponent({ dataUrl, sx }) {
     <div className="w-full">
       {!isFullScreen && (
         <div
-          className="w-full max-desktop:w-full"
+          className=" w-full max-desktop:w-[100%]"
           style={{
             ...sx,
             border: "2px dashed #3366CC",
@@ -25,7 +24,7 @@ function YourComponent({ dataUrl, sx }) {
           {dataUrl ? (
             <img
               src={dataUrl}
-              alt="YourImg"
+              alt="Your Image"
               style={{
                 width: "100%",
                 height: "100%",
@@ -55,7 +54,7 @@ function YourComponent({ dataUrl, sx }) {
         >
           <img
             src={dataUrl}
-            alt="YourImg"
+            alt="Your Image"
             style={{ width: "100%", height: "100%", objectFit: "contain" }}
             onClick={toggleFullScreen}
           />
@@ -69,10 +68,4 @@ function YourComponent({ dataUrl, sx }) {
     </div>
   );
 }
-
-YourComponent.propTypes = {
-  dataUrl: PropTypes.string, // assuming dataUrl is a string
-  sx: PropTypes.object, // assuming sx is an object
-};
-
 export default YourComponent;

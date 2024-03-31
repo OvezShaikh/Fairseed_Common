@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Formik, Form } from 'formik';
-import Avatar from '../../layout/Avatar/Index'
+import Profile_Avatar from '../../layout/Avatar/Index'
 import InputField from '../../inputs/InputField';
 import CountrySelect from '../../inputs/countrySelect/index';
 import { useCreateOrUpdate, useGetAll } from '../../../Hooks';
 import { toast } from 'react-toastify';
 import PrimaryButton from '../../inputs/PrimaryButton';
+import Dropzone from '../../inputs/Cropper/CropDrop'
 
 
 const InputStyle =
@@ -88,7 +89,7 @@ const initial_values = {
 
       {({ values, handleChange }) => (
         <Form>
-          <Avatar  img={image}/>
+          <Profile_Avatar img={image}/>
           <InputField
             onChange={handleChange}
             value={values?.username}

@@ -1,46 +1,55 @@
 import React, { useState } from "react";
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
-// import img from " /profile.jpg";
-const Avatar = ({img}) => {
-  const [dialogs, setdialogs] = useState(false);
-  return(
-  <div>
-    <div className="profile_img text-center p-4">
-      <div className="div">
-        <img
-          style={{
-            width: "200px",
-            height: "200px",
-            borderRadius: "58%",
-            objectFit: "cover",
-            margin:'auto'
-          }}
-          src={img}
-          alt=""
-        />
-        <Dialog
-          visible={dialogs}
-          header={() => (
-            <p htmlFor="" className="text-2x1 bg-green-300 font-semibold textColor">
-              Update Profile
-            </p>
+import DropZone from "../../inputs/Cropper/CropDrop";
+import {ImageCropper} from '../../inputs/Cropper/ImageCropper'
+import ImagePreviewDialog from '../../inputs/Cropper/ImagePreview'
+
+const Profile_Avatar = ({ img }) => {
+  const [srcImg, setSrcImg] = useState("");
+  const [openCrop, setOpenCrop] = useState(false);
+
+  
+  const onChange = (e) => {
+    let files;
+
+    if (e) {
+        files = e;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+        setSrcImg(reader.result);
+    };
+    reader.readAsDataURL(files[0]);
+
+    setOpenCrop(true);
+};
+
+  return (
+    <div>
+      <div className="profile_img text-center p-4">
+        <div className="div">
+          <DropZone
+            name="campaign_image"
+            onChange={onChange}
+            initialPreview={srcImg}
+          />
+
+          {openCrop && (
+            <>
+              <ImageCropper
+                srcImg={srcImg}
+                setOpenCrop={setOpenCrop}
+                setsrcImg={setSrcImg}
+              />
+            </>
           )}
-          onHide={() => setdialogs(false)}
-        >
-          <div className="confirmation-content flex flex-column align-items-center">
-            <div className=" flex-flex-column align-items-center mt-5- -w-12">
-              <div className="flex justify-content-around w-12-mt-4.">
-                <Button label="Save" icon="pi pi-check" />
-              </div>
-            </div>
-          </div>
-        </Dialog>
+          {srcImg && <ImagePreviewDialog croppedImage={srcImg} />}
+        </div>
       </div>
     </div>
-  </div>
   );
 };
 
-export default Avatar
+export default Profile_Avatar
 

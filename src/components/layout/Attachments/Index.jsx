@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { RiDeleteBin6Line, RiCloseLine, RiDownload2Line } from "react-icons/ri";
 import images from "../../../constants/images";
+import { useDownloadFile } from "../../../Hooks/useDownloadFile";
+import SecondaryButton from "../../inputs/secondaryButton";
+import { Button } from "react-bootstrap";
 
-function YourComponent({ imageUrl }) {
+function YourComponent({ imageUrl, id }) {
   const [isImageDeleted, setIsImageDeleted] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
@@ -37,24 +40,39 @@ function YourComponent({ imageUrl }) {
     }
   };
 
-  const downloadImage = () => {
-    // Create a temporary anchor element
-    console.log("Download initiated");
-    console.log("Image URL:", imageUrl);
-    const downloadLink = document.createElement("a");
-    downloadLink.href = imageUrl;
+  const url = `/admin-dashboard/campaign/${id}`;
 
-    // Set the download attribute to specify the filename
-    downloadLink.download = "image.jpg"; // You can adjust the filename as needed
+  const { refetch: Filerefetch, isFetching: Fileloading } = useDownloadFile(
+    url,
+    {
+      download: true,
+    },
+    () => {
+      console.log("File download successful");
+    }
+  );
 
-    // Append the anchor to the body and trigger a click event to start the download
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
+  // const downloadDocument = () => {
+  //     // Create a temporary anchor element
+  //     const downloadLink = document.createElement('a');
+  //     downloadLink.href = imageUrl;
 
-    // Clean up: remove the anchor from the body
-    document.body.removeChild(downloadLink);
-    console.log("Download completed");
-  };
+  //     // Extract the filename from the URL
+  //     const urlParts = imageUrl.split('/');
+  //     const filename = urlParts[urlParts.length - 1];
+
+  //     // Set the download attribute to specify the filename
+  //     downloadLink.download = filename;
+
+  //     // Append the anchor to the body
+  //     document.body.appendChild(downloadLink);
+
+  //     // Trigger a click event to start the download
+  //     downloadLink.click();
+
+  //     // Clean up: remove the anchor from the body
+  //     document.body.removeChild(downloadLink);
+  // };
 
   const handleOk = () => {
     setDeleteSuccess(false);
@@ -111,11 +129,13 @@ function YourComponent({ imageUrl }) {
                 style={{ fontSize: "24px" }}
                 onClick={toggleFullScreen}
               />
-              <RiDownload2Line
-                className="cursor-pointer text-white mt-2"
-                style={{ fontSize: "24px" }}
-                onClick={downloadImage}
-              />
+              <Button
+                onClick={() => Filerefetch()}
+                isLoading={Fileloading}
+                color="#40444C"
+              >
+                Download
+              </Button>
             </div>
           </div>
         </div>

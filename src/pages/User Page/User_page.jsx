@@ -10,7 +10,7 @@ import EditBankAndKYC from "../../components/UserPanelPages/UserForms/EditBankAn
 import User_Dashboard from "../../pages/User Dashboard/Index";
 import User_Campaign from "../../components/UserPanelPages/Campaign/User_Campaign";
 import User_Donation from "../../components/UserPanelPages/Donation/User_Donation";
-import ScholarshipCause from "../../components/AdminPanelPages/Scholarship Cause/Index"
+import ScholarshipCause from "../../components/AdminPanelPages/Scholarship Cause/Index";
 import EditCampaign from "../../components/UserPanelPages/Campaign/EditCampaign";
 
 function UserPage() {
@@ -58,14 +58,13 @@ function UserPage() {
         }
       />
       <Route
-        path="/Campaigns/EditCampaign"
+        path="/Campaigns/Edit-Campaign"
         element={
           <UserPanel>
             <EditCampaign />
           </UserPanel>
         }
       />
-
 
       <Route
         path="/Donations"

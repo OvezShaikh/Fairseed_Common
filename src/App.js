@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import AdminPage from "../src/pages/AdminPanel/AdminPage";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
@@ -6,8 +6,6 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./pages/LandingPage/index";
 import CreateCampaigns from "./pages/Campaigns/CreateCampaigns/Index";
 import CurrentCampaign from "./pages/Campaigns/CurrentCampaign/Index";
-// import Donet from "./pages/Campaigns/Donet/Index";
-// import DonateSettings from "./pages/Campaigns/Donet/DonateSettings/Index";
 import CampaignsByCategory from "./pages/Campaigns/CampaignsByCategory/Index";
 import OnGoingCampaigns from "./pages/Campaigns/OnGoingCampaigns/Index";
 import LoginOnSmallScreen from "./pages/login/Login_page/LoginOnSmallScreen";
@@ -15,7 +13,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "react-image-crop/dist/ReactCrop.css";
 import RegisterSmallScreen from "./pages/login/Sign_Up/RegisterSmallScreen";
-import AdminLayout from "./components/layout/AdminLayout/Index";
 
 import StoriesOfChange from "./pages/StaticPages/StoriesOfChange/Index";
 import Associateship from "./pages/GetInvolved/Associateship";
@@ -37,6 +34,8 @@ import Donate from "./pages/Donate/Index";
 import AdminPanelLandingPage from "./components/AdminPanelPages/AdminPanelLandingPage/Index";
 import Dashboard from "./components/layout/DashBoard";
 import UserPage from "./pages/User Page/User_page";
+import AddPages from "./pages/AddPages/Index";
+import { useGetAll } from "./Hooks";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -48,6 +47,20 @@ function ScrollToTop() {
   return null;
 }
 function App() {
+  const [page, setPage] = useState([]);
+  useGetAll({
+    key: `/admin-dashboard/pages?page=4&limit=8`,
+    enabled: true,
+
+    select: (data) => {
+      return data.data.rows;
+    },
+    onSuccess: (data) => {
+      setPage(data);
+    },
+  });
+
+  console.log(page, "<=====paggegegeg");
   return (
     <div className="container p-0">
       {/* <OnGoingCampaigns/> */}
@@ -86,6 +99,7 @@ function App() {
             element={<CampaignsByCategory />}
           />
           <Route path="/Home/Login" element={<LoginOnSmallScreen />} />
+          <Route path="/Login/Privacy-Policy" element={<PrivacyPolicy />} />
           <Route
             path="/Home/RegisterSmallScreen"
             element={<RegisterSmallScreen />}
@@ -156,6 +170,7 @@ function App() {
             path="/adminpanellandingpage"
             element={<AdminPanelLandingPage />}
           />
+          <Route path="/Home/page/:slug" element={<AddPages />} />
         </Routes>
       </BrowserRouter>
     </div>
@@ -163,10 +178,3 @@ function App() {
 }
 
 export default App;
-{
-  /* <Route path='/Home/CurrentCampaign' element={<CurrentCampaign/>}/> */
-}
-
-{
-  /* <Route path='/Home/ReligiousEducationCampaigns/:id' element={<ReligiousEducationCampaigns/>}/>  */
-}

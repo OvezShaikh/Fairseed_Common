@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CheckBox = ({
+  style,
   name,
   label,
   legend,
@@ -41,7 +42,6 @@ const CheckBox = ({
   const { root } = useStyles();
 
   const handleChange = (evt) => {
-
     const { checked } = evt.target;
     setFieldValue(name, checked);
   };
@@ -64,6 +64,7 @@ const CheckBox = ({
           label={label}
           sx={{
             "& .MuiFormControlLabel-label": {
+              ...style,
               color: colors.text.main,
               fontSize: "20px !important",
               fontWeight: "700  !important",
@@ -78,23 +79,32 @@ const CheckBox = ({
               sx={{
                 // color: red[500],
                 "&.Mui-checked": {
-                  color: red[500],
+                  color: "red[500] !important",
                 },
               }}
               checked={checked}
               {...configCheckbox}
-            // onChange={(_, checked) => onChange(checked)}
+              // onChange={(_, checked) => onChange(checked)}
             />
           }
-
           className={root}
         />
       </FormGroup>
       <ErrorMessage
         name={name}
         render={(msg) => (
-          <div style={{ fontFamily: 'satoshi', color: "red", fontSize: "1rem", paddingLeft: '5px' }}>{msg}</div>
-        )} />
+          <div
+            style={{
+              fontFamily: "satoshi",
+              color: "red",
+              fontSize: "1rem",
+              paddingLeft: "5px",
+            }}
+          >
+            {msg}
+          </div>
+        )}
+      />
     </FormControl>
   );
 };

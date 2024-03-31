@@ -25,26 +25,30 @@ function VerifyEmail() {
 
 
     const verifyEmailMutation = useCreateOrUpdate({
-        url: '/accounts/forgetpassword',
+        url: '/accounts/forgetpassword/nt/',
         method: 'post',
         onSuccess: (values, response) => {
-            toast.success(`OTP sent successfully to `, {
+            toast.success(response?.data?.success, {
                 position: 'top-center'
             });
             setIsVerified(true);
             console.log('values.data.OTP', values.data.OTP)
-            console.log(response.email, "======================>")
+            console.log(response?.data?.success, "======================>")
             setBackendOTP(values.data.OTP)
             const key = response.email;
             setEmail(key)
         },
-
-
+            onerror:(response)=>{
+                toast.error(response?.data ,{
+                    position:'top-right'
+                })
+            }
+        ,
         refetch: null // You can provide refetch function if needed
     });
 
     const resetPasswordMutation = useCreateOrUpdate({
-        url: '/accounts/reset-pass',
+        url: '/accounts/reset-pass/nt/',
         method: 'post',
         onSuccess: () => {
 

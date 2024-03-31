@@ -18,23 +18,11 @@ const Navbar = () => {
   const isTab = useMediaQuery("(max-width: 1100px)");
   const sideBar = useMediaQuery("(max-width: 900px)");
 
-  const [user, setUser] = useState({});
-
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
-  let id = Data?.id;
-  useGetAll({
-    key: `/admin-dashboard/users/${id}`,
-    enabled: true,
-    select: (data) => {
-      console.log(data);
-      return data.data.data;
-    },
-    onSuccess: (data) => {
-      console.log(data);
-      setUser(data);
-    },
-  });
+  let username = Data?.username;
+  let user_role = Data?.user_role;
+  let profile_pic = Data?.profile_pic;
 
   return (
     <>
@@ -49,21 +37,19 @@ const Navbar = () => {
         <div className="w-auto self-stretch    pb-2 pt-2 rounded justify-start items-center flex">
           {/* <input className=' bg-gray-100 p-2 relative  ' placeholder='Search' /> */}
           {/* <Searchbar /> */}
-          <div className="mr-3 max-tablet:hidden">
+          {/* <div className="mr-3 max-tablet:hidden">
             <Search
               sx={{
-                width: "362px",
-                background: "#F7F8F8",
+                width: '362px',
+                background: '#F7F8F8',
                 "& .MuiInputBase-root .MuiOutlinedInput-notchedOutline": {
                   border: `none`,
                 },
-                "& .MuiInputBase-root.Mui-focused .MuiOutlinedInput-notchedOutline":
-                  {
-                    border: `none`,
-                  },
-              }}
-            />
-          </div>
+                "& .MuiInputBase-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  border: `none`,
+                },
+              }} />
+          </div> */}
           <div className="flex-row ps-2 justify-start items-center inline-flex ">
             <Grid
               item
@@ -85,10 +71,10 @@ const Navbar = () => {
                 }}
               >
                 <p className="text-truncate m-0" style={{ maxWidth: "100%" }}>
-                  {user?.username}
+                  {username}
                 </p>
                 <p className="text-truncate m-0" style={{ maxWidth: "100%" }}>
-                  {user?.user_role}
+                  {user_role}
                 </p>
               </Stack>
               <ProfileAvatar />

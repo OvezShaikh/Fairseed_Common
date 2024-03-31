@@ -54,6 +54,7 @@ const UserSignUp_02 = () => {
             "-webkit-text-fill-color": "transparent",
           }}
         >
+          {" "}
           Register{" "}
         </span>
       </SecondaryButton>
@@ -85,11 +86,10 @@ const UserSignUp_02 = () => {
           <CloseIcon />
         </IconButton>
 
-        <DialogContent style={{ overflowY: "hidden", overflowX: "hidden" }}>
-          <Grid container>
-            <Grid item xs={16} sm={8} md={6}>
-              <Grid item xs={12}>
-                <DialogTitle>
+        <DialogContent style={{ overflowX: "hidden" }}>
+          <div className="flex w-full">
+            {/* <Grid item xs={12}>
+                <DialogTitle >
                   <StyledTypography
                     component="h4"
                     variant="h4"
@@ -104,26 +104,16 @@ const UserSignUp_02 = () => {
                   </StyledTypography>
                   <hr className="text-gray-500 mx-24" />
                 </DialogTitle>
-              </Grid>
-              <Grid
-                item
-                sx={{ width: "100%", padding: "0px 142px 48px 142px" }}
-              >
-                <Sign_Stepper />
-              </Grid>
-            </Grid>
+              </Grid> */}
+            <div className="w-1/2 flex flex-col justify-center items-center">
+              <Sign_Stepper />
+            </div>
             {!isSmallScreen && (
-              <Grid
-                item
-                xs={12}
-                sm={isSmallScreen ? 12 : 8}
-                md={6}
-                sx={{ overflowY: "hidden" }}
-              >
+              <div className="w-1/2">
                 <FormSlider />
-              </Grid>
+              </div>
             )}
-          </Grid>
+          </div>
         </DialogContent>
       </Dialog>
     </>
