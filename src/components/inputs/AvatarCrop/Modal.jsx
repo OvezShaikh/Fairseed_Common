@@ -1,7 +1,7 @@
 import { AiOutlineClose } from "react-icons/ai";
 import ImageCropper from "./ImageCropper";
 
-const Modal = ({ updateAvatar, closeModal , name , value }) => {
+const Modal = ({ updateAvatar, closeModal , name , setCropper  }) => {
   return (
     <div
       className="relative z-10"
@@ -26,6 +26,7 @@ const Modal = ({ updateAvatar, closeModal , name , value }) => {
                 updateAvatar={updateAvatar}
                 closeModal={closeModal}
                 name={name}
+                setCropper={setCropper}
               />
             </div>
           </div>

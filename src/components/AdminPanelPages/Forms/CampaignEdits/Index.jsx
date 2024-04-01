@@ -19,7 +19,6 @@ import ImageBackgroundWithDeleteButton from "../../layout/CropAddImage/Index";
 import Attachments from "../../../layout/Attachments/Index";
 import {  useGetAll } from "../../../Hooks";
 
-import { height } from "@mui/system";
 const InputStyle = {
   padding: "20px",
   border: "1px solid #e2e2e2",

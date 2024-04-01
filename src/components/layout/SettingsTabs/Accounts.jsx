@@ -57,7 +57,7 @@ const Account = () => {
     email: Details?.email || '',
     mobile_number: Details?.mobile_number || '',
     country: Details?.country || '',
-    profile_pic: srcImg  || ''
+    profile_pic: Details?.profile_pic  || ''
   }
   
 
@@ -66,26 +66,22 @@ const Account = () => {
     method: "put",
   });
 
-  const onChange = (e) => {
-    let files;
-    if (e) {
-      files = e;
-    }
-    const reader = new FileReader();
-    reader.onload = () => {
-      setSrcImg(reader.result);
-    };
-    reader.readAsDataURL(files[0]);
-    setOpenCrop(true);
-  };
-
   const handleSubmit = (values) =>{
+    const changedValues = Object.keys(values).filter(
+      (key) => values[key] !== initial_values[key]
+    );
+  
+    const payload = {};
+    changedValues.forEach((key) => {
+      payload[key] = values[key];
+    });
+  
     const formData = new FormData();
-    formData.append("username", values?.username);
-    formData.append("email", values?.email);
-    formData.append("mobile_number", values?.mobile_number);
-    formData.append("country", values?.country);
-    formData.append("profile_pic", values?.profile_pic);
+
+    Object.entries(payload).forEach(([key, value]) => {
+      formData.append(key, value instanceof File ? value : JSON.stringify(value)
+      );
+    })
 
       mutate(formData, {
         onSuccess: () => {
@@ -95,6 +91,20 @@ const Account = () => {
         }
       })
   }
+
+  const onImageChange = (e) => {
+    let files;
+    if (e) {
+      files = e;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      setSrcImg(reader.result);
+
+    };
+    reader.readAsDataURL(files[0]);
+  };
+
 
   
   return (

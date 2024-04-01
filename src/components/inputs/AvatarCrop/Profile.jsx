@@ -1,44 +1,51 @@
-import { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LuPencil } from "react-icons/lu";
 import Modal from "./Modal";
 import { useFormikContext } from "formik";
 
-const Profile = ({ name , value  , setSrcImg ,srcImg }) => {
-  const { setFieldValue , values } = useFormikContext();
-  const [avatarFile , setAvatarFile] = useState(srcImg);
+const Profile = ({ name }) => {
+  const { setFieldValue, values } = useFormikContext();
   const [modalOpen, setModalOpen] = useState(false);
- 
+  const [avatarUrl, setAvatarUrl] = useState("");
+  const [cropper, setCropper] = useState();
+
+
+  useEffect(() => {
+     const img = `${process.env.REACT_APP_BASE_URL}${values?.profile_pic}`
+    setAvatarUrl(img);
+  }, [values?.profile_pic]);
 
   const updateAvatar = (file) => {
-    let cropped_file =  base64toFile(file , name )
-    console.log(file ,"file")
-    setSrcImg(cropped_file);
-    setFieldValue(name, cropped_file); 
+    const croppedFile = base64toFile(file, name);
+    const dataUrl = `data:image/png;base64,${file}`; 
+    setAvatarUrl(dataUrl);
+    setFieldValue(name, croppedFile);
   };
 
   const base64toFile = (dataurl, name) => {
-    if (typeof name !== "null"){
-    const arr = dataurl.split(",");
-    const mime = arr[0].match(/:(.*?);/)[1];
-    const bstr = atob(arr[1]);
-    let n = bstr.length;
-    const u8arr = new Uint8Array(n);
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
+    if (typeof cropper !== "undefined") {
+      // setAvatarUrl(cropper.getCroppedCanvas().toDataURL());
+      const arr = dataurl.split(",");
+      const mime = arr[0].match(/:(.*?);/)[1];
+      const bstr = atob(arr[1]);
+      const n = bstr.length;
+      const u8arr = new Uint8Array(n);
+      for (let i = 0; i < n; i++) {
+        u8arr[i] = bstr.charCodeAt(i);
+      }
+      return new File([u8arr], name, { type: mime });
     }
-    const fileName = name
-    ? value
-    :  "example.png";
-    return new File([u8arr], fileName, { type: mime });
-  }
+    return null;
   };
+
+  console.log(avatarUrl ,"avatarUrl")
 
 
   return (
     <div className="flex flex-col items-center pt-12">
       <div className="relative">
         <img
-          src={srcImg}
+          src={avatarUrl}
           alt="Avatar"
           className="w-[150px] h-[150px] rounded-full border-2 border-gray-400"
         />
@@ -56,6 +63,7 @@ const Profile = ({ name , value  , setSrcImg ,srcImg }) => {
           updateAvatar={updateAvatar}
           closeModal={() => setModalOpen(false)}
           name={name}
+          setCropper={setCropper}
         />
       )}
     </div>
