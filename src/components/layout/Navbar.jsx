@@ -48,7 +48,7 @@ const OurImpact = [
   },
   {
     name: "Successful Campaigns",
-    href: "/Home/Donate",
+    href: "/Home/Successful-campaign",
   },
   {
     name: "Stories of Change",
@@ -121,15 +121,6 @@ export default function Example() {
   let role = Data?.user_role;
   let image = Data?.profile_pic;
   let img = `${process.env.REACT_APP_API_URL}` + image;
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const toggleSearch = () => {
-    setShowSearch((prevState) => !prevState);
-    setShowSuggestions(false);
-  };
 
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
@@ -212,7 +203,6 @@ export default function Example() {
         backdropFilter: "blur(10px)",
       }}
     >
-      {" "}
       <nav
         className="mx-auto flex max-w-9xl max-desktop:px-2 max-tablet:px-0  items-center justify-between p-6 lg:px-8"
         aria-label="Global"
@@ -543,7 +533,9 @@ export default function Example() {
               </div>
 
               {localStorage.getItem("token") ? (
-                <ProfileAvatar />
+                <div className="">
+                  <ProfileAvatar />
+                </div>
               ) : (
                 <button className="font-[satoshi] text-[18px]  font-medium text-[#40444C]">
                   <UserLogin />

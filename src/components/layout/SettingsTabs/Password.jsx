@@ -39,22 +39,25 @@ const Password = () => {
       }}
     >
       {({ values, handleChange }) => (
-        <Form className="space-y-2">
-          <InputField
-            onChange={handleChange}
-            value={values?.password}
-            name={"old_password"}
-            label={"Old Password:"}
-            type={"password"}
-            sx={InputStyle}
-          />
-          <InputField
-            name={"new_password"}
-            label={"New Password:"}
-            type={"password"}
-            sx={InputStyle}
-          />
-
+        <Form className="space-y-3">
+          <div className="">
+            <InputField
+              onChange={handleChange}
+              value={values?.password}
+              name={"old_password"}
+              label={"Old Password:"}
+              type={"password"}
+              sx={InputStyle}
+            />
+          </div>
+          <div className="">
+            <InputField
+              name={"new_password"}
+              label={"New Password:"}
+              type={"password"}
+              sx={InputStyle}
+            />
+          </div>
           <div className="mx-auto flex justify-center">
             <PrimaryButton type="submit" className="mx-auto">
               Save Changes

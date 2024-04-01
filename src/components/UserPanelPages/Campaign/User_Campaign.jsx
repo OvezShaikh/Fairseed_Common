@@ -70,13 +70,7 @@ const User_Campaign = () => {
   );
 
   const finaize = async (id) => {
-    await axios
-      .post(
-        `http://143.110.253.227:8000/user-dashboard/finalize-campaign/${id}`
-      )
-      .then((response) => {
-        console.log(response, "<====");
-      });
+    await axios.post(`/user-dashboard/finalize-campaign/${id}`);
   };
 
   const columns = React.useMemo(() => [

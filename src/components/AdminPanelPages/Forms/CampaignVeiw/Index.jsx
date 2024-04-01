@@ -80,7 +80,7 @@ function Index() {
   const initial_value = {
     title: campaign?.campaign_data?.title || (campaign?.campaign?.title || ""),
     category: campaign?.campaign_data?.category?.name || (campaign?.campaign?.category?.name || ""),
-    goal_amount: campaign?.campaign_data?.goal_amount || (campaign?.campaign?.goal_amount || ""),
+    goal_amount: campaign?.campaign_data?.amount || (campaign?.campaign?.goal_amount || ""),
     location: campaign?.campaign_data?.location || (campaign?.campaign?.location || ""),
     end_date: campaign?.campaign_data?.end_date || (campaign?.campaign?.end_date || ""),
     summary: campaign?.campaign_data?.summary || (campaign?.campaign?.summary || ""),
@@ -89,7 +89,8 @@ function Index() {
     approval_status: campaign?.campaign_data?.approval_status || (campaign?.campaign?.approval_status || false),
     is_featured: campaign?.campaign_data?.is_featured || (campaign?.campaign?.is_featured || false),
     zakat_eligible: campaign?.campaign_data?.zakat_eligible || (campaign?.campaign?.zakat_eligible || false),
-    documents: campaign?.documents || []
+    documents: campaign?.documents || [] ,
+    // status:campaign?.campaign_data?.status || (campaign?.campaign?.status || ''),
   };
 
   const handleSubmit = (values) => {
@@ -104,6 +105,7 @@ function Index() {
     formData.append("category", values?.category);
     formData.append("zakat_eligible", values?.zakat_eligible);
     formData.append("document", values?.category);
+    // formData.append("status", values?.status);
     {
       approval && formData.append("approve_campaign", true);
     }
@@ -284,7 +286,7 @@ function Index() {
                   className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
                   style={{
                     padding: "4px 8px 16px 8px",
-                    color: campaignData?.documents ? "red" : colors.text.main,
+                    color: campaignData?.doc1 || campaignData?.doc2 || campaignData?.doc3 ? "red" : colors.text.main,
                     fontWeight: 700,
                     fontFamily: "satoshi",
                     fontStyle: "normal",

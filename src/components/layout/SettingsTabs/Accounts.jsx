@@ -48,7 +48,7 @@ const Account = () => {
   useEffect(() => {
     const img = `${process.env.REACT_APP_BASE_URL}` + Details?.profile_pic;
     setSrcImg(img);
-  });
+  }, [Details?.profile_pic]);
 
   const initial_values = {
     username: Details?.username || "",
@@ -65,7 +65,6 @@ const Account = () => {
 
   const onChange = (e) => {
     let files;
-
     if (e) {
       files = e;
     }

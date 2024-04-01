@@ -20,7 +20,6 @@ const ImageCropper = ({ closeModal, updateAvatar, name }) => {
   const onSelectFile = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
-
     const reader = new FileReader();
     reader.addEventListener("load", () => {
       const imageElement = new Image();
@@ -101,7 +100,6 @@ const ImageCropper = ({ closeModal, updateAvatar, name }) => {
                 )
               );
               const dataUrl = previewCanvasRef.current.toDataURL();
-
               updateAvatar(dataUrl);
               closeModal();
             }}

@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 function Card({
   key,
   username,
+  filterName,
   title,
   cardImage,
   goalAmount,
@@ -19,14 +20,14 @@ function Card({
   location,
   og_id,
 }) {
-  const image = process.env.REACT_APP_API_URL + cardImage;
-  const [campaignData, setCampaignData] = useState([]);
-  const marginBottom = title.length > 41 ? "2.5rem" : "4.3rem";
-  const handleClick = () => {
-    toast.success("Campaign already completed!", {
-      position: "top-center",
-    });
-  };
+  // const image = process.env.REACT_APP_API_URL + cardImage;
+  // const [campaignData, setCampaignData] = useState([]);
+  // const marginBottom = title.length > 41 ? "2.5rem" : "4.3rem";
+  // const handleClick = () => {
+  //   toast.success("Campaign already completed!", {
+  //     position: "top-center",
+  //   });
+  // };
   const fullNameWords = username?.split(" ");
   const firstLetter = fullNameWords?.[0]?.charAt(0)?.toUpperCase() ?? "";
   return (
@@ -38,17 +39,79 @@ function Card({
       >
         <Link to={`/campaign-details/${og_id}`}>
           <img
-            src={`${process.env.REACT_APP_API_URL}` + cardImage}
+            src={
+              cardImage
+                ? `${process.env.REACT_APP_API_URL}` + cardImage
+                : images.HeaderImage
+            }
             className="card-img-top h-80 w-full relative"
             alt="..."
           />
-          {goalAmount === fundRaised && (
+          {goalAmount === fundRaised ? (
             <div className="absolute z-20 top-4 left-4 w-[104px] h-[27px] gap-1 flex justify-center items-center bg-[#1ABD54] rounded">
               <img src={images.CompleteVector} alt="" />
               <p className="font-[satoshi] font-medium text-[#FFFFFF] text-[14px]">
                 Completed
               </p>
             </div>
+          ) : filterName ? (
+            <div className="absolute z-20 top-4 left-4 h-[27px] gap-1 flex justify-center items-center p-2 bg-[#FFFFFF8F] rounded">
+              <p className="font-[satoshi] font-medium text-[##25272C] text-[14px] pr-1">
+                {(() => {
+                  switch (filterName) {
+                    case "needs_love":
+                      return (
+                        <div className="flex gap-1">
+                          <img
+                            src={images.Heart}
+                            alt=""
+                            className="text-black"
+                          />
+                          Needs Love
+                        </div>
+                      );
+                    case "expiring_soon":
+                      return (
+                        <div className="flex gap-1">
+                          <img
+                            src={images.Alarm}
+                            alt=""
+                            className="text-black"
+                          />
+                          Expiring Soon
+                        </div>
+                      );
+                    case "most_supported":
+                      return (
+                        <div className="flex gap-1">
+                          <img
+                            src={images.HandCoins2}
+                            alt=""
+                            className="text-black"
+                          />
+                          Most Supported
+                        </div>
+                      );
+                    case "newly_added":
+                      return (
+                        <div className="flex gap-1">
+                          <img
+                            src={images.TrendUp}
+                            alt=""
+                            className="text-black"
+                          />
+                          Newly Added
+                        </div>
+                      );
+
+                    default:
+                      return filterName;
+                  }
+                })()}
+              </p>
+            </div>
+          ) : (
+            ""
           )}
         </Link>
         <div className="card-body">
