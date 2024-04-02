@@ -14,7 +14,7 @@ const Index = () => {
   const [userList, setUserList] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
-  const [visibleCards, setVisibleCards] = useState(8);
+  const [visibleCards, setVisibleCards] = useState(4);
   const [showOptions, setShowOptions] = useState(false);
   const [perPage, setPerPage] = useState(100);
   const [campaignCount, setCampaignCount] = useState(0);
@@ -166,7 +166,7 @@ setLocationDataFromChild(locationData);
             "-webkit-background-clip": "text",
             "-webkit-text-fill-color": "transparent",
             textDecoration: "underline",
-            display: ((visibleCards >= campaignCount) || (filteredCardCount < 8) ? "none" : "block"),
+            display: ((visibleCards >= campaignCount) || (filteredCardCount < 4) ? "none" : "block"),
             position: "relative",
 
           }}
