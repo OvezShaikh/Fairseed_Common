@@ -6,6 +6,7 @@ import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
 import { toast } from "react-toastify";
 import PrimaryButton from "../../inputs/PrimaryButton";
 import Profile from "../../inputs/AvatarCrop/Profile";
+import serverAPI from "../../../config/serverAPI";
 
 const InputStyle = {
   padding: "20px",
@@ -87,6 +88,9 @@ const Account = () => {
       }
     });
     
+
+    // serverAPI.defaults.headers.common["fil"] = `Bearer ${token}`;
+
 
       mutate(formData, {
         onSuccess: () => {

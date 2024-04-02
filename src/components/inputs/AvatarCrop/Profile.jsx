@@ -6,15 +6,6 @@ import { useFormikContext } from "formik";
 const Profile = ({ name , setSrcImg , srcImg }) => {
   const { setFieldValue, values } = useFormikContext();
   const [modalOpen, setModalOpen] = useState(false);
-  const [avatarUrl, setAvatarUrl] = useState("");
-  const [cropper, setCropper] = useState();
-
-
-  // useEffect(() => {
-  //    const img = `${process.env.REACT_APP_BASE_URL}${values?.profile_pic}`
-  //   setAvatarUrl(img);
-  // }, [values?.profile_pic]);
-
 
   const updateAvatar = (file) => {
     const croppedFile = base64toFile(file, name);
@@ -24,7 +15,7 @@ const Profile = ({ name , setSrcImg , srcImg }) => {
   };
 
   const base64toFile = (dataurl, name) => {
-    if ( name) {
+    if (name) {
       const arr = dataurl.split(",");
       const mime = arr[0].match(/:(.*?);/)[1];
       const bstr = atob(arr[1]);
@@ -33,7 +24,7 @@ const Profile = ({ name , setSrcImg , srcImg }) => {
       for (let i = 0; i < n; i++) {
         u8arr[i] = bstr.charCodeAt(i);
       }
-      return new File([u8arr], name, { type: mime });
+      return new File([u8arr], values?.profile_pic, { type: mime });
     }
     return null;
   };
@@ -60,7 +51,6 @@ const Profile = ({ name , setSrcImg , srcImg }) => {
           updateAvatar={updateAvatar}
           closeModal={() => setModalOpen(false)}
           name={name}
-          setCropper={setCropper}
         />
       )}
     </div>

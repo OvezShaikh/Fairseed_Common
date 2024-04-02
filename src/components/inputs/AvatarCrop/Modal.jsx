@@ -26,7 +26,6 @@ const Modal = ({ updateAvatar, closeModal , name , setCropper  }) => {
                 updateAvatar={updateAvatar}
                 closeModal={closeModal}
                 name={name}
-                setCropper={setCropper}
               />
             </div>
           </div>
