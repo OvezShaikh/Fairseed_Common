@@ -86,9 +86,13 @@ const Sign_02 = ({ handleBack, handleNext }) => {
             />
           </div>
 
-          <div className="flex justify-between">
+          <div className="flex items-center">
             <CheckBox label="I agree with the" name={"policy_privacy"} />
-            <a href={"/Home/Privacy-Policy"}>
+            <Link
+              href={"/Home/Privacy-Policy"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FormLabel
                 underline="always"
                 sx={{
@@ -110,7 +114,7 @@ const Sign_02 = ({ handleBack, handleNext }) => {
               >
                 <p className="gradient-button mb-0">Privacy Policy</p>
               </FormLabel>
-            </a>
+            </Link>
           </div>
 
           <div
@@ -135,7 +139,6 @@ const Sign_02 = ({ handleBack, handleNext }) => {
               onClick={handleNextClick}
             >
               <h1 className="text-[22px] font-[satoshi] font-semibold text-whites ">
-                {" "}
                 SignUp
               </h1>
             </PrimaryButton>

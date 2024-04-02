@@ -35,7 +35,8 @@ import {
   UserIcon,
   ScholarshipsIcon,
   PagesIcon,
-  PgSettingsIcon
+  PgSettingsIcon,
+  MyDonations
 } from "../../../utils/Icons";
 import { colors } from "../../../constants/theme";
 import SearchIcon from "@mui/icons-material/Search";
@@ -87,9 +88,7 @@ let Icons = {
   PagesIcon: (isActive) => <PagesIcon isActive={isActive} />,
   PgSettingsIcon: (isActive) => <PgSettingsIcon isActive={isActive} />,
   DashboardIcon: (isActive) => <DashboardIcon isActive={isActive} />,
-
-
-
+  MyDonationIcon: (isActive) => <MyDonations isActive={isActive} />,
 
 
 
@@ -230,7 +229,7 @@ const User_DrawerBody = () => {
       title: "Donations",
     },
     {
-      icon: "DonationIcon",
+      icon: "MyDonationIcon",
       path: "/User/My-Donations",
       title: "My Donations",
     },

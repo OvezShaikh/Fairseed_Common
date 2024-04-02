@@ -6,19 +6,18 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import PrimaryButton from "../inputs/PrimaryButton";
 import images from "../../constants/images";
 import UserLogin from "../../pages/login/Login_page/Index";
-import { Link, NavLink, useParams } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import ProfileAvatar from "../../pages/login/ProfileAvatar";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { useGetAll } from "../../Hooks";
+import { useRef } from "react";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Logout from "@mui/icons-material/Logout";
 import Avatar from "@mui/material/Avatar";
 import Divider from "@mui/material/Divider";
 import Settings from "@mui/icons-material/Settings";
-import { Search } from "../inputs/Search";
-import { useEffect } from "react";
-import { useGetAll } from "../../Hooks/useGetAll";
-import { Hidden } from "@mui/material";
 
 const GetInvolved = [
   {
@@ -75,46 +74,126 @@ const AboutUs = [
   },
 ];
 
+const HowItWorks = [
+  {
+    name: "How-It-Works",
+    href: "/How-It-Works",
+  },
+];
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+const hasToken = !!localStorage.getItem("token");
 
-  function logout() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user_info");
-    window.location.href = "/Home";
-    toast.error("Logout Successful !", {
-      position: "top-center",
-    });
-  }
-
-  const { data: page } = useGetAll({
-    key: `/admin-dashboard/pages?page=4&limit=8`,
-    enabled: true,
-    select: (data) => {
-      return data.data.rows?.filter((item) => item?.show_page);
-    },
-    onSuccess: (data) => {},
+function logout() {
+  localStorage.removeItem("token");
+  localStorage.removeItem("user_info");
+  window.location.href = "/Home";
+  toast.error("Logout Successful !", {
+    position: "top-center",
   });
-  const [showSearch, setShowSearch] = useState(false);
+}
 
-  const toggleSearch = () => {
-    setShowSearch((prevState) => !prevState);
-  };
+export default function Example() {
+  const page = 2;
+  const perPage = 10;
+
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredCards, setFilteredCards] = useState([]);
+  const [allCards, setAllCards] = useState([]);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [searchSuggestions, setSearchSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(true);
+  const [showSearch, setShowSearch] = useState(false);
+  // const [isInputFocused, setInputFocused] = useState(false);
+  // const [isInputVisible, setInputVisible] = useState(true);
+  const [isInputFocused, setIsInputFocused] = useState("");
+
+  const ref = useRef(null);
+  const suggestionRef = useRef(null);
+  const navigate = useNavigate();
+
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
   let role = Data?.user_role;
   let image = Data?.profile_pic;
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
   let img = `${process.env.REACT_APP_API_URL}` + image;
-  const hasToken = !!localStorage.getItem("token");
+
+  const handleInputChange = (e) => {
+    setSearchTerm(e.target.value);
+    setShowSuggestions(true);
+    setIsInputFocused(true);
+  };
+
+  const handleInputFocus = () => {
+    setIsInputFocused(true);
+  };
+
+  const handleInputBlur = (event) => {
+    const relatedTarget = event.relatedTarget;
+    if (
+      relatedTarget &&
+      suggestionRef.current &&
+      suggestionRef.current.contains(relatedTarget)
+    ) {
+      return;
+    } else {
+      setIsInputFocused(false);
+      setSearchTerm("");
+    }
+  };
+
+  //   const handleInputBlur = (event) => {
+  //     const relatedTarget = event.relatedTarget;
+  //     if (relatedTarget && suggestionRef.current && suggestionRef.current.contains(relatedTarget)) {
+  //         if (relatedTarget.classList.contains('suggestion')) {
+  //             return;
+  //         }
+  //     }
+  //     setIsInputFocused(false);
+  //     setSearchTerm("");
+  //     setShowSuggestions(false);
+  // };
+
+  const handleSuggestionClick = () => {
+    setIsInputFocused(true);
+  };
+
+  // const toggleInputVisibility = () => {
+  //   setInputVisible(!isInputVisible);
+  // };
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    const filtered = allCards.filter((card) =>
+      card.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredCards(filtered);
+    const suggestion = allCards.map((card) => ({
+      id: card.id,
+      title: card.title,
+    }));
+    setSearchSuggestions(suggestion);
+    console.log(suggestion);
+    setIsInputFocused(true);
+  };
+
+  useGetAll({
+    key: `/campaign/campaign?page=${page}&limit=${perPage}`,
+    enabled: true,
+    select: (data) => {
+      return data?.data?.rows;
+    },
+    onSuccess: (data) => {
+      setAllCards(data);
+    },
+    onerror: () => {
+      console.error("Error fetching card titles:");
+    },
+  });
 
   return (
     <header
@@ -124,7 +203,6 @@ export default function Example() {
         backdropFilter: "blur(10px)",
       }}
     >
-      {" "}
       <nav
         className="mx-auto flex max-w-9xl max-desktop:px-2 max-tablet:px-0  items-center justify-between p-6 lg:px-8"
         aria-label="Global"
@@ -155,7 +233,9 @@ export default function Example() {
             <Popover className="relative mt-1">
               <Popover.Button
                 className="flex pt-2 nav_button items-center gap-x-1 text-[18px] font-medium font-[satoshi]  text-[#40444C]"
-                onclick="this.style.backgroundColor = (this.style.backgroundColor === '#40444C') ? 'blue' : '#40444C';"
+                onClick="this.style.backgroundColor = (this.style.backgroundColor === '#40444C') ? 'blue' : '#40444C';"
+                // style={buttonStyles}
+                // onClick={handleButtonClick}
               >
                 Get Involved
                 <svg
@@ -233,9 +313,10 @@ export default function Example() {
                 </Popover.Panel>
               </Transition>
             </Popover>
+            {/*  second button */}
 
             <Popover className="relative mt-1">
-              <Popover.Button className="flex pt-2 nav_button items-center gap-x-1 text-[18px] font-medium font-[satoshi] border-none text-[#40444C]">
+              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium font-[satoshi] text-[#40444C]">
                 Our Impact
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -299,7 +380,7 @@ export default function Example() {
 
             {/* third button */}
             <Popover className="relative mt-1">
-              <Popover.Button className="flex pt-2 nav_button items-center gap-x-1 text-[18px] font-medium  font-[satoshi] text-[#40444C]">
+              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium  font-[satoshi] text-[#40444C]">
                 About us
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -361,8 +442,9 @@ export default function Example() {
               </Transition>
             </Popover>
             {/* Fourth button */}
-            <button className="font-[satoshi] text-[18px] nav_button font-medium text-[#40444C]">
-              <Link to={"/Home/How-It-Works"}>How it Works</Link>
+
+            <button className="font-[satoshi] text-[18px] font-medium text-[#40444C]">
+              <Link to="/Home/How-It-Works">How it Works</Link>
             </button>
             {/* Fifth button */}
             {localStorage.getItem("token") ? (
@@ -393,69 +475,69 @@ export default function Example() {
                 Start a Campaign
               </PrimaryButton>
             )}
-            <div className="flex space-x-8">
-              <button
-                onClick={toggleSearch}
-                className={`text-black bg-transparent rounded-full ${
-                  showSearch ? "hidden" : ""
-                } transition-all duration-500 ease-in-out`}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
+
+            <div className="flex space-x-0  ">
+              <div className="flex-col relative pr-4">
+                <form
+                  onSubmit={handleSearch}
+                  className="relative mx-auto flex "
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  <input
+                    ref={ref}
+                    type="search"
+                    onFocus={handleInputFocus}
+                    onBlur={handleInputBlur}
+                    value={searchTerm}
+                    onChange={handleInputChange}
+                    className="text-xs peer cursor-pointer relative mt-2 z-10 h-8 w-10  bg-transparent border rounded  pr-8 outline-none focus:rounded-r-none focus:w-full focus:cursor-text focus:border-taupeGray focus:px-3"
+                    placeholder="Typing..."
+                    required
                   />
-                </svg>
-              </button>
-              <Transition
-                as={Fragment}
-                show={showSearch}
-                enter="transition ease-out duration-500"
-                enterFrom="opacity-0 translate-y-1"
-                enterTo="opacity-100 translate-y-0"
-                leave="transition ease-in duration-150"
-                leaveFrom="opacity-100 translate-y-0"
-                leaveTo="opacity-0 translate-y-1"
-              >
-                <div
-                  className={`search-container ${
-                    showSearch ? "show-search" : ""
-                  }transition-all duration-500 ease-in-out`}
-                >
-                  <div className="pt-2.5">
-                    <Search
-                      sx={{
-                        width: { xs: "200px", md: "300px" },
-                        "& .MuiInputBase-root .MuiOutlinedInput-notchedOutline":
-                          {
-                            border: `1px solid #cfcfcf`,
-                          },
-                        "& .MuiInputBase-root.Mui-focused .MuiOutlinedInput-notchedOutline":
-                          {
-                            border: `2px solid #cfcfcf`,
-                          },
-                        "& .MuiInputBase-root input": {
-                          padding: 0,
-                          paddingLeft: "10px",
-                          fontSize: "0.9rem",
-                        },
-                      }}
-                    />
-                  </div>
-                </div>
-              </Transition>
+
+                  <button
+                    type="submit"
+                    className="absolute top-0 mt-2 mr-2 right-0  bottom-0 my-auto h-8 w-10 px-3 bg-transparent rounded-lg peer-focus:relative peer-focus:rounded-l-none"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      x="0px"
+                      y="0px"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 50 50"
+                    >
+                      <path d="M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z"></path>
+                    </svg>
+                  </button>
+
+                  {isInputFocused && searchTerm && (
+                    <ul
+                      className={`search-suggestions pt-7 mt-2 pb-2 h-8 w-auto flex flex-col absolute`}
+                      tabIndex="-1"
+                      onClick={handleSuggestionClick}
+                      ref={suggestionRef}
+                    >
+                      {filteredCards.map((card, index) => (
+                        <Link to={`/campaign-details/${card?.id}`}>
+                          <li
+                            key={index}
+                            className="pt-4 font-bold bg-gray-200"
+                          >
+                            {card.title}
+                          </li>
+                        </Link>
+                      ))}
+                    </ul>
+                  )}
+                </form>
+              </div>
+
               {localStorage.getItem("token") ? (
-                <ProfileAvatar />
+                <div className="">
+                  <ProfileAvatar />
+                </div>
               ) : (
-                <button className="font-[satoshi] text-[18px] font-medium text-[#40444C]">
+                <button className="font-[satoshi] text-[18px]  font-medium text-[#40444C]">
                   <UserLogin />
                 </button>
               )}
@@ -492,7 +574,7 @@ export default function Example() {
                   {({ open }) => (
                     <>
                       <Disclosure.Button
-                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] max-tablet:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
                           open ? " text-red-400" : ""
                         }`}
                       >
@@ -587,49 +669,51 @@ export default function Example() {
                 </Disclosure>
                 <Link
                   to={"/Home/How-It-Works"}
-                  className="-mx-3 block rounded-lg px-2.5 py-2 max-desktop:text-[20px]  max-tablet:text-[18px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[20px]  max-tablet:text-[18px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   How It works
                 </Link>
               </div>
-              <hr />
-              <div className="py-4">
+              <div className="py-2 ">
                 {localStorage.getItem("token") ? (
-                  <div className="max-desktop:text-[20px] font-[satoshi] text-gray-900 font-semibold  space-y-2 max-tablet:text-[18px]">
+                  <div className="space-y-1">
                     {role === "Admin" && (
                       <>
                         <Link
-                          className="flex  items-center hover:text-pink-400"
+                          className="flex text-[satoshi] text-[20px] items-center max-desktop:font-[satoshi] font-medium text-black"
                           to="/AdminPanel"
                         >
-                          Admin Panel
+                          AdminPanel
                         </Link>
                       </>
                     )}
 
                     <Link
-                      className="flex items-center hover:text-pink-400"
+                      className="flex text-[satoshi] text-[20px] items-center max-desktop:font-[satoshi] font-medium text-black"
                       to={"/User"}
                     >
                       Dashboard
                     </Link>
 
                     <Link
-                      className="flex items-center"
+                      className="flex text-[satoshi] text-[20px] items-center max-desktop:font-[satoshi] font-medium text-black"
                       to={"/account-settings"}
                     >
                       Settings
                     </Link>
-                    <div className="flex justify-start items-center space-x-2">
-                      <button onClick={() => logout()}>Logout</button>
-                      <ListItemIcon>
-                        <Logout fontSize="small" />
-                      </ListItemIcon>
+                    <div className="flex items-center">
+                      <button
+                        className="max-desktop:font-[satoshi] text-[satoshi] text-[20px] font-medium text-black pr-1 "
+                        onClick={() => logout()}
+                      >
+                        Logout
+                      </button>
+                      <Logout fontSize="small" />
                     </div>
                   </div>
                 ) : (
                   <Link to="/Home/Login">
-                    <button className="font-[satoshi] text-[22px] font-medium hover:text-pink-400 text-[#40444C] ">
+                    <button className="font-[satoshi] text-[22px] font-medium text-[#40444C]">
                       Log In
                     </button>
                   </Link>

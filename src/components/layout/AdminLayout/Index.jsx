@@ -3,7 +3,7 @@ import AdminNavbar from "../AdminNavbar";
 import { SideBar } from "../sideBar";
 
 const AdminLayout = ({ children }) => {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = React.useState(true);
   return (
     <>
       <AdminNavbar />

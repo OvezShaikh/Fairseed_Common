@@ -6,8 +6,9 @@ import PrimaryButton from "../../../inputs/PrimaryButton";
 import { useLocation, useNavigate } from "react-router-dom";
 import ImageEditor from "../../../layout/ImageEditor/Index";
 import images from "../../../../constants/images";
-import { useCreateOrUpdate, useGetAll } from "../../../../Hooks";
+import { useCreateOrUpdate, useDelete, useGetAll } from "../../../../Hooks";
 import { toast } from "react-toastify";
+import { DeleteBox } from "../../../layout/dialogBox/delete";
 
 function Index() {
   const [User, setUser] = useState({});
@@ -15,6 +16,7 @@ function Index() {
   const [, setIsImageDeleted] = useState(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [deleteSuccess, setDeleteSuccess] = useState(false);
+  const [pass, setPass] = useState(false);
   let { state } = useLocation();
   let { id } = state;
 
@@ -68,15 +70,44 @@ function Index() {
 
   const { mutate } = useCreateOrUpdate({
     url: `/admin-dashboard/users/${id}`,
+    method: "put",
   });
 
-
   const initialvalues = {
-    name: User.username || "",
-    role: User.user_role || "",
+    username: User.username || "",
+    user_role: User.user_role || "",
     email: User.email || "",
     password: "",
-    // created_on: User.created_on || "",
+  };
+
+  const handleSubmit = (values) => {
+    const changedValues = Object.keys(values).filter(
+      (key) => values[key] !== initialvalues[key]
+    );
+
+    const payload = {};
+    changedValues.forEach((key) => {
+      payload[key] = values[key];
+    });
+
+    const formData = new FormData();
+
+    Object.entries(payload).forEach(([key, value]) => {
+      if (key === "user_role") {
+        formData.append("user_role", value?.value);
+      } else {
+        formData.append(key, value instanceof File ? value : value);
+      }
+    });
+
+    mutate(formData, {
+      onSuccess: (response) => {
+        toast.success("Details Updated Successfully !", {
+          position: "top-right",
+        });
+        navigate(-1);
+      },
+    });
   };
 
   return (
@@ -85,30 +116,23 @@ function Index() {
         <Formik
           enableReinitialize={true}
           initialValues={initialvalues}
-          onSubmit={(values) => {
-            mutate(values, {
-              onSuccess: (response) => {
-                toast.success("Details Updated Successfully !", {
-                  position: "top-right",
-                });
-              },
-            });
-          }}
+          onSubmit={(values) => handleSubmit(values)}
         >
-          {({ values }) => (
+          {({ values, setFieldValue }) => (
             <Form className="flex flex-col w-[100%] gap-4 items-center">
               <div className="w-full">
-                <InputField name={"name"} label={"Name:"} />
+                <InputField name={"username"} label={"Name:"} />
               </div>
               <SelectField
-                name={"role"}
+                name={"user_role"}
                 label={"Role:"}
                 required={true}
-                value={values?.role}
+                value={values?.user_role}
                 options={role.map((item) => ({
                   label: item.role_name,
-                  value: item.role_name,
+                  value: item.id,
                 }))}
+                onChange={(value) => setFieldValue("user_role", value)}
               />
               <div className="w-full">
                 <InputField name={"email"} label={"Email Id:"} />
@@ -184,12 +208,15 @@ function Index() {
             </div>
           </div>
           <div className="flex pt-14 justify-center">
-            <PrimaryButton
-              onClick={handleDelete}
-              sx={{ borderRadius: "10px", padding: "10px 30px" }}
-            >
-              <p className="text-[18px] font-medium font-[satoshi]">Delete</p>
-            </PrimaryButton>
+            <DeleteBox
+              url={`/admin-dashboard/users`}
+              data={id}
+              title={"User"}
+              // onClick={() => setSelectedRowID(row?.original?.id)}
+              // onSuccess={() => setSelectedRowID(null)}
+              onClose={() => navigate(-1)}
+              refetchUrl={"/admin-dashboard/users"}
+            ></DeleteBox>
           </div>
           {showDeleteConfirmation && (
             <div

@@ -19,10 +19,10 @@ import Attachments from "../../layout/Attachments/Index";
 import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { ImageCropper } from "../../inputs/Cropper/ImageCropper";
+import { ImageCropper } from "../../inputs/ImageCropper/ImageCropper";
 import { ImagePreviewDialog } from "../../inputs/PreviewImage/PreviewImage";
-import DropZone from "../../inputs/Cropper/CropDrop";
-import { CloudDataOps } from "@carbon/icons-react";
+import DropZone from "../../inputs/ImageCropper/CropDrop";
+
 function CauseEdit_Form() {
   let { state } = useLocation();
   let { id } = state;
@@ -92,13 +92,11 @@ function CauseEdit_Form() {
       toast.success(`Update Successfully `);
     },
     onError: (response) => {
-      console.log(response, "===========>Respose");
       toast.error(`${response.status[0]}error`);
     },
   });
 
   const initial_values = {
-    
     campaign_image: user.campaign_image || "",
     title: user.title || "",
     amount: user.goal_amount || "",
@@ -130,7 +128,7 @@ function CauseEdit_Form() {
     formData.append("summary", values?.summary);
     formData.append("story", values?.story);
     formData.append("category", values?.category?.id);
-    formData.append("status", values?.status?.value);
+    formData.append("status", values?.status);
     formData.append("zakat_eligible", values?.zakat_eligible);
 
     mutate(formData, {
@@ -142,7 +140,6 @@ function CauseEdit_Form() {
       },
     });
   };
-  console.log(initial_values)
 
   return (
     <Formik
@@ -157,7 +154,6 @@ function CauseEdit_Form() {
               <div className="desktop:py-[80px] max-desktop:py-[53px] p-0">
                 <DropZone
                   name="campaign_image"
-                  // label={'campaign image'}
                   onChange={onChange}
                   initialPreview={srcImg}
                 />
@@ -241,7 +237,7 @@ function CauseEdit_Form() {
                 </div>
               </div>
 
-              <div className="w-full mt-5 max-tablet:pt-4">
+              <div className="w-full mt-5 max-tablet:pt-10 max-desktop:pt-5">
                 <InputField
                   onChange={handleChange}
                   value={values?.summary}
@@ -284,12 +280,12 @@ function CauseEdit_Form() {
 
                 <div className="flex gap-4 max-tablet:flex-col">
                   {values?.documents?.map((imageUrl, index) => {
+                    console.log(imageUrl.id, "==========>Documents");
                     const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl?.doc_file}`;
-                    console.log(documentLink, "doc_file");
                     return (
                       <Attachments
                         key={index}
-                        id={id}
+                        id={imageUrl?.id}
                         imageUrl={documentLink}
                       />
                     );
@@ -323,9 +319,6 @@ function CauseEdit_Form() {
 
               <div className="flex w-[100%] max-tablet:flex-col gap-4">
                 <div className="w-[50%] max-tablet:w-full">
-                {
-                  console.log(values?.status , '++++++')
-                }
                   <SelectField
                     value={values?.status}
                     name={"status"}

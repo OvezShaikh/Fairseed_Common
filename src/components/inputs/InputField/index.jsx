@@ -1,9 +1,20 @@
 import React from "react";
 import { alpha } from "@mui/material/styles";
-import { FormLabel, InputBase, TextField, Tooltip } from "@mui/material";
+import {
+  FormLabel,
+  InputBase,
+  TextField,
+  Tooltip,
+  InputAdornment,
+  IconButton,
+} from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import { ErrorMessage, useField } from "formik";
 import { colors, theme } from "../../../constants/theme";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+
+// Rest of the component code...
 
 const InputField = ({
   name,
@@ -18,9 +29,16 @@ const InputField = ({
   // multiple = false,
   sx,
   required,
+  type, // Adding type prop
   ...otherProps
 }) => {
   const [field, meta] = useField(name);
+
+  const [showPassword, setShowPassword] = React.useState(false); // State to manage password visibility
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const styles = {
     minHeight: "43.95px",
@@ -125,12 +143,7 @@ const InputField = ({
   //     )
   //   : null;
 
-  // return (
-  //   <>
-  //     <InputBase {...textFieldConfig} />
-  //   </>
-  // )
-
+  // Return input field with password visibility icon
   return (
     <>
       {label && (
@@ -151,13 +164,29 @@ const InputField = ({
           {required ? <span className="text-red-600">*</span> : ""}
         </FormLabel>
       )}
-      <InputBase
-        disabled={disabled}
-        sx={styles}
-        // multiple={multiple}
-        // style={{ ...configTextfield?.style }}
-        {...textFieldConfig}
-      />
+      <div className="relative">
+        <InputBase
+          disabled={disabled}
+          sx={styles}
+          type={type === "password" && !showPassword ? "password" : "text"} // Toggle type between password and text based on visibility
+          // multiple={multiple}
+          // style={{ ...configTextfield?.style }}
+          {...textFieldConfig}
+        />
+        <div className="absolute right-[20px] top-[35px]">
+          {type === "password" && (
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={togglePasswordVisibility}
+                edge="end"
+              >
+                {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+              </IconButton>
+            </InputAdornment>
+          )}
+        </div>
+      </div>
       <ErrorMessage
         name={name}
         render={(msg) => (

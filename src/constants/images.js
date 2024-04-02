@@ -39,7 +39,7 @@ import Rectangle from "../assets/Rectangle.png";
 import Button3 from "../assets/Button3.png";
 import Button4 from "../assets/Button4.png";
 import LogoFooter from "../assets/LogoFooter.png";
-import Logo from "../assets/Logo.png";
+import Logo from "../assets/Logo.svg";
 import HeroSection from "../assets/HeroSection.png";
 import HeaderBgImg from "../assets/HeaderBgImg.png";
 import one from "../assets/one.svg";
@@ -91,12 +91,14 @@ import ThreeUser from "../assets/ThreeUser.svg";
 import Coins from "../assets/Coins.svg";
 import CompleteVector from "../assets/CompleteVector.svg";
 import Vector from "../assets/Vector.svg";
-import SealCheck2 from "../assets/SealCheck2.svg"
-import SealCheck3 from "../assets/SealCheck3.svg"
+import SealCheck2 from "../assets/SealCheck2.svg";
+import SealCheck3 from "../assets/SealCheck3.svg";
+import HeaderImage from "../assets/HeaderImage.svg";
+import HeaderImage2 from "../assets/HeaderImage2.svg";
 
 export default {
   SealCheck,
-  SealCheck2,
+  // SealCheck2,
   SealCheck3,
   Student,
   UsersThree,
@@ -188,4 +190,6 @@ export default {
   Coins,
   CompleteVector,
   Vector,
+  HeaderImage,
+  HeaderImage2,
 };

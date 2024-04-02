@@ -19,11 +19,11 @@ import Attachments from "../../layout/Attachments/Index";
 import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { ImageCropper } from "../../inputs/Cropper/ImageCropper";
+import { ImageCropper } from "../../inputs/ImageCropper/ImageCropper";
 import { ImagePreviewDialog } from "../../inputs/PreviewImage/PreviewImage";
-import DropZone from "../../inputs/Cropper/CropDrop";
+import DropZone from "../../inputs/ImageCropper/CropDrop";
 
-const EditCampaign = () => {
+const   EditCampaign = () => {
   let { state } = useLocation();
   let { id } = state;
   const navigate = useNavigate();
@@ -39,11 +39,6 @@ const EditCampaign = () => {
     refetch();
     refetchCategories();
   }, []);
-
-  const handleDelete = () => {
-    setDataUrl("");
-    setImageUrl("");
-  };
 
   const onChange = (e) => {
     let files;
@@ -104,60 +99,60 @@ const EditCampaign = () => {
     end_date: user?.end_date || "",
     status: user?.status || "",
     story: user?.story || "",
-    documents:  [],
+    documents: [],
     zakat_eligible: user?.zakat_eligible || false,
   };
-  console.log(initial_values);
+
   if (!isSuccess) {
     return <div>Loading...</div>;
   }
 
-
- const handleSubmit = (values) => {
-  const changedValues = Object.keys(values).filter(
-    key => values[key] !== initial_values[key]
-  );
-
-  // Prepare payload with only changed values
-  const payload = {};
-  changedValues.forEach(key => {
-    payload[key] = values[key];
-  });
-
-  // Make API request with payload
-  const formData = new FormData();
-
-  // Convert FileList to an array if it exists
-  const documentsArray = values.documents ? Array.from(values.documents) : [];
-
-  // Append each document file to formData
-  documentsArray.forEach((file, index) => {
-    formData.append(`documents`, file);
-  });
-
-  // Append other fields to formData
-  Object.entries(payload).forEach(([key, value]) => {
-    if (key !== 'documents') {
-      formData.append(key, value instanceof File ? value : JSON.stringify(value));
+  const handleSubmit = (values) => {
+    const changedValues = Object.keys(values).filter(
+      (key) => values[key] !== initial_values[key]
+    );
+  
+    const payload = {};
+    changedValues.forEach((key) => {
+      payload[key] = values[key];
+    });
+  
+    const formData = new FormData();
+  
+    const documentsArray = values.documents ? Array.from(values.documents) : [];
+  
+    documentsArray.forEach((file, index) => {
+      formData.append(`documents`, file);
+    });
+  
+    Object.entries(payload).forEach(([key, value]) => {
+      if (key !== "documents" && key !== "status") { // Exclude status from payload
+        formData.append(
+          key,
+          value instanceof File ? value : JSON.stringify(value)
+        );
+      }
+    });
+  
+    if (!formData.has('status')) {
+      formData.append('status', values.status.value);
     }
-  });
-
-  mutate(formData, {
-    onSuccess: (response) => {
-      toast.success(response?.data?.message, {
-        position: "top-right",
-      });
-      navigate(-1);
-    },
-    onError: (error) => {
-      console.error('There was a problem updating the data:', error);
-      toast.error(error?.data?.message, {
-        position: 'top-right',
-      });
-    },
-  });
-};
-
+  
+    mutate(formData, {
+      onSuccess: (response) => {
+        toast.success(response?.data?.message, {
+          position: "top-right",
+        });
+        navigate(-1);
+      },
+      onError: (error) => {
+        console.error("There was a problem updating the data:", error);
+        toast.error(error?.data?.message, {
+          position: "top-right",
+        });
+      },
+    });
+  };
   
 
   return (
@@ -300,11 +295,13 @@ const EditCampaign = () => {
                 <div className="flex gap-4">
                   {Documents?.map((imageUrl, index) => {
                     const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl.doc_file}`;
-                    return <Attachments
-                    key={index}
-                    id={id}
-                    imageUrl={documentLink}
-                  />
+                    return (
+                      <Attachments
+                        key={index}
+                        id={id}
+                        imageUrl={documentLink}
+                      />
+                    );
                   })}
                 </div>
               </div>

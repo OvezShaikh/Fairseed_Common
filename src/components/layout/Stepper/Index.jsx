@@ -145,10 +145,7 @@ const validations = [
       })
       .nullable()
       .required("Category is required!"),
-    zakat_eligible: yup
-      .boolean()
-      .oneOf([true], "You must agree to the terms and conditions")
-      .required("You must agree to the terms and conditions"),
+   
     end_date: yup.string().required("End date is required"),
   }),
   yup.object({

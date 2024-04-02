@@ -12,10 +12,8 @@ const Dashboard = () => {
   });
 
   useEffect(() => {
-    // Fetch dashboard data from your API endpoint
     axios
       .get(`${process.env.REACT_APP_API_URL}/campaign/landing-page`)
-      // axios.get(`${process.env.REACT_APP_API_URL}/campaign/landing-page`)
       .then((response) => {
         const responseData = response.data.data;
         setDashboardData({
@@ -60,8 +58,7 @@ const Dashboard = () => {
     },
   ];
 
-  // function DashBoard({DashBoardImg,DashBoardTotal,DashBoardText}) {
-  // function DashBoard({data}) {
+ 
   return (
     <>
       {dashboards.map((data, index) => (

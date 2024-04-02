@@ -225,10 +225,7 @@ const DrawerBody = () => {
           path: "/AdminPanel/General-Settings/Limits",
           title: "Limits",
         },
-        // {
-        //   path: "/admin-console/reports",
-        //   title: "Reports",
-        // },
+       
         {
           path: "/AdminPanel/General-Settings/Profiles-Social",
           title: "Profiles Social",
@@ -302,17 +299,7 @@ const DrawerBody = () => {
     },
   ];
 
-  // {
-  //   icon: "PolicyIcon",
-  //   path: "/teams-policy-settings",
-  //   title: "Teams Policy Settings",
-  // },
-
-  // {
-  //   icon: "PolicyIcon",
-  //   path: "/teams-policy-settings",
-  //   title: "Teams Policy Settings",
-  // },
+ 
 
   const [selectedPath, setSelectedMenu] = useState("");
 

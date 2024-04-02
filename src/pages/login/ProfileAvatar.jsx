@@ -40,7 +40,6 @@ export default function ProfileAvatar() {
   let Data = JSON.parse(userData);
   let role = Data?.user_role;
   let image = Data?.profile_pic;
-
   let img = `${process.env.REACT_APP_API_URL}` + image;
 
   return (
@@ -54,7 +53,7 @@ export default function ProfileAvatar() {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }} src={img} />
+            <Avatar sx={{ width: 45, height: 45 }} src={img} />
           </IconButton>
         </Tooltip>
       </Box>
@@ -117,7 +116,7 @@ export default function ProfileAvatar() {
         </MenuItem>
 
         <MenuItem className="flex items-center" onClick={handleClose}>
-          <Link className="flex items-center" to={"/account-settings"}>
+          <Link className="flex items-center" to={"/Home/account-settings"}>
             <ListItemIcon>
               <Settings fontSize="small" />
             </ListItemIcon>

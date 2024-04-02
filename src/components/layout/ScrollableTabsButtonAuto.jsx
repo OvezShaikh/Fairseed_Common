@@ -36,7 +36,7 @@ export default function ScrollableTabsButtonForce({
 
   return (
     <Box sx={{
-      maxWidth: { xs: "100%", sm: "100%", lg: '92%' }, bgcolor: "background.paper", "& .css-145v6pe-MuiButtonBase-root-MuiTabScrollButton-root.Mui-disabled ": {
+      maxWidth: { xs: "100%", sm: "100%", lg: '85%' }, bgcolor: "background.paper", "& .css-145v6pe-MuiButtonBase-root-MuiTabScrollButton-root.Mui-disabled ": {
         display: "none",
       }, "& .css-ptiqhd-MuiSvgIcon-root": { width: 32, height: 32 }
     }}
@@ -65,6 +65,7 @@ export default function ScrollableTabsButtonForce({
         allowScrollButtonsMobile
         aria-label="scrollable force tabs example"
       >
+        
         <Tab
           style={{
             color: "var(--cool-grey-cool-grey-10, #383A42)",
@@ -141,27 +142,8 @@ export default function ScrollableTabsButtonForce({
             </Box>
           }
         />
-        <Tab
-          style={{
-            color: "var(--cool-grey-cool-grey-10, #383A42)",
-            borderRadius: "var(--Spacing-24, 50px)",
-            border: "1.5px solid rgb(248, 85, 85)",
-            fontFamily: "Satoshi",
-            marginLeft: "12px",
-            fontSize: "18px",
-            fontStyle: "normal",
-          }}
-          label={
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiGenderFemaleDuotone
-                style={{ color: "red" }}
-                className="icon pr-2 w-7 h-7"
-              />
-              Women Empowerment
-            </Box>
-          }
-        />
-        <Tab
+
+<Tab
           style={{
             color: "var(--cool-grey-cool-grey-10, #383A42)",
             borderRadius: "var(--Spacing-24, 50px)",
@@ -173,14 +155,14 @@ export default function ScrollableTabsButtonForce({
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiMegaphoneSimpleDuotone
-                style={{ color: "red" }}
-                className="icon pr-2 w-7 h-7"
-              />
-              NGO Initiatives
+              <PiTrendUpDuotone style={{ color: "red" }} className="icon pr-2 w-7 h-7" />
+              Trending
             </Box>
           }
         />
+
+
+        
         
       </Tabs>
     </Box>

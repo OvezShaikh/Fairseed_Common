@@ -61,7 +61,7 @@ const Campaign_Kyc = () => {
     },
     {
       Header: "Campaign Title",
-      accessor: "campaign.title",
+      accessor: "bank_kyc.title",
 
       minWidth: 100,
       width: 100,
@@ -80,35 +80,35 @@ const Campaign_Kyc = () => {
     },
     {
       Header: "IFSC Code",
-      accessor: "ifsc_code",
+      accessor: "bank_kyc.ifsc_code",
 
       minWidth: 100,
       width: 100,
     },
     {
       Header: "Bank Name",
-      accessor: "bank_name",
+      accessor: "bank_kyc.bank_name",
 
       minWidth: 100,
       width: 100,
     },
     {
       Header: "Benificary Account No",
-      accessor: "account_number",
+      accessor: "bank_kyc.account_number",
 
       minWidth: 130,
       width: 130,
     },
     {
       Header: "Benificary Name",
-      accessor: "account_holder_name",
+      accessor: "bank_kyc.account_holder_name",
 
       minWidth: 100,
       width: 100,
     },
     {
       Header: "Status",
-      accessor: "status",
+      accessor: "bank_kyc.status",
       Cell: StatusCell,
 
       minWidth: 100,
@@ -116,7 +116,7 @@ const Campaign_Kyc = () => {
     },
     {
       Header: "campaign ID",
-      accessor: "campaign.id",
+      accessor: "id",
 
       minWidth: 100,
       width: 100,

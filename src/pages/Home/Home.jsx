@@ -4,28 +4,22 @@ import "./Home.css";
 import button from "../../constants/button";
 import Card from "../../components/layout/Card";
 import ScrollableTabsButtonForce from "../../components/layout/ScrollableTabsButtonAuto";
-import Coursal from "../../components/layout/Coursal";
+import Carousal from "../../components/layout/Carousal";
 import Footer from "../../components/layout/Footer";
 import Navbar from "../../components/layout/Navbar";
 import DashBoard from "../../components/layout/DashBoard";
 import PrimaryButton from "../../components/inputs/PrimaryButton";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import UserNavbar from '../login/UserNavbar'
+import UserNavbar from "../login/UserNavbar";
 
 import images from "../../constants/images";
 import { color } from "@mui/system";
 import { Link } from "react-router-dom";
 
-
-
 import BottomSlider from "../../components/layout/BottomSlider/Index";
 
-
 import FilterField from "../../components/inputs/FilterField/Index";
-
-
-
 
 function Home() {
   const [userList, setUserList] = useState([]);
@@ -36,65 +30,66 @@ function Home() {
   const [showOptions, setShowOptions] = useState(false);
   const [perPage, setPerPage] = useState(100);
   const [tabName, setTabName] = useState("newly_added");
-
-  const [categoryDataFromChild, setCategoryDataFromChild] = useState('');
-  const [locationDataFromChild, setLocationDataFromChild] = useState('');
-
+  const [userProfile, setUserProfile] = useState();
+  const [categoryDataFromChild, setCategoryDataFromChild] = useState("");
+  const [locationDataFromChild, setLocationDataFromChild] = useState("");
+  const [filterName, setFilterName] = useState("");
 
   const [visibleCards, setVisibleCards] = useState(8);
-
-
 
   const receiveCategoryFromChild = (categoryData) => {
     setCategoryDataFromChild(categoryData);
   };
 
   const receiveLocationFromChild = (locationData) => {
-setLocationDataFromChild(locationData);
+    setLocationDataFromChild(locationData);
   };
 
-
   const handleTabChange = (index, label) => {
-   
-
     switch (label) {
-      case 'Newly Added':
+      case "Newly Added":
         setTabName("newly_added");
         break;
-      case 'Most Supported':
+      case "Most Supported":
         setTabName("most_supported");
         break;
-      case 'Needs Love':
+      case "Needs Love":
         setTabName("needs_love");
         break;
-      case 'Expiring Soon':
+      case "Expiring Soon":
         setTabName("expiring_soon");
+        break;
+      case "Trending":
+        setTabName("trending");
         break;
       default:
         setTabName("");
     }
-
-
-
   };
-
-
 
   const filteredUserList = Array.from(
     new Set(
-      userList.filter((item) => {
+      userList
+        .filter((item) => {
+          const isDataMatch =
+            (categoryDataFromChild.length === 0 &&
+              locationDataFromChild.length === 0) ||
+            (categoryDataFromChild.includes(item.category.name) &&
+              locationDataFromChild.length === 0) ||
+            (locationDataFromChild.includes(item.location) &&
+              categoryDataFromChild.length === 0) ||
+            (categoryDataFromChild.includes(item.category.name) &&
+              locationDataFromChild.includes(item.location));
 
-        const isDataMatch = (((categoryDataFromChild.length === 0) && (locationDataFromChild.length === 0)) || ((categoryDataFromChild.includes(item.category.name)) && (locationDataFromChild.length === 0))) || (((locationDataFromChild.includes(item.location)) && (categoryDataFromChild.length === 0))) || ((categoryDataFromChild.includes(item.category.name)) && (locationDataFromChild.includes(item.location)));
-
-        return isDataMatch;
-      }).map((item) => item.id)
+          return isDataMatch;
+        })
+        .map((item) => item.id)
     )
   ).map((id) => userList.find((item) => item.id === id));
 
   const filteredCardCount = filteredUserList.length;
 
   const filterToggle = () => {
-
     setShowOptions(!showOptions);
   };
 
@@ -106,23 +101,24 @@ setLocationDataFromChild(locationData);
     }
 
     if (visibleCards >= perPage) {
-      setPerPage(perPage + 100)
+      setPerPage(perPage + 100);
     }
   };
 
   const fetchUserListFromTabs = async () => {
     try {
-      
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/campaign/campaign-filter?page=${page}&limit=${perPage}&filter=${tabName}`
       );
-      
-      const res = response.data;
 
-      console.log("RES ----->",res);
+      const res = response.data;
+      console.log(res, "FilterName=======>");
+      setFilterName(res.filter_key);
+      // console.log("RES ----->", res);
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList(res.rows);
+        // setUserProfile(res.rows?.user?.profile_pic);
         setCampaignCount(res.count);
       } else {
         console.error("Invalid data structure. Expected an array:", res.data);
@@ -133,16 +129,16 @@ setLocationDataFromChild(locationData);
   };
   useEffect(() => {
     fetchUserListFromTabs();
-
   }, [tabName]);
 
   const fetchCampaigns = async () => {
-    try {  
+    try {
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/campaign/campaign-filter?page=${page}&limit=${perPage}&filter=${tabName}`
       );
       const res = response.data;
-      console.log("RES ----->",res);
+      // console.log("RES ----->", res);
+
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList([...userList, ...res.rows]);
@@ -156,11 +152,7 @@ setLocationDataFromChild(locationData);
   };
   useEffect(() => {
     fetchCampaigns();
-
   }, [page]);
- 
-
-
 
   let bnk = [
     {
@@ -172,17 +164,14 @@ setLocationDataFromChild(locationData);
       daysLeft: "10 Days Left",
     },
   ];
-
+  console.log(userProfile, "UserProfile==================>");
   return (
     <>
       <div className="">
-
-
         <Navbar />
-
       </div>
       <div>
-        <Coursal />
+        <Carousal />
       </div>
       <div
         className="bg-[#FFF6F5] desktop:justify-between max-desktop:flex-wrap max-desktop:justify-center max-desktop:gap-y-[64px] desktop:px-[48px] desktop:py-[48px] max-desktop:py-[80px] max-tablet:py-[60px] max-tablet:gap-y-[32px]"
@@ -205,7 +194,7 @@ setLocationDataFromChild(locationData);
           </h1>
           <div className="flex flex-col  text-center text-black/100 mb-[64px] max-tablet:mb-[52px]">
             <Link
-              to='/Home/OnGoingCampaigns'
+              to="/Home/OnGoingCampaigns"
               style={{
                 width: "100%",
                 textAlign: "center",
@@ -238,25 +227,32 @@ setLocationDataFromChild(locationData);
             onClick={filterToggle}
           >
             <img src={images.Funnel} />
-            <p className="text-[18px]" style={{
-              background:
-                "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
-              "-webkit-background-clip": "text",
-              "-webkit-text-fill-color": "transparent",
-              "font-family": 'Satoshi',
-              "font-weight": "700",
-            }
-            }>Filter</p>
+            <p
+              className="text-[18px]"
+              style={{
+                background:
+                  "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+                "-webkit-background-clip": "text",
+                "-webkit-text-fill-color": "transparent",
+                "font-family": "Satoshi",
+                "font-weight": "700",
+              }}
+            >
+              Filter
+            </p>
           </button>
-
         </div>
         {showOptions && (
-          <FilterField sendCategoryToParent={receiveCategoryFromChild} sendLocationToParent={receiveLocationFromChild} />
+          <FilterField
+            sendCategoryToParent={receiveCategoryFromChild}
+            sendLocationToParent={receiveLocationFromChild}
+          />
         )}
         <div className="desktop:gap-x-[36px] desktop:gap-y-[48px] mt-[48px]  flex flex-wrap w-full justify-center desktop:max-w-[1740px] max-desktop:gap-x-[16px]  max-desktop:gap-y-[24px] max-tablet:gap-y-[48px]">
           {filteredUserList?.slice(0, visibleCards).map((item) => {
             return (
               <Card
+                filterName={filterName}
                 key={item?.id}
                 username={item?.user?.username}
                 title={item.title}
@@ -289,14 +285,15 @@ setLocationDataFromChild(locationData);
             "-webkit-background-clip": "text",
             "-webkit-text-fill-color": "transparent",
             textDecoration: "underline",
-            display: ((visibleCards >= campaignCount) || (filteredCardCount < 8) ? "none" : "block"),
+            display:
+              visibleCards >= campaignCount || filteredCardCount < 8
+                ? "none"
+                : "block",
             position: "relative",
-
           }}
         >
           <p className="gradient-button mb-0">Load More</p>
         </button>
-
       </div>
       <section className="bg-[#FFF6F5]">
         <div
@@ -350,7 +347,10 @@ setLocationDataFromChild(locationData);
                 </div>
               </div>
             </div>
-            <img className="col-span-1 max-desktop:rotate-90" src={images.Arrow} />
+            <img
+              className="col-span-1 max-desktop:rotate-90"
+              src={images.Arrow}
+            />
             <div className="col-span-3 grid grid-cols-1 place-items-center">
               <div className="desktop:max-w-[120px] max-tablet:max-w-[75px]">
                 <img className="" src={images.pencicon} alt="" />
@@ -360,8 +360,8 @@ setLocationDataFromChild(locationData);
                   <img className=" mr-3 col-span-2" src={images.two} alt="" />
                 </div>
                 <div className=" ml-2 col-span-10">
-                  <h1 className="text-[28px] font-black max-tablet:text-[24px] max-tablet:font-bold"
-
+                  <h1
+                    className="text-[28px] font-black max-tablet:text-[24px] max-tablet:font-bold"
                     style={{
                       color: "#4A4E5A",
 
@@ -391,7 +391,10 @@ setLocationDataFromChild(locationData);
                 </div>
               </div>
             </div>
-            <img className="col-span-1 max-desktop:rotate-90" src={images.Arrow} />
+            <img
+              className="col-span-1 max-desktop:rotate-90"
+              src={images.Arrow}
+            />
             <div className="col-span-3 grid grid-cols-1  place-items-center">
               <div className="desktop:max-w-[120px] max-tablet:max-w-[75px]">
                 <img className="" src={images.Home} alt="" />
@@ -440,14 +443,18 @@ setLocationDataFromChild(locationData);
                 fontSize: 20,
                 fontWeight: "900",
                 padding: "15px 28px 15px 28px",
-
               }}
               className="py-[15px] px-[28px] my-10"
             >
-              <div className="mr-2" style={{ width: 32, height: 32, position: "relative" }}>
+              <div
+                className="mr-2"
+                style={{ width: 32, height: 32, position: "relative" }}
+              >
                 <img src={images.RocketLaunch} alt="" />
               </div>
-              <div className="max-tablet:text-[16px]">Launch a Campaign Now !</div>
+              <div className="max-tablet:text-[16px]">
+                Launch a Campaign Now !
+              </div>
             </PrimaryButton>
           </Link>
         </div>

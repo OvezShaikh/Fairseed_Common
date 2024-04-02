@@ -15,7 +15,7 @@ import UserNavbar from "../../login/UserNavbar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GiHazardSign } from "react-icons/gi";
-import { Dialog } from "../../../components/layout/dialogBox";
+import { Dialog } from "../../../components/layout/dialogBox/dialog";
 import InputField from "../../../components/inputs/InputField";
 import { Form, Formik } from "formik";
 import ErrorIcon from "@mui/icons-material/Error";
@@ -81,6 +81,8 @@ function CurrentCampaign({
     [pathname]
     // console.log(cardDetails,"cardDetailscardDetails")
   );
+  const fullNameWords = cardDetails?.user?.split(" ");
+  const firstLetter = fullNameWords?.[0]?.charAt(0)?.toUpperCase() ?? "";
 
   return (
     <>
@@ -312,11 +314,17 @@ function CurrentCampaign({
               <div className="flex">
                 <div className="desktop:w-[96px] desktop:h-[96px] max-desktop:w-[70px] max-desktop:h-[70px]">
                   <Avatar
-                    className="desktop:w-[96px] desktop:h-[96px] max-desktop:w-[70px]"
-                    alt="Remy Sharp"
+                    className="desktop:w-[96px] desktop:h-[96px] max-desktop:w-[70px] text-[30px]"
+                    alt={cardDetails?.user}
                     src="/static/images/avatar/1.jpg"
-                    sx={{ width: "100%", height: "100%" }}
-                  />
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      fontSize: "35px !important",
+                    }}
+                  >
+                    {firstLetter}
+                  </Avatar>
                 </div>
                 <h1
                   className="text-[40px] flex items-center pl-6 font-bold max-desktop:text-3xl max-tablet:text-xl"
@@ -404,6 +412,7 @@ function CurrentCampaign({
               <Doner data={cardDetails?.donor} />
 
               <Dialog
+                // onClose={() => onClose && onClose()}
                 button={
                   <SecondaryButton
                     sx={{
@@ -458,12 +467,7 @@ function CurrentCampaign({
                       </div>
                       <div className="flex gap-4">
                         <PrimaryButton>
-                          <GiHazardSign
-                            className="mr-1"
-                            onClick={() => {
-                              onClose();
-                            }}
-                          />
+                          <GiHazardSign className="mr-1" />
                           Report
                         </PrimaryButton>
                       </div>
