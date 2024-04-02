@@ -59,6 +59,9 @@ function Home() {
       case "Expiring Soon":
         setTabName("expiring_soon");
         break;
+      case "Trending":
+        setTabName("trending");
+        break;
       default:
         setTabName("");
     }
@@ -151,16 +154,6 @@ function Home() {
     fetchCampaigns();
   }, [page]);
 
-  let bnk = [
-    {
-      title: "Help me fund my College Fees for Harvard University",
-      img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-      actualMoney: 6700,
-      totalMoney: 64000,
-      userCount: "1003",
-      daysLeft: "10 Days Left",
-    },
-  ];
   console.log(userProfile, "UserProfile==================>");
   return (
     <>
@@ -390,6 +383,7 @@ function Home() {
             </div>
             <img
               className="col-span-1 max-desktop:rotate-90"
+              alt=""
               src={images.Arrow}
             />
             <div className="col-span-3 grid grid-cols-1  place-items-center">

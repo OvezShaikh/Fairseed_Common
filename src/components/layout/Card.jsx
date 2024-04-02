@@ -103,6 +103,17 @@ function Card({
                           Newly Added
                         </div>
                       );
+                    case "trending":
+                      return (
+                        <div className="flex gap-1">
+                          <img
+                            src={images.TrendUp}
+                            alt=""
+                            className="text-black"
+                          />
+                          Trending
+                        </div>
+                      );
 
                     default:
                       return filterName;
