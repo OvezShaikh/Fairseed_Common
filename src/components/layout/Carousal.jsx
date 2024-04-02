@@ -106,7 +106,6 @@ const HomeSwiper = () => {
     >
       {allCards.map((item) => {
         const image = `${process.env.REACT_APP_API_URL}${item?.campaign_image}`;
-        console.log(image, "campaign image");
         return (
           <SwiperSlide key={item.id}>
             <div className="max-w-[1920px] max-desktop:w-full max-tablet:w-full w-full h-[753px] relative max-desktop:hidden max-tablet:hidden">

@@ -53,7 +53,7 @@ export default function ProfileAvatar() {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }} src={img} />
+            <Avatar sx={{ width: 45, height: 45 }} src={img} />
           </IconButton>
         </Tooltip>
       </Box>

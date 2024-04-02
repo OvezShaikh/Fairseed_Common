@@ -126,7 +126,7 @@ const   EditCampaign = () => {
     });
   
     Object.entries(payload).forEach(([key, value]) => {
-      if (key !== "documents" && key !== "status") { // Exclude status from payload
+      if (key !== "documents" && key !== "status") { 
         formData.append(
           key,
           value instanceof File ? value : JSON.stringify(value)

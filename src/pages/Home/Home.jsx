@@ -33,6 +33,7 @@ function Home() {
   const [userProfile, setUserProfile] = useState();
   const [categoryDataFromChild, setCategoryDataFromChild] = useState("");
   const [locationDataFromChild, setLocationDataFromChild] = useState("");
+  const [filterName, setFilterName] = useState("");
 
   const [visibleCards, setVisibleCards] = useState(8);
 
@@ -108,8 +109,9 @@ function Home() {
       );
 
       const res = response.data;
-
-      console.log("RES ----->", res);
+      console.log(res, "FilterName=======>");
+      setFilterName(res.filter_key);
+      // console.log("RES ----->", res);
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList(res.rows);
@@ -132,7 +134,8 @@ function Home() {
         `${process.env.REACT_APP_API_URL}/campaign/campaign-filter?page=${page}&limit=${perPage}&filter=${tabName}`
       );
       const res = response.data;
-      console.log("RES ----->", res);
+      // console.log("RES ----->", res);
+
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList([...userList, ...res.rows]);
@@ -246,6 +249,7 @@ function Home() {
           {filteredUserList?.slice(0, visibleCards).map((item) => {
             return (
               <Card
+                filterName={filterName}
                 key={item?.id}
                 username={item?.user?.username}
                 title={item.title}

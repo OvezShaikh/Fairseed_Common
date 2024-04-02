@@ -1,13 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { Formik, Form } from 'formik';
-import InputField from '../../inputs/InputField';
-import CountrySelect from '../../inputs/countrySelect/index';
-import { useCreateOrUpdate, useGetAll } from '../../../Hooks';
-import { toast } from 'react-toastify';
-import PrimaryButton from '../../inputs/PrimaryButton';
-import Profile from '../../inputs/AvatarCrop/Profile';
-
-
+import React, { useEffect, useRef, useState } from "react";
+import { Formik, Form } from "formik";
+import InputField from "../../inputs/InputField";
+import CountrySelect from "../../inputs/countrySelect/index";
+import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
+import { toast } from "react-toastify";
+import PrimaryButton from "../../inputs/PrimaryButton";
+import Profile from "../../inputs/AvatarCrop/Profile";
 
 const InputStyle = {
   padding: "20px",
@@ -45,12 +43,12 @@ const Account = () => {
     onSuccess: (data) => {
       setDetails(data);
     },
-  })
-  
+  });
+
   useEffect(() => {
     const img = `${process.env.REACT_APP_BASE_URL}` + Details?.profile_pic;
     setSrcImg(img);
-  },[Details?.profile_pic]);
+  }, [Details?.profile_pic]);
 
   const initial_values = {
     username: Details?.username || '',
@@ -66,6 +64,7 @@ const Account = () => {
     method: "put",
   });
 
+
   const handleSubmit = (values) =>{
     const changedValues = Object.keys(values).filter(
       (key) => values[key] !== initial_values[key]
@@ -79,9 +78,15 @@ const Account = () => {
     const formData = new FormData();
 
     Object.entries(payload).forEach(([key, value]) => {
-      formData.append(key, value instanceof File ? value : JSON.stringify(value)
-      );
-    })
+      if (value) {
+        if (value instanceof File) { 
+          formData.append(key, value);
+        } else {
+          formData.append(key, value);
+        }
+      }
+    });
+    
 
       mutate(formData, {
         onSuccess: () => {
@@ -92,35 +97,16 @@ const Account = () => {
       })
   }
 
-  const onImageChange = (e) => {
-    let files;
-    if (e) {
-      files = e;
-    }
-    const reader = new FileReader();
-    reader.onload = () => {
-      setSrcImg(reader.result);
-
-    };
-    reader.readAsDataURL(files[0]);
-  };
-
-
-  
+   
   return (
     <Formik
       enableReinitialize={true}
       initialValues={initial_values}
-      onSubmit={(values)=>handleSubmit(values)}
+      onSubmit={(values) => handleSubmit(values)}
     >
       {({ values, handleChange }) => (
         <Form>
-        <Profile 
-        name={"profile_pic"}
-        value={values?.profile_pic}
-        srcImg={srcImg}
-        setSrcImg={setSrcImg}
-        />
+          <Profile name={"profile_pic"} value={values?.profile_pic} srcImg={srcImg} setSrcImg={setSrcImg} />
 
           <InputField
             onChange={handleChange}

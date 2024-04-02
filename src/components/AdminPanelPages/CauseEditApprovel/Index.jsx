@@ -23,9 +23,6 @@ import { ImageCropper } from "../../inputs/ImageCropper/ImageCropper";
 import { ImagePreviewDialog } from "../../inputs/PreviewImage/PreviewImage";
 import DropZone from "../../inputs/ImageCropper/CropDrop";
 
-
-
-
 function CauseEdit_Form() {
   let { state } = useLocation();
   let { id } = state;
@@ -48,7 +45,6 @@ function CauseEdit_Form() {
 
   const onChange = (e) => {
     let files;
-
     if (e) {
       files = e;
     }
@@ -70,7 +66,8 @@ function CauseEdit_Form() {
       console.log(data);
       setUser(data);
       const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${
-        data?.campaign_image || ""}`;
+        data?.campaign_image || ""
+      }`;
       setSrcImg(imageUrl);
       setDocuments(data?.documents);
     },
@@ -142,7 +139,6 @@ function CauseEdit_Form() {
       },
     });
   };
-
 
   return (
     <Formik
@@ -240,7 +236,7 @@ function CauseEdit_Form() {
                 </div>
               </div>
 
-              <div className="w-full mt-5 max-tablet:pt-4">
+              <div className="w-full mt-5 max-tablet:pt-10 max-desktop:pt-5">
                 <InputField
                   onChange={handleChange}
                   value={values?.summary}
@@ -283,12 +279,12 @@ function CauseEdit_Form() {
 
                 <div className="flex gap-4 max-tablet:flex-col">
                   {values?.documents?.map((imageUrl, index) => {
-                    console.log(imageUrl , "imageUrl")
+                    console.log(imageUrl.id, "==========>Documents");
                     const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl?.doc_file}`;
                     return (
                       <Attachments
                         key={index}
-                        id={id}
+                        id={imageUrl?.id}
                         imageUrl={documentLink}
                       />
                     );

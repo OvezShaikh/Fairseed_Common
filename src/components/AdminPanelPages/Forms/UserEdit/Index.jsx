@@ -80,27 +80,25 @@ function Index() {
     password: "",
   };
 
-  const handleSubmit = (values)=>{
-   
+  const handleSubmit = (values) => {
     const changedValues = Object.keys(values).filter(
-      key => values[key] !== initialvalues[key]
+      (key) => values[key] !== initialvalues[key]
     );
-  
+
     const payload = {};
-    changedValues.forEach(key => {
+    changedValues.forEach((key) => {
       payload[key] = values[key];
     });
-  
+
     const formData = new FormData();
 
     Object.entries(payload).forEach(([key, value]) => {
-      if(key === 'user_role'){
-        formData.append('user_role' , value?.value )
-      }else{
+      if (key === "user_role") {
+        formData.append("user_role", value?.value);
+      } else {
         formData.append(key, value instanceof File ? value : value);
       }
     });
-   
 
     mutate(formData, {
       onSuccess: (response) => {
@@ -134,13 +132,13 @@ function Index() {
                   label: item.role_name,
                   value: item.id,
                 }))}
-                onChange={(value)=>setFieldValue('user_role', value)}
+                onChange={(value) => setFieldValue("user_role", value)}
               />
               <div className="w-full">
                 <InputField name={"email"} label={"Email Id:"} />
               </div>
               <div className="w-full">
-                <InputField name={"password"} label={"Password:"}  />
+                <InputField name={"password"} label={"Password:"} />
               </div>
               <div className="flex flex-row gap-4 mt-12">
                 <button

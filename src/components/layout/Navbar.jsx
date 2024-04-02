@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Fragment, useState, } from "react";
+import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
@@ -19,7 +19,6 @@ import Avatar from "@mui/material/Avatar";
 import Divider from "@mui/material/Divider";
 import Settings from "@mui/icons-material/Settings";
 
-
 const GetInvolved = [
   {
     name: "Associateship",
@@ -31,7 +30,7 @@ const GetInvolved = [
   },
   {
     name: "Internship",
-    href: '/Home/Internship',
+    href: "/Home/Internship",
   },
   {
     name: "Support a campaign",
@@ -49,7 +48,7 @@ const OurImpact = [
   },
   {
     name: "Successful Campaigns",
-    href: "/Home/Donate",
+    href: "/Home/Successful-campaign",
   },
   {
     name: "Stories of Change",
@@ -73,8 +72,6 @@ const AboutUs = [
     name: "Objectives & Values",
     href: "/Home/Objectives-&-values",
   },
-
-
 ];
 
 const HowItWorks = [
@@ -82,16 +79,13 @@ const HowItWorks = [
     name: "How-It-Works",
     href: "/How-It-Works",
   },
-
-
 ];
-
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const hasToken = !!localStorage.getItem('token');
+const hasToken = !!localStorage.getItem("token");
 
 function logout() {
   localStorage.removeItem("token");
@@ -102,12 +96,7 @@ function logout() {
   });
 }
 
-
-export default function Example(
-
-) {
-
-
+export default function Example() {
   const page = 2;
   const perPage = 10;
 
@@ -127,53 +116,35 @@ export default function Example(
   const suggestionRef = useRef(null);
   const navigate = useNavigate();
 
-
-
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
   let role = Data?.user_role;
   let image = Data?.profile_pic;
   let img = `${process.env.REACT_APP_API_URL}` + image;
 
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const toggleSearch = () => {
-    setShowSearch((prevState) => !prevState);
-    setShowSuggestions(false);
-  };
-
-
-
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
     setShowSuggestions(true);
     setIsInputFocused(true);
-
-
   };
 
   const handleInputFocus = () => {
     setIsInputFocused(true);
-
   };
 
   const handleInputBlur = (event) => {
     const relatedTarget = event.relatedTarget;
-    if (relatedTarget && suggestionRef.current && suggestionRef.current.contains(relatedTarget)) {
-
+    if (
+      relatedTarget &&
+      suggestionRef.current &&
+      suggestionRef.current.contains(relatedTarget)
+    ) {
       return;
-    }
-    else {
+    } else {
       setIsInputFocused(false);
       setSearchTerm("");
     }
-
-
   };
-
 
   //   const handleInputBlur = (event) => {
   //     const relatedTarget = event.relatedTarget;
@@ -187,11 +158,8 @@ export default function Example(
   //     setShowSuggestions(false);
   // };
 
-
-
-
   const handleSuggestionClick = () => {
-    setIsInputFocused(true); 
+    setIsInputFocused(true);
   };
 
   // const toggleInputVisibility = () => {
@@ -200,9 +168,14 @@ export default function Example(
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    const filtered = allCards.filter(card => card.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    const filtered = allCards.filter((card) =>
+      card.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
     setFilteredCards(filtered);
-    const suggestion = allCards.map((card) => ({ id: card.id, title: card.title }));
+    const suggestion = allCards.map((card) => ({
+      id: card.id,
+      title: card.title,
+    }));
     setSearchSuggestions(suggestion);
     console.log(suggestion);
     setIsInputFocused(true);
@@ -213,19 +186,16 @@ export default function Example(
     enabled: true,
     select: (data) => {
       return data?.data?.rows;
-
     },
     onSuccess: (data) => {
       setAllCards(data);
     },
     onerror: () => {
-      console.error('Error fetching card titles:')
-    }
-  })
-
+      console.error("Error fetching card titles:");
+    },
+  });
 
   return (
-
     <header
       className="absolute top-0 left-0 right-0 bg-transparent z-10 container"
       style={{
@@ -233,7 +203,6 @@ export default function Example(
         backdropFilter: "blur(10px)",
       }}
     >
-      {" "}
       <nav
         className="mx-auto flex max-w-9xl max-desktop:px-2 max-tablet:px-0  items-center justify-between p-6 lg:px-8"
         aria-label="Global"
@@ -261,11 +230,12 @@ export default function Example(
             </button>
           </div>
           <Popover.Group className="max-nav:hidden lg:flex lg:gap-x-12">
-            <Popover className="relative mt-1" >
-              <Popover.Button className="flex pt-2 nav_button items-center gap-x-1 text-[18px] font-medium font-[satoshi]  text-[#40444C]"
+            <Popover className="relative mt-1">
+              <Popover.Button
+                className="flex pt-2 nav_button items-center gap-x-1 text-[18px] font-medium font-[satoshi]  text-[#40444C]"
                 onClick="this.style.backgroundColor = (this.style.backgroundColor === '#40444C') ? 'blue' : '#40444C';"
-              // style={buttonStyles}
-              // onClick={handleButtonClick}
+                // style={buttonStyles}
+                // onClick={handleButtonClick}
               >
                 Get Involved
                 <svg
@@ -473,10 +443,9 @@ export default function Example(
             </Popover>
             {/* Fourth button */}
 
-
-            <button
-              className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
-            ><Link to="/Home/How-It-Works">How it Works</Link></button>
+            <button className="font-[satoshi] text-[18px] font-medium text-[#40444C]">
+              <Link to="/Home/How-It-Works">How it Works</Link>
+            </button>
             {/* Fifth button */}
             {localStorage.getItem("token") ? (
               <PrimaryButton
@@ -507,9 +476,12 @@ export default function Example(
               </PrimaryButton>
             )}
 
-            <div className="flex space-x-2 mt-2">
-              <div className="flex-col relative">
-                <form onSubmit={handleSearch} className="relative mx-auto flex ">
+            <div className="flex space-x-0  ">
+              <div className="flex-col relative pr-4">
+                <form
+                  onSubmit={handleSearch}
+                  className="relative mx-auto flex "
+                >
                   <input
                     ref={ref}
                     type="search"
@@ -522,34 +494,18 @@ export default function Example(
                     required
                   />
 
-
-                  {/* {isInputFocused && searchTerm && (
-                    // <div className="absolute float-left flex-row focus:w-full">
-                    <ul
-                      className={`search-suggestions focus:w-full pt-7 mt-2 pb-2 h-8 flex flex-col absolute`}
-                      tabIndex="-1"
-                      onClick={handleSuggestionClick}
-                      onBlur={handleInputBlur}
-                      ref={suggestionRef}
+                  <button
+                    type="submit"
+                    className="absolute top-0 mt-2 mr-2 right-0  bottom-0 my-auto h-8 w-10 px-3 bg-transparent rounded-lg peer-focus:relative peer-focus:rounded-l-none"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      x="0px"
+                      y="0px"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 50 50"
                     >
-                      {filteredCards.map((card, index) => (
-                        <Link to={`/campaign-details/${card?.id}`}>
-                          <li
-                            
-                            key={index} className="pt-4 font-bold bg-gray-200 " 
-                            onClick={(event) => event.stopPropagation()}
-                            >
-
-                            {card.title}
-
-                          </li>
-                        </Link>
-                      ))}
-                    </ul>
-                    // </div>
-                  )} */}
-                  <button type="submit" className="absolute top-0 mt-2 mr-2 right-0  bottom-0 my-auto h-8 w-10 px-3 bg-transparent rounded-lg peer-focus:relative peer-focus:rounded-l-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
                       <path d="M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z"></path>
                     </svg>
                   </button>
@@ -557,18 +513,18 @@ export default function Example(
                   {isInputFocused && searchTerm && (
                     <ul
                       className={`search-suggestions pt-7 mt-2 pb-2 h-8 w-auto flex flex-col absolute`}
-                      tabIndex="-1" 
+                      tabIndex="-1"
                       onClick={handleSuggestionClick}
                       ref={suggestionRef}
                     >
                       {filteredCards.map((card, index) => (
                         <Link to={`/campaign-details/${card?.id}`}>
-                        <li 
-                        key={index} className="pt-4 font-bold bg-gray-200">
-                          
+                          <li
+                            key={index}
+                            className="pt-4 font-bold bg-gray-200"
+                          >
                             {card.title}
-                          
-                        </li>
+                          </li>
                         </Link>
                       ))}
                     </ul>
@@ -576,16 +532,15 @@ export default function Example(
                 </form>
               </div>
 
-
-              {
-                (localStorage.getItem('token')) ?
-                  (<ProfileAvatar />)
-                  : (<button
-                    className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
-                  >
-                    <UserLogin />
-                  </button>)
-              }
+              {localStorage.getItem("token") ? (
+                <div className="">
+                  <ProfileAvatar />
+                </div>
+              ) : (
+                <button className="font-[satoshi] text-[18px]  font-medium text-[#40444C]">
+                  <UserLogin />
+                </button>
+              )}
             </div>
           </Popover.Group>
         </div>
@@ -619,8 +574,9 @@ export default function Example(
                   {({ open }) => (
                     <>
                       <Disclosure.Button
-                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] max-tablet:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? " text-red-400" : ""
-                          }`}
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] max-tablet:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                          open ? " text-red-400" : ""
+                        }`}
                       >
                         Get Involved
                         <ChevronDownIcon
@@ -650,8 +606,9 @@ export default function Example(
                   {({ open }) => (
                     <>
                       <Disclosure.Button
-                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? " text-red-400" : ""
-                          }`}
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                          open ? " text-red-400" : ""
+                        }`}
                       >
                         Our Impact
                         <ChevronDownIcon
@@ -682,8 +639,9 @@ export default function Example(
                   {({ open }) => (
                     <>
                       <Disclosure.Button
-                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? " text-red-400" : ""
-                          }`}
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                          open ? " text-red-400" : ""
+                        }`}
                       >
                         About Us
                         <ChevronDownIcon
@@ -716,54 +674,43 @@ export default function Example(
                   How It works
                 </Link>
               </div>
-              <div className="py-4">
+              <div className="py-2 ">
                 {localStorage.getItem("token") ? (
-                  <>
+                  <div className="space-y-1">
                     {role === "Admin" && (
                       <>
-                        <MenuItem>
-                          <Link className="flex  items-center max-desktop:font-[satoshi]" to="/AdminPanel">
-                            <ListItemIcon className="pr-2">
-                              <Avatar className="!w-7 !h-7" src={img} />
-                            </ListItemIcon>
-                            AdminPanel
-                          </Link>
-                        </MenuItem>
-                        <Divider />
+                        <Link
+                          className="flex text-[satoshi] text-[20px] items-center max-desktop:font-[satoshi] font-medium text-black"
+                          to="/AdminPanel"
+                        >
+                          AdminPanel
+                        </Link>
                       </>
                     )}
 
-                    <MenuItem onClick={handleClose}>
-                      <Link className="flex items-center max-desktop:font-[satoshi]" to={"/User"}>
-                        <ListItemIcon>
-                          <img src={images.Dashboard} alt="" />
-                        </ListItemIcon>
-                        Dashboard
-                      </Link>
-                    </MenuItem>
-
-                    <MenuItem onClick={handleClose}>
-                      <Link
-                        className="flex items-center max-desktop:font-[satoshi]"
-                        to={"/account-settings"}
-                      >
-                        <ListItemIcon>
-                          <Settings fontSize="small" />
-                        </ListItemIcon>
-                        Settings
-                      </Link>
-                    </MenuItem>
-
-                    <MenuItem
-                      className="flex items-center max-desktop:font-[satoshi]"
-                      onClick={handleClose}
+                    <Link
+                      className="flex text-[satoshi] text-[20px] items-center max-desktop:font-[satoshi] font-medium text-black"
+                      to={"/User"}
                     >
-                      <ListItemIcon>
-                        <Logout fontSize="small" />
-                      </ListItemIcon>
-                      <button className="max-desktop:font-[satoshi]" onClick={() => logout()}>Logout</button>
-                    </MenuItem>
-                  </>
+                      Dashboard
+                    </Link>
+
+                    <Link
+                      className="flex text-[satoshi] text-[20px] items-center max-desktop:font-[satoshi] font-medium text-black"
+                      to={"/account-settings"}
+                    >
+                      Settings
+                    </Link>
+                    <div className="flex items-center">
+                      <button
+                        className="max-desktop:font-[satoshi] text-[satoshi] text-[20px] font-medium text-black pr-1 "
+                        onClick={() => logout()}
+                      >
+                        Logout
+                      </button>
+                      <Logout fontSize="small" />
+                    </div>
+                  </div>
                 ) : (
                   <Link to="/Home/Login">
                     <button className="font-[satoshi] text-[22px] font-medium text-[#40444C]">

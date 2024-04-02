@@ -3,28 +3,28 @@ import { LuPencil } from "react-icons/lu";
 import Modal from "./Modal";
 import { useFormikContext } from "formik";
 
-const Profile = ({ name }) => {
+const Profile = ({ name , setSrcImg , srcImg }) => {
   const { setFieldValue, values } = useFormikContext();
   const [modalOpen, setModalOpen] = useState(false);
   const [avatarUrl, setAvatarUrl] = useState("");
   const [cropper, setCropper] = useState();
 
 
-  useEffect(() => {
-     const img = `${process.env.REACT_APP_BASE_URL}${values?.profile_pic}`
-    setAvatarUrl(img);
-  }, [values?.profile_pic]);
+  // useEffect(() => {
+  //    const img = `${process.env.REACT_APP_BASE_URL}${values?.profile_pic}`
+  //   setAvatarUrl(img);
+  // }, [values?.profile_pic]);
+
 
   const updateAvatar = (file) => {
     const croppedFile = base64toFile(file, name);
-    const dataUrl = `data:image/png;base64,${file}`; 
-    setAvatarUrl(dataUrl);
+    setSrcImg(file);
+    console.log(croppedFile ,"croppedFile");
     setFieldValue(name, croppedFile);
   };
 
   const base64toFile = (dataurl, name) => {
-    if (typeof cropper !== "undefined") {
-      // setAvatarUrl(cropper.getCroppedCanvas().toDataURL());
+    if ( name) {
       const arr = dataurl.split(",");
       const mime = arr[0].match(/:(.*?);/)[1];
       const bstr = atob(arr[1]);
@@ -38,14 +38,11 @@ const Profile = ({ name }) => {
     return null;
   };
 
-  console.log(avatarUrl ,"avatarUrl")
-
-
   return (
     <div className="flex flex-col items-center pt-12">
       <div className="relative">
         <img
-          src={avatarUrl}
+          src={srcImg}
           alt="Avatar"
           className="w-[150px] h-[150px] rounded-full border-2 border-gray-400"
         />

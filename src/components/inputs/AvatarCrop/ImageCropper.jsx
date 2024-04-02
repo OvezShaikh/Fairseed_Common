@@ -5,6 +5,7 @@ import ReactCrop, {
   makeAspectCrop,
 } from "react-image-crop";
 import setCanvasPreview from "./setCanvasPreview";
+import PrimaryButton from "../PrimaryButton";
 
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
@@ -55,8 +56,6 @@ const   ImageCropper = ({ closeModal, updateAvatar , setCropper }) => {
     setCrop(centeredCrop);
   };
 
- 
-
   return (
     <>
       <label className="block mb-3 w-fit">
@@ -70,7 +69,7 @@ const   ImageCropper = ({ closeModal, updateAvatar , setCropper }) => {
       </label>
       {error && <p className="text-red-400 text-xs">{error}</p>}
       {imgSrc && (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col  items-center">
           <ReactCrop
             crop={crop}
             onChange={(pixelCrop, percentCrop) => setCrop(percentCrop)}
@@ -90,7 +89,8 @@ const   ImageCropper = ({ closeModal, updateAvatar , setCropper }) => {
               onLoad={onImageLoad}
             />
           </ReactCrop>
-          <button type="button"
+          <PrimaryButton
+            type="button"
             className="text-white font-mono text-xs py-2 px-4 rounded-2xl mt-4 bg-sky-500 hover:bg-sky-600"
             onClick={() => {
               setCanvasPreview(
@@ -108,7 +108,7 @@ const   ImageCropper = ({ closeModal, updateAvatar , setCropper }) => {
             }}
           >
             Crop Image
-          </button>
+          </PrimaryButton>
         </div>
       )}
       {crop && (
