@@ -17,16 +17,15 @@ export default function ScrollableTabsButtonForce({
   name,
   label,
   icone,
-  onTabChange
+  onTabChange,
 }) {
   const [value, setValue] = React.useState(null);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
 
-    const label =event.currentTarget.textContent;
+    const label = event.currentTarget.textContent;
 
-    
     onTabChange(newValue, label);
   };
 
@@ -35,11 +34,16 @@ export default function ScrollableTabsButtonForce({
   // };
 
   return (
-    <Box sx={{
-      maxWidth: { xs: "100%", sm: "100%", lg: '92%' }, bgcolor: "background.paper", "& .css-145v6pe-MuiButtonBase-root-MuiTabScrollButton-root.Mui-disabled ": {
-        display: "none",
-      }, "& .css-ptiqhd-MuiSvgIcon-root": { width: 32, height: 32 }
-    }}
+    <Box
+      sx={{
+        maxWidth: { xs: "100%", sm: "100%", lg: "92%" },
+        bgcolor: "background.paper",
+        "& .css-145v6pe-MuiButtonBase-root-MuiTabScrollButton-root.Mui-disabled ":
+          {
+            display: "none",
+          },
+        "& .css-ptiqhd-MuiSvgIcon-root": { width: 32, height: 32 },
+      }}
     >
       <Tabs
         value={value}
@@ -56,7 +60,6 @@ export default function ScrollableTabsButtonForce({
           },
           "& .MuiButtonBase-root": { textTransform: "capitalize" },
           fontSize: "20px !important",
-
         }}
         onChange={handleChange}
         variant="scrollable"
@@ -116,7 +119,7 @@ export default function ScrollableTabsButtonForce({
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiMosqueDuotone
+              <PiHeartDuotone
                 style={{ color: "red" }}
                 className="icon pr-2 w-7 h-7"
               />
@@ -136,7 +139,10 @@ export default function ScrollableTabsButtonForce({
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiAlarmDuotone style={{ color: "red" }} className="icon pr-2 w-7 h-7" />
+              <PiAlarmDuotone
+                style={{ color: "red" }}
+                className="icon pr-2 w-7 h-7"
+              />
               Expiring Soon
             </Box>
           }
@@ -181,7 +187,6 @@ export default function ScrollableTabsButtonForce({
             </Box>
           }
         />
-        
       </Tabs>
     </Box>
   );

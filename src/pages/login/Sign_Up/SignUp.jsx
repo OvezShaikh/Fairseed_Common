@@ -39,7 +39,7 @@ const SignUp = ({ handleNext }) => {
   };
 
   return (
-    <Form className="pt-8 px-2  ">
+    <Form className="px-2  ">
       <div>
         <div className="flex flex-col gap-8">
           <div className="flex flex-col justify-center items-center">
@@ -50,7 +50,6 @@ const SignUp = ({ handleNext }) => {
                 setSrcImg={setSrcImg}
                 onChange={onChange}
               />
-
             </div>
             <div className="w-full space-y-4">
               <div>

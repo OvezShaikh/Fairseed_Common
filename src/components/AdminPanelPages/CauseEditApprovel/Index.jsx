@@ -397,7 +397,7 @@ function CauseEdit_Form() {
                 dataUrl={srcImg}
               />
 
-              <Link to={"Revision-History"}>
+              <Link to={"Revision-History"} state={{ id: id }}>
                 <PrimaryButton sx={{ borderRadius: "12px", width: "100%" }}>
                   <h1 className="text-white font-medium py-2.5 text-[18px] font-[satoshi]">
                     View Revision History

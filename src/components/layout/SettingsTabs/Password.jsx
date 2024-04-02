@@ -6,7 +6,7 @@ import PrimaryButton from "../../inputs/PrimaryButton";
 import { toast } from "react-toastify";
 
 const InputStyle = {
-  padding: "20px",
+  padding: "15px 20px",
   border: "1px solid #e2e2e2",
   // },
   "&:focus-within": {

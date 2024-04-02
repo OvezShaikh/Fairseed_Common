@@ -157,7 +157,7 @@ const User_Campaign = () => {
       Cell: ({ row }) => {
         return (
           <div
-            className={`flex items-center gap-2 justify-center pl-6 max-desktop:pl-0 max-tablet:pl-0`}
+            className={`flex items-center gap-2 justify-center max-desktop:pl-0 max-tablet:pl-0`}
           >
             {row?.status !== "Active" ? (
               <>
@@ -168,7 +168,6 @@ const User_Campaign = () => {
                 </Link>
 
                 <Dialog
-                  onClose={onclose}
                   button={
                     <SecondaryButton
                       sx={{ height: "30px" }}

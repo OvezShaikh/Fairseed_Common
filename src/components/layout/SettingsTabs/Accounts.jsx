@@ -8,7 +8,7 @@ import PrimaryButton from "../../inputs/PrimaryButton";
 import Profile from "../../inputs/AvatarCrop/Profile";
 
 const InputStyle = {
-  padding: "20px",
+  padding: "15px 20px",
   border: "1px solid #e2e2e2",
   // },
   "&:focus-within": {
@@ -51,53 +51,49 @@ const Account = () => {
   }, [Details?.profile_pic]);
 
   const initial_values = {
-    username: Details?.username || '',
-    email: Details?.email || '',
-    mobile_number: Details?.mobile_number || '',
-    country: Details?.country || '',
-    profile_pic: Details?.profile_pic  || ''
-  }
-  
+    username: Details?.username || "",
+    email: Details?.email || "",
+    mobile_number: Details?.mobile_number || "",
+    country: Details?.country || "",
+    profile_pic: Details?.profile_pic || "",
+  };
 
   const { mutate } = useCreateOrUpdate({
     url: `/accounts/user/${id}`,
     method: "put",
   });
 
-
-  const handleSubmit = (values) =>{
+  const handleSubmit = (values) => {
     const changedValues = Object.keys(values).filter(
       (key) => values[key] !== initial_values[key]
     );
-  
+
     const payload = {};
     changedValues.forEach((key) => {
       payload[key] = values[key];
     });
-  
+
     const formData = new FormData();
 
     Object.entries(payload).forEach(([key, value]) => {
       if (value) {
-        if (value instanceof File) { 
+        if (value instanceof File) {
           formData.append(key, value);
         } else {
           formData.append(key, value);
         }
       }
     });
-    
 
-      mutate(formData, {
-        onSuccess: () => {
-          toast.success(" Details Updated Successfully !", {
-            position: 'top-right'
-          })
-        }
-      })
-  }
+    mutate(formData, {
+      onSuccess: () => {
+        toast.success(" Details Updated Successfully !", {
+          position: "top-right",
+        });
+      },
+    });
+  };
 
-   
   return (
     <Formik
       enableReinitialize={true}
@@ -105,32 +101,43 @@ const Account = () => {
       onSubmit={(values) => handleSubmit(values)}
     >
       {({ values, handleChange }) => (
-        <Form>
-          <Profile name={"profile_pic"} value={values?.profile_pic} srcImg={srcImg} setSrcImg={setSrcImg} />
+        <Form className="space-y-2.5">
+          <Profile
+            name={"profile_pic"}
+            value={values?.profile_pic}
+            srcImg={srcImg}
+            setSrcImg={setSrcImg}
+          />
+          <div className="">
+            <InputField
+              onChange={handleChange}
+              value={values?.username}
+              name={"username"}
+              label={"Full Name:"}
+              sx={InputStyle}
+            />
+          </div>
+          <div className="">
+            <InputField
+              onChange={handleChange}
+              value={values?.email}
+              name={"email"}
+              label={"Email Id:"}
+              sx={InputStyle}
+            />
+          </div>
+          <div className="">
+            <InputField
+              onChange={handleChange}
+              value={values?.mobile_number}
+              name={"mobile_number"}
+              type="number"
+              label={"Mobile:"}
+              placeholder={"(Optional)"}
+              sx={InputStyle}
+            />
+          </div>
 
-          <InputField
-            onChange={handleChange}
-            value={values?.username}
-            name={"username"}
-            label={"Full Name:"}
-            sx={InputStyle}
-          />
-          <InputField
-            onChange={handleChange}
-            value={values?.email}
-            name={"email"}
-            label={"Email Id:"}
-            sx={InputStyle}
-          />
-          <InputField
-            onChange={handleChange}
-            value={values?.mobile_number}
-            name={"mobile_number"}
-            type="number"
-            label={"Mobile:"}
-            placeholder={"(Optional)"}
-            sx={InputStyle}
-          />
           <div className="country-select-div">
             <CountrySelect
               onChange={handleChange}
