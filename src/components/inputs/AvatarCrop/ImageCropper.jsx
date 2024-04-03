@@ -10,7 +10,7 @@ import PrimaryButton from "../PrimaryButton";
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
 
-const   ImageCropper = ({ closeModal, updateAvatar , setCropper }) => {
+const   ImageCropper = ({ closeModal, updateAvatar  }) => {
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);
   const [imgSrc, setImgSrc] = useState("");
@@ -77,9 +77,7 @@ const   ImageCropper = ({ closeModal, updateAvatar , setCropper }) => {
             keepSelection
             aspect={ASPECT_RATIO}
             minWidth={MIN_DIMENSION}
-            onInitialized={(instance) => {
-              setCropper(instance);
-            }}
+           
           >
             <img
               ref={imgRef}

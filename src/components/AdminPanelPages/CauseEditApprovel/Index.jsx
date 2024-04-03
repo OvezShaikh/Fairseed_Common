@@ -30,7 +30,7 @@ function CauseEdit_Form() {
   const navigate = useNavigate();
   const [documents, setDocuments] = useState([]);
   const [Categories, setCategories] = useState([]);
-  const [RevisionHistory, setRevisionHistory] = useState({});
+
   const handleDocumentUpload = (documentUrl) => {
     setDocuments([...documents, documentUrl]);
   };
@@ -64,7 +64,7 @@ function CauseEdit_Form() {
       return data.data.data;
     },
     onSuccess: (data) => {
-      console.log(data);
+      console.log(data, "kuch nam");
       setUser(data);
       const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${
         data?.campaign_image || ""
@@ -280,7 +280,6 @@ function CauseEdit_Form() {
 
                 <div className="flex gap-4 max-tablet:flex-col">
                   {values?.documents?.map((imageUrl, index) => {
-                    console.log(imageUrl.id, "==========>Documents");
                     const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl?.doc_file}`;
                     return (
                       <Attachments
@@ -358,7 +357,6 @@ function CauseEdit_Form() {
                     }}
                     name="zakat_eligible"
                     checked={values?.zakat_eligible}
-                    // onChange={handleChange}
                     label={"Yes"}
                   />
                 </div>
@@ -398,7 +396,7 @@ function CauseEdit_Form() {
                 dataUrl={srcImg}
               />
 
-              <Link to={"Revision-History"} state={{ id: id }}>
+              <Link to={"Revision-History"} state={{ id: setUser?.id }}>
                 <PrimaryButton sx={{ borderRadius: "12px", width: "100%" }}>
                   <h1 className="text-white font-medium py-2.5 text-[18px] font-[satoshi]">
                     View Revision History
@@ -410,6 +408,7 @@ function CauseEdit_Form() {
 
           <div className="flex gap-3 max-tablet:flex-col  max-tablet:items-center pt-5">
             <button
+              type="button"
               onClick={() => navigate(-1)}
               className="w-[69px] content-stretch h-[32px] bg-[#F7F7F7]"
             >
@@ -417,11 +416,16 @@ function CauseEdit_Form() {
                 Cancel
               </h1>
             </button>
-            <SuccessButton
-              type="submit"
-              text={"Save"}
-              icon={<PiCheckFat className="w-4 h-4 mt-1" />}
-            />
+
+            {values?.status === "Rejected" || values?.status === "Completed" ? (
+              " "
+            ) : (
+              <SuccessButton
+                type="submit"
+                text={"Save"}
+                icon={<PiCheckFat className="w-4 h-4 mt-1" />}
+              />
+            )}
           </div>
         </Form>
       )}

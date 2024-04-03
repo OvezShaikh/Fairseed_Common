@@ -1,10 +1,8 @@
-import React from "react";
-
+import React from "react"
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import DrawerBody from "./User_DrawerBody";
 import Navbar from "../navbar/index";
-import AdminNavbar from "../AdminNavbar";
 import User_DrawerBody from "./User_DrawerBody";
 
 export function User_SideBar({ mobileOpen, setMobileOpen }) {

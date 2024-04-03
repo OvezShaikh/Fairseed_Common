@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import SuccessButton from "../../../inputs/SuccessButton/Index";
 import { useGetAll } from "../../../../Hooks";
+import { useLocation } from "react-router-dom";
 
 function ModificationLogTable() {
-  const [data, setData] = useState("");
+  let { state } = useLocation();
+  let { id } = state;
+
+  const [data, setData] = useState([]);
   useGetAll({
-    key: `/admin-dashboard/revise-history/1f781117-b534-4a38-9535-070500c8d441?page=1&limit=10`,
+    key: `/admin-dashboard/revise-history/${id}?page=1&limit=10`,
     enabled: true,
     select: (data) => {
       return data.data.rows;
@@ -14,7 +18,6 @@ function ModificationLogTable() {
       setData(data);
     },
   });
-  console.log(data, "========>Setdata");
   return (
     <div className="pt-8">
       <table className="table-auto  border-collapse border border-gray-800 max-tablet:w-full">

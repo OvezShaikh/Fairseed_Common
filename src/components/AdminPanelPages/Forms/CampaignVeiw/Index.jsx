@@ -305,9 +305,7 @@ function Index() {
                   style={{
                     padding: "4px 8px 16px 8px",
                     color:
-                      campaignData?.doc1 ||
-                      campaignData?.doc2 ||
-                      campaignData?.doc3
+                      campaign?.doc1 || campaign?.doc2 || campaign?.doc3
                         ? "red"
                         : colors.text.main,
                     fontWeight: 700,

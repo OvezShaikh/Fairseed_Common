@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.dd0a40db.css",
-    "main.js": "/static/js/main.67214e36.js",
+    "main.css": "/static/css/main.6ef84477.css",
+    "main.js": "/static/js/main.238b1cba.js",
     "static/js/787.bcf9f87a.chunk.js": "/static/js/787.bcf9f87a.chunk.js",
     "static/media/HomePageHero.png": "/static/media/HomePageHero.c09f0ed5bc6dd60ed8e0.png",
     "static/media/HeaderBgImg.png": "/static/media/HeaderBgImg.c2e2e786029fd166348b.png",
@@ -27,6 +27,7 @@
     "static/media/StepsTile.png": "/static/media/StepsTile.5900261d28b485d25197.png",
     "static/media/Button2.png": "/static/media/Button2.bb3d1d069d49672a3e57.png",
     "static/media/Button3.png": "/static/media/Button3.2eb106f8207dd3762bb7.png",
+    "static/media/Logo.svg": "/static/media/Logo.1347023fb9c3551723f23450d9520177.svg",
     "static/media/UsersThree.svg": "/static/media/UsersThree.cef793ab259cf541bdf1adc06fb82e61.svg",
     "static/media/ThreeUser.svg": "/static/media/ThreeUser.dd17a4ba9ace8c108d0993e50791d11f.svg",
     "static/media/HandCoins2.svg": "/static/media/HandCoins2.4beac217903646f28498b8db50722348.svg",
@@ -69,12 +70,12 @@
     "static/media/CompleteVector.svg": "/static/media/CompleteVector.93ae473092c3dd3c8a0ffadc0b1f6d18.svg",
     "static/media/Vector.svg": "/static/media/Vector.9c3261e8b06355366d2c6c0a54ef20d4.svg",
     "static/media/caretDown.svg": "/static/media/caretDown.274d0fd582c9a048b6991edfa70f4bec.svg",
-    "main.dd0a40db.css.map": "/static/css/main.dd0a40db.css.map",
-    "main.67214e36.js.map": "/static/js/main.67214e36.js.map",
+    "main.6ef84477.css.map": "/static/css/main.6ef84477.css.map",
+    "main.238b1cba.js.map": "/static/js/main.238b1cba.js.map",
     "787.bcf9f87a.chunk.js.map": "/static/js/787.bcf9f87a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.dd0a40db.css",
-    "static/js/main.67214e36.js"
+    "static/css/main.6ef84477.css",
+    "static/js/main.238b1cba.js"
   ]
 }

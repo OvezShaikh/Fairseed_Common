@@ -89,7 +89,7 @@ function YourComponent({ imageUrl, id, iconShow }) {
             <img
               src={imageUrl}
               alt="Documents "
-              style={{ maxWidth: "1000px", maxHeight: "1000px" }}
+              style={{ maxWidth: "218px", maxHeight: "100px" }}
               onClick={toggleFullScreen}
             />
             <div className="absolute top-0 right-0 m-4 flex flex-col items-center">

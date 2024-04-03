@@ -6,6 +6,7 @@ import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
 import { toast } from "react-toastify";
 import PrimaryButton from "../../inputs/PrimaryButton";
 import Profile from "../../inputs/AvatarCrop/Profile";
+import { useNavigate } from "react-router-dom";
 
 const InputStyle = {
   padding: "15px 20px",
@@ -32,7 +33,7 @@ let id = Data?.id;
 const Account = () => {
   const [Details, setDetails] = useState({});
   const [srcImg, setSrcImg] = useState("");
-  const [openCrop, setOpenCrop] = useState(false);
+  const navigate = useNavigate();
 
   useGetAll({
     key: `/accounts/user/${id}`,
@@ -90,6 +91,7 @@ const Account = () => {
         toast.success(" Details Updated Successfully !", {
           position: "top-right",
         });
+        navigate(-1);
       },
     });
   };

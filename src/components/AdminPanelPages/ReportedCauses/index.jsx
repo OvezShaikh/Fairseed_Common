@@ -22,49 +22,36 @@ const Reported_Causes = () => {
     },
     {
       Header: "Name",
-      accessor: "title",
+      accessor: "campaign.title",
+
+      minWidth: 100,
+      width: 100,
+    },
+  
+    {
+      Header: "Raising For",
+      accessor: "campaign.rasing_for",
 
       minWidth: 100,
       width: 100,
     },
     {
-      Header: "User",
-      accessor: "user.username",
-
-      minWidth: 100,
-      width: 100,
-    },
-    {
-      Header: "Email",
-      accessor: "user.email",
-
-      minWidth: 100,
-      width: 100,
-    },
-    {
-      Header: "Mobile",
-      accessor: "user.mobile_number",
-
-      minWidth: 100,
-      width: 100,
-    },
-    {
-      Header: "Goal",
-      accessor: "goal_amount",
+      Header: "Description",
+      accessor: "message",
 
       minWidth: 100,
       width: 100,
     },
     {
       Header: "Status",
-      accessor: "status",
+      accessor: "approval_status",
 
       minWidth: 100,
       width: 100,
     },
     {
       Header: "Date",
-      accessor: "end_date",
+      accessor: "updated_on",
 
       minWidth: 100,
       width: 100,

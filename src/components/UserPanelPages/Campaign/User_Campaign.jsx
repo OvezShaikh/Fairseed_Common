@@ -9,6 +9,8 @@ import images from "../../../constants/images";
 import { Dialog } from "../../../components/layout/dialogBox";
 import PrimaryButton from "../../inputs/PrimaryButton";
 import axios from "axios";
+import { toast } from "react-toastify";
+import serverAPI from "../../../config/serverAPI";
 const style = {
   padding: "4px 48px",
   color: "white",
@@ -70,13 +72,20 @@ const User_Campaign = () => {
   );
 
   const finaize = async (id) => {
-    await axios.post(`/user-dashboard/finalize-campaign/${id}`);
+    await serverAPI
+      .post(`/user-dashboard/finalize-campaign/${id}`)
+      .then((response) => {
+        console.log(response, "id");
+        toast.success(response?.data?.message, {
+          position: "top-right",
+        });
+      });
   };
 
   const columns = React.useMemo(() => [
     {
-      Header: "Id", // Row number header
-      accessor: "id", // Accessor for row number
+      Header: "Id",
+      accessor: "id",
       Cell: ({ row }) => <div>{row.index + 1}</div>,
       minWidth: 50,
       width: 50,
@@ -159,7 +168,19 @@ const User_Campaign = () => {
           <div
             className={`flex items-center gap-2 justify-center max-desktop:pl-0 max-tablet:pl-0`}
           >
-            {row?.status !== "Active" ? (
+            {console.log(row?.values?.status, "status")}
+
+            {row?.values?.status === "Completed" && (
+              <>
+                <Link to="View" state={{ id: row?.id }}>
+                  <SecondaryButton sx={{ height: "30px" }}>
+                    Make Withdrawl
+                  </SecondaryButton>
+                </Link>
+              </>
+            )}
+
+            {row?.values?.status === "Active" && (
               <>
                 <Link to="Edit-Campaign" state={{ id: row?.id }}>
                   <SecondaryButton sx={{ height: "30px" }}>
@@ -168,6 +189,7 @@ const User_Campaign = () => {
                 </Link>
 
                 <Dialog
+                  onClose={onclose}
                   button={
                     <SecondaryButton
                       sx={{ height: "30px" }}
@@ -202,14 +224,6 @@ const User_Campaign = () => {
                 </Dialog>
 
                 {/* </Link> */}
-              </>
-            ) : (
-              <>
-                <Link to="View" state={{ id: row?.id }}>
-                  <SecondaryButton sx={{ height: "30px" }}>
-                    Make Withdrawl
-                  </SecondaryButton>
-                </Link>
               </>
             )}
 

@@ -27,25 +27,22 @@ const styleInput = {
 
 function General() {
   const [Details, setDetails] = useState({});
-  // const [Keywords , setkeywords]= useState([])
 
   const { data } = useGetAll({
     key: `/admin-dashboard/gs`,
     enabled: true,
     select: (data) => {
-      // console.log(data.data.rows);
       return data.data.rows[0];
     },
     onSuccess: (data) => {
       setDetails(data);
-      // console.log(data?.keywords_data , '<=====')
-      // setkeywords(data?.keywords_data)
     },
   });
 
   const { mutate } = useCreateOrUpdate({
     url: `/admin-dashboard/gs`,
   });
+
 
   const initialValues = {
     namesite: Details?.namesite || "",
@@ -55,7 +52,7 @@ function General() {
     email_admin: Details?.email_admin || "",
     tandc_url: Details?.tandc_url || "",
     email_no_reply: Details?.email_no_reply || "",
-    keywords_data:Details?.keywords_data || [], // Set initial value as an empty array
+    keywords : Details?.keywords || [],
     privacy_policy_url: Details?.privacy_policy_url || "",
     date_time: Details?.date_time || "",
     new_registration_enabled: Details?.new_registration_enabled || false,
@@ -64,6 +61,8 @@ function General() {
     facebook_login_enabled: Details?.facebook_login_enabled || false,
     google_login_enabled: Details?.google_login_enabled || false,
   };
+
+  console.log(initialValues ,"initialValues")
 
   return (
     <Formik
@@ -125,15 +124,14 @@ function General() {
               />
             </div>
           </div>
-         
           <div className="w-[49%] max-desktop:w-full max-tablet:w-full pt-2">           
             <MultiKeyTextField
               name={"keywords_data"}
               label={"Keywords"}
               sx={styleLabel}
               placeholder={"Add Tags"}
-              value={values?.keywords_data || []} 
-              // onChange={(value)=>setFieldValue('keywords_data' , value)}
+              value={values?.keywords || []} 
+              onChange={(value)=>setFieldValue('keywords' , value)}
             />
            
           </div>
