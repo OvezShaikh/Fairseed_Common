@@ -5,6 +5,7 @@ import IndeterminateCheckbox from "../../Table/IndeterminateCheckbox";
 
 import SecondaryButton from "../../inputs/secondaryButton";
 import { Link } from "react-router-dom";
+import PrimaryButton from "../../inputs/PrimaryButton";
 
 const Reported_Causes = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
@@ -65,11 +66,16 @@ const Reported_Causes = () => {
       width: 100,
       Cell: ({ row }) => {
         return (
-          <div className="flex">
+          <>
+          <div className="flex gap-2 justify-center items-center p-3">
             <Link to="Edit" state={{ id: row?.id }}>
-              <SecondaryButton>Edit</SecondaryButton>
+              <PrimaryButton>Delete</PrimaryButton>
             </Link>
-          </div>
+           <Link to="Edit" state={{ id: row?.id }}>
+             <SecondaryButton>Edit</SecondaryButton>
+           </Link>
+         </div>
+         </>
         );
       },
     },

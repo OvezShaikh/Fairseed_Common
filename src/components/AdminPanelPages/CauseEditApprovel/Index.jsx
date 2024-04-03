@@ -111,7 +111,6 @@ function CauseEdit_Form() {
     documents: user?.documents || [],
   };
 
-  console.log(initial_values);
   if (!isSuccess) {
     return <div>Loading...</div>;
   }
@@ -128,7 +127,7 @@ function CauseEdit_Form() {
     formData.append("summary", values?.summary);
     formData.append("story", values?.story);
     formData.append("category", values?.category?.id);
-    formData.append("status", values?.status);
+    formData.append("status", values?.status.value);
     formData.append("zakat_eligible", values?.zakat_eligible);
 
     mutate(formData, {
@@ -396,7 +395,7 @@ function CauseEdit_Form() {
                 dataUrl={srcImg}
               />
 
-              <Link to={"Revision-History"} state={{ id: setUser?.id }}>
+              <Link to={"Revision-History"} state={{ id: user?.id }}>
                 <PrimaryButton sx={{ borderRadius: "12px", width: "100%" }}>
                   <h1 className="text-white font-medium py-2.5 text-[18px] font-[satoshi]">
                     View Revision History

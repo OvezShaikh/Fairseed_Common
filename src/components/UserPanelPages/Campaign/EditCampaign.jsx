@@ -129,8 +129,7 @@ const   EditCampaign = () => {
       if (key !== "documents" && key !== "status") { 
         formData.append(
           key,
-          value instanceof File ? value : JSON.stringify(value)
-        );
+          value instanceof File ? value : value );
       }
     });
   
