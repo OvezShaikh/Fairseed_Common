@@ -39,7 +39,7 @@ const chartStyle = {
 const LinearGradientBar = (props) => {
   const { fill, x, y, customWidth, height, fundRaised, goalAmount } = props;
   const barWidth = customWidth || 20;
-  const cornerRadius = 20;
+  const cornerRadius = 10;
   const completionPercentage = (fundRaised / goalAmount) * 100;
   const colorStops = `0% ${Math.min(completionPercentage, 100)}%, 100%`;
 
@@ -104,12 +104,14 @@ export default function DonationInLastMonth() {
       <ResponsiveContainer width="100%" height={340}>
         <BarChart
           width={500}
-          height={100}
+          height={300}
           data={dataObject}
           margin={{top: 20, right: 20, bottom: 20, left: 1}}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis className="mt-2" dataKey='date' tickFormatter={customTickFormatter} interval={5} height={2}  textAnchor="start" style={chartStyle} tickLine={false} axisLine={false}/>
+          <XAxis dataKey='date' tickFormatter={customTickFormatter}
+           interval={6} height={2}
+           textAnchor="start" style={chartStyle} tickLine={false} axisLine={false}/>
           {/* <XAxis
             dataKey='total_amount'
             axisLine={false}
@@ -125,13 +127,13 @@ export default function DonationInLastMonth() {
           <Tooltip />
           <Legend />
           <Bar
-            className="w-5 rounded-[20px] pl-1"
+            className="w-5 pl-1"
             dataKey='donation_count'
             shape={(props) => (
               <LinearGradientBar
                 fundRaised={fundRaised}
                 goalAmount={goalAmount}
-                customWidth={30}
+                customWidth={15}
                 {...props}
               />
             )}

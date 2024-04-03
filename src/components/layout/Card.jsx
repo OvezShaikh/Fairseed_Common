@@ -36,7 +36,7 @@ function Card({
         className="card rounded-xl font-bold w-[600px] desktop:max-w-[408px] max-desktop:max-w-[355px]"
         style={{ fontFamily: "satoshi" }}
       >
-        <Link to={`/campaign-details/${og_id}`}>
+        <Link to={`/campaign-details/${og_id}`} target="_blank">
           <img
             src={`${process.env.REACT_APP_API_URL}` + cardImage}
             className="card-img-top h-80 w-full relative"
