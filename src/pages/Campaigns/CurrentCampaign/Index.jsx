@@ -19,6 +19,7 @@ import { Dialog } from "../../../components/layout/dialogBox/dialog";
 import InputField from "../../../components/inputs/InputField";
 import { Form, Formik } from "formik";
 import ErrorIcon from "@mui/icons-material/Error";
+import { useCreateOrUpdate } from "../../../Hooks";
 
 function CurrentCampaign({
   key,
@@ -36,18 +37,22 @@ function CurrentCampaign({
   const { id } = useParams();
   const [cardDetails, setCardDetails] = useState(null);
 
-  // const perPage = 1;
-  // const page=1;
+  let userData = localStorage.getItem("user_info");
+  let Data = JSON.parse(userData);
+  let user_id = Data?.id;
 
   const copy_current_url = () => {
     const currentPageUrl = window.location.href;
 
-    // Use the Clipboard API to copy the URL to the clipboard
     navigator.clipboard.writeText(currentPageUrl);
     toast.info("Link Copied !", {
       position: "top-center",
     });
   };
+
+  const { mutate } = useCreateOrUpdate({
+    url: `/user-dashboard/report-campaign`
+  })
 
   useEffect(() => {
     axios
@@ -71,11 +76,6 @@ function CurrentCampaign({
   const title = useMemo(
     () =>
       `${pathname
-        // .replace("/", "")
-        // .replace(/\/\[[^\]]]/g, "")
-        // .replace(/-/g, " ")
-        // .replace(/\//g, "  ")
-        // .replace("General Settings"," ")
         .slice(1)}`,
 
     [pathname]
@@ -110,7 +110,6 @@ function CurrentCampaign({
           flexDirection={"column"}
           alignItems="start"
           className=" "
-          // title={title}
         >
           <div className="text-capitalize text-truncate max-tablet:flex max-tablet:flex-col-reverse max-desktop:flex max-desktop:flex-col-reverse">
             <div className="py-3" onClick={() => navigate(-1)}>
@@ -227,9 +226,8 @@ function CurrentCampaign({
                 sx={{
                   height: "100%",
                   borderRadius: "16px",
-                  background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${
-                    (fundRaised / goalAmount) * 100
-                  }%, #e0e0e0 ${(fundRaised / goalAmount) * 100}%)`,
+                  background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${(fundRaised / goalAmount) * 100
+                    }%, #e0e0e0 ${(fundRaised / goalAmount) * 100}%)`,
                   "& .MuiLinearProgress-bar": {
                     backgroundColor: "#0DC7B1 !important",
                   },
@@ -276,17 +274,17 @@ function CurrentCampaign({
                 <PrimaryButton
                   className="w-full max-desktop:w-full"
                   sx={{ padding: "16px", borderRadius: "8px", width: "%" }}
-                  // style={{
+                // style={{
 
-                  //   paddingTop: 16,
-                  //   paddingBottom: 16,
-                  //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
-                  //   borderRadius: 8,
-                  //   justifyContent: "center",
-                  //   alignItems: "center",
-                  //   gap: 10,
-                  //   display: "inline-flex",
-                  // }}
+                //   paddingTop: 16,
+                //   paddingBottom: 16,
+                //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
+                //   borderRadius: 8,
+                //   justifyContent: "center",
+                //   alignItems: "center",
+                //   gap: 10,
+                //   display: "inline-flex",
+                // }}
                 >
                   <div style={{ width: 38, position: "relative" }}>
                     <img src={images.coins2} alt="" />
@@ -431,48 +429,67 @@ function CurrentCampaign({
                 maxWidth="md"
                 onCloseCall={() => console.log("Dialog closed")}
               >
-                <Formik initialValues={{ message: "" }} validationSchema={{}}>
-                  {({ onClose }) => (
-                    <Form className="flex flex-col justify-center items-center gap-10">
-                      <div className="w-full px-2">
-                        <InputField
-                          required={"true"}
-                          multiline
-                          info
-                          CustomInfoIcon={
-                            <ErrorIcon
-                              className="ms-1"
-                              style={{
-                                color: "red",
-                                cursor: "pointer",
-                                height: "18px",
-                              }}
-                            />
-                          }
-                          infoText={"Please be careful while adding AD Path."}
-                          rows={5}
-                          sx={{
-                            padding: "20px",
-                            border: "1px solid #e2e2e2",
-                            // },
-                            "&:focus-within": {
-                              boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
-                              borderColor: "black",
-                            },
-                          }}
-                          label={"Message:"}
-                          name={"message"}
-                          placeholder={"write why you report this cause?"}
-                        />
-                      </div>
-                      <div className="flex gap-4">
-                        <PrimaryButton>
-                          <GiHazardSign className="mr-1" />
-                          Report
-                        </PrimaryButton>
-                      </div>
-                    </Form>
-                  )}
+                <Formik initialValues={{
+                  message: "",
+                  campaign: `${id}`,
+                  user: user_id
+                }}
+                  onSubmit={(values) => mutate(values, {
+                    onSuccess: (response) => {
+                      toast.success(response?.data?.message, {
+                        position: 'top-right'
+                      })
+                    }
+                  }, {
+                    onerror: (response) => {
+                      toast.error(response?.data?.message, {
+                        position: 'top-right'
+                      })
+                    }
+                  }
+
+                  )
+                  }
+                >
+                  <Form className="flex flex-col justify-center items-center gap-10">
+                    <div className="w-full px-2">
+                      <InputField
+                        required={"true"}
+                        multiline
+                        info
+                        CustomInfoIcon={
+                          <ErrorIcon
+                            className="ms-1"
+                            style={{
+                              color: "red",
+                              cursor: "pointer",
+                              height: "18px",
+                            }}
+                          />
+                        }
+                        infoText={"Please be careful while adding AD Path."}
+                        rows={5}
+                        sx={{
+                          padding: "20px",
+                          border: "1px solid #e2e2e2",
+                          // },
+                          "&:focus-within": {
+                            boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
+                            borderColor: "black",
+                          },
+                        }}
+                        label={"Message:"}
+                        name={"message"}
+                        placeholder={"write why you report this cause?"}
+                      />
+                    </div>
+                    <div className="flex gap-4">
+                      <PrimaryButton type="submit">
+                        <GiHazardSign className="mr-1" />
+                        Report
+                      </PrimaryButton>
+                    </div>
+                  </Form>
                 </Formik>
               </Dialog>
             </div>

@@ -34,8 +34,6 @@ function Index() {
   const [doc3, setDoc3] = useState('');
   const navigate = useNavigate();
 
-
-
   useGetAll({
     key: `/admin-dashboard/category?page=1&limit=10`,
     enabled: true,
@@ -286,7 +284,7 @@ function Index() {
                   className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
                   style={{
                     padding: "4px 8px 16px 8px",
-                    color: campaignData?.doc1 || campaignData?.doc2 || campaignData?.doc3 ? "red" : colors.text.main,
+                    color: campaign?.doc1 || campaign?.doc2 || campaign?.doc3 ? "red" : colors.text.main,
                     fontWeight: 700,
                     fontFamily: "satoshi",
                     fontStyle: "normal",

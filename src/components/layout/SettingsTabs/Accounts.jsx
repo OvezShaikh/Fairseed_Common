@@ -6,7 +6,7 @@ import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
 import { toast } from "react-toastify";
 import PrimaryButton from "../../inputs/PrimaryButton";
 import Profile from "../../inputs/AvatarCrop/Profile";
-import serverAPI from "../../../config/serverAPI";
+import { useNavigate } from "react-router-dom";
 
 const InputStyle = {
   padding: "20px",
@@ -33,7 +33,7 @@ let id = Data?.id;
 const Account = () => {
   const [Details, setDetails] = useState({});
   const [srcImg, setSrcImg] = useState("");
-  const [openCrop, setOpenCrop] = useState(false);
+  const navigate = useNavigate();
 
   useGetAll({
     key: `/accounts/user/${id}`,
@@ -87,16 +87,13 @@ const Account = () => {
         }
       }
     });
-    
-
-    // serverAPI.defaults.headers.common["fil"] = `Bearer ${token}`;
-
 
       mutate(formData, {
         onSuccess: () => {
           toast.success(" Details Updated Successfully !", {
             position: 'top-right'
           })
+          navigate(-1);
         }
       })
   }

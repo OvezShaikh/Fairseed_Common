@@ -24,7 +24,7 @@ const Profile = ({ name , setSrcImg , srcImg }) => {
       for (let i = 0; i < n; i++) {
         u8arr[i] = bstr.charCodeAt(i);
       }
-      return new File([u8arr], values?.profile_pic, { type: mime });
+      return new File([u8arr], values?.profile_pic || "${name}.png", { type: mime });
     }
     return null;
   };

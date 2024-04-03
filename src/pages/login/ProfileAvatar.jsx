@@ -11,11 +11,14 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useGetAll } from '../../Hooks/useGetAll';
 import "react-toastify/dist/ReactToastify.css";
 import images from "../../constants/images";
 
 export default function ProfileAvatar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [image , setImage]=React.useState("");
+  const [role , setRole]=React.useState("");
 
   function logout() {
     localStorage.removeItem("token");
@@ -38,9 +41,22 @@ export default function ProfileAvatar() {
 
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
-  let role = Data?.user_role;
-  let image = Data?.profile_pic;
-  let img = `${process.env.REACT_APP_API_URL}` + image;
+  let id = Data?.id;
+  
+  
+
+  useGetAll({
+    key: `/accounts/user/${id}`,
+    enabled: true,
+    select: (data) => {
+      return data?.data?.data;
+    },
+    onSuccess: (data) => {
+     const img = `${process.env.REACT_APP_BASE_URL}${data?.profile_pic}`
+     setImage(img)
+     setRole(data?.user_role)
+    },
+  });
 
   return (
     <React.Fragment>
@@ -53,7 +69,7 @@ export default function ProfileAvatar() {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            <Avatar sx={{ width: 45, height: 45 }} src={img} />
+            <Avatar sx={{ width: 45, height: 45 }} src={image} />
           </IconButton>
         </Tooltip>
       </Box>
@@ -97,7 +113,7 @@ export default function ProfileAvatar() {
             <MenuItem onClick={handleClose}>
               <Link className="flex items-center" to="/AdminPanel">
                 <ListItemIcon>
-                  <Avatar src={img} />
+                  <Avatar src={image} />
                 </ListItemIcon>
                 AdminPanel
               </Link>

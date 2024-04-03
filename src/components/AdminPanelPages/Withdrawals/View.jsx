@@ -103,19 +103,19 @@ const handleSubmit = (values)=>{
                 <div className="flex gap-4 w-full max-desktop:flex-col max-desktop:gap-0 max-tablet:flex-col">
                     <div className="flex w-full gap-4 max-desktop:gap-0 max-tablet:flex-col">
                         <div className="w-full">
-                            .<InputField name={"id"} value={values?.id}  placeholder={"Placeholder Text"} label={"ID:"} />
+                            .<InputField name={"id"} value={values?.id} disabled={true}  placeholder={"Placeholder Text"} label={"ID:"} />
                         </div>
                         <div className="w-full">
-                            .<InputField name={"Bank Details:"} placeholder={"Placeholder Text "} label={"Bank Details:"} />
+                            .<InputField name={"Bank Details:"} disabled={true} placeholder={"Placeholder Text "} label={"Bank Details:"} />
                         </div>
                     </div>
                     <div className="flex w-full gap-4 max-desktop:gap-0 max-tablet:flex-col">
 
                         <div className="w-full">
-                            .<InputField name={"amount"} value={values?.amount} placeholder={"Add Tag"} label={"Amount:"} />
+                            .<InputField name={"amount"} value={values?.amount} disabled={true} placeholder={"Add Tag"} label={"Amount:"} />
                         </div>
                         <div className="w-full flex flex-col items-end justify-end max-tablet:pt-5">
-                            <AdminSelectField name={"PaymentGateway"} placeholder={"Placeholder Text"} label={"Payment Gateway:"} />
+                            <AdminSelectField name={"PaymentGateway"} disabled={true}  placeholder={"Placeholder Text"} label={"Payment Gateway:"} />
                         </div>
                     </div>
                 </div>
@@ -123,18 +123,18 @@ const handleSubmit = (values)=>{
                     <div className="flex w-full gap-4 max-desktop:gap-0 max-tablet:flex-col">
 
                         <div className="w-full">
-                            .<InputField name={"updated_on"} value={values?.updated_on} type={'date'} placeholder={"Placeholder Text"} label={"Payment Date:    "} />
+                            .<InputField name={"updated_on"} disabled={true} value={values?.updated_on} type={'date'} placeholder={"Placeholder Text"} label={"Payment Date:    "} />
                         </div>
                         <div className="w-full">
-                            .<InputField name={"withdrawal_status"} value={values?.withdrawal_status} placeholder={"Placeholder Text "} label={"Status:"} />
+                            .<InputField name={"withdrawal_status"} disabled={true} value={values?.withdrawal_status} placeholder={"Placeholder Text "} label={"Status:"} />
                         </div>
                     </div>
                     <div className="flex w-full gap-4 max-desktop:gap-0 max-tablet:flex-col">
 
                         <div className="w-full">
-                            .<InputField name={"updated_on"} value={values?.updated_on} placeholder={"Date Paid"} label={"Date Paid :"} />
+                            .<InputField name={"updated_on"} value={values?.updated_on}  disabled={true} placeholder={"Date Paid"} label={"Date Paid :"} />
                         </div><div className="w-full flex flex-col items-end justify-end max-tablet:pt-5">
-                            <AdminSelectField name={"Payment Details"}  placeholder={"Payment Details"} label={"Payment Details :"} />
+                            <AdminSelectField name={"Payment Details"}  disabled={true} placeholder={"Payment Details"} label={"Payment Details :"} />
                         </div>
                     </div>
 

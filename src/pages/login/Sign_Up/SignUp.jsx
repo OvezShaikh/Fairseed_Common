@@ -1,16 +1,13 @@
 import React, { useRef, useState } from "react";
 import { Form } from "formik";
 import InputField from "../../../components/inputs/InputField";
-import Avatar from "@mui/material/Avatar";
 import { useFormikContext } from "formik";
 import PrimaryButton from "../../../components/inputs/PrimaryButton";
-import { Button } from "@mui/material";
-import { SlPencil } from "react-icons/sl";
 import Profile from "../../../components/inputs/AvatarCrop/Profile";
 
 const SignUp = ({ handleNext }) => {
   const imgRef = useRef(null);
-  const { isValid, setFieldValue, values } = useFormikContext();
+  const { isValid , values } = useFormikContext();
   const [srcImg, setSrcImg] = useState("");
 
   const isFormValid = () => {
@@ -25,18 +22,6 @@ const SignUp = ({ handleNext }) => {
     }
   };
 
-  const onChange = (e) => {
-    let files;
-
-    if (e) {
-      files = e;
-    }
-    const reader = new FileReader();
-    reader.onload = () => {
-      setSrcImg(reader.result);
-    };
-    reader.readAsDataURL(files[0]);
-  };
 
   return (
     <Form className="pt-8 px-2  ">
@@ -44,13 +29,7 @@ const SignUp = ({ handleNext }) => {
         <div className="flex flex-col gap-8">
           <div className="flex flex-col justify-center items-center">
             <div>
-              <Profile
-                name={"profile_pic"}
-                srcImg={srcImg}
-                setSrcImg={setSrcImg}
-                onChange={onChange}
-              />
-
+            <Profile name={"profile_pic"} value={values?.profile_pic} srcImg={srcImg} setSrcImg={setSrcImg} />
             </div>
             <div className="w-full space-y-4">
               <div>

@@ -167,59 +167,66 @@ const User_Campaign = () => {
           <div
             className={`flex items-center gap-2 justify-center pl-6 max-desktop:pl-0 max-tablet:pl-0`}
           >
-            {row?.status !== "Active" ? (
+          {
+            console.log(row?.values?.status , "status")
+          }
+            
+            {row?.values?.status === "Completed" &&  (
               <>
-                <Link to="Edit-Campaign" state={{ id: row?.id }}>
-                  <SecondaryButton sx={{ height: "30px" }}>
-                    Edit
-                  </SecondaryButton>
-                </Link>
+              <Link to="View" state={{ id: row?.id }}>
+                <SecondaryButton sx={{ height: "30px" }}>
+                  Make Withdrawl
+                </SecondaryButton>
+              </Link>
+            </>
+            ) }
 
-                <Dialog
-                  onClose={onclose}
-                  button={
-                    <SecondaryButton
-                      sx={{ height: "30px" }}
-                      onClick={() => setRowId(row?.id )}
-                    >
-                      Finalize Campaign
-                    </SecondaryButton>
-                  }
-                  maxWidth="sm"
-                  onCloseCall={() => console.log("Dialog closed")}
-                >
-                  {(onClose) => (
-                    <div className="flex flex-col gap-10 justify-center items-center flex-wrap text-center pb-4">
-                      <img src={images.Vector} alt="" />
-                      <p className="text-[ var(--Neutral-Neutral-7, #717171)] w-[65%] font-[satoshi] text-[34px] font-semibold max-tablet:text-[18px]">
-                        Are you Sure you want to finalize the cause. This action
-                        can’t be undone.
-                      </p>
-                      <div className="flex justify-center gap-4 max-tablet:flex-col">
-                        <SecondaryButton onClick={onClose} sx={style2}>
-                          Cancel
-                        </SecondaryButton>
-                        <PrimaryButton
-                          sx={style}
-                          onClick={() => finaize(row?.id)}
-                        >
-                          Finalize
-                        </PrimaryButton>
-                      </div>
+            {row?.values?.status === "Active" && 
+            (
+              <>
+              <Link to="Edit-Campaign" state={{ id: row?.id }}>
+                <SecondaryButton sx={{ height: "30px" }}>
+                  Edit
+                </SecondaryButton>
+              </Link>
+
+              <Dialog
+                onClose={onclose}
+                button={
+                  <SecondaryButton
+                    sx={{ height: "30px" }}
+                    onClick={() => setRowId(row?.id )}
+                  >
+                    Finalize Campaign
+                  </SecondaryButton>
+                }
+                maxWidth="sm"
+                onCloseCall={() => console.log("Dialog closed")}
+              >
+                {(onClose) => (
+                  <div className="flex flex-col gap-10 justify-center items-center flex-wrap text-center pb-4">
+                    <img src={images.Vector} alt="" />
+                    <p className="text-[ var(--Neutral-Neutral-7, #717171)] w-[65%] font-[satoshi] text-[34px] font-semibold max-tablet:text-[18px]">
+                      Are you Sure you want to finalize the cause. This action
+                      can’t be undone.
+                    </p>
+                    <div className="flex justify-center gap-4 max-tablet:flex-col">
+                      <SecondaryButton onClick={onClose} sx={style2}>
+                        Cancel
+                      </SecondaryButton>
+                      <PrimaryButton
+                        sx={style}
+                        onClick={() => finaize(row?.id)}
+                      >
+                        Finalize
+                      </PrimaryButton>
                     </div>
-                  )}
-                </Dialog>
+                  </div>
+                )}
+              </Dialog>
 
-                {/* </Link> */}
-              </>
-            ) : (
-              <>
-                <Link to="View" state={{ id: row?.id }}>
-                  <SecondaryButton sx={{ height: "30px" }}>
-                    Make Withdrawl
-                  </SecondaryButton>
-                </Link>
-              </>
+              {/* </Link> */}
+            </>
             )}
 
             <Link to="Edit" state={{ id: row?.id }}>

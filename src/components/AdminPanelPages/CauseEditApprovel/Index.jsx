@@ -65,9 +65,7 @@ function CauseEdit_Form() {
     onSuccess: (data) => {
       console.log(data);
       setUser(data);
-      const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${
-        data?.campaign_image || ""
-      }`;
+      const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign_image || ""}`;
       setSrcImg(imageUrl);
       setDocuments(data?.documents);
     },
@@ -279,7 +277,6 @@ function CauseEdit_Form() {
 
                 <div className="flex gap-4 max-tablet:flex-col">
                   {values?.documents?.map((imageUrl, index) => {
-                    console.log(imageUrl.id, "==========>Documents");
                     const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl?.doc_file}`;
                     return (
                       <Attachments
@@ -357,7 +354,6 @@ function CauseEdit_Form() {
                     }}
                     name="zakat_eligible"
                     checked={values?.zakat_eligible}
-                    // onChange={handleChange}
                     label={"Yes"}
                   />
                 </div>
@@ -409,6 +405,7 @@ function CauseEdit_Form() {
 
           <div className="flex gap-3 max-tablet:flex-col  max-tablet:items-center pt-5">
             <button
+              type="button"
               onClick={() => navigate(-1)}
               className="w-[69px] content-stretch h-[32px] bg-[#F7F7F7]"
             >
@@ -416,11 +413,18 @@ function CauseEdit_Form() {
                 Cancel
               </h1>
             </button>
-            <SuccessButton
+           
+
+            {values?.status === "Rejected" || values?.status === "Completed" ? (
+              " "
+            ) : (
+              <SuccessButton
               type="submit"
               text={"Save"}
               icon={<PiCheckFat className="w-4 h-4 mt-1" />}
             />
+            )}
+
           </div>
         </Form>
       )}
