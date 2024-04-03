@@ -66,7 +66,7 @@ function Index() {
       `${process.env.REACT_APP_API_URL}/campaign/category-filter?name=${name}&page=${page}&limit=${perPage}&filter=${tabName}`
     );
     console.log(res, "FilterName=======>");
-    setFilterName(res.filter_key);
+    setFilterName(res.data?.filter_key);
     if (Array.isArray(res.data.rows)) {
       setTotalPages(res.data.pages_count);
 
@@ -117,6 +117,9 @@ function Index() {
       case "Expiring Soon":
         setTabName("expiring_soon");
         break;
+      case "Trending":
+        setTabName("trending");
+        break;
       default:
         setTabName("");
     }
@@ -133,7 +136,8 @@ function Index() {
         />
         {console.log(categoryDetail, "===========category")}
 
-        <div className="mx-auto max-w-[91%] flex max-desktop:flex-col max-desktop:gap-y-[48px] max-desktop:items-end max-tablet:gap-y-[20px] mt-[50px]">
+        <div className="flex flex-col flex-wrap w-full mb-[128px] items-center max-tablet:mb-[48px]">
+        <div className="flex desktop:ml-[-30px] desktop:max-w-[1760px] desktop:w-full desktop:justify-between max-desktop:w-[90%] max-desktop:flex-col max-desktop:items-end max-desktop:gap-y-[48px] max-tablet:mb-[50px] max-tablet:gap-y-[20px] scrollable-tabs-class mt-[50px] ">
           <ScrollableTabsButtonForce onTabChange={handleTabChange} />
           <button
             className="flex items-center ml-2 px-3 py-1.5 max-w-[115px] gap-x-[12px] max-desktop:px-[20px] max-desktop:py-[17px] max-tablet:py-[6px]"
@@ -217,6 +221,7 @@ function Index() {
             <div>{<NoCampaign />}</div>
           )}
         </div>
+      </div>
       </div>
 
       <Footer />
