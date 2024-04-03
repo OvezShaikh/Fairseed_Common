@@ -4,7 +4,7 @@ import { useDownloadFile } from "../../../Hooks/useDownloadFile";
 import PrimaryButton from "../../inputs/PrimaryButton";
 import { DeleteBox } from "../dialogBox/delete";
 
-function YourComponent({ imageUrl, id }) {
+function YourComponent({ imageUrl, id, iconShow }) {
   const [isImageDeleted, setIsImageDeleted] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
 
@@ -59,19 +59,23 @@ function YourComponent({ imageUrl, id }) {
           />
           {!isFullScreen && (
             <div className="absolute right-1 top-2">
-              <DeleteBox
-                url={`/admin-dashboard/documents`}
-                data={id}
-                iconDelete={true}
-                title={"document"}
-                onSuccess={handleDeleteSuccess}
-                refetchUrl={"/admin-dashboard/documents"}
-              >
-                <p>Are you sure to delete this document!</p>
-                <p className="text-red-500">
-                  Once you delete this document you can't undo that document!
-                </p>
-              </DeleteBox>
+              {iconShow ? (
+                ""
+              ) : (
+                <DeleteBox
+                  url={`/admin-dashboard/documents`}
+                  data={id}
+                  iconDelete={true}
+                  title={"document"}
+                  onSuccess={handleDeleteSuccess}
+                  refetchUrl={"/admin-dashboard/documents"}
+                >
+                  <p>Are you sure to delete this document!</p>
+                  <p className="text-red-500">
+                    Once you delete this document you can't undo that document!
+                  </p>
+                </DeleteBox>
+              )}
             </div>
           )}
         </div>

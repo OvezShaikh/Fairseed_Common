@@ -26,10 +26,11 @@ import DropZone from "../../inputs/ImageCropper/CropDrop";
 function CauseEdit_Form() {
   let { state } = useLocation();
   let { id } = state;
+
   const navigate = useNavigate();
   const [documents, setDocuments] = useState([]);
   const [Categories, setCategories] = useState([]);
-
+  const [RevisionHistory, setRevisionHistory] = useState({});
   const handleDocumentUpload = (documentUrl) => {
     setDocuments([...documents, documentUrl]);
   };
@@ -147,10 +148,10 @@ function CauseEdit_Form() {
       onSubmit={(values) => handleSubmit(values)}
     >
       {({ values, setFieldValue, handleChange }) => (
-        <Form className="flex flex-col items-center">
+        <Form className="flex flex-col items-center max-tablet:pt-8 max-desktop:pt-4">
           <div className="flex w-[100%] mt-2 gap-14 max-tablet:flex-col max-desktop:flex-col">
             <div className="flex flex-col w-[70%] max-tablet:w-[100%] max-desktop:w-[100%] gap-2 items-center">
-              <div className="desktop:py-[80px] max-desktop:py-[53px] p-0">
+              <div className="desktop:py-[80px] max-desktop:py-[53px] p-0 max-tablet:w-full ">
                 <DropZone
                   name="campaign_image"
                   onChange={onChange}

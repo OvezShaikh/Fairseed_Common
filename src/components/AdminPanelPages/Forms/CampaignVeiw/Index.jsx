@@ -28,13 +28,11 @@ function Index() {
   const [approval, setApproval] = useState(false);
   const [campaignData, setCampaignData] = useState({});
   const [Documents, setDocuments] = useState([]);
-  const [c_image, setC_image] = useState('');
-  const [doc1, setDoc1] = useState('');
-  const [doc2, setDoc2] = useState('');
-  const [doc3, setDoc3] = useState('');
+  const [c_image, setC_image] = useState("");
+  const [doc1, setDoc1] = useState("");
+  const [doc2, setDoc2] = useState("");
+  const [doc3, setDoc3] = useState("");
   const navigate = useNavigate();
-
-
 
   useGetAll({
     key: `/admin-dashboard/category?page=1&limit=10`,
@@ -57,39 +55,55 @@ function Index() {
       setCampaign(data);
       if (data?.campaign_image) {
         const image = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign_image}`;
-        setC_image(image)
+        setC_image(image);
       } else {
-        const image = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign?.campaign_image || ""}`;
-        setC_image(image)
+        const image = `${process.env.REACT_APP_BE_BASE_URL}${
+          data?.campaign?.campaign_image || ""
+        }`;
+        setC_image(image);
       }
       setDocuments(data?.campaign?.documents);
       setCampaignData(data?.campaign_data);
-      setDoc1(data?.doc1)
-      setDoc2(data?.doc2)
-      setDoc3(data?.doc3)
+      setDoc1(data?.doc1);
+      setDoc2(data?.doc2);
+      setDoc3(data?.doc3);
     },
   });
-
 
   const { mutate } = useCreateOrUpdate({
     url: `/admin-dashboard/cause-edit/${id}`,
     method: "put",
   });
 
-
   const initial_value = {
-    title: campaign?.campaign_data?.title || (campaign?.campaign?.title || ""),
-    category: campaign?.campaign_data?.category?.name || (campaign?.campaign?.category?.name || ""),
-    goal_amount: campaign?.campaign_data?.amount || (campaign?.campaign?.goal_amount || ""),
-    location: campaign?.campaign_data?.location || (campaign?.campaign?.location || ""),
-    end_date: campaign?.campaign_data?.end_date || (campaign?.campaign?.end_date || ""),
-    summary: campaign?.campaign_data?.summary || (campaign?.campaign?.summary || ""),
-    story: campaign?.campaign_data?.story || (campaign?.campaign?.story || ""),
+    title: campaign?.campaign_data?.title || campaign?.campaign?.title || "",
+    category:
+      campaign?.campaign_data?.category?.name ||
+      campaign?.campaign?.category?.name ||
+      "",
+    goal_amount:
+      campaign?.campaign_data?.amount || campaign?.campaign?.goal_amount || "",
+    location:
+      campaign?.campaign_data?.location || campaign?.campaign?.location || "",
+    end_date:
+      campaign?.campaign_data?.end_date || campaign?.campaign?.end_date || "",
+    summary:
+      campaign?.campaign_data?.summary || campaign?.campaign?.summary || "",
+    story: campaign?.campaign_data?.story || campaign?.campaign?.story || "",
     campaign_image: c_image || "",
-    approval_status: campaign?.campaign_data?.approval_status || (campaign?.campaign?.approval_status || false),
-    is_featured: campaign?.campaign_data?.is_featured || (campaign?.campaign?.is_featured || false),
-    zakat_eligible: campaign?.campaign_data?.zakat_eligible || (campaign?.campaign?.zakat_eligible || false),
-    documents: campaign?.documents || [] ,
+    approval_status:
+      campaign?.campaign_data?.approval_status ||
+      campaign?.campaign?.approval_status ||
+      false,
+    is_featured:
+      campaign?.campaign_data?.is_featured ||
+      campaign?.campaign?.is_featured ||
+      false,
+    zakat_eligible:
+      campaign?.campaign_data?.zakat_eligible ||
+      campaign?.campaign?.zakat_eligible ||
+      false,
+    documents: campaign?.documents || [],
     // status:campaign?.campaign_data?.status || (campaign?.campaign?.status || ''),
   };
 
@@ -136,7 +150,11 @@ function Index() {
                     {" "}
                     {values.title}
                   </h1>
-                  <a href={`/campaign-details/${id}`} target="_blank" rel="noreferrer">
+                  <a
+                    href={`/campaign-details/${id}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     {" "}
                     <img src={images.CausesDetails} alt="" />{" "}
                   </a>
@@ -286,7 +304,12 @@ function Index() {
                   className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
                   style={{
                     padding: "4px 8px 16px 8px",
-                    color: campaignData?.doc1 || campaignData?.doc2 || campaignData?.doc3 ? "red" : colors.text.main,
+                    color:
+                      campaignData?.doc1 ||
+                      campaignData?.doc2 ||
+                      campaignData?.doc3
+                        ? "red"
+                        : colors.text.main,
                     fontWeight: 700,
                     fontFamily: "satoshi",
                     fontStyle: "normal",
@@ -297,16 +320,14 @@ function Index() {
                   Attachments:
                 </FormLabel>
                 <div className="flex gap-4 max-tablet:flex-col">
-                  {[
-                    doc1,
-                    doc2,
-                    doc3
-                  ].map((documentUrl, index) => {
+                  {[doc1, doc2, doc3].map((documentUrl, index, imageUrl) => {
                     if (documentUrl) {
+                      console.log(documentUrl, "========>Doc");
                       return (
                         <Attachments
+                          iconShow={true}
                           key={index}
-                          id={id}
+                          id={imageUrl?.id}
                           imageUrl={`${process.env.REACT_APP_BE_BASE_URL}${documentUrl}`}
                         />
                       );
@@ -315,15 +336,14 @@ function Index() {
                       return (
                         <Attachments
                           key={index}
-                          id={id}
+                          id={Documents[0]?.id}
                           imageUrl={documentLink}
                         />
                       );
                     }
-                    return null; 
+                    return null;
                   })}
                 </div>
-
               </div>
             </div>
 

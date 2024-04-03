@@ -12,6 +12,7 @@ import {
   PiAlarmDuotone,
   PiHeartDuotone,
 } from "react-icons/pi";
+import { RiErrorWarningLine } from "react-icons/ri";
 
 export default function ScrollableTabsButtonForce({
   name,
@@ -79,9 +80,9 @@ export default function ScrollableTabsButtonForce({
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiTrendUpDuotone
+              <RiErrorWarningLine
                 style={{ color: "red" }}
-                className="icon pr-2 w-7 h-7"
+                className="icon pr-2 w-8 h-8"
               />
               Newly Added
             </Box>

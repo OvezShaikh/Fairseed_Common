@@ -21,12 +21,10 @@ import { Avatar } from "@mui/material";
 
 import moment from "moment";
 import CountrySelect from "../../components/inputs/countrySelect";
-import { padding } from "@mui/system";
 import { useCreateOrUpdate } from "../../Hooks";
-import { toast } from "react-toastify";
 
 const InputStyle = {
-  padding: "0px",
+  padding: "15px 20px",
   border: "1px solid #e2e2e2",
   // },
   "&:focus-within": {
@@ -120,13 +118,6 @@ function Index({ goalAmount, fundRaised }) {
           const url = response?.data?.pay_page_url;
           window.location.href = url;
         }
-      },
-      onError: (response) => {
-        console.log(
-          response.response?.data?.message,
-          "==========>ErrorMessage"
-        );
-        toast.error(`${response.response?.data?.message}Error`);
       },
     });
   };
@@ -330,7 +321,7 @@ function Index({ goalAmount, fundRaised }) {
                   </div>
                   <div className="flex justify-center gap-3">
                     <SecondaryButton
-                      onClick={() => navigate(-2)}
+                      onClick={() => navigate(-1)}
                       sx={styleSecondaryButton}
                     >
                       Back
@@ -431,7 +422,7 @@ function Index({ goalAmount, fundRaised }) {
               </div>
               <div className="flex">
                 <img
-                  className="w-[32px] h-[32px] mr-[18px] max-tablet:mr-[10px] max-tablet:w-[20%]"
+                  className="w-[32px] h-[32px] mr-[18px] max-tablet:w-[20%]"
                   src={images.SealCheck}
                   alt=""
                 />
@@ -446,7 +437,7 @@ function Index({ goalAmount, fundRaised }) {
                     "-webkit-text-fill-color": "transparent",
                   }}
                 >
-                  <p className="text-2xl max-tablet:text-[17px] font-bold">
+                  <p className="text-2xl max-tablet:text-[18px] font-bold">
                     Zakah Eligible !
                   </p>
                 </h1>
@@ -468,9 +459,9 @@ function Index({ goalAmount, fundRaised }) {
               <div className="flex flex-wrap justify-center gap-[20px] mt-[50px]">
                 <div className="flex">
                   <img
+                    alt="icons"
                     className=" w-[28px] h-[26px] mr-[10px]"
                     src={icons?.UsersThree}
-                    alt=""
                   />
                   <p className="text-[#6B7280] text-[20px]">
                     {cardDetails?.donor_count}
@@ -478,9 +469,9 @@ function Index({ goalAmount, fundRaised }) {
                 </div>
                 <div className="flex">
                   <img
+                    alt="icons"
                     className="w-[24px] h-[27px] mr-[10px]"
                     src={icons?.Clock}
-                    alt=""
                   />
 
                   <p className="text-[#6B7280] text-[20px]">
@@ -489,9 +480,9 @@ function Index({ goalAmount, fundRaised }) {
                 </div>
                 <div className="flex">
                   <img
+                    alt="icons"
                     className="  w-[20px] h-[36px] mr-[10px]"
                     src={images?.MapPin2}
-                    alt=""
                   />
                   <p className="text-[#6B7280] text-[20px]">
                     {cardDetails?.location}
