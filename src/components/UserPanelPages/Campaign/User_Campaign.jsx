@@ -75,12 +75,12 @@ const User_Campaign = ({ onClose }) => {
     </div>
   );
 
-  const { mutate } = useCreateOrUpdate({
+  const { mutate: finalize } = useCreateOrUpdate({
     url: `/user-dashboard/finalize-campaign/${rowId}`,
   });
 
   const handleSubmit = (values) => {
-    mutate(values, {
+    finalize(values, {
       onSuccess: (response) => {
         toast.success(response?.data?.message, {
           position: "top-right",
@@ -93,6 +93,29 @@ const User_Campaign = ({ onClose }) => {
     });
   };
 
+
+  const { mutate: Withdrawl } = useCreateOrUpdate({
+    url: `/user-dashboard/make-withdrawal`,
+  });
+
+
+
+  const handlewithdrawSubmit = (row , onClose) => {
+    const formData = new FormData();
+    formData.append('campaign', row?.values?.id);
+    Withdrawl(formData, {
+      onSuccess: (response) => {
+        toast.success(response?.data?.message, {
+          position: "top-right",
+        });
+        queryClient.refetchQueries({
+          queryKey: ["/user-dashboard/campaign"],
+          exact: false,
+        });
+        onClose();
+      },
+    });
+  };
   // const finaize = async (id, onClose) => {
   //   await serverAPI
   //     .post(`/user-dashboard/finalize-campaign/${id}`)
@@ -193,11 +216,45 @@ const User_Campaign = ({ onClose }) => {
           >
             {row?.values?.status === "Completed" && (
               <>
-                <Link to="View" state={{ id: row?.id }}>
-                  <SecondaryButton sx={{ height: "30px" }}>
-                    Make Withdrawl
-                  </SecondaryButton>
-                </Link>
+                <Dialog
+                  onClose={() => onClose && onClose()}
+                  button={
+                    <SecondaryButton
+                      sx={{ height: "30px" }}
+                    >
+                     Make Withdrawl
+                    </SecondaryButton>
+                  }
+                  maxWidth="sm"
+                >
+                  <Formik
+                    initialValues={{campaign:''}}
+                    onSubmit={() => handlewithdrawSubmit(row ,onClose)}
+                  >
+                    {({ onClose }) => (
+                      <Form>
+                        <div className="flex flex-col gap-10 justify-center items-center flex-wrap text-center pb-4">
+                          <img src={images.Vector} alt="" />
+                          <p className="text-[ var(--Neutral-Neutral-7, #717171)] w-[65%] font-[satoshi] text-[34px] font-semibold max-tablet:text-[18px]">
+                            Are you Sure you want to Make Withdrawl request. This
+                            action can’t be undone.
+                          </p>
+                          <div className="flex justify-center gap-4 max-tablet:flex-col">
+                            <SecondaryButton onClick={onClose} sx={style2}>
+                              Cancel
+                            </SecondaryButton>
+                            <PrimaryButton
+                              type="submit"
+                              sx={style}
+                            >
+                              Withdraw
+                            </PrimaryButton>
+                          </div>
+                        </div>
+                      </Form>
+                    )}
+                  </Formik>
+                </Dialog>
               </>
             )}
 
