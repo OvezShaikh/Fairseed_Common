@@ -227,13 +227,14 @@ function Index({ goalAmount, fundRaised }) {
                         name={"city"}
                         sx={InputStyle}
                       />
-
-                      <InputField
-                        label={"Mobile:"}
-                        name={"mobile"}
-                        sx={InputStyle}
-                        className="mobile-input"
-                      />
+                      <div className="w">
+                        <InputField
+                          label={"Mobile:"}
+                          name={"mobile"}
+                          sx={InputStyle}
+                          className="mobile-input"
+                        />
+                      </div>
                     </div>
                   </div>
 

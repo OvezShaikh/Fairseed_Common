@@ -13,7 +13,7 @@ const StyledAvatar = styled(Avatar)(({ theme }) => ({
   },
 }));
 
-function Doner({ data }) {
+function Donor({ data }) {
   return (
     <div className="max-desktop:w-full">
       {data !== null && data !== undefined
@@ -69,4 +69,4 @@ function Doner({ data }) {
   );
 }
 
-export default Doner;
+export default Donor;

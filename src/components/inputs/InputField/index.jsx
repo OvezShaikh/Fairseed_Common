@@ -164,6 +164,8 @@ const InputField = ({
               ? "password"
               : type === "date"
               ? "date"
+              : type === "number"
+              ? "number"
               : "text"
           }
           {...textFieldConfig}

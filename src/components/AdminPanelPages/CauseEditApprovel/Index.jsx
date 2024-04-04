@@ -64,7 +64,7 @@ function CauseEdit_Form() {
       return data.data.data;
     },
     onSuccess: (data) => {
-      console.log(data, "kuch nam");
+      console.log(data.id, "kuch nam");
       setUser(data);
       const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${
         data?.campaign_image || ""

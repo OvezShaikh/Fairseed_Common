@@ -1,8 +1,8 @@
 import Navbar from "../../../components/layout/Navbar";
 import Footer from "../../../components/layout/Footer";
 import images from "../../../constants/images";
-import { LinearProgress } from "@mui/material";
-import Doner from "../../../components/layout/Doner";
+import { Button, LinearProgress } from "@mui/material";
+import Donor from "../../../components/layout/Donor";
 import PrimaryButton from "../../../components/inputs/PrimaryButton";
 import { Grid, Typography } from "@mui/material";
 import SecondaryButton from "../../../components/inputs/secondaryButton";
@@ -27,6 +27,7 @@ function CurrentCampaign({
   cardImage,
   goalAmount,
   fundRaised,
+  onClose,
   daysLeft,
   userCount,
   location,
@@ -51,8 +52,8 @@ function CurrentCampaign({
   };
 
   const { mutate } = useCreateOrUpdate({
-    url: `/user-dashboard/report-campaign`
-  })
+    url: `/user-dashboard/report-campaign`,
+  });
 
   useEffect(() => {
     axios
@@ -74,9 +75,7 @@ function CurrentCampaign({
   }, [id]);
 
   const title = useMemo(
-    () =>
-      `${pathname
-        .slice(1)}`,
+    () => `${pathname.slice(1)}`,
 
     [pathname]
     // console.log(cardDetails,"cardDetailscardDetails")
@@ -226,8 +225,9 @@ function CurrentCampaign({
                 sx={{
                   height: "100%",
                   borderRadius: "16px",
-                  background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${(fundRaised / goalAmount) * 100
-                    }%, #e0e0e0 ${(fundRaised / goalAmount) * 100}%)`,
+                  background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${
+                    (fundRaised / goalAmount) * 100
+                  }%, #e0e0e0 ${(fundRaised / goalAmount) * 100}%)`,
                   "& .MuiLinearProgress-bar": {
                     backgroundColor: "#0DC7B1 !important",
                   },
@@ -274,17 +274,17 @@ function CurrentCampaign({
                 <PrimaryButton
                   className="w-full max-desktop:w-full"
                   sx={{ padding: "16px", borderRadius: "8px", width: "%" }}
-                // style={{
+                  // style={{
 
-                //   paddingTop: 16,
-                //   paddingBottom: 16,
-                //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
-                //   borderRadius: 8,
-                //   justifyContent: "center",
-                //   alignItems: "center",
-                //   gap: 10,
-                //   display: "inline-flex",
-                // }}
+                  //   paddingTop: 16,
+                  //   paddingBottom: 16,
+                  //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
+                  //   borderRadius: 8,
+                  //   justifyContent: "center",
+                  //   alignItems: "center",
+                  //   gap: 10,
+                  //   display: "inline-flex",
+                  // }}
                 >
                   <div style={{ width: 38, position: "relative" }}>
                     <img src={images.coins2} alt="" />
@@ -407,10 +407,9 @@ function CurrentCampaign({
               Recent Donors:
             </h1>
             <div className="space-y-4 flex flex-col justify-center items-center">
-              <Doner data={cardDetails?.donor} />
+              <Donor data={cardDetails?.donor} />
 
               <Dialog
-                // onClose={() => onClose && onClose()}
                 button={
                   <SecondaryButton
                     sx={{
@@ -424,73 +423,92 @@ function CurrentCampaign({
                     <GiHazardSign className="text-[red] mr-1" />
                     Report
                   </SecondaryButton>
-                } // Pass the button element as a prop
+                }
                 title="Reporte Cause"
-                maxWidth="md"
-                onCloseCall={() => console.log("Dialog closed")}
+                onClose={() => onClose && onClose()}
               >
-                <Formik initialValues={{
-                  message: "",
-                  campaign: `${id}`,
-                  user: user_id
-                }}
-                  onSubmit={(values) => mutate(values, {
-                    onSuccess: (response) => {
-                      toast.success(response?.data?.message, {
-                        position: 'top-right'
-                      })
-                    }
-                  }, {
-                    onerror: (response) => {
-                      toast.error(response?.data?.message, {
-                        position: 'top-right'
-                      })
-                    }
-                  }
-
-                  )
-                  }
-                >
-                  <Form className="flex flex-col justify-center items-center gap-10">
-                    <div className="w-full px-2">
-                      <InputField
-                        required={"true"}
-                        multiline
-                        info
-                        CustomInfoIcon={
-                          <ErrorIcon
-                            className="ms-1"
-                            style={{
-                              color: "red",
-                              cursor: "pointer",
-                              height: "18px",
-                            }}
-                          />
-                        }
-                        infoText={"Please be careful while adding AD Path."}
-                        rows={5}
-                        sx={{
-                          padding: "20px",
-                          border: "1px solid #e2e2e2",
-                          // },
-                          "&:focus-within": {
-                            boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
-                            borderColor: "black",
+                {({ onClose }) => (
+                  <Formik
+                    initialValues={{
+                      message: "",
+                      campaign: `${id}`,
+                      user: user_id,
+                    }}
+                    onSubmit={(values) =>
+                      mutate(
+                        values,
+                        {
+                          onSuccess: (response) => {
+                            toast.success(response?.data?.message, {
+                              position: "top-right",
+                            });
+                            onClose();
                           },
-                        }}
-                        label={"Message:"}
-                        name={"message"}
-                        placeholder={"write why you report this cause?"}
-                      />
-                    </div>
-                    <div className="flex gap-4">
-                      <PrimaryButton type="submit">
-                        <GiHazardSign className="mr-1" />
-                        Report
-                      </PrimaryButton>
-                    </div>
-                  </Form>
-                </Formik>
+                        },
+                        {
+                          onerror: (response) => {
+                            toast.error(response?.data?.message, {
+                              position: "top-right",
+                            });
+                          },
+                        }
+                      )
+                    }
+                  >
+                    <Form className="flex flex-col justify-center items-center gap-10">
+                      <div className="w-full px-2">
+                        <InputField
+                          required={"true"}
+                          multiline
+                          info
+                          CustomInfoIcon={
+                            <ErrorIcon
+                              className="ms-1"
+                              style={{
+                                color: "red",
+                                cursor: "pointer",
+                                height: "18px",
+                              }}
+                            />
+                          }
+                          infoText={"Please be careful while adding AD Path."}
+                          rows={5}
+                          sx={{
+                            padding: "20px",
+                            border: "1px solid #e2e2e2",
+                            // },
+                            "&:focus-within": {
+                              boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
+                              borderColor: "black",
+                            },
+                          }}
+                          label={"Message:"}
+                          name={"message"}
+                          placeholder={"write why you report this cause?"}
+                        />
+                      </div>
+                      <div className="flex gap-4">
+                        <Button
+                          sx={{
+                            background: "#F7F7F7",
+                            width: "75px",
+                            height: "42px",
+                          }}
+                          className=" bg-[#F7F7F7]"
+                          onClick={onClose}
+                        >
+                          <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
+                            Cancel
+                          </h1>
+                        </Button>
+                        <PrimaryButton type="submit">
+                          <GiHazardSign className="mr-1" />
+                          Report
+                        </PrimaryButton>
+                      </div>
+                    </Form>
+                  </Formik>
+                )}
               </Dialog>
             </div>
           </div>
