@@ -18,6 +18,7 @@ function ModificationLogTable() {
       setData(data);
     },
   });
+  console.log(data, "=====>Data");
   return (
     <div className="pt-8">
       <table className="table-auto  border-collapse border border-gray-800 max-tablet:w-full">
@@ -35,23 +36,29 @@ function ModificationLogTable() {
           </tr>
         </thead>
         <tbody>
-          {data?.map((item) => {
-            return (
-              <tr className="">
+          {data.length === 0 ? (
+            <tr>
+              <td className=" border-gray-800 text-[16px] max-tablet:text-[16px] font-[satoshi] font-normal px-4 py-3 ">
+                Loading...
+              </td>
+            </tr>
+          ) : (
+            data.map((item) => (
+              <tr key={item.id} className="">
                 <td className="border border-gray-800 text-[16px] max-tablet:text-[16px] font-[satoshi] font-normal px-4 py-3">
-                  {item?.updated_on}{" "}
+                  {item.updated_on}
                 </td>
                 <td className="border border-gray-800 text-[16px] max-tablet:text-[16px] font-[satoshi] font-normal px-4 py-3">
                   {item.modified_by}
                 </td>
-                <a href={`/campaign-details/${item.id}`}>
-                  <td className="border border-gray-800 text-[16px] max-tablet:text-[16px] font-[satoshi] font-normal px-4 py-3">
+                <td className="border border-gray-800 text-[16px] max-tablet:text-[16px] font-[satoshi] font-normal px-4 py-3">
+                  <a href={`/campaign-details/${item.id}`}>
                     <SuccessButton text={"View"} />
-                  </td>
-                </a>
+                  </a>
+                </td>
               </tr>
-            );
-          })}
+            ))
+          )}
         </tbody>
       </table>
     </div>

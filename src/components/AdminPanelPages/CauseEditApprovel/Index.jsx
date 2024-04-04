@@ -64,7 +64,7 @@ function CauseEdit_Form() {
       return data.data.data;
     },
     onSuccess: (data) => {
-      console.log(data, "kuch nam");
+      console.log(data.id, "kuch nam");
       setUser(data);
       const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${
         data?.campaign_image || ""
@@ -396,7 +396,7 @@ function CauseEdit_Form() {
                 dataUrl={srcImg}
               />
 
-              <Link to={"Revision-History"} state={{ id: setUser?.id }}>
+              <Link to={"Revision-History"} state={{ id: user?.id }}>
                 <PrimaryButton sx={{ borderRadius: "12px", width: "100%" }}>
                   <h1 className="text-white font-medium py-2.5 text-[18px] font-[satoshi]">
                     View Revision History

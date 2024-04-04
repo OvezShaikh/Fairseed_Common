@@ -2,7 +2,7 @@ import Navbar from "../../../components/layout/Navbar";
 import Footer from "../../../components/layout/Footer";
 import images from "../../../constants/images";
 import { LinearProgress } from "@mui/material";
-import Doner from "../../../components/layout/Doner";
+import Donor from "../../../components/layout/Donor";
 import PrimaryButton from "../../../components/inputs/PrimaryButton";
 import { Grid, Typography } from "@mui/material";
 import SecondaryButton from "../../../components/inputs/secondaryButton";
@@ -51,8 +51,8 @@ function CurrentCampaign({
   };
 
   const { mutate } = useCreateOrUpdate({
-    url: `/user-dashboard/report-campaign`
-  })
+    url: `/user-dashboard/report-campaign`,
+  });
 
   useEffect(() => {
     axios
@@ -74,9 +74,7 @@ function CurrentCampaign({
   }, [id]);
 
   const title = useMemo(
-    () =>
-      `${pathname
-        .slice(1)}`,
+    () => `${pathname.slice(1)}`,
 
     [pathname]
     // console.log(cardDetails,"cardDetailscardDetails")
@@ -226,8 +224,9 @@ function CurrentCampaign({
                 sx={{
                   height: "100%",
                   borderRadius: "16px",
-                  background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${(fundRaised / goalAmount) * 100
-                    }%, #e0e0e0 ${(fundRaised / goalAmount) * 100}%)`,
+                  background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${
+                    (fundRaised / goalAmount) * 100
+                  }%, #e0e0e0 ${(fundRaised / goalAmount) * 100}%)`,
                   "& .MuiLinearProgress-bar": {
                     backgroundColor: "#0DC7B1 !important",
                   },
@@ -274,17 +273,17 @@ function CurrentCampaign({
                 <PrimaryButton
                   className="w-full max-desktop:w-full"
                   sx={{ padding: "16px", borderRadius: "8px", width: "%" }}
-                // style={{
+                  // style={{
 
-                //   paddingTop: 16,
-                //   paddingBottom: 16,
-                //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
-                //   borderRadius: 8,
-                //   justifyContent: "center",
-                //   alignItems: "center",
-                //   gap: 10,
-                //   display: "inline-flex",
-                // }}
+                  //   paddingTop: 16,
+                  //   paddingBottom: 16,
+                  //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
+                  //   borderRadius: 8,
+                  //   justifyContent: "center",
+                  //   alignItems: "center",
+                  //   gap: 10,
+                  //   display: "inline-flex",
+                  // }}
                 >
                   <div style={{ width: 38, position: "relative" }}>
                     <img src={images.coins2} alt="" />
@@ -407,10 +406,9 @@ function CurrentCampaign({
               Recent Donors:
             </h1>
             <div className="space-y-4 flex flex-col justify-center items-center">
-              <Doner data={cardDetails?.donor} />
+              <Donor data={cardDetails?.donor} />
 
               <Dialog
-                // onClose={() => onClose && onClose()}
                 button={
                   <SecondaryButton
                     sx={{
@@ -424,31 +422,35 @@ function CurrentCampaign({
                     <GiHazardSign className="text-[red] mr-1" />
                     Report
                   </SecondaryButton>
-                } // Pass the button element as a prop
+                }
                 title="Reporte Cause"
                 maxWidth="md"
                 onCloseCall={() => console.log("Dialog closed")}
               >
-                <Formik initialValues={{
-                  message: "",
-                  campaign: `${id}`,
-                  user: user_id
-                }}
-                  onSubmit={(values) => mutate(values, {
-                    onSuccess: (response) => {
-                      toast.success(response?.data?.message, {
-                        position: 'top-right'
-                      })
-                    }
-                  }, {
-                    onerror: (response) => {
-                      toast.error(response?.data?.message, {
-                        position: 'top-right'
-                      })
-                    }
-                  }
-
-                  )
+                <Formik
+                  initialValues={{
+                    message: "",
+                    campaign: `${id}`,
+                    user: user_id,
+                  }}
+                  onSubmit={(values) =>
+                    mutate(
+                      values,
+                      {
+                        onSuccess: (response) => {
+                          toast.success(response?.data?.message, {
+                            position: "top-right",
+                          });
+                        },
+                      },
+                      {
+                        onerror: (response) => {
+                          toast.error(response?.data?.message, {
+                            position: "top-right",
+                          });
+                        },
+                      }
+                    )
                   }
                 >
                   <Form className="flex flex-col justify-center items-center gap-10">
