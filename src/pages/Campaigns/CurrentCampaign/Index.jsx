@@ -1,7 +1,7 @@
 import Navbar from "../../../components/layout/Navbar";
 import Footer from "../../../components/layout/Footer";
 import images from "../../../constants/images";
-import { LinearProgress } from "@mui/material";
+import { Button, LinearProgress } from "@mui/material";
 import Donor from "../../../components/layout/Donor";
 import PrimaryButton from "../../../components/inputs/PrimaryButton";
 import { Grid, Typography } from "@mui/material";
@@ -27,6 +27,7 @@ function CurrentCampaign({
   cardImage,
   goalAmount,
   fundRaised,
+  onClose,
   daysLeft,
   userCount,
   location,
@@ -424,75 +425,90 @@ function CurrentCampaign({
                   </SecondaryButton>
                 }
                 title="Reporte Cause"
-                maxWidth="md"
-                onCloseCall={() => console.log("Dialog closed")}
+                onClose={() => onClose && onClose()}
               >
-                <Formik
-                  initialValues={{
-                    message: "",
-                    campaign: `${id}`,
-                    user: user_id,
-                  }}
-                  onSubmit={(values) =>
-                    mutate(
-                      values,
-                      {
-                        onSuccess: (response) => {
-                          toast.success(response?.data?.message, {
-                            position: "top-right",
-                          });
-                        },
-                      },
-                      {
-                        onerror: (response) => {
-                          toast.error(response?.data?.message, {
-                            position: "top-right",
-                          });
-                        },
-                      }
-                    )
-                  }
-                >
-                  <Form className="flex flex-col justify-center items-center gap-10">
-                    <div className="w-full px-2">
-                      <InputField
-                        required={"true"}
-                        multiline
-                        info
-                        CustomInfoIcon={
-                          <ErrorIcon
-                            className="ms-1"
-                            style={{
-                              color: "red",
-                              cursor: "pointer",
-                              height: "18px",
-                            }}
-                          />
-                        }
-                        infoText={"Please be careful while adding AD Path."}
-                        rows={5}
-                        sx={{
-                          padding: "20px",
-                          border: "1px solid #e2e2e2",
-                          // },
-                          "&:focus-within": {
-                            boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
-                            borderColor: "black",
+                {({ onClose }) => (
+                  <Formik
+                    initialValues={{
+                      message: "",
+                      campaign: `${id}`,
+                      user: user_id,
+                    }}
+                    onSubmit={(values) =>
+                      mutate(
+                        values,
+                        {
+                          onSuccess: (response) => {
+                            toast.success(response?.data?.message, {
+                              position: "top-right",
+                            });
+                            onClose();
                           },
-                        }}
-                        label={"Message:"}
-                        name={"message"}
-                        placeholder={"write why you report this cause?"}
-                      />
-                    </div>
-                    <div className="flex gap-4">
-                      <PrimaryButton type="submit">
-                        <GiHazardSign className="mr-1" />
-                        Report
-                      </PrimaryButton>
-                    </div>
-                  </Form>
-                </Formik>
+                        },
+                        {
+                          onerror: (response) => {
+                            toast.error(response?.data?.message, {
+                              position: "top-right",
+                            });
+                          },
+                        }
+                      )
+                    }
+                  >
+                    <Form className="flex flex-col justify-center items-center gap-10">
+                      <div className="w-full px-2">
+                        <InputField
+                          required={"true"}
+                          multiline
+                          info
+                          CustomInfoIcon={
+                            <ErrorIcon
+                              className="ms-1"
+                              style={{
+                                color: "red",
+                                cursor: "pointer",
+                                height: "18px",
+                              }}
+                            />
+                          }
+                          infoText={"Please be careful while adding AD Path."}
+                          rows={5}
+                          sx={{
+                            padding: "20px",
+                            border: "1px solid #e2e2e2",
+                            // },
+                            "&:focus-within": {
+                              boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
+                              borderColor: "black",
+                            },
+                          }}
+                          label={"Message:"}
+                          name={"message"}
+                          placeholder={"write why you report this cause?"}
+                        />
+                      </div>
+                      <div className="flex gap-4">
+                        <Button
+                          sx={{
+                            background: "#F7F7F7",
+                            width: "75px",
+                            height: "42px",
+                          }}
+                          className=" bg-[#F7F7F7]"
+                          onClick={onClose}
+                        >
+                          <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
+                            Cancel
+                          </h1>
+                        </Button>
+                        <PrimaryButton type="submit">
+                          <GiHazardSign className="mr-1" />
+                          Report
+                        </PrimaryButton>
+                      </div>
+                    </Form>
+                  </Formik>
+                )}
               </Dialog>
             </div>
           </div>

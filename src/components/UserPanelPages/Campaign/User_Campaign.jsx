@@ -11,6 +11,9 @@ import PrimaryButton from "../../inputs/PrimaryButton";
 import axios from "axios";
 import { toast } from "react-toastify";
 import serverAPI from "../../../config/serverAPI";
+import { Form, Formik } from "formik";
+import { useCreateOrUpdate } from "../../../Hooks";
+import { useQueryClient } from "react-query";
 const style = {
   padding: "4px 48px",
   color: "white",
@@ -26,9 +29,10 @@ const style2 = {
   fontFamily: "satoshi",
 };
 
-const User_Campaign = () => {
+const User_Campaign = ({ onClose }) => {
   const [selectedRowID, setSelectedRowID] = useState(null);
   const [rowId, setRowId] = useState("");
+  const queryClient = useQueryClient();
 
   const { pathname } = useLocation();
 
@@ -71,16 +75,35 @@ const User_Campaign = () => {
     </div>
   );
 
-  const finaize = async (id) => {
-    await serverAPI
-      .post(`/user-dashboard/finalize-campaign/${id}`)
-      .then((response) => {
-        console.log(response, "id");
+  const { mutate } = useCreateOrUpdate({
+    url: `/user-dashboard/finalize-campaign/${rowId}`,
+  });
+
+  const handleSubmit = (values) => {
+    mutate(values, {
+      onSuccess: (response) => {
         toast.success(response?.data?.message, {
           position: "top-right",
         });
-      });
+        queryClient.refetchQueries({
+          queryKey: ["/user-dashboard/campaign"],
+          exact: false,
+        });
+      },
+    });
   };
+
+  // const finaize = async (id, onClose) => {
+  //   await serverAPI
+  //     .post(`/user-dashboard/finalize-campaign/${id}`)
+  //     .then((response) => {
+  //       console.log(response, "id");
+  //       toast.success(response?.data?.message, {
+  //         position: "top-right",
+  //       });
+  //       onClose();
+  //     });
+  // };
 
   const columns = React.useMemo(() => [
     {
@@ -168,8 +191,6 @@ const User_Campaign = () => {
           <div
             className={`flex items-center gap-2 justify-center max-desktop:pl-0 max-tablet:pl-0`}
           >
-            {console.log(row?.values?.status, "status")}
-
             {row?.values?.status === "Completed" && (
               <>
                 <Link to="View" state={{ id: row?.id }}>
@@ -189,7 +210,7 @@ const User_Campaign = () => {
                 </Link>
 
                 <Dialog
-                  onClose={onclose}
+                  onClose={() => onClose && onClose()}
                   button={
                     <SecondaryButton
                       sx={{ height: "30px" }}
@@ -199,28 +220,35 @@ const User_Campaign = () => {
                     </SecondaryButton>
                   }
                   maxWidth="sm"
-                  onCloseCall={() => console.log("Dialog closed")}
                 >
-                  {(onClose) => (
-                    <div className="flex flex-col gap-10 justify-center items-center flex-wrap text-center pb-4">
-                      <img src={images.Vector} alt="" />
-                      <p className="text-[ var(--Neutral-Neutral-7, #717171)] w-[65%] font-[satoshi] text-[34px] font-semibold max-tablet:text-[18px]">
-                        Are you Sure you want to finalize the cause. This action
-                        can’t be undone.
-                      </p>
-                      <div className="flex justify-center gap-4 max-tablet:flex-col">
-                        <SecondaryButton onClick={onClose} sx={style2}>
-                          Cancel
-                        </SecondaryButton>
-                        <PrimaryButton
-                          sx={style}
-                          onClick={() => finaize(row?.id)}
-                        >
-                          Finalize
-                        </PrimaryButton>
-                      </div>
-                    </div>
-                  )}
+                  <Formik
+                    initialValues={{}}
+                    onSubmit={(values) => handleSubmit(values)}
+                  >
+                    {({ onClose }) => (
+                      <Form>
+                        <div className="flex flex-col gap-10 justify-center items-center flex-wrap text-center pb-4">
+                          <img src={images.Vector} alt="" />
+                          <p className="text-[ var(--Neutral-Neutral-7, #717171)] w-[65%] font-[satoshi] text-[34px] font-semibold max-tablet:text-[18px]">
+                            Are you Sure you want to finalize the cause. This
+                            action can’t be undone.
+                          </p>
+                          <div className="flex justify-center gap-4 max-tablet:flex-col">
+                            <SecondaryButton onClick={onClose} sx={style2}>
+                              Cancel
+                            </SecondaryButton>
+                            <PrimaryButton
+                              type="submit"
+                              sx={style}
+                              onClick={() => setRowId(row?.id, onClose)}
+                            >
+                              Finalize
+                            </PrimaryButton>
+                          </div>
+                        </div>
+                      </Form>
+                    )}
+                  </Formik>
                 </Dialog>
 
                 {/* </Link> */}
