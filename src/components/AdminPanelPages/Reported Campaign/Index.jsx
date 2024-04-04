@@ -18,7 +18,6 @@ const Reported_Campaign = () => {
         Header: "Id", // Row number header
         accessor: "index", // Accessor for row number
         Cell: ({ row }) => (
-          // Display row number using index provided by React Table
           <div>{row.index + 1}</div>
         ),
         minWidth: 50,

@@ -111,7 +111,6 @@ function CauseEdit_Form() {
     documents: user?.documents || [],
   };
 
-  console.log(initial_values);
   if (!isSuccess) {
     return <div>Loading...</div>;
   }
@@ -128,7 +127,7 @@ function CauseEdit_Form() {
     formData.append("summary", values?.summary);
     formData.append("story", values?.story);
     formData.append("category", values?.category?.id);
-    formData.append("status", values?.status);
+    formData.append("status", values?.status.value);
     formData.append("zakat_eligible", values?.zakat_eligible);
 
     mutate(formData, {

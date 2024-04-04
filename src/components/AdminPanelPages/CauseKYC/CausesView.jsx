@@ -107,7 +107,7 @@ function CausesView() {
       formData,
       {
         onSuccess: (response) => {
-          toast.success(response?.data?.data, {
+          toast.success(response?.data?.message , {
             position: "top-right",
           });
           navigate(-1);

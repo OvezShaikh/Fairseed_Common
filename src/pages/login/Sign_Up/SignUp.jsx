@@ -30,7 +30,6 @@ const SignUp = ({ handleNext }) => {
             <div>
               <Profile
                 name={"profile_pic"}
-                value={values?.profile_pic}
                 srcImg={srcImg}
                 setSrcImg={setSrcImg}
               />
