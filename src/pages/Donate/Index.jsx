@@ -21,7 +21,7 @@ import { Avatar } from "@mui/material";
 
 import moment from "moment";
 import CountrySelect from "../../components/inputs/countrySelect";
-import { useCreateOrUpdate } from "../../Hooks";
+import { useCreateOrUpdate, useGetAll } from "../../Hooks";
 
 const InputStyle = {
   padding: "15px 20px",
@@ -67,6 +67,7 @@ function Index({ goalAmount, fundRaised }) {
   const { id } = useParams();
   const [cardDetails, setCardDetails] = useState(null);
   const [selectedPaymentGateway, setSelectedPaymentGateway] = useState("");
+  const [user , setUser ] = useState({})
 
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
@@ -92,7 +93,7 @@ function Index({ goalAmount, fundRaised }) {
 
   const handleSubmit = (values) => {
     const formData = new FormData();
-    formData.append("donation_type", values?.donation_type?.value);
+    formData.append("donation_type", values?.donation_type.value);
     formData.append("full_name", values?.full_name);
     formData.append("amount", values?.amount);
     formData.append("city", values?.city);
@@ -122,17 +123,32 @@ function Index({ goalAmount, fundRaised }) {
     });
   };
 
+  
+
+    useGetAll({
+      key: `/accounts/user/${user_id}`,
+      enabled: true,
+      select: (data) => {
+        return data?.data?.data;
+      },
+      onSuccess: (data) => {
+        setUser(data)
+      }});
+  
+
+  
+
   const inititalValues = {
     user: "",
     campaign: "",
     donation_type: "",
-    full_name: "",
+    full_name: user?.username || "",
     amount: "",
-    city: "",
-    email: "",
-    mobile: "",
+    city: user?.city || "",
+    email: user?.email ||  "",
+    mobile: user?.mobile_number || "",
     pancard: "",
-    country: "",
+    country: user?.country || "",
     comment: "",
     payment_type: "",
     is_anonymous: false,
@@ -155,6 +171,7 @@ function Index({ goalAmount, fundRaised }) {
           <div className="flex  gap-24 max-desktop:flex-col-reverse">
             <div className="w-[65%] donate-div  max-desktop:w-full">
               <Formik
+              enableReinitialize={true}
                 initialValues={inititalValues}
                 onSubmit={(values) => handleSubmit(values)}
               >
