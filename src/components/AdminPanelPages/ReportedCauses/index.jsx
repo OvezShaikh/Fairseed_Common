@@ -6,9 +6,45 @@ import IndeterminateCheckbox from "../../Table/IndeterminateCheckbox";
 import SecondaryButton from "../../inputs/secondaryButton";
 import { Link } from "react-router-dom";
 import PrimaryButton from "../../inputs/PrimaryButton";
+import { GoDotFill } from "react-icons/go";
 
 const Reported_Causes = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
+
+  const getStatusCellStyle = (status) => {
+    if (status === 'Pending') {
+      return {
+
+        color: '#fa9820',
+        background: '#f5fabe  ',
+      };
+    } else if (status === 'Active') {
+      return {
+        background: '#ECFDF3  ',
+
+        color: '#037847',
+      };
+    } else if (status === 'Rejected') {
+      return {
+        background: '#f5d0d0',
+        color: '#f03c24',
+      }
+    } else {
+      return {
+        background: '#EBF0ED',
+        color: '#717171'
+      }
+    }
+    ;
+  };
+
+  const StatusCell = ({ value }) => (
+    <div className=' flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl' style={getStatusCellStyle(value)}>
+      <span className='' style={getStatusCellStyle(value)}><GoDotFill /></span>
+      <span className='' style={getStatusCellStyle(value)}>{value}</span>
+    </div>
+  );
+
 
   const columns = React.useMemo(() => [
     {
@@ -46,9 +82,9 @@ const Reported_Causes = () => {
     {
       Header: "Status",
       accessor: "approval_status",
-
       minWidth: 100,
       width: 100,
+      Cell:StatusCell
     },
     {
       Header: "Date",

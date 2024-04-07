@@ -120,9 +120,7 @@ function Index() {
     formData.append("zakat_eligible", values?.zakat_eligible);
     formData.append("document", values?.category);
     // formData.append("status", values?.status);
-    {
-      approval && formData.append("approve_campaign", true);
-    }
+     formData.append("approve_campaign", approval);
 
     mutate(formData, {
       onSuccess: (response) => {
@@ -170,7 +168,7 @@ function Index() {
                   value={values?.title}
                   name={"title"}
                   label={"Title of Campaign:"}
-                  placeholder={"Minimum 50 INR"}
+                  placeholder={"Enter the Title"}
                 />
               </div>
               <SelectField
@@ -320,7 +318,6 @@ function Index() {
                 <div className="flex gap-4 max-tablet:flex-col">
                   {[doc1, doc2, doc3].map((documentUrl, index, imageUrl) => {
                     if (documentUrl) {
-                      console.log(documentUrl, "========>Doc");
                       return (
                         <Attachments
                           iconShow={true}
@@ -353,7 +350,9 @@ function Index() {
             </div>
           </div>
           <div className="flex gap-3 pt-5 max-tablet:flex-col max-tablet:items-center">
-            <button
+            {
+               campaign?.campaign?.status === 'Active' ? (<>
+               <button
               onClick={() => navigate(-1)}
               className="w-[69px] content-stretch h-[32px] bg-[#F7F7F7]"
             >
@@ -372,6 +371,34 @@ function Index() {
                 Reject Modification Request
               </h1>
             </PrimaryButton>
+               </> ) : ( <button
+                onClick={() => navigate(-1)}
+                className="w-[69px] content-stretch h-[32px] bg-[#F7F7F7]"
+              >
+                <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
+                  Cancel
+                </h1>
+              </button> )
+            }
+            {/* <button
+              onClick={() => navigate(-1)}
+              className="w-[69px] content-stretch h-[32px] bg-[#F7F7F7]"
+            >
+              <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
+                Cancel
+              </h1>
+            </button>
+            <SuccessButton
+              type="submit"
+              onClick={() => setApproval(true)}
+              text={"Save & Approve"}
+              icon={<PiCheckFat className="w-4 h-4 mt-1" />}
+            />
+            <PrimaryButton type="submit">
+              <h1 className="text-white font-semibold font-[satoshi]">
+                Reject Modification Request
+              </h1>
+            </PrimaryButton> */}
           </div>
         </Form>
       )}

@@ -100,7 +100,7 @@ const User_Campaign = ({ onClose }) => {
 
 
 
-  const handlewithdrawSubmit = (row , onClose) => {
+  const handlewithdrawSubmit = (row, onClose) => {
     const formData = new FormData();
     formData.append('campaign', row?.values?.id);
     Withdrawl(formData, {
@@ -116,17 +116,7 @@ const User_Campaign = ({ onClose }) => {
       },
     });
   };
-  // const finaize = async (id, onClose) => {
-  //   await serverAPI
-  //     .post(`/user-dashboard/finalize-campaign/${id}`)
-  //     .then((response) => {
-  //       console.log(response, "id");
-  //       toast.success(response?.data?.message, {
-  //         position: "top-right",
-  //       });
-  //       onClose();
-  //     });
-  // };
+ 
 
   const columns = React.useMemo(() => [
     {
@@ -222,14 +212,14 @@ const User_Campaign = ({ onClose }) => {
                     <SecondaryButton
                       sx={{ height: "30px" }}
                     >
-                     Make Withdrawl
+                      Make Withdrawl
                     </SecondaryButton>
                   }
                   maxWidth="sm"
                 >
                   <Formik
-                    initialValues={{campaign:''}}
-                    onSubmit={() => handlewithdrawSubmit(row ,onClose)}
+                    initialValues={{ campaign: '' }}
+                    onSubmit={() => handlewithdrawSubmit(row, onClose)}
                   >
                     {({ onClose }) => (
                       <Form>
@@ -255,6 +245,12 @@ const User_Campaign = ({ onClose }) => {
                     )}
                   </Formik>
                 </Dialog>
+
+                <Link to="View" state={{ id: row?.id }}>
+                  <SecondaryButton sx={{ height: "30px" }}>
+                    View Bank and KYC
+                  </SecondaryButton>
+                </Link>
               </>
             )}
 
@@ -308,15 +304,37 @@ const User_Campaign = ({ onClose }) => {
                   </Formik>
                 </Dialog>
 
+                <Link to="Edit" state={{ id: row?.id }}>
+                  <SecondaryButton sx={{ height: "30px" }}>
+                    Edit Bank and KYC
+                  </SecondaryButton>
+                </Link>
+
                 {/* </Link> */}
               </>
             )}
+            {row?.values?.status === "Rejected" && <>
 
-            <Link to="Edit" state={{ id: row?.id }}>
-              <SecondaryButton sx={{ height: "30px" }}>
-                Edit Bank and KYC
-              </SecondaryButton>
-            </Link>
+              <Link to="View" state={{ id: row?.id }}>
+                <SecondaryButton sx={{ height: "30px" }}>
+                  View Bank and KYC
+                </SecondaryButton>
+              </Link>
+
+            </>
+            }
+            {row?.values?.status === "Pending" && <>
+
+              <Link to="Edit" state={{ id: row?.id }}>
+                <SecondaryButton sx={{ height: "30px" }}>
+                  Edit Bank and KYC
+                </SecondaryButton>
+              </Link>
+
+            </>
+            }
+
+
           </div>
         );
       },
