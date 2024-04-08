@@ -20,6 +20,7 @@ import InputField from "../../../components/inputs/InputField";
 import { Form, Formik } from "formik";
 import ErrorIcon from "@mui/icons-material/Error";
 import { useCreateOrUpdate } from "../../../Hooks";
+import { EmailIcon, EmailShareButton, PinterestIcon, PinterestShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton, XIcon } from "react-share";
 
 function CurrentCampaign({
   key,
@@ -37,17 +38,18 @@ function CurrentCampaign({
   const { pathname } = useLocation();
   const { id } = useParams();
   const [cardDetails, setCardDetails] = useState(null);
+  const Share_title = 'Donate For Good';
+  const currentPageUrl = window.location.href;
+  const media = `${process.env.REACT_APP_BE_BASE_URL}${cardDetails?.campaign_image}`
 
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
   let user_id = Data?.id;
 
   const copy_current_url = () => {
-    const currentPageUrl = window.location.href;
-
     navigator.clipboard.writeText(currentPageUrl);
     toast.info("Link Copied !", {
-      position: "top-center",
+      position: "top-right",
     });
   };
 
@@ -61,16 +63,12 @@ function CurrentCampaign({
         `${process.env.REACT_APP_BE_BASE_URL}/campaign/campaign-details/${id}`
       )
       .then((res) => {
-        console.log("API Response:", res.data);
 
         setCardDetails(res.data.data);
-        console.log("CURRENT CAMPAIGN ", cardDetails);
+        console.log(res.data.data , "res")
 
-        // setDonor(res.data.donor)
       })
       .catch((error) => {
-        console.error("API Error:", error);
-        // Handle error if needed
       });
   }, [id]);
 
@@ -78,7 +76,6 @@ function CurrentCampaign({
     () => `${pathname.slice(1)}`,
 
     [pathname]
-    // console.log(cardDetails,"cardDetailscardDetails")
   );
   const fullNameWords = cardDetails?.user?.split(" ");
   const firstLetter = fullNameWords?.[0]?.charAt(0)?.toUpperCase() ?? "";
@@ -225,9 +222,8 @@ function CurrentCampaign({
                 sx={{
                   height: "100%",
                   borderRadius: "16px",
-                  background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${
-                    (fundRaised / goalAmount) * 100
-                  }%, #e0e0e0 ${(fundRaised / goalAmount) * 100}%)`,
+                  background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${(fundRaised / goalAmount) * 100
+                    }%, #e0e0e0 ${(fundRaised / goalAmount) * 100}%)`,
                   "& .MuiLinearProgress-bar": {
                     backgroundColor: "#0DC7B1 !important",
                   },
@@ -274,17 +270,17 @@ function CurrentCampaign({
                 <PrimaryButton
                   className="w-full max-desktop:w-full"
                   sx={{ padding: "16px", borderRadius: "8px", width: "%" }}
-                  // style={{
+                // style={{
 
-                  //   paddingTop: 16,
-                  //   paddingBottom: 16,
-                  //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
-                  //   borderRadius: 8,
-                  //   justifyContent: "center",
-                  //   alignItems: "center",
-                  //   gap: 10,
-                  //   display: "inline-flex",
-                  // }}
+                //   paddingTop: 16,
+                //   paddingBottom: 16,
+                //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
+                //   borderRadius: 8,
+                //   justifyContent: "center",
+                //   alignItems: "center",
+                //   gap: 10,
+                //   display: "inline-flex",
+                // }}
                 >
                   <div style={{ width: 38, position: "relative" }}>
                     <img src={images.coins2} alt="" />
@@ -367,6 +363,26 @@ function CurrentCampaign({
                   </div>
                 </button>
               </div>
+              <EmailShareButton 
+                url={currentPageUrl}
+                subject={Share_title}
+                body="body">
+                <EmailIcon size={45}  />
+              </EmailShareButton>
+
+
+              <WhatsappShareButton url={currentPageUrl} title={Share_title} separator=":: ">
+                <WhatsappIcon size={45} 
+                />
+              </WhatsappShareButton>
+
+              <TwitterShareButton url={currentPageUrl} >
+                <XIcon size={45} />
+              </TwitterShareButton>
+
+              <PinterestShareButton url={currentPageUrl} media={media}>
+                <PinterestIcon size={45}  />
+              </PinterestShareButton>
             </div>
             <div
               className="pt-4"
