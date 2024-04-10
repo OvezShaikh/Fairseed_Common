@@ -130,11 +130,13 @@ const Index = () => {
         Cell: ({ row }) => {
           return (
             <div className='flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0'>
-              <Link to="View" state={{ id: row?.id }}><PrimaryButton sx={{
+              <Link to="View" state={{ id: row?.id }}>
+                <PrimaryButton sx={{
                 height: '30px', width: '60px', background: '#219D80', color: 'white', "&  .MuiButton-root:hover": {
                   background: "yellow"
                 }
-              }} text={'View'}>View</PrimaryButton></Link>
+              }} text={'View'}>View</PrimaryButton>
+              </Link>
               {/* <SecondaryButton sx={{ height: '30px' }}>Edit Bank and KYC</SecondaryButton> */}
             </div >
           )

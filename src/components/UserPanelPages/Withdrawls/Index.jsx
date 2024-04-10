@@ -19,10 +19,9 @@ const Withdrawals = () => {
         color: "#fa9820",
         background: "#f5fabe  ",
       };
-    } else if (status === "Active") {
+    } else if (status === "Paid") {
       return {
         background: "#ECFDF3  ",
-
         color: "#037847",
       };
     } else if (status === "Rejected") {
@@ -62,52 +61,14 @@ const Withdrawals = () => {
       search: false,
     },
     {
-      Header: "Name",
-      accessor: "title",
-      minWidth: 100,
-      width: 100,
-    },
-
-    {
-      Header: "Email",
-      accessor: "user.email",
-      minWidth: 100,
-      width: 100,
-    },
-    {
-      Header: "Mobile",
-      accessor: "user.mobile_number",
-      minWidth: 100,
-      width: 100,
-    },
-    {
-      Header: "Goal",
-      accessor: "goal_amount",
-      minWidth: 100,
-      width: 100,
-    },
-    {
-      Header: "Status",
-      accessor: "status",
-      minWidth: 100,
-      width: 100,
-      Cell: StatusCell,
-    },
-    {
-      Header: "Date",
-      accessor: "end_date",
-      minWidth: 100,
-      width: 100,
-    },
-    {
-      Header: "Causes",
-      accessor: "causes",
+      Header: "Campaign",
+      accessor: "campaign.title",
       minWidth: 100,
       width: 100,
       Cell: ({ row }) => {
         return (
           <div className="flex  ">
-            <div className="w-[80px] truncate">{row?.original?.title}</div>
+            <div className="w-[80px] truncate">{row?.original?.campaign?.title}</div>
             <a href={`/campaign-details/${row.id}`}>
               <img
                 className="ml-2"
@@ -120,6 +81,39 @@ const Withdrawals = () => {
       },
     },
     {
+      Header: "Amount",
+      accessor: "campaign.goal_amount",
+      minWidth: 100,
+      width: 100,
+    },
+
+    {
+      Header: "Method",
+      accessor: "campaign.user.email",
+      minWidth: 100,
+      width: 100,
+    },
+    {
+      Header: "Status",
+      accessor: "withdrawal_status",
+      minWidth: 100,
+      width: 100,
+      Cell: StatusCell,
+    },
+    {
+      Header: "Payment Details",
+      accessor: "transfer_details",
+      minWidth: 100,
+      width: 250,
+    },
+    {
+      Header: "Date",
+      accessor: "updated_on",
+      minWidth: 100,
+      width: 100,
+    },
+   
+    {
       Header: "Actions",
       accessor: "actions",
       sortable: false,
@@ -129,7 +123,7 @@ const Withdrawals = () => {
       Cell: ({ row }) => {
         return (
           <div className="flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0">
-              {console.log(row , 'row')}
+              {"-" + row?.values?.withdrawal_status + "-" }
           </div>
         );
       },
@@ -144,7 +138,7 @@ const Withdrawals = () => {
         manualPagination
         title={"withdrawals"}
         checkboxComponent={IndeterminateCheckbox}
-        url={`/user-dashboard/make-withdrawals`}
+        url={`/user-dashboard/make-withdrawal`}
         extraQuery={{ inactive: true }}
         selectedRowID={selectedRowID}
       />
