@@ -20,7 +20,19 @@ import InputField from "../../../components/inputs/InputField";
 import { Form, Formik } from "formik";
 import ErrorIcon from "@mui/icons-material/Error";
 import { useCreateOrUpdate } from "../../../Hooks";
-import { EmailIcon, EmailShareButton, PinterestIcon, PinterestShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton, XIcon } from "react-share";
+import InputAdminField from "../../../components/inputs/InputAdminField/Index";
+import {
+  EmailIcon,
+  EmailShareButton,
+  PinterestIcon,
+  PinterestShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+  XIcon,
+} from "react-share";
+import { MdClose } from "react-icons/md";
 
 function CurrentCampaign({
   key,
@@ -38,9 +50,18 @@ function CurrentCampaign({
   const { pathname } = useLocation();
   const { id } = useParams();
   const [cardDetails, setCardDetails] = useState(null);
-  const Share_title = 'Donate For Good';
+  const [showSharePopup, setShowSharePopup] = useState(false);
+
+  const handleShareButtonClick = () => {
+    setShowSharePopup(true);
+  };
+
+  const handleCloseSharePopup = () => {
+    setShowSharePopup(false);
+  };
+  const Share_title = "Donate For Good";
   const currentPageUrl = window.location.href;
-  const media = `${process.env.REACT_APP_BE_BASE_URL}${cardDetails?.campaign_image}`
+  const media = `${process.env.REACT_APP_BE_BASE_URL}${cardDetails?.campaign_image}`;
 
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
@@ -63,12 +84,10 @@ function CurrentCampaign({
         `${process.env.REACT_APP_BE_BASE_URL}/campaign/campaign-details/${id}`
       )
       .then((res) => {
-
         setCardDetails(res.data.data);
-
+        console.log(res.data.data, "res");
       })
-      .catch((error) => {
-      });
+      .catch((error) => { });
   }, [id]);
 
   const title = useMemo(
@@ -337,7 +356,7 @@ function CurrentCampaign({
                     gap: 12,
                     display: "inline-flex",
                   }}
-                  onClick={copy_current_url}
+                  onClick={handleShareButtonClick}
                 >
                   <div
                     className="w-[32px] h-[32px] max-tablet:w-[20px] max-tablet:h-[20px]"
@@ -349,7 +368,6 @@ function CurrentCampaign({
                     className="text-3xl max-tablet:text-lg "
                     style={{
                       color: "#FF9F0A",
-
                       fontFamily: "Satoshi ",
                       fontWeight: "700",
                       background:
@@ -361,27 +379,59 @@ function CurrentCampaign({
                     Share
                   </div>
                 </button>
+
+                {/* Share Popup */}
+                {showSharePopup && (
+                  <div className="fixed inset-0 flex justify-center items-center z-50 pointer-events-none">
+                    <div className="bg-black bg-opacity-50 absolute inset-0"></div>
+                    <div className="bg-white p-8 rounded-md max-w-md relative pointer-events-auto">
+                      <button
+                        onClick={handleCloseSharePopup}
+                        className="absolute top-0 right-0 p-2"
+                      >
+                        <MdClose size={24} />
+                      </button>
+                      <h2 className="text-2xl font-bold mb-4">
+                        Share this link
+                      </h2>
+                      <div className="flex justify-around">
+                        <div className="mr-4">
+                          <EmailShareButton
+                            url={currentPageUrl}
+                            subject={Share_title}
+                            body="body"
+                          >
+                            <EmailIcon size={45} round />
+                          </EmailShareButton>
+                        </div>
+                        <div className="mr-4">
+                          <WhatsappShareButton
+                            url={currentPageUrl}
+                            title={Share_title}
+                            separator=":: "
+                          >
+                            <WhatsappIcon size={45} round />
+                          </WhatsappShareButton>
+                        </div>
+                        <div className="mr-4">
+                          <TwitterShareButton url={currentPageUrl}>
+                            <TwitterIcon size={45} round />
+                          </TwitterShareButton>
+                        </div>
+                        <div>
+                          <PinterestShareButton
+                            url={currentPageUrl}
+                            media={media}
+                          >
+                            <PinterestIcon size={45} round />
+                          </PinterestShareButton>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
-              <EmailShareButton 
-                url={currentPageUrl}
-                subject={Share_title}
-                body="body">
-                <EmailIcon size={45}  />
-              </EmailShareButton>
-
-
-              <WhatsappShareButton url={currentPageUrl} title={Share_title} separator=":: ">
-                <WhatsappIcon size={45} 
-                />
-              </WhatsappShareButton>
-
-              <TwitterShareButton url={currentPageUrl} >
-                <XIcon size={45} />
-              </TwitterShareButton>
-
-              <PinterestShareButton url={currentPageUrl} media={media}>
-                <PinterestIcon size={45}  />
-              </PinterestShareButton>
             </div>
             <div
               className="pt-4"
@@ -446,12 +496,13 @@ function CurrentCampaign({
                   <Formik
                     initialValues={{
                       message: "",
+                      name:"",
+                      email:"",
                       campaign: `${id}`,
                       user: user_id,
                     }}
                     onSubmit={(values) =>
-                      mutate(
-                        values,
+                      mutate( values,
                         {
                           onSuccess: (response) => {
                             toast.success(response?.data?.message, {
@@ -471,6 +522,22 @@ function CurrentCampaign({
                     }
                   >
                     <Form className="flex flex-col justify-center items-center gap-10">
+                      <div className="flex w-full gap-4 max-desktop:flex-col max-tablet:flex-col">
+                        <div className="w-full">
+                          <InputAdminField
+                            name={"name"}
+                            label={"Name"}
+                            placeholder={"Enter Your Name"}
+                          />
+                        </div>
+                        <div className="w-full">
+                          <InputAdminField
+                            name={"email"}
+                            label={"Email"}
+                            placeholder={"Enter Your Email"}
+                          />
+                        </div>
+                      </div>
                       <div className="w-full px-2">
                         <InputField
                           required={"true"}

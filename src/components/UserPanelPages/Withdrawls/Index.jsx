@@ -129,52 +129,7 @@ const Withdrawals = () => {
       Cell: ({ row }) => {
         return (
           <div className="flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0">
-            {row?.value?.status === "Pending" ? (
-              <PrimaryButton
-                sx={{
-                  height: "30px",
-                  width: "60px",
-                  background: "red", 
-                  color: "white",
-                  "& .MuiButton-root:hover": {
-                    background: "yellow",
-                  },
-                }}
-              >
-                Delete
-              </PrimaryButton>
-            ) : (
-              <>
-                <PrimaryButton
-                  disabled
-                  sx={{
-                    height: "30px",
-                    width: "60px",
-                    background: "green",
-                    color: "white",
-                    "& .MuiButton-root:hover": {
-                      background: "yellow",
-                    },
-                  }}
-                >
-                  Paid
-                </PrimaryButton>
-                <Link to="View" state={{ id: row?.id }}>
-                  <SecondaryButton
-                    sx={{
-                      height: "30px",
-                      width: "60px",
-                      color: "blue",
-                      fontWeight: 700,
-                      border: "none !important",
-                    }}
-                  >
-                    View
-                    <FaSortDown className="pl-1 pb-2 text-blue-700 w-5 h-5" />
-                  </SecondaryButton>
-                </Link>
-              </>
-            )}
+              {console.log(row , 'row')}
           </div>
         );
       },
@@ -187,9 +142,9 @@ const Withdrawals = () => {
         columns={columns}
         showFilter
         manualPagination
-        title={"Campaign"}
+        title={"withdrawals"}
         checkboxComponent={IndeterminateCheckbox}
-        url={`/admin-dashboard/campaign`}
+        url={`/user-dashboard/make-withdrawals`}
         extraQuery={{ inactive: true }}
         selectedRowID={selectedRowID}
       />
