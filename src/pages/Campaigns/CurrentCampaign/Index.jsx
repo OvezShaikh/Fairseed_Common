@@ -65,7 +65,6 @@ function CurrentCampaign({
       .then((res) => {
 
         setCardDetails(res.data.data);
-        console.log(res.data.data , "res")
 
       })
       .catch((error) => {

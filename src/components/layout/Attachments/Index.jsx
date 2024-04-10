@@ -19,13 +19,9 @@ function YourComponent({ imageUrl, id, iconShow }) {
     }
   };
 
-  const url = `/admin-dashboard/campaign/${id}`;
 
-  const { refetch: Filerefetch, isFetching: Fileloading } = useDownloadFile(
-    url,
-    {
-      download: true,
-    },
+  const { refetch: downloadFile, isFetching: downloadingFile } = useDownloadFile(
+    `/admin-dashboard/cause-edit/${id}`,
     () => {
       console.log("File download successful");
     }
@@ -34,6 +30,8 @@ function YourComponent({ imageUrl, id, iconShow }) {
   const handleDeleteSuccess = () => {
     setIsImageDeleted(true);
   };
+
+ 
 
   return (
     <>
@@ -99,10 +97,10 @@ function YourComponent({ imageUrl, id, iconShow }) {
                 onClick={toggleFullScreen}
               />
               <PrimaryButton
-                onClick={() => Filerefetch()}
-                isLoading={Fileloading}
+                onClick={downloadFile}
+                disabled={downloadingFile}
               >
-                Download
+                {downloadingFile ? "Downloading..." : "Download"}
               </PrimaryButton>
             </div>
           </div>

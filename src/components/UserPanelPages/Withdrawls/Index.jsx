@@ -129,12 +129,12 @@ const Withdrawals = () => {
       Cell: ({ row }) => {
         return (
           <div className="flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0">
-            {get === "Pending" ? (
+            {row?.value?.status === "Pending" ? (
               <PrimaryButton
                 sx={{
                   height: "30px",
                   width: "60px",
-                  background: "red", // Corrected color value
+                  background: "red", 
                   color: "white",
                   "& .MuiButton-root:hover": {
                     background: "yellow",

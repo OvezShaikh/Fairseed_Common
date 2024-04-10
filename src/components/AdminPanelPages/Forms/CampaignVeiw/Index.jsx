@@ -104,10 +104,11 @@ function Index() {
       campaign?.campaign?.zakat_eligible ||
       false,
     documents: campaign?.documents || [],
-    // status:campaign?.campaign_data?.status || (campaign?.campaign?.status || ''),
+    status:campaign?.campaign_data?.status || (campaign?.campaign?.status || ''),
   };
 
   const handleSubmit = (values) => {
+    console.log(values , 'values <========')
     const formData = new FormData();
     formData.append("campaign_image", values?.campaign_image);
     formData.append("title", values?.title);
@@ -119,7 +120,7 @@ function Index() {
     formData.append("category", values?.category);
     formData.append("zakat_eligible", values?.zakat_eligible);
     formData.append("document", values?.category);
-    // formData.append("status", values?.status);
+    formData.append("status", values?.status);
      formData.append("approve_campaign", approval);
 
     mutate(formData, {
@@ -162,6 +163,9 @@ function Index() {
                 </p>
               </div>
               <div className="w-full">
+                {
+                  console.log(values , 'values')
+                }
                 <InputField
                   color={campaignData?.title ? "red" : undefined}
                   onChange={handleChange}

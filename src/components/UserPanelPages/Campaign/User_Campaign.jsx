@@ -250,6 +250,13 @@ const User_Campaign = ({ onClose }) => {
                     </Formik>
                   )}
                 </Dialog>
+
+                <Link to="View" state={{ id: row?.id }}>
+                <SecondaryButton sx={{ height: "30px" }}>
+                  View Bank and KYC
+                </SecondaryButton>
+              </Link>
+              
               </>
             )}
 
