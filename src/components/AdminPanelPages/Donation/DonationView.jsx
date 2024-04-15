@@ -7,8 +7,10 @@ import "../../../pages/Campaigns/CreateCampaigns/CreateCampaigns.css";
 import { FormLabel } from "@mui/material";
 import images from "../../../constants/images";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useGetAll } from "../../../Hooks";
+import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
 import PrimaryButton from "../../inputs/PrimaryButton";
+import { toast } from "react-toastify";
+
 
 
 const styleLabel = {
@@ -23,9 +25,7 @@ const styleLabel = {
 
 function Index() {
   const [data, setData] = useState({});
-
   let { state } = useLocation();
-
   let { id } = state;
 
   const navigate = useNavigate();
@@ -34,8 +34,7 @@ function Index() {
     key: `/admin-dashboard/donors/${id}`,
     enabled: true,
     select: (data) => {
-      console.log(data);
-      return data.data.data;
+      return data?.data?.data;
     },
     onSuccess: (data) => {
       setData(data);
@@ -62,10 +61,51 @@ function Index() {
     updated_on: data?.updated_on || ''
   };
 
+  const { mutate } = useCreateOrUpdate({
+    url: `/admin-dashboard/donors/${id}`,
+    method: 'put'
+  })
+
+  const handleSubmit = (values) => {
+    const formData = new FormData();
+    formData.append('campaign', values?.campaign)
+    formData.append('transaction_id', values?.transaction_id)
+    formData.append('full_name', values?.full_name)
+    formData.append('email', values?.email)
+    formData.append('id', values?.id)
+    formData.append('amount', values?.amount)
+    formData.append('city', values?.city)
+    formData.append('country', values?.country)
+    formData.append('pancard', values?.pancard)
+    formData.append('donation_type', values?.donation_type)
+    formData.append('payment_type', values?.payment_type)
+    formData.append('bank_name', values?.bank_name)
+    formData.append('other_details', values?.other_details)
+    formData.append('comment', values?.comment)
+    formData.append('transaction_date', values?.transaction_date)
+    formData.append('created_on', values?.created_on)
+    formData.append('updated_on', values?.updated_on)
+    formData.append('status', 'Approved')
+    mutate(formData, {
+      onSuccess: (response) => {
+        toast.success("Marked as paid", {
+          position: "top-right",
+        });
+        navigate(-1)
+      },
+      onError: (response) => {
+        toast.error("Ran Into An Error", {
+          position: "top-right",
+        });
+      }
+    })
+  }
+
   return (
     <Formik
       enableReinitialize={true}
       initialValues={initial_values}
+      onSubmit={(values) => handleSubmit(values)}
     >
 
       {({ values }) => (
@@ -248,9 +288,9 @@ function Index() {
                   // defaultValue={yesterday}
                   value={values?.updated_on}
                   name="updated_on"
-                  inputProps={{ min: moment().format("YYYY-MM-DD") }}
+                  // inputProps={{ min: moment().format("YYYY-MM-DD") }}
                   disable={true}
-                  required={true}
+                  // required={true}
                   label="Transaction Date:"
                 />
               </div>
@@ -271,8 +311,8 @@ function Index() {
                   value={values?.updated_on}
                   name="created_on"
                   disable={true}
-                  inputProps={{ min: moment().format("YYYY-MM-DD") }}
-                  required={true}
+                  // inputProps={{ min: moment().format("YYYY-MM-DD") }}
+                  // required={true}
                   label="Transaction Date:"
                 />
               </div>
@@ -306,21 +346,34 @@ function Index() {
           </div>
           <div className="flex flex-row gap-4 mt-12">
 
-          <button
-            onClick={() => navigate(-1)}
-            className="w-[69px] h-[32px] bg-[#F7F7F7]"
-          >
-            <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
-              Go Back
-            </h1>
-          </button>
-          <PrimaryButton sx={{
-            height: '30px', width: '120px', background: '#219D80', color: 'white', "&  .MuiButton-root:hover": {
-              background: "yellow"
+            <button
+              type="button"
+              onClick={() => navigate(-1)}
+              className="w-[69px] h-[32px] bg-[#F7F7F7]"
+            >
+              <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
+                Go Back
+              </h1>
+            </button>
+
+            {
+              data?.status !== 'Approved' && (
+                <PrimaryButton
+                  sx={{
+                    height: '30px',
+                    width: '120px',
+                    background: '#219D80',
+                    color: 'white',
+                    "& .MuiButton-root:hover": {
+                      background: "yellow"
+                    }
+                  }}
+                  type="submit"
+                >
+                  Mark As Paid
+                </PrimaryButton>
+              )
             }
-          }} text={'Mark As Paid'}>
-            Mark As Paid
-          </PrimaryButton>
           </div>
         </Form>
       )}

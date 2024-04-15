@@ -142,6 +142,7 @@ function Index() {
               </div>
               <div className="flex flex-row gap-4 mt-12">
                 <button
+                  type="button"
                   onClick={() => navigate(-1)}
                   className="w-[69px] h-[32px] bg-[#F7F7F7]"
                 >
@@ -241,12 +242,14 @@ function Index() {
                     </p>
                     <div className="mt-4">
                       <button
+                        type="button"
                         onClick={cancelDelete}
                         className="bg-gray-300 px-4 py-2  text-[20px] mr-2 font-[satoshi] font-medium rounded"
                       >
                         No, cancel!
                       </button>
                       <button
+                        type="button"
                         onClick={confirmDelete}
                         className="bg-green-500 text-white text-[20px] font-[satoshi] font-medium px-4 py-2  rounded"
                       >
@@ -265,6 +268,7 @@ function Index() {
                     </p>
                     <div className="mt-4">
                       <button
+                        type="button"
                         onClick={handleOk}
                         className="bg-green-500 text-white text-[20px] font-[satoshi] font-medium px-4 py-2  rounded"
                       >

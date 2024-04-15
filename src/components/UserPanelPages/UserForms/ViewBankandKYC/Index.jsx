@@ -141,9 +141,7 @@ function Index() {
                                   disabled={'true'}
                                   name={"updated_on"}
                                   label="Approval Date:"
-                                />{
-                                    console.log(values?.updated_on , '<=============')
-                                }
+                                />
 
                             </div>
                         </div>

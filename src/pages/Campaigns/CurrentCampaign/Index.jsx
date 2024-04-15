@@ -11,9 +11,9 @@ import React, { useContext, useMemo } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Avatar } from "@mui/material";
-import UserNavbar from "../../login/UserNavbar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import *  as Yup from 'yup' ;
 import { GiHazardSign } from "react-icons/gi";
 import { Dialog } from "../../../components/layout/dialogBox/dialog";
 import InputField from "../../../components/inputs/InputField";
@@ -496,11 +496,21 @@ function CurrentCampaign({
                   <Formik
                     initialValues={{
                       message: "",
-                      name:"",
+                      contact_no:"",
                       email:"",
                       campaign: `${id}`,
                       user: user_id,
                     }}
+                    validationSchema={
+                      Yup.object({
+                        email: Yup.string().email('Please enter a valid email address').required('Email is required'),
+                        contact_no: Yup.number()
+                        .min(10, "Must be 10 characters")
+                        .required("This field is requried")
+                     
+                      })
+
+                    }
                     onSubmit={(values) =>
                       mutate( values,
                         {
@@ -525,14 +535,17 @@ function CurrentCampaign({
                       <div className="flex w-full gap-4 max-desktop:flex-col max-tablet:flex-col">
                         <div className="w-full">
                           <InputAdminField
-                            name={"name"}
-                            label={"Name"}
+                            name={"contact_no"}
+                            required={true}
+                            label={"Contact Number"}
                             placeholder={"Enter Your Name"}
+                            type='number'
                           />
                         </div>
                         <div className="w-full">
                           <InputAdminField
                             name={"email"}
+                            required={true}
                             label={"Email"}
                             placeholder={"Enter Your Email"}
                           />
