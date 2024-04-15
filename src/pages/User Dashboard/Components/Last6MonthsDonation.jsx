@@ -106,7 +106,7 @@ export default function DonationInLastMonth() {
           width={500}
           height={300}
           data={dataObject}
-          margin={{top: 20, right: 20, bottom: 20, left: 1}}
+          margin={{top: 20, right: 20, bottom: 20, left: -14}}
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey='date' tickFormatter={customTickFormatter}
