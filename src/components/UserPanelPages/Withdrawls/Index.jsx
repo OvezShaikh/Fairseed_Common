@@ -14,22 +14,27 @@ const Withdrawals = () => {
   const [get, setGet] = useState("");
 
   const getStatusCellStyle = (status) => {
-    setGet(status);
     if (status === "Pending") {
+      return {
+        color: "#fa9820",
+        background: "#f5fabe  ",
+      };
+    } else if (status === "Paid") {
+      return {
+        background: "#ECFDF3  ",
+        color: "#037847",
+      };
+    } else if (status === "Rejected") {
+      return {
+        background: "#f5d0d0",
+        color: "#f03c24",
+      };
+    } else {
       return {
         background: "#EBF0ED",
         color: "#717171",
       };
-    } else if (status === "Active") {
-      return {
-        background: "#ECFDF3  ",
-
-        color: "#037847",
-      };
     }
-    return {
-      color: "gray",
-    };
   };
 
   const StatusCell = ({ value }) => (
@@ -46,137 +51,84 @@ const Withdrawals = () => {
     </div>
   );
 
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: "Id", // Row number header
-        accessor: "id", // Accessor for row number
-        Cell: ({ row }) => <div>{row.index + 1}</div>,
-        minWidth: 50,
-        width: 50,
-        search: false,
+  const columns = React.useMemo(() => [
+    {
+      Header: "Id", // Row number header
+      accessor: "id", // Accessor for row number
+      Cell: ({ row }) => <div>{row.index + 1}</div>,
+      minWidth: 50,
+      width: 50,
+      search: false,
+    },
+    {
+      Header: "Campaign",
+      accessor: "campaign.title",
+      minWidth: 100,
+      width: 100,
+      Cell: ({ row }) => {
+        return (
+          <div className="flex  ">
+            <div className="w-[80px] truncate">{row?.original?.campaign?.title}</div>
+            <a href={`/campaign-details/${row.id}`}>
+              <img
+                className="ml-2"
+                src={images.CausesDetails}
+                alt="CausesDetails"
+              />
+            </a>
+          </div>
+        );
       },
-      {
-        Header: "Name",
-        accessor: "title",
-        minWidth: 100,
-        width: 100,
-      },
+    },
+    {
+      Header: "Amount",
+      accessor: "campaign.goal_amount",
+      minWidth: 100,
+      width: 100,
+    },
 
-      {
-        Header: "Email",
-        accessor: "user.email",
-        minWidth: 100,
-        width: 100,
+    {
+      Header: "Method",
+      accessor: "campaign.user.email",
+      minWidth: 100,
+      width: 100,
+    },
+    {
+      Header: "Status",
+      accessor: "withdrawal_status",
+      minWidth: 100,
+      width: 100,
+      Cell: StatusCell,
+    },
+    {
+      Header: "Payment Details",
+      accessor: "transfer_details",
+      minWidth: 100,
+      width: 250,
+    },
+    {
+      Header: "Date",
+      accessor: "updated_on",
+      minWidth: 100,
+      width: 100,
+    },
+   
+    {
+      Header: "Actions",
+      accessor: "actions",
+      sortable: false,
+      nofilter: true,
+      minWidth: 100,
+      width: 100,
+      Cell: ({ row }) => {
+        return (
+          <div className="flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0">
+              {"-" + row?.values?.withdrawal_status + "-" }
+          </div>
+        );
       },
-      {
-        Header: "Mobile",
-        accessor: "user.mobile_number",
-        minWidth: 100,
-        width: 100,
-      },
-      {
-        Header: "Goal",
-        accessor: "goal_amount",
-        minWidth: 100,
-        width: 100,
-      },
-      {
-        Header: "Status",
-        accessor: "status",
-        minWidth: 100,
-        width: 100,
-        Cell: StatusCell,
-      },
-      {
-        Header: "Date",
-        accessor: "end_date",
-        minWidth: 100,
-        width: 100,
-      },
-      {
-        Header: "Causes",
-        accessor: "causes",
-        minWidth: 100,
-        width: 100,
-        Cell: ({ row }) => {
-          return (
-            <div className="flex  ">
-              <div className="w-[80px] truncate">{row?.original?.title}</div>
-              <a href={`/campaign-details/${row.id}`}>
-                <img
-                  className="ml-2"
-                  src={images.CausesDetails}
-                  alt="CausesDetails"
-                />
-              </a>
-            </div>
-          );
-        },
-      },
-      {
-        Header: "Actions",
-        accessor: "actions",
-        sortable: false,
-        nofilter: true,
-        minWidth: 100,
-        width: 100,
-        Cell: ({ row }) => {
-          return (
-            <div className="flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0">
-              {get === "Pending" ? (
-                <PrimaryButton
-                  sx={{
-                    height: "30px",
-                    width: "60px",
-                    background: "red", // Corrected color value
-                    color: "white",
-                    "& .MuiButton-root:hover": {
-                      background: "yellow",
-                    },
-                  }}
-                >
-                  Delete
-                </PrimaryButton>
-              ) : (
-                <>
-                  <PrimaryButton
-                    disabled
-                    sx={{
-                      height: "30px",
-                      width: "60px",
-                      background: "green",
-                      color: "white",
-                      "& .MuiButton-root:hover": {
-                        background: "yellow",
-                      },
-                    }}
-                  >
-                    Paid
-                  </PrimaryButton>
-                  <Link to="View" state={{ id: row?.id }}>
-                    <SecondaryButton
-                      sx={{
-                        height: "30px",
-                        width: "60px",
-                        color: "blue",
-                        fontWeight: 700,
-                        border: "none !important",
-                      }}
-                    >
-                      View
-                      <FaSortDown className="pl-1 pb-2 text-blue-700 w-5 h-5" />
-                    </SecondaryButton>
-                  </Link>
-                </>
-              )}
-
-            </div>
-          );
-        },
-      },
-    ],
-  );
+    },
+  ]);
   return (
     <div>
       <ReactTable
@@ -184,9 +136,9 @@ const Withdrawals = () => {
         columns={columns}
         showFilter
         manualPagination
-        title={"Campaign"}
+        title={"withdrawals"}
         checkboxComponent={IndeterminateCheckbox}
-        url={`/admin-dashboard/campaign`}
+        url={`/user-dashboard/make-withdrawal`}
         extraQuery={{ inactive: true }}
         selectedRowID={selectedRowID}
       />

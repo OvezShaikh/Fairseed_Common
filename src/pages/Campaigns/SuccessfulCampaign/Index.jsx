@@ -97,8 +97,8 @@ const Index = () => {
           heading={"Successful Campaign"}
         />
 
-        <div className="flex flex-col flex-wrap w-full mb-[128px] items-center max-tablet:mb-[48px] mt-[100px]">
-          <div className="w-[90%] flex justify-end ">
+        <div className="flex flex-col flex-wrap w-full mb-[128px] items-center max-tablet:mb-[48px] mt-[100px] max-tablet:mt-[20px]">
+          <div className="w-[90%] flex justify-end successful-filter">
             <SuccessFilterField
               sendCategoryToParent={receiveCategoryFromChild}
               sendLocationToParent={receiveLocationFromChild}

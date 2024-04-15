@@ -4,7 +4,7 @@ import { useDownloadFile } from "../../../Hooks/useDownloadFile";
 import PrimaryButton from "../../inputs/PrimaryButton";
 import { DeleteBox } from "../dialogBox/delete";
 
-function YourComponent({ imageUrl, id }) {
+function YourComponent({ imageUrl, id, iconShow }) {
   const [isImageDeleted, setIsImageDeleted] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
 
@@ -19,13 +19,9 @@ function YourComponent({ imageUrl, id }) {
     }
   };
 
-  const url = `/admin-dashboard/campaign/${id}`;
 
-  const { refetch: Filerefetch, isFetching: Fileloading } = useDownloadFile(
-    url,
-    {
-      download: true,
-    },
+  const { refetch: downloadFile, isFetching: downloadingFile } = useDownloadFile(
+    `/admin-dashboard/cause-edit/${id}`,
     () => {
       console.log("File download successful");
     }
@@ -34,6 +30,8 @@ function YourComponent({ imageUrl, id }) {
   const handleDeleteSuccess = () => {
     setIsImageDeleted(true);
   };
+
+ 
 
   return (
     <>
@@ -59,19 +57,23 @@ function YourComponent({ imageUrl, id }) {
           />
           {!isFullScreen && (
             <div className="absolute right-1 top-2">
-              <DeleteBox
-                url={`/admin-dashboard/documents`}
-                data={id}
-                iconDelete={true}
-                title={"document"}
-                onSuccess={handleDeleteSuccess}
-                refetchUrl={"/admin-dashboard/documents"}
-              >
-                <p>Are you sure to delete this document!</p>
-                <p className="text-red-500">
-                  Once you delete this document you can't undo that document!
-                </p>
-              </DeleteBox>
+              {iconShow ? (
+                ""
+              ) : (
+                <DeleteBox
+                  url={`/admin-dashboard/documents`}
+                  data={id}
+                  iconDelete={true}
+                  title={"document"}
+                  onSuccess={handleDeleteSuccess}
+                  refetchUrl={"/admin-dashboard/documents"}
+                >
+                  <p>Are you sure to delete this document!</p>
+                  <p className="text-red-500">
+                    Once you delete this document you can't undo that document!
+                  </p>
+                </DeleteBox>
+              )}
             </div>
           )}
         </div>
@@ -85,7 +87,7 @@ function YourComponent({ imageUrl, id }) {
             <img
               src={imageUrl}
               alt="Documents "
-              style={{ maxWidth: "1000px", maxHeight: "1000px" }}
+              style={{ maxWidth: "218px", maxHeight: "100px" }}
               onClick={toggleFullScreen}
             />
             <div className="absolute top-0 right-0 m-4 flex flex-col items-center">
@@ -95,10 +97,10 @@ function YourComponent({ imageUrl, id }) {
                 onClick={toggleFullScreen}
               />
               <PrimaryButton
-                onClick={() => Filerefetch()}
-                isLoading={Fileloading}
+                onClick={downloadFile}
+                disabled={downloadingFile}
               >
-                Download
+                {downloadingFile ? "Downloading..." : "Download"}
               </PrimaryButton>
             </div>
           </div>

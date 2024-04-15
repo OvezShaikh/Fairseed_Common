@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, } from "react";
+import React, { useContext, useMemo } from "react";
 import images from "../../../constants/images";
 import { Navbar } from "react-bootstrap";
 import {
@@ -17,13 +17,7 @@ import Breadcrumbs from "@mui/material/Breadcrumbs";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { LuPanelRight } from "react-icons/lu";
 
-
-
-
-
-
 const NavbarContainer = ({ handleDrawerToggle, mobileOpen }) => {
-
   const sideBar = useMediaQuery("(max-width: 0px)");
   const [alignment, setAlignment] = React.useState("web");
 
@@ -34,30 +28,25 @@ const NavbarContainer = ({ handleDrawerToggle, mobileOpen }) => {
     setAlignment(newAlignment);
   };
 
-
   function handleClick(event, path) {
-    navigate(`/${path}`)
+    navigate(`/${path}`);
     event.preventDefault();
     console.info("You clicked a breadcrumb.");
-
   }
-
-
 
   let title = useMemo(
     () =>
-      `${pathname.split('/').reverse()[0]
+      `${pathname
+        .split("/")
+        .reverse()[0]
         .replace("/", "")
         .replace(/\/*\[[^\]]*]/g, "")
         .replace(/-/g, " ")
         .replace(/\//g, "  ")
-        .replace("General Settings", " ")
-      }`,
-
+        .replace("General Settings", " ")}`,
 
     [pathname]
   );
-
 
   // title = title?.split("AdminPanel").reverse()[0]
 
@@ -69,27 +58,30 @@ const NavbarContainer = ({ handleDrawerToggle, mobileOpen }) => {
         display: "inline-block",
         position: "fixed",
         right: 0,
-        top: '59px',
+        top: "72px",
         zIndex: "99",
-        padding: '16px 16px  ',
-        width: `${sideBar ? "100vw" : (mobileOpen ? "calc(100vw - 273px)" : '100vw')}`,
+        padding: "16px 16px  ",
+        width: `${
+          sideBar ? "100vw" : mobileOpen ? "calc(100vw - 273px)" : "100vw"
+        }`,
         height: "77px",
         backgroundColor: `${sideBar ? "rgba(255, 235, 209, 1)" : "#fff"}`,
         backgroundColor: "#fff",
         borderBottom: `1px solid #E2E2E2`,
-
       }}
     >
       <Grid
         container
-        className={`${sideBar
-          ? "d-flex justify-content-between pe-1"
-          : "d-flex justify-content-between"
-          }`}
+        className={`${
+          sideBar
+            ? "d-flex justify-content-between pe-1"
+            : "d-flex justify-content-between"
+        }`}
       >
         <Grid item xs={9} md={7}>
-          <Toolbar sx={{ minHeight: "60px !important", width: "100%", padding: 0, }}>
-
+          <Toolbar
+            sx={{ minHeight: "60px !important", width: "100%", padding: 0 }}
+          >
             {!sideBar && (
               <Box className="d-flex justify-content-between align-items-center w-100 ">
                 <Typography
@@ -103,45 +95,50 @@ const NavbarContainer = ({ handleDrawerToggle, mobileOpen }) => {
                   className="text-capitalize text-truncate"
                   title={title}
                 >
-                  <div
-                    className="me-3"
-                    onClick={() => navigate(-1)}
-                  >
+                  <div className="me-3" onClick={() => navigate(-1)}>
                     <img src={images.account} alt="" />
                   </div>
-                  <div className="flex flex-col " style={{ fontFamily: 'satoshi', fontSize: 20, fontWeight: 600 }} >
+                  <div
+                    className="flex flex-col "
+                    style={{
+                      fontFamily: "satoshi",
+                      fontSize: 20,
+                      fontWeight: 600,
+                    }}
+                  >
                     {title ? <>{title}</> : "dashboard"}
                     <Breadcrumbs
-
                       className="breadcrumbs_title max-tablet:hidden"
                       sx={{
-                        color: '#B6BAC3',
+                        color: "#B6BAC3",
                         fontSize: 14,
-                        fontFamily: 'Satoshi',
-                        fontWeight: 500
+                        fontFamily: "Satoshi",
+                        fontWeight: 500,
                       }}
                       separator={<NavigateNextIcon aria-label="breadcrumb" />}
                       aria-label="breadcrumb"
                     >
                       {/* {breadcrumbs} */}
-                      {pathname?.substr(1)?.split('/')?.map((item, i) => {
-                        return (
-                          <Link
-                            underline="hover"
-                            style={{ cursor: 'pointer' }}
-                            key={i}
-                            color="inherit"
-                          // onClick={(e) => handleClick(e, item)}
-                          >
-                            {item}
-                          </Link>
-                        )
-                      })}
+                      {pathname
+                        ?.substr(1)
+                        ?.split("/")
+                        ?.map((item, i) => {
+                          return (
+                            <Link
+                              underline="hover"
+                              style={{ cursor: "pointer" }}
+                              key={i}
+                              color="inherit"
+                              // onClick={(e) => handleClick(e, item)}
+                            >
+                              {item}
+                            </Link>
+                          );
+                        })}
                     </Breadcrumbs>
                   </div>
                 </Typography>
               </Box>
-
             )}
           </Toolbar>
         </Grid>
@@ -151,12 +148,10 @@ const NavbarContainer = ({ handleDrawerToggle, mobileOpen }) => {
           display={"flex"}
           justifyContent={"flex-end"}
           alignItems="center"
-          marginRight={'1rem'}
+          marginRight={"1rem"}
           className="max-tablet:mr-0!"
         >
-
           <ToggleButtonGroup
-
             size="small"
             color="primary"
             value={alignment}
@@ -164,17 +159,15 @@ const NavbarContainer = ({ handleDrawerToggle, mobileOpen }) => {
             onChange={handleChange}
             aria-label="Platform"
           >
-
             <ToggleButton
               onClick={handleDrawerToggle}
-              value="underlined" aria-label="underlined">
+              value="underlined"
+              aria-label="underlined"
+            >
               <LuPanelRight style={{ fontSize: 27 }} />
             </ToggleButton>
           </ToggleButtonGroup>
-
         </Grid>
-
-
       </Grid>
     </Navbar>
   );

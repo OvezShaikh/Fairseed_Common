@@ -7,7 +7,7 @@ import Profile from "../../../components/inputs/AvatarCrop/Profile";
 
 const SignUp = ({ handleNext }) => {
   const imgRef = useRef(null);
-  const { isValid , values } = useFormikContext();
+  const { isValid, values } = useFormikContext();
   const [srcImg, setSrcImg] = useState("");
 
   const isFormValid = () => {
@@ -22,14 +22,17 @@ const SignUp = ({ handleNext }) => {
     }
   };
 
-
   return (
-    <Form className="pt-8 px-2  ">
+    <Form className="px-2  ">
       <div>
         <div className="flex flex-col gap-8">
           <div className="flex flex-col justify-center items-center">
             <div>
-            <Profile name={"profile_pic"} value={values?.profile_pic} srcImg={srcImg} setSrcImg={setSrcImg} />
+              <Profile
+                name={"profile_pic"}
+                srcImg={srcImg}
+                setSrcImg={setSrcImg}
+              />
             </div>
             <div className="w-full space-y-4">
               <div>

@@ -86,18 +86,6 @@ const UserSignUp_02 = () => {
 
         <DialogContent style={{ overflowX: "hidden" }}>
           <div className="flex w-full">
-            {/* <Grid item xs={12}>
-                <DialogTitle >
-                  <StyledTypography
-                    component="h4"
-                    variant="h4"
-                    sx={{ marginTop: '18px', marginLeft: '102px', paddingBottom: '10px', fontFamily: 'Epilogue' }}
-                  >
-                    Sign Up
-                  </StyledTypography>
-                  <hr className='text-gray-500 mx-24' />
-                </DialogTitle>
-              </Grid> */}
             <div className="w-1/2 flex flex-col justify-center items-center">
               <Sign_Stepper />
             </div>

@@ -135,15 +135,6 @@ const InputField = ({
     }
   }
 
-  // const tooltipData = localStorage.getItem("tooltipData")
-  //   ? JSON.parse(localStorage.getItem("tooltipData"))?.filter(
-  //       (item) =>
-  //         item?.field_name?.toLowerCase() ===
-  //         configTextfield?.label?.toLowerCase()
-  //     )
-  //   : null;
-
-  // Return input field with password visibility icon
   return (
     <>
       {label && (
@@ -168,25 +159,36 @@ const InputField = ({
         <InputBase
           disabled={disabled}
           sx={styles}
-          type={type === "password" && !showPassword ? "password" : "text"} // Toggle type between password and text based on visibility
-          // multiple={multiple}
-          // style={{ ...configTextfield?.style }}
+          type={
+            type === "password" && !showPassword
+              ? "password"
+              : type === "date"
+              ? "date"
+              : type === "number"
+              ? "number"
+              : "text"
+          }
           {...textFieldConfig}
         />
-        <div className="absolute right-[20px] top-[35px]">
-          {type === "password" && (
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={togglePasswordVisibility}
-                edge="end"
-              >
-                {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
-              </IconButton>
-            </InputAdornment>
-          )}
-        </div>
+
+        {/* Conditionally render icons section */}
+        {type !== "date" && (
+          <div className="absolute right-[20px] top-[35px]">
+            {type === "password" && (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={togglePasswordVisibility}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                </IconButton>
+              </InputAdornment>
+            )}
+          </div>
+        )}
       </div>
+
       <ErrorMessage
         name={name}
         render={(msg) => (

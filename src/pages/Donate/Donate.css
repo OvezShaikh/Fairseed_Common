@@ -1,6 +1,6 @@
 .donate-div form div {
-  padding: 12px 20px;
-  margin-bottom: 15px;
+  /* padding: 12px 20px; */
+  margin-bottom: 10px;
   border-radius: 5px;
 }
 
@@ -73,7 +73,7 @@
 }
 
 .mobile-input {
-  margin-top: 10px !important;
+  margin-top: 2px !important;
 }
 
 .donate-div .email-country-div,

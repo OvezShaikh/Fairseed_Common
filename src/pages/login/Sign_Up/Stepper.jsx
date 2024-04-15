@@ -169,11 +169,11 @@ const Sign_Stepper = () => {
     mutate(formData, {
       onSuccess: (response) => {
         console.log(response);
-        toast.success(`${response?.data?.message}`, {
+        toast.success(response?.data?.message, {
           position: "top-right",
         });
         navigate("/Home");
-        // window.location.href = "/Home";
+        window.location.href = "/Home";
       },
       onError: (response) => {
         console.log(response);

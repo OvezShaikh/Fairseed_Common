@@ -35,12 +35,10 @@ function CausesView() {
   const [data, setData] = useState({});
   const navigate = useNavigate();
 
-  const [adhaar_image , setAdhaar_image] = useState('');
-  const [pan_image , setPan_image] = useState('');
-  const [passbook_image , setPassbook_image] = useState('');
+  const [adhaar_image, setAdhaar_image] = useState("");
+  const [pan_image, setPan_image] = useState("");
+  const [passbook_image, setPassbook_image] = useState("");
 
-
- 
   const initial_values = {
     account_holder_name: data?.bank_kyc?.account_holder_name || "",
     account_number: data?.bank_kyc?.account_number || "",
@@ -52,11 +50,11 @@ function CausesView() {
     status: data?.bank_kyc?.status || "",
     pan_card: data?.bank_kyc?.pan_card || "",
     adhar_card: data?.bank_kyc?.adhar_card || "",
-    other:data?.bank_kyc?.other ||  "",
+    other: data?.bank_kyc?.other || "",
     rasing_for: data?.bank_kyc?.rasing_for || "",
-    adhar_card_image:data?.adhar_card_image || '',
-    pan_card_image:data?.pan_card_image || '',
-    passbook_image:data?.passbook_image || '',
+    adhar_card_image: data?.adhar_card_image || "",
+    pan_card_image: data?.pan_card_image || "",
+    passbook_image: data?.passbook_image || "",
   };
 
   useGetAll({
@@ -67,65 +65,63 @@ function CausesView() {
     },
     onSuccess: (data) => {
       setData(data);
-      const Adhaar = `${process.env.REACT_APP_BASE_URL}${data?.bank_kyc?.adhar_card_image}`
-      setAdhaar_image(Adhaar)
-      const Pan = `${process.env.REACT_APP_BASE_URL}${data?.bank_kyc?.pan_card_image}`
-      setPan_image(Pan)
-      const Passbook = `${process.env.REACT_APP_BASE_URL}${data?.bank_kyc?.passbook_image}`
-      setPassbook_image(Passbook)
+      const Adhaar = `${process.env.REACT_APP_BASE_URL}${data?.bank_kyc?.adhar_card_image}`;
+      setAdhaar_image(Adhaar);
+      const Pan = `${process.env.REACT_APP_BASE_URL}${data?.bank_kyc?.pan_card_image}`;
+      setPan_image(Pan);
+      const Passbook = `${process.env.REACT_APP_BASE_URL}${data?.bank_kyc?.passbook_image}`;
+      setPassbook_image(Passbook);
     },
   });
-  
+
   const { mutate } = useCreateOrUpdate({
     url: `/admin-dashboard/campaign-kyc/${id}`,
     method: "put",
   });
 
   const handleSubmit = (values) => {
-
     const formData = new FormData();
-    formData.append('account_holder_name' , values?.account_holder_name)
-    formData.append('account_number' , values?.account_number)
-    formData.append('bank_name' , values?.bank_name)
-    formData.append('branch_name' , values?.branch_name)
-    formData.append('title' , values?.title)
-    formData.append('ifsc_code' , values?.ifsc_code)
-    formData.append('status' , values?.status?.value)
-    formData.append('pan_card' , values?.pan_card)
-    formData.append('adhar_card' , values?.adhar_card)
-    formData.append('other' , values?.other)
-    formData.append('rasing_for' , values?.rasing_for)
-    if (values?.adhar_card_image instanceof File){
-      formData.append('adhar_card_image' , values?.adhar_card_image)
+    formData.append("account_holder_name", values?.account_holder_name);
+    formData.append("account_number", values?.account_number);
+    formData.append("bank_name", values?.bank_name);
+    formData.append("branch_name", values?.branch_name);
+    formData.append("title", values?.title);
+    formData.append("ifsc_code", values?.ifsc_code);
+    formData.append("status", values?.status?.value);
+    formData.append("pan_card", values?.pan_card);
+    formData.append("adhar_card", values?.adhar_card);
+    formData.append("other", values?.other);
+    formData.append("rasing_for", values?.rasing_for);
+    if (values?.adhar_card_image instanceof File) {
+      formData.append("adhar_card_image", values?.adhar_card_image);
     }
-    if (values?.pan_card_image instanceof File){
-      formData.append('pan_card_image' , values?.pan_card_image)
+    if (values?.pan_card_image instanceof File) {
+      formData.append("pan_card_image", values?.pan_card_image);
     }
-    if (values?.passbook_image instanceof File){
-      formData.append('passbook_image' , values?.passbook_image)
-}
-    formData.append('approve_kyc ' ,true)
+    if (values?.passbook_image instanceof File) {
+      formData.append("passbook_image", values?.passbook_image);
+    }
+    formData.append("approve_kyc ", true);
 
-
-    mutate(formData, {
-      onSuccess: (response) => {
-        toast.success(response?.data?.data, {
-          position: "top-right",
-        });
-        navigate(-1)
+    mutate(
+      formData,
+      {
+        onSuccess: (response) => {
+          toast.success(response?.data?.message , {
+            position: "top-right",
+          });
+          navigate(-1);
+        },
       },
-    },{
-      onerror:(response)=>{
-        toast.error(response?.data?.message,{
-          position:'top-right'
-        } )
+      {
+        onerror: (response) => {
+          toast.error(response?.data?.message, {
+            position: "top-right",
+          });
+        },
       }
-    }
     );
   };
-
-
-
 
   return (
     <Formik
@@ -234,76 +230,89 @@ function CausesView() {
                   </FormLabel>
                   <div className="flex gap-4 pt-2 max-tablet:flex-col">
                     <div className="flex flex-col gap-2">
-                     <a href={adhaar_image}>
-                     <img src={adhaar_image} />
-                      <FormLabel
-                        sx={{
-                          fontSize: "16px",
-                          fontFamily: "satoshi",
-                          fontWeight: 700,
-                          color: "#383A42",
-                          paddingLeft: "8px",
-                        }}
-                      >
-                        PAN Card
-                      </FormLabel>
-
-                     </a>
+                      <a href={adhaar_image}>
+                        <img
+                          alt=""
+                          src={adhaar_image}
+                          style={{ width: "218px", height: "100px" }}
+                        />
+                        <FormLabel
+                          sx={{
+                            fontSize: "16px",
+                            fontFamily: "satoshi",
+                            fontWeight: 700,
+                            color: "#383A42",
+                            paddingLeft: "8px",
+                          }}
+                        >
+                          PAN Card
+                        </FormLabel>
+                      </a>
                     </div>
                     <div className="flex flex-col gap-2">
-                   <a href={pan_image}>
-                   <img src={pan_image} />
-                      <FormLabel
-                        sx={{
-                          fontSize: "16px",
-                          fontFamily: "satoshi",
-                          fontWeight: 700,
-                          color: "#383A42",
-                          paddingLeft: "8px",
-                        }}
-                      >
-                        Adhar Card
-                      </FormLabel>
-                   </a>
+                      <a href={pan_image}>
+                        <img
+                          alt=""
+                          src={pan_image}
+                          style={{ width: "218px", height: "100px" }}
+                        />
+                        <FormLabel
+                          sx={{
+                            fontSize: "16px",
+                            fontFamily: "satoshi",
+                            fontWeight: 700,
+                            color: "#383A42",
+                            paddingLeft: "8px",
+                          }}
+                        >
+                          Adhar Card
+                        </FormLabel>
+                      </a>
                     </div>
                     <div className="flex flex-col gap-2">
-                   <a href={passbook_image}>
-                   <img src={passbook_image} />
-                      <FormLabel
-                        sx={{
-                          fontSize: "16px",
-                          fontFamily: "satoshi",
-                          fontWeight: 700,
-                          color: "#383A42",
-                          paddingLeft: "8px",
-                        }}
-                      >
-                        Passbook
-                      </FormLabel>
-                   </a>
+                      <a href={passbook_image}>
+                        <img
+                          alt=""
+                          src={passbook_image}
+                          style={{ width: "218px", height: "100px" }}
+                        />
+                        <FormLabel
+                          sx={{
+                            fontSize: "16px",
+                            fontFamily: "satoshi",
+                            fontWeight: 700,
+                            color: "#383A42",
+                            paddingLeft: "8px",
+                          }}
+                        >
+                          Passbook
+                        </FormLabel>
+                      </a>
                     </div>
                   </div>
                 </div>
                 <div className="w-full">
-                  <UploadField label="Upload PAN Card Copy:"
-                   name={"adhar_card_image"}
-                   multiple={false}
-                   value={values?.adhar_card_image}
-                   />
+                  <UploadField
+                    label="Upload PAN Card Copy:"
+                    name={"adhar_card_image"}
+                    multiple={false}
+                    value={values?.adhar_card_image}
+                  />
                 </div>
                 <div className="w-full">
-                  <UploadField label="Upload Aadhar Card Copy:"
-                   name={"pan_card_image"}
-                   multiple={false}
-                   value={values?.pan_card_image}
-                     />
-
+                  <UploadField
+                    label="Upload Aadhar Card Copy:"
+                    name={"pan_card_image"}
+                    multiple={false}
+                    value={values?.pan_card_image}
+                  />
                 </div>
                 <div className="w-full">
-                  <UploadField label="Upload Passbook Copy:"
-                   name={"passbook_image"}
-                   multiple={false}
-                   value={values?.passbook_image}
+                  <UploadField
+                    label="Upload Passbook Copy:"
+                    name={"passbook_image"}
+                    multiple={false}
+                    value={values?.passbook_image}
                   />
                 </div>
                 <div className="w-full">

@@ -99,12 +99,12 @@ export default function DonationInMonths() {
 
 
   useGetAll({
-    key: `/admin-dashboard/donation-api`,
+    key: `/admin-dashboard/donation-graph`,
     enabled: true,
    
     select: (data) => {
       console.log(data)
-      return data.data.fundraiser_data;
+      return data.data.donation_data;
    },
     onSuccess: (data) => {
       setDataObject(data);
@@ -138,7 +138,7 @@ export default function DonationInMonths() {
           <Legend />
           <Bar
             className="w-5"
-            dataKey='total_amount'
+            dataKey='donation_count'
             shape={(props) => (
               <LinearGradientBar
                 fundRaised={fundRaised}

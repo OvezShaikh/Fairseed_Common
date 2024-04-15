@@ -4,7 +4,7 @@ import images from "../../constants/images";
 import { useState, useEffect } from "react";
 import { Avatar, LinearProgress } from "@mui/material";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+import { RiErrorWarningLine } from "react-icons/ri";
 
 function Card({
   key,
@@ -94,13 +94,20 @@ function Card({
                       );
                     case "newly_added":
                       return (
+                        <div className="flex gap-1 items-center">
+                          <RiErrorWarningLine className="text-red-500 size-5" />
+                          Newly Added
+                        </div>
+                      );
+                    case "trending":
+                      return (
                         <div className="flex gap-1">
                           <img
                             src={images.TrendUp}
                             alt=""
                             className="text-black"
                           />
-                          Newly Added
+                          Trending
                         </div>
                       );
 

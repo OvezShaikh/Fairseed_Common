@@ -98,7 +98,6 @@ const Test = ({ handleBack, handleNext }) => {
       !!values.goal_amount &&
       !!values.location &&
       !!values.category &&
-      !!values.zakat_eligible &&
       !!values.end_date
     );
   };
@@ -191,7 +190,6 @@ const Test = ({ handleBack, handleNext }) => {
             }}
           >
             Is the Campaign Zakaat eligible?
-            <span className="text-red-600">*</span>
           </FormLabel>
           <CheckBox
             sx={{ paddingLeft: "15px" }}

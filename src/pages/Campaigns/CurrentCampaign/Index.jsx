@@ -1,8 +1,8 @@
 import Navbar from "../../../components/layout/Navbar";
 import Footer from "../../../components/layout/Footer";
 import images from "../../../constants/images";
-import { LinearProgress } from "@mui/material";
-import Doner from "../../../components/layout/Doner";
+import { Button, LinearProgress } from "@mui/material";
+import Donor from "../../../components/layout/Donor";
 import PrimaryButton from "../../../components/inputs/PrimaryButton";
 import { Grid, Typography } from "@mui/material";
 import SecondaryButton from "../../../components/inputs/secondaryButton";
@@ -20,6 +20,19 @@ import InputField from "../../../components/inputs/InputField";
 import { Form, Formik } from "formik";
 import ErrorIcon from "@mui/icons-material/Error";
 import { useCreateOrUpdate } from "../../../Hooks";
+import InputAdminField from "../../../components/inputs/InputAdminField/Index";
+import {
+  EmailIcon,
+  EmailShareButton,
+  PinterestIcon,
+  PinterestShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+  XIcon,
+} from "react-share";
+import { MdClose } from "react-icons/md";
 
 function CurrentCampaign({
   key,
@@ -27,6 +40,7 @@ function CurrentCampaign({
   cardImage,
   goalAmount,
   fundRaised,
+  onClose,
   daysLeft,
   userCount,
   location,
@@ -36,23 +50,33 @@ function CurrentCampaign({
   const { pathname } = useLocation();
   const { id } = useParams();
   const [cardDetails, setCardDetails] = useState(null);
+  const [showSharePopup, setShowSharePopup] = useState(false);
+
+  const handleShareButtonClick = () => {
+    setShowSharePopup(true);
+  };
+
+  const handleCloseSharePopup = () => {
+    setShowSharePopup(false);
+  };
+  const Share_title = "Donate For Good";
+  const currentPageUrl = window.location.href;
+  const media = `${process.env.REACT_APP_BE_BASE_URL}${cardDetails?.campaign_image}`;
 
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
   let user_id = Data?.id;
 
   const copy_current_url = () => {
-    const currentPageUrl = window.location.href;
-
     navigator.clipboard.writeText(currentPageUrl);
     toast.info("Link Copied !", {
-      position: "top-center",
+      position: "top-right",
     });
   };
 
   const { mutate } = useCreateOrUpdate({
-    url: `/user-dashboard/report-campaign`
-  })
+    url: `/user-dashboard/report-campaign`,
+  });
 
   useEffect(() => {
     axios
@@ -60,26 +84,16 @@ function CurrentCampaign({
         `${process.env.REACT_APP_BE_BASE_URL}/campaign/campaign-details/${id}`
       )
       .then((res) => {
-        console.log("API Response:", res.data);
-
         setCardDetails(res.data.data);
-        console.log("CURRENT CAMPAIGN ", cardDetails);
-
-        // setDonor(res.data.donor)
+        console.log(res.data.data, "res");
       })
-      .catch((error) => {
-        console.error("API Error:", error);
-        // Handle error if needed
-      });
+      .catch((error) => { });
   }, [id]);
 
   const title = useMemo(
-    () =>
-      `${pathname
-        .slice(1)}`,
+    () => `${pathname.slice(1)}`,
 
     [pathname]
-    // console.log(cardDetails,"cardDetailscardDetails")
   );
   const fullNameWords = cardDetails?.user?.split(" ");
   const firstLetter = fullNameWords?.[0]?.charAt(0)?.toUpperCase() ?? "";
@@ -342,7 +356,7 @@ function CurrentCampaign({
                     gap: 12,
                     display: "inline-flex",
                   }}
-                  onClick={copy_current_url}
+                  onClick={handleShareButtonClick}
                 >
                   <div
                     className="w-[32px] h-[32px] max-tablet:w-[20px] max-tablet:h-[20px]"
@@ -354,7 +368,6 @@ function CurrentCampaign({
                     className="text-3xl max-tablet:text-lg "
                     style={{
                       color: "#FF9F0A",
-
                       fontFamily: "Satoshi ",
                       fontWeight: "700",
                       background:
@@ -366,6 +379,58 @@ function CurrentCampaign({
                     Share
                   </div>
                 </button>
+
+                {/* Share Popup */}
+                {showSharePopup && (
+                  <div className="fixed inset-0 flex justify-center items-center z-50 pointer-events-none">
+                    <div className="bg-black bg-opacity-50 absolute inset-0"></div>
+                    <div className="bg-white p-8 rounded-md max-w-md relative pointer-events-auto">
+                      <button
+                        onClick={handleCloseSharePopup}
+                        className="absolute top-0 right-0 p-2"
+                      >
+                        <MdClose size={24} />
+                      </button>
+                      <h2 className="text-2xl font-bold mb-4">
+                        Share this link
+                      </h2>
+                      <div className="flex justify-around">
+                        <div className="mr-4">
+                          <EmailShareButton
+                            url={currentPageUrl}
+                            subject={Share_title}
+                            body="body"
+                          >
+                            <EmailIcon size={45} round />
+                          </EmailShareButton>
+                        </div>
+                        <div className="mr-4">
+                          <WhatsappShareButton
+                            url={currentPageUrl}
+                            title={Share_title}
+                            separator=":: "
+                          >
+                            <WhatsappIcon size={45} round />
+                          </WhatsappShareButton>
+                        </div>
+                        <div className="mr-4">
+                          <TwitterShareButton url={currentPageUrl}>
+                            <TwitterIcon size={45} round />
+                          </TwitterShareButton>
+                        </div>
+                        <div>
+                          <PinterestShareButton
+                            url={currentPageUrl}
+                            media={media}
+                          >
+                            <PinterestIcon size={45} round />
+                          </PinterestShareButton>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             <div
@@ -407,10 +472,9 @@ function CurrentCampaign({
               Recent Donors:
             </h1>
             <div className="space-y-4 flex flex-col justify-center items-center">
-              <Doner data={cardDetails?.donor} />
+              <Donor data={cardDetails?.donor} />
 
               <Dialog
-                // onClose={() => onClose && onClose()}
                 button={
                   <SecondaryButton
                     sx={{
@@ -424,73 +488,109 @@ function CurrentCampaign({
                     <GiHazardSign className="text-[red] mr-1" />
                     Report
                   </SecondaryButton>
-                } // Pass the button element as a prop
+                }
                 title="Reporte Cause"
-                maxWidth="md"
-                onCloseCall={() => console.log("Dialog closed")}
+                onClose={() => onClose && onClose()}
               >
-                <Formik initialValues={{
-                  message: "",
-                  campaign: `${id}`,
-                  user: user_id
-                }}
-                  onSubmit={(values) => mutate(values, {
-                    onSuccess: (response) => {
-                      toast.success(response?.data?.message, {
-                        position: 'top-right'
-                      })
-                    }
-                  }, {
-                    onerror: (response) => {
-                      toast.error(response?.data?.message, {
-                        position: 'top-right'
-                      })
-                    }
-                  }
-
-                  )
-                  }
-                >
-                  <Form className="flex flex-col justify-center items-center gap-10">
-                    <div className="w-full px-2">
-                      <InputField
-                        required={"true"}
-                        multiline
-                        info
-                        CustomInfoIcon={
-                          <ErrorIcon
-                            className="ms-1"
-                            style={{
-                              color: "red",
-                              cursor: "pointer",
-                              height: "18px",
-                            }}
-                          />
-                        }
-                        infoText={"Please be careful while adding AD Path."}
-                        rows={5}
-                        sx={{
-                          padding: "20px",
-                          border: "1px solid #e2e2e2",
-                          // },
-                          "&:focus-within": {
-                            boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
-                            borderColor: "black",
+                {({ onClose }) => (
+                  <Formik
+                    initialValues={{
+                      message: "",
+                      name:"",
+                      email:"",
+                      campaign: `${id}`,
+                      user: user_id,
+                    }}
+                    onSubmit={(values) =>
+                      mutate( values,
+                        {
+                          onSuccess: (response) => {
+                            toast.success(response?.data?.message, {
+                              position: "top-right",
+                            });
+                            onClose();
                           },
-                        }}
-                        label={"Message:"}
-                        name={"message"}
-                        placeholder={"write why you report this cause?"}
-                      />
-                    </div>
-                    <div className="flex gap-4">
-                      <PrimaryButton type="submit">
-                        <GiHazardSign className="mr-1" />
-                        Report
-                      </PrimaryButton>
-                    </div>
-                  </Form>
-                </Formik>
+                        },
+                        {
+                          onerror: (response) => {
+                            toast.error(response?.data?.message, {
+                              position: "top-right",
+                            });
+                          },
+                        }
+                      )
+                    }
+                  >
+                    <Form className="flex flex-col justify-center items-center gap-10">
+                      <div className="flex w-full gap-4 max-desktop:flex-col max-tablet:flex-col">
+                        <div className="w-full">
+                          <InputAdminField
+                            name={"name"}
+                            label={"Name"}
+                            placeholder={"Enter Your Name"}
+                          />
+                        </div>
+                        <div className="w-full">
+                          <InputAdminField
+                            name={"email"}
+                            label={"Email"}
+                            placeholder={"Enter Your Email"}
+                          />
+                        </div>
+                      </div>
+                      <div className="w-full px-2">
+                        <InputField
+                          required={"true"}
+                          multiline
+                          info
+                          CustomInfoIcon={
+                            <ErrorIcon
+                              className="ms-1"
+                              style={{
+                                color: "red",
+                                cursor: "pointer",
+                                height: "18px",
+                              }}
+                            />
+                          }
+                          infoText={"Please be careful while adding AD Path."}
+                          rows={5}
+                          sx={{
+                            padding: "20px",
+                            border: "1px solid #e2e2e2",
+                            // },
+                            "&:focus-within": {
+                              boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
+                              borderColor: "black",
+                            },
+                          }}
+                          label={"Message:"}
+                          name={"message"}
+                          placeholder={"write why you report this cause?"}
+                        />
+                      </div>
+                      <div className="flex gap-4">
+                        <Button
+                          sx={{
+                            background: "#F7F7F7",
+                            width: "75px",
+                            height: "42px",
+                          }}
+                          className=" bg-[#F7F7F7]"
+                          onClick={onClose}
+                        >
+                          <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
+                            Cancel
+                          </h1>
+                        </Button>
+                        <PrimaryButton type="submit">
+                          <GiHazardSign className="mr-1" />
+                          Report
+                        </PrimaryButton>
+                      </div>
+                    </Form>
+                  </Formik>
+                )}
               </Dialog>
             </div>
           </div>

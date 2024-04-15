@@ -12,21 +12,21 @@ import {
   PiAlarmDuotone,
   PiHeartDuotone,
 } from "react-icons/pi";
+import { RiErrorWarningLine } from "react-icons/ri";
 
 export default function ScrollableTabsButtonForce({
   name,
   label,
   icone,
-  onTabChange
+  onTabChange,
 }) {
   const [value, setValue] = React.useState(null);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
 
-    const label =event.currentTarget.textContent;
+    const label = event.currentTarget.textContent;
 
-    
     onTabChange(newValue, label);
   };
 
@@ -35,11 +35,16 @@ export default function ScrollableTabsButtonForce({
   // };
 
   return (
-    <Box sx={{
-      maxWidth: { xs: "100%", sm: "100%", lg: '92%' }, bgcolor: "background.paper", "& .css-145v6pe-MuiButtonBase-root-MuiTabScrollButton-root.Mui-disabled ": {
-        display: "none",
-      }, "& .css-ptiqhd-MuiSvgIcon-root": { width: 32, height: 32 }
-    }}
+    <Box
+      sx={{
+        maxWidth: { xs: "100%", sm: "100%", lg: "85%" },
+        bgcolor: "background.paper",
+        "& .css-145v6pe-MuiButtonBase-root-MuiTabScrollButton-root.Mui-disabled ":
+          {
+            display: "none",
+          },
+        "& .css-ptiqhd-MuiSvgIcon-root": { width: 32, height: 32 },
+      }}
     >
       <Tabs
         value={value}
@@ -56,7 +61,6 @@ export default function ScrollableTabsButtonForce({
           },
           "& .MuiButtonBase-root": { textTransform: "capitalize" },
           fontSize: "20px !important",
-
         }}
         onChange={handleChange}
         variant="scrollable"
@@ -76,9 +80,9 @@ export default function ScrollableTabsButtonForce({
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiTrendUpDuotone
+              <RiErrorWarningLine
                 style={{ color: "red" }}
-                className="icon pr-2 w-7 h-7"
+                className="icon pr-2 w-8 h-8"
               />
               Newly Added
             </Box>
@@ -116,7 +120,7 @@ export default function ScrollableTabsButtonForce({
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiMosqueDuotone
+              <PiHeartDuotone
                 style={{ color: "red" }}
                 className="icon pr-2 w-7 h-7"
               />
@@ -136,31 +140,15 @@ export default function ScrollableTabsButtonForce({
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiAlarmDuotone style={{ color: "red" }} className="icon pr-2 w-7 h-7" />
+              <PiAlarmDuotone
+                style={{ color: "red" }}
+                className="icon pr-2 w-7 h-7"
+              />
               Expiring Soon
             </Box>
           }
         />
-        <Tab
-          style={{
-            color: "var(--cool-grey-cool-grey-10, #383A42)",
-            borderRadius: "var(--Spacing-24, 50px)",
-            border: "1.5px solid rgb(248, 85, 85)",
-            fontFamily: "Satoshi",
-            marginLeft: "12px",
-            fontSize: "18px",
-            fontStyle: "normal",
-          }}
-          label={
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiGenderFemaleDuotone
-                style={{ color: "red" }}
-                className="icon pr-2 w-7 h-7"
-              />
-              Women Empowerment
-            </Box>
-          }
-        />
+
         <Tab
           style={{
             color: "var(--cool-grey-cool-grey-10, #383A42)",
@@ -173,15 +161,14 @@ export default function ScrollableTabsButtonForce({
           }}
           label={
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PiMegaphoneSimpleDuotone
+              <PiTrendUpDuotone
                 style={{ color: "red" }}
                 className="icon pr-2 w-7 h-7"
               />
-              NGO Initiatives
+              Trending
             </Box>
           }
         />
-        
       </Tabs>
     </Box>
   );
