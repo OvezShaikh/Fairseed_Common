@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material/";
 import { useState } from "react";
-import { createTheme } from "@mui/system";
+import { createTheme, fontWeight } from "@mui/system";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
@@ -29,7 +29,7 @@ const StyledTypography = styled(Typography)({
   fontStyle: "normal",
 });
 
-const UserLogin = () => {
+const UserLogin = ({ text, color, fontWeight, size }) => {
   const { Initial_value, formValidation, loginData } = useLogin();
 
   const theme = createTheme();
@@ -50,10 +50,15 @@ const UserLogin = () => {
   return (
     <>
       <button
-        className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
+        className="font-[satoshi]   "
+        style={{
+          color: color || "#40444C",
+          fontWeight: fontWeight || 500,
+          fontSize: size || "18px",
+        }}
         onClick={handleClickOpen}
       >
-        Login
+        {text}
       </button>
       <Dialog
         onClose={handleClose}

@@ -12,12 +12,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useGetAll } from "../../Hooks";
 import { useRef } from "react";
-import MenuItem from "@mui/material/MenuItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import Logout from "@mui/icons-material/Logout";
-import Avatar from "@mui/material/Avatar";
-import Divider from "@mui/material/Divider";
-import Settings from "@mui/icons-material/Settings";
 
 const GetInvolved = [
   {
@@ -71,13 +66,6 @@ const AboutUs = [
   {
     name: "Objectives & Values",
     href: "/Home/Objectives-&-values",
-  },
-];
-
-const HowItWorks = [
-  {
-    name: "How-It-Works",
-    href: "/How-It-Works",
   },
 ];
 
@@ -460,19 +448,18 @@ export default function Example() {
               </PrimaryButton>
             ) : (
               <PrimaryButton
-                onClick={() => {
-                  toast.error("please login First !!! ", {
-                    position: "top-center",
-                  });
-                }}
                 sx={{
                   borderRadius: "var(--Pixels-8, 8px)",
                   fontWeight: 700,
                   fontSize: "18px",
-                  // padding: "12px 10px 12px 10px",
+                  padding: "12px 20px",
                 }}
               >
-                Start a Campaign
+                <UserLogin
+                  text={"Start a Campaign"}
+                  color={"white"}
+                  fontWeight={700}
+                />
               </PrimaryButton>
             )}
 
@@ -538,7 +525,7 @@ export default function Example() {
                 </div>
               ) : (
                 <button className="font-[satoshi] text-[18px]  font-medium text-[#40444C]">
-                  <UserLogin />
+                  <UserLogin text={"Log in"} />
                 </button>
               )}
             </div>

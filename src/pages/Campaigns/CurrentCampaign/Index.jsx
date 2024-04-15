@@ -33,6 +33,7 @@ import {
   XIcon,
 } from "react-share";
 import { MdClose } from "react-icons/md";
+import UserLogin from "../../login/Login_page/Index";
 
 function CurrentCampaign({
   key,
@@ -87,7 +88,7 @@ function CurrentCampaign({
         setCardDetails(res.data.data);
         console.log(res.data.data, "res");
       })
-      .catch((error) => { });
+      .catch((error) => {});
   }, [id]);
 
   const title = useMemo(
@@ -240,8 +241,9 @@ function CurrentCampaign({
                 sx={{
                   height: "100%",
                   borderRadius: "16px",
-                  background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${(fundRaised / goalAmount) * 100
-                    }%, #e0e0e0 ${(fundRaised / goalAmount) * 100}%)`,
+                  background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${
+                    (fundRaised / goalAmount) * 100
+                  }%, #e0e0e0 ${(fundRaised / goalAmount) * 100}%)`,
                   "& .MuiLinearProgress-bar": {
                     backgroundColor: "#0DC7B1 !important",
                   },
@@ -288,17 +290,17 @@ function CurrentCampaign({
                 <PrimaryButton
                   className="w-full max-desktop:w-full"
                   sx={{ padding: "16px", borderRadius: "8px", width: "%" }}
-                // style={{
+                  // style={{
 
-                //   paddingTop: 16,
-                //   paddingBottom: 16,
-                //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
-                //   borderRadius: 8,
-                //   justifyContent: "center",
-                //   alignItems: "center",
-                //   gap: 10,
-                //   display: "inline-flex",
-                // }}
+                  //   paddingTop: 16,
+                  //   paddingBottom: 16,
+                  //   background: 'linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)',
+                  //   borderRadius: 8,
+                  //   justifyContent: "center",
+                  //   alignItems: "center",
+                  //   gap: 10,
+                  //   display: "inline-flex",
+                  // }}
                 >
                   <div style={{ width: 38, position: "relative" }}>
                     <img src={images.coins2} alt="" />
@@ -425,7 +427,6 @@ function CurrentCampaign({
                           >
                             <PinterestIcon size={45} round />
                           </PinterestShareButton>
-
                         </div>
                       </div>
                     </div>
@@ -496,13 +497,14 @@ function CurrentCampaign({
                   <Formik
                     initialValues={{
                       message: "",
-                      name:"",
-                      email:"",
+                      name: "",
+                      email: "",
                       campaign: `${id}`,
                       user: user_id,
                     }}
                     onSubmit={(values) =>
-                      mutate( values,
+                      mutate(
+                        values,
                         {
                           onSuccess: (response) => {
                             toast.success(response?.data?.message, {
@@ -521,7 +523,7 @@ function CurrentCampaign({
                       )
                     }
                   >
-                    <Form className="flex flex-col justify-center items-center gap-10">
+                    <Form className="flex flex-col justify-center items-center gap-10 px-2">
                       <div className="flex w-full gap-4 max-desktop:flex-col max-tablet:flex-col">
                         <div className="w-full">
                           <InputAdminField
@@ -538,7 +540,7 @@ function CurrentCampaign({
                           />
                         </div>
                       </div>
-                      <div className="w-full px-2">
+                      <div className="w-full ">
                         <InputField
                           required={"true"}
                           multiline
@@ -622,31 +624,74 @@ function CurrentCampaign({
             </h1>
           </PrimaryButton>
         </Link>
-        <SecondaryButton
-          sx={{
-            padding: "16px",
-            borderRadius: "8px",
-            background: "#FFF6F5",
-            paddingLeft: "30px",
-            paddingRight: "30px",
-          }}
-        >
-          <div style={{ width: 38, position: "relative" }}>
-            <img className="text-3xl font-[40px]" src={images?.Coins} alt="" />
-          </div>
-
-          <h1
-            style={{
-              color: "var(--Base-Colours-Text-Primary, #25272C)",
-              fontSize: 20,
-              fontFamily: "Satoshi ",
-              fontWeight: 700,
-              wordWrap: "break-word",
+        {localStorage.getItem("token") ? (
+          <SecondaryButton
+            onClick={() => {
+              navigate("/Home/Create-Campaign");
+            }}
+            sx={{
+              padding: "12px",
+              borderRadius: "8px",
+              background: "#FFF6F5",
+              paddingLeft: "30px",
+              paddingRight: "30px",
             }}
           >
-            Launch Campaign
-          </h1>
-        </SecondaryButton>
+            <div style={{ width: 38, position: "relative" }}>
+              <img
+                className="text-3xl font-[40px]"
+                src={images?.RocketLaunch2}
+                alt=""
+              />
+            </div>
+
+            <h1
+              style={{
+                color: "var(--Base-Colours-Text-Primary, #25272C)",
+                fontSize: 20,
+                fontFamily: "Satoshi ",
+                fontWeight: 700,
+                wordWrap: "break-word",
+              }}
+            >
+              Launch Campaign
+            </h1>
+          </SecondaryButton>
+        ) : (
+          <SecondaryButton
+            sx={{
+              padding: "12px",
+              borderRadius: "8px",
+              background: "#FFF6F5",
+              paddingLeft: "30px",
+              paddingRight: "30px",
+            }}
+          >
+            <div style={{ width: 38, position: "relative" }}>
+              <img
+                className="text-3xl font-[40px]"
+                src={images?.RocketLaunch2}
+                alt=""
+              />
+            </div>
+
+            <h1
+              style={{
+                color: "var(--Base-Colours-Text-Primary, #25272C)",
+                fontSize: 20,
+                fontFamily: "Satoshi ",
+                fontWeight: 700,
+                wordWrap: "break-word",
+              }}
+            >
+              <UserLogin
+                text={"Launch Campaign"}
+                fontWeight={700}
+                size={"20px"}
+              />
+            </h1>
+          </SecondaryButton>
+        )}
       </div>
       <Footer />
     </>
