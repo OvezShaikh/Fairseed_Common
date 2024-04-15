@@ -2,7 +2,6 @@ import React from "react";
 import ReactTable from "../../Table/index";
 import { useState } from "react";
 import IndeterminateCheckbox from "../../Table/IndeterminateCheckbox";
-import { LocationConfigurationDialog } from "../../admin-console/AddCategorydialog";
 import images from "../../../constants/images";
 import { GoDotFill } from "react-icons/go";
 import PrimaryButton from "../../inputs/PrimaryButton";
@@ -189,8 +188,6 @@ const Withdrawals = () => {
         checkboxComponent={IndeterminateCheckbox}
         url={`/admin-dashboard/campaign`}
         extraQuery={{ inactive: true }}
-        // addButton={<LocationConfigurationDialog />}
-        // addButton={<Button>HElloooooo</Button>}
         selectedRowID={selectedRowID}
       />
     </div>

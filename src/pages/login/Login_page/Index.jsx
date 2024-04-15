@@ -61,6 +61,7 @@ const UserLogin = () => {
         open={open}
         fullScreen={isSmallScreen}
         maxWidth="xl"
+        TouchRippleProps={{ disableTouchRipple: true }} // Disable touch ripple outside dialog
       >
         <IconButton
           aria-label="close"
@@ -79,34 +80,22 @@ const UserLogin = () => {
         <DialogContent
           style={{
             // overflowY: "hidden",
+
             overflowX: "hidden",
             padding: "0px",
           }}
         >
           <div className="flex w-full">
-            <div className="w-1/2 flex flex-col justify-center items-center max-desktop:font-[satoshi]">
-              {/* <Grid
-                item
-                xs={12}
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              > */}
+            <div className="w-1/2 flex flex-col justify-center  items-center max-desktop:font-[satoshi]">
               <Formcom
                 Initial_value={Initial_value}
                 formValidation={formValidation}
                 loginData={loginData}
               />
-              {/* </Grid> */}
             </div>
             {!isSmallScreen && (
               <div className="w-1/2">
-                {/* <Grid item xs={12} sm={isSmallScreen ? 12 : 8} md={6}> */}
                 <FormSlider isSmallScreen={isSmallScreen} />
-                {/* </Grid> */}
               </div>
             )}
           </div>

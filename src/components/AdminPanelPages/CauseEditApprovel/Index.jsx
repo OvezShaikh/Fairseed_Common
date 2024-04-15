@@ -23,9 +23,6 @@ import { ImageCropper } from "../../inputs/ImageCropper/ImageCropper";
 import { ImagePreviewDialog } from "../../inputs/PreviewImage/PreviewImage";
 import DropZone from "../../inputs/ImageCropper/CropDrop";
 
-
-
-
 function CauseEdit_Form() {
   let { state } = useLocation();
   let { id } = state;
@@ -48,7 +45,6 @@ function CauseEdit_Form() {
 
   const onChange = (e) => {
     let files;
-
     if (e) {
       files = e;
     }
@@ -69,9 +65,7 @@ function CauseEdit_Form() {
     onSuccess: (data) => {
       console.log(data);
       setUser(data);
-      const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${
-        data?.campaign_image || ""
-      }`;
+      const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign_image || ""}`;
       setSrcImg(imageUrl);
       setDocuments(data?.documents);
     },
@@ -143,7 +137,6 @@ function CauseEdit_Form() {
       },
     });
   };
-
 
   return (
     <Formik
@@ -241,7 +234,7 @@ function CauseEdit_Form() {
                 </div>
               </div>
 
-              <div className="w-full mt-5 max-tablet:pt-4">
+              <div className="w-full mt-5 max-tablet:pt-10 max-desktop:pt-5">
                 <InputField
                   onChange={handleChange}
                   value={values?.summary}
@@ -288,7 +281,7 @@ function CauseEdit_Form() {
                     return (
                       <Attachments
                         key={index}
-                        id={id}
+                        id={imageUrl?.id}
                         imageUrl={documentLink}
                       />
                     );
@@ -361,7 +354,6 @@ function CauseEdit_Form() {
                     }}
                     name="zakat_eligible"
                     checked={values?.zakat_eligible}
-                    // onChange={handleChange}
                     label={"Yes"}
                   />
                 </div>
@@ -413,6 +405,7 @@ function CauseEdit_Form() {
 
           <div className="flex gap-3 max-tablet:flex-col  max-tablet:items-center pt-5">
             <button
+              type="button"
               onClick={() => navigate(-1)}
               className="w-[69px] content-stretch h-[32px] bg-[#F7F7F7]"
             >
@@ -420,11 +413,18 @@ function CauseEdit_Form() {
                 Cancel
               </h1>
             </button>
-            <SuccessButton
+           
+
+            {values?.status === "Rejected" || values?.status === "Completed" ? (
+              " "
+            ) : (
+              <SuccessButton
               type="submit"
               text={"Save"}
               icon={<PiCheckFat className="w-4 h-4 mt-1" />}
             />
+            )}
+
           </div>
         </Form>
       )}

@@ -53,8 +53,7 @@ const UserSignUp_02 = () => {
             "-webkit-text-fill-color": "transparent",
           }}
         >
-          {" "}
-          Register{" "}
+          Register
         </span>
       </SecondaryButton>
 

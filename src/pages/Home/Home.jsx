@@ -4,7 +4,7 @@ import "./Home.css";
 import button from "../../constants/button";
 import Card from "../../components/layout/Card";
 import ScrollableTabsButtonForce from "../../components/layout/ScrollableTabsButtonAuto";
-import Coursal from "../../components/layout/Coursal";
+import Carousal from "../../components/layout/Carousal";
 import Footer from "../../components/layout/Footer";
 import Navbar from "../../components/layout/Navbar";
 import DashBoard from "../../components/layout/DashBoard";
@@ -33,6 +33,7 @@ function Home() {
   const [userProfile, setUserProfile] = useState();
   const [categoryDataFromChild, setCategoryDataFromChild] = useState("");
   const [locationDataFromChild, setLocationDataFromChild] = useState("");
+  const [filterName, setFilterName] = useState("");
 
   const [visibleCards, setVisibleCards] = useState(8);
 
@@ -108,8 +109,9 @@ function Home() {
       );
 
       const res = response.data;
-
-      console.log("RES ----->", res);
+      console.log(res, "FilterName=======>");
+      setFilterName(res.filter_key);
+      // console.log("RES ----->", res);
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList(res.rows);
@@ -132,7 +134,8 @@ function Home() {
         `${process.env.REACT_APP_API_URL}/campaign/campaign-filter?page=${page}&limit=${perPage}&filter=${tabName}`
       );
       const res = response.data;
-      console.log("RES ----->", res);
+      // console.log("RES ----->", res);
+
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList([...userList, ...res.rows]);
@@ -165,7 +168,7 @@ function Home() {
         <Navbar />
       </div>
       <div>
-        <Coursal />
+        <Carousal />
       </div>
       <div
         className="bg-[#FFF6F5] desktop:justify-between max-desktop:flex-wrap max-desktop:justify-center max-desktop:gap-y-[64px] desktop:px-[48px] desktop:py-[48px] max-desktop:py-[80px] max-tablet:py-[60px] max-tablet:gap-y-[32px]"
@@ -246,6 +249,7 @@ function Home() {
           {filteredUserList?.slice(0, visibleCards).map((item) => {
             return (
               <Card
+                filterName={filterName}
                 key={item?.id}
                 username={item?.user?.username}
                 title={item.title}

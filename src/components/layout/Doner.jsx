@@ -19,9 +19,12 @@ function Doner({ data }) {
       {data !== null && data !== undefined
         ? data?.map((items) => {
             // Splitting the full name into words
-            const fullNameWords = items.full_name.split(" ");
+            const fullNameWords = items?.full_name?.split(" ");
+            let firstLetter = "";
             // Extracting the first letter of the first word
-            const firstLetter = fullNameWords[0].charAt(0).toUpperCase();
+            if (fullNameWords !== undefined) {
+              firstLetter = fullNameWords[0].charAt(0).toUpperCase();
+            }
 
             return (
               <div className="grid grid-cols-10 pt-4">
@@ -36,7 +39,7 @@ function Doner({ data }) {
                       {firstLetter}
                     </StyledAvatar>
                     <h1 className="col-span-6 flex items-center pl-2 max-tablet:text-[18px] font-[satoshi] font-semibold text-[24px] max-tablet:pl-5">
-                      {items.full_name}
+                      {items.full_name ? items.full_name : "Anonymous"}
                     </h1>
                   </div>
                 </div>

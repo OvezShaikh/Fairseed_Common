@@ -12,7 +12,6 @@ const User = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
 
   const getStatusCellStyle = (user_type) => {
-    console.log("user_type", user_type);
     if (user_type === "NGO") {
       return {
         color: "#fa9820",
@@ -127,9 +126,7 @@ const User = () => {
         title={"User"}
         checkboxComponent={IndeterminateCheckbox}
         url={`/admin-dashboard/users`}
-        // extraQuery={{ inactive: true }}
         addButton={<AddUser />}
-        // addButton={<Button>HElloooooo</Button>}
         selectedRowID={selectedRowID}
       />
     </div>

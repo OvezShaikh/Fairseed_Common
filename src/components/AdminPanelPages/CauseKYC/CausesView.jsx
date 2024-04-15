@@ -67,11 +67,11 @@ function CausesView() {
     },
     onSuccess: (data) => {
       setData(data);
-      const Adhaar = `${process.env.REACT_APP_BASE_URL}${data?.adhar_card_image}`
+      const Adhaar = `${process.env.REACT_APP_BASE_URL}${data?.bank_kyc?.adhar_card_image}`
       setAdhaar_image(Adhaar)
-      const Pan = `${process.env.REACT_APP_BASE_URL}${data?.pan_card_image}`
+      const Pan = `${process.env.REACT_APP_BASE_URL}${data?.bank_kyc?.pan_card_image}`
       setPan_image(Pan)
-      const Passbook = `${process.env.REACT_APP_BASE_URL}${data?.passbook_image}`
+      const Passbook = `${process.env.REACT_APP_BASE_URL}${data?.bank_kyc?.passbook_image}`
       setPassbook_image(Passbook)
     },
   });
@@ -109,7 +109,6 @@ function CausesView() {
 
     mutate(formData, {
       onSuccess: (response) => {
-        console.log(response , '<==========>')
         toast.success(response?.data?.data, {
           position: "top-right",
         });

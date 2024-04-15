@@ -103,8 +103,9 @@ export default function DonationInMonths() {
     enabled: true,
    
     select: (data) => {
+      console.log(data)
       return data.data.fundraiser_data;
-    },
+   },
     onSuccess: (data) => {
       setDataObject(data);
     },

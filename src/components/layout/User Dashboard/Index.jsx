@@ -3,7 +3,7 @@ import AdminNavbar from "../AdminNavbar";
 import { User_SideBar } from "../sideBar/User_panel";
 
 const UserPanel = ({ children }) => {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = React.useState(true);
 
   return (
     <>

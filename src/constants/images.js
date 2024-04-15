@@ -39,7 +39,7 @@ import Rectangle from "../assets/Rectangle.png";
 import Button3 from "../assets/Button3.png";
 import Button4 from "../assets/Button4.png";
 import LogoFooter from "../assets/LogoFooter.png";
-import Logo from "../assets/Logo.png";
+import Logo from "../assets/Logo.svg";
 import HeroSection from "../assets/HeroSection.png";
 import HeaderBgImg from "../assets/HeaderBgImg.png";
 import one from "../assets/one.svg";

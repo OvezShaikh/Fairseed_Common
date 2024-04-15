@@ -30,7 +30,7 @@ function Index({ label, heading, titleName, remove }) {
   return (
     <div>
       <div
-        className="pl-[48px] gap-[48px] max-tablet:gap-[28px] pt-[100px] max-desktop:w-full max-desktop:px-[28px] max-desktop:place-content-center max-tablet:px-[16px]"
+        className="pl-[48px] gap-[48px] max-tablet:gap-[28px] pt-[110px] max-desktop:w-full max-desktop:px-[28px] max-desktop:place-content-center max-tablet:px-[16px]"
         style={{
           width: "100%",
           height: "100%",

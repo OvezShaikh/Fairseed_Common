@@ -8,6 +8,9 @@ import { Link, useLocation } from "react-router-dom";
 import images from "../../../constants/images";
 import { Dialog } from "../../../components/layout/dialogBox";
 import PrimaryButton from "../../inputs/PrimaryButton";
+import axios from "axios";
+import { toast } from "react-toastify";
+import serverAPI from "../../../config/serverAPI";
 const style = {
   padding: "4px 48px",
   color: "white",
@@ -22,9 +25,13 @@ const style2 = {
   fontWeight: 700,
   fontFamily: "satoshi",
 };
+
 const User_Campaign = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
+  const [rowId, setRowId] = useState("");
+
   const { pathname } = useLocation();
+
   const getStatusCellStyle = (status) => {
     if (status === "Pending") {
       return {
@@ -64,10 +71,20 @@ const User_Campaign = () => {
     </div>
   );
 
+  const finaize = async (id) => {
+   
+    await serverAPI.post(`/user-dashboard/finalize-campaign/${id}`).then((response)=>{
+      console.log(response , "id")
+      toast.success(response?.data?.message , {
+        position:'top-right'
+      })
+     })
+  };
+
   const columns = React.useMemo(() => [
     {
-      Header: "Id", // Row number header
-      accessor: "id", // Accessor for row number
+      Header: "Id",
+      accessor: "id",
       Cell: ({ row }) => <div>{row.index + 1}</div>,
       minWidth: 50,
       width: 50,
@@ -150,25 +167,43 @@ const User_Campaign = () => {
           <div
             className={`flex items-center gap-2 justify-center pl-6 max-desktop:pl-0 max-tablet:pl-0`}
           >
-            {row?.status !== "Active" ? (
+          {
+            console.log(row?.values?.status , "status")
+          }
+            
+            {row?.values?.status === "Completed" &&  (
               <>
-                <Link to="Edit-Campaign" state={{ id: row?.id }}>
-                  <SecondaryButton sx={{ height: "30px" }}>
-                    Edit
-                  </SecondaryButton>
-                </Link>
-                {/* <Link to="View" state={{ id: row?.id }}> */}
+              <Link to="View" state={{ id: row?.id }}>
+                <SecondaryButton sx={{ height: "30px" }}>
+                  Make Withdrawl
+                </SecondaryButton>
+              </Link>
+            </>
+            ) }
 
-                <Dialog
-                  button={
-                    <SecondaryButton sx={{ height: "30px" }}>
-                      Finalize Campaign
-                    </SecondaryButton>
-                  }
-                  maxWidth="md"
-                  onCloseCall={() => console.log("Dialog closed")}
-                  // onCloseDialog={onClose}
-                >
+            {row?.values?.status === "Active" && 
+            (
+              <>
+              <Link to="Edit-Campaign" state={{ id: row?.id }}>
+                <SecondaryButton sx={{ height: "30px" }}>
+                  Edit
+                </SecondaryButton>
+              </Link>
+
+              <Dialog
+                onClose={onclose}
+                button={
+                  <SecondaryButton
+                    sx={{ height: "30px" }}
+                    onClick={() => setRowId(row?.id )}
+                  >
+                    Finalize Campaign
+                  </SecondaryButton>
+                }
+                maxWidth="sm"
+                onCloseCall={() => console.log("Dialog closed")}
+              >
+                {(onClose) => (
                   <div className="flex flex-col gap-10 justify-center items-center flex-wrap text-center pb-4">
                     <img src={images.Vector} alt="" />
                     <p className="text-[ var(--Neutral-Neutral-7, #717171)] w-[65%] font-[satoshi] text-[34px] font-semibold max-tablet:text-[18px]">
@@ -176,22 +211,22 @@ const User_Campaign = () => {
                       can’t be undone.
                     </p>
                     <div className="flex justify-center gap-4 max-tablet:flex-col">
-                      <SecondaryButton sx={style2}>Cancel</SecondaryButton>
-                      <PrimaryButton sx={style}>Finalize</PrimaryButton>
+                      <SecondaryButton onClick={onClose} sx={style2}>
+                        Cancel
+                      </SecondaryButton>
+                      <PrimaryButton
+                        sx={style}
+                        onClick={() => finaize(row?.id)}
+                      >
+                        Finalize
+                      </PrimaryButton>
                     </div>
                   </div>
-                </Dialog>
+                )}
+              </Dialog>
 
-                {/* </Link> */}
-              </>
-            ) : (
-              <>
-                <Link to="View" state={{ id: row?.id }}>
-                  <SecondaryButton sx={{ height: "30px" }}>
-                    Make Withdrawl
-                  </SecondaryButton>
-                </Link>
-              </>
+              {/* </Link> */}
+            </>
             )}
 
             <Link to="Edit" state={{ id: row?.id }}>
