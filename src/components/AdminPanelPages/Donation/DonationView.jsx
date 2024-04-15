@@ -10,7 +10,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useGetAll } from "../../../Hooks";
 import PrimaryButton from "../../inputs/PrimaryButton";
 
-
 const styleLabel = {
   fontFamily: "satoshi",
   fontSize: 16,
@@ -19,7 +18,6 @@ const styleLabel = {
   marginTop: "4px",
   paddingLeft: "5px",
 };
-
 
 function Index() {
   const [data, setData] = useState({});
@@ -43,45 +41,43 @@ function Index() {
   });
 
   const initial_values = {
-    campaign: data?.campaign || '',
-    transaction_id: data?.transaction_id || '',
-    full_name: data?.full_name || '',
-    email: data?.email || '',
-    id: data?.id || '',
-    amount: data?.amount || '',
-    city: data?.city || '',
-    country: data?.country || '',
-    pancard: data?.pancard || '',
-    donation_type: data?.donation_type || '',
-    payment_type: data?.payment_type || '',
-    bank_name: data?.bank_name || '',
-    other_details: data?.other_details || '',
-    comment: data?.comment || '',
-    transaction_date: data?.transaction_date || '',
-    created_on: data?.created_on || '',
-    updated_on: data?.updated_on || ''
+    campaign: data?.campaign || "",
+    transaction_id: data?.transaction_id || "",
+    full_name: data?.full_name || "",
+    email: data?.email || "",
+    id: data?.id || "",
+    amount: data?.amount || "",
+    city: data?.city || "",
+    country: data?.country || "",
+    pancard: data?.pancard || "",
+    donation_type: data?.donation_type || "",
+    payment_type: data?.payment_type || "",
+    bank_name: data?.bank_name || "",
+    other_details: data?.other_details || "",
+    comment: data?.comment || "",
+    transaction_date: data?.transaction_date || "",
+    created_on: data?.created_on || "",
+    updated_on: data?.updated_on || "",
   };
 
   return (
-    <Formik
-      enableReinitialize={true}
-      initialValues={initial_values}
-    >
-
+    <Formik enableReinitialize={true} initialValues={initial_values}>
       {({ values }) => (
-
-
         <Form className="flex flex-col items-center gap-[30px] max-desktop:pt-4 max-tablet:4">
           <div className="flex max-desktop:flex-col max-tablet:flex-col w-full gap-3">
             <div className="flex justify-between w-[50%] max-desktop:w-full max-tablet:flex-col ">
               <div className="w-[49%] max-tablet:w-full">
                 <FormLabel sx={styleLabel}>Campaign:</FormLabel>
-                <div className="flex">
+                <div className="flex  ">
                   <h1 className="text-[16px] font-[satoshi] pt-3   font-medium max-tablet:pl-2 max-tablet:pb-2">
                     {data?.campaign}
                   </h1>
                   <a href={`/campaign-details/${id}`}>
-                    <img className="pt-2 pl-2" src={images.CausesDetails} alt="" />
+                    <img
+                      className="pt-3 pl-2"
+                      src={images.CausesDetails}
+                      alt=""
+                    />
                   </a>
                 </div>
               </div>
@@ -305,22 +301,28 @@ function Index() {
             </div>
           </div>
           <div className="flex flex-row gap-4 mt-12">
-
-          <button
-            onClick={() => navigate(-1)}
-            className="w-[69px] h-[32px] bg-[#F7F7F7]"
-          >
-            <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
-              Go Back
-            </h1>
-          </button>
-          <PrimaryButton sx={{
-            height: '30px', width: '120px', background: '#219D80', color: 'white', "&  .MuiButton-root:hover": {
-              background: "yellow"
-            }
-          }} text={'Mark As Paid'}>
-            Mark As Paid
-          </PrimaryButton>
+            <button
+              onClick={() => navigate(-1)}
+              className="w-[69px] h-[32px] bg-[#F7F7F7]"
+            >
+              <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
+                Go Back
+              </h1>
+            </button>
+            <PrimaryButton
+              sx={{
+                height: "30px",
+                width: "120px",
+                background: "#219D80",
+                color: "white",
+                "&  .MuiButton-root:hover": {
+                  background: "yellow",
+                },
+              }}
+              text={"Mark As Paid"}
+            >
+              Mark As Paid
+            </PrimaryButton>
           </div>
         </Form>
       )}
