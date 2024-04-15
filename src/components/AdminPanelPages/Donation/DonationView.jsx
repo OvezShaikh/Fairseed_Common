@@ -12,7 +12,6 @@ import PrimaryButton from "../../inputs/PrimaryButton";
 import { toast } from "react-toastify";
 
 
-
 const styleLabel = {
   fontFamily: "satoshi",
   fontSize: 16,
@@ -21,7 +20,6 @@ const styleLabel = {
   marginTop: "4px",
   paddingLeft: "5px",
 };
-
 
 function Index() {
   const [data, setData] = useState({});
@@ -109,19 +107,21 @@ function Index() {
     >
 
       {({ values }) => (
-
-
         <Form className="flex flex-col items-center gap-[30px] max-desktop:pt-4 max-tablet:4">
           <div className="flex max-desktop:flex-col max-tablet:flex-col w-full gap-3">
             <div className="flex justify-between w-[50%] max-desktop:w-full max-tablet:flex-col ">
               <div className="w-[49%] max-tablet:w-full">
                 <FormLabel sx={styleLabel}>Campaign:</FormLabel>
-                <div className="flex">
+                <div className="flex  ">
                   <h1 className="text-[16px] font-[satoshi] pt-3   font-medium max-tablet:pl-2 max-tablet:pb-2">
                     {data?.campaign}
                   </h1>
                   <a href={`/campaign-details/${id}`}>
-                    <img className="pt-2 pl-2" src={images.CausesDetails} alt="" />
+                    <img
+                      className="pt-3 pl-2"
+                      src={images.CausesDetails}
+                      alt=""
+                    />
                   </a>
                 </div>
               </div>
