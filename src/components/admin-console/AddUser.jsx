@@ -113,7 +113,7 @@ export const AddUser = ({
       {({ onClose }) => (
         <Formik
           initialValues={initialValues}
-          //   validationSchema={validationSchema}
+          // validationSchema={validationSchema}
           onSubmit={(values) =>
             mutate(
               {
@@ -135,10 +135,12 @@ export const AddUser = ({
                   onClose();
                 },
                 onError: (response) => {
-                  toast.error(`${response.response?.data?.email[0]}`, {
-                    position: "top-right",
-                  });
-                  toast.error(`${response.response?.data?.mobile_number[0]}`, {
+                  console.log(response);
+
+                  // toast.error(`${response}`, {
+                  //   position: "top-right",
+                  // });
+                  toast.error(`${response.response?.data?.message}`, {
                     position: "top-right",
                   });
                 },
