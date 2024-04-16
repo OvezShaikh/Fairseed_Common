@@ -438,7 +438,7 @@ const ReactTable = ({
   return (
     <Grid
       container
-      className="flex flex-column gap-2 pt-4"
+      className="flex flex-column gap-2 pt-8"
       rowSpacing={2}
       style={{ maxWidth: "100%" }}
     >
@@ -446,7 +446,7 @@ const ReactTable = ({
       <Grid
         item
         // xs={12}
-        className="d-flex align-items-center justify-content-between flex-wrap w-full"
+        className="d-flex align-items-center justify-content-between flex-wrap w-full "
       >
         <Grid item xs={12} md={6} display="flex" alignItems={"center"}>
           {!noSearch ? (

@@ -137,9 +137,6 @@ export const AddUser = ({
                 onError: (response) => {
                   console.log(response);
 
-                  // toast.error(`${response}`, {
-                  //   position: "top-right",
-                  // });
                   toast.error(`${response.response?.data?.message}`, {
                     position: "top-right",
                   });
@@ -178,7 +175,7 @@ export const AddUser = ({
                   <AdminSelectField
                     label={"Role"}
                     name={"user_role"}
-                    placeholder={"Placeholder Text"}
+                    placeholder={"Select User Role"}
                     options={role.map((item) => ({
                       label: item.role_name,
                       value: item.id,
