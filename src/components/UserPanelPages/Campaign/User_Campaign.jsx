@@ -214,7 +214,7 @@ const User_Campaign = ({ onClose }) => {
           <div
             className={`flex items-center gap-2 justify-center max-desktop:pl-0 max-tablet:pl-0`}
           >
-            {row?.values?.status === "Completed" && (
+            {row?.original?.status==='Completed' && row?.original?.withdrawal_status !== 'Paid' && (
               <>
                 <Dialog
                   onClose={() => onClose && onClose()}
@@ -250,15 +250,23 @@ const User_Campaign = ({ onClose }) => {
                     </Formik>
                   )}
                 </Dialog>
-
                 <Link to="View" state={{ id: row?.id }}>
+                  <SecondaryButton sx={{ height: "30px" }}>
+                    View Bank and KYC
+                  </SecondaryButton>
+                </Link>
+              </>
+
+            )}
+            {
+              row?.original?.withdrawal_status === 'Paid' &&
+              <Link to="View" state={{ id: row?.id }}>
                 <SecondaryButton sx={{ height: "30px" }}>
                   View Bank and KYC
                 </SecondaryButton>
               </Link>
-              
-              </>
-            )}
+            }
+
 
             {row?.values?.status === "Active" && (
               <>

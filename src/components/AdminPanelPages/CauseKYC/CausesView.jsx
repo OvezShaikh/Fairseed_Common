@@ -107,7 +107,7 @@ function CausesView() {
       formData,
       {
         onSuccess: (response) => {
-          toast.success(response?.data?.message , {
+          toast.success(response?.data?.message, {
             position: "top-right",
           });
           navigate(-1);
@@ -342,7 +342,8 @@ function CausesView() {
                   label="Raising this Campaign for:"
                 />
                 <div className="flex flex-row gap-4 mt-12">
-                  <button className="w-[69px] h-[32px] bg-[#F7F7F7]">
+                  <button type="button"
+                    className="w-[69px] h-[32px] bg-[#F7F7F7]">
                     <h1
                       onClick={() => navigate(-1)}
                       className="text-[#000000] font-medium text-[14px] font-[satoshi]"
