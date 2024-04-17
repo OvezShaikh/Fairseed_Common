@@ -393,7 +393,7 @@ function CauseEdit_Form() {
               <ImageEditor
                 sx={{ maxWidth: "400px", minHeight: "400px" }}
                 dataUrl={srcImg}
-              />
+                />
 
               <Link to={"Revision-History"} state={{ id: user?.id }}>
                 <PrimaryButton sx={{ borderRadius: "12px", width: "100%" }}>

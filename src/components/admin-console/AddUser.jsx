@@ -29,8 +29,8 @@ export const AddUser = ({
     mobile_number: "",
     email: "",
     password: "",
-    user_role: "",
-    user_type: "",
+    role_name: "",
+    user_type:""
   };
 
   useGetAll({
@@ -64,9 +64,11 @@ export const AddUser = ({
     confirm_password: yup
       .string()
       .oneOf([yup.ref("password"), null], "Passwords must match")
-      .required("Confirm Password is required"),
-    user_type: yup.string().required("User type is required"),
-  });
+      .required("Confirm Password is required"), 
+      role_name: yup.string().uuid("role is required"),
+      // user_type: yup.string().required("User type is required").oneOf(["Individual", "NGO"], "Invalid user type"),
+    })
+  
 
   const { mutate } = useCreateOrUpdate({
     url: `/admin-dashboard/users`,
@@ -76,6 +78,7 @@ export const AddUser = ({
   //     method: isUpdate ? "put" : "post",
   //     onSuccess: () => onSuccess && onSuccess(),
   // });
+
 
   return (
     <Dialog
@@ -113,40 +116,39 @@ export const AddUser = ({
       {({ onClose }) => (
         <Formik
           initialValues={initialValues}
-          // validationSchema={validationSchema}
-          onSubmit={(values) =>
-            mutate(
-              {
-                ...values,
-                user_type: values?.user_type?.valueOf,
-                user_role: values?.user_role?.valueOf,
-              },
-              {
-                onSuccess: (response) => {
-                  console.log(response.data?.message, "=============>AddUser");
-                  toast.success(`${response.data?.message}`, {
-                    position: "top-right",
-                  });
-                  queryClient.refetchQueries({
-                    queryKey: ["/admin-dashboard/users"],
-                    stale: true,
-                    exact: false,
-                  });
-                  onClose();
-                },
-                onError: (response) => {
-                  console.log(response);
+          validationSchema={validationSchema}
+          onSubmit={(values) => console.log(values , 'values')}
+            // mutate(values ,
+              // {
+              //   ...values,
+              //   user_type: values?.user_type?.valueOf,
+              //   role_name: values?.role_name?.valueOf,
+              // },
+              // {
+              //   onSuccess: (response) => {
+              //     toast.success(`${response.data?.message}`, {
+              //       position: "top-right",
+              //     });
+              //     queryClient.refetchQueries({
+              //       queryKey: ["/admin-dashboard/users"],
+              //       stale: true,
+              //       exact: false,
+              //     });
+              //     onClose();
+              //   },
+              //   onError: (response) => {
+              //     console.log(response);
 
-                  // toast.error(`${response}`, {
-                  //   position: "top-right",
-                  // });
-                  toast.error(`${response.response?.data?.message}`, {
-                    position: "top-right",
-                  });
-                },
-              }
-            )
-          }
+              //     // toast.error(`${response}`, {
+              //     //   position: "top-right",
+              //     // });
+              //     toast.error(`${response.response?.data?.message}`, {
+              //       position: "top-right",
+              //     });
+            //     },
+            //   }
+            // )
+          // }
         >
           {({ setFieldValue, errors, touched }) => (
             <Form className="flex flex-col items-center px-4 pt-2">
@@ -177,8 +179,11 @@ export const AddUser = ({
                 <div className="w-full">
                   <AdminSelectField
                     label={"Role"}
-                    name={"user_role"}
+                    name={"role_name"}
                     placeholder={"Placeholder Text"}
+                    onChange={(e) => {
+                      setFieldValue("role_name", e?.target?.value);
+                    }}
                     options={role.map((item) => ({
                       label: item.role_name,
                       value: item.id,
@@ -203,7 +208,7 @@ export const AddUser = ({
                 </div>
               </div>
               <div className="flex gap-32 w-full pl-2 pt-8 max-tablet:flex-col max-tablet:gap-4">
-                <div className="  lg:w-[25%] ">
+                <div className=" lg:w-[25%] ">
                   <RadioGroup
                     name={"user_type"}
                     onChange={(e) => {
