@@ -464,7 +464,7 @@ export default function Example() {
             )}
 
             <div className="flex space-x-0  ">
-              <div className="flex-col relative pr-4">
+              <div className="flex-col relative pr-5 pt-1">
                 <form
                   onSubmit={handleSearch}
                   className="relative mx-auto flex "
@@ -541,7 +541,7 @@ export default function Example() {
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <Link to="#" className="-m-1.5 p-1.5">
+            <Link to="#" className="-m-1.5 p-1.5 outline-none">
               <span className="sr-only">Your Company</span>
               <img className="h-8 w-auto" src={images.Logo} alt="" />
             </Link>
@@ -684,7 +684,7 @@ export default function Example() {
 
                     <Link
                       className="flex text-[satoshi] text-[20px] items-center max-desktop:font-[satoshi] font-medium text-black"
-                      to={"/account-settings"}
+                      to={"/Home/account-settings"}
                     >
                       Settings
                     </Link>

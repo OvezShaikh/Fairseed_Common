@@ -31,7 +31,6 @@ function Home() {
   const [showOptions, setShowOptions] = useState(false);
   const [perPage, setPerPage] = useState(100);
   const [tabName, setTabName] = useState("newly_added");
-  const [userProfile, setUserProfile] = useState();
   const [categoryDataFromChild, setCategoryDataFromChild] = useState("");
   const [locationDataFromChild, setLocationDataFromChild] = useState("");
   const [filterName, setFilterName] = useState("");
@@ -113,13 +112,17 @@ function Home() {
       );
 
       const res = response.data;
-      console.log(res, "FilterName=======>");
+      // console.log(res, "FilterName=======>");
+      // console.log(
+      //   res.rows.map((row) => row.user.profile_pic),
+      //   "===========>User"
+      // );
+
       setFilterName(res.filter_key);
       // console.log("RES ----->", res);
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList(res.rows);
-        // setUserProfile(res.rows?.user?.profile_pic);
         setCampaignCount(res.count);
       } else {
         console.error("Invalid data structure. Expected an array:", res.data);
@@ -155,7 +158,6 @@ function Home() {
     fetchCampaigns();
   }, [page]);
 
-  console.log(userProfile, "UserProfile==================>");
   return (
     <>
       <div className="">
@@ -243,6 +245,7 @@ function Home() {
           {filteredUserList?.slice(0, visibleCards).map((item) => {
             return (
               <Card
+                Profile_pic={item?.user?.profile_pic}
                 filterName={filterName}
                 key={item?.id}
                 username={item?.user?.username}
@@ -340,6 +343,7 @@ function Home() {
             </div>
             <img
               className="col-span-1 max-desktop:rotate-90"
+              alt=""
               src={images.Arrow}
             />
             <div className="col-span-3 grid grid-cols-1 place-items-center">
@@ -428,73 +432,93 @@ function Home() {
               </div>
             </div>
           </div>
-          {
-            localStorage.getItem('token') ? 
-            ( 
-              <>
-              
+          {localStorage.getItem("token") ? (
+            <>
               <Link to="/Home/Create-Campaign">
-            <PrimaryButton
-              sx={{
-                borderRadius: "var(--Pixels-8, 8px)",
-                fontSize: 20,
-                fontWeight: "900",
-                padding: "15px 28px 15px 28px",
-              }}
-              className="py-[15px] px-[28px] my-10"
-            >
-              <div
-                className="mr-2"
-                style={{ width: 32, height: 32, position: "relative" }}
-              >
-                <img src={images.RocketLaunch} alt="" />
+                <PrimaryButton
+                  sx={{
+                    borderRadius: "var(--Pixels-8, 8px)",
+                    fontSize: 20,
+                    fontWeight: "900",
+                    padding: "15px 28px 15px 28px",
+                  }}
+                  className="py-[15px] px-[28px] my-10"
+                >
+                  <div
+                    className="mr-2"
+                    style={{ width: 32, height: 32, position: "relative" }}
+                  >
+                    <img src={images.RocketLaunch} alt="" />
+                  </div>
+                  <div className="max-tablet:text-[16px]">
+                    Launch a Campaign Now !
+                  </div>
+                </PrimaryButton>
+              </Link>
+            </>
+          ) : (
+            <>
+              <div className="max-tablet:hidden max-desktop:hidden">
+                <PrimaryButton
+                  sx={{
+                    borderRadius: "var(--Pixels-8, 8px)",
+                    fontSize: 20,
+                    fontWeight: "900",
+                    padding: "15px 28px 15px 28px",
+                  }}
+                  className="py-[15px] px-[28px] my-10"
+                >
+                  <div
+                    className="mr-2"
+                    style={{ width: 32, height: 32, position: "relative" }}
+                  >
+                    <img src={images.RocketLaunch} alt="" />
+                  </div>
+                  <div className="max-tablet:text-[16px]">
+                    <h1
+                      style={{
+                        color: "var(--Base-Colours-Text-Primary, #25272C)",
+                        fontSize: 20,
+                        fontFamily: "Satoshi ",
+                        fontWeight: 700,
+                        wordWrap: "break-word",
+                      }}
+                    >
+                      <UserLogin
+                        text={"Launch a Campaign Now !"}
+                        color={"white"}
+                        fontWeight={700}
+                        size={"20px"}
+                      />
+                    </h1>
+                  </div>
+                </PrimaryButton>
               </div>
-              <div className="max-tablet:text-[16px]">
-                Launch a Campaign Now !
+              <div className="desktop:hidden">
+                <Link to="/Home/Login">
+                  <PrimaryButton
+                    sx={{
+                      borderRadius: "var(--Pixels-8, 8px)",
+                      fontSize: 20,
+                      fontWeight: "900",
+                      padding: "15px 28px 15px 28px",
+                    }}
+                    className="py-[15px] px-[28px] my-10"
+                  >
+                    <div
+                      className="mr-2"
+                      style={{ width: 32, height: 32, position: "relative" }}
+                    >
+                      <img src={images.RocketLaunch} alt="" />
+                    </div>
+                    <div className="max-tablet:text-[16px]">
+                      Launch a Campaign Now !
+                    </div>
+                  </PrimaryButton>
+                </Link>
               </div>
-            </PrimaryButton>
-            </Link>
-            </> 
-            ) : ( 
-
-          
-            <PrimaryButton
-              sx={{
-                borderRadius: "var(--Pixels-8, 8px)",
-                fontSize: 20,
-                fontWeight: "900",
-                padding: "15px 28px 15px 28px",
-              }}
-              className="py-[15px] px-[28px] my-10"
-            >
-              <div
-                className="mr-2"
-                style={{ width: 32, height: 32, position: "relative" }}
-              >
-                <img src={images.RocketLaunch} alt="" />
-              </div>
-              <div className="max-tablet:text-[16px]">
-              <h1
-              style={{
-                color: "var(--Base-Colours-Text-Primary, #25272C)",
-                fontSize: 20,
-                fontFamily: "Satoshi ",
-                fontWeight: 700,
-                wordWrap: "break-word",
-              }}>
-              <UserLogin
-                text={"Launch a Campaign Now !"}
-                fontWeight={700}
-                size={"20px"}
-              />
-              </h1>
-              </div>
-            </PrimaryButton>
-         
-
-             )
-          }
-          
+            </>
+          )}
         </div>
       </section>
       <div className="flex-col pt-[60px] pb-[50px] flex-wrap container flex w-full text-center items-center max-tablet:pb-[24px]">

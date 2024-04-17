@@ -18,10 +18,6 @@ const styleLabel = {
   paddingLeft: "5px",
 };
 
-const initialValues = {
-  transaction: "",
-};
-
 function Index() {
   const [data, setData] = useState({});
 

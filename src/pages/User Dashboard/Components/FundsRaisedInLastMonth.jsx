@@ -12,6 +12,7 @@ import {
   ReferenceDot,
 } from "recharts";
 import { useGetAll } from "../../../Hooks";
+import "./FundsRaisedInLastMonth.css"
 
 
 const renderQuarterTick = (tickProps) => {
@@ -94,9 +95,9 @@ export default function DonationInLastMonth() {
 
 
   return (
-    <div className="rounded-md shadow-md p-2 ">
+    <div className="rounded-md shadow-md p-2 max-tablet:overflow-x-scroll">
       <p className={"mb-3 text-lg font-semibold"}>Donation In Months(lacs): </p>
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer className="max-tablet:w-[800px] max-mobile" height={300}>
         <BarChart
           width={500}
           height={300}
@@ -104,7 +105,7 @@ export default function DonationInLastMonth() {
           margin={{top: 20, right: 20, bottom: 20, left: 0}}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey='date' tickFormatter={customTickFormatter} interval={4} height={1}  textAnchor="start" style={chartStyle} tickLine={false} axisLine={false}/>
+          <XAxis dataKey='date' tickFormatter={customTickFormatter} interval={3} height={1}  textAnchor="start" style={chartStyle} tickLine={false} axisLine={false}/>
           {/* <XAxis
             dataKey='total_amount'
             axisLine={false}

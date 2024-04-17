@@ -100,39 +100,82 @@ function Footer() {
                   </div>
                 </Link>
               ) : (
-                <SecondaryButton
-                  className="px-2 gap-[10px] max-tablet:gap-[0px]"
-                  style={{
-                    background:
-                      "linear-gradient(93deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.50) 100%)",
-                    borderRadius: 8,
-                    border: "1px rgba(255, 255, 255, 0.10) solid",
-                    backdropFilter: "blur(24px)",
-                    justifyContent: "center",
-                    alignItems: "center",
+                <>
+                  <div className=" max-desktop:hidden max-tablet:hidden">
+                    <div
+                      className=" gap-[10px] py-3  w-full"
+                      style={{
+                        background:
+                          "linear-gradient(93deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.50) 100%)",
+                        borderRadius: 8,
+                        border: "1px rgba(255, 255, 255, 0.10) solid",
+                        backdropFilter: "blur(24px)",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        padding: "10px 20px",
 
-                    display: "inline-flex",
-                  }}
-                >
-                  <div style={{ width: 32, height: 32, position: "relative" }}>
-                    <img src={images.RocketLaunch2} alt="" />
+                        display: "inline-flex",
+                      }}
+                    >
+                      <div
+                        style={{ width: 32, height: 32, position: "relative" }}
+                      >
+                        <img src={images.RocketLaunch2} alt="" />
+                      </div>
+                      <div
+                        className="text-[20px] "
+                        style={{
+                          color: "#383A42",
+
+                          fontFamily: "Satoshi",
+                          fontWeight: "700",
+                          wordWrap: "break-word",
+                        }}
+                      >
+                        <UserLogin
+                          text={"Launch Campaign"}
+                          fontWeight={700}
+                          size={"20px"}
+                        />{" "}
+                      </div>
+                    </div>
                   </div>
-                  <div
-                    className="text-[20px] max-tablet:text-[16px] max-tablet:p-[16px] max-tablet:pl-[10px]"
-                    style={{
-                      color: "#383A42",
-                      fontFamily: "Satoshi",
-                      fontWeight: "700",
-                      wordWrap: "break-word",
-                    }}
-                  >
-                    <UserLogin
-                      text={"Launch Campaign"}
-                      fontWeight={700}
-                      size={"20px"}
-                    />{" "}
+                  <div className="desktop:hidden">
+                    <Link
+                      to="/Home/Login"
+                      className="px-3 gap-[10px] max-tablet:gap-[0px] w-full h-full"
+                      style={{
+                        background:
+                          "linear-gradient(93deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.50) 100%)",
+                        borderRadius: 8,
+                        border: "1px rgba(255, 255, 255, 0.10) solid",
+                        backdropFilter: "blur(24px)",
+                        justifyContent: "center",
+                        alignItems: "center",
+
+                        display: "inline-flex",
+                      }}
+                    >
+                      <div
+                        style={{ width: 32, height: 32, position: "relative" }}
+                      >
+                        <img src={images.RocketLaunch2} alt="" />
+                      </div>
+                      <div
+                        className="text-[20px] max-tablet:text-[16px] max-tablet:p-[16px] max-tablet:pl-[10px] "
+                        style={{
+                          color: "#383A42",
+
+                          fontFamily: "Satoshi",
+                          fontWeight: "700",
+                          wordWrap: "break-word",
+                        }}
+                      >
+                        Launch a Campaign
+                      </div>
+                    </Link>
                   </div>
-                </SecondaryButton>
+                </>
               )}
             </div>
           </div>
@@ -143,6 +186,7 @@ function Footer() {
             <img
               className="desktop:w-[118px] pb-[16px]"
               src={images.FooterLogo}
+              alt=""
             />
             <p
               className="desktop:w-[79%] desktop:text-[16px] max-tablet:text-[14px] max-desktop:w-[59%] max-tablet:w-[100%]"

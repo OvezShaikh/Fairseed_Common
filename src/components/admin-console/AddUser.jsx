@@ -12,7 +12,6 @@ import { toast } from "react-toastify";
 import AdminSelectField from "../inputs/AdminSelectField/Index";
 import { useGetAll } from "../../Hooks";
 import { Button } from "@mui/material";
-import { Edit } from "@mui/icons-material";
 
 export const AddUser = ({
   isUpdate = false,
@@ -29,7 +28,7 @@ export const AddUser = ({
     mobile_number: "",
     email: "",
     password: "",
-    role_name: "",
+    user_role: "",
     user_type:""
   };
 
@@ -65,8 +64,8 @@ export const AddUser = ({
       .string()
       .oneOf([yup.ref("password"), null], "Passwords must match")
       .required("Confirm Password is required"), 
-      role_name: yup.string().uuid("role is required"),
-      // user_type: yup.string().required("User type is required").oneOf(["Individual", "NGO"], "Invalid user type"),
+      user_role: yup.object().required("role is required"),
+      user_type: yup.string().required("User type is required").oneOf(["Individual", "NGO"], "Invalid user type"),
     })
   
 
@@ -117,38 +116,34 @@ export const AddUser = ({
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-          onSubmit={(values) => console.log(values , 'values')}
-            // mutate(values ,
-              // {
-              //   ...values,
-              //   user_type: values?.user_type?.valueOf,
-              //   role_name: values?.role_name?.valueOf,
-              // },
-              // {
-              //   onSuccess: (response) => {
-              //     toast.success(`${response.data?.message}`, {
-              //       position: "top-right",
-              //     });
-              //     queryClient.refetchQueries({
-              //       queryKey: ["/admin-dashboard/users"],
-              //       stale: true,
-              //       exact: false,
-              //     });
-              //     onClose();
-              //   },
-              //   onError: (response) => {
-              //     console.log(response);
+          onSubmit={(values) => {
+            mutate(
+              {
+                ...values,
+                user_role: values?.user_role?.value,
+              },
+              {
+                onSuccess: (response) => {
+                  toast.success(`${response.data?.message}`, {
+                    position: "top-right",
+                  });
+                  queryClient.refetchQueries({
+                    queryKey: ["/admin-dashboard/users"],
+                    stale: true,
+                    exact: false,
+                  });
+                  onClose();
+                },
+                onError: (response) => {
+                  console.log(response);
 
-              //     // toast.error(`${response}`, {
-              //     //   position: "top-right",
-              //     // });
-              //     toast.error(`${response.response?.data?.message}`, {
-              //       position: "top-right",
-              //     });
-            //     },
-            //   }
-            // )
-          // }
+                  toast.error(`${response.response?.data?.message}`, {
+                    position: "top-right",
+                  });
+                },
+              }
+            );
+          }}
         >
           {({ setFieldValue, errors, touched }) => (
             <Form className="flex flex-col items-center px-4 pt-2">
@@ -179,11 +174,8 @@ export const AddUser = ({
                 <div className="w-full">
                   <AdminSelectField
                     label={"Role"}
-                    name={"role_name"}
-                    placeholder={"Placeholder Text"}
-                    onChange={(e) => {
-                      setFieldValue("role_name", e?.target?.value);
-                    }}
+                    name={"user_role"}
+                    placeholder={"Select User Role"}
                     options={role.map((item) => ({
                       label: item.role_name,
                       value: item.id,
@@ -211,8 +203,9 @@ export const AddUser = ({
                 <div className=" lg:w-[25%] ">
                   <RadioGroup
                     name={"user_type"}
-                    onChange={(e) => {
-                      setFieldValue("user_type", e?.target?.value);
+                    onChange={(value) => {
+                      console.log(value);
+                      setFieldValue("user_type", value);
                     }}
                     options={[
                       { label: "Individual", value: "Individual" },
