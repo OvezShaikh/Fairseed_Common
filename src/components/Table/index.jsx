@@ -7,6 +7,7 @@ import {
   TableHead,
   TableRow,
   TextField,
+  useMediaQuery,
 } from "@mui/material";
 import {
   useTable,
@@ -127,6 +128,7 @@ const ReactTable = ({
   selectedRowID,
   checkboxSelection,
 }) => {
+  const isMobile = useMediaQuery("(max-width: 600px)");
   let title_slug = title?.replace(/ /g, "-");
   const [query, setQuery] = useState(null);
   const [data, setData] = useState([]);
@@ -488,6 +490,7 @@ const ReactTable = ({
             mutate={mutate}
             postTableMetaData={postTableMetaData}
             isLoading={mutateLoading}
+            isMobile={isMobile}
           />
           <SecondaryButton
             onClick={() => {
@@ -502,7 +505,7 @@ const ReactTable = ({
               />
             }
           >
-            Reset Filters
+            {!isMobile && "Reset Filters"}
           </SecondaryButton>
 
           {addButton && <div className="border  py-3 mx-3"></div>}

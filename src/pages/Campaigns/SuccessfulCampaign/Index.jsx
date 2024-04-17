@@ -30,8 +30,7 @@ const Index = () => {
 
   const filteredUserList = Array.from(
     new Set(
-      userList
-        .filter((item) => {
+      userList.filter((item) => {
           const isDataMatch =
             (categoryDataFromChild.length === 0 &&
               locationDataFromChild.length === 0) ||

@@ -29,7 +29,7 @@ export const AddUser = ({
     mobile_number: "",
     email: "",
     password: "",
-    user_role: "",
+    role_name: "",
     user_type: "",
   };
 
@@ -65,7 +65,8 @@ export const AddUser = ({
       .string()
       .oneOf([yup.ref("password"), null], "Passwords must match")
       .required("Confirm Password is required"),
-    user_type: yup.string().required("User type is required"),
+    role_name: yup.string().uuid("role is required"),
+    // user_type: yup.string().required("User type is required").oneOf(["Individual", "NGO"], "Invalid user type"),
   });
 
   const { mutate } = useCreateOrUpdate({
@@ -200,7 +201,7 @@ export const AddUser = ({
                 </div>
               </div>
               <div className="flex gap-32 w-full pl-2 pt-8 max-tablet:flex-col max-tablet:gap-4">
-                <div className="  lg:w-[25%] ">
+                <div className=" lg:w-[25%] ">
                   <RadioGroup
                     name={"user_type"}
                     onChange={(value) => {

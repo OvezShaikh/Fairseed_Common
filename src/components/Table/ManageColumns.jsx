@@ -2,12 +2,11 @@ import { Grid, Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
 // import { Dialog } from "../dialogBox";
 import SecondaryButton from "../inputs/secondaryButton";
-import { colors } from "../../constants/theme"
+import { colors } from "../../constants/theme";
 import { ArrowDown, ArrowUp, Column, View } from "@carbon/icons-react";
 import CustomSwitch from "../inputs/customSwitch";
 import PrimaryButton from "../inputs/PrimaryButton";
 import { Dialog } from "../layout/dialogBox";
-
 
 const ManageColumns = ({
   visibleColumns,
@@ -18,6 +17,7 @@ const ManageColumns = ({
   postTableMetaData,
   isLoading,
   setColumnOrderArr,
+  isMobile,
 }) => {
   const [hiddenColumns, setHiddenColumns] = useState([]);
 
@@ -41,12 +41,12 @@ const ManageColumns = ({
       title={`Manage Columns`}
       button={
         <SecondaryButton
-          className="me-2 max-tablet:text-[4px]"
+          className="me-2 max-tablet:text-[4px]  "
           startIcon={
             <Column color={colors.primary.dark} size={"20"} className="me-1" />
           }
         >
-          Manage Columns
+          {!isMobile && "Manage Columns"}
         </SecondaryButton>
       }
       maxWidth="lg"

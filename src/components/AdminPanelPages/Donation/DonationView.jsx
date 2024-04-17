@@ -25,8 +25,8 @@ function Index() {
   const [data, setData] = useState({});
   let { state } = useLocation();
   let { id } = state;
-
   const navigate = useNavigate();
+  const [Donation , setDonation ] = useState(false);
 
   useGetAll({
     key: `/admin-dashboard/donors/${id}`,
@@ -83,12 +83,28 @@ function Index() {
     formData.append('transaction_date', values?.transaction_date)
     formData.append('created_on', values?.created_on)
     formData.append('updated_on', values?.updated_on)
-    formData.append('status', 'Approved')
+    {Donation === true &&
+      formData.append('status', "Approved")
+    }
+    {Donation === false &&
+      formData.append('status', "Rejected")
+    }
+    
+    
     mutate(formData, {
       onSuccess: (response) => {
-        toast.success("Marked as paid", {
-          position: "top-right",
-        });
+        {
+          Donation ? (
+            toast.success("Marked as paid", {
+              position: "top-right",
+            })
+          ) : (
+            toast.error("Marked as Rejected", {
+              position: "top-right",
+            })
+          )
+        }
+        
         navigate(-1)
       },
       onError: (response) => {
@@ -355,9 +371,9 @@ function Index() {
                 Go Back
               </h1>
             </button>
-
-            {
-              data?.status !== 'Approved' && (
+            {/* data?.status !== 'Approved' || data?.status !== 'Rejected' */}
+            {data?.status ==='Pending' && (
+                <>
                 <PrimaryButton
                   sx={{
                     height: '30px',
@@ -369,9 +385,16 @@ function Index() {
                     }
                   }}
                   type="submit"
+                  onClick={()=>setDonation(true)}
                 >
                   Mark As Paid
                 </PrimaryButton>
+                <PrimaryButton type="submit">
+                <h1 className="text-white font-semibold font-[satoshi]">
+                  Reject Request
+                </h1>
+              </PrimaryButton>
+              </>
               )
             }
           </div>
