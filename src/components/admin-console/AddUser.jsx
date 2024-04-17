@@ -12,7 +12,6 @@ import { toast } from "react-toastify";
 import AdminSelectField from "../inputs/AdminSelectField/Index";
 import { useGetAll } from "../../Hooks";
 import { Button } from "@mui/material";
-import { Edit } from "@mui/icons-material";
 
 export const AddUser = ({
   isUpdate = false,
@@ -29,7 +28,7 @@ export const AddUser = ({
     mobile_number: "",
     email: "",
     password: "",
-    role_name: "",
+    user_role: "",
     user_type: "",
   };
 
@@ -65,8 +64,11 @@ export const AddUser = ({
       .string()
       .oneOf([yup.ref("password"), null], "Passwords must match")
       .required("Confirm Password is required"),
-    role_name: yup.string().uuid("role is required"),
-    // user_type: yup.string().required("User type is required").oneOf(["Individual", "NGO"], "Invalid user type"),
+    user_role: yup.object().required("role is required"),
+    user_type: yup
+      .string()
+      .required("User type is required")
+      .oneOf(["Individual", "NGO"], "Invalid user type"),
   });
 
   const { mutate } = useCreateOrUpdate({
@@ -114,9 +116,8 @@ export const AddUser = ({
       {({ onClose }) => (
         <Formik
           initialValues={initialValues}
-          // validationSchema={validationSchema}
+          validationSchema={validationSchema}
           onSubmit={(values) => {
-            console.log("valuesvaluesvaluesvalues", values);
             mutate(
               {
                 ...values,
@@ -124,7 +125,6 @@ export const AddUser = ({
               },
               {
                 onSuccess: (response) => {
-                  console.log(response.data?.message, "=============>AddUser");
                   toast.success(`${response.data?.message}`, {
                     position: "top-right",
                   });
