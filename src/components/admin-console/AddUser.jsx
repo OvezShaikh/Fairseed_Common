@@ -114,12 +114,12 @@ export const AddUser = ({
         <Formik
           initialValues={initialValues}
           // validationSchema={validationSchema}
-          onSubmit={(values) =>
+          onSubmit={(values) => {
+            console.log("valuesvaluesvaluesvalues", values);
             mutate(
               {
                 ...values,
-                user_type: values?.user_type?.valueOf,
-                user_role: values?.user_role?.valueOf,
+                user_role: values?.user_role?.value,
               },
               {
                 onSuccess: (response) => {
@@ -142,8 +142,8 @@ export const AddUser = ({
                   });
                 },
               }
-            )
-          }
+            );
+          }}
         >
           {({ setFieldValue, errors, touched }) => (
             <Form className="flex flex-col items-center px-4 pt-2">
@@ -203,8 +203,9 @@ export const AddUser = ({
                 <div className="  lg:w-[25%] ">
                   <RadioGroup
                     name={"user_type"}
-                    onChange={(e) => {
-                      setFieldValue("user_type", e?.target?.value);
+                    onChange={(value) => {
+                      console.log(value);
+                      setFieldValue("user_type", value);
                     }}
                     options={[
                       { label: "Individual", value: "Individual" },

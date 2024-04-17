@@ -684,7 +684,7 @@ export default function Example() {
 
                     <Link
                       className="flex text-[satoshi] text-[20px] items-center max-desktop:font-[satoshi] font-medium text-black"
-                      to={"/account-settings"}
+                      to={"/Home/account-settings"}
                     >
                       Settings
                     </Link>

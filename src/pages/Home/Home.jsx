@@ -31,7 +31,6 @@ function Home() {
   const [showOptions, setShowOptions] = useState(false);
   const [perPage, setPerPage] = useState(100);
   const [tabName, setTabName] = useState("newly_added");
-  const [userProfile, setUserProfile] = useState();
   const [categoryDataFromChild, setCategoryDataFromChild] = useState("");
   const [locationDataFromChild, setLocationDataFromChild] = useState("");
   const [filterName, setFilterName] = useState("");
@@ -113,13 +112,17 @@ function Home() {
       );
 
       const res = response.data;
-      console.log(res, "FilterName=======>");
+      // console.log(res, "FilterName=======>");
+      // console.log(
+      //   res.rows.map((row) => row.user.profile_pic),
+      //   "===========>User"
+      // );
+
       setFilterName(res.filter_key);
       // console.log("RES ----->", res);
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList(res.rows);
-        // setUserProfile(res.rows?.user?.profile_pic);
         setCampaignCount(res.count);
       } else {
         console.error("Invalid data structure. Expected an array:", res.data);
@@ -155,7 +158,6 @@ function Home() {
     fetchCampaigns();
   }, [page]);
 
-  console.log(userProfile, "UserProfile==================>");
   return (
     <>
       <div className="">
@@ -243,6 +245,7 @@ function Home() {
           {filteredUserList?.slice(0, visibleCards).map((item) => {
             return (
               <Card
+                Profile_pic={item?.user?.profile_pic}
                 filterName={filterName}
                 key={item?.id}
                 username={item?.user?.username}
