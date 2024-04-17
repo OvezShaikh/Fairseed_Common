@@ -35,7 +35,7 @@ const DashboardActivities = () => {
         </div>
         <div className="px-[16px] py-[14px] shadow-md w-[50%] h-[150.56px] rounded-2xl">
           <p className="font-medium">Total Campaigns</p>
-          <h3 className="font-bold text-3xl mt-3">
+          <h3 className="font-bold text-2xl mt-3">
             {dataObject.total_campaign}
           </h3>
         </div>

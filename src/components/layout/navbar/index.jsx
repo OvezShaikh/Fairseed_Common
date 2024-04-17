@@ -18,7 +18,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { LuPanelRight } from "react-icons/lu";
 
 const NavbarContainer = ({ handleDrawerToggle, mobileOpen }) => {
-  const sideBar = useMediaQuery("(max-width: 0px)");
+  const sideBar = useMediaQuery("(max-width: 600px)");
   const [alignment, setAlignment] = React.useState("web");
 
   const navigate = useNavigate();
@@ -82,64 +82,62 @@ const NavbarContainer = ({ handleDrawerToggle, mobileOpen }) => {
           <Toolbar
             sx={{ minHeight: "60px !important", width: "100%", padding: 0 }}
           >
-            {!sideBar && (
-              <Box className="d-flex justify-content-between align-items-center w-100 ">
-                <Typography
-                  variant="h6"
-                  noWrap
-                  component="div"
-                  fontSize={"1rem"}
-                  color={"black"}
-                  display="flex"
-                  alignItems="center"
-                  className="text-capitalize text-truncate"
-                  title={title}
+            <Box className="d-flex justify-content-between align-items-center w-100 ">
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                fontSize={"1rem"}
+                color={"black"}
+                display="flex"
+                alignItems="center"
+                className="text-capitalize text-truncate"
+                title={title}
+              >
+                <div className="me-3" onClick={() => navigate(-1)}>
+                  <img src={images.account} alt="" />
+                </div>
+                <div
+                  className="flex flex-col "
+                  style={{
+                    fontFamily: "satoshi",
+                    fontSize: 20,
+                    fontWeight: 600,
+                  }}
                 >
-                  <div className="me-3" onClick={() => navigate(-1)}>
-                    <img src={images.account} alt="" />
-                  </div>
-                  <div
-                    className="flex flex-col "
-                    style={{
-                      fontFamily: "satoshi",
-                      fontSize: 20,
-                      fontWeight: 600,
+                  {title ? <>{title}</> : "dashboard"}
+                  <Breadcrumbs
+                    className="breadcrumbs_title max-tablet:hidden"
+                    sx={{
+                      color: "#B6BAC3",
+                      fontSize: 14,
+                      fontFamily: "Satoshi",
+                      fontWeight: 500,
                     }}
+                    separator={<NavigateNextIcon aria-label="breadcrumb" />}
+                    aria-label="breadcrumb"
                   >
-                    {title ? <>{title}</> : "dashboard"}
-                    <Breadcrumbs
-                      className="breadcrumbs_title max-tablet:hidden"
-                      sx={{
-                        color: "#B6BAC3",
-                        fontSize: 14,
-                        fontFamily: "Satoshi",
-                        fontWeight: 500,
-                      }}
-                      separator={<NavigateNextIcon aria-label="breadcrumb" />}
-                      aria-label="breadcrumb"
-                    >
-                      {/* {breadcrumbs} */}
-                      {pathname
-                        ?.substr(1)
-                        ?.split("/")
-                        ?.map((item, i) => {
-                          return (
-                            <Link
-                              underline="hover"
-                              style={{ cursor: "pointer" }}
-                              key={i}
-                              color="inherit"
-                              // onClick={(e) => handleClick(e, item)}
-                            >
-                              {item}
-                            </Link>
-                          );
-                        })}
-                    </Breadcrumbs>
-                  </div>
-                </Typography>
-              </Box>
-            )}
+                    {/* {breadcrumbs} */}
+                    {pathname
+                      ?.substr(1)
+                      ?.split("/")
+                      ?.map((item, i) => {
+                        return (
+                          <Link
+                            underline="hover"
+                            style={{ cursor: "pointer" }}
+                            key={i}
+                            color="inherit"
+                            // onClick={(e) => handleClick(e, item)}
+                          >
+                            {item}
+                          </Link>
+                        );
+                      })}
+                  </Breadcrumbs>
+                </div>
+              </Typography>
+            </Box>
           </Toolbar>
         </Grid>
 

@@ -78,7 +78,6 @@ export const AddUser = ({
   //     onSuccess: () => onSuccess && onSuccess(),
   // });
 
-
   return (
     <Dialog
       title={`${isUpdate ? "Update" : "Add"}  New User`}
