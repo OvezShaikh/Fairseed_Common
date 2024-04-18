@@ -6,6 +6,7 @@ import { Avatar, LinearProgress } from "@mui/material";
 import { Link } from "react-router-dom";
 import { RiErrorWarningLine } from "react-icons/ri";
 import Profile from "../inputs/AvatarCrop/Profile";
+import { toast } from "react-toastify";
 
 function Card({
   key,
@@ -30,6 +31,14 @@ function Card({
   //     position: "top-center",
   //   });
   // };
+  const handleButtonClick = () => {
+    if (fundRaised === goalAmount) {
+      toast.error("Donation goal has already been reached", {
+        position: "top-right",
+      });
+    }
+  };
+
   console.log("dhhdhdshs", Profile_pic);
 
   const fullNameWords = username?.split(" ");
@@ -206,10 +215,12 @@ function Card({
               </div>
             </div>
             <div className="w-[35%] max-desktop:w-full">
-              <Link to={`/Home/donate/${og_id}`}>
+              <Link
+                to={fundRaised === goalAmount ? "#" : `/Home/donate/${og_id}`}
+              >
                 <button
-                  disabled={fundRaised === goalAmount}
                   // onClick={fundRaised === goalAmount ? handleClick : null}
+                  onClick={handleButtonClick}
                   className=" border-2   rounded-lg border-red-400 px-2 py-1 max-desktop:w-full max-desktop:mt-[16px]"
                   style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
                 >
