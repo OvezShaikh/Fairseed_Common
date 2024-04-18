@@ -30,8 +30,9 @@ const Sign_02 = ({ handleBack, handleNext }) => {
             <InputField
               required={true}
               label="Password"
+              top={"28px"}
               sx={{
-                padding: " 16px 10px 16px var(--Spacing-20, 20px)",
+                padding: " 8px 10px 8px 10px",
                 border: "2px solid var(--Linear-BG, #FF9F0A)",
                 borderImage: "linear-gradient(#FF9F0A, red) 20",
                 // borderWidth: '3px',
@@ -47,13 +48,16 @@ const Sign_02 = ({ handleBack, handleNext }) => {
             <InputField
               required={true}
               label="Confirm Password"
+              Size={18}
               sx={{
-                padding: " 16px 10px 16px var(--Spacing-20, 20px)",
+                padding: " 8px 10px 8px 10px",
                 border: "2px solid var(--Linear-BG, #FF9F0A)",
                 borderImage: "linear-gradient(#FF9F0A, red) 20",
+                // borderWidth: '3px',
                 borderStyle: " solid",
                 borderRadius: "4px",
               }}
+              top={"28px"}
               name={"password2"}
               type="password"
               placeholder="************"
@@ -61,6 +65,7 @@ const Sign_02 = ({ handleBack, handleNext }) => {
           </div>
           <div>
             <CountrySelect
+              size={18}
               label="Select Your Country"
               name={"country"}
               required={true}
@@ -68,6 +73,7 @@ const Sign_02 = ({ handleBack, handleNext }) => {
           </div>
           <div>
             <RadioGroup
+              size={18}
               required={true}
               label={"I want to register as:"}
               onChange={(e) => {
@@ -87,7 +93,11 @@ const Sign_02 = ({ handleBack, handleNext }) => {
           </div>
 
           <div className="flex items-center">
-            <CheckBox label="I agree with the" name={"policy_privacy"} />
+            <CheckBox
+              label="I agree with the"
+              name={"policy_privacy"}
+              fontSize={18}
+            />
             <Link
               href={"/Home/Privacy-Policy"}
               target="_blank"
@@ -99,7 +109,7 @@ const Sign_02 = ({ handleBack, handleNext }) => {
                   width: "fit-content",
                   textAlign: "center",
                   color: "#FF9F0A",
-                  fontSize: 20,
+                  fontSize: 18,
                   fontFamily: "Satoshi",
                   fontWeight: 700,
                   textDecoration: "underline",
