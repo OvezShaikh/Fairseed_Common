@@ -4,6 +4,9 @@ import { useState } from 'react';
 import PrimaryButton from '../../inputs/PrimaryButton';
 import { Link } from 'react-router-dom';
 import { GoDotFill } from "react-icons/go";
+import images from '../../../constants/images';
+import { format } from "date-fns";
+
 
 
 
@@ -34,6 +37,11 @@ const Withdrawals = () => {
     }
     ;
   };
+
+  function DateConvert (Mydate){
+    const date = new Date(Mydate);
+    return format(date ,'dd-MMM-yyyy');
+  }
 
 
   const StatusCell = ({ value }) => (
@@ -66,8 +74,22 @@ const Withdrawals = () => {
       {
         Header: "Campaign",
         accessor: "campaign.title",
-        // minWidth: 200,
-        // width: 280,
+        minWidth: 200,
+        width: 280,
+        Cell: ({ row }) => {
+          return (
+            <div className="flex  ">
+              <div className="w-[80px] truncate">{row?.original?.campaign?.title}</div>
+              <a href={`/campaign-details/${row.id}`} target='_blank'>
+                <img
+                  className="ml-2"
+                  src={images.CausesDetails}
+                  alt="CausesDetails"
+                />
+              </a>
+            </div>
+          );
+        }
 
       },
       {
@@ -98,6 +120,12 @@ const Withdrawals = () => {
         accessor: "updated_on",
         // minWidth: 200,
         // width: 280,
+        Cell:({row})=>{
+          return (
+            <p>{DateConvert(row?.original?.updated_on)}</p>
+          )
+          
+         }
 
       },
       // {

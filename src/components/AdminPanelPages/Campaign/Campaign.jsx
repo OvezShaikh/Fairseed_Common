@@ -5,6 +5,8 @@ import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
 import SecondaryButton from '../../inputs/secondaryButton';
 import { GoDotFill } from "react-icons/go";
 import { Link, useLocation } from 'react-router-dom';
+import images from '../../../constants/images';
+import { format } from "date-fns";
 
 const Campaign = () => {
   let userData = localStorage.getItem('user_info')
@@ -39,6 +41,11 @@ const Campaign = () => {
     ;
   };
 
+  function DateConvert (Mydate){
+    const date = new Date(Mydate);
+    return format(date ,'dd-MMM-yyyy');
+  }
+
 
   const StatusCell = ({ value }) => (
     <div className=' flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl' style={getStatusCellStyle(value)}>
@@ -63,16 +70,26 @@ const Campaign = () => {
       {
         Header: "Title",
         accessor: "title",
-        // apiURL: `/admin-dashboard/campaign`,
         minWidth: 100,
         width: 100,
-
-
+        Cell: ({ row }) => {
+          return (
+            <div className="flex  ">
+              <div className="w-[80px] truncate">{row?.original?.title}</div>
+              <a href={`/campaign-details/${row.id}`} target='_blank'>
+                <img
+                  className="ml-2"
+                  src={images.CausesDetails}
+                  alt="CausesDetails"
+                />
+              </a>
+            </div>
+          );
+        }
       },
       {
         Header: "User",
         accessor: "user.username",
-        // apiURL: `/admin-dashboard/campaign`,
         minWidth: 100,
         width: 100,
 
@@ -80,7 +97,6 @@ const Campaign = () => {
       {
         Header: "Email",
         accessor: "user.email",
-        // apiURL: `/admin-dashboard/campaign`,
         minWidth: 100,
         width: 100,
 
@@ -88,7 +104,6 @@ const Campaign = () => {
       {
         Header: "Mobile",
         accessor: "user.mobile_number",
-        // apiURL: `/admin-dashboard/campaign`,
         minWidth: 100,
         width: 100,
 
@@ -96,7 +111,6 @@ const Campaign = () => {
       {
         Header: "Goal",
         accessor: "goal_amount",
-        // apiURL: `/admin-dashboard/campaign`,
         minWidth: 100,
         width: 100,
 
@@ -104,7 +118,6 @@ const Campaign = () => {
       {
         Header: "Status",
         accessor: "status",
-        // apiURL: `/admin-dashboard/campaign
         minWidth: 100,
         width: 100,
         Cell: StatusCell,
@@ -112,16 +125,18 @@ const Campaign = () => {
       {
         Header: "Deadline",
         accessor: "end_date",
-        // apiURL: `/admin-dashboard/campaign`,
-
         minWidth: 100,
         width: 100,
+        Cell:({row})=>{
+          return (
+            <p>{DateConvert(row?.original?.end_date)}</p>
+          )
+          
+         }
       },
       {
         Header: 'Actions',
         accessor: 'actions',
-
-
         minWidth: 100,
         width: 100,
 
