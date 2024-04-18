@@ -54,6 +54,7 @@ export const ImageCropper = ({ srcImg, setOpenCrop, setsrcImg }) => {
               preview=".img-preview"
               src={srcImg}
               viewMode={1}
+              aspectRatio={15/11}
               minCropBoxHeight={10}
               minCropBoxWidth={10}
               background={true}

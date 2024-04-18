@@ -239,12 +239,10 @@ export default function HorizontalLinearStepper() {
       toast.error(`${data.data.message} error`, {
         position: "top-center",
       });
-      console.log(data, "===========campaignResponse");
     },
   });
 
   const onSubmit = (Values) => {
-    console.log("Values", Values);
     const formData = new FormData();
     for (const key in Values) {
       if (key == "category") {

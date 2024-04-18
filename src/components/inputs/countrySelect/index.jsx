@@ -51,6 +51,8 @@ const CountrySelect = ({
           onChange && onChange(value);
         }}
         searchable
+        searchPlaceholder="Search countries"
+        defaultCountry="India"
         id="react-flag-select"
         style={{ border: "1px solid red" }}
         {...configTextfield}
