@@ -162,7 +162,7 @@ const Test = ({ handleBack, handleNext }) => {
             value: item.id,
           }))}
         />
-        {Array.isArray(data) && (
+        {/* {Array.isArray(data) && (
           <SelectField
             name="location"
             required={true}
@@ -172,7 +172,7 @@ const Test = ({ handleBack, handleNext }) => {
               value: item.iso2,
             }))}
           />
-        )}
+        )} */}
       </div>
 
       <div className="flex desktop:gap-5 w-full campaign-input-div max-desktop:gap-x-0 max-tablet:flex-col max-tablet:gap-y-[50px]">
