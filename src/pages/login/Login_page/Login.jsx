@@ -64,10 +64,11 @@ const Formcom = ({ Initial_value, formValidation, loginData }) => {
             <Grid container spacing={4}>
               <Grid item xs={12}>
                 <InputField
+                  Size={18}
                   label="Email"
                   name="email"
                   sx={{
-                    padding: " 16px 10px 16px var(--Spacing-20, 20px)",
+                    padding: " 8px 10px 8px var(--Spacing-20, 20px)",
                     border: "2px solid var(--Linear-BG, #FF9F0A)",
                     borderImage: "linear-gradient(#FF9F0A, red) 20",
                     // borderWidth: '3px',
@@ -79,11 +80,13 @@ const Formcom = ({ Initial_value, formValidation, loginData }) => {
               </Grid>
               <Grid item xs={12} className="mt-10">
                 <InputField
+                  top={"28px"}
                   label="Password"
                   type="password"
                   name="password"
+                  Size={18}
                   sx={{
-                    padding: " 16px 10px 16px 10px",
+                    padding: " 8px 10px 8px 10px",
                     border: "2px solid var(--Linear-BG, #FF9F0A)",
                     borderImage: "linear-gradient(#FF9F0A, red) 20",
                     // borderWidth: '3px',

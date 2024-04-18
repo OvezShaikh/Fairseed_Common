@@ -103,7 +103,7 @@ Make an Appeal.`}
           required={"true"}
           placeholder="Upload marksheets, Medical records, Fees Structure etc."
           sx={{ padding: "20px" }}
-          multiple={false}
+          multiple={true}
           onChange={(value) => setFieldValue("documents", value)}
         />
       </div>

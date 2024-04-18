@@ -40,10 +40,14 @@ const SignUp = ({ handleNext }) => {
                 <InputField
                   label="Name"
                   required={true}
+                  top={"28px"}
+                  Size={18}
                   sx={{
-                    padding: " 16px 10px 16px var(--Spacing-20, 20px)",
+                    padding: " 8px 10px 8px 10px",
                     border: "2px solid var(--Linear-BG, #FF9F0A)",
                     borderImage: "linear-gradient(#FF9F0A, red) 20",
+                    // borderWidth: '3px',
+                    borderStyle: " solid",
                     borderRadius: "4px",
                   }}
                   name={"username"}
@@ -57,10 +61,13 @@ const SignUp = ({ handleNext }) => {
                   type="email"
                   name={"email"}
                   required={true}
+                  Size={18}
                   sx={{
-                    padding: " 16px 10px 16px var(--Spacing-20, 20px)",
+                    padding: " 8px 10px 8px 10px",
                     border: "2px solid var(--Linear-BG, #FF9F0A)",
                     borderImage: "linear-gradient(#FF9F0A, red) 20",
+                    // borderWidth: '3px',
+                    borderStyle: " solid",
                     borderRadius: "4px",
                   }}
                   placeholder="Enter your username"
@@ -71,10 +78,13 @@ const SignUp = ({ handleNext }) => {
                   label="Mobile Number"
                   required={true}
                   type="number"
+                  Size={18}
                   sx={{
-                    padding: " 16px 10px 16px var(--Spacing-20, 20px)",
+                    padding: " 8px 10px 8px 10px",
                     border: "2px solid var(--Linear-BG, #FF9F0A)",
                     borderImage: "linear-gradient(#FF9F0A, red) 20",
+                    // borderWidth: '3px',
+                    borderStyle: " solid",
                     borderRadius: "4px",
                   }}
                   name={"mobile_number"}

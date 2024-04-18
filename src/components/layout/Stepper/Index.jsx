@@ -132,11 +132,11 @@ const validations = [
         const maxSize = 5 * 1024 * 1024; // 5 MB in bytes
         return value && value.size <= maxSize;
       }),
-    title: yup.string().required("title is required"),
-    goal_amount: yup
-      .number()
-      .max(100000, "Amount must be less than or equal to 100,000")
-      .required("Amount is required"),
+    title: yup
+      .string()
+      .max(250, "Title must be at most 250 characters")
+      .required("Title is required"),
+    goal_amount: yup.number().required("Amount is required"),
     location: yup.string().required("location is required"),
     category: yup
       .object({

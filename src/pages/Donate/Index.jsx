@@ -22,6 +22,7 @@ import { Avatar } from "@mui/material";
 import moment from "moment";
 import CountrySelect from "../../components/inputs/countrySelect";
 import { useCreateOrUpdate, useGetAll } from "../../Hooks";
+import { toast } from "react-toastify";
 
 const InputStyle = {
   padding: "15px 20px",
@@ -67,7 +68,7 @@ function Index({ goalAmount, fundRaised }) {
   const { id } = useParams();
   const [cardDetails, setCardDetails] = useState(null);
   const [selectedPaymentGateway, setSelectedPaymentGateway] = useState("");
-  const [user , setUser ] = useState({})
+  const [user, setUser] = useState({});
 
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
@@ -120,23 +121,22 @@ function Index({ goalAmount, fundRaised }) {
           window.location.href = url;
         }
       },
+      onError: (response) => {
+        toast.error(`${response?.message}errors`, { position: "top-right" });
+      },
     });
   };
 
-  
-
-    useGetAll({
-      key: `/accounts/user/${user_id}`,
-      enabled: true,
-      select: (data) => {
-        return data?.data?.data;
-      },
-      onSuccess: (data) => {
-        setUser(data)
-      }});
-  
-
-  
+  useGetAll({
+    key: `/accounts/user/${user_id}`,
+    enabled: true,
+    select: (data) => {
+      return data?.data?.data;
+    },
+    onSuccess: (data) => {
+      setUser(data);
+    },
+  });
 
   const inititalValues = {
     user: "",
@@ -145,7 +145,7 @@ function Index({ goalAmount, fundRaised }) {
     full_name: user?.username || "",
     amount: "",
     city: user?.city || "",
-    email: user?.email ||  "",
+    email: user?.email || "",
     mobile: user?.mobile_number || "",
     pancard: "",
     country: user?.country || "",
@@ -171,7 +171,7 @@ function Index({ goalAmount, fundRaised }) {
           <div className="flex  gap-24 max-desktop:flex-col-reverse">
             <div className="w-[65%] donate-div  max-desktop:w-full">
               <Formik
-              enableReinitialize={true}
+                enableReinitialize={true}
                 initialValues={inititalValues}
                 onSubmit={(values) => handleSubmit(values)}
               >
