@@ -29,7 +29,7 @@ export const AddUser = ({
     email: "",
     password: "",
     user_role: "",
-    user_type: "",
+    user_type:""
   };
 
   useGetAll({
@@ -63,13 +63,11 @@ export const AddUser = ({
     confirm_password: yup
       .string()
       .oneOf([yup.ref("password"), null], "Passwords must match")
-      .required("Confirm Password is required"),
-    user_role: yup.object().required("role is required"),
-    user_type: yup
-      .string()
-      .required("User type is required")
-      .oneOf(["Individual", "NGO"], "Invalid user type"),
-  });
+      .required("Confirm Password is required"), 
+      user_role: yup.object().required("role is required"),
+      user_type: yup.string().required("User type is required").oneOf(["Individual", "NGO"], "Invalid user type"),
+    })
+  
 
   const { mutate } = useCreateOrUpdate({
     url: `/admin-dashboard/users`,
