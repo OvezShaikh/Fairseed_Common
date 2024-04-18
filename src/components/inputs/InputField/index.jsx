@@ -49,6 +49,7 @@ const InputField = ({
     },
     "& .MuiInputBase-input": {
       borderRadius: "3px",
+      fontFamily: "ellipsis",
       // borderTopLeftRadius: configTextfield?.startAdornment ? "0px" : "4px",
       // borderBottomLeftRadius: configTextfield?.startAdornment ? "0px" : "4px",
       position: "relative",
