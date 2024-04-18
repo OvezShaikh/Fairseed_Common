@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactTable from '../../Table/index'
 import { useState } from 'react';
-import PrimaryButton from '../../inputs/PrimaryButton';
-import { Link } from 'react-router-dom';
+import { format } from "date-fns";
 import { GoDotFill } from "react-icons/go";
 
 
@@ -38,6 +37,11 @@ const MyDonation = () => {
     }
     ;
   };
+
+  function DateConvert (Mydate){
+    const date = new Date(Mydate);
+    return format(date ,'dd-MMM-yyyy');
+  }
 
 
   const StatusCell = ({ value }) => (
@@ -103,6 +107,13 @@ const MyDonation = () => {
         accessor: "created_on",
         // minWidth: 200,
         // width: 280,
+        Cell:({row})=>{
+          console.log(row, 'row')
+          return (
+            <p>{DateConvert(row?.original?.created_on)}</p>
+          )
+          
+         }
 
       },
       // {

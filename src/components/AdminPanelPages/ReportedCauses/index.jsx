@@ -8,6 +8,9 @@ import { GoDotFill } from "react-icons/go";
 import { DeleteBox } from "../../layout/dialogBox/delete";
 import { toast } from 'react-toastify'
 import serverAPI from "../../../config/serverAPI";
+import images from "../../../constants/images";
+import { format } from "date-fns";
+
 
 const Reported_Causes = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
@@ -30,6 +33,13 @@ const Reported_Causes = () => {
       });
     }
   };
+
+  
+  function DateConvert (Mydate){
+    const date = new Date(Mydate);
+    return format(date ,'dd-MMM-yyyy');
+  }
+
 
 
   const getStatusCellStyle = (status) => {
@@ -81,9 +91,22 @@ const Reported_Causes = () => {
     {
       Header: "Name",
       accessor: "campaign.title",
-
       minWidth: 100,
       width: 100,
+      Cell: ({ row }) => {
+        return (
+          <div className="flex  ">
+            <div className="w-[80px] truncate">{row?.original?.campaign?.title}</div>
+            <a href={`/campaign-details/${row.id}`} target='_blank'>
+              <img
+                className="ml-2"
+                src={images.CausesDetails}
+                alt="CausesDetails"
+              />
+            </a>
+          </div>
+        );
+      }
     },
   
     {
@@ -110,9 +133,15 @@ const Reported_Causes = () => {
     {
       Header: "Date",
       accessor: "updated_on",
-
       minWidth: 100,
       width: 100,
+
+      Cell:({row})=>{
+        return (
+          <p>{DateConvert(row?.original?.updated_on)}</p>
+        )
+        
+       }
     },
     {
       Header: "Actions",

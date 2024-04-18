@@ -4,7 +4,8 @@ import { useState } from 'react';
 import PrimaryButton from '../../inputs/PrimaryButton';
 import { Link } from 'react-router-dom';
 import { GoDotFill } from "react-icons/go";
-
+import images from '../../../constants/images';
+import { format } from "date-fns";
 
 
 const Index = () => {
@@ -13,9 +14,6 @@ const Index = () => {
   
     if (status === 'Pending') {
       return {
-
-
-
         color: '#fa9820',
         background: '#f5fabe  ',
       };
@@ -38,6 +36,11 @@ const Index = () => {
     }
     ;
   };
+
+  function DateConvert (Mydate){
+    const date = new Date(Mydate);
+    return format(date ,'dd-MMM-yyyy');
+  }
 
 
   const StatusCell = ({ value }) => (
@@ -73,6 +76,19 @@ const Index = () => {
         accessor: "campaign",
         // minWidth: 200,
         // width: 280,
+        Cell: ({ row }) => {
+          console.log(row ,'row')
+          return (
+            <div className='flex  '>
+              <div className="w-[80px] truncate">
+                {row?.original?.campaign}
+              </div>
+              <a href={`/campaign-details/${row.id}`} target="_blank">
+                <img className='ml-2' src={images.CausesDetails} alt="CausesDetails"  />
+              </a>
+            </div>
+          );
+        },
 
       },
       {
@@ -103,6 +119,12 @@ const Index = () => {
         accessor: "created_on",
         // minWidth: 200,
         // width: 280,
+       Cell:({row})=>{
+        return (
+          <p>{DateConvert(row?.original?.created_on)}</p>
+        )
+        
+       }
 
       },
       {

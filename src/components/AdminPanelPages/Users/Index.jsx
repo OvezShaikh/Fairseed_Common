@@ -7,6 +7,7 @@ import SecondaryButton from "../../inputs/secondaryButton";
 import { Link } from "react-router-dom";
 import { GoDotFill } from "react-icons/go";
 import { DeleteBox } from "../../layout/dialogBox/delete";
+import { format } from 'date-fns'
 
 const User = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
@@ -42,6 +43,11 @@ const User = () => {
       </span>
     </div>
   );
+
+  function DateConvert (Mydate){
+    const date = new Date(Mydate);
+    return format(date ,'dd-MMM-yyyy');
+  }
   const columns = React.useMemo(() => [
     {
       Header: "Id", // Row number header
@@ -56,6 +62,11 @@ const User = () => {
       accessor: "created_on",
       minWidth: 100,
       width: 100,
+      Cell:({row})=>{
+        return(
+          <p>{DateConvert(row?.original?.created_on)}</p>
+        )
+      }
     },
     {
       Header: "User",

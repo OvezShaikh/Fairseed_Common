@@ -4,10 +4,8 @@ import { useState } from "react";
 import IndeterminateCheckbox from "../../Table/IndeterminateCheckbox";
 import images from "../../../constants/images";
 import { GoDotFill } from "react-icons/go";
-import PrimaryButton from "../../inputs/PrimaryButton";
-import { Link, useLocation } from "react-router-dom";
-import SecondaryButton from "../../inputs/secondaryButton";
-import { FaSortDown } from "react-icons/fa";
+import { format } from "date-fns";
+
 
 const Withdrawals = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
@@ -36,6 +34,11 @@ const Withdrawals = () => {
       };
     }
   };
+
+  function DateConvert (Mydate){
+    const date = new Date(Mydate);
+    return format(date ,'dd-MMM-yyyy');
+  }
 
   const StatusCell = ({ value }) => (
     <div
@@ -111,6 +114,12 @@ const Withdrawals = () => {
       accessor: "updated_on",
       minWidth: 100,
       width: 100,
+      Cell:({row})=>{
+        return (
+          <p>{DateConvert(row?.original?.updated_on)}</p>
+        )
+        
+       }
     },
    
     {
