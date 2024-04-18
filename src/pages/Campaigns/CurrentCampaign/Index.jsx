@@ -78,6 +78,15 @@ function CurrentCampaign({
   const { mutate } = useCreateOrUpdate({
     url: `/user-dashboard/report-campaign`,
   });
+  const handleButtonClick = () => {
+    if (cardDetails?.fund_raised === cardDetails?.goal_amount) {
+      toast.error("Donation goal has already been reached", {
+        position: "top-right",
+      });
+    } else {
+      return null;
+    }
+  };
 
   useEffect(() => {
     axios
@@ -286,8 +295,15 @@ function CurrentCampaign({
               {cardDetails?.end_date}
             </p>
             <div className="w-full">
-              <Link to={`/Home/donate/${id}`}>
+              <Link
+                to={
+                  cardDetails?.fund_raised === cardDetails?.goal_amount
+                    ? "#"
+                    : `/Home/donate/${id}`
+                }
+              >
                 <PrimaryButton
+                  onClick={handleButtonClick}
                   className="w-full max-desktop:w-full"
                   sx={{ padding: "16px", borderRadius: "8px", width: "%" }}
                   // style={{
@@ -599,8 +615,15 @@ function CurrentCampaign({
         </div>
       </div>
       <div className="flex justify-center mt-4 gap-4 max-desktop:hidden">
-        <Link to={`/Home/donate/${id}`}>
+        <Link
+          to={
+            cardDetails?.fund_raised === cardDetails?.goal_amount
+              ? "#"
+              : `/Home/donate/${id}`
+          }
+        >
           <PrimaryButton
+            onClick={handleButtonClick}
             sx={{
               padding: "16px",
               borderRadius: "8px",
