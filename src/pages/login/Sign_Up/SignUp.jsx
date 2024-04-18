@@ -4,11 +4,12 @@ import InputField from "../../../components/inputs/InputField";
 import { useFormikContext } from "formik";
 import PrimaryButton from "../../../components/inputs/PrimaryButton";
 import Profile from "../../../components/inputs/AvatarCrop/Profile";
+import images from '../../../constants/images'
 
 const SignUp = ({ handleNext }) => {
   const imgRef = useRef(null);
   const { isValid, values } = useFormikContext();
-  const [srcImg, setSrcImg] = useState("");
+  const [srcImg, setSrcImg] = useState(images.Default_Profile_pic);
 
   const isFormValid = () => {
     return values.username && values.email && values.mobile_number;
