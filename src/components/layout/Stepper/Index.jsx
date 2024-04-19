@@ -231,8 +231,8 @@ export default function HorizontalLinearStepper() {
       });
       handleNext();
     },
-    onError: async (data, Values) => {
-      toast.error(`${data.data.message} `, {
+    onError: (data, Values) => {
+      toast.error(`${data.response.data.message} Error !!!!!!!!!!!!!!!!!!`, {
         position: "top-center",
       });
       handleNext();

@@ -7,10 +7,14 @@ import SvgIcon from "@mui/material/SvgIcon";
 
 const useStyles = makeStyles({
   textField: {
+    fontFamily: "ellipsis",
+
     "& .MuiInput-root": {
+      fontFamily: "ellipsis",
+
       margin: "0px",
       fontSize: "20px",
-      border: ' 1px solid #E2E2E2',
+      border: " 1px solid #E2E2E2",
       background: "#fff",
       "&::before": {
         display: "none",
@@ -21,14 +25,20 @@ const useStyles = makeStyles({
     },
 
     "& input::placeholder": {
+      fontFamily: "ellipsis",
+
       fontSize: "20px",
     },
     "& .Mui-disabled": {
+      fontFamily: "ellipsis",
+
       fontSize: "20px !important",
     },
   },
   root: {
     "& .MuiInputBase-root.MuiOutlinedInput-root": {
+      fontFamily: "ellipsis",
+
       padding: "15px 15px",
       fontSize: "20px",
       // marginTop: "5px",
@@ -40,21 +50,12 @@ const useStyles = makeStyles({
     },
 
     "& .MuiOutlinedInput-notchedOutline": {
+      fontFamily: "ellipsis",
+
       border: " 1px solid #e2e2e2",
     },
   },
 });
-
-
-
-
-
-
-
-
-
-
-
 
 const SelectField = ({
   name,
@@ -85,8 +86,8 @@ const SelectField = ({
     },
     ...otherProps,
   };
-  let setFieldTouched = (field, isTouched, shouldValidate = true) => { }
-  let setFieldValue = (name, value, shouldValidate = true) => { }
+  let setFieldTouched = (field, isTouched, shouldValidate = true) => {};
+  let setFieldValue = (name, value, shouldValidate = true) => {};
 
   if (name) {
     //eslint-disable-next-line
@@ -113,11 +114,9 @@ const SelectField = ({
     if (onChange) {
       return onChange(e, value, option);
     }
-
-  }
+  };
 
   const { values } = useFormikContext();
-
 
   // const configTextfield = {
   //   // ...field,
@@ -136,7 +135,6 @@ const SelectField = ({
   //   },
   //   ...otherProps,
   // };
-
 
   // if (meta && meta.touched && meta.error) {
   //   configTextfield.error = true;
@@ -159,13 +157,14 @@ const SelectField = ({
         value={value}
         sx={{
           ...sx,
+          fontFamily: "ellipsis",
           width: "100%",
           "&.Mui-focused .MuiFormControl-root .MuiOutlinedInput-notchedOutline":
-          {
-            boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);
+            {
+              boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);
           `,
-            borderColor: "black",
-          },
+              borderColor: "black",
+            },
         }}
         options={options ? options : []}
         disabled={disable}
@@ -173,11 +172,9 @@ const SelectField = ({
         className={root}
         isOptionEqualToValue={(option, value) => option?.id === value?.id}
         onChange={(_, value, reason) => {
-
           onChange ? onChange(value, reason) : setFieldValue(name, value);
         }}
         onBlur={() => setFieldTouched(name, true)}
-
         renderInput={(props) => (
           <>
             {label && (
@@ -208,9 +205,6 @@ const SelectField = ({
               //   onInputChange && onInputChange(e);
               // }}
               placeholder={placeholder}
-              
-              
-              
             />
           </>
         )}
@@ -219,7 +213,14 @@ const SelectField = ({
       <ErrorMessage
         name={name}
         render={(msg) => (
-          <div style={{ color: "red", fontSize: "1rem", paddingLeft: '5px', fontFamily: 'satoshi' }}>
+          <div
+            style={{
+              color: "red",
+              fontSize: "1rem",
+              paddingLeft: "5px",
+              fontFamily: "satoshi",
+            }}
+          >
             {typeof msg === "object" ? Object?.values(msg)[0] : msg}
           </div>
         )}
