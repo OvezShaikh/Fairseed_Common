@@ -264,22 +264,22 @@ const User_Campaign = ({ onClose }) => {
                     </Formik>
                   )}
                 </Dialog>
-                <Link to="View" state={{ id: row?.id }}>
+                {/* <Link to="View" state={{ id: row?.id }}>
                   <SecondaryButton sx={{ height: "30px" }}>
                     View Bank and KYC
                   </SecondaryButton>
-                </Link>
+                </Link> */}
               </>
 
             )}
-            {
+            {/* {
               row?.original?.withdrawal_status === 'Paid' &&
               <Link to="View" state={{ id: row?.id }}>
                 <SecondaryButton sx={{ height: "30px" }}>
                   View Bank and KYC
                 </SecondaryButton>
               </Link>
-            }
+            } */}
 
 
             {row?.values?.status === "Active" && (
@@ -332,16 +332,16 @@ const User_Campaign = ({ onClose }) => {
                   )}
                 </Dialog>
 
-                <Link to="Edit" state={{ id: row?.id }}>
+                {/* <Link to="Edit" state={{ id: row?.id }}>
                   <SecondaryButton sx={{ height: "30px" }}>
                     Edit Bank and KYC
                   </SecondaryButton>
-                </Link>
+                </Link> */}
 
                 {/* </Link> */}
               </>
             )}
-            {row?.values?.status === "Rejected" && <>
+            {/* {row?.values?.status === "Rejected" && <>
 
               <Link to="View" state={{ id: row?.id }}>
                 <SecondaryButton sx={{ height: "30px" }}>
@@ -350,8 +350,8 @@ const User_Campaign = ({ onClose }) => {
               </Link>
 
             </>
-            }
-            {row?.values?.status === "Pending" && <>
+            } */}
+            {/* {row?.values?.status === "Pending" && <>
 
               <Link to="Edit" state={{ id: row?.id }}>
                 <SecondaryButton sx={{ height: "30px" }}>
@@ -360,7 +360,7 @@ const User_Campaign = ({ onClose }) => {
               </Link>
 
             </>
-            }
+            } */}
 
 
           </div>
