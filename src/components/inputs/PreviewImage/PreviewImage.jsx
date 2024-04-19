@@ -1,5 +1,6 @@
 import { Button } from "../button";
 import { Dialog } from "../dialog";
+import PrimaryButton from '../PrimaryButton'
 
 export const ImagePreviewDialog = ({ croppedImage }) => {
   return (
@@ -7,12 +8,12 @@ export const ImagePreviewDialog = ({ croppedImage }) => {
       maxWidth="lg"
       title={"Preview Image"}
       button={
-        <Button
+        <PrimaryButton
           className={`mt-4 capitalize xl:text-sm 2xl:text-semi-base`}
           variant={"contained"}
         >
           View Image
-        </Button>
+        </PrimaryButton>
       }
     >
       {() => (

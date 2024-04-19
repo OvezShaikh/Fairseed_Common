@@ -10,6 +10,8 @@ import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import { useRef, useState } from "react";
 import { useFormikContext } from "formik";
+import PrimaryButton from '../PrimaryButton'
+import SecondaryButton from "../secondaryButton";
 
 export const ImageCropper = ({ srcImg, setOpenCrop, setsrcImg }) => {
   const [_, setCropData] = useState("#");
@@ -73,12 +75,12 @@ export const ImageCropper = ({ srcImg, setOpenCrop, setsrcImg }) => {
             sx={{ flexDirection: "column", mx: 3, my: 2 }}
           >
             <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
-              <Button variant="outlined" onClick={() => setOpenCrop(false)}>
+              <SecondaryButton variant="outlined" onClick={() => setOpenCrop(false)}>
                 Cancel
-              </Button>
-              <Button variant="contained" onClick={() => getCropData()}>
+              </SecondaryButton>
+              <PrimaryButton variant="contained" onClick={() => getCropData()}>
                 Crop
-              </Button>
+              </PrimaryButton>
             </Box>
           </DialogActions>
         </Grid>
