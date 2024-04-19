@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Profilepic from "../../assets/account.svg";
-import { Avatar } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import { styled } from "@mui/system";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -14,23 +14,27 @@ const StyledAvatar = styled(Avatar)(({ theme }) => ({
 }));
 
 function Donor({ data }) {
+  const [showMore, setShowMore] = useState(false);
+  const donorsToShow = showMore ? data?.slice(0, 10) : data?.slice(0, 4);
+
+  const handleShowMoreClick = () => {
+    setShowMore(true);
+  };
+
   return (
     <div className="max-desktop:w-full">
-      {data !== null && data !== undefined
-        ? data?.map((items) => {
-            // Splitting the full name into words
+      {donorsToShow !== null && donorsToShow !== undefined
+        ? donorsToShow.map((items, index) => {
             const fullNameWords = items?.full_name?.split(" ");
             let firstLetter = "";
-            // Extracting the first letter of the first word
             if (fullNameWords !== undefined) {
               firstLetter = fullNameWords[0].charAt(0).toUpperCase();
             }
 
             return (
-              <div className="grid grid-cols-10 pt-4">
+              <div key={index} className="grid grid-cols-10 pt-4">
                 <div className="col-span-7 pb-3">
                   <div className="grid grid-cols-7">
-                    {/* Using the first letter as the avatar content */}
                     <StyledAvatar
                       alt={items.full_name}
                       src="/static/images/avatar/1.jpg"
@@ -64,7 +68,36 @@ function Donor({ data }) {
               </div>
             );
           })
-        : null}{" "}
+        : null}
+      {/* Show More Button */}
+      {!showMore && data && data.length > 4 && (
+        <div className="flex justify-center mt-4 mb-8">
+          <button
+            className=" max-tablet:pt-[24px]"
+            onClick={handleShowMoreClick}
+            id="loadmorebutton"
+            style={{
+              width: "fit-content",
+              textAlign: "center",
+              color: "#FF9F0A",
+              fontSize: 24,
+              fontFamily: "Satoshi",
+              fontWeight: "500",
+              textDecoration: "underline",
+              wordWrap: "break-word",
+              background:
+                "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+              "-webkit-background-clip": "text",
+              "-webkit-text-fill-color": "transparent",
+              textDecoration: "underline",
+
+              position: "relative",
+            }}
+          >
+            <p className="gradient-button mb-0">Load More</p>
+          </button>
+        </div>
+      )}
     </div>
   );
 }

@@ -11,14 +11,14 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useGetAll } from '../../Hooks/useGetAll';
+import { useGetAll } from "../../Hooks/useGetAll";
 import "react-toastify/dist/ReactToastify.css";
 import images from "../../constants/images";
 
 export default function ProfileAvatar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [image , setImage]=React.useState("");
-  const [role , setRole]=React.useState("");
+  const [image, setImage] = React.useState("");
+  const [role, setRole] = React.useState("");
 
   function logout() {
     localStorage.removeItem("token");
@@ -42,8 +42,6 @@ export default function ProfileAvatar() {
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
   let id = Data?.id;
-  
-  
 
   useGetAll({
     key: `/accounts/user/${id}`,
@@ -52,16 +50,16 @@ export default function ProfileAvatar() {
       return data?.data?.data;
     },
     onSuccess: (data) => {
-     const img = `${process.env.REACT_APP_BASE_URL}${data?.profile_pic}`
-     setImage(img)
-     setRole(data?.user_role)
+      const img = `${process.env.REACT_APP_BASE_URL}${data?.profile_pic}`;
+      setImage(img);
+      setRole(data?.user_role);
     },
   });
 
   return (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-        <Tooltip title="Account settings">
+        <Tooltip title="Account settings ">
           <IconButton
             onClick={handleClick}
             size="small"
@@ -95,6 +93,7 @@ export default function ProfileAvatar() {
               content: '""',
               display: "block",
               position: "fixed",
+
               top: 0,
               right: 14,
               width: 10,

@@ -24,7 +24,9 @@ const InputField = ({
   infoText,
   characterCount,
   label,
+  Size,
   style,
+  top,
   disabled = false,
   // multiple = false,
   sx,
@@ -47,6 +49,7 @@ const InputField = ({
     },
     "& .MuiInputBase-input": {
       borderRadius: "3px",
+      fontFamily: "ellipsis",
       // borderTopLeftRadius: configTextfield?.startAdornment ? "0px" : "4px",
       // borderBottomLeftRadius: configTextfield?.startAdornment ? "0px" : "4px",
       position: "relative",
@@ -143,7 +146,7 @@ const InputField = ({
           sx={{
             padding: "4px 8px 8px 8px",
             color: colors.text.main,
-            fontSize: "20px",
+            fontSize: Size || "20px",
             fontWeight: 700,
             fontFamily: "satoshi",
             fontStyle: "normal",
@@ -173,7 +176,7 @@ const InputField = ({
 
         {/* Conditionally render icons section */}
         {type !== "date" && (
-          <div className="absolute right-[20px] top-[35px]">
+          <div className={`absolute right-[20px] top-[28px]`}>
             {type === "password" && (
               <InputAdornment position="end">
                 <IconButton

@@ -10,10 +10,13 @@ import { Dialog } from "../../../components/layout/dialogBox";
 import PrimaryButton from "../../inputs/PrimaryButton";
 import axios from "axios";
 import { toast } from "react-toastify";
-import serverAPI from "../../../config/serverAPI";
 import { Form, Formik } from "formik";
 import { useCreateOrUpdate } from "../../../Hooks";
 import { useQueryClient } from "react-query";
+import { format } from "date-fns";
+
+
+
 const style = {
   padding: "4px 48px",
   color: "white",
@@ -60,6 +63,11 @@ const User_Campaign = ({ onClose }) => {
       };
     }
   };
+
+  function DateConvert (Mydate){
+    const date = new Date(Mydate);
+    return format(date ,'dd-MMM-yyyy');
+  }
 
   const StatusCell = ({ value }) => (
     <div
@@ -202,6 +210,12 @@ const User_Campaign = ({ onClose }) => {
       accessor: "end_date",
       minWidth: 100,
       width: 100,
+      Cell:({row})=>{
+        return (
+          <p>{DateConvert(row?.original?.end_date)}</p>
+        )
+        
+       }
     },
     {
       Header: "Actions",
@@ -250,22 +264,22 @@ const User_Campaign = ({ onClose }) => {
                     </Formik>
                   )}
                 </Dialog>
-                <Link to="View" state={{ id: row?.id }}>
+                {/* <Link to="View" state={{ id: row?.id }}>
                   <SecondaryButton sx={{ height: "30px" }}>
                     View Bank and KYC
                   </SecondaryButton>
-                </Link>
+                </Link> */}
               </>
 
             )}
-            {
+            {/* {
               row?.original?.withdrawal_status === 'Paid' &&
               <Link to="View" state={{ id: row?.id }}>
                 <SecondaryButton sx={{ height: "30px" }}>
                   View Bank and KYC
                 </SecondaryButton>
               </Link>
-            }
+            } */}
 
 
             {row?.values?.status === "Active" && (
@@ -318,16 +332,16 @@ const User_Campaign = ({ onClose }) => {
                   )}
                 </Dialog>
 
-                <Link to="Edit" state={{ id: row?.id }}>
+                {/* <Link to="Edit" state={{ id: row?.id }}>
                   <SecondaryButton sx={{ height: "30px" }}>
                     Edit Bank and KYC
                   </SecondaryButton>
-                </Link>
+                </Link> */}
 
                 {/* </Link> */}
               </>
             )}
-            {row?.values?.status === "Rejected" && <>
+            {/* {row?.values?.status === "Rejected" && <>
 
               <Link to="View" state={{ id: row?.id }}>
                 <SecondaryButton sx={{ height: "30px" }}>
@@ -336,8 +350,8 @@ const User_Campaign = ({ onClose }) => {
               </Link>
 
             </>
-            }
-            {row?.values?.status === "Pending" && <>
+            } */}
+            {/* {row?.values?.status === "Pending" && <>
 
               <Link to="Edit" state={{ id: row?.id }}>
                 <SecondaryButton sx={{ height: "30px" }}>
@@ -346,7 +360,7 @@ const User_Campaign = ({ onClose }) => {
               </Link>
 
             </>
-            }
+            } */}
 
 
           </div>

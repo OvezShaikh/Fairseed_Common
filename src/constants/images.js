@@ -95,6 +95,7 @@ import SealCheck2 from "../assets/SealCheck2.svg";
 import SealCheck3 from "../assets/SealCheck3.svg";
 import HeaderImage from "../assets/HeaderImage.svg";
 import HeaderImage2 from "../assets/HeaderImage2.svg";
+import Default_Profile_pic from "../assets/Default_Profile_pic.png"
 
 export default {
   SealCheck,
@@ -192,4 +193,5 @@ export default {
   Vector,
   HeaderImage,
   HeaderImage2,
+  Default_Profile_pic,
 };

@@ -4,6 +4,8 @@ import { useState } from 'react';
 import PrimaryButton from '../../inputs/PrimaryButton';
 import { Link } from 'react-router-dom';
 import { GoDotFill } from "react-icons/go";
+import { format } from "date-fns";
+
 
 
 
@@ -35,6 +37,11 @@ const User_Donation = () => {
     }
     ;
   };
+
+  function DateConvert (Mydate){
+    const date = new Date(Mydate);
+    return format(date ,'dd-MMM-yyyy');
+  }
 
 
   const StatusCell = ({ value }) => (
@@ -100,6 +107,12 @@ const User_Donation = () => {
         accessor: "created_on",
         // minWidth: 200,
         // width: 280,
+        Cell:({row})=>{
+          return (
+            <p>{DateConvert(row?.original?.created_on)}</p>
+          )
+          
+         }
 
       },
       {

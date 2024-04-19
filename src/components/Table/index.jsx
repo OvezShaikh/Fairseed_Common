@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Grid,
   Table,
@@ -22,18 +22,20 @@ import CustomPagination from "./CustomPagination";
 import {
   useCreateOrUpdate,
   useDebounce,
-  // useDownloadFile,
+  useDownloadFile,
   useGetAll,
 } from "../../Hooks";
 import { Search } from "../inputs/Search";
 import { colors } from "../../constants/theme";
 import NoData from "./NoData";
+import { Download } from "@carbon/icons-react";
 import SecondaryButton from "../inputs/secondaryButton";
 import ManageColumns from "./ManageColumns";
 import ApplyFilters from "./ApplyFilters";
 import Sorting from "./Sorting";
 import { FilterReset } from "@carbon/icons-react";
 import Columnfilter from "./Columnfilter";
+import { toast } from "react-toastify";
 
 const dataGridStyles = {
   borderRadius: 0,
@@ -120,7 +122,7 @@ const ReactTable = ({
   refetchInside = false,
   rowHeight,
   isLoading,
-  // downloadExcel,
+  downloadExcel,
   extraQuery,
   showFilter = true,
   title,
@@ -128,6 +130,7 @@ const ReactTable = ({
   selectedRowID,
   checkboxSelection,
 }) => {
+  const tableRef = useRef(null);
   const isMobile = useMediaQuery("(max-width: 600px)");
   let title_slug = title?.replace(/ /g, "-");
   const [query, setQuery] = useState(null);
@@ -365,6 +368,17 @@ const ReactTable = ({
     },
   });
 
+  const { refetch: GetExcel, isFetching: ExcelLoading } = useDownloadFile(
+    url,
+    {
+      ...extraQuery,
+      download: true,
+    },
+    () => {
+      toast.success("Excel Downloaded Successfully");
+    }
+  );
+
   const handleSortingChange = (accessor, colOrder) => {
     setSortField(accessor);
     setOrder(colOrder);
@@ -492,6 +506,22 @@ const ReactTable = ({
             isLoading={mutateLoading}
             isMobile={isMobile}
           />
+          {downloadExcel && (
+            <SecondaryButton
+              onClick={() => GetExcel()}
+              isLoading={ExcelLoading}
+              loaderColor={"warning"}
+              startIcon={
+                <Download
+                  color={colors.primary.dark}
+                  size={"20"}
+                  className="me-1"
+                />
+              }
+            >
+              Download Excel
+            </SecondaryButton>
+          )}
           <SecondaryButton
             onClick={() => {
               localStorage.removeItem(`filters-of-${title_slug}`);
@@ -524,7 +554,7 @@ const ReactTable = ({
           overflowX: "auto",
         }}
       >
-        <Table sx={dataGridStyles} {...getTableProps()}>
+        <Table sx={dataGridStyles} {...getTableProps()} ref={tableRef}>
           <TableHead>
             {headerGroups.map((headerGroup) => (
               <TableRow

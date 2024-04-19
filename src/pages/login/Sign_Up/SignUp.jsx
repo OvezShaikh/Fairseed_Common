@@ -4,11 +4,12 @@ import InputField from "../../../components/inputs/InputField";
 import { useFormikContext } from "formik";
 import PrimaryButton from "../../../components/inputs/PrimaryButton";
 import Profile from "../../../components/inputs/AvatarCrop/Profile";
+import images from '../../../constants/images'
 
 const SignUp = ({ handleNext }) => {
   const imgRef = useRef(null);
   const { isValid, values } = useFormikContext();
-  const [srcImg, setSrcImg] = useState("");
+  const [srcImg, setSrcImg] = useState(images.Default_Profile_pic);
 
   const isFormValid = () => {
     return values.username && values.email && values.mobile_number;
@@ -39,10 +40,14 @@ const SignUp = ({ handleNext }) => {
                 <InputField
                   label="Name"
                   required={true}
+                  top={"28px"}
+                  Size={18}
                   sx={{
-                    padding: " 16px 10px 16px var(--Spacing-20, 20px)",
+                    padding: " 8px 10px 8px 10px",
                     border: "2px solid var(--Linear-BG, #FF9F0A)",
                     borderImage: "linear-gradient(#FF9F0A, red) 20",
+                    // borderWidth: '3px',
+                    borderStyle: " solid",
                     borderRadius: "4px",
                   }}
                   name={"username"}
@@ -56,10 +61,13 @@ const SignUp = ({ handleNext }) => {
                   type="email"
                   name={"email"}
                   required={true}
+                  Size={18}
                   sx={{
-                    padding: " 16px 10px 16px var(--Spacing-20, 20px)",
+                    padding: " 8px 10px 8px 10px",
                     border: "2px solid var(--Linear-BG, #FF9F0A)",
                     borderImage: "linear-gradient(#FF9F0A, red) 20",
+                    // borderWidth: '3px',
+                    borderStyle: " solid",
                     borderRadius: "4px",
                   }}
                   placeholder="Enter your username"
@@ -70,10 +78,13 @@ const SignUp = ({ handleNext }) => {
                   label="Mobile Number"
                   required={true}
                   type="number"
+                  Size={18}
                   sx={{
-                    padding: " 16px 10px 16px var(--Spacing-20, 20px)",
+                    padding: " 8px 10px 8px 10px",
                     border: "2px solid var(--Linear-BG, #FF9F0A)",
                     borderImage: "linear-gradient(#FF9F0A, red) 20",
+                    // borderWidth: '3px',
+                    borderStyle: " solid",
                     borderRadius: "4px",
                   }}
                   name={"mobile_number"}

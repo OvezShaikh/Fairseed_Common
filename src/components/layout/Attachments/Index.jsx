@@ -19,9 +19,13 @@ function YourComponent({ imageUrl, id, iconShow }) {
     }
   };
 
+const url =`/admin-dashboard/cause-edit/${id}`;
 
   const { refetch: downloadFile, isFetching: downloadingFile } = useDownloadFile(
-    `/admin-dashboard/cause-edit/${id}`,
+    imageUrl,
+    {
+      download: true,
+    },
     () => {
       console.log("File download successful");
     }

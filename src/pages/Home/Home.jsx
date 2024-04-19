@@ -219,7 +219,7 @@ function Home() {
             style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
             onClick={filterToggle}
           >
-            <img src={images.Funnel} />
+            <img src={images.Funnel} alt="" />
             <p
               className="text-[18px]"
               style={{

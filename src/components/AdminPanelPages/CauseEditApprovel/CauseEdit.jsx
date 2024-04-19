@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactTable from '../../Table/index';
 import { useState } from 'react';
-import { Button, Checkbox } from '@mui/material';
 import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
-import { LocationConfigurationDialog } from '../../admin-console/AddCategorydialog';
 import SecondaryButton from '../../inputs/secondaryButton';
-import CauseEdit from '../CauseEditApprovel/Index';
 import { GoDotFill } from "react-icons/go";
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import images from '../../../constants/images';
+import { format } from "date-fns";
+
 
 const Campaign = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
@@ -47,6 +47,11 @@ const Campaign = () => {
     </div>
   );
 
+  function DateConvert (Mydate){
+    const date = new Date(Mydate);
+    return format(date ,'dd-MMM-yyyy');
+  }
+
   const columns = React.useMemo(
     () => [
       {
@@ -65,6 +70,20 @@ const Campaign = () => {
         accessor: "campaign.title",
         minWidth: 100,
         width: 100,
+        Cell: ({ row }) => {
+          return (
+            <div className="flex  ">
+              <div className="w-[80px] truncate">{row?.original?.campaign?.title}</div>
+              <a href={`/campaign-details/${row.id}`} target='_blank'>
+                <img
+                  className="ml-2"
+                  src={images.CausesDetails}
+                  alt="CausesDetails"
+                />
+              </a>
+            </div>
+          );
+        }
 
 
       },
@@ -106,9 +125,14 @@ const Campaign = () => {
       {
         Header: "Deadline",
         accessor: "campaign.end_date",
-
         minWidth: 100,
         width: 100,
+        Cell:({row})=>{
+          return (
+            <p>{DateConvert(row?.original?.campaign?.end_date)}</p>
+          )
+          
+         }
       },
       {
         Header: 'Actions',

@@ -5,7 +5,7 @@ import { useMediaQuery } from "@mui/material";
 
 const AdminLayout = ({ children }) => {
   const [mobileOpen, setMobileOpen] = React.useState(true);
-  const isMobile = useMediaQuery("(max-width:600px)");
+  const isMobile = useMediaQuery("(max-width:900px)");
 
   return (
     <>

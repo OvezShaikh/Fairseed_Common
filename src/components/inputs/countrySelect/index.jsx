@@ -8,6 +8,7 @@ const CountrySelect = ({
   name,
   options,
   value,
+  size,
   sx,
   disable,
   onChange,
@@ -39,7 +40,12 @@ const CountrySelect = ({
     <>
       <FormLabel
         className="text-capitalize  d-flex mb-1 ml-2 align-items-center"
-        sx={{ color: "#383A42", fontSize: "20px", fontWeight: 700, ...sx }}
+        sx={{
+          color: "#383A42",
+          fontSize: size || "20px",
+          fontWeight: 700,
+          ...sx,
+        }}
       >
         {label}
         {required ? <span className="text-red-600">*</span> : ""}
@@ -51,6 +57,8 @@ const CountrySelect = ({
           onChange && onChange(value);
         }}
         searchable
+        searchPlaceholder="Search countries"
+        defaultCountry="India"
         id="react-flag-select"
         style={{ border: "1px solid red" }}
         {...configTextfield}

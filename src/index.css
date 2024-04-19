@@ -229,7 +229,7 @@ body {
   border-image: linear-gradient(#ff9f0a, red) 20;
   border-style: solid;
   border-radius: 5px;
-  height: 70px;
+  height: 60px;
 }
 
 .slick-prev,
