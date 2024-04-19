@@ -12,12 +12,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useGetAll } from "../../Hooks";
 import { useRef } from "react";
-import MenuItem from "@mui/material/MenuItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import Logout from "@mui/icons-material/Logout";
-import Avatar from "@mui/material/Avatar";
-import Divider from "@mui/material/Divider";
-import Settings from "@mui/icons-material/Settings";
 
 const GetInvolved = [
   {
@@ -71,13 +66,6 @@ const AboutUs = [
   {
     name: "Objectives & Values",
     href: "/Home/Objectives-&-values",
-  },
-];
-
-const HowItWorks = [
-  {
-    name: "How-It-Works",
-    href: "/How-It-Works",
   },
 ];
 
@@ -460,24 +448,23 @@ export default function Example() {
               </PrimaryButton>
             ) : (
               <PrimaryButton
-                onClick={() => {
-                  toast.error("please login First !!! ", {
-                    position: "top-center",
-                  });
-                }}
                 sx={{
                   borderRadius: "var(--Pixels-8, 8px)",
                   fontWeight: 700,
                   fontSize: "18px",
-                  // padding: "12px 10px 12px 10px",
+                  padding: "12px 20px",
                 }}
               >
-                Start a Campaign
+                <UserLogin
+                  text={"Start a Campaign"}
+                  color={"white"}
+                  fontWeight={700}
+                />
               </PrimaryButton>
             )}
 
             <div className="flex space-x-0  ">
-              <div className="flex-col relative pr-4">
+              <div className="flex-col relative pr-5 pt-1">
                 <form
                   onSubmit={handleSearch}
                   className="relative mx-auto flex "
@@ -554,7 +541,7 @@ export default function Example() {
                 </div>
               ) : (
                 <button className="font-[satoshi] text-[18px]  font-medium text-[#40444C]">
-                  <UserLogin />
+                  <UserLogin text={"Log in"} />
                 </button>
               )}
             </div>
@@ -570,7 +557,7 @@ export default function Example() {
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <Link to="#" className="-m-1.5 p-1.5">
+            <Link to="#" className="-m-1.5 p-1.5 outline-none">
               <span className="sr-only">Your Company</span>
               <img className="h-8 w-auto" src={images.Logo} alt="" />
             </Link>
@@ -713,7 +700,7 @@ export default function Example() {
 
                     <Link
                       className="flex text-[satoshi] text-[20px] items-center max-desktop:font-[satoshi] font-medium text-black"
-                      to={"/account-settings"}
+                      to={"/Home/account-settings"}
                     >
                       Settings
                     </Link>

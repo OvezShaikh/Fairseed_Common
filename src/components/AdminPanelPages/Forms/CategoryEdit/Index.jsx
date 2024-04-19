@@ -130,6 +130,7 @@ function AddNew() {
           </div>
           <div className="flex flex-row gap-4 mt-12">
             <button
+              type="button"
               className="w-[69px] h-[32px] bg-[#F7F7F7]"
               onClick={() => {
                 navigate(-1);

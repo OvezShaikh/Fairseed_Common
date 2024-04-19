@@ -39,7 +39,7 @@ const HomeSwiper = () => {
     key: `/campaign/featured-campaign?page=${page}&limit=${perPage}`,
     enabled: true,
     select: (data) => {
-      console.log(data?.data?.rows, ">>>>>>>>>>>");
+      // console.log(data?.data?.rows, ">>>>>>>>>>>");
       return data?.data?.rows;
     },
     onSuccess: (data) => {

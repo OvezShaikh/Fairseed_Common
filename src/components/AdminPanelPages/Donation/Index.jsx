@@ -11,7 +11,6 @@ const Index = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
   const getStatusCellStyle = (status) => {
   
-    console.log('Status:', status);
     if (status === 'Pending') {
       return {
 

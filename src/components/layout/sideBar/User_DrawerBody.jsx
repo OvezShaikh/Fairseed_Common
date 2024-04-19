@@ -36,7 +36,7 @@ import {
   ScholarshipsIcon,
   PagesIcon,
   PgSettingsIcon,
-  MyDonations
+  MyDonations,
 } from "../../../utils/Icons";
 import { colors } from "../../../constants/theme";
 import SearchIcon from "@mui/icons-material/Search";
@@ -78,7 +78,9 @@ let Icons = {
   CategorysIcon: (isActive) => <CategorysIcon isActive={isActive} />,
   CausesIcon: (isActive) => <CausesIcon isActive={isActive} />,
   CausesApprovalIcon: (isActive) => <CausesApprovalIcon isActive={isActive} />,
-  ScholarshipCausesIcon: (isActive) => <ScholarshipCausesIcon isActive={isActive} />,
+  ScholarshipCausesIcon: (isActive) => (
+    <ScholarshipCausesIcon isActive={isActive} />
+  ),
   ReportedIcon: (isActive) => <ReportedIcon isActive={isActive} />,
   CampaignIcon: (isActive) => <CampaignIcon isActive={isActive} />,
   WithdrawalsIcon: (isActive) => <WithdrawalsIcon isActive={isActive} />,
@@ -89,9 +91,6 @@ let Icons = {
   PgSettingsIcon: (isActive) => <PgSettingsIcon isActive={isActive} />,
   DashboardIcon: (isActive) => <DashboardIcon isActive={isActive} />,
   MyDonationIcon: (isActive) => <MyDonations isActive={isActive} />,
-
-
-
 };
 
 const CollapsibleMenuItem = ({
@@ -111,7 +110,6 @@ const CollapsibleMenuItem = ({
           setSelectedMenu((prev) => (prev !== item.path ? item.path : ""))
         }
         key={item.title + index}
-
       >
         <ListItemButton className="pl-8 ">
           {item.icon && (
@@ -137,7 +135,6 @@ const CollapsibleMenuItem = ({
           ) : (
             <KeyboardArrowDownIcon />
           )}
-
         </ListItemButton>
       </ListItem>
       <Collapse
@@ -182,9 +179,6 @@ const CollapsibleMenuItem = ({
                       />
                     </svg>
                   )}
-
-
-
 
                   <ListItemButton className="pl-8">
                     <RiArrowRightSFill className="text-[#B6BAC3]" />
@@ -243,9 +237,7 @@ const User_DrawerBody = () => {
       path: "/User/Scholarships",
       title: "Scholarships",
     },
-
   ];
-
 
   const [selectedPath, setSelectedMenu] = useState("");
 
@@ -254,7 +246,7 @@ const User_DrawerBody = () => {
   }, [pathname]);
 
   return (
-    <div className="link-none transition-all duration-1000 ease-in-out">
+    <div className="link-none transition-all duration-500 ease-in-out">
       <List
         // className="pt-4"
         sx={{
@@ -329,9 +321,3 @@ const User_DrawerBody = () => {
 };
 
 export default User_DrawerBody;
-
-
-
-
-
-

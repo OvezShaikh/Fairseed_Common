@@ -122,6 +122,7 @@ export const LocationConfigurationDialog = ({
             </div>
             <div className="flex flex-row gap-4 mt-12">
               <button
+              type="button"
                 onClick={() => {
                   onClose();
                 }}

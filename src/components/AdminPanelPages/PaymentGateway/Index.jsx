@@ -13,8 +13,7 @@ function Index() {
     key: `/admin-dashboard/phonepay`,
     enabled: true,
     select: (data) => {
-      console.log(data.data.data, "++++++id++++++");
-      return data?.data?.data;
+      return data?.data?.data[0];
     },
     onSuccess: (data) => {
       setDetails(data);

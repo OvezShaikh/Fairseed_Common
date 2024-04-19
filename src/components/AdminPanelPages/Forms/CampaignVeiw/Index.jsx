@@ -57,9 +57,8 @@ function Index() {
         const image = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign_image}`;
         setC_image(image);
       } else {
-        const image = `${process.env.REACT_APP_BE_BASE_URL}${
-          data?.campaign?.campaign_image || ""
-        }`;
+        const image = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign?.campaign_image || ""
+          }`;
         setC_image(image);
       }
       setDocuments(data?.campaign?.documents);
@@ -104,11 +103,10 @@ function Index() {
       campaign?.campaign?.zakat_eligible ||
       false,
     documents: campaign?.documents || [],
-    status:campaign?.campaign_data?.status || (campaign?.campaign?.status || ''),
+    status: campaign?.campaign_data?.status || (campaign?.campaign?.status || ''),
   };
 
   const handleSubmit = (values) => {
-    console.log(values , 'values <========')
     const formData = new FormData();
     formData.append("campaign_image", values?.campaign_image);
     formData.append("title", values?.title);
@@ -121,7 +119,7 @@ function Index() {
     formData.append("zakat_eligible", values?.zakat_eligible);
     formData.append("document", values?.category);
     formData.append("status", values?.status);
-     formData.append("approve_campaign", approval);
+    formData.append("approve_campaign", approval);
 
     mutate(formData, {
       onSuccess: (response) => {
@@ -164,7 +162,7 @@ function Index() {
               </div>
               <div className="w-full">
                 {
-                  console.log(values , 'values')
+                  console.log(values, 'values')
                 }
                 <InputField
                   color={campaignData?.title ? "red" : undefined}
@@ -355,34 +353,37 @@ function Index() {
           </div>
           <div className="flex gap-3 pt-5 max-tablet:flex-col max-tablet:items-center">
             {
-               campaign?.campaign?.status === 'Active' ? (<>
-               <button
-              onClick={() => navigate(-1)}
-              className="w-[69px] content-stretch h-[32px] bg-[#F7F7F7]"
-            >
-              <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
-                Cancel
-              </h1>
-            </button>
-            <SuccessButton
-              type="submit"
-              onClick={() => setApproval(true)}
-              text={"Save & Approve"}
-              icon={<PiCheckFat className="w-4 h-4 mt-1" />}
-            />
-            <PrimaryButton type="submit">
-              <h1 className="text-white font-semibold font-[satoshi]">
-                Reject Modification Request
-              </h1>
-            </PrimaryButton>
-               </> ) : ( <button
-                onClick={() => navigate(-1)}
-                className="w-[69px] content-stretch h-[32px] bg-[#F7F7F7]"
-              >
-                <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
-                  Cancel
-                </h1>
-              </button> )
+              campaign?.campaign?.status === 'Active' ? (<>
+                <button
+                  type="button"
+                  onClick={() => navigate(-1)}
+                  className="w-[69px] content-stretch h-[32px] bg-[#F7F7F7]"
+                >
+                  <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
+                    Cancel
+                  </h1>
+                </button>
+                <SuccessButton
+                  type="submit"
+                  onClick={() => setApproval(true)}
+                  text={"Save & Approve"}
+                  icon={<PiCheckFat className="w-4 h-4 mt-1" />}
+                />
+                <PrimaryButton type="submit">
+                  <h1 className="text-white font-semibold font-[satoshi]">
+                    Reject Modification Request
+                  </h1>
+                </PrimaryButton>
+              </>) : (
+                <button
+                  type="button"
+                  onClick={() => navigate(-1)}
+                  className="w-[69px] content-stretch h-[32px] bg-[#F7F7F7]"
+                >
+                  <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
+                    Cancel
+                  </h1>
+                </button>)
             }
             {/* <button
               onClick={() => navigate(-1)}

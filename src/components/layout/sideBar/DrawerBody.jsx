@@ -225,7 +225,7 @@ const DrawerBody = () => {
           path: "/AdminPanel/General-Settings/Limits",
           title: "Limits",
         },
-       
+
         {
           path: "/AdminPanel/General-Settings/Profiles-Social",
           title: "Profiles Social",
@@ -299,8 +299,6 @@ const DrawerBody = () => {
     },
   ];
 
- 
-
   const [selectedPath, setSelectedMenu] = useState("");
 
   useEffect(() => {
@@ -308,7 +306,7 @@ const DrawerBody = () => {
   }, [pathname]);
 
   return (
-    <div className="link-none transition-all duration-1000 ease-in-out">
+    <div className="link-none transition-all duration-500 ease-in-out">
       <List
         // className="pt-4"
         sx={{

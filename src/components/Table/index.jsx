@@ -7,6 +7,7 @@ import {
   TableHead,
   TableRow,
   TextField,
+  useMediaQuery,
 } from "@mui/material";
 import {
   useTable,
@@ -127,6 +128,7 @@ const ReactTable = ({
   selectedRowID,
   checkboxSelection,
 }) => {
+  const isMobile = useMediaQuery("(max-width: 600px)");
   let title_slug = title?.replace(/ /g, "-");
   const [query, setQuery] = useState(null);
   const [data, setData] = useState([]);
@@ -438,7 +440,7 @@ const ReactTable = ({
   return (
     <Grid
       container
-      className="flex flex-column gap-2 pt-4"
+      className="flex flex-column gap-2 pt-8"
       rowSpacing={2}
       style={{ maxWidth: "100%" }}
     >
@@ -446,7 +448,7 @@ const ReactTable = ({
       <Grid
         item
         // xs={12}
-        className="d-flex align-items-center justify-content-between flex-wrap w-full"
+        className="d-flex align-items-center justify-content-between flex-wrap w-full "
       >
         <Grid item xs={12} md={6} display="flex" alignItems={"center"}>
           {!noSearch ? (
@@ -488,6 +490,7 @@ const ReactTable = ({
             mutate={mutate}
             postTableMetaData={postTableMetaData}
             isLoading={mutateLoading}
+            isMobile={isMobile}
           />
           <SecondaryButton
             onClick={() => {
@@ -502,7 +505,7 @@ const ReactTable = ({
               />
             }
           >
-            Reset Filters
+            {!isMobile && "Reset Filters"}
           </SecondaryButton>
 
           {addButton && <div className="border  py-3 mx-3"></div>}

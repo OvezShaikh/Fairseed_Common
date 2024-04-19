@@ -12,7 +12,6 @@ import { toast } from "react-toastify";
 import AdminSelectField from "../inputs/AdminSelectField/Index";
 import { useGetAll } from "../../Hooks";
 import { Button } from "@mui/material";
-import { Edit } from "@mui/icons-material";
 
 export const AddUser = ({
   isUpdate = false,
@@ -30,7 +29,7 @@ export const AddUser = ({
     email: "",
     password: "",
     user_role: "",
-    user_type: "",
+    user_type:""
   };
 
   useGetAll({
@@ -64,9 +63,11 @@ export const AddUser = ({
     confirm_password: yup
       .string()
       .oneOf([yup.ref("password"), null], "Passwords must match")
-      .required("Confirm Password is required"),
-    user_type: yup.string().required("User type is required"),
-  });
+      .required("Confirm Password is required"), 
+      user_role: yup.object().required("role is required"),
+      user_type: yup.string().required("User type is required").oneOf(["Individual", "NGO"], "Invalid user type"),
+    })
+  
 
   const { mutate } = useCreateOrUpdate({
     url: `/admin-dashboard/users`,
@@ -113,17 +114,15 @@ export const AddUser = ({
       {({ onClose }) => (
         <Formik
           initialValues={initialValues}
-          //   validationSchema={validationSchema}
-          onSubmit={(values) =>
+          validationSchema={validationSchema}
+          onSubmit={(values) => {
             mutate(
               {
                 ...values,
-                user_type: values?.user_type?.valueOf,
-                user_role: values?.user_role?.valueOf,
+                user_role: values?.user_role?.value,
               },
               {
                 onSuccess: (response) => {
-                  console.log(response.data?.message, "=============>AddUser");
                   toast.success(`${response.data?.message}`, {
                     position: "top-right",
                   });
@@ -135,16 +134,15 @@ export const AddUser = ({
                   onClose();
                 },
                 onError: (response) => {
-                  toast.error(`${response.response?.data?.email[0]}`, {
-                    position: "top-right",
-                  });
-                  toast.error(`${response.response?.data?.mobile_number[0]}`, {
+                  console.log(response);
+
+                  toast.error(`${response.response?.data?.message}`, {
                     position: "top-right",
                   });
                 },
               }
-            )
-          }
+            );
+          }}
         >
           {({ setFieldValue, errors, touched }) => (
             <Form className="flex flex-col items-center px-4 pt-2">
@@ -176,7 +174,7 @@ export const AddUser = ({
                   <AdminSelectField
                     label={"Role"}
                     name={"user_role"}
-                    placeholder={"Placeholder Text"}
+                    placeholder={"Select User Role"}
                     options={role.map((item) => ({
                       label: item.role_name,
                       value: item.id,
@@ -201,11 +199,12 @@ export const AddUser = ({
                 </div>
               </div>
               <div className="flex gap-32 w-full pl-2 pt-8 max-tablet:flex-col max-tablet:gap-4">
-                <div className="  lg:w-[25%] ">
+                <div className=" lg:w-[25%] ">
                   <RadioGroup
                     name={"user_type"}
-                    onChange={(e) => {
-                      setFieldValue("user_type", e?.target?.value);
+                    onChange={(value) => {
+                      console.log(value);
+                      setFieldValue("user_type", value);
                     }}
                     options={[
                       { label: "Individual", value: "Individual" },

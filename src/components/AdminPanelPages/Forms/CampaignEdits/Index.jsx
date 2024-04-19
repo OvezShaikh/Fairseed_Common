@@ -17,7 +17,7 @@ import ImageEditor from "../../layout/ImageEditor/Index";
 import { useState } from "react";
 import ImageBackgroundWithDeleteButton from "../../layout/CropAddImage/Index";
 import Attachments from "../../../layout/Attachments/Index";
-import {  useGetAll } from "../../../Hooks";
+import { useGetAll } from "../../../Hooks";
 
 const InputStyle = {
   padding: "20px",
@@ -61,7 +61,7 @@ function Index() {
   const [imageUrl, setImageUrl] = useState("");
 
   const handleDelete = () => {
-    
+
     setImageUrl("");
   };
 
@@ -307,7 +307,7 @@ function Index() {
                   ]}
                   label="Featured:"
                   style={{ fontSize: "18px", fontWeight: 500 }}
-                  // onChange={onChange}
+                // onChange={onChange}
                 />
               </div>
             </div>
@@ -328,7 +328,8 @@ function Index() {
           </div>
           <div className="flex gap-3 max-tablet:flex-col  max-tablet:items-center pt-5">
             <button
-              onClick={() => {}}
+              type="button"
+              onClick={() => { }}
               className="w-[69px] content-stretch h-[32px] bg-[#F7F7F7]"
             >
               <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
@@ -336,7 +337,7 @@ function Index() {
               </h1>
             </button>
             <SuccessButton
-              onClick={() => {}}
+              onClick={() => { }}
               text={"Save & Approve"}
               icon={<PiCheckFat className="w-4 h-4 mt-1" />}
             />

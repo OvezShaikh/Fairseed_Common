@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Avatar, LinearProgress } from "@mui/material";
 import { Link } from "react-router-dom";
 import { RiErrorWarningLine } from "react-icons/ri";
+import Profile from "../inputs/AvatarCrop/Profile";
 
 function Card({
   key,
@@ -18,6 +19,7 @@ function Card({
   userCount,
   userProfile,
   location,
+  Profile_pic,
   og_id,
 }) {
   // const image = process.env.REACT_APP_API_URL + cardImage;
@@ -28,6 +30,8 @@ function Card({
   //     position: "top-center",
   //   });
   // };
+  console.log("dhhdhdshs", Profile_pic);
+
   const fullNameWords = username?.split(" ");
   const firstLetter = fullNameWords?.[0]?.charAt(0)?.toUpperCase() ?? "";
   return (
@@ -133,7 +137,16 @@ function Card({
                 fontSize: "15px !important",
               }}
             >
-              {firstLetter}
+              {Profile_pic ? (
+                <img
+                  src={`http://143.110.253.227:8000${Profile_pic}`}
+                  alt="Profile"
+                />
+              ) : (
+                <span>{firstLetter}</span>
+              )}
+
+              {console.log(Profile_pic, "============>Images")}
             </Avatar>{" "}
             <p className="text-black/40 pl-2 text-[20px] max-desktop:text-[14px]">
               {username}

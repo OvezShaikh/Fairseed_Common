@@ -5,14 +5,16 @@ import { FiInstagram } from "react-icons/fi";
 import { RiPinterestLine } from "react-icons/ri";
 import { RiYoutubeLine } from "react-icons/ri";
 import icons from "../../constants/icons";
-import { Link, useLocation, useNavigate} from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SecondaryButton from "../inputs/secondaryButton";
 import { toast } from "react-toastify";
-
+import UserLogin from "../../pages/login/Login_page/Index";
 
 function Footer() {
   const navigate = useNavigate();
-  const navigateToOng = () => {navigate('/Home/OnGoingCampaigns')};
+  const navigateToOng = () => {
+    navigate("/Home/OnGoingCampaigns");
+  };
   return (
     <>
       <div
@@ -21,22 +23,24 @@ function Footer() {
           width: "100%",
           height: "100%",
 
-
           background: "#22262F",
 
-          fontFamily: 'satoshi'
+          fontFamily: "satoshi",
         }}
       >
         <div className="flex mt-[140px] max-desktop:mt-[305px] desktop:max-w-[79%] desktop:w-full justify-center absolute -top-[50%] left-[50%] -translate-x-[50%] max-desktop:w-[81%] max-tablet:mt-[300px]">
           <div className="rounded-[20px] footer text-center desktop:p-[90px] max-desktop:px-[48px] max-desktop:py-[85px] max-tablet:px-[23px] max-tablet:py-[33px]">
-            <p className="footer_text w-[100%] mx-auto text-[56px] max-desktop:text-[36px] max-tablet:text-[22px]" style={{ fontWeight: 700 }}>
+            <p
+              className="footer_text w-[100%] mx-auto text-[56px] max-desktop:text-[36px] max-tablet:text-[22px]"
+              style={{ fontWeight: 700 }}
+            >
               Ready to make an Impact? Join thousands of others today
             </p>
             <div className="flex justify-center my-10 mb-0 desktop:mt-[64px] gap-4 max-tablet:flex-col">
-              <button className="px-[28px] max-desktop:px-[15px]"
+              <button
+                className="px-[28px] max-desktop:px-[15px]"
                 onClick={navigateToOng}
                 style={{
-
                   paddingTop: 16,
                   paddingBottom: 16,
                   background: "rgba(194.44, 51.85, 51.85, 0.90)",
@@ -50,7 +54,8 @@ function Footer() {
                 <div style={{ width: 32, position: "relative" }}>
                   <img src={images.coins2} alt="" />
                 </div>
-                <div className="text-[20px] max-tablet:text-[16px]"
+                <div
+                  className="text-[20px] max-tablet:text-[16px]"
                   style={{
                     color: "rgba(255, 255, 255, 0.90)",
 
@@ -62,86 +67,130 @@ function Footer() {
                   Support a Cause
                 </div>
               </button>
-             {
-              localStorage.getItem('token') ? (
+              {localStorage.getItem("token") ? (
                 <Link
-                to="/Home/Create-Campaign"
-                className="px-3 gap-[10px] max-tablet:gap-[0px]"
-                style={{
-
-                  background:
-                    "linear-gradient(93deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.50) 100%)",
-                  borderRadius: 8,
-                  border: "1px rgba(255, 255, 255, 0.10) solid",
-                  backdropFilter: "blur(24px)",
-                  justifyContent: "center",
-                  alignItems: "center",
-
-                  display: "inline-flex",
-                }}
-              >
-                <div style={{ width: 32, height: 32, position: "relative" }}>
-                  <img src={images.RocketLaunch2} alt="" />
-                </div>
-                <div className="text-[20px] max-tablet:text-[16px] max-tablet:p-[16px] max-tablet:pl-[10px]"
+                  to="/Home/Create-Campaign"
+                  className="px-3 gap-[10px] max-tablet:gap-[0px]"
                   style={{
-                    color: "#383A42",
+                    background:
+                      "linear-gradient(93deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.50) 100%)",
+                    borderRadius: 8,
+                    border: "1px rgba(255, 255, 255, 0.10) solid",
+                    backdropFilter: "blur(24px)",
+                    justifyContent: "center",
+                    alignItems: "center",
 
-                    fontFamily: "Satoshi",
-                    fontWeight: "700",
-                    wordWrap: "break-word",
+                    display: "inline-flex",
                   }}
                 >
-                  Launch a Campaign
-                </div>
-              </Link>
+                  <div style={{ width: 32, height: 32, position: "relative" }}>
+                    <img src={images.RocketLaunch2} alt="" />
+                  </div>
+                  <div
+                    className="text-[20px] max-tablet:text-[16px] max-tablet:p-[16px] max-tablet:pl-[10px]"
+                    style={{
+                      color: "#383A42",
+
+                      fontFamily: "Satoshi",
+                      fontWeight: "700",
+                      wordWrap: "break-word",
+                    }}
+                  >
+                    Launch a Campaign
+                  </div>
+                </Link>
               ) : (
-                 <SecondaryButton
-                className="px-2 gap-[10px] max-tablet:gap-[0px]"
-                style={{
-                  background:
-                    "linear-gradient(93deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.50) 100%)",
-                  borderRadius: 8,
-                  border: "1px rgba(255, 255, 255, 0.10) solid",
-                  backdropFilter: "blur(24px)",
-                  justifyContent: "center",
-                  alignItems: "center",
+                <>
+                  <div className=" max-desktop:hidden max-tablet:hidden">
+                    <div
+                      className=" gap-[10px] py-3  w-full"
+                      style={{
+                        background:
+                          "linear-gradient(93deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.50) 100%)",
+                        borderRadius: 8,
+                        border: "1px rgba(255, 255, 255, 0.10) solid",
+                        backdropFilter: "blur(24px)",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        padding: "10px 20px",
 
-                  display: "inline-flex",
-                }}
-                onClick={()=> 
-                toast.error("Please Login !!! " , {
-                  position:"top-center"
-                })
-                }
-              >
-                <div style={{ width: 32, height: 32, position: "relative" }}>
-                  <img src={images.RocketLaunch2} alt="" />
-                </div>
-                <div className="text-[20px] max-tablet:text-[16px] max-tablet:p-[16px] max-tablet:pl-[10px]"
-                  style={{
-                    color: "#383A42",
-                    fontFamily: "Satoshi",
-                    fontWeight: "700",
-                    wordWrap: "break-word",
-                  }}
-                >
-                  Launch a Campaign
-                </div>
-              </SecondaryButton>
-              )
-             }
+                        display: "inline-flex",
+                      }}
+                    >
+                      <div
+                        style={{ width: 32, height: 32, position: "relative" }}
+                      >
+                        <img src={images.RocketLaunch2} alt="" />
+                      </div>
+                      <div
+                        className="text-[20px] "
+                        style={{
+                          color: "#383A42",
+
+                          fontFamily: "Satoshi",
+                          fontWeight: "700",
+                          wordWrap: "break-word",
+                        }}
+                      >
+                        <UserLogin
+                          text={"Launch Campaign"}
+                          fontWeight={700}
+                          size={"20px"}
+                        />{" "}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="desktop:hidden">
+                    <Link
+                      to="/Home/Login"
+                      className="px-3 gap-[10px] max-tablet:gap-[0px] w-full h-full"
+                      style={{
+                        background:
+                          "linear-gradient(93deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.50) 100%)",
+                        borderRadius: 8,
+                        border: "1px rgba(255, 255, 255, 0.10) solid",
+                        backdropFilter: "blur(24px)",
+                        justifyContent: "center",
+                        alignItems: "center",
+
+                        display: "inline-flex",
+                      }}
+                    >
+                      <div
+                        style={{ width: 32, height: 32, position: "relative" }}
+                      >
+                        <img src={images.RocketLaunch2} alt="" />
+                      </div>
+                      <div
+                        className="text-[20px] max-tablet:text-[16px] max-tablet:p-[16px] max-tablet:pl-[10px] "
+                        style={{
+                          color: "#383A42",
+
+                          fontFamily: "Satoshi",
+                          fontWeight: "700",
+                          wordWrap: "break-word",
+                        }}
+                      >
+                        Launch a Campaign
+                      </div>
+                    </Link>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
 
         <div className="flex justify-between max-desktop:flex-wrap max-tablet:justify-start desktop:max-w-[1628px] desktop:m-auto">
-
           <div className="w-[34%] max-desktop:w-[100%] max-desktop:mb-[48px] max-tablet:mb-[20px] max-tablet:w-[100%]">
-            <img className="desktop:w-[118px] pb-[16px]" src={images.FooterLogo} />
-            <p className="desktop:w-[79%] desktop:text-[16px] max-tablet:text-[14px] max-desktop:w-[59%] max-tablet:w-[100%]"
+            <img
+              className="desktop:w-[118px] pb-[16px]"
+              src={images.FooterLogo}
+              alt=""
+            />
+            <p
+              className="desktop:w-[79%] desktop:text-[16px] max-tablet:text-[14px] max-desktop:w-[59%] max-tablet:w-[100%]"
               style={{
-
                 color: "white",
 
                 fontFamily: "Satoshi",
@@ -150,14 +199,10 @@ function Footer() {
                 wordWrap: "break-word",
               }}
             >
-              Be it for a personal need, social cause or a creative idea -
-              you can count on us for the project that you want to
-              raise funds for.
+              Be it for a personal need, social cause or a creative idea - you
+              can count on us for the project that you want to raise funds for.
             </p>
           </div>
-
-
-
 
           <div className="w-[11%] max-desktop:w-[30%] max-desktop:mb-[48px] max-tablet:w-[36%] max-tablet:mb-[12px]">
             <Link
@@ -226,9 +271,6 @@ function Footer() {
             </ul>
           </div>
 
-
-
-
           <div className="w-[11%] max-desktop:w-[30%] max-tablet:w-[36%]">
             <Link
               className="text-white font-bold"
@@ -270,10 +312,6 @@ function Footer() {
             </ul>
           </div>
 
-
-
-
-
           <div className="w-[17%] max-desktop:w-[40%] max-tablet:w-[90%] max-tablet:mb-[20px]">
             <Link
               className="text-white font-bold"
@@ -297,10 +335,6 @@ function Footer() {
             </p>
           </div>
 
-
-
-
-
           <div className="flex justify-end w-[24.5%] max-desktop:w-[54%] max-tablet:w-full">
             <div className="w-full ">
               <Link
@@ -317,12 +351,12 @@ function Footer() {
                 <input
                   className="text-[15px] pl-4 w-full"
                   aria-label="Demo input"
-                  multiline={'true'}
+                  multiline={"true"}
                   placeholder="Enter your email"
                 />
-                <div className="max-w-[122px] w-full"
+                <div
+                  className="max-w-[122px] w-full"
                   style={{
-
                     paddingLeft: 24,
                     paddingRight: 24,
                     paddingTop: 1,
@@ -361,7 +395,6 @@ function Footer() {
               </p>
 
               <p
-
                 className="text-white mt-8 font-bold"
                 style={{
                   fontSize: 16,
@@ -423,12 +456,11 @@ function Footer() {
           </div>
         </div>
 
-
-
-
         <div>
           <hr className="text-white/50 pb-2"></hr>
-          <p className="text-white/40 text-1xl max-tablet:text-center">Copyright © Fairseed 2023</p>
+          <p className="text-white/40 text-1xl max-tablet:text-center">
+            Copyright © Fairseed 2023
+          </p>
         </div>
       </div>
     </>

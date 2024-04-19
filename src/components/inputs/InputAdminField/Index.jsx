@@ -11,6 +11,7 @@ const InputField = ({
   info,
   CustomInfoIcon,
   infoText,
+  disable,
   characterCount,
   label,
   color,
@@ -144,6 +145,7 @@ const InputField = ({
         </FormLabel>
       )}
       <InputBase
+        disabled={disable}
         removeTags
         sx={styles}
         // style={{ ...configTextfield?.style }}

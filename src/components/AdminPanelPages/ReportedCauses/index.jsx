@@ -1,15 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactTable from "../../Table/index";
 import { useState } from "react";
 import IndeterminateCheckbox from "../../Table/IndeterminateCheckbox";
-
+import { useQueryClient } from "react-query";
 import SecondaryButton from "../../inputs/secondaryButton";
-import { Link } from "react-router-dom";
-import PrimaryButton from "../../inputs/PrimaryButton";
 import { GoDotFill } from "react-icons/go";
+import { DeleteBox } from "../../layout/dialogBox/delete";
+import { toast } from 'react-toastify'
+import serverAPI from "../../../config/serverAPI";
 
 const Reported_Causes = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
+  const [ID , setID]= useState(null);
+  const [success, setSuccess] = useState(false); 
+  const queryClient = useQueryClient();
+
+
+  const handleReject = async (id) => {
+    try {
+      await serverAPI.put(`/admin-dashboard/reported-campaign/${id}`);
+      toast.success('Campaign Rejected Successfully!', {
+        position: 'top-right'
+      });
+      queryClient.invalidateQueries("/admin-dashboard/reported-campaign");
+    } catch (error) {
+      console.error('Error rejecting campaign:', error);
+      toast.error('Failed to reject campaign. Please try again later.', {
+        position: 'top-right'
+      });
+    }
+  };
+
 
   const getStatusCellStyle = (status) => {
     if (status === 'Pending') {
@@ -99,17 +120,33 @@ const Reported_Causes = () => {
 
       nofilter: true,
       minWidth: 100,
-      width: 100,
+      width: 250,
       Cell: ({ row }) => {
         return (
           <>
           <div className="flex gap-2 justify-center items-center p-3">
-            <Link to="Edit" state={{ id: row?.id }}>
-              <PrimaryButton>Delete</PrimaryButton>
-            </Link>
-           <Link to="Edit" state={{ id: row?.id }}>
-             <SecondaryButton>Edit</SecondaryButton>
-           </Link>
+            <DeleteBox
+              url={`/admin-dashboard/reported-campaign`}
+              data={row?.original?.id}
+              title={"Reported Campaign"}
+              // onClick={() => setSelectedRowID(row?.original?.id)}
+              // onSuccess={() => setSelectedRowID(null)}
+              // onClose={() => setSelectedRowID(null)}
+              refetchUrl={"/admin-dashboard/reported-campaign"}
+            >
+              <p>Are You Sure To Remove This Campaign!</p>
+              <p className="text-red-500">
+               This Action Cannot Be Undone !
+              </p>
+            </DeleteBox>
+      
+             <SecondaryButton
+             onClick = {()=>{
+              handleReject(row?.id)
+            }}
+             >Reject Campaign
+             </SecondaryButton>
+       
          </div>
          </>
         );

@@ -19,8 +19,6 @@ const CountrySelect = ({
   ...otherProps
 }) => {
   const [field, meta] = useField(name);
-  // console.log('Field:---------------->', field);
-  // console.log('Meta:----------------->', meta);
   const configTextfield = {
     ...field,
     ...otherProps,

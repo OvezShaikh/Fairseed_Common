@@ -43,7 +43,7 @@
 
 .donate-div .donate-date-div div {
   padding: 0px 0px;
-  padding-left: 10px;
+  padding-left: 0px;
 }
 
 .donation-type-div.country-select #react-flag-select button {
