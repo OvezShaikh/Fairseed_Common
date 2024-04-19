@@ -252,11 +252,11 @@ const DrawerBody = () => {
       path: "/AdminPanel/Causes-Edit-Approval",
       title: "Cause Edit Approval",
     },
-    {
-      icon: "ScholarshipCausesIcon",
-      path: "/AdminPanel/Scholarship-Cause",
-      title: "Scholarship Cause",
-    },
+    // {
+    //   icon: "ScholarshipCausesIcon",
+    //   path: "/AdminPanel/Scholarship-Cause",
+    //   title: "Scholarship Cause",
+    // },
     {
       icon: "ReportedIcon",
       path: "/AdminPanel/Reported-Cause",
@@ -267,11 +267,11 @@ const DrawerBody = () => {
       path: "/AdminPanel/Withdrawals",
       title: "Withdrawals",
     },
-    {
-      icon: "CampaignIcon",
-      path: "/AdminPanel/Cause-KYC",
-      title: "Cause KYC",
-    },
+    // {
+    //   icon: "CampaignIcon",
+    //   path: "/AdminPanel/Cause-KYC",
+    //   title: "Cause KYC",
+    // },
     {
       icon: "DonationIcon",
       path: "/AdminPanel/Donations",
@@ -282,11 +282,11 @@ const DrawerBody = () => {
       path: "/AdminPanel/Users",
       title: "Users",
     },
-    {
-      icon: "ScholarshipsIcon",
-      path: "/AdminPanel/Scholarships",
-      title: "Scholarships",
-    },
+    // {
+    //   icon: "ScholarshipsIcon",
+    //   path: "/AdminPanel/Scholarships",
+    //   title: "Scholarships",
+    // },
     {
       icon: "PagesIcon",
       path: "/AdminPanel/Pages",

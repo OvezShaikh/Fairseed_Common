@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import ReactTable from '../../Table/index';
 import { useState } from 'react';
 import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
@@ -7,14 +7,21 @@ import { GoDotFill } from "react-icons/go";
 import { Link, useLocation } from 'react-router-dom';
 import images from '../../../constants/images';
 import { format } from "date-fns";
+import { useDownloadExcel } from 'react-export-table-to-excel';
+import PrimaryButton from '../../inputs/PrimaryButton';
 
 const Campaign = () => {
   let userData = localStorage.getItem('user_info')
   let Data = JSON.parse(userData)
   let id = Data?.id
+
   const [selectedRowID, setSelectedRowID] = useState(null);
   const getStatusCellStyle = (status) => {
     // let { state } = useLocation(); let { id } = state
+
+   
+
+
     if (status === 'Pending') {
       return {
 
@@ -155,6 +162,15 @@ const Campaign = () => {
     ],
 
   );
+
+  const tableRef = useRef(null);
+
+  const { onDownload } = useDownloadExcel({
+      currentTableRef: tableRef.current,
+      filename: 'CampaignTable',
+      sheet: 'Campaigns'
+  })
+  
   return (
 
     <div>
@@ -165,7 +181,9 @@ const Campaign = () => {
         manualPagination
         title={"Campaign"}
         checkboxComponent={IndeterminateCheckbox}
+        downloadExcel
         url={`/admin-dashboard/campaign`}
+        addButton={<PrimaryButton onClick={onDownload}> Export Excel </PrimaryButton>}
         extraQuery={{ inactive: true }}
         selectedRowID={selectedRowID}
       />
