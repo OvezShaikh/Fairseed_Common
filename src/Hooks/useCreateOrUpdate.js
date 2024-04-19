@@ -2,7 +2,6 @@ import serverAPI from "../config/serverAPI";
 import { useMutation } from "react-query";
 import errorHandle from "../utils/errorHandle";
 
-
 export function useCreateOrUpdate({
   url,
   method = "post",

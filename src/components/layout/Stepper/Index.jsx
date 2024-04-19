@@ -111,10 +111,10 @@ const initialValues = {
   branch_name: "",
   ifsc_code: "",
   passbook_image: "",
-  adhar_card: "",
-  adhar_card_image: "",
-  pan_card: "",
-  pan_card_image: "",
+  // adhar_card: "",
+  // adhar_card_image: "",
+  // pan_card: "",
+  // pan_card_image: "",
   declaration: false,
 };
 
@@ -166,36 +166,32 @@ const validations = [
     bank_name: yup.string().required("Bank name is required"),
     branch_name: yup.string().required("Branch name is required"),
     ifsc_code: yup.string().required("IFSC Code is required"),
-  }),
-  yup.object({
-    adhar_card: yup
-      .string()
-      .required("Adhar Card number is required")
-      .max(12, "Maximum 12 Number allowed")
-      .min(12, "Minimun 12 Number allowed"),
-
-    pan_card: yup
-      .string()
-      .required("Pan Card number is required")
-      .max(10, "Maximum 10 Character allowed")
-      .min(10, "Minimum 10 character allowed"),
     declaration: yup
       .boolean()
       .oneOf([true], "You must agree to the terms and conditions")
       .required("You must agree to the terms and conditions"),
   }),
+  // yup.object({
+  //   adhar_card: yup
+  //     .string()
+  //     .required("Adhar Card number is required")
+  //     .max(12, "Maximum 12 Number allowed")
+  //     .min(12, "Minimun 12 Number allowed"),
+
+  //   pan_card: yup
+  //     .string()
+  //     .required("Pan Card number is required")
+  //     .max(10, "Maximum 10 Character allowed")
+  //     .min(10, "Minimum 10 character allowed"),
+
+  // }),
 ];
 
 export default function HorizontalLinearStepper() {
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
   const getSteps = () => {
-    return [
-      "Campaign Details",
-      "Your Story",
-      "Account Details",
-      "Complete KYC",
-    ];
+    return ["Campaign Details", "Your Story", "Account Details"];
   };
 
   const getStepContent = (step) => {
@@ -211,8 +207,8 @@ export default function HorizontalLinearStepper() {
         return (
           <AccountDetails handleBack={handleBack} handleNext={handleNext} />
         );
-      case 3:
-        return <CompleteKYC handleBack={handleBack} handleNext={handleNext} />;
+      // case 3:
+      //   return <CompleteKYC handleBack={handleBack} handleNext={handleNext} />;
       default:
         return "unknown step";
     }
@@ -235,10 +231,11 @@ export default function HorizontalLinearStepper() {
       });
       handleNext();
     },
-    onError: async (data) => {
-      toast.error(`${data.data.message} error`, {
+    onError: async (data, Values) => {
+      toast.error(`${data.data.message} `, {
         position: "top-center",
       });
+      handleNext();
     },
   });
 
@@ -258,7 +255,7 @@ export default function HorizontalLinearStepper() {
     <Box sx={{ width: "100%" }} className="stepper-box">
       <div className="steps-counter-div">
         <StepLabel>
-          {activeStep === 4
+          {activeStep === 3
             ? "All Steps Completed"
             : `${activeStep + 1} of ${steps.length} steps`}
         </StepLabel>
@@ -332,32 +329,7 @@ export default function HorizontalLinearStepper() {
             validationSchema={validations[activeStep]}
             onSubmit={(Values) => onSubmit(Values)}
           >
-            <>
-              {getStepContent(activeStep)}
-
-              {/* <div className="flex mt-4 gap-5">
-                <SecondaryButton
-                  disabled={activeStep === 0}
-                  onClick={handleBack}
-                  sx={styleSecondaryButton}
-                >
-                  Back
-                </SecondaryButton> */}
-              {/* {isStepOptional(activeStep) && (
-                <Button
-                  // className={classes.button}
-                  variant="contained"
-                  color="primary"
-                  onClick={handleSkip}
-                >
-                  skip
-                </Button>
-              )} */}
-              {/* <PrimaryButton onClick={onSubmit} sx={stylePrimaryButton} type="submit">
-                  {activeStep === steps.length - 1 ? "Submit" : "Next"}
-                </PrimaryButton>
-              </div> */}
-            </>
+            <>{getStepContent(activeStep)}</>
           </Formik>
         </React.Fragment>
       )}

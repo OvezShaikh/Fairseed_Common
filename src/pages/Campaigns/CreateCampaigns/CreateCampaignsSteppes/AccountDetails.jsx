@@ -5,6 +5,7 @@ import UploadField from "../../../../components/inputs/UploadField/Index";
 import RadioGroup from "../../../../components/inputs/radioGroup";
 import SecondaryButton from "../../../../components/inputs/secondaryButton";
 import PrimaryButton from "../../../../components/inputs/PrimaryButton";
+import CheckBox from "../../../../components/inputs/checkBox";
 
 const InputStyle = {
   padding: "20px",
@@ -35,7 +36,7 @@ const stylePrimaryButton = {
 };
 
 function AccountDetails({ handleBack, handleNext }) {
-  const { setFieldValue, values } = useFormikContext();
+  const { submitForm, setFieldValue, values } = useFormikContext();
 
   const isFormValid = () => {
     // Check if the required fields are empty
@@ -46,7 +47,8 @@ function AccountDetails({ handleBack, handleNext }) {
       !!values.bank_name &&
       !!values.branch_name &&
       !!values.ifsc_code &&
-      !!values.passbook_image
+      !!values.passbook_image &&
+      !!values.declaration
     );
   };
 
@@ -121,22 +123,26 @@ function AccountDetails({ handleBack, handleNext }) {
           multiple={false}
           required={"true"}
         />
+        <CheckBox
+          sx={{ paddingLeft: "15px" }}
+          name="declaration"
+          label={"I, hereby declare that I accept the above conditions"}
+        />
       </div>
       <div className="flex mt-4 desktop:gap-x-[40px] max-desktop:gap-x-[24px]">
         <SecondaryButton onClick={handleBack} sx={styleSecondaryButton}>
           Back
         </SecondaryButton>
-
         <PrimaryButton
           sx={stylePrimaryButton}
           onClick={() => {
             if (isFormValid()) {
-              handleNext();
+              submitForm();
             }
           }}
           disabled={!isFormValid()}
         >
-          Next
+          Submit
         </PrimaryButton>
       </div>
     </Form>
