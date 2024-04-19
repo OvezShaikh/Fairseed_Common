@@ -34,7 +34,7 @@ function YourStory({ handleBack, handleNext }) {
   };
 
   return (
-    <form className="py-[80px] flex flex-col gap-y-[80px]">
+    <form className="py-[80px] flex flex-col gap-y-[50px]">
       <div className="">
         <FormLabel
           className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
@@ -50,7 +50,7 @@ function YourStory({ handleBack, handleNext }) {
           Tell us your Story:
           <span className="text-red-600">*</span>
         </FormLabel>
-        <div className="h-[410px] story-div">
+        <div className="h-[410px] max-tablet:h-[370px] story-div">
           <ReactQuilTextField
             theme="snow"
             name="story"
@@ -69,7 +69,7 @@ Make an Appeal.`}
         </div>
       </div>
 
-      <div className="max-tablet:pt-4">
+      <div className="max-tablet:pt-12">
         <FormLabel
           className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
           style={{
@@ -96,7 +96,7 @@ Make an Appeal.`}
         </div>
       </div>
 
-      <div className="document-upload-div max-tablet:pt-4">
+      <div className="document-upload-div max-tablet:pt-12">
         <UploadField
           label="Document:"
           name="documents"

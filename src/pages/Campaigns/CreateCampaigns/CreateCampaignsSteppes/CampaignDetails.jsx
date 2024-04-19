@@ -175,7 +175,7 @@ const Test = ({ handleBack, handleNext }) => {
         )} */}
       </div>
 
-      <div className="flex desktop:gap-5 w-full campaign-input-div max-desktop:gap-x-0 max-tablet:flex-col max-tablet:gap-y-[50px]">
+      <div className="flex desktop:gap-5 w-full campaign-input-div max-desktop:gap-x-0 max-tablet:flex-col max-tablet:gap-y-[10px]">
         <div className="w-[50%] checkmark-div max-desktop:w-[46%] max-tablet:w-[100%]">
           <FormLabel
             className="text-capitalize font-medium d-flex align-items-center"

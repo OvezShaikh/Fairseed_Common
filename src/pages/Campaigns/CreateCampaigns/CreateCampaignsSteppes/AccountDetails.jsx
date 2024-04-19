@@ -52,7 +52,7 @@ function AccountDetails({ handleBack, handleNext }) {
 
   return (
     <Form className="">
-      <div className="py-[80px] flex flex-col gap-[40px] ">
+      <div className="py-[40px] flex flex-col gap-[15px] ">
         <RadioGroup
           onChange={(e) => {
             setFieldValue("rasing_for", e.target.value);

@@ -49,7 +49,7 @@ function CompleteKYC({ handleBack, handleNext }) {
 
   return (
     <form>
-      <div className="py-20 flex flex-col gap-4">
+      <div className="py-10 flex flex-col gap-3">
         <div>
           <InputField
             required

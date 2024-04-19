@@ -7,7 +7,7 @@ import images from "../../../constants/images";
 
 const UploadField = ({
   variant,
-  multiple = true,
+  multiple = false,
   label = "",
   name,
   placeholder,
@@ -56,6 +56,7 @@ const UploadField = ({
 
       <div className="flex w-full desktop:h-[64px] max-desktop:h-[64px] max-tablet:h-[48px] Upload_field">
         <InputBase
+          multiple={multiple}
           value={field.value ? field.value.name : ""}
           placeholder={placeholder}
           label={label}
@@ -77,6 +78,7 @@ const UploadField = ({
         <>
           <input
             type="file"
+            multiple={multiple}
             ref={ref}
             style={{ display: "none" }}
             id={`file - input - ${name}`} // Unique ID for each input
