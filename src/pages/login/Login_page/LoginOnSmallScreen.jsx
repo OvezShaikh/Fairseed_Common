@@ -41,8 +41,9 @@ function LoginOnSmallScreen() {
                   <InputField
                     label="Email"
                     name={"email"}
+                    Size={18}
                     sx={{
-                      padding: " 16px 10px 16px var(--Spacing-20, 20px)",
+                      padding: " 10px 10px 10px var(--Spacing-20, 20px)",
                       border: "2px solid var(--Linear-BG, #FF9F0A)",
                       borderImage: "linear-gradient(#FF9F0A, red) 20",
                       // borderWidth: '3px',
@@ -54,11 +55,12 @@ function LoginOnSmallScreen() {
                 </Grid>
                 <Grid item xs={12} className="mt-10">
                   <InputField
+                    Size={18}
                     label="Password"
                     type="password"
                     name={"password"}
                     sx={{
-                      padding: " 16px 10px 16px 10px",
+                      padding: " 10px 10px 10px 10px",
                       border: "2px solid var(--Linear-BG, #FF9F0A)",
                       borderImage: "linear-gradient(#FF9F0A, red) 20",
                       // borderWidth: '3px',
@@ -75,7 +77,11 @@ function LoginOnSmallScreen() {
                   alignItems="center"
                   justifyContent="space-between"
                 >
-                  <CheckBox label="Remember Me" name={"remember_me"} />
+                  <CheckBox
+                    fontSize={18}
+                    label="Remember Me"
+                    name={"remember_me"}
+                  />
                   {/* <div style={{ width: '20px' }}></div> */}
 
                   <Link
@@ -85,7 +91,7 @@ function LoginOnSmallScreen() {
                       display: "inline-block",
                       fontFamily: "satoshi",
                       fontWeight: 500,
-                      fontSize: "20px",
+                      fontSize: "18px",
                       color: "#0466C8",
                       textDecoration: "underline",
                     }}
@@ -96,10 +102,10 @@ function LoginOnSmallScreen() {
                 <Grid item xs={12} className="">
                   <Grid item className="pb-3">
                     <PrimaryButton
-                      sx={{ width: "100%", padding: "12px 40px" }}
+                      sx={{ width: "100%", padding: "10px 40px" }}
                       type="submit"
                     >
-                      <span style={{ fontSize: "22px", fontWeight: 900 }}>
+                      <span style={{ fontSize: "18px", fontWeight: 900 }}>
                         {" "}
                         Sign In{" "}
                       </span>
@@ -109,7 +115,7 @@ function LoginOnSmallScreen() {
                     <Link to="/Home/Register">
                       <span
                         style={{
-                          fontSize: "22px",
+                          fontSize: "18px",
                           fontWeight: 500,
                           background:
                             "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
@@ -118,7 +124,7 @@ function LoginOnSmallScreen() {
                         }}
                       >
                         {" "}
-                        <UserSignUp_02 />{" "}
+                        <UserSignUp_02 size={18} />{" "}
                       </span>
                     </Link>
                   </Grid>

@@ -28,7 +28,7 @@ const StyledTypography = styled(Typography)({
   fontStyle: "normal",
 });
 
-const UserSignUp_02 = () => {
+const UserSignUp_02 = ({ size }) => {
   const isSmallScreen = useMediaQuery("(max-width:600px)");
 
   const [open, setOpen] = useState(false);
@@ -42,11 +42,11 @@ const UserSignUp_02 = () => {
       <SecondaryButton
         onClick={handleOpen}
         type="button"
-        sx={{ width: "100%", padding: "12px 40px" }}
+        sx={{ width: "100%", padding: "10px 40px" }}
       >
         <span
           style={{
-            fontSize: "22px",
+            fontSize: size || "22px",
             fontWeight: 500,
             background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
             "-webkit-background-clip": "text",

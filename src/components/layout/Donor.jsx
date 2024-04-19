@@ -94,7 +94,7 @@ function Donor({ data }) {
               position: "relative",
             }}
           >
-            <p className="gradient-button mb-0">Load More</p>
+            <p className="gradient-button mb-0">View All Donation</p>
           </button>
         </div>
       )}

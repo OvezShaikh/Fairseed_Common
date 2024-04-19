@@ -105,7 +105,7 @@ const Test = ({ handleBack, handleNext }) => {
   console.log(category);
 
   return (
-    <Form className="flex flex-col gap-4 campagin-form">
+    <Form className="flex flex-col  campagin-form">
       <Box className="desktop:py-[80px] max-desktop:py-[53px] flex flex-col items-center">
         <DropZone
           name="campaign_image"
@@ -162,7 +162,7 @@ const Test = ({ handleBack, handleNext }) => {
             value: item.id,
           }))}
         />
-        {Array.isArray(data) && (
+        {/* {Array.isArray(data) && (
           <SelectField
             name="location"
             required={true}
@@ -172,7 +172,7 @@ const Test = ({ handleBack, handleNext }) => {
               value: item.iso2,
             }))}
           />
-        )}
+        )} */}
       </div>
 
       <div className="flex desktop:gap-5 w-full campaign-input-div max-desktop:gap-x-0 max-tablet:flex-col max-tablet:gap-y-[50px]">
