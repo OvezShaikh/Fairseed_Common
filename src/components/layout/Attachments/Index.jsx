@@ -100,11 +100,11 @@ function YourComponent({ imageUrl, id, iconShow }) {
           className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 flex justify-center items-center "
           style={{ zIndex: 1234567 }}
         >
-          <div className="relative">
+          <div className="relative flex justify-center">
             <img
               src={imageUrl}
               alt="Documents "
-              className="min-w-[500px] min-h-[800px] max-tablet:min-w-[200px] max-tablet:min-h-[400px] max-tablet:max-w-[300px] max-tablet:max-h-[500px]"
+              className="min-w-[500px] min-h-[800px] max-tablet:min-w-[200px] max-tablet:min-h-[400px] max-tablet:max-w-[300px] max-tablet:max-h-[500px] max-w-[70%] max-h-[70%]"
               onClick={toggleFullScreen}
             />
             <div className="absolute max-tablet:-top-8 right-0 top-0 desktop:m-4">
