@@ -3,10 +3,14 @@ import { RiCloseLine } from "react-icons/ri";
 import { useDownloadFile } from "../../../Hooks/useDownloadFile";
 import PrimaryButton from "../../inputs/PrimaryButton";
 import { DeleteBox } from "../dialogBox/delete";
+import SecondaryButton from "../../inputs/secondaryButton";
+import { Download } from "@carbon/icons-react";
+import { useMediaQuery } from "@mui/material";
 
 function YourComponent({ imageUrl, id, iconShow }) {
   const [isImageDeleted, setIsImageDeleted] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const isMaxTablet = useMediaQuery("(max-width: 600px)");
 
   const toggleFullScreen = () => {
     const isSmallScreen =
@@ -19,34 +23,32 @@ function YourComponent({ imageUrl, id, iconShow }) {
     }
   };
 
-// const url =`/admin-dashboard/cause-edit/${id}`;
+  const url = `/admin-dashboard/cause-edit/${id}`;
 
-  // const { refetch: downloadFile, isFetching: downloadingFile } = useDownloadFile(
-//     url,
-//     {
-//       // download: true,
-//     },
-//     () => {
-//       console.log("File download successful");
-//     }
-//   );
+  const { refetch: downloadFile, isFetching: downloadingFile } =
+    useDownloadFile(
+      imageUrl,
+      {
+        download: true,
+      },
+      () => {
+        console.log("File download successful");
+      }
+    );
 
-const downloadFile = (imageUrl) =>{
-  
-  const link = document.createElement("a");
-  link.href = imageUrl
-  link.target = "_blank"
-  link.download = imageUrl.split("/")[imageUrl.split("/")?.length - 1];
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link)
-}
+    const downloadImage = () => {
+      const downloadLink = document.createElement('a');
+      downloadLink.href = imageUrl;
+      downloadLink.download = 'image.jpg'; 
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+  };
+    
 
   const handleDeleteSuccess = () => {
     setIsImageDeleted(true);
   };
-
- 
 
   return (
     <>
@@ -102,20 +104,20 @@ const downloadFile = (imageUrl) =>{
             <img
               src={imageUrl}
               alt="Documents "
-              style={{ maxWidth: "218px", maxHeight: "100px" }}
+              className="min-w-[500px] min-h-[800px] max-tablet:min-w-[200px] max-tablet:min-h-[400px] max-tablet:max-w-[300px] max-tablet:max-h-[500px]"
               onClick={toggleFullScreen}
             />
-            <div className="absolute top-0 right-0 m-4 flex flex-col items-center">
+            <div className="absolute max-tablet:-top-8 right-0 top-0 desktop:m-4">
               <RiCloseLine
-                className="cursor-pointer text-white"
+                className="cursor-pointer text-black bg-white hover:bg-slate-100 rounded-full"
                 style={{ fontSize: "24px" }}
                 onClick={toggleFullScreen}
               />
-              <PrimaryButton
-                onClick={()=>downloadFile(imageUrl)}
-                
-              >
-                 Download
+            </div>
+            <div className="absolute max-tablet:-top-10 left-0   top-0 desktop:m-4">
+              <PrimaryButton onClick={()=>downloadImage()} >
+                <Download className="me-1" />
+                 {"Download"}
               </PrimaryButton>
             </div>
           </div>

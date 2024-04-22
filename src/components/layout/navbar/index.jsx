@@ -61,6 +61,7 @@ const NavbarContainer = ({ handleDrawerToggle, mobileOpen }) => {
         top: "72px",
         zIndex: "99",
         padding: "16px 16px  ",
+
         width: `${
           sideBar ? "100vw" : mobileOpen ? "calc(100vw - 273px)" : "100vw"
         }`,

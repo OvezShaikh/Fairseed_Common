@@ -128,7 +128,7 @@ const HomeSwiper = () => {
                 <h1 className="text-[56px] font-black font-[satoshi] max-tablet:text-[28px] max-desktop:w-[630px] max-tablet:w-full  text-[#25272C]">
                   {item?.title}
                 </h1>
-                <p className="text-[28px] font-medium font-[satoshi]  max-tablet:text-[18px]  max-desktop:w-[630px] max-tablet:w-full text-[#8E95A2] max-h-[200px] line-clamp-3">
+                <p className="text-[28px] font-medium font-[satoshi]  max-tablet:text-[18px]  max-desktop:w-[630px] max-tablet:w-full text-[#8E95A2] max-h-[200px] line-clamp-3 !max-desktop:truncate">
                   {removeTags(item?.summary)}
                 </p>
                 <div className="">
