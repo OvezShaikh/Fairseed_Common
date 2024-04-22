@@ -107,7 +107,7 @@ export default function ProfileAvatar() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        {role === "Admin" && (
+        {(role === "Admin" || role === "Campaign_Manager"  || role === "Campaign_Approver" ) && (
           <>
             <MenuItem onClick={handleClose}>
               <Link className="flex items-center" to="/AdminPanel">
