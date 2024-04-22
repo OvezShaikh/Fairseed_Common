@@ -130,7 +130,6 @@ const ReactTable = ({
   selectedRowID,
   checkboxSelection,
 }) => {
-  const tableRef = useRef(null);
   const isMobile = useMediaQuery("(max-width: 600px)");
   let title_slug = title?.replace(/ /g, "-");
   const [query, setQuery] = useState(null);
@@ -554,7 +553,7 @@ const ReactTable = ({
           overflowX: "auto",
         }}
       >
-        <Table sx={dataGridStyles} {...getTableProps()} ref={tableRef}>
+        <Table sx={dataGridStyles} {...getTableProps()} >
           <TableHead>
             {headerGroups.map((headerGroup) => (
               <TableRow

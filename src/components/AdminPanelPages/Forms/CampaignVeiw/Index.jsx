@@ -161,9 +161,7 @@ function Index() {
                 </p>
               </div>
               <div className="w-full">
-                {
-                  console.log(values, 'values')
-                }
+                
                 <InputField
                   color={campaignData?.title ? "red" : undefined}
                   onChange={handleChange}

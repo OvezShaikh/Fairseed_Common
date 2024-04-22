@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import ReactTable from "../../Table/index";
 import { useState } from "react";
 import IndeterminateCheckbox from "../../Table/IndeterminateCheckbox";
@@ -14,7 +14,8 @@ const Campaign = () => {
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
   let id = Data?.id;
-
+  let tableRef = useRef(null);
+  console.log(tableRef.current ,'tableRef')
   const [selectedRowID, setSelectedRowID] = useState(null);
   const getStatusCellStyle = (status) => {
     // let { state } = useLocation(); let { id } = state
@@ -42,6 +43,12 @@ const Campaign = () => {
       };
     }
   };
+
+  const { onDownload } = useDownloadExcel({
+    currentTableRef: tableRef.current,
+    filename: "CampaignTable",
+    sheet: "Campaigns",
+  });
 
   function DateConvert(Mydate) {
     const date = new Date(Mydate);
@@ -150,17 +157,12 @@ const Campaign = () => {
     },
   ]);
 
-  const tableRef = useRef(null);
 
-  const { onDownload } = useDownloadExcel({
-    currentTableRef: tableRef.current,
-    filename: "CampaignTable",
-    sheet: "Campaigns",
-  });
 
   return (
     <div>
       <ReactTable
+        ref={tableRef}
         rows={[]}
         columns={columns}
         showFilter
@@ -170,7 +172,7 @@ const Campaign = () => {
         downloadExcel
         url={`/admin-dashboard/campaign`}
         addButton={
-          <PrimaryButton onClick={onDownload}> Export Excel </PrimaryButton>
+          <PrimaryButton onClick={onDownload} > Export Excel </PrimaryButton>
         }
         extraQuery={{ inactive: true }}
         selectedRowID={selectedRowID}

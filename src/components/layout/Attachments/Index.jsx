@@ -19,17 +19,28 @@ function YourComponent({ imageUrl, id, iconShow }) {
     }
   };
 
-const url =`/admin-dashboard/cause-edit/${id}`;
+// const url =`/admin-dashboard/cause-edit/${id}`;
 
-  const { refetch: downloadFile, isFetching: downloadingFile } = useDownloadFile(
-    imageUrl,
-    {
-      download: true,
-    },
-    () => {
-      console.log("File download successful");
-    }
-  );
+  // const { refetch: downloadFile, isFetching: downloadingFile } = useDownloadFile(
+//     url,
+//     {
+//       // download: true,
+//     },
+//     () => {
+//       console.log("File download successful");
+//     }
+//   );
+
+const downloadFile = (imageUrl) =>{
+  
+  const link = document.createElement("a");
+  link.href = imageUrl
+  link.target = "_blank"
+  link.download = imageUrl.split("/")[imageUrl.split("/")?.length - 1];
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link)
+}
 
   const handleDeleteSuccess = () => {
     setIsImageDeleted(true);
@@ -101,10 +112,10 @@ const url =`/admin-dashboard/cause-edit/${id}`;
                 onClick={toggleFullScreen}
               />
               <PrimaryButton
-                onClick={downloadFile}
-                disabled={downloadingFile}
+                onClick={()=>downloadFile(imageUrl)}
+                
               >
-                {downloadingFile ? "Downloading..." : "Download"}
+                 Download
               </PrimaryButton>
             </div>
           </div>
