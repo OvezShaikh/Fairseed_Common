@@ -36,6 +36,16 @@ function YourComponent({ imageUrl, id, iconShow }) {
       }
     );
 
+    const downloadImage = () => {
+      const downloadLink = document.createElement('a');
+      downloadLink.href = imageUrl;
+      downloadLink.download = 'image.jpg'; 
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+  };
+    
+
   const handleDeleteSuccess = () => {
     setIsImageDeleted(true);
   };
@@ -105,10 +115,9 @@ function YourComponent({ imageUrl, id, iconShow }) {
               />
             </div>
             <div className="absolute max-tablet:-top-10 left-0   top-0 desktop:m-4">
-              <PrimaryButton onClick={downloadFile} disabled={downloadingFile}>
+              <PrimaryButton onClick={()=>downloadImage()} >
                 <Download className="me-1" />
-                {!isMaxTablet &&
-                  (downloadingFile ? "Downloading..." : "Download")}
+                 {"Download"}
               </PrimaryButton>
             </div>
           </div>
