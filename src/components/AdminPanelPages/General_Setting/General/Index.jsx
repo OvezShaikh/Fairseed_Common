@@ -9,6 +9,7 @@ import { useCreateOrUpdate } from "../../../../Hooks/useCreateOrUpdate.js";
 import { toast } from "react-toastify";
 import MultiKeyTextField from "../../../inputs/MultiAddTags/Index.jsx";
 import { useGetAll } from "../../../../Hooks/useGetAll.js";
+import CustomChipsArray from "../../../inputs/MultiAddTags/Index.jsx";
 
 const styleLabel = {
   fontFamily: "satoshi",
@@ -27,6 +28,7 @@ const styleInput = {
 
 function General() {
   const [Details, setDetails] = useState({});
+  const [Chips , setChips] = useState([]);
 
   const { data } = useGetAll({
     key: `/admin-dashboard/gs`,
@@ -36,6 +38,7 @@ function General() {
     },
     onSuccess: (data) => {
       setDetails(data);
+      setChips(data?.keywords)
     },
   });
 
@@ -52,7 +55,7 @@ function General() {
     email_admin: Details?.email_admin || "",
     tandc_url: Details?.tandc_url || "",
     email_no_reply: Details?.email_no_reply || "",
-    keywords : Details?.keywords || [],
+    keywords : Chips || [],
     privacy_policy_url: Details?.privacy_policy_url || "",
     date_time: Details?.date_time || "",
     new_registration_enabled: Details?.new_registration_enabled || false,
@@ -61,8 +64,6 @@ function General() {
     facebook_login_enabled: Details?.facebook_login_enabled || false,
     google_login_enabled: Details?.google_login_enabled || false,
   };
-
-  console.log(initialValues ,"initialValues")
 
   return (
     <Formik
@@ -113,7 +114,6 @@ function General() {
                 value={values?.welcome_text}
               />
             </div>
-           
             <div className="w-[24%] max-desktop:w-full max-tablet:w-full">
               <InputAdminField
                 label={"Email No-reply"}
@@ -125,14 +125,12 @@ function General() {
             </div>
           </div>
           <div className="w-[49%] max-desktop:w-full max-tablet:w-full pt-2">           
-            <MultiKeyTextField
-              name={"keywords_data"}
-              label={"Keywords"}
-              sx={styleLabel}
-              placeholder={"Add Tags"}
-              value={values?.keywords || []} 
-              onChange={(value)=>setFieldValue('keywords' , value)}
-            />
+          <CustomChipsArray
+            name="keywords" 
+            label="Keywords"
+            sx={styleLabel}
+            placeholder="Add Tags"
+          />
            
           </div>
           <div className="pt-7 mb-5 h-[200px]">
