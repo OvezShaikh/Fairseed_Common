@@ -13,6 +13,7 @@ import icons from "../../constants/icons";
 import Navigation from "../../components/layout/Navigation/Index";
 import { Formik, Form } from "formik";
 import "./Donate.css";
+import * as yup from "yup";
 
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -156,6 +157,14 @@ function Index({ goalAmount, fundRaised }) {
     bank_name: "",
     other_details: "",
   };
+  const validationSchema = yup.object().shape({
+    amount: yup
+      .number()
+      .typeError("Please enter a valid amount")
+      .min(50, "Amount must be at least 50 INR")
+      .required("Amount is required"),
+    donation_type: yup.string().required("Donation Type is required"),
+  });
 
   return (
     <>
@@ -172,6 +181,7 @@ function Index({ goalAmount, fundRaised }) {
             <div className="w-[65%] donate-div  max-desktop:w-full">
               <Formik
                 enableReinitialize={true}
+                validationSchema={validationSchema}
                 initialValues={inititalValues}
                 onSubmit={(values) => handleSubmit(values)}
               >
@@ -199,6 +209,7 @@ function Index({ goalAmount, fundRaised }) {
                     placeholder={"Minimum 50 INR"}
                     name={"amount"}
                     sx={InputStyle}
+                    type={"number"}
                   />
                   <InputField
                     label={"Full Name:"}
