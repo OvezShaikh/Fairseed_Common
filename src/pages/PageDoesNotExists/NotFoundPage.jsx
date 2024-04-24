@@ -1,24 +1,52 @@
 // NotFoundPage.js
 
 import React from "react";
+import PrimaryButton from "../../components/inputs/PrimaryButton";
+import images from "../../constants/images";
+import { TbError404 } from "react-icons/tb";
 
-const NotFoundPage = () => {
+const NotFoundPage = ({ color, background }) => {
   return (
-    <div className="bg-gray-200 min-h-screen flex flex-col justify-center items-center">
-      <div className="text-center">
-        <h1 className="text-6xl font-bold text-red-600 mb-4">404</h1>
-        <p className="text-xl mb-8">Page Not Found</p>
-        <img
-          src="https://via.placeholder.com/400"
-          alt="404 Image"
-          className="w-64 h-64 mx-auto mb-8"
-        />
-        <p className="text-lg text-gray-700">
+    <div
+      className="min-h-screen flex flex-col justify-center items-center bg-no-repeat bg-cover"
+      style={{ backgroundImage: background || `url(${images.Bg404})` }}
+    >
+      <div className=" flex flex-col justify-center items-center">
+        <h1
+          className="text-[150px] font-black font-[Epilogue] max-tablet:text-[100px]  animate-bounce "
+          style={{
+            background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+            "-webkit-background-clip": "text",
+            "-webkit-text-fill-color": "transparent",
+            textDecoration: "underline",
+          }}
+        >
+          Oops!
+        </h1>
+        <p
+          className={`text-[25px] flex items-center font-bold my-4 ${
+            color ? `text-${color}` : "text-[#fff]"
+          }`}
+        >
+          <TbError404 size={50} />
+          -PAGE NOT FOUND
+        </p>
+
+        <p
+          className={`text-lg text-gray-700 w-[60%] text-center ${
+            color ? `text-${color}` : "text-[#fff]"
+          } max-tablet:w-[80%]`}
+        >
           The page you are looking for might have been removed, had its name
           changed, or is temporarily unavailable.
         </p>
-        <a href="/" className="text-blue-500 underline mt-4">
-          Go back to homepage
+        <a href="/" className=" underline mt-4">
+          <PrimaryButton>
+            <h1 className=" underline text-xl font-medium capitalize">
+              {" "}
+              Go back to homepage
+            </h1>
+          </PrimaryButton>
         </a>
       </div>
     </div>

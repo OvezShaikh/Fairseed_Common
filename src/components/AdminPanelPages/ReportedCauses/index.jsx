@@ -65,7 +65,7 @@ const Reported_Causes = () => {
 
   const StatusCell = ({ value }) => (
     <div
-      className=" flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl"
+      className=" flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl "
       style={getStatusCellStyle(value)}
     >
       <span className="" style={getStatusCellStyle(value)}>
