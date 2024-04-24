@@ -1,45 +1,62 @@
-import React, { useState } from "react";
-import { Chips } from "primereact/chips";
-import { useField } from "formik";
-import "./CustomChips.css"; // Import your custom CSS file
-import { FormLabel } from "@mui/material";
+import React, { useState } from 'react';
+import Chip from '@mui/material/Chip';
+import TextField from '@mui/material/TextField';
+import { useField } from 'formik';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-const CustomChips = ({
-    name,
-    label,
-    variant,
-    sx,
-    placeholder,
-    ...otherProps
-}) => {
-    const [field, meta, helpers] = useField(name);
-    const [value, setValue] = useState(Array.isArray(field.value) ? field.value : []);
 
-    const handleChange = (e) => {
-        setValue(e.value);
-        helpers.setValue(e.value); 
+const CustomChipsInput = ({ name, placeholder, label, ...otherProps }) => {
+    const [field, , helpers] = useField(name);
+    const [inputValue, setInputValue] = useState('');
+    const chips = field.value || [];
+
+    const handleDelete = (chipToDelete) => {
+        const updatedChips = chips.filter((chip) => chip.key !== chipToDelete.key);
+        helpers.setValue(updatedChips);
+    };
+    
+
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value);
+    };
+
+    const handleInputKeyDown = (e) => {
+        if (e.key === 'Enter' && inputValue.trim() !== '') {
+            const newChip = { key: Date.now(), label: inputValue.trim() };
+            const updatedChips = [...chips, newChip];
+            helpers.setValue(updatedChips);
+            setInputValue('');
+        }
     };
 
     return (
-        <>
-            {label && <FormLabel sx={{ ...sx }}>{label}</FormLabel>}
-
-            <div className="card p-fluid">
-                <Chips
-                    {...field}
-                    value={value}
-                    onChange={handleChange}
-                    name={name}
-                    className="custom-chips"
-                    {...otherProps}
-                    placeholder={placeholder}
-                />
-                {meta.touched && meta.error && (
-                    <div className="error">{meta.error}</div>
-                )}
-            </div>
-        </>
+        <div>
+            <TextField
+                label={label}
+                placeholder={placeholder}
+                value={inputValue}
+                onChange={handleInputChange}
+                onKeyDown={handleInputKeyDown}
+                fullWidth
+                variant="outlined"
+                margin="normal"
+                InputProps={{
+                    startAdornment: chips.map((chip) => (
+                        <Chip
+                            key={chip.key}
+                            label={chip.label} 
+                            variant='filled'
+                            color='info'
+                            onDelete={() => handleDelete(chip)}
+                            deleteIcon={<DeleteIcon/>}
+                            style={{ marginRight: '4px', marginBottom: '4px' }}
+                        />
+                    )),
+                }}
+                {...otherProps}
+            />
+        </div>
     );
 };
 
-export default CustomChips;
+export default CustomChipsInput;
