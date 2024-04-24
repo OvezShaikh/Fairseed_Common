@@ -23,7 +23,6 @@ const Dashboard = () => {
           successfulCampaign: responseData.successful_campaign || 0,
           studentBenefited: responseData.student_benefited || 0,
         });
-        console.log(responseData, "Dashboard");
       })
       .catch((error) => {
         console.error("Error fetching dashboard data:", error);

@@ -35,8 +35,6 @@ function VerifyEmail() {
                 position: 'top-center'
             });
             setIsVerified(true);
-            console.log('values.data.OTP', values.data.OTP)
-            console.log(response?.data?.success, "======================>")
             setBackendOTP(values.data.OTP)
             const key = response.email;
             setEmail(key)
@@ -97,15 +95,14 @@ function VerifyEmail() {
     setOtpState((prev) => {
       let old = [...prev];
       old[index] = { index, value: event.target.value };
-      console.log("oldvoldoldold", old);
+   
       return old;
     });
     if (index != 3) {
       event.target.nextElementSibling.focus();
     }
   };
-  console.log(Email);
-
+ 
   return (
     <div className="flex flex-col gap-2 w-[90%]">
       {!isVerified && (
@@ -200,7 +197,7 @@ function VerifyEmail() {
                   })}
                 </div>
                 <ResendOTP
-                  onResendClick={() => console.log("Resend clicked")}
+                  // onResendClick={() => console.log("Resend clicked")}
                   style={{
                     // Inline styles for ResendOTP component
                     color: "#0466C8",

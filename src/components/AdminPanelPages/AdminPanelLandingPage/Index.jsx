@@ -14,7 +14,7 @@ const InputStyle = {
   border: "1px solid #e2e2e2",
   borderRadius: "4px",
   fontSize: 16,
-  // },
+ 
   "&:focus-within": {
     boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
     borderColor: "black",
@@ -28,11 +28,9 @@ const LandingPage = () => {
     key: `/admin-dashboard/landing-page?page=1&limit=4`,
     enabled: true,
     select: (data) => {
-      console.log(data);
       return data.data.rows[0];
     },
     onSuccess: (data) => {
-      console.log(data);
       setData(data);
     },
   });
@@ -62,7 +60,7 @@ const LandingPage = () => {
                 <div className="uploadfield-div w-[238px]">
                   <UploadField
                     label="Logo:"
-                    // onChange={(file) => formik.setFieldValue("adhar", file)}
+                  
                     name="document"
                     placeholder="Recommended\n size: 150x50 px (PNG)"
                     sx={{ padding: "20px" }}
@@ -85,7 +83,7 @@ const LandingPage = () => {
                 <div className="uploadfield-div w-[238px]">
                   <UploadField
                     label="Logo Footer:"
-                    // onChange={(file) => formik.setFieldValue("adhar", file)}
+                  
                     name="document"
                     placeholder="Recommended size: 150x50 px (PNG)"
                     sx={{ padding: "20px" }}
@@ -107,7 +105,7 @@ const LandingPage = () => {
                 <div className="uploadfield-div w-[238px]">
                   <UploadField
                     label="Favicon:"
-                    // onChange={(file) => formik.setFieldValue("adhar", file)}
+                   
                     name="document"
                     placeholder="Recommended size: 150x50 px (PNG)"
                     sx={{ padding: "20px" }}
@@ -129,7 +127,7 @@ const LandingPage = () => {
                 <div className="uploadfield-div w-[238px]">
                   <UploadField
                     label="Documents:"
-                    // onChange={(file) => formik.setFieldValue("adhar", file)}
+                  
                     name="document"
                     placeholder="Recommended size: 150x50 px (PNG)"
                     sx={{ padding: "20px" }}
@@ -151,7 +149,7 @@ const LandingPage = () => {
                 <div className="uploadfield-div w-[238px]">
                   <UploadField
                     label="Documents:"
-                    // onChange={(file) => formik.setFieldValue("adhar", file)}
+                   
                     name="document"
                     placeholder="Recommended size: 150x50 px (PNG)"
                     sx={{ padding: "20px" }}
@@ -173,7 +171,7 @@ const LandingPage = () => {
                 <div className="uploadfield-div w-[238px]">
                   <UploadField
                     label="Documents:"
-                    // onChange={(file) => formik.setFieldValue("adhar", file)}
+                  
                     name="document"
                     placeholder="Recommended size: 150x50 px (PNG)"
                     sx={{ padding: "20px" }}
@@ -195,7 +193,7 @@ const LandingPage = () => {
                 <div className="uploadfield-div w-[238px]">
                   <UploadField
                     label="Documents:"
-                    // onChange={(file) => formik.setFieldValue("adhar", file)}
+                   
                     name="document"
                     placeholder="Recommended size: 150x50 px (PNG)"
                     sx={{ padding: "20px" }}
@@ -217,7 +215,7 @@ const LandingPage = () => {
                 <div className="uploadfield-div w-[238px]">
                   <UploadField
                     label="Documents:"
-                    // onChange={(file) => formik.setFieldValue("adhar", file)}
+                   
                     name="document"
                     placeholder="Recommended size: 150x50 px (PNG)"
                     sx={{ padding: "20px" }}

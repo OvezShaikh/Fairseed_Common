@@ -31,13 +31,12 @@ function Index() {
       );
 
       const res = response.data;
-      console.log(res, "FilterName=======>");
+   
       setFilterName(res.filter_key);
-      // console.log("RES ----->", res);
+ 
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList(res.rows);
-        // setUserProfile(res.rows?.user?.profile_pic);
         setCampaignCount(res.count);
       } else {
         console.error("Invalid data structure. Expected an array:", res.data);
@@ -56,7 +55,7 @@ function Index() {
         `${process.env.REACT_APP_API_URL}/campaign/campaign-filter?page=${page}&limit=${perPage}&filter=${tabName}`
       );
       const res = response.data;
-      // console.log("RES ----->", res);
+      
 
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
@@ -74,12 +73,12 @@ function Index() {
   }, [page]);
 
   const receiveCategoryFromChild = (categoryData) => {
-    console.log("DATA FROM CHILD Category ", categoryData);
+   
     setCategoryDataFromChild(categoryData);
   };
 
   const receiveLocationFromChild = (locationData) => {
-    console.log("DATA FROM CHILD Location ", locationData);
+   
     setLocationDataFromChild(locationData);
   };
 
@@ -132,7 +131,7 @@ function Index() {
   const filteredCardCount = filteredUserList.length;
 
   const loadMore = () => {
-    console.log("LOAD MORE CLICKED");
+   
 
     setVisibleCards((prevVisibleCards) => prevVisibleCards + 4);
 

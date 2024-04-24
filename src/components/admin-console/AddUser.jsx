@@ -72,43 +72,20 @@ export const AddUser = ({
   const { mutate } = useCreateOrUpdate({
     url: `/admin-dashboard/users`,
   });
-  // const { mutate, isLoading } = useCreateOrUpdate({
-  //     url: isUpdate ? `/admin-dashboard/users${data?.id}` : "/admin-dashboard/users",
-  //     method: isUpdate ? "put" : "post",
-  //     onSuccess: () => onSuccess && onSuccess(),
-  // });
 
   return (
     <Dialog
       title={`${isUpdate ? "Update" : "Add"}  New User`}
       onClose={() => onClose && onClose()}
       button={
-        // isUpdate ? (
-        //   <Button
-        //     onClick={() => onClick && onClick()}
-        //     startIcon={<Edit />}
-        //     className="text-capitalize"
-        //     sx={{
-        //       lineHeight: "18px",
-        //       fontFamily: "FuturaLight",
-        //       fontWeight: "300",
-        //       fontSize: {
-        //         xs: "0.8rem",
-        //         lg: "0.9rem",
-        //       },
-        //     }}
-        //     variant="text"
-        //   >
-        //     View/Edit
-        //   </Button>
-        // ) : (
+       
         <PrimaryButton
           className="text-capitalize"
           startIcon={<Add size={24} />}
         >
           Add New
         </PrimaryButton>
-        // )
+   
       }
     >
       {({ onClose }) => (
@@ -134,8 +111,6 @@ export const AddUser = ({
                   onClose();
                 },
                 onError: (response) => {
-                  console.log(response);
-
                   toast.error(`${response.response?.data?.message}`, {
                     position: "top-right",
                   });
@@ -203,8 +178,7 @@ export const AddUser = ({
                   <RadioGroup
                     name={"user_type"}
                     onChange={(value) => {
-                      console.log(value);
-                      setFieldValue("user_type", value);
+                                    setFieldValue("user_type", value);
                     }}
                     options={[
                       { label: "Individual", value: "Individual" },

@@ -54,9 +54,6 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
 
   const handleCategoryChange = (event) => {
     setSelectedCategories(event.target.value);
-
-    console.log("CATEGORY VALUES ", event.target.value);
-
     sendCategoryToParent(event.target.value);
 
   };

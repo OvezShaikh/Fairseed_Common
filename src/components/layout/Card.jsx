@@ -39,7 +39,6 @@ function Card({
     }
   };
 
-  console.log("dhhdhdshs", Profile_pic);
 
   const fullNameWords = username?.split(" ");
   const firstLetter = fullNameWords?.[0]?.charAt(0)?.toUpperCase() ?? "";
@@ -155,7 +154,6 @@ function Card({
                 <span>{firstLetter}</span>
               )}
 
-              {console.log(Profile_pic, "============>Images")}
             </Avatar>{" "}
             <p className="text-black/40 pl-2 text-[20px] max-desktop:text-[14px]">
               {username}

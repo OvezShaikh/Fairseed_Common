@@ -167,8 +167,7 @@ const Sign_Stepper = () => {
     formData.append("mobile_number", values?.mobile_number);
 
     mutate(formData, {
-      onSuccess: (response) => {
-        console.log(response);
+      onSuccess: (response) => {  
         toast.success(response?.data?.message, {
           position: "top-right",
         });
@@ -176,9 +175,7 @@ const Sign_Stepper = () => {
         window.location.href = "/Home";
       },
       onError: (response) => {
-        console.log(response);
-
-        toast.error(`${response?.response?.data?.email[0]}`, {
+          toast.error(`${response?.response?.data?.email[0]}`, {
           position: "top-right",
         });
         toast.error(`${response?.response?.data?.mobile_number[0]}`, {

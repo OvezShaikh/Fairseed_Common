@@ -15,7 +15,6 @@ const InputCampaign = {
   background: "#D8DBDF",
   padding: "10px",
   border: "1px solid #e2e2e2",
-  // },
   "&:focus-within": {
     boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
     borderColor: "black",

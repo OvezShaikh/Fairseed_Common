@@ -31,8 +31,8 @@ function Index() {
 
   const handleOk = () => {
     setDeleteSuccess(false);
-    setIsImageDeleted(true); // Actually delete the image
-    setShowDeleteConfirmation(false); // Close the confirmation dialog
+    setIsImageDeleted(true); 
+    setShowDeleteConfirmation(false); 
   };
 
   const confirmDelete = () => {
@@ -48,7 +48,6 @@ function Index() {
     key: `/admin-dashboard/users/${id}`,
     enabled: true,
     select: (data) => {
-      console.log(data.data.data);
       return data.data.data;
     },
     onSuccess: (data) => {
@@ -60,7 +59,6 @@ function Index() {
     key: `/admin-dashboard/user-roles?page=1&limit=10`,
     enabled: true,
     select: (data) => {
-      console.log(data);
       return data.data.rows;
     },
     onSuccess: (data) => {
@@ -213,8 +211,7 @@ function Index() {
               url={`/admin-dashboard/users`}
               data={id}
               title={"User"}
-              // onClick={() => setSelectedRowID(row?.original?.id)}
-              // onSuccess={() => setSelectedRowID(null)}
+           
               onClose={() => navigate(-1)}
               refetchUrl={"/admin-dashboard/users"}
             ></DeleteBox>

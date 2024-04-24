@@ -301,12 +301,12 @@ function Index() {
               <div className="w-[49%] max-tablet:w-full">
                 <InputField
                   type="date"
-                  // defaultValue={yesterday}
+                 
                   value={values?.updated_on}
                   name="updated_on"
-                  // inputProps={{ min: moment().format("YYYY-MM-DD") }}
+                
                   disable={true}
-                  // required={true}
+                 
                   label="Transaction Date:"
                 />
               </div>
@@ -323,12 +323,11 @@ function Index() {
               <div className="w-[49%] max-tablet:w-full">
                 <InputField
                   type="date"
-                  // defaultValue={yesterday}
+                
                   value={values?.updated_on}
                   name="created_on"
                   disable={true}
-                  // inputProps={{ min: moment().format("YYYY-MM-DD") }}
-                  // required={true}
+                 
                   label="Transaction Date:"
                 />
               </div>
@@ -371,7 +370,7 @@ function Index() {
                 Go Back
               </h1>
             </button>
-            {/* data?.status !== 'Approved' || data?.status !== 'Rejected' */}
+          
             {data?.status ==='Pending' && (
                 <>
                 <PrimaryButton

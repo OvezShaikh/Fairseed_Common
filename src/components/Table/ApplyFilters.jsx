@@ -108,7 +108,6 @@ const ApplyFilters = ({ allColumns, title, filters, setFilters }) => {
                               className="mb-3"
                               key={filter?.id}
                             >
-                              {console.log(allColumns || [])}
                               <Grid item xs={12} md={12} lg={4} xl={4}>
                                 <SelectField
                                   name={`filters[${index}].column`}

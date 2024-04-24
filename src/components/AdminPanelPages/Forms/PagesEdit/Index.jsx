@@ -23,7 +23,6 @@ function Index() {
   const navigate = useNavigate();
   let { state } = useLocation();
   let { id } = state;
-  // console.log(id, "=====<id");
   const initialValues = {
     title: Details?.title || "",
     slug: Details?.slug || "",
@@ -37,7 +36,6 @@ function Index() {
     key: `admin-dashboard/pages/${id}`,
     enabled: true,
     select: (data) => {
-      console.log(data.data);
       return data.data.data;
     },
     onSuccess: (data) => {
@@ -106,7 +104,7 @@ function Index() {
                 ]}
                 label="Show Navbar"
                 value={values?.show_navbar}
-              // onChange={onChange}
+              
               />
             </div>
             <div className="lg:w-[25%]">
@@ -124,7 +122,7 @@ function Index() {
                   }
                 }
                 value={values?.show_footer}
-              // onChange={onChange}
+              
               />
             </div>
             <div className=" lg:w-[25%] ">
@@ -140,7 +138,7 @@ function Index() {
                 ]}
                 label="Show Page"
                 value={values?.show_page}
-              // onChange={onChange}
+           
               />
             </div>
           </div>

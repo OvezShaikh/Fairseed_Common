@@ -13,7 +13,6 @@ const DashboardActivities = () => {
       return data.data.data;
     },
     onSuccess: (data) => {
-      console.log(data, "pagedata");
       setDataObject(data);
     },
   });

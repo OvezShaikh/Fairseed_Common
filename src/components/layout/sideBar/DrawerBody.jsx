@@ -205,7 +205,6 @@ const DrawerBody = () => {
 
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
-  console.log(userData , 'userData')
   let role = Data?.user_role;
 
   const { pathname } = useLocation();

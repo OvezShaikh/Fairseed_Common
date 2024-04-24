@@ -12,7 +12,6 @@ const UserDashboardActivities = () => {
       return data.data.data;
     },
     onSuccess: (data) => {
-      console.log("datatatat  ", data);
       setDataObject(data);
     },
   });

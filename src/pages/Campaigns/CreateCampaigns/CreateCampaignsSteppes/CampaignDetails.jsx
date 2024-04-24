@@ -101,9 +101,7 @@ const Test = ({ handleBack, handleNext }) => {
       !!values.end_date
     );
   };
-  console.log(data, "============City+");
-  console.log(category);
-
+ 
   return (
     <Form className="flex flex-col  campagin-form">
       <Box className="desktop:py-[80px] max-desktop:py-[53px] flex flex-col items-center">

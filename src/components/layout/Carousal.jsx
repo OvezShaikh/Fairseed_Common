@@ -39,7 +39,6 @@ const HomeSwiper = () => {
     key: `/campaign/featured-campaign?page=${page}&limit=${perPage}`,
     enabled: true,
     select: (data) => {
-      // console.log(data?.data?.rows, ">>>>>>>>>>>");
       return data?.data?.rows;
     },
     onSuccess: (data) => {
@@ -101,8 +100,8 @@ const HomeSwiper = () => {
       }}
       navigation
       scrollbar={{ draggable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
+      // onSwiper={(swiper) => console.log(swiper)}
+      // onSlideChange={() => console.log("slide change")}
     >
       {allCards.map((item) => {
         const image = `${process.env.REACT_APP_API_URL}${item?.campaign_image}`;

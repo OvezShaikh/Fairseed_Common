@@ -109,7 +109,7 @@ const   EditCampaign = () => {
 
   const handleSubmit = (values) => {
 
-    console.log(values , ' submit <=========')
+  
     const changedValues = Object.keys(values).filter(
       (key) => values[key] !== initial_values[key]
     );
@@ -209,9 +209,6 @@ const   EditCampaign = () => {
                 options={Categories}
               />
               <div className="w-full">
-                {
-                  console.log(values , 'values')
-                }
                 <InputField
                   type={"number"}
                   onChange={handleChange}

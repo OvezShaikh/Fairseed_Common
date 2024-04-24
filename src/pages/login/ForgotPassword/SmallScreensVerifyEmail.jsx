@@ -39,9 +39,6 @@ function VerifyEmail() {
       });
 
       setIsVerified(true);
-
-      console.log("values.data.OTP", values.data.OTP);
-      console.log(response.email, "======================>");
       setBackendOTP(values.data.OTP);
       const key = response.email;
       setEmail(key);
@@ -103,20 +100,13 @@ function VerifyEmail() {
     setOtpState((prev) => {
       let old = [...prev];
       old[index] = { index, value: event.target.value };
-      console.log("oldvoldoldold", old);
       return old;
     });
     if (index != 3) {
       event.target.nextElementSibling.focus();
     }
   };
-  console.log(Email);
-
-  // const handleNewPassword = () => {
-  //     setStep(3);
-  //     setNewPassword(true);
-  // }
-
+ 
   return (
     <>
       <Navigation

@@ -76,7 +76,6 @@ export default function DonationInLastMonth() {
     enabled: true,
    
     select: (data) => {
-      console.log(data.data.donation_data,"Donation data for 6 months");
       return data.data.donation_data;
     },
     onSuccess: (data) => {

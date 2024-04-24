@@ -5,7 +5,6 @@ import { useState } from "react";
 import Modal from "../../inputs/Modal/Index";
 
 function ImageBackgroundWithDeleteButton({ imgUrl, onDelete, setDataUrl, name , setImage }) {
-  console.log(imgUrl, "imgUrl in CauseEditApproval");
   const [srcImg, setSrcImg] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const closeModal = () => {

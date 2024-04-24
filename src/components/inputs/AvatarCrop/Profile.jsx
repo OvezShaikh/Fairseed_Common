@@ -10,7 +10,6 @@ const Profile = ({ name, setSrcImg, srcImg }) => {
   const updateAvatar = (file) => {
     const croppedFile = base64toFile(file, name);
     setSrcImg(file);
-    console.log(croppedFile, "croppedFile");
     setFieldValue(name, croppedFile);
   };
 

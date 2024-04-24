@@ -22,7 +22,7 @@ import { useGetAll } from "../../../Hooks";
 const InputStyle = {
   padding: "20px",
   border: "1px solid #e2e2e2",
-  // },
+
   "&:focus-within": {
     boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
     borderColor: "black",
@@ -31,7 +31,7 @@ const InputStyle = {
 const InputStyleDate = {
   padding: "12px",
   border: "1px solid #e2e2e2",
-  // },
+
   "&:focus-within": {
     boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
     borderColor: "black",
@@ -51,7 +51,6 @@ function Index() {
 
   const handleDocumentUpload = (documentUrl) => {
     setDocuments([...documents, documentUrl]);
-    console.log(setDocuments, "================>docs");
   };
 
   const [user, setUser] = useState({});
@@ -71,7 +70,6 @@ function Index() {
         `,
     enabled: true,
     select: (data) => {
-      console.log(data.data.data);
       return data.data.data;
     },
     onSuccess: (data) => {
@@ -91,7 +89,7 @@ function Index() {
   if (!isSuccess) {
     return <div>Loading...</div>;
   }
-  console.log(initial_values);
+
 
   return (
     <Formik initialValues={initial_values} enableReinitialize={true}>
@@ -119,7 +117,7 @@ function Index() {
                 required={true}
                 label="Choose a Category:"
                 value={values?.init_category}
-                // onChange={Formik.value.category}
+            
                 options={category.map((item) => ({
                   label: item.name,
                   value: item.id,
@@ -186,7 +184,7 @@ function Index() {
                   sx={{
                     padding: "20px",
                     border: "1px solid #e2e2e2",
-                    // },
+               
                     "&:focus-within": {
                       boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
                       borderColor: "black",
@@ -288,7 +286,7 @@ function Index() {
                   sx={{
                     padding: "20px",
                     border: "1px solid #e2e2e2",
-                    // },
+               
                     "&:focus-within": {
                       boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
                       borderColor: "black",
@@ -307,7 +305,7 @@ function Index() {
                   ]}
                   label="Featured:"
                   style={{ fontSize: "18px", fontWeight: 500 }}
-                // onChange={onChange}
+                
                 />
               </div>
             </div>

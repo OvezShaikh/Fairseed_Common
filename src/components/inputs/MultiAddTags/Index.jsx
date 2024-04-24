@@ -41,16 +41,17 @@ const CustomChipsInput = ({ name, placeholder, label, ...otherProps }) => {
                 variant="outlined"
                 margin="normal"
                 InputProps={{
-                    startAdornment: chips.map((chip) => (
-                        <Chip
-                            key={chip.key}
-                            label={chip.label} 
-                            variant='filled'
-                            color='info'
-                            onDelete={() => handleDelete(chip)}
-                            deleteIcon={<DeleteIcon/>}
-                            style={{ marginRight: '4px', marginBottom: '4px' }}
-                        />
+                    startAdornment: chips.map((chip , index) => (
+                        <React.Fragment key={index}>
+                            <Chip
+                                label={chip.label} 
+                                variant='filled'
+                                color='info'
+                                onDelete={()=>handleDelete(chip)}
+                                deleteIcon={<DeleteIcon/>}
+                                style={{ marginRight: '4px', marginBottom: '4px' }}
+                            />
+                        </React.Fragment>
                     )),
                 }}
                 {...otherProps}

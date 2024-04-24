@@ -112,14 +112,8 @@ function Home() {
       );
 
       const res = response.data;
-      // console.log(res, "FilterName=======>");
-      // console.log(
-      //   res.rows.map((row) => row.user.profile_pic),
-      //   "===========>User"
-      // );
 
       setFilterName(res.filter_key);
-      // console.log("RES ----->", res);
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList(res.rows);
@@ -141,8 +135,6 @@ function Home() {
         `${process.env.REACT_APP_API_URL}/campaign/campaign-filter?page=${page}&limit=${perPage}&filter=${tabName}`
       );
       const res = response.data;
-      // console.log("RES ----->", res);
-
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList([...userList, ...res.rows]);

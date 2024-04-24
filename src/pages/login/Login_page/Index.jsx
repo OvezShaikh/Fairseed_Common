@@ -43,9 +43,7 @@ const UserLogin = ({ text, color, fontWeight, size }) => {
     setOpen(false);
   };
 
-  const isSmallScreen = useMediaQuery("(max-width:600px)");
-
-  console.log(Initial_value, "inissisi ");
+  const isSmallScreen = useMediaQuery("(max-width:600px)")
 
   return (
     <>

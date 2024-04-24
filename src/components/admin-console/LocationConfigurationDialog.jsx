@@ -115,7 +115,7 @@ export const LocationConfigurationDialog = ({
                     { label: "Inactive", value: "Inactive" },
                   ]}
                   label="Status"
-                // onChange={onChange}
+             
 
                 />
               </div>
