@@ -15,12 +15,9 @@ const Campaign = () => {
   let Data = JSON.parse(userData);
   let id = Data?.id;
   let tableRef = useRef(null);
-  console.log(tableRef.current ,'tableRef')
   const [selectedRowID, setSelectedRowID] = useState(null);
   const getStatusCellStyle = (status) => {
-    // let { state } = useLocation(); let { id } = state
-
-    if (status === "Pending") {
+      if (status === "Pending") {
       return {
         color: "#fa9820",
         background: "#f5fabe  ",

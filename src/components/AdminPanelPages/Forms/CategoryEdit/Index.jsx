@@ -21,7 +21,7 @@ function AddNew() {
     key: `/admin-dashboard/category/${id}`,
     enabled: true,
     select: (data) => {
-      console.log(data.data.data);
+  
       return data?.data?.data;
     },
     onSuccess: (data) => {
@@ -67,7 +67,6 @@ function AddNew() {
         navigate(-1);
       },
       onError: (response) => {
-        console.log(response);
         toast.error(`${response.data}Error`);
       },
     });

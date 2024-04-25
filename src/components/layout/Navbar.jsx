@@ -165,7 +165,6 @@ export default function Example() {
       title: card.title,
     }));
     setSearchSuggestions(suggestion);
-    console.log(suggestion);
     setIsInputFocused(true);
   };
 

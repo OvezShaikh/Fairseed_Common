@@ -71,7 +71,7 @@ const Index = () => {
         `${process.env.REACT_APP_API_URL}/campaign/successful-campaign?page=${page}&limit=${perPage}`
       );
       const res = response.data;
-      console.log("RES ----->", res);
+
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList([...userList, ...res.rows]);

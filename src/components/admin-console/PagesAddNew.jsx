@@ -54,43 +54,21 @@ export const PagesAddNew = ({
     url: `/admin-dashboard/pages`,
   });
 
-  // const { mutate, isLoading } = useCreateOrUpdate({
-  //   url: isUpdate ? `/admin/tooltip/${data?.id}` : "/admin/tooltip",
-  //   method: isUpdate ? "put" : "post",
-  //   onSuccess: () => onSuccess && onSuccess(),
-  // });
+ 
 
   return (
     <Dialog
       title={`${isUpdate ? "Update" : "Add"}  New Pages`}
       onClose={() => onClose && onClose()}
       button={
-        // isUpdate ? (
-        //   <Button
-        //     onClick={() => onClick && onClick()}
-        //     startIcon={<Edit />}
-        //     className="text-capitalize"
-        //     sx={{
-        //       lineHeight: "18px",
-        //       fontFamily: "FuturaLight",
-        //       fontWeight: "300",
-        //       fontSize: {
-        //         xs: "0.8rem",
-        //         lg: "0.9rem",
-        //       },
-        //     }}
-        //     variant="text"
-        //   >
-        //     View/Edit
-        //   </Button>
-        // ) : (
+      
         <PrimaryButton
           className="text-capitalize"
           startIcon={<Add size={24} />}
         >
           Add New
         </PrimaryButton>
-        // )
+      
       }
     >
       {({ onClose }) => (

@@ -148,14 +148,14 @@ const ReactTable = ({
   const [order, setOrder] = useState();
   const [sortField, setSortField] = useState();
   const [tableColumns, setTableColumns] = useState(columns || []);
-  const [columnOrderArr, setColumnOrderArr] = useState(
-  JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
-    ? JSON.parse(
-      JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
-        .columnOrder
-    )
-    : []
-    );
+  const [columnOrderArr, setColumnOrderArr] = useState();
+  // JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
+  //   ? JSON.parse(
+  //     JSON.parse(localStorage.getItem(`columns-of-${title_slug}`))
+  //       .columnOrder
+  //   )
+  //   : []
+    // );
 
   useEffect(() => {
     if (data) {
@@ -213,15 +213,15 @@ const ReactTable = ({
         pageIndex: 0,
         pageSize: 10,
         columnOrder: columnOrderArr,
-        hiddenColumns: JSON.parse(localStorage.getItem(`columns-of-${title}`))
-          ? JSON.parse(
-              JSON.parse(localStorage.getItem(`columns-of-${title}`))
-                .hiddenColumns
-            )
-          : columns.reduce(
-              (prev, curr) => (curr.hidden ? [...prev, curr.accessor] : prev),
-              []
-            ),
+        // hiddenColumns: JSON.parse(localStorage.getItem(`columns-of-${title}`))
+        //   ? JSON.parse(
+        //       JSON.parse(localStorage.getItem(`columns-of-${title}`))
+        //         .hiddenColumns
+        //     )
+        //   : columns.reduce(
+        //       (prev, curr) => (curr.hidden ? [...prev, curr.accessor] : prev),
+        //       []
+        //     ),
       },
 
       ...clientPaginationOptions,

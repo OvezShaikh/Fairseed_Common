@@ -23,16 +23,12 @@ function Limit() {
     key: `/admin-dashboard/limit`,
     enabled: true,
     select: (data) => {
-      console.log(data);
       return data.data.rows[0];
     },
     onSuccess: (data) => {
-      console.log(data);
       setLimit(data);
     },
   });
-
-  console.log(limit, "limit");
 
   const initialValues = {
     num_campaigns: limit?.num_campaigns || 0,

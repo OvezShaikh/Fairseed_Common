@@ -101,8 +101,8 @@ const MultipleRows = () => {
         },
       }}
       scrollbar={{ draggable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
+      // onSwiper={(swiper) => console.log(swiper)}
+      // onSlideChange={() => console.log("slide change")}
     >
       {loading && <div>Loading...</div>}
       {error && <div>Error: {error}</div>}

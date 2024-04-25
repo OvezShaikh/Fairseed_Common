@@ -23,7 +23,6 @@ export const DeleteBox = ({
     url,
     name: title || "",
     refetch: () => {
-      console.log("refetched", refetchUrl);
       queryClient.refetchQueries({
         queryKey: [refetchUrl ? refetchUrl : url],
         // stale: true,

@@ -18,7 +18,6 @@ function ModificationLogTable() {
       setData(data);
     },
   });
-  console.log(data, "=====>Data");
   return (
     <div className="pt-8">
       <table className="table-auto  border-collapse border border-gray-800 max-tablet:w-full">

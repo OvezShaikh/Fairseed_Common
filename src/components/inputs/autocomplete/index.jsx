@@ -19,14 +19,6 @@ export const AutoComplete = ({
   value,
   ...otherProps
 })=> {
- console.log({label,
-    options,
-    getOptionLabel ,
-    url,
-    name,
-    onChange,
-    value,
- otherProps});
   let textFieldConfig = {
     fullWidth: true,
     sx: {
@@ -45,7 +37,7 @@ export const AutoComplete = ({
     const [field, meta] = useField(name || "");
     //eslint-disable-next-line
     const ctx = useFormikContext();
-    console.log(ctx, "ctx");
+  
 
     setFieldValue = ctx.setFieldValue;
     setFieldTouched = ctx.setFieldTouched;

@@ -65,7 +65,7 @@ function Index() {
       // `${process.env.REACT_APP_API_URL}/campaign/category?name=${name}&page=${page}&limit=${perPage}`
       `${process.env.REACT_APP_API_URL}/campaign/category-filter?name=${name}&page=${page}&limit=${perPage}&filter=${tabName}`
     );
-    console.log(res, "FilterName=======>");
+ 
     setFilterName(res.data?.filter_key);
     if (Array.isArray(res.data.rows)) {
       setTotalPages(res.data.pages_count);
@@ -75,7 +75,7 @@ function Index() {
     } else {
       console.error("Invalid data structure. Expected an array:", res.data);
     }
-    // console.log(res.data.rows);
+
     // setCategoryCampaignList(res.data.rows)
   };
   useEffect(() => {
@@ -90,14 +90,11 @@ function Index() {
     );
     if (Array.isArray(res.data.rows)) {
       setTotalPages(res.data.pages_count);
-      console.log("CATEGORY CAMPAIGN", res.data.rows);
       setCategoryCampaignList([...categoryCampaignList, ...res.data.rows]);
       setCategoryDetail(res.data.category_data);
     } else {
       console.error("Invalid data structure. Expected an array:", res.data);
     }
-    // console.log(res.data.rows);
-    // setCategoryCampaignList(res.data.rows)
   };
   useEffect(() => {
     fetchCategoryDetail();
@@ -134,7 +131,6 @@ function Index() {
           heading={name}
           remove={"remove"}
         />
-        {console.log(categoryDetail, "===========category")}
 
         <div className="flex flex-col flex-wrap w-full mb-[128px] items-center max-tablet:mb-[48px]">
           <div className="flex desktop:ml-[-30px] desktop:max-w-[1760px] desktop:w-full desktop:justify-between max-desktop:w-[90%] max-desktop:flex-col max-desktop:items-end max-desktop:gap-y-[48px] max-tablet:mb-[50px] max-tablet:gap-y-[20px] scrollable-tabs-class mt-[50px] ">

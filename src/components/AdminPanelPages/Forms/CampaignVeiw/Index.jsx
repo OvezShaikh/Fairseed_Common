@@ -195,7 +195,7 @@ function Index() {
               </div>
               <div className="w-full">
                 <InputField
-                  // color={"red"}
+              
                   color={campaignData?.location ? "red" : undefined}
                   name={"location"}
                   onChange={handleChange}

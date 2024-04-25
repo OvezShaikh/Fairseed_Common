@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as Yup from "yup"; // Import Yup for validation
+import * as Yup from "yup";
 import PrimaryButton from "../../../inputs/PrimaryButton";
 import InputAdminField from "../../../inputs/InputAdminField/Index";
 import { Form, Formik } from "formik";
@@ -7,9 +7,9 @@ import { useCreateOrUpdate, useGetAll } from "../../../../Hooks";
 import { toast } from "react-toastify";
 
 const validationSchema = Yup.object().shape({
-  instagram_url: Yup.string().url("Invalid Instagram URL"),
-  facebook_url: Yup.string().url("Invalid Facebook URL"),
-  twitter_url: Yup.string().url("Invalid Twitter URL"),
+  instagram_url: Yup.string().url("Invalid Instagram URL").required(),
+  facebook_url: Yup.string().url("Invalid Facebook URL").required(),
+  twitter_url: Yup.string().url("Invalid Twitter URL").required(),
 });
 
 const ProfilesSocial = () => {
@@ -19,12 +19,15 @@ const ProfilesSocial = () => {
     key: `/admin-dashboard/social-media`,
     enabled: true,
     select: (data) => {
-      console.log(data);
       return data.data.rows[0];
     },
     onSuccess: (data) => {
       setSocials(data);
     },
+  });
+
+  const { mutate } = useCreateOrUpdate({
+    url: `/admin-dashboard/social-media`,
   });
 
   const initialValues = {
@@ -33,25 +36,33 @@ const ProfilesSocial = () => {
     twitter_url: socials?.twitter_url || "",
   };
 
-  console.log(socials);
-
   return (
     <Formik
       enableReinitialize={true}
       initialValues={initialValues}
       validationSchema={validationSchema}
-      // onSubmit={(values)=>{
-      //   mutate(values ,{
-      //   })
-      // }}
+      onSubmit={(values) => {
+        mutate(values, {
+          onSuccess: () => {
+            toast.success("Socials Saved Successfully !", {
+              position: "top-right",
+            });
+          },
+          onerror: () => {
+            toast.error("ran into an error !", {
+              position: "top-right",
+            });
+          },
+        });
+      }}
     >
       {({ values, handleChange }) => (
         <Form className="flex flex-col flex-wrap justify-center items-center">
-          <div className="flex  gap-4 w-full mb-24 max-tablet:flex-col max-desktop:flex-col max-tablet:mt-4 max-desktop:mt-4">
+          <div className="flex  gap-4 w-full mb-24 max-tablet:mt-8 max-desktop:mt-8 mt-4 max-tablet:flex-col max-desktop:flex-col">
             <div className="flex w-full flex-col">
               <InputAdminField
                 label={"Facebook"}
-                value={values?.instagram_url}
+                value={values?.facebook_url}
                 onChange={handleChange}
                 name={"facebook_url"}
                 placeholder={"Placeholder text"}
@@ -60,7 +71,7 @@ const ProfilesSocial = () => {
             <div className="flex w-full flex-col">
               <InputAdminField
                 label={"Twitter"}
-                value={values?.facebook_url}
+                value={values?.twitter_url}
                 onChange={handleChange}
                 name={"twitter_url"}
                 placeholder={"Placeholder text"}
@@ -69,7 +80,7 @@ const ProfilesSocial = () => {
             <div className="flex w-full  flex-col">
               <InputAdminField
                 label={"Instagram"}
-                value={values?.twitter_url}
+                value={values?.instagram_url}
                 onChange={handleChange}
                 name={"instagram_url"}
                 placeholder={"Placeholder text"}

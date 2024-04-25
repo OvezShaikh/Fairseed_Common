@@ -82,7 +82,7 @@ export default function DonationInMonths() {
       const screenWidth = window.innerWidth;
       if (screenWidth <= 767) {
         setXAxisTickInterval(3);
-         // Adjust this as needed
+      
       } else {
         setXAxisTickInterval(2);
       }
@@ -103,7 +103,6 @@ export default function DonationInMonths() {
     enabled: true,
    
     select: (data) => {
-      console.log(data)
       return data.data.donation_data;
    },
     onSuccess: (data) => {
@@ -116,23 +115,13 @@ export default function DonationInMonths() {
       <p className={"mb-3 text-lg font-semibold"}>Donation In Months(lacs): </p>
       <ResponsiveContainer className="max-tablet:w-[800px] max-mobile" height={300}>
         <BarChart
-          // width={774}
+        
           height={200}
           data={dataObject}
           margin={{top: 20, right: 20, bottom: 20, left: 0}}
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis className="max-tablet:w-[800px] max-tablet:overflow-scroll max-mobile" fontSize={14} dataKey='date' axisLine={false} tickLine={false} tickFormatter={customTickFormatter} interval={xAxisTickInterval} textAnchor="start"  />
-          {/* <XAxis
-            dataKey='total_amount'
-            axisLine={false}
-            tickLine={false}
-            interval={0}
-            tick={renderQuarterTick}
-            height={1}
-            scale="band"
-            xAxisId="quarter"
-          /> */}
           <YAxis padding={{right:20}} />
           <Tooltip />
           <Legend />

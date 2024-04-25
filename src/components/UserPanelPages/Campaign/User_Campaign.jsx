@@ -120,7 +120,6 @@ const User_Campaign = ({ onClose }) => {
         onClose();
       },
       onError: (response) => {
-        console.log(response, "=======>resp");
         toast.error(`${response.response?.data?.data?.campaign[0]}`, {
           position: "top-right",
         });
@@ -128,17 +127,7 @@ const User_Campaign = ({ onClose }) => {
       },
     });
   };
-  // const finaize = async (id, onClose) => {
-  //   await serverAPI
-  //     .post(`/user-dashboard/finalize-campaign/${id}`)
-  //     .then((response) => {
-  //       console.log(response, "id");
-  //       toast.success(response?.data?.message, {
-  //         position: "top-right",
-  //       });
-  //       onClose();
-  //     });
-  // };
+ 
 
   const columns = React.useMemo(() => [
     {

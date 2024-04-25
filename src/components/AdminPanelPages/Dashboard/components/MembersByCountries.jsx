@@ -20,21 +20,14 @@ const MembersByCountries = () => {
           series={{
             regions: [
               {
-                // scale: colorScale,
+                
                 values: country.map((name) => name.user_count),
-                // min: 0,
-                // max: 100,
+                
               },
             ],
           }}
           labels={country.map((name) => name.user_count)}
-          // series={{
-          //   regions: [
-          //     {
-          //       values: country,
-          //     },
-          //   ],
-          // }}
+          
           backgroundColor="#ffffff"
           onRegionTipShow={function reginalTip(event, label, code) {
             return label.html(`

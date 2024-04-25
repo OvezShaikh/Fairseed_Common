@@ -37,7 +37,6 @@ function Index() {
         key: `/user-dashboard/edit-bankkyc/${id}`,
         enabled: true,
         select: (data) => {
-            console.log(data)
             return data.data.data;
         },
         onSuccess: (data) => {
