@@ -1,13 +1,8 @@
 import * as React from "react";
 import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
-import {
-  Bars3Icon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
-import {
-  ChevronDownIcon,
-} from "@heroicons/react/20/solid";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import images from "../../constants/images";
@@ -15,8 +10,8 @@ import ProfileAvatar from "./ProfileAvatar";
 import PrimaryButton from "../../components/inputs/PrimaryButton";
 import { NavLink, Link } from "react-router-dom";
 const styleButton = {
-  color: 'red'
-}
+  color: "red",
+};
 const GetInvolved = [
   {
     name: "Associateship",
@@ -28,11 +23,11 @@ const GetInvolved = [
   },
   {
     name: "Internship",
-    href: '/Home/Create-Campaign',
+    href: "/Home/Create-Campaign",
   },
   {
     name: "Create a campaign",
-    href: '/Home/Create-Campaign',
+    href: "/Home/Create-Campaign",
   },
   {
     name: "Support a campaign",
@@ -54,13 +49,12 @@ const OurImpact = [
   },
   {
     name: "Stories of Change",
-    href: '/Home/Create-Campaign',
+    href: "/Home/Create-Campaign",
   },
   {
     name: "Reports",
-    href: '/Home/Create-Campaign',
+    href: "/Home/Create-Campaign",
   },
-
 ];
 const AboutUs = [
   {
@@ -73,32 +67,39 @@ const AboutUs = [
   },
   {
     name: "Our Mission",
-    href: '/Home/Create-Campaign',
+    href: "/Home/Create-Campaign",
   },
-
-
 ];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-
   return (
-    <header className="absolute top-0 left-0 right-0 bg-transparent z-10 container" style={{
-      backgroundColor: '#8EC5FC', backdropFilter: 'blur(10px)'
-    }}>      <nav
-      className="mx-auto flex max-w-9xl items-center justify-between p-6 lg:px-8"
-      aria-label="Global"
+    <header
+      className="absolute top-0 left-0 right-0 bg-transparent z-10 container"
+      style={{
+        backgroundColor: "#8EC5FC",
+        backdropFilter: "blur(10px)",
+      }}
     >
+      {" "}
+      <nav
+        className="mx-auto flex max-w-9xl items-center justify-between p-6 lg:px-8"
+        aria-label="Global"
+      >
         <div className="flex lg:flex ">
           <NavLink to="/Home">
             <span className="sr-only">FairSeed </span>
-            <img className="" src={images.Logo} alt="FairSeed" title="FairSeed" />
+            <img
+              className=""
+              src={images.Logo}
+              alt="FairSeed"
+              title="FairSeed"
+            />
           </NavLink>
         </div>
 
@@ -114,10 +115,10 @@ export default function Example() {
             </button>
           </div>
           <Popover.Group className="hidden lg:flex lg:gap-x-12">
-            <Popover className="relative" >
-              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium   text-[#40444C]"
+            <Popover className="relative">
+              <Popover.Button
+                className="flex pt-2 items-center gap-x-1 text-[18px] font-medium   text-[#40444C]"
                 onclick="this.style.backgroundColor = (this.style.backgroundColor === '#40444C') ? 'blue' : '#40444C';"
-
               >
                 Get Involved
                 <svg
@@ -164,7 +165,6 @@ export default function Example() {
                         className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
                         style={{ fontWeight: 400 }}
                       >
-
                         <div className="flex-auto">
                           <NavLink
                             to={item.href}
@@ -173,12 +173,10 @@ export default function Example() {
                             {item.name}
                             <span className="absolute inset-0" />
                           </NavLink>
-
                         </div>
                       </div>
                     ))}
                   </div>
-
                 </Popover.Panel>
               </Transition>
             </Popover>
@@ -231,7 +229,6 @@ export default function Example() {
                         className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
                         style={{ fontWeight: 400 }}
                       >
-
                         <div className="flex-auto">
                           <NavLink
                             to={item.href}
@@ -240,12 +237,10 @@ export default function Example() {
                             {item.name}
                             <span className="absolute inset-0" />
                           </NavLink>
-
                         </div>
                       </div>
                     ))}
                   </div>
-
                 </Popover.Panel>
               </Transition>
             </Popover>
@@ -298,7 +293,6 @@ export default function Example() {
                         className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
                         style={{ fontWeight: 400 }}
                       >
-
                         <div className="flex-auto">
                           <NavLink
                             to={item.href}
@@ -307,28 +301,26 @@ export default function Example() {
                             {item.name}
                             <span className="absolute inset-0" />
                           </NavLink>
-
                         </div>
                       </div>
                     ))}
                   </div>
-
                 </Popover.Panel>
               </Transition>
             </Popover>
-            <button
-              className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
-            >
+            <button className="font-[satoshi] text-[18px] font-medium text-[#40444C]">
               How it Works
             </button>
 
             {/* Fourth button */}
             <PrimaryButton
-              sx={{ borderRadius: 'var(--Pixels-8, 8px)', fontWeight: 700, fontSize: '18px' }}>
-
-              <NavLink to="/Home/Create-Campaign">
-                Start a Campaign
-              </NavLink>
+              sx={{
+                borderRadius: "var(--Pixels-8, 8px)",
+                fontWeight: 700,
+                fontSize: "18px",
+              }}
+            >
+              <NavLink to="/Home/Create-Campaign">Start a Campaign</NavLink>
               {/* </div>
               </div> */}
             </PrimaryButton>
@@ -350,26 +342,25 @@ export default function Example() {
                   />
                 </svg>
               </button>
-              <button
-                className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
-              >
+              <button className="font-[satoshi] text-[18px] font-medium text-[#40444C]">
                 <ProfileAvatar />
               </button>
             </div>
           </Popover.Group>
         </div>
       </nav>
-      <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+      <Dialog
+        as="div"
+        className="lg:hidden"
+        open={mobileMenuOpen}
+        onClose={setMobileMenuOpen}
+      >
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <Link to="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto"
-                src={images.Logo}
-                alt=""
-              />
+              <img className="h-8 w-auto" src={images.Logo} alt="" />
             </Link>
             <button
               type="button"
@@ -386,10 +377,17 @@ export default function Example() {
                 <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
+                      <Disclosure.Button
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                          open ? " text-red-400" : ""
+                        }`}
+                      >
                         Get Involved
                         <ChevronDownIcon
-                          className={classNames(open ? 'rotate-180' : '', 'h-6 w-6 flex-none')}
+                          className={classNames(
+                            open ? "rotate-180" : "",
+                            "h-6 w-6 flex-none"
+                          )}
                           aria-hidden="true"
                         />
                       </Disclosure.Button>
@@ -411,10 +409,17 @@ export default function Example() {
                 <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
+                      <Disclosure.Button
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                          open ? " text-red-400" : ""
+                        }`}
+                      >
                         Our Impact
                         <ChevronDownIcon
-                          className={classNames(open ? 'rotate-180' : '', 'h-6 w-6 flex-none')}
+                          className={classNames(
+                            open ? "rotate-180" : "",
+                            "h-6 w-6 flex-none"
+                          )}
                           aria-hidden="true"
                         />
                       </Disclosure.Button>
@@ -437,10 +442,17 @@ export default function Example() {
                 <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${open ? ' text-red-400' : ''}`}>
+                      <Disclosure.Button
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                          open ? " text-red-400" : ""
+                        }`}
+                      >
                         About Us
                         <ChevronDownIcon
-                          className={classNames(open ? 'rotate-180' : '', 'h-6 w-6 flex-none')}
+                          className={classNames(
+                            open ? "rotate-180" : "",
+                            "h-6 w-6 flex-none"
+                          )}
                           aria-hidden="true"
                         />
                       </Disclosure.Button>
@@ -459,16 +471,15 @@ export default function Example() {
                     </>
                   )}
                 </Disclosure>
-                <Link to="/login"
+                <Link
+                  to="/login"
                   className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   How It works
                 </Link>
               </div>
               <div className="py-6">
-                <button
-                  className="font-[satoshi] text-[18px] font-medium text-[#40444C]"
-                >
+                <button className="font-[satoshi] text-[18px] font-medium text-[#40444C]">
                   <ProfileAvatar />
                 </button>
               </div>

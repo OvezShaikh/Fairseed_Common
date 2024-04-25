@@ -2,7 +2,7 @@ import * as React from "react";
 import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import PrimaryButton from "../inputs/PrimaryButton";
 import images from "../../constants/images";
 import UserLogin from "../../pages/login/Login_page/Index";
@@ -10,10 +10,13 @@ import { Link, NavLink } from "react-router-dom";
 import ProfileAvatar from "../../pages/login/ProfileAvatar";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { useGetAll } from "../../Hooks";
+import { useDebounce, useGetAll } from "../../Hooks";
 import { useRef } from "react";
 import Logout from "@mui/icons-material/Logout";
-
+import { Search } from "../inputs/Search";
+import serverAPI from "../../config/serverAPI";
+import { SiSearxng } from "react-icons/si";
+import { useEffect } from "react";
 const GetInvolved = [
   {
     name: "Associateship",
@@ -89,20 +92,7 @@ export default function Example() {
   const perPage = 10;
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredCards, setFilteredCards] = useState([]);
   const [allCards, setAllCards] = useState([]);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [searchSuggestions, setSearchSuggestions] = useState([]);
-  const [showSuggestions, setShowSuggestions] = useState(true);
-  const [showSearch, setShowSearch] = useState(false);
-  // const [isInputFocused, setInputFocused] = useState(false);
-  // const [isInputVisible, setInputVisible] = useState(true);
-  const [isInputFocused, setIsInputFocused] = useState("");
-
-  const ref = useRef(null);
-  const suggestionRef = useRef(null);
-  const navigate = useNavigate();
 
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
@@ -110,62 +100,52 @@ export default function Example() {
   let image = Data?.profile_pic;
   let img = `${process.env.REACT_APP_API_URL}` + image;
 
-  const handleInputChange = (e) => {
-    setSearchTerm(e.target.value);
-    setShowSuggestions(true);
-    setIsInputFocused(true);
-  };
+  const [query, setQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [notFound, setNotFound] = useState(false);
+  const debouncedQuery = useDebounce(query);
 
-  const handleInputFocus = () => {
-    setIsInputFocused(true);
-  };
-
-  const handleInputBlur = (event) => {
-    const relatedTarget = event.relatedTarget;
-    if (
-      relatedTarget &&
-      suggestionRef.current &&
-      suggestionRef.current.contains(relatedTarget)
-    ) {
-      return;
+  useEffect(() => {
+    if (debouncedQuery) {
+      handleSearch();
     } else {
-      setIsInputFocused(false);
-      setSearchTerm("");
+      setSearchResults([]);
+      setNotFound(false);
     }
+  }, [debouncedQuery]);
+
+  const handleInputChange = (event) => {
+    setQuery(event.target.value);
   };
 
-  //   const handleInputBlur = (event) => {
-  //     const relatedTarget = event.relatedTarget;
-  //     if (relatedTarget && suggestionRef.current && suggestionRef.current.contains(relatedTarget)) {
-  //         if (relatedTarget.classList.contains('suggestion')) {
-  //             return;
-  //         }
-  //     }
-  //     setIsInputFocused(false);
-  //     setSearchTerm("");
-  //     setShowSuggestions(false);
-  // };
-
-  const handleSuggestionClick = () => {
-    setIsInputFocused(true);
-  };
-
-  // const toggleInputVisibility = () => {
-  //   setInputVisible(!isInputVisible);
-  // };
-
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    const filtered = allCards.filter((card) =>
-      card.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredCards(filtered);
-    const suggestion = allCards.map((card) => ({
-      id: card.id,
-      title: card.title,
-    }));
-    setSearchSuggestions(suggestion);
-    setIsInputFocused(true);
+  const handleSearch = () => {
+    setLoading(true);
+    // Replace 'https://api.example.com/search' with your actual API endpoint
+    serverAPI
+      .get(`/campaign/campaign?page=1&limit=10`)
+      .then((response) => {
+        // Filter the response data based on the query
+        const filteredResults = response.data?.rows.filter((result) => {
+          // Split the title into words
+          const words = result.title.split(" ");
+          // Check if the first word matches the query
+          return (
+            words.length > 0 &&
+            words[0].toLowerCase().includes(debouncedQuery.toLowerCase())
+          );
+        });
+        setSearchResults(filteredResults);
+        setLoading(false);
+        // If no filtered results found, set notFound state to true
+        if (filteredResults.length === 0) {
+          setNotFound(true);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching search results:", error);
+        setLoading(false);
+      });
   };
 
   useGetAll({
@@ -462,60 +442,60 @@ export default function Example() {
               </PrimaryButton>
             )}
 
-            <div className="flex space-x-0  ">
+            <div className="flex space-x-0 items-center ">
               <div className="flex-col relative pr-5 pt-1">
-                <form
-                  onSubmit={handleSearch}
-                  className="relative mx-auto flex "
-                >
-                  <input
-                    ref={ref}
-                    type="search"
-                    onFocus={handleInputFocus}
-                    onBlur={handleInputBlur}
-                    value={searchTerm}
-                    onChange={handleInputChange}
-                    className="text-xs peer cursor-pointer relative mt-2 z-10 h-8 w-10  bg-transparent border rounded  pr-8 outline-none focus:rounded-r-none focus:w-full focus:cursor-text focus:border-taupeGray focus:px-3"
-                    placeholder="Typing..."
-                    required
-                  />
-
-                  <button
-                    type="submit"
-                    className="absolute top-0 mt-2 mr-2 right-0  bottom-0 my-auto h-8 w-10 px-3 bg-transparent rounded-lg peer-focus:relative peer-focus:rounded-l-none"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      x="0px"
-                      y="0px"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 50 50"
+                <div className="flex items-center flex-col border border-gray-300 rounded-md p-2">
+                  <div className="relative flex items-center">
+                    <input
+                      type="text"
+                      placeholder="Search..."
+                      value={query}
+                      onChange={handleInputChange}
+                      className="flex-1 mr-2 border-none outline-none bg-transparent"
+                    />
+                    <button
+                      onClick={handleSearch}
+                      disabled={loading}
+                      className="pl-4 bg-transparent text-white rounded-md disabled:bg-gray-300 disabled:cursor-not-allowed"
                     >
-                      <path d="M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z"></path>
-                    </svg>
-                  </button>
-
-                  {isInputFocused && searchTerm && (
-                    <ul
-                      className={`search-suggestions pt-7 mt-2 pb-2 h-8 w-auto flex flex-col absolute`}
-                      tabIndex="-1"
-                      onClick={handleSuggestionClick}
-                      ref={suggestionRef}
-                    >
-                      {filteredCards.map((card, index) => (
-                        <Link to={`/campaign-details/${card?.id}`}>
-                          <li
-                            key={index}
-                            className="pt-4 font-bold bg-gray-200"
-                          >
-                            {card.title}
-                          </li>
-                        </Link>
-                      ))}
-                    </ul>
+                      <SiSearxng className="w-6 h-6 text-black" />
+                    </button>
+                  </div>
+                  {/* Conditionally render absolute div */}
+                  {query && (
+                    <div className="absolute top-14 rounded-lg p-2 left-0 bg-black/10 w-[270px]">
+                      {notFound && (
+                        <p className="text-red-500 ml-2">
+                          No results found for "{query}".
+                        </p>
+                      )}
+                      <ul className="ml-2 flex-col space-y-2 items-center ">
+                        {searchResults.map((result) => (
+                          <div className="flex gap-2 hover:bg-white h-10 rounded-md items-center">
+                            <img
+                              src={
+                                result.campaign_image
+                                  ? `${process.env.REACT_APP_API_URL}` +
+                                    result.campaign_image
+                                  : images.HeaderImage
+                              }
+                              className="size-7 ml-2 rounded-md"
+                              alt=""
+                            />
+                            <Link
+                              key={result.id}
+                              to={`/campaign-details/${result.id}`}
+                            >
+                              <li className="cursor-pointer hover:text-blue-500">
+                                {result.title}
+                              </li>
+                            </Link>
+                          </div>
+                        ))}
+                      </ul>
+                    </div>
                   )}
-                </form>
+                </div>
               </div>
 
               {localStorage.getItem("token") ? (

@@ -1,5 +1,3 @@
-// NotFoundPage.js
-
 import React from "react";
 import PrimaryButton from "../../components/inputs/PrimaryButton";
 import images from "../../constants/images";
@@ -33,9 +31,9 @@ const NotFoundPage = ({ color, background }) => {
         </p>
 
         <p
-          className={`text-lg text-gray-700 w-[60%] text-center ${
+          className={`text-lg  w-[60%] text-center  max-tablet:w-[80%] ${
             color ? `text-${color}` : "text-[#fff]"
-          } max-tablet:w-[80%]`}
+          }`}
         >
           The page you are looking for might have been removed, had its name
           changed, or is temporarily unavailable.

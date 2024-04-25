@@ -14,7 +14,7 @@ function AdminRoutes() {
         <Route path="/Profiles-Social" element={<ProfilesSocial />} />
         <Route
           path="*"
-          element={<PageDoesNotExists color={"black"} background={"white"} />}
+          element={<PageDoesNotExists background={"white"} color={"black"} />}
         />
       </Routes>
     </div>
