@@ -15,8 +15,9 @@ import { useRef } from "react";
 import Logout from "@mui/icons-material/Logout";
 import { Search } from "../inputs/Search";
 import serverAPI from "../../config/serverAPI";
-import { SiSearxng } from "react-icons/si";
+import { SiClubhouse, SiSearxng } from "react-icons/si";
 import { useEffect } from "react";
+import { Close } from "@mui/icons-material";
 const GetInvolved = [
   {
     name: "Associateship",
@@ -104,6 +105,8 @@ export default function Example() {
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [notFound, setNotFound] = useState(false);
+  const [inputVisible, setInputVisible] = useState(false); // State to control input visibility
+
   const debouncedQuery = useDebounce(query);
 
   useEffect(() => {
@@ -123,29 +126,53 @@ export default function Example() {
     setLoading(true);
     // Replace 'https://api.example.com/search' with your actual API endpoint
     serverAPI
-      .get(`/campaign/campaign?page=1&limit=10`)
+      .get(`/admin-dashboard/campaign?page=10&limit=50`)
       .then((response) => {
+        if (!response.data.rows) {
+          console.error("Invalid response data:", response);
+          setLoading(false);
+          return;
+        }
+
         // Filter the response data based on the query
-        const filteredResults = response.data?.rows.filter((result) => {
-          // Split the title into words
-          const words = result.title.split(" ");
-          // Check if the first word matches the query
-          return (
-            words.length > 0 &&
-            words[0].toLowerCase().includes(debouncedQuery.toLowerCase())
-          );
+        const filteredResults = response.data.rows.filter((result) => {
+          if (!result.title) {
+            console.warn("Result title is missing:", result);
+            return false;
+          }
+          // Check if any word in the title matches the query
+          const title = result.title.toLowerCase();
+          const query = debouncedQuery.toLowerCase();
+          return title.includes(query);
         });
-        setSearchResults(filteredResults);
+
+        // Prepare suggestions with highlighted matching words
+        const highlightedResults = filteredResults.map((result) => {
+          const title = result.title;
+          const query = debouncedQuery;
+          const highlightedTitle = title.replace(
+            new RegExp(query, "gi"),
+            (match) => `<span class="highlight">${match}</span>`
+          );
+          return { ...result, highlightedTitle };
+        });
+
+        setSearchResults(highlightedResults);
         setLoading(false);
         // If no filtered results found, set notFound state to true
-        if (filteredResults.length === 0) {
-          setNotFound(true);
-        }
+        setNotFound(highlightedResults.length === 0);
       })
       .catch((error) => {
         console.error("Error fetching search results:", error);
         setLoading(false);
       });
+  };
+  const toggleInputVisibility = () => {
+    if (inputVisible === false) {
+      setInputVisible((prev) => !prev); // Toggle input visibility
+    } else {
+      setInputVisible(false); // Toggle input visibility
+    }
   };
 
   useGetAll({
@@ -161,6 +188,10 @@ export default function Example() {
       console.error("Error fetching card titles:");
     },
   });
+  const clearInput = () => {
+    setQuery("");
+    setSearchResults([]); // Clear search results when input is cleared
+  };
 
   return (
     <header
@@ -444,51 +475,82 @@ export default function Example() {
 
             <div className="flex space-x-0 items-center ">
               <div className="flex-col relative pr-5 pt-1">
-                <div className="flex items-center flex-col border border-gray-300 rounded-md p-2">
-                  <div className="relative flex items-center">
-                    <input
-                      type="text"
-                      placeholder="Search..."
-                      value={query}
-                      onChange={handleInputChange}
-                      className="flex-1 mr-2 border-none outline-none bg-transparent"
-                    />
-                    <button
-                      onClick={handleSearch}
-                      disabled={loading}
-                      className="pl-4 bg-transparent text-white rounded-md disabled:bg-gray-300 disabled:cursor-not-allowed"
-                    >
-                      <SiSearxng className="w-6 h-6 text-black" />
-                    </button>
+                <div
+                  className={`flex items-center flex-col  ${
+                    !inputVisible ? " " : "border"
+                  } border-gray-300 rounded-md p-2`}
+                >
+                  <div className="relative flex items-center px-2">
+                    {!inputVisible && (
+                      <button
+                        onClick={toggleInputVisibility}
+                        className=" bg-transparent text-white rounded-md"
+                      >
+                        <SiSearxng className="w-6 h-6 text-black" />
+                      </button>
+                    )}
+                    {inputVisible && (
+                      <div className="relative flex items-center ease-in-out duration-500">
+                        <input
+                          type="text"
+                          placeholder="Search Campaign..."
+                          value={query}
+                          onChange={handleInputChange}
+                          className="flex-1 mr-2 border-none outline-none bg-transparent"
+                        />
+                        {query && ( // Conditionally render clear button
+                          <button
+                            onClick={clearInput}
+                            className="pl-4 bg-transparent text-white rounded-md"
+                          >
+                            <Close className="w-6 h-6 text-black" />
+                          </button>
+                        )}
+                        <button
+                          onClick={toggleInputVisibility}
+                          disabled={loading}
+                          className="pl-4 bg-transparent text-white rounded-md disabled:bg-gray-300 disabled:cursor-not-allowed"
+                        >
+                          <SiSearxng className="w-6 h-6 text-black" />
+                        </button>
+                      </div>
+                    )}
                   </div>
+
                   {/* Conditionally render absolute div */}
                   {query && (
-                    <div className="absolute top-14 rounded-lg p-2 left-0 bg-black/10 w-[270px]">
-                      {notFound && (
+                    <div className="absolute top-14 rounded-lg p-2 left-0 bg-white shadow-lg  w-[270px] max-h-[500px] overflow-scroll overflow-x-hidden">
+                      {loading && (
+                        <p className="text-gray-500 ml-2">Searching...</p>
+                      )}
+                      {notFound && !loading && (
                         <p className="text-red-500 ml-2">
                           No results found for "{query}".
                         </p>
                       )}
                       <ul className="ml-2 flex-col space-y-2 items-center ">
                         {searchResults.map((result) => (
-                          <div className="flex gap-2 hover:bg-white h-10 rounded-md items-center">
+                          <div
+                            key={result.id}
+                            className="flex gap-2 hover:bg-black/10 h-10 rounded-md items-center"
+                          >
                             <img
                               src={
                                 result.campaign_image
-                                  ? `${process.env.REACT_APP_API_URL}` +
-                                    result.campaign_image
+                                  ? `${process.env.REACT_APP_API_URL}${result.campaign_image}`
                                   : images.HeaderImage
                               }
                               className="size-7 ml-2 rounded-md"
                               alt=""
                             />
-                            <Link
-                              key={result.id}
-                              to={`/campaign-details/${result.id}`}
-                            >
-                              <li className="cursor-pointer hover:text-blue-500">
-                                {result.title}
-                              </li>
+                            <Link to={`/campaign-details/${result.id}`}>
+                              {/* Render highlighted title */}
+                              <li
+                                className="cursor-pointer truncate max-w-[190px] hover:text-blue-500"
+                                dangerouslySetInnerHTML={{
+                                  __html: result.highlightedTitle,
+                                }}
+                              />
                             </Link>
                           </div>
                         ))}
@@ -533,8 +595,74 @@ export default function Example() {
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-          <div className="mt-6 flow-root">
+          <div className="mt-10 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
+              <div className="flex items-center justify-between flex-col border border-gray-300 rounded-md py-2 !px-0">
+                <div className="relative flex flex-row  items-center">
+                  <input
+                    type="text"
+                    placeholder="Search Campaign..."
+                    value={query}
+                    onChange={handleInputChange}
+                    className="flex-1 mr-0 border-none outline-none bg-transparent"
+                  />
+                  {query && ( // Conditionally render clear button
+                    <button
+                      onClick={clearInput}
+                      className="pl-0 bg-transparent text-white rounded-md"
+                    >
+                      <Close className="w-6 h-6 text-black  outline-none" />
+                    </button>
+                  )}
+                  <button
+                    onClick={handleSearch}
+                    disabled={loading}
+                    className="pl-4 bg-transparent text-white rounded-md disabled:bg-gray-300 disabled:cursor-not-allowed"
+                  >
+                    <SiSearxng className="w-6 h-6 text-black  outline-none" />
+                  </button>
+                </div>
+                {/* Conditionally render absolute div */}
+                {query && (
+                  <div className="absolute top-[120px] rounded-lg p-2 left-6 bg-white shadow-lg max-h-[500px] overflow-scroll  overflow-x-hidden	 w-[330px]">
+                    {loading && (
+                      <p className="text-gray-500 ml-2">Searching...</p>
+                    )}
+
+                    {notFound && (
+                      <p className="text-red-500 ml-2">
+                        No results found for "{query}".
+                      </p>
+                    )}
+                    <ul className="ml-2 flex-col space-y-2 items-center ">
+                      {searchResults.map((result) => (
+                        <div className="flex gap-2 hover:bg-black/10 h-10 rounded-md items-center">
+                          <img
+                            src={
+                              result.campaign_image
+                                ? `${process.env.REACT_APP_API_URL}${result.campaign_image}`
+                                : images.HeaderImage
+                            }
+                            className="size-7 ml-2 rounded-md"
+                            alt=""
+                          />
+                          <Link
+                            key={result.id}
+                            to={`/campaign-details/${result.id}`}
+                          >
+                            <li
+                              className="cursor-pointer truncate max-w-[250px] hover:text-red-400"
+                              dangerouslySetInnerHTML={{
+                                __html: result.highlightedTitle,
+                              }}
+                            />
+                          </Link>
+                        </div>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
               <div className="space-y-2 py-6">
                 <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
