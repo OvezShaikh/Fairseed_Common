@@ -162,7 +162,7 @@ function Index({ goalAmount, fundRaised }) {
       .typeError("Please enter a valid amount")
       .min(50, "Amount must be at least 50 INR")
       .required("Amount is required"),
-    donation_type: yup.string().required("Donation Type is required"),
+    donation_type: yup.object().required("Donation Type is required"),
   });
 
   return (
