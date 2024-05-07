@@ -22,7 +22,7 @@ export const PagesAddNew = ({
   const queryClient = useQueryClient();
   const styleLabel = {
     fontFamily: "satoshi",
-    fontSize: 16,
+    fontSize: "1rem",
     fontWeight: 700,
     color: "#383A42",
   };
@@ -54,21 +54,17 @@ export const PagesAddNew = ({
     url: `/admin-dashboard/pages`,
   });
 
- 
-
   return (
     <Dialog
       title={`${isUpdate ? "Update" : "Add"}  New Pages`}
       onClose={() => onClose && onClose()}
       button={
-      
         <PrimaryButton
           className="text-capitalize"
           startIcon={<Add size={24} />}
         >
           Add New
         </PrimaryButton>
-      
       }
     >
       {({ onClose }) => (
