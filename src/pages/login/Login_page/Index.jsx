@@ -43,7 +43,7 @@ const UserLogin = ({ text, color, fontWeight, size }) => {
     setOpen(false);
   };
 
-  const isSmallScreen = useMediaQuery("(max-width:600px)")
+  const isSmallScreen = useMediaQuery("(max-width:600px)");
 
   return (
     <>
@@ -52,7 +52,7 @@ const UserLogin = ({ text, color, fontWeight, size }) => {
         style={{
           color: color || "#40444C",
           fontWeight: fontWeight || 500,
-          fontSize: size || "18px",
+          fontSize: size || "1.1rem",
         }}
         onClick={handleClickOpen}
       >

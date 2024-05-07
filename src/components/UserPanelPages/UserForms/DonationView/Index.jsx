@@ -11,7 +11,7 @@ import { useGetAll } from "../../../../Hooks";
 
 const styleLabel = {
   fontFamily: "satoshi",
-  fontSize: 16,
+  fontSize: "1rem",
   fontWeight: 700,
   color: "#383A42",
   marginTop: "4px",
@@ -59,7 +59,7 @@ function Index() {
               <div className="w-[49%] max-tablet:w-full">
                 <FormLabel sx={styleLabel}>Campaign:</FormLabel>
                 <div className="flex">
-                  <h1 className="text-[16px] font-[satoshi] pt-3  font-medium max-tablet:pl-2 max-tablet:pb-2">
+                  <h1 className="text-[1rem] font-[satoshi] pt-3  font-medium max-tablet:pl-2 max-tablet:pb-2">
                     {values?.campaign}
                   </h1>
                   <a href={`/campaign-details/${id}`} target="_blank">
@@ -171,7 +171,7 @@ function Index() {
             onClick={() => navigate(-1)}
             className="w-[69px] h-[32px] bg-[#F7F7F7]"
           >
-            <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
+            <h1 className="text-[#000000] font-medium text-[0.9rem] font-[satoshi]">
               Go Back
             </h1>
           </button>

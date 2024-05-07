@@ -126,7 +126,7 @@ export default function Example() {
     setLoading(true);
     // Replace 'https://api.example.com/search' with your actual API endpoint
     serverAPI
-      .get(`/admin-dashboard/campaign?page=10&limit=50`)
+      .get(`https://dev.fairseed.org:8000/campaign/global-search`)
       .then((response) => {
         if (!response.data.rows) {
           console.error("Invalid response data:", response);
@@ -230,7 +230,7 @@ export default function Example() {
           <Popover.Group className="max-nav:hidden lg:flex lg:gap-x-12">
             <Popover className="relative mt-1">
               <Popover.Button
-                className="flex pt-2 nav_button items-center gap-x-1 text-[18px] font-medium font-[satoshi]  text-[#40444C]"
+                className="flex pt-2 nav_button items-center gap-x-1 text-[1.1rem] font-medium font-[satoshi]  text-[#40444C]"
                 onClick="this.style.backgroundColor = (this.style.backgroundColor === '#40444C') ? 'blue' : '#40444C';"
                 // style={buttonStyles}
                 // onClick={handleButtonClick}
@@ -277,7 +277,7 @@ export default function Example() {
                     {GetInvolved.map((item) => (
                       <div
                         key={item.name}
-                        className="group relative flex items-center gap-x-6 pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+                        className="group relative flex items-center gap-x-6 pl-4 pt-4 text-[1rem] font-[satoshi] text-[#333] hover:bg-gray-50"
                         style={{ fontWeight: 400 }}
                       >
                         <div className="flex-auto">
@@ -293,7 +293,7 @@ export default function Example() {
                     ))}
                     {hasToken && (
                       <div
-                        className="group relative flex items-center gap-x-6 pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+                        className="group relative flex items-center gap-x-6 pl-4 pt-4 text-[1rem] font-[satoshi] text-[#333] hover:bg-gray-50"
                         style={{ fontWeight: 400 }}
                       >
                         <div className="flex-auto">
@@ -314,7 +314,7 @@ export default function Example() {
             {/*  second button */}
 
             <Popover className="relative mt-1">
-              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium font-[satoshi] text-[#40444C]">
+              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[1.1rem] font-medium font-[satoshi] text-[#40444C]">
                 Our Impact
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -357,7 +357,7 @@ export default function Example() {
                     {OurImpact.map((item) => (
                       <div
                         key={item.name}
-                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[1rem] font-[satoshi] text-[#333] hover:bg-gray-50"
                         style={{ fontWeight: 400 }}
                       >
                         <div className="flex-auto">
@@ -378,7 +378,7 @@ export default function Example() {
 
             {/* third button */}
             <Popover className="relative mt-1">
-              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium  font-[satoshi] text-[#40444C]">
+              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[1.1rem] font-medium  font-[satoshi] text-[#40444C]">
                 About us
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -421,7 +421,7 @@ export default function Example() {
                     {AboutUs.map((item) => (
                       <div
                         key={item.name}
-                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[Satoshi] text-[#333] hover:bg-gray-50"
+                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[1rem] font-[Satoshi] text-[#333] hover:bg-gray-50"
                         style={{ fontWeight: 400 }}
                       >
                         <div className="flex-auto">
@@ -441,7 +441,7 @@ export default function Example() {
             </Popover>
             {/* Fourth button */}
 
-            <button className="font-[satoshi] text-[18px] font-medium text-[#40444C]">
+            <button className="font-[satoshi] text-[1.1rem] font-medium text-[#40444C]">
               <Link to="/Home/How-It-Works">How it Works</Link>
             </button>
             {/* Fifth button */}
@@ -450,7 +450,7 @@ export default function Example() {
                 sx={{
                   borderRadius: "var(--Pixels-8, 8px)",
                   fontWeight: 700,
-                  fontSize: "18px",
+                  fontSize: "1.1rem",
                   padding: "12px 20px",
                 }}
               >
@@ -461,7 +461,7 @@ export default function Example() {
                 sx={{
                   borderRadius: "var(--Pixels-8, 8px)",
                   fontWeight: 700,
-                  fontSize: "18px",
+                  fontSize: "1.1rem",
                   padding: "12px 20px",
                 }}
               >
@@ -565,7 +565,7 @@ export default function Example() {
                   <ProfileAvatar />
                 </div>
               ) : (
-                <button className="font-[satoshi] text-[18px]  font-medium text-[#40444C]">
+                <button className="font-[satoshi] text-[1.1rem]  font-medium text-[#40444C]">
                   <UserLogin text={"Log in"} />
                 </button>
               )}
@@ -668,7 +668,7 @@ export default function Example() {
                   {({ open }) => (
                     <>
                       <Disclosure.Button
-                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] max-tablet:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[1.1rem] max-desktop:text-[1.2rem] max-desktop:font-[satoshi] max-tablet:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
                           open ? " text-red-400" : ""
                         }`}
                       >
@@ -687,7 +687,7 @@ export default function Example() {
                             key={item.name}
                             as="a"
                             href={item.href}
-                            className="block rounded-lg py-2 pl-6 pr-3 text-lg max-tablet:text-[16px] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                            className="block rounded-lg py-2 pl-6 pr-3 text-lg max-tablet:text-[1rem] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -700,7 +700,7 @@ export default function Example() {
                   {({ open }) => (
                     <>
                       <Disclosure.Button
-                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[1.1rem] max-desktop:text-[1.2rem] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
                           open ? " text-red-400" : ""
                         }`}
                       >
@@ -719,7 +719,7 @@ export default function Example() {
                             key={item.name}
                             as="a"
                             href={item.href}
-                            className="block rounded-lg py-2 pl-6 pr-3 text-lg max-tablet:text-[16px] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                            className="block rounded-lg py-2 pl-6 pr-3 text-lg max-tablet:text-[1rem] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -733,7 +733,7 @@ export default function Example() {
                   {({ open }) => (
                     <>
                       <Disclosure.Button
-                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[1.1rem] max-desktop:text-[1.2rem] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
                           open ? " text-red-400" : ""
                         }`}
                       >
@@ -752,7 +752,7 @@ export default function Example() {
                             key={item.name}
                             as="a"
                             href={item.href}
-                            className="block rounded-lg py-2 pl-6 pr-3 text-lg max-tablet:text-[16px] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                            className="block rounded-lg py-2 pl-6 pr-3 text-lg max-tablet:text-[1rem] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -763,7 +763,7 @@ export default function Example() {
                 </Disclosure>
                 <Link
                   to={"/Home/How-It-Works"}
-                  className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[20px]  max-tablet:text-[18px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[1.2rem]  max-tablet:text-[1.1rem] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   How It works
                 </Link>
@@ -774,7 +774,7 @@ export default function Example() {
                     {role === "Admin" && (
                       <>
                         <Link
-                          className="flex text-[satoshi] text-[20px] items-center max-desktop:font-[satoshi] font-medium text-black"
+                          className="flex text-[satoshi] text-[1.2rem] items-center max-desktop:font-[satoshi] font-medium text-black"
                           to="/AdminPanel"
                         >
                           AdminPanel
@@ -783,21 +783,21 @@ export default function Example() {
                     )}
 
                     <Link
-                      className="flex text-[satoshi] text-[20px] items-center max-desktop:font-[satoshi] font-medium text-black"
+                      className="flex text-[satoshi] text-[1.2rem] items-center max-desktop:font-[satoshi] font-medium text-black"
                       to={"/User"}
                     >
                       Dashboard
                     </Link>
 
                     <Link
-                      className="flex text-[satoshi] text-[20px] items-center max-desktop:font-[satoshi] font-medium text-black"
+                      className="flex text-[satoshi] text-[1.2rem] items-center max-desktop:font-[satoshi] font-medium text-black"
                       to={"/Home/account-settings"}
                     >
                       Settings
                     </Link>
                     <div className="flex items-center">
                       <button
-                        className="max-desktop:font-[satoshi] text-[satoshi] text-[20px] font-medium text-black pr-1 "
+                        className="max-desktop:font-[satoshi] text-[satoshi] text-[1.2rem] font-medium text-black pr-1 "
                         onClick={() => logout()}
                       >
                         Logout
@@ -807,7 +807,7 @@ export default function Example() {
                   </div>
                 ) : (
                   <Link to="/Home/Login">
-                    <button className="font-[satoshi] text-[22px] font-medium text-[#40444C]">
+                    <button className="font-[satoshi] text-[1.4rem] font-medium text-[#40444C]">
                       Log In
                     </button>
                   </Link>

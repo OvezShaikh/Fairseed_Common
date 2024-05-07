@@ -29,7 +29,7 @@ const styleSecondaryButton = {
   width: "100%",
   height: "100%",
   padding: "10px",
-  fontSize: "24px",
+  fontSize: "1.5rem",
   fontWeight: 700,
   borderRadius: "12px",
 };
@@ -37,7 +37,7 @@ const stylePrimaryButton = {
   width: "100%",
   height: "100%",
   padding: "10px",
-  fontSize: "24px",
+  fontSize: "1.5rem",
   fontWeight: 700,
   borderRadius: "12px",
 };
@@ -101,7 +101,7 @@ const Test = ({ handleBack, handleNext }) => {
       !!values.end_date
     );
   };
- 
+
   return (
     <Form className="flex flex-col  campagin-form">
       <Box className="desktop:py-[80px] max-desktop:py-[53px] flex flex-col items-center">
@@ -180,7 +180,7 @@ const Test = ({ handleBack, handleNext }) => {
             style={{
               padding: "4px 8px 8px 8px",
               color: colors.text.main,
-              fontSize: "20px",
+              fontSize: "1.2rem",
               fontWeight: 700,
               fontFamily: "satoshi",
               fontStyle: "normal",

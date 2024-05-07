@@ -10,7 +10,7 @@ const useStyles = makeStyles({
     "& .MuiInput-root": {
       margin: "0px",
       height: "10px",
-      fontSize: "10px",
+      fontSize: "0.6rem",
 
       border: " 1px solid #E2E2E2",
       background: "#fff",
@@ -23,16 +23,16 @@ const useStyles = makeStyles({
     },
 
     "& input::placeholder": {
-      fontSize: "17px",
+      fontSize: "1rem",
     },
     "& .Mui-disabled": {
-      fontSize: "17px !important",
+      fontSize: "1rem !important",
     },
   },
   root: {
     "& .MuiInputBase-root.MuiOutlinedInput-root ": {
       // padding: "15px 15px",
-      fontSize: "15px",
+      fontSize: "1rem",
 
       // marginTop: "5px",
       // "&:focus": {
@@ -145,7 +145,7 @@ const SelectField = ({
                 sx={{
                   padding: "4px 8px 4px 8px",
                   color: color || colors.text.main, // Use color prop if provided, else fallback to default color
-                  fontSize: "16px",
+                  fontSize: "1rem",
                   fontWeight: 700,
                   fontFamily: "satoshi",
                   fontStyle: "normal",

@@ -12,7 +12,7 @@ const styleSecondaryButton = {
   width: "100%",
   height: "100%",
   padding: "10px",
-  fontSize: "24px",
+  fontSize: "1.5rem",
   fontWeight: 700,
   borderRadius: "12px",
 };
@@ -20,7 +20,7 @@ const stylePrimaryButton = {
   width: "100%",
   height: "100%",
   padding: "10px",
-  fontSize: "24px",
+  fontSize: "1.5rem",
   fontWeight: 700,
   borderRadius: "12px",
 };
@@ -37,7 +37,7 @@ function YourStory({ handleBack, handleNext }) {
     <form className="py-[80px] flex flex-col gap-y-[50px]">
       <div className="">
         <FormLabel
-          className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
+          className="font-medium d-flex align-items-center desktop:text-[1.2rem] max-desktop:text-[16px]"
           style={{
             padding: "4px 8px 8px 8px",
             color: colors.text.main,
@@ -71,7 +71,7 @@ Make an Appeal.`}
 
       <div className="max-tablet:pt-12">
         <FormLabel
-          className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
+          className="font-medium d-flex align-items-center desktop:text-[1.2rem] max-desktop:text-[16px]"
           style={{
             padding: "4px 8px 8px 8px",
             color: colors.text.main,

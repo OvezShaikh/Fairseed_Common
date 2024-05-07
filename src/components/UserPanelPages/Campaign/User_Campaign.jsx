@@ -15,19 +15,17 @@ import { useCreateOrUpdate } from "../../../Hooks";
 import { useQueryClient } from "react-query";
 import { format } from "date-fns";
 
-
-
 const style = {
   padding: "4px 48px",
   color: "white",
-  fontSize: "18px",
+  fontSize: "1.1rem",
   fontWeight: 700,
   fontFamily: "satoshi",
 };
 const style2 = {
   padding: "4px 48px",
   color: "black",
-  fontSize: "18px",
+  fontSize: "1.1rem",
   fontWeight: 700,
   fontFamily: "satoshi",
 };
@@ -64,9 +62,9 @@ const User_Campaign = ({ onClose }) => {
     }
   };
 
-  function DateConvert (Mydate){
+  function DateConvert(Mydate) {
     const date = new Date(Mydate);
-    return format(date ,'dd-MMM-yyyy');
+    return format(date, "dd-MMM-yyyy");
   }
 
   const StatusCell = ({ value }) => (
@@ -127,7 +125,6 @@ const User_Campaign = ({ onClose }) => {
       },
     });
   };
- 
 
   const columns = React.useMemo(() => [
     {
@@ -199,12 +196,9 @@ const User_Campaign = ({ onClose }) => {
       accessor: "end_date",
       minWidth: 100,
       width: 100,
-      Cell:({row})=>{
-        return (
-          <p>{DateConvert(row?.original?.end_date)}</p>
-        )
-        
-       }
+      Cell: ({ row }) => {
+        return <p>{DateConvert(row?.original?.end_date)}</p>;
+      },
     },
     {
       Header: "Actions",
@@ -217,50 +211,50 @@ const User_Campaign = ({ onClose }) => {
           <div
             className={`flex items-center gap-2 justify-center max-desktop:pl-0 max-tablet:pl-0`}
           >
-            {row?.original?.status==='Completed' && row?.original?.withdrawal_status !== 'Paid' && (
-              <>
-                <Dialog
-                  onClose={() => onClose && onClose()}
-                  button={
-                    <SecondaryButton sx={{ height: "30px" }}>
-                      Make Withdrawl
-                    </SecondaryButton>
-                  }
-                  maxWidth="sm"
-                >
-                  {({ onClose }) => (
-                    <Formik
-                      initialValues={{ campaign: "" }}
-                      onSubmit={() => handlewithdrawSubmit(row, onClose)}
-                    >
-                      <Form>
-                        <div className="flex flex-col gap-10 justify-center items-center flex-wrap text-center pb-4">
-                          <img src={images.Vector} alt="" />
-                          <p className="text-[ var(--Neutral-Neutral-7, #717171)] w-[65%] font-[satoshi] text-[34px] font-semibold max-tablet:text-[18px]">
-                            Are you Sure you want to Make Withdrawl request.
-                            This action can’t be undone.
-                          </p>
-                          <div className="flex justify-center gap-4 max-tablet:flex-col">
-                            <SecondaryButton onClick={onClose} sx={style2}>
-                              Cancel
-                            </SecondaryButton>
-                            <PrimaryButton type="submit" sx={style}>
-                              Withdraw
-                            </PrimaryButton>
+            {row?.original?.status === "Completed" &&
+              row?.original?.withdrawal_status !== "Paid" && (
+                <>
+                  <Dialog
+                    onClose={() => onClose && onClose()}
+                    button={
+                      <SecondaryButton sx={{ height: "30px" }}>
+                        Make Withdrawl
+                      </SecondaryButton>
+                    }
+                    maxWidth="sm"
+                  >
+                    {({ onClose }) => (
+                      <Formik
+                        initialValues={{ campaign: "" }}
+                        onSubmit={() => handlewithdrawSubmit(row, onClose)}
+                      >
+                        <Form>
+                          <div className="flex flex-col gap-10 justify-center items-center flex-wrap text-center pb-4">
+                            <img src={images.Vector} alt="" />
+                            <p className="text-[ var(--Neutral-Neutral-7, #717171)] w-[65%] font-[satoshi] text-[2.1rem] font-semibold max-tablet:text-[1.1rem]">
+                              Are you Sure you want to Make Withdrawl request.
+                              This action can’t be undone.
+                            </p>
+                            <div className="flex justify-center gap-4 max-tablet:flex-col">
+                              <SecondaryButton onClick={onClose} sx={style2}>
+                                Cancel
+                              </SecondaryButton>
+                              <PrimaryButton type="submit" sx={style}>
+                                Withdraw
+                              </PrimaryButton>
+                            </div>
                           </div>
-                        </div>
-                      </Form>
-                    </Formik>
-                  )}
-                </Dialog>
-                {/* <Link to="View" state={{ id: row?.id }}>
+                        </Form>
+                      </Formik>
+                    )}
+                  </Dialog>
+                  {/* <Link to="View" state={{ id: row?.id }}>
                   <SecondaryButton sx={{ height: "30px" }}>
                     View Bank and KYC
                   </SecondaryButton>
                 </Link> */}
-              </>
-
-            )}
+                </>
+              )}
             {/* {
               row?.original?.withdrawal_status === 'Paid' &&
               <Link to="View" state={{ id: row?.id }}>
@@ -269,7 +263,6 @@ const User_Campaign = ({ onClose }) => {
                 </SecondaryButton>
               </Link>
             } */}
-
 
             {row?.values?.status === "Active" && (
               <>
@@ -299,7 +292,7 @@ const User_Campaign = ({ onClose }) => {
                       <Form>
                         <div className="flex flex-col gap-10 justify-center items-center flex-wrap text-center pb-4">
                           <img src={images.Vector} alt="" />
-                          <p className="text-[ var(--Neutral-Neutral-7, #717171)] w-[65%] font-[satoshi] text-[34px] font-semibold max-tablet:text-[18px]">
+                          <p className="text-[ var(--Neutral-Neutral-7, #717171)] w-[65%] font-[satoshi] text-[2.1rem] font-semibold max-tablet:text-[1.1rem]">
                             Are you Sure you want to finalize the cause. This
                             action can’t be undone.
                           </p>
@@ -350,8 +343,6 @@ const User_Campaign = ({ onClose }) => {
 
             </>
             } */}
-
-
           </div>
         );
       },

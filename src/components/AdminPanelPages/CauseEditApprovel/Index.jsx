@@ -218,7 +218,7 @@ function CauseEdit_Form() {
                     fontWeight: 700,
                     fontFamily: "satoshi",
                     fontStyle: "normal",
-                    fontSize: "16px",
+                    fontSize: "1rem",
                   }}
                 >
                   About the Campaign:
@@ -336,7 +336,7 @@ function CauseEdit_Form() {
                     style={{
                       padding: "4px 8px 8px 8px",
                       color: colors.text.main,
-                      fontSize: "16px",
+                      fontSize: "1rem",
                       fontWeight: 700,
                       fontFamily: "satoshi",
                       fontStyle: "normal",
@@ -392,7 +392,7 @@ function CauseEdit_Form() {
               <ImageEditor
                 sx={{ maxWidth: "400px", minHeight: "400px" }}
                 dataUrl={srcImg}
-                />
+              />
 
               <Link to={"Revision-History"} state={{ id: user?.id }}>
                 <PrimaryButton sx={{ borderRadius: "12px", width: "100%" }}>

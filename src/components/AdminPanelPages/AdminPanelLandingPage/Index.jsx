@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {  Form, Formik, useFormik } from "formik";
+import { Form, Formik, useFormik } from "formik";
 import DropZone from "../../inputs/dragAndDrop";
 import Box from "@mui/material/Box";
 import UploadField from "../../inputs/UploadField/Index";
@@ -13,8 +13,8 @@ const InputStyle = {
   padding: "0px 16px",
   border: "1px solid #e2e2e2",
   borderRadius: "4px",
-  fontSize: 16,
- 
+  fontSize: "1rem",
+
   "&:focus-within": {
     boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
     borderColor: "black",
@@ -60,7 +60,6 @@ const LandingPage = () => {
                 <div className="uploadfield-div w-[238px]">
                   <UploadField
                     label="Logo:"
-                  
                     name="document"
                     placeholder="Recommended\n size: 150x50 px (PNG)"
                     sx={{ padding: "20px" }}
@@ -83,7 +82,6 @@ const LandingPage = () => {
                 <div className="uploadfield-div w-[238px]">
                   <UploadField
                     label="Logo Footer:"
-                  
                     name="document"
                     placeholder="Recommended size: 150x50 px (PNG)"
                     sx={{ padding: "20px" }}
@@ -105,7 +103,6 @@ const LandingPage = () => {
                 <div className="uploadfield-div w-[238px]">
                   <UploadField
                     label="Favicon:"
-                   
                     name="document"
                     placeholder="Recommended size: 150x50 px (PNG)"
                     sx={{ padding: "20px" }}
@@ -127,7 +124,6 @@ const LandingPage = () => {
                 <div className="uploadfield-div w-[238px]">
                   <UploadField
                     label="Documents:"
-                  
                     name="document"
                     placeholder="Recommended size: 150x50 px (PNG)"
                     sx={{ padding: "20px" }}
@@ -149,7 +145,6 @@ const LandingPage = () => {
                 <div className="uploadfield-div w-[238px]">
                   <UploadField
                     label="Documents:"
-                   
                     name="document"
                     placeholder="Recommended size: 150x50 px (PNG)"
                     sx={{ padding: "20px" }}
@@ -171,7 +166,6 @@ const LandingPage = () => {
                 <div className="uploadfield-div w-[238px]">
                   <UploadField
                     label="Documents:"
-                  
                     name="document"
                     placeholder="Recommended size: 150x50 px (PNG)"
                     sx={{ padding: "20px" }}
@@ -193,7 +187,6 @@ const LandingPage = () => {
                 <div className="uploadfield-div w-[238px]">
                   <UploadField
                     label="Documents:"
-                   
                     name="document"
                     placeholder="Recommended size: 150x50 px (PNG)"
                     sx={{ padding: "20px" }}
@@ -215,7 +208,6 @@ const LandingPage = () => {
                 <div className="uploadfield-div w-[238px]">
                   <UploadField
                     label="Documents:"
-                   
                     name="document"
                     placeholder="Recommended size: 150x50 px (PNG)"
                     sx={{ padding: "20px" }}

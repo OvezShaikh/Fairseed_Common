@@ -23,7 +23,7 @@ const InputCampaign = {
     borderRadius: "3px",
     background: "#D8DBDF !important",
     position: "relative",
-    fontSize: "15px",
+    fontSize: "1rem",
     color: "yellow !important",
     width: "100%",
   },
@@ -218,7 +218,7 @@ function CausesView() {
                 <div className="w-full">
                   <FormLabel
                     sx={{
-                      fontSize: "16px",
+                      fontSize: "1rem",
                       fontFamily: "satoshi",
                       fontWeight: 700,
                       color: "#383A42",
@@ -237,7 +237,7 @@ function CausesView() {
                         />
                         <FormLabel
                           sx={{
-                            fontSize: "16px",
+                            fontSize: "1rem",
                             fontFamily: "satoshi",
                             fontWeight: 700,
                             color: "#383A42",
@@ -257,7 +257,7 @@ function CausesView() {
                         />
                         <FormLabel
                           sx={{
-                            fontSize: "16px",
+                            fontSize: "1rem",
                             fontFamily: "satoshi",
                             fontWeight: 700,
                             color: "#383A42",
@@ -277,7 +277,7 @@ function CausesView() {
                         />
                         <FormLabel
                           sx={{
-                            fontSize: "16px",
+                            fontSize: "1rem",
                             fontFamily: "satoshi",
                             fontWeight: 700,
                             color: "#383A42",
@@ -341,8 +341,10 @@ function CausesView() {
                   label="Raising this Campaign for:"
                 />
                 <div className="flex flex-row gap-4 mt-12">
-                  <button type="button"
-                    className="w-[69px] h-[32px] bg-[#F7F7F7]">
+                  <button
+                    type="button"
+                    className="w-[69px] h-[32px] bg-[#F7F7F7]"
+                  >
                     <h1
                       onClick={() => navigate(-1)}
                       className="text-[#000000] font-medium text-[14px] font-[satoshi]"

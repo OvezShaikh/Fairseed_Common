@@ -13,7 +13,7 @@ const useStyles = makeStyles({
       fontFamily: "ellipsis",
 
       margin: "0px",
-      fontSize: "20px",
+      fontSize: "1.2rem",
       border: " 1px solid #E2E2E2",
       background: "#fff",
       "&::before": {
@@ -27,12 +27,12 @@ const useStyles = makeStyles({
     "& input::placeholder": {
       fontFamily: "ellipsis",
 
-      fontSize: "20px",
+      fontSize: "1.2rem",
     },
     "& .Mui-disabled": {
       fontFamily: "ellipsis",
 
-      fontSize: "20px !important",
+      fontSize: "1.2rem !important",
     },
   },
   root: {
@@ -40,7 +40,7 @@ const useStyles = makeStyles({
       fontFamily: "ellipsis",
 
       padding: "15px 15px",
-      fontSize: "20px",
+      fontSize: "1.2rem",
       // marginTop: "5px",
       //   "&:focus": {
       //     boxShadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.15);,
@@ -183,7 +183,7 @@ const SelectField = ({
                 sx={{
                   padding: "8px 8px 16px 8px",
                   color: colors.text.main,
-                  fontSize: "20px",
+                  fontSize: "1.2rem",
                   fontWeight: 700,
                   fontFamily: "satoshi",
                   fontStyle: "normal",

@@ -64,7 +64,7 @@ function Index({ label, heading, titleName, remove }) {
               className="flex flex-col text-black/70 max-desktop:pb-0 max-tablet:pb-0 bread-crumbs-div"
               style={{
                 fontFamily: "satoshi",
-                fontSize: 20,
+                fontSize: "1.2rem",
                 fontWeight: 700,
                 paddingBottom: "30px",
               }}
@@ -73,7 +73,7 @@ function Index({ label, heading, titleName, remove }) {
                 className="breadcrumbs_navigation"
                 sx={{
                   color: "#B6BAC3",
-                  fontSize: 16,
+                  fontSize: "1rem",
                   fontFamily: "Satoshi",
                   fontWeight: 500,
                 }}

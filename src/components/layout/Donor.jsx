@@ -42,7 +42,7 @@ function Donor({ data }) {
                     >
                       {firstLetter}
                     </StyledAvatar>
-                    <h1 className="col-span-6 flex items-center pl-2 max-tablet:text-[18px] font-[satoshi] font-semibold text-[24px] max-tablet:pl-5">
+                    <h1 className="col-span-6 flex items-center pl-2 max-tablet:text-[1.1rem] font-[satoshi] font-semibold text-[1.5rem] max-tablet:pl-5">
                       {items.full_name ? items.full_name : "Anonymous"}
                     </h1>
                   </div>
@@ -54,7 +54,7 @@ function Donor({ data }) {
                         <h1 className="text-xl font-semibold font-[satoshi] text-[#1ABD54] max-tablet:text-lg max-tablet:mr-2">
                           +
                         </h1>
-                        <h1 className="text-xl font-semibold font-[satoshi] text-[#1ABD54] ml-3 max-tablet:ml-1 max-tablet:text-lg max-desktop:text-[24px]">
+                        <h1 className="text-xl font-semibold font-[satoshi] text-[#1ABD54] ml-3 max-tablet:ml-1 max-tablet:text-lg max-desktop:text-[1.5rem]">
                           {items?.amount}
                         </h1>
                       </div>

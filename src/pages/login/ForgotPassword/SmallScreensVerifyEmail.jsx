@@ -106,7 +106,7 @@ function VerifyEmail() {
       event.target.nextElementSibling.focus();
     }
   };
- 
+
   return (
     <>
       <Navigation
@@ -133,7 +133,7 @@ function VerifyEmail() {
               {(formikProps) => (
                 <Form>
                   <div className="flex flex-col gap-3">
-                    <p className="text-[22px] max-tablet:text-[16px] font-medium font-[satoshi] text-[#717171]">
+                    <p className="text-[1.4rem] max-tablet:text-[1rem] font-medium font-[satoshi] text-[#717171]">
                       Enter the email address associated with your account.
                     </p>
                     <div className="pb-4">
@@ -150,7 +150,7 @@ function VerifyEmail() {
                     >
                       <span
                         className="font-[satoshi]"
-                        style={{ fontSize: "22px", fontWeight: 900 }}
+                        style={{ fontSize: "1.4rem", fontWeight: 900 }}
                       >
                         {" "}
                         Confirm{" "}
@@ -167,7 +167,7 @@ function VerifyEmail() {
               {(formikProps) => (
                 <Form>
                   <div className="flex flex-col gap-3 w-full">
-                    <p className="text-[22px] max-tablet:text-[16px] font-medium font-[satoshi] text-[#717171]">
+                    <p className="text-[1.4rem] max-tablet:text-[1rem] font-medium font-[satoshi] text-[#717171]">
                       Enter the 4-digit code sent to your email.
                     </p>
                     <div className="flex justify-start gap-2 items-center py-2 ">
@@ -206,7 +206,7 @@ function VerifyEmail() {
                     >
                       <span
                         className="font-[satoshi]"
-                        style={{ fontSize: "22px", fontWeight: 900 }}
+                        style={{ fontSize: "1.4rem", fontWeight: 900 }}
                       >
                         {" "}
                         Verify Email{" "}
@@ -237,7 +237,7 @@ function VerifyEmail() {
               {(formikProps) => (
                 <Form>
                   <div className="flex flex-col gap-3">
-                    <p className="text-[22px] max-tablet:text-[16px] font-medium font-[satoshi] text-[#717171]">
+                    <p className="text-[1.4rem] max-tablet:text-[1rem] font-medium font-[satoshi] text-[#717171]">
                       Almost done. Enter your new password and you are all set!
                     </p>
                     <div className="pb-4">
@@ -264,7 +264,7 @@ function VerifyEmail() {
                     >
                       <span
                         className="font-[satoshi]"
-                        style={{ fontSize: "22px", fontWeight: 900 }}
+                        style={{ fontSize: "1.4rem", fontWeight: 900 }}
                       >
                         {" "}
                         Reset Password{" "}

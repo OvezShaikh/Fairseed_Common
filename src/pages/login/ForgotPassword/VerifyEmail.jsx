@@ -27,28 +27,25 @@ function VerifyEmail() {
   const [backendOTP, setBackendOTP] = useState("");
   const [Email, setEmail] = useState(" ");
 
-    const verifyEmailMutation = useCreateOrUpdate({
-        url: '/accounts/forgetpassword/nt/',
-        method: 'post',
-        onSuccess: (values, response) => {
-            toast.success(response?.data?.success, {
-                position: 'top-center'
-            });
-            setIsVerified(true);
-            setBackendOTP(values.data.OTP)
-            const key = response.email;
-            setEmail(key)
-        },
-            onerror:(response)=>{
-                toast.error(response?.data ,{
-                    position:'top-right'
-                })
-            }
-        ,
-        
-
-        refetch: null 
-    });
+  const verifyEmailMutation = useCreateOrUpdate({
+    url: "/accounts/forgetpassword/nt/",
+    method: "post",
+    onSuccess: (values, response) => {
+      toast.success(response?.data?.success, {
+        position: "top-center",
+      });
+      setIsVerified(true);
+      setBackendOTP(values.data.OTP);
+      const key = response.email;
+      setEmail(key);
+    },
+    onerror: (response) => {
+      toast.error(response?.data, {
+        position: "top-right",
+      });
+    },
+    refetch: null,
+  });
 
   const resetPasswordMutation = useCreateOrUpdate({
     url: "/accounts/reset-pass/nt/",
@@ -95,14 +92,14 @@ function VerifyEmail() {
     setOtpState((prev) => {
       let old = [...prev];
       old[index] = { index, value: event.target.value };
-   
+
       return old;
     });
     if (index != 3) {
       event.target.nextElementSibling.focus();
     }
   };
- 
+
   return (
     <div className="flex flex-col gap-2 w-[90%]">
       {!isVerified && (
@@ -120,7 +117,7 @@ function VerifyEmail() {
               <div className="flex flex-col gap-3">
                 <div className="">
                   <h1
-                    className="text-[46px] font-bold font-[Epilogue] pb-2"
+                    className="text-[2.8rem] font-bold font-[Epilogue] pb-2"
                     style={{
                       background:
                         "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
@@ -132,7 +129,7 @@ function VerifyEmail() {
                   </h1>
                   <hr />
                 </div>
-                <p className="text-[22px] font-medium font-[satoshi] text-[#717171]">
+                <p className="text-[1.4rem] font-medium font-[satoshi] text-[#717171]">
                   Enter the email address associated with your account.
                 </p>
                 <div className="pb-4">
@@ -149,7 +146,7 @@ function VerifyEmail() {
                 >
                   <span
                     className="font-[satoshi]"
-                    style={{ fontSize: "22px", fontWeight: 900 }}
+                    style={{ fontSize: "1.4rem", fontWeight: 900 }}
                   >
                     {" "}
                     Confirm{" "}
@@ -167,7 +164,7 @@ function VerifyEmail() {
               <div className="flex flex-col gap-3 w-full">
                 <div className="">
                   <h1
-                    className="text-[46px] font-bold font-[Epilogue] pb-2"
+                    className="text-[2.8rem] font-bold font-[Epilogue] pb-2"
                     style={{
                       background:
                         "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
@@ -179,7 +176,7 @@ function VerifyEmail() {
                   </h1>
                   <hr />
                 </div>
-                <p className="text-[22px] font-medium font-[satoshi] text-[#717171]">
+                <p className="text-[1.4rem] font-medium font-[satoshi] text-[#717171]">
                   Enter the 4-digit code sent to your email.
                 </p>
                 <div className="flex justify-start gap-2 items-center ">
@@ -212,7 +209,7 @@ function VerifyEmail() {
                 >
                   <span
                     className="font-[satoshi]"
-                    style={{ fontSize: "22px", fontWeight: 900 }}
+                    style={{ fontSize: "1.4rem", fontWeight: 900 }}
                   >
                     {" "}
                     Verify Email{" "}
@@ -244,7 +241,7 @@ function VerifyEmail() {
               <div className="flex flex-col gap-3">
                 <div className="">
                   <h1
-                    className="text-[46px] font-bold font-[Epilogue] pb-2"
+                    className="text-[2.8rem] font-bold font-[Epilogue] pb-2"
                     style={{
                       background:
                         "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
@@ -256,7 +253,7 @@ function VerifyEmail() {
                   </h1>
                   <hr />
                 </div>
-                <p className="text-[22px] font-medium font-[satoshi] text-[#717171]">
+                <p className="text-[1.4rem] font-medium font-[satoshi] text-[#717171]">
                   Almost done. Enter your new password and you are all set!
                 </p>
                 <div className="pb-4">
@@ -283,7 +280,7 @@ function VerifyEmail() {
                 >
                   <span
                     className="font-[satoshi]"
-                    style={{ fontSize: "22px", fontWeight: 900 }}
+                    style={{ fontSize: "1.4rem", fontWeight: 900 }}
                   >
                     {" "}
                     Reset Password{" "}

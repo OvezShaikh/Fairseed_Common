@@ -30,7 +30,8 @@ const Index = () => {
 
   const filteredUserList = Array.from(
     new Set(
-      userList.filter((item) => {
+      userList
+        .filter((item) => {
           const isDataMatch =
             (categoryDataFromChild.length === 0 &&
               locationDataFromChild.length === 0) ||
@@ -130,7 +131,7 @@ const Index = () => {
               width: "fit-content",
               textAlign: "center",
               color: "#FF9F0A",
-              fontSize: 24,
+              fontSize: "1.5rem",
               fontFamily: "Satoshi",
               fontWeight: "500",
               textDecoration: "underline",

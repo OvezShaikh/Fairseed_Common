@@ -49,7 +49,7 @@ const styleSecondaryButton = {
   width: "30%",
   //   height: "100%",
   padding: "10px",
-  fontSize: "24px",
+  fontSize: "1.5rem",
   color: "#000000",
   fontWeight: 700,
   borderRadius: "12px",
@@ -58,7 +58,7 @@ const stylePrimaryButton = {
   width: "30%",
   //   height: "100%",
   padding: "10px",
-  fontSize: "24px",
+  fontSize: "1.5rem",
   fontWeight: 700,
   borderRadius: "12px",
 };
@@ -295,22 +295,22 @@ function Index({ goalAmount, fundRaised }) {
                         className=" w-full min-h-[302px] h-full bg-[#F7FAFF]  border flex flex-col gap-7"
                         style={{ borderRadius: "4px", padding: "8px 16px" }}
                       >
-                        <p className="text-[20px] font-medium font-[satoshi] max-desktop:text-[18px] max-tablet:text-[16px] text-[#00000080]">
+                        <p className="text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]">
                           Bank Name: ICICI BANK
                         </p>
-                        <p className="text-[20px] font-medium font-[satoshi] max-desktop:text-[18px] max-tablet:text-[16px] text-[#00000080]">
+                        <p className="text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]">
                           Branch: Pune
                         </p>
-                        <p className="text-[20px] font-medium font-[satoshi] max-desktop:text-[18px] max-tablet:text-[16px] text-[#00000080]">
+                        <p className="text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]">
                           Name: Fairseed Technology Foundation
                         </p>
-                        <p className="text-[20px] font-medium font-[satoshi] max-desktop:text-[18px] max-tablet:text-[16px] text-[#00000080]">
+                        <p className="text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]">
                           Account Number: 007405011500
                         </p>
-                        <p className="text-[20px] font-medium font-[satoshi] max-desktop:text-[18px] max-tablet:text-[16px] text-[#00000080]">
+                        <p className="text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]">
                           Type: Current Account
                         </p>
-                        <p className="text-[20px] font-medium font-[satoshi] max-desktop:text-[18px] max-tablet:text-[16px] text-[#00000080]">
+                        <p className="text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]">
                           IFSC: ICIC0000074
                         </p>
                       </div>
@@ -397,7 +397,7 @@ function Index({ goalAmount, fundRaised }) {
                   />
                 </div>
                 <div
-                  className="desktop:text-[24px] max-desktop:text-[20px] max-tablet:text-[18px]"
+                  className="desktop:text-[1.5rem] max-desktop:text-[1.25rem] max-tablet:text-[1.12rem]"
                   style={{
                     color: "#FF8A00",
 
@@ -410,13 +410,13 @@ function Index({ goalAmount, fundRaised }) {
                 </div>
               </div>
               <h1
-                className="desktop:text-[72px] max-desktop:text-[54px] max-tablet:text-[32px] font-bold"
+                className="desktop:text-[4.5rem] max-desktop:text-[3.37rem] max-tablet:text-[2rem] font-bold"
                 style={{ fontFamily: "satoshi" }}
               >
                 {cardDetails?.fund_raised}
               </h1>
               <p
-                className="m-3 desktop:text-[36px] max-desktop:text-[28px] max-tablet:text-[18px]"
+                className="m-3 desktop:text-[36px] max-desktop:text-[1.75rem] max-tablet:text-[1.12rem]"
                 style={{
                   width: "100%",
                   textAlign: "center",
@@ -465,7 +465,7 @@ function Index({ goalAmount, fundRaised }) {
                     "-webkit-text-fill-color": "transparent",
                   }}
                 >
-                  <p className="text-2xl max-tablet:text-[18px] font-bold">
+                  <p className="text-2xl max-tablet:text-[1.1rem] font-bold">
                     Zakah Eligible !
                   </p>
                 </h1>
@@ -477,11 +477,11 @@ function Index({ goalAmount, fundRaised }) {
                   src="/static/images/avatar/1.jpg"
                   sx={{ width: "32px", height: "32px" }}
                 />
-                <span className="font-[satoshi] font-medium text-[20px] text-[#8E95A2]">
+                <span className="font-[satoshi] font-medium text-[1.25rem] text-[#8E95A2]">
                   {cardDetails?.user}
                 </span>
               </div>
-              <div className="mt-[40px] font-bold font-[satoshi] text-[30px] text-[#383A42]">
+              <div className="mt-[40px] font-bold font-[satoshi] text-[1.87rem] text-[#383A42]">
                 {cardDetails?.title}
               </div>
               <div className="flex flex-wrap justify-center gap-[20px] mt-[50px]">
@@ -491,7 +491,7 @@ function Index({ goalAmount, fundRaised }) {
                     className=" w-[28px] h-[26px] mr-[10px]"
                     src={icons?.UsersThree}
                   />
-                  <p className="text-[#6B7280] text-[20px]">
+                  <p className="text-[#6B7280] text-[1.25rem]">
                     {cardDetails?.donor_count}
                   </p>
                 </div>
@@ -502,7 +502,7 @@ function Index({ goalAmount, fundRaised }) {
                     src={icons?.Clock}
                   />
 
-                  <p className="text-[#6B7280] text-[20px]">
+                  <p className="text-[#6B7280] text-[1.25rem]">
                     {cardDetails?.days_left} days left
                   </p>
                 </div>
@@ -512,7 +512,7 @@ function Index({ goalAmount, fundRaised }) {
                     className="  w-[20px] h-[36px] mr-[10px]"
                     src={images?.MapPin2}
                   />
-                  <p className="text-[#6B7280] text-[20px]">
+                  <p className="text-[#6B7280] text-[1.25rem]">
                     {cardDetails?.location}
                   </p>
                 </div>

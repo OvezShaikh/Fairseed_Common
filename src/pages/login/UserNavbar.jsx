@@ -117,7 +117,7 @@ export default function Example() {
           <Popover.Group className="hidden lg:flex lg:gap-x-12">
             <Popover className="relative">
               <Popover.Button
-                className="flex pt-2 items-center gap-x-1 text-[18px] font-medium   text-[#40444C]"
+                className="flex pt-2 items-center gap-x-1 text-[1.15rem] font-medium   text-[#40444C]"
                 onclick="this.style.backgroundColor = (this.style.backgroundColor === '#40444C') ? 'blue' : '#40444C';"
               >
                 Get Involved
@@ -162,7 +162,7 @@ export default function Example() {
                     {GetInvolved.map((item) => (
                       <div
                         key={item.name}
-                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[1rem] font-[satoshi] text-[#333] hover:bg-gray-50"
                         style={{ fontWeight: 400 }}
                       >
                         <div className="flex-auto">
@@ -183,7 +183,7 @@ export default function Example() {
             {/*  second button */}
 
             <Popover className="relative">
-              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium  text-[#40444C]">
+              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[1.15rem] font-medium  text-[#40444C]">
                 Our impact
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -226,7 +226,7 @@ export default function Example() {
                     {OurImpact.map((item) => (
                       <div
                         key={item.name}
-                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[1rem] font-[satoshi] text-[#333] hover:bg-gray-50"
                         style={{ fontWeight: 400 }}
                       >
                         <div className="flex-auto">
@@ -247,7 +247,7 @@ export default function Example() {
 
             {/* third button */}
             <Popover className="relative">
-              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium   text-[#40444C]">
+              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[1.15rem] font-medium   text-[#40444C]">
                 About us
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -290,7 +290,7 @@ export default function Example() {
                     {AboutUs.map((item) => (
                       <div
                         key={item.name}
-                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[1rem] font-[satoshi] text-[#333] hover:bg-gray-50"
                         style={{ fontWeight: 400 }}
                       >
                         <div className="flex-auto">
@@ -308,7 +308,7 @@ export default function Example() {
                 </Popover.Panel>
               </Transition>
             </Popover>
-            <button className="font-[satoshi] text-[18px] font-medium text-[#40444C]">
+            <button className="font-[satoshi] text-[1.15rem] font-medium text-[#40444C]">
               How it Works
             </button>
 
@@ -317,7 +317,7 @@ export default function Example() {
               sx={{
                 borderRadius: "var(--Pixels-8, 8px)",
                 fontWeight: 700,
-                fontSize: "18px",
+                fontSize: "1.1rem",
               }}
             >
               <NavLink to="/Home/Create-Campaign">Start a Campaign</NavLink>
@@ -342,7 +342,7 @@ export default function Example() {
                   />
                 </svg>
               </button>
-              <button className="font-[satoshi] text-[18px] font-medium text-[#40444C]">
+              <button className="font-[satoshi] text-[1.15rem] font-medium text-[#40444C]">
                 <ProfileAvatar />
               </button>
             </div>
@@ -378,7 +378,7 @@ export default function Example() {
                   {({ open }) => (
                     <>
                       <Disclosure.Button
-                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[1.25rem] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
                           open ? " text-red-400" : ""
                         }`}
                       >
@@ -410,7 +410,7 @@ export default function Example() {
                   {({ open }) => (
                     <>
                       <Disclosure.Button
-                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[1.25rem] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
                           open ? " text-red-400" : ""
                         }`}
                       >
@@ -443,7 +443,7 @@ export default function Example() {
                   {({ open }) => (
                     <>
                       <Disclosure.Button
-                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-desktop:text-[1.25rem] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
                           open ? " text-red-400" : ""
                         }`}
                       >
@@ -473,13 +473,13 @@ export default function Example() {
                 </Disclosure>
                 <Link
                   to="/login"
-                  className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[1.25rem] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   How It works
                 </Link>
               </div>
               <div className="py-6">
-                <button className="font-[satoshi] text-[18px] font-medium text-[#40444C]">
+                <button className="font-[satoshi] text-[1.15rem] font-medium text-[#40444C]">
                   <ProfileAvatar />
                 </button>
               </div>

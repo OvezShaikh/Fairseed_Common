@@ -42,7 +42,7 @@ const CountrySelect = ({
         className="text-capitalize  d-flex mb-1 ml-2 align-items-center"
         sx={{
           color: "#383A42",
-          fontSize: size || "20px",
+          fontSize: size || "1.2rem",
           fontWeight: 700,
           ...sx,
         }}

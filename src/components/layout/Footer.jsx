@@ -208,7 +208,7 @@ function Footer() {
             <Link
               className="text-white font-bold"
               style={{
-                fontSize: 16,
+                fontSize: "1rem",
                 fontFamily: "Satoshi",
                 fontWeight: "700",
               }}
@@ -275,7 +275,7 @@ function Footer() {
             <Link
               className="text-white font-bold"
               style={{
-                fontSize: 16,
+                fontSize: "1rem",
                 fontFamily: "Satoshi",
                 fontWeight: "700",
               }}
@@ -316,7 +316,7 @@ function Footer() {
             <Link
               className="text-white font-bold"
               style={{
-                fontSize: 16,
+                fontSize: "1rem",
                 fontFamily: "Satoshi",
                 fontWeight: "700",
               }}
@@ -340,7 +340,7 @@ function Footer() {
               <Link
                 className="text-white  font-bold"
                 style={{
-                  fontSize: 16,
+                  fontSize: "1rem",
                   fontFamily: "Satoshi",
                   fontWeight: "700",
                 }}
@@ -371,7 +371,7 @@ function Footer() {
                   <button
                     style={{
                       color: "white",
-                      fontSize: 16,
+                      fontSize: "1rem",
                       fontFamily: "Satoshi",
                       fontWeight: "700",
                       textTransform: "capitalize",
@@ -397,7 +397,7 @@ function Footer() {
               <p
                 className="text-white mt-8 font-bold"
                 style={{
-                  fontSize: 16,
+                  fontSize: "1rem",
                   fontFamily: "Satoshi",
                   fontWeight: "700",
                 }}

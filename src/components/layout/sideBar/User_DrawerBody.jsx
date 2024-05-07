@@ -49,7 +49,7 @@ const activeMenuStyles = {
 
   "& .MuiButtonBase-root .MuiListItemText-root .MuiTypography-root": {
     color: "#25272C",
-    fontSize: 16,
+    fontSize: "1rem",
     fontFamily: "Satoshi",
     fontWeight: 700,
   },
@@ -60,7 +60,7 @@ const activeSubMenuStyles = {
   width: "95%",
   "& .MuiButtonBase-root .MuiListItemText-root .MuiTypography-root": {
     color: "#25272C",
-    fontSize: 16,
+    fontSize: "1rem",
     fontFamily: "Satoshi",
     fontWeight: 700,
   },
@@ -125,7 +125,7 @@ const CollapsibleMenuItem = ({
             primary={item.title}
             primaryTypographyProps={{
               fontFamily: "satoshi",
-              fontSize: 16,
+              fontSize: "1rem",
               color: colors.text.main,
               fontWeight: 500,
             }}
@@ -187,7 +187,7 @@ const CollapsibleMenuItem = ({
                       primaryTypographyProps={{
                         fontFamily: "satoshi",
                         fontWeight: 500,
-                        fontSize: 16,
+                        fontSize: "1rem",
                         color: "#383A42",
                         paddingLeft: "1.5rem",
                       }}
@@ -306,7 +306,7 @@ const User_DrawerBody = () => {
                       primaryTypographyProps={{
                         fontFamily: "satoshi",
                         fontWeight: 500,
-                        fontSize: 16,
+                        fontSize: "1rem",
                         color: "#717171",
                       }}
                     />

@@ -55,7 +55,7 @@ const InputField = ({
       position: "relative",
       backgroundColor: "#fff",
       // border: "1px solid #e2e2e2",
-      fontSize: "20px",
+      fontSize: "1.2rem",
       width: "100%",
       // ...sx,
       // transition: theme.transitions.create([
@@ -77,7 +77,7 @@ const InputField = ({
       // },
     },
     "& input::placeholder": {
-      fontSize: "20px",
+      fontSize: "1.2rem",
       fontStyle: "satoshi",
     },
     // "& .MuiInputBase-input.Mui-disabled": {
@@ -88,7 +88,7 @@ const InputField = ({
     "& .MuiInputAdornment-root.MuiInputAdornment-positionEnd": {
       backgroundColor: "#fff",
       padding: "21px 12px",
-      fontSize: "20px",
+      fontSize: "1.2rem",
       marginLeft: "0px",
       borderTopRightRadius: theme.shape.borderRadius + "px",
       borderBottomRightRadius: theme.shape.borderRadius + "px",
@@ -96,7 +96,7 @@ const InputField = ({
     "& .MuiInputAdornment-root.MuiInputAdornment-positionStart": {
       // backgroundColor: theme.palette.divider,
       padding: "21px 12px",
-      fontSize: "20px",
+      fontSize: "1.2rem",
       marginRight: "0px",
       borderTopLeftRadius: theme.shape.borderRadius + "px",
       borderBottomLeftRadius: theme.shape.borderRadius + "px",
@@ -146,7 +146,7 @@ const InputField = ({
           sx={{
             padding: "4px 8px 8px 8px",
             color: colors.text.main,
-            fontSize: Size || "20px",
+            fontSize: Size || "1.2rem",
             fontWeight: 700,
             fontFamily: "satoshi",
             fontStyle: "normal",

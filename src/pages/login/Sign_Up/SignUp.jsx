@@ -4,7 +4,7 @@ import InputField from "../../../components/inputs/InputField";
 import { useFormikContext } from "formik";
 import PrimaryButton from "../../../components/inputs/PrimaryButton";
 import Profile from "../../../components/inputs/AvatarCrop/Profile";
-import images from '../../../constants/images'
+import images from "../../../constants/images";
 
 const SignUp = ({ handleNext }) => {
   const imgRef = useRef(null);
@@ -100,7 +100,7 @@ const SignUp = ({ handleNext }) => {
                 width: "100%",
                 top: "2rem",
                 padding: "12px 40px",
-                fontSize: "22px",
+                fontSize: "1.4rem",
                 fontWeight: 900,
                 fontFamily: "satoshi",
               }}

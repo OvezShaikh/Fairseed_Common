@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 
 const styleLabel = {
   fontFamily: "satoshi",
-  fontSize: 16,
+  fontSize: "1rem",
   fontWeight: 700,
   color: "#383A42",
 };
@@ -92,53 +92,44 @@ function Index() {
           <div className="flex gap-32 w-full pt-8 max-tablet:flex-col max-tablet:gap-0">
             <div className="  lg:w-[25%] ">
               <RadioGroup
-
                 name={"show_navbar"}
-                onChange={
-                  (e) => {
-                    setFieldValue("show_navbar", e === "true")
-                  }}
+                onChange={(e) => {
+                  setFieldValue("show_navbar", e === "true");
+                }}
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
                 ]}
                 label="Show Navbar"
                 value={values?.show_navbar}
-              
               />
             </div>
             <div className="lg:w-[25%]">
               <RadioGroup
                 name={"show_footer"}
-
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
                 ]}
                 label="Show Footer"
-                onChange={
-                  (e) => {
-                    setFieldValue("show_footer", e === "true")
-                  }
-                }
+                onChange={(e) => {
+                  setFieldValue("show_footer", e === "true");
+                }}
                 value={values?.show_footer}
-              
               />
             </div>
             <div className=" lg:w-[25%] ">
               <RadioGroup
-                onChange={
-                  (e) => {
-                    setFieldValue("show_page", e === "true")
-                  }
-                } name={"show_page"}
+                onChange={(e) => {
+                  setFieldValue("show_page", e === "true");
+                }}
+                name={"show_page"}
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
                 ]}
                 label="Show Page"
                 value={values?.show_page}
-           
               />
             </div>
           </div>

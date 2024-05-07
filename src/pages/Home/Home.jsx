@@ -172,7 +172,7 @@ function Home() {
       <div className="flex pt-[128px] ">
         <div className="w-full flex-wrap flex flex-col items-center mx-10">
           <h1
-            className="font-extrabold pb-[24px] desktop:text-[48px] max-desktop:text-[36px] max-tablet:text-[24px] max-tablet:pb-[20px]"
+            className="font-extrabold pb-[24px] desktop:text-[3rem] max-desktop:text-[2.25rem] max-tablet:text-[1.5rem] max-tablet:pb-[20px]"
             style={{ fontFamily: "Satoshi" }}
           >
             Ongoing Campaigns
@@ -183,7 +183,7 @@ function Home() {
               style={{
                 width: "100%",
                 textAlign: "center",
-                fontSize: 24,
+                fontSize: "1.5rem",
                 fontFamily: "Satoshi",
                 fontWeight: "500",
                 wordWrap: "break-word",
@@ -195,7 +195,7 @@ function Home() {
                 position: "relative",
               }}
             >
-              <p className="gradient-button mb-0 underline max-tablet:text-[16px]">
+              <p className="gradient-button mb-0 underline max-tablet:text-[1rem]">
                 See all {campaignCount} active campaigns
               </p>
             </Link>
@@ -213,7 +213,7 @@ function Home() {
           >
             <img src={images.Funnel} alt="" />
             <p
-              className="text-[18px]"
+              className="text-[1.1rem]"
               style={{
                 background:
                   "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
@@ -262,7 +262,7 @@ function Home() {
             width: "fit-content",
             textAlign: "center",
             color: "#FF9F0A",
-            fontSize: 24,
+            fontSize: "1.5rem",
             fontFamily: "Satoshi",
             fontWeight: "500",
             textDecoration: "underline",
@@ -287,7 +287,7 @@ function Home() {
           style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
         >
           <h1
-            className="font-bold pb-[96px] text-[48px] max-desktop:pb-[48px] max-tablet:pb-[28px] max-tablet:text-[24px]"
+            className="font-bold pb-[96px] text-[3rem] max-desktop:pb-[48px] max-tablet:pb-[28px] max-tablet:text-[1.5rem]"
             style={{ fontFamily: "Satoshi", fontWeight: 900 }}
           >
             How it Works
@@ -303,7 +303,7 @@ function Home() {
                 </div>
                 <div className=" ml-2 col-span-10">
                   <h1
-                    className="text-[28px] font-black max-tablet:text-[24px] max-tablet:font-bold"
+                    className="text-[2.25rem] font-black max-tablet:text-[1.5rem] max-tablet:font-bold"
                     style={{
                       color: "#4A4E5A",
 
@@ -315,7 +315,7 @@ function Home() {
                     Create your Profile
                   </h1>
                   <p
-                    className="text-[24px] max-tablet:text-[18px] max-tablet:font-normal"
+                    className="text-[1.5rem] max-tablet:text-[1.1rem] max-tablet:font-normal"
                     style={{
                       width: "100%",
                       color: "#6B7280",
@@ -348,7 +348,7 @@ function Home() {
                 </div>
                 <div className=" ml-2 col-span-10">
                   <h1
-                    className="text-[28px] font-black max-tablet:text-[24px] max-tablet:font-bold"
+                    className="text-[2.25rem] font-black max-tablet:text-[1.5rem] max-tablet:font-bold"
                     style={{
                       color: "#4A4E5A",
 
@@ -360,7 +360,7 @@ function Home() {
                     Fill Cause Information
                   </h1>
                   <p
-                    className="text-[24px] max-tablet:text-[18px] max-tablet:font-normal"
+                    className="text-[1.5rem] max-tablet:text-[1.1rem] max-tablet:font-normal"
                     style={{
                       width: "100%",
                       color: "#6B7280",
@@ -393,7 +393,7 @@ function Home() {
                 </div>
                 <div className=" ml-2 col-span-10">
                   <h1
-                    className="text-[28px] font-black max-tablet:text-[24px] max-tablet:font-bold"
+                    className="text-[2.25rem] font-black max-tablet:text-[1.5rem] max-tablet:font-bold"
                     style={{
                       color: "#4A4E5A",
 
@@ -405,7 +405,7 @@ function Home() {
                     Update Acc details
                   </h1>
                   <p
-                    className="text-[24px] max-tablet:text-[18px] max-tablet:font-normal"
+                    className="text-[1.5rem] max-tablet:text-[1.1rem] max-tablet:font-normal"
                     style={{
                       width: "100%",
                       color: "#6B7280",
@@ -430,7 +430,7 @@ function Home() {
                 <PrimaryButton
                   sx={{
                     borderRadius: "var(--Pixels-8, 8px)",
-                    fontSize: 20,
+                    fontSize: "1.2rem",
                     fontWeight: "900",
                     padding: "15px 28px 15px 28px",
                   }}
@@ -442,7 +442,7 @@ function Home() {
                   >
                     <img src={images.RocketLaunch} alt="" />
                   </div>
-                  <div className="max-tablet:text-[16px]">
+                  <div className="max-tablet:text-[1rem]">
                     Launch a Campaign Now !
                   </div>
                 </PrimaryButton>
@@ -454,7 +454,7 @@ function Home() {
                 <PrimaryButton
                   sx={{
                     borderRadius: "var(--Pixels-8, 8px)",
-                    fontSize: 20,
+                    fontSize: "1.2rem",
                     fontWeight: "900",
                     padding: "15px 28px 15px 28px",
                   }}
@@ -466,11 +466,11 @@ function Home() {
                   >
                     <img src={images.RocketLaunch} alt="" />
                   </div>
-                  <div className="max-tablet:text-[16px]">
+                  <div className="max-tablet:text-[1rem]">
                     <h1
                       style={{
                         color: "var(--Base-Colours-Text-Primary, #25272C)",
-                        fontSize: 20,
+                        fontSize: "1.2rem",
                         fontFamily: "Satoshi ",
                         fontWeight: 700,
                         wordWrap: "break-word",
@@ -491,7 +491,7 @@ function Home() {
                   <PrimaryButton
                     sx={{
                       borderRadius: "var(--Pixels-8, 8px)",
-                      fontSize: 20,
+                      fontSize: "1.2rem",
                       fontWeight: "900",
                       padding: "15px 28px 15px 28px",
                     }}
@@ -503,7 +503,7 @@ function Home() {
                     >
                       <img src={images.RocketLaunch} alt="" />
                     </div>
-                    <div className="max-tablet:text-[16px]">
+                    <div className="max-tablet:text-[1rem]">
                       Launch a Campaign Now !
                     </div>
                   </PrimaryButton>
@@ -515,13 +515,13 @@ function Home() {
       </section>
       <div className="flex-col pt-[60px] pb-[50px] flex-wrap container flex w-full text-center items-center max-tablet:pb-[24px]">
         <h1
-          className="desktop:text-[48px] font-bold max-desktop:text-[36px] max-tablet:text-[24px]"
+          className="desktop:text-[3rem] font-bold max-desktop:text-[2.25rem] max-tablet:text-[1.5rem]"
           style={{ fontFamily: "Satoshi", fontWeight: 900 }}
         >
           Causes by Category
         </h1>
         <p
-          className="text-black/60 font-medium mt-3 max-w-[974px] desktop:text-[24px] desktop:font-bold capitalize text-[#8E95A2] max-desktop:text-[20px] max-tablet:text-[16px] max-tablet:mt-[24px] max-tablet:font-normal"
+          className="text-black/60 font-medium mt-3 max-w-[974px] desktop:text-[1.5rem] desktop:font-bold capitalize text-[#8E95A2] max-desktop:text-[1.25rem] max-tablet:text-[1rem] max-tablet:mt-[24px] max-tablet:font-normal"
           style={{ fontFamily: "Satoshi" }}
         >
           Be it for a personal need, social cause or a creative idea - you can

@@ -11,7 +11,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 const StyledMenu = styled((props) => (
   <Menu
-    sx={{ paddingLeft: "20px",  }}
+    sx={{ paddingLeft: "20px" }}
     elevation={0}
     anchorOrigin={{
       vertical: "bottom",
@@ -41,7 +41,7 @@ const StyledMenu = styled((props) => (
     },
     "& .MuiMenuItem-root": {
       "& .MuiSvgIcon-root": {
-        fontSize: 18,
+        fontSize: "1.1rem",
         color: theme.palette.text.secondary,
         marginRight: theme.spacing(1.5),
       },
@@ -75,19 +75,19 @@ export default function CustomizedMenus() {
         disableElevation
         onClick={handleClick}
         endIcon={
-          <ArrowDropDownIcon  
+          <ArrowDropDownIcon
             style={{
               width: "30px",
               color: "#7C7D80",
               height: "30px",
             }}
-              />
+          />
         }
         style={{
           background: "transparent",
           color: "linear-gradient(71deg, #FF9F0A 0%, #FF375F 62.9%)",
           fontWeight: 700,
-          fontSize: "18px",
+          fontSize: "1.1rem",
           fontFamily: "satoshi",
           border: "1px solid #B0B0B0",
           padding: "7px 30px",

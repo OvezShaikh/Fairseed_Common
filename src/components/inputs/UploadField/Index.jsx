@@ -42,7 +42,7 @@ const UploadField = ({
           sx={{
             padding: "4px 8px 12px 8px",
             color: colors.text.main,
-            fontSize: "20px",
+            fontSize: "1.2rem",
             fontWeight: 700,
             fontFamily: "satoshi",
             fontStyle: "normal",
@@ -63,7 +63,7 @@ const UploadField = ({
           sx={{
             "& .MuiInputBase-input": {
               padding: "10px",
-              fontSize: "15px",
+              fontSize: "1rem",
             },
           }}
           fullWidth

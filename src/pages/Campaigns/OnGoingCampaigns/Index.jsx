@@ -31,9 +31,9 @@ function Index() {
       );
 
       const res = response.data;
-   
+
       setFilterName(res.filter_key);
- 
+
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList(res.rows);
@@ -55,7 +55,6 @@ function Index() {
         `${process.env.REACT_APP_API_URL}/campaign/campaign-filter?page=${page}&limit=${perPage}&filter=${tabName}`
       );
       const res = response.data;
-      
 
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
@@ -73,12 +72,10 @@ function Index() {
   }, [page]);
 
   const receiveCategoryFromChild = (categoryData) => {
-   
     setCategoryDataFromChild(categoryData);
   };
 
   const receiveLocationFromChild = (locationData) => {
-   
     setLocationDataFromChild(locationData);
   };
 
@@ -131,8 +128,6 @@ function Index() {
   const filteredCardCount = filteredUserList.length;
 
   const loadMore = () => {
-   
-
     setVisibleCards((prevVisibleCards) => prevVisibleCards + 4);
 
     if (page < totalPages) {
@@ -213,7 +208,7 @@ function Index() {
               width: "fit-content",
               textAlign: "center",
               color: "#FF9F0A",
-              fontSize: 24,
+              fontSize: "1.5rem",
               fontFamily: "Satoshi",
               fontWeight: "500",
               textDecoration: "underline",

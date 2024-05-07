@@ -23,7 +23,7 @@ const DropDown = ({ children }) => {
         aria-haspopup="true"
         aria-expanded={dropDownOpen ? "true" : undefined}
         onClick={handleClick}
-        sx={{ cursor: "pointer", fontSize: 14 }}
+        sx={{ cursor: "pointer", fontSize: "0.9rem" }}
         variant="contained"
         className="text-capitalize d-inline dark font-light max-desktop:font-[satoshi]"
       >
@@ -38,7 +38,7 @@ const DropDown = ({ children }) => {
           "aria-labelledby": "basic-button",
         }}
         transformOrigin={{ horizontal: "center", vertical: "top" }}
-        PaperProps  ={{
+        PaperProps={{
           elevation: 0,
           sx: {
             // backgroundColor: "#fff2d8e6",
@@ -65,7 +65,7 @@ const DropDown = ({ children }) => {
           className="dark max-desktop:font-[satoshi]"
           sx={{
             cursor: "pointer",
-            fontSize: 14,
+            fontSize: "0.9rem",
             padding: "1px 8px",
             color: "#828282",
             backgroundColor: "#fff2d8e6",
@@ -73,7 +73,7 @@ const DropDown = ({ children }) => {
               backgroundColor: "#F0D780",
             },
           }}
-          onClick={()=>{}}
+          onClick={() => {}}
         >
           <LogoutOutlined />
           &nbsp; Logout

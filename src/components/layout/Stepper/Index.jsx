@@ -23,7 +23,7 @@ const styleStep = {
   "& .MuiStepLabel-label.Mui-active": {
     color: "var(--Cool-Grey-Cool-Grey-10, #383A42)",
     fontFamily: "Satoshi",
-    fontSize: "24px",
+    fontSize: "1.5rem",
     fontStyle: "normal",
     fontWeight: 700,
   },
@@ -40,7 +40,7 @@ const styleStep = {
     "& .MuiStepLabel-label": {
       color: "var(--Cool-Grey-Cool-Grey-10, #383A42)",
       fontFamily: "Satoshi",
-      fontSize: "24px",
+      fontSize: "1.5rem",
       fontStyle: "normal",
       fontWeight: 700,
     },
@@ -71,7 +71,7 @@ const styleStep = {
     "& .MuiStepLabel-label": {
       color: "var(--Cool-Grey-Cool-Grey-10, #383A42)",
       fontFamily: "Satoshi",
-      fontSize: "24px",
+      fontSize: "1.5rem",
       fontStyle: "normal",
       fontWeight: 700,
     },
@@ -81,7 +81,7 @@ const styleSecondaryButton = {
   width: "100%",
   height: "100%",
   padding: "10px",
-  fontSize: "24px",
+  fontSize: "1.5rem",
   fontWeight: 700,
   borderRadius: "12px",
 };
@@ -89,7 +89,7 @@ const stylePrimaryButton = {
   width: "100%",
   height: "100%",
   padding: "10px",
-  fontSize: "24px",
+  fontSize: "1.5rem",
   fontWeight: 700,
   borderRadius: "12px",
 };
@@ -279,7 +279,7 @@ export default function HorizontalLinearStepper() {
         <React.Fragment>
           <Typography variant="h3" align="center">
             <div className="w-full px-0 py-[89px] flex flex-col justify-center items-center gap-3 max-desktop:px-0">
-              <h1 className="text-[#06B217] deskttop:text-[48px] max-desktop:text-[48px] mb-[35px] font-[satoshi] font-bold max-tablet:text-[20px]">
+              <h1 className="text-[#06B217] desktop:text-[3rem] max-desktop:text-[3rem] mb-[35px] font-[satoshi] font-bold max-tablet:text-[1.2rem]">
                 Success!
               </h1>
               <img
@@ -288,7 +288,7 @@ export default function HorizontalLinearStepper() {
                 alt=""
               />
               <p
-                className="text-[24px] font-[satoshi] font-bold mb-[90px] max-tablet:text-[20px] max-tablet:px-[12px]"
+                className="text-[1.5rem] font-[satoshi] font-bold mb-[90px] max-tablet:text-[1.2rem] max-tablet:px-[12px]"
                 style={{
                   background:
                     "linear-gradient(71deg, #06B217 0%, #FF375F 62.9%)",

@@ -25,7 +25,7 @@ const RadioGroup = ({ label, options, onChange, sx, ...otherProps }) => {
         className="text-capitalize font-medium d-flex a mb-1 me-4"
         sx={{
           color: colors.text.main,
-          fontSize: "16px !important",
+          fontSize: "1rem !important",
           fontWeight: 700,
           fontFamily: "satoshi",
           height: "22px",
@@ -52,7 +52,7 @@ const RadioGroup = ({ label, options, onChange, sx, ...otherProps }) => {
             value={item.value}
             sx={{
               "& .MuiTypography-root": {
-                fontSize: "14px",
+                fontSize: "0.9rem",
                 fontFamily: "satoshi",
                 fontWeight: 500,
                 // padding: "9px",

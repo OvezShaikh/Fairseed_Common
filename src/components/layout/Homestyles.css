@@ -89,7 +89,7 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
   align-items: center;
   font-family: "satoshi";
   font-weight: 700;
-  font-size: 13px;
+  font-size: 0.85rem;
 }
 
 .custom-pagination li.bullet {
@@ -168,7 +168,7 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
   align-items: center;
   font-family: "satoshi";
   font-weight: 700;
-  font-size: 13px;
+  font-size: 0.85rem;
 }
 
 .custom-pagination-bottom li.bullet {

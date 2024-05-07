@@ -46,7 +46,7 @@ const InputField = ({
       position: "relative",
       backgroundColor: "#fff",
       border: "1px solid #e2e2e2",
-      fontSize: "16px",
+      fontSize: "1rem",
       height: "28px",
       width: "100%",
       padding: "8px 16px",
@@ -70,7 +70,7 @@ const InputField = ({
       // },
     },
     "& input::placeholder": {
-      fontSize: "16px",
+      fontSize: "1rem",
       fontWeight: 500,
     },
     // "& .MuiInputBase-input.Mui-disabled": {
@@ -133,7 +133,7 @@ const InputField = ({
           sx={{
             padding: "4px 8px 0px 8px",
             color: color || colors.text.main, // Use color prop if provided, else fallback to default color
-            fontSize: "16px",
+            fontSize: "1rem",
             fontWeight: 700,
             fontFamily: "satoshi",
             fontStyle: "normal",

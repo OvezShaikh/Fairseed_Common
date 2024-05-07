@@ -60,7 +60,7 @@ function YourComponent({ dataUrl, sx }) {
           />
           <RiCloseLine
             className="absolute top-0 right-0 m-4 cursor-pointer"
-            style={{ color: "white", fontSize: "24px" }}
+            style={{ color: "white", fontSize: "1.5rem" }}
             onClick={toggleFullScreen}
           />
         </div>

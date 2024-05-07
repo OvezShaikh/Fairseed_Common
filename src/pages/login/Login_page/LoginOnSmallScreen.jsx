@@ -21,7 +21,7 @@ function LoginOnSmallScreen() {
       <Navigation label={"Login"} heading={"Login"} />
       <div className="flex flex-col justify-center py-8 items-center">
         <p
-          className="text-[22px] max-tablet:pl-4 py-8 font-[satoshi] font-medium "
+          className="text-[1.4rem] max-tablet:pl-4 py-8 font-[satoshi] font-medium "
           style={{ color: "var(--Neutral-Neutral-7, #717171)" }}
         >
           Welcome Back! Please enter you details
@@ -91,7 +91,7 @@ function LoginOnSmallScreen() {
                       display: "inline-block",
                       fontFamily: "satoshi",
                       fontWeight: 500,
-                      fontSize: "18px",
+                      fontSize: "1.1rem",
                       color: "#0466C8",
                       textDecoration: "underline",
                     }}
@@ -105,7 +105,7 @@ function LoginOnSmallScreen() {
                       sx={{ width: "100%", padding: "10px 40px" }}
                       type="submit"
                     >
-                      <span style={{ fontSize: "18px", fontWeight: 900 }}>
+                      <span style={{ fontSize: "1.1rem", fontWeight: 900 }}>
                         {" "}
                         Sign In{" "}
                       </span>
@@ -115,7 +115,7 @@ function LoginOnSmallScreen() {
                     <Link to="/Home/Register">
                       <span
                         style={{
-                          fontSize: "18px",
+                          fontSize: "1.1rem",
                           fontWeight: 500,
                           background:
                             "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",

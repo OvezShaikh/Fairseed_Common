@@ -46,7 +46,7 @@ const UserSignUp_02 = ({ size }) => {
       >
         <span
           style={{
-            fontSize: size || "22px",
+            fontSize: size || "1.4rem",
             fontWeight: 500,
             background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
             "-webkit-background-clip": "text",

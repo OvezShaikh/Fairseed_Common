@@ -11,10 +11,9 @@ import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
 import PrimaryButton from "../../inputs/PrimaryButton";
 import { toast } from "react-toastify";
 
-
 const styleLabel = {
   fontFamily: "satoshi",
-  fontSize: 16,
+  fontSize: "1rem",
   fontWeight: 700,
   color: "#383A42",
   marginTop: "4px",
@@ -26,7 +25,7 @@ function Index() {
   let { state } = useLocation();
   let { id } = state;
   const navigate = useNavigate();
-  const [Donation , setDonation ] = useState(false);
+  const [Donation, setDonation] = useState(false);
 
   useGetAll({
     key: `/admin-dashboard/donors/${id}`,
@@ -40,80 +39,77 @@ function Index() {
   });
 
   const initial_values = {
-    campaign: data?.campaign || '',
-    transaction_id: data?.transaction_id || '',
-    full_name: data?.full_name || '',
-    email: data?.email || '',
-    id: data?.id || '',
-    amount: data?.amount || '',
-    city: data?.city || '',
-    country: data?.country || '',
-    pancard: data?.pancard || '',
-    donation_type: data?.donation_type || '',
-    payment_type: data?.payment_type || '',
-    bank_name: data?.bank_name || '',
-    other_details: data?.other_details || '',
-    comment: data?.comment || '',
-    transaction_date: data?.transaction_date || '',
-    created_on: data?.created_on || '',
-    updated_on: data?.updated_on || ''
+    campaign: data?.campaign || "",
+    transaction_id: data?.transaction_id || "",
+    full_name: data?.full_name || "",
+    email: data?.email || "",
+    id: data?.id || "",
+    amount: data?.amount || "",
+    city: data?.city || "",
+    country: data?.country || "",
+    pancard: data?.pancard || "",
+    donation_type: data?.donation_type || "",
+    payment_type: data?.payment_type || "",
+    bank_name: data?.bank_name || "",
+    other_details: data?.other_details || "",
+    comment: data?.comment || "",
+    transaction_date: data?.transaction_date || "",
+    created_on: data?.created_on || "",
+    updated_on: data?.updated_on || "",
   };
 
   const { mutate } = useCreateOrUpdate({
     url: `/admin-dashboard/donors/${id}`,
-    method: 'put'
-  })
+    method: "put",
+  });
 
   const handleSubmit = (values) => {
     const formData = new FormData();
-    formData.append('campaign', values?.campaign)
-    formData.append('transaction_id', values?.transaction_id)
-    formData.append('full_name', values?.full_name)
-    formData.append('email', values?.email)
-    formData.append('id', values?.id)
-    formData.append('amount', values?.amount)
-    formData.append('city', values?.city)
-    formData.append('country', values?.country)
-    formData.append('pancard', values?.pancard)
-    formData.append('donation_type', values?.donation_type)
-    formData.append('payment_type', values?.payment_type)
-    formData.append('bank_name', values?.bank_name)
-    formData.append('other_details', values?.other_details)
-    formData.append('comment', values?.comment)
-    formData.append('transaction_date', values?.transaction_date)
-    formData.append('created_on', values?.created_on)
-    formData.append('updated_on', values?.updated_on)
-    {Donation === true &&
-      formData.append('status', "Approved")
+    formData.append("campaign", values?.campaign);
+    formData.append("transaction_id", values?.transaction_id);
+    formData.append("full_name", values?.full_name);
+    formData.append("email", values?.email);
+    formData.append("id", values?.id);
+    formData.append("amount", values?.amount);
+    formData.append("city", values?.city);
+    formData.append("country", values?.country);
+    formData.append("pancard", values?.pancard);
+    formData.append("donation_type", values?.donation_type);
+    formData.append("payment_type", values?.payment_type);
+    formData.append("bank_name", values?.bank_name);
+    formData.append("other_details", values?.other_details);
+    formData.append("comment", values?.comment);
+    formData.append("transaction_date", values?.transaction_date);
+    formData.append("created_on", values?.created_on);
+    formData.append("updated_on", values?.updated_on);
+    {
+      Donation === true && formData.append("status", "Approved");
     }
-    {Donation === false &&
-      formData.append('status', "Rejected")
+    {
+      Donation === false && formData.append("status", "Rejected");
     }
-    
-    
+
     mutate(formData, {
       onSuccess: (response) => {
         {
-          Donation ? (
-            toast.success("Marked as paid", {
-              position: "top-right",
-            })
-          ) : (
-            toast.error("Marked as Rejected", {
-              position: "top-right",
-            })
-          )
+          Donation
+            ? toast.success("Marked as paid", {
+                position: "top-right",
+              })
+            : toast.error("Marked as Rejected", {
+                position: "top-right",
+              });
         }
-        
-        navigate(-1)
+
+        navigate(-1);
       },
       onError: (response) => {
         toast.error("Ran Into An Error", {
           position: "top-right",
         });
-      }
-    })
-  }
+      },
+    });
+  };
 
   return (
     <Formik
@@ -121,7 +117,6 @@ function Index() {
       initialValues={initial_values}
       onSubmit={(values) => handleSubmit(values)}
     >
-
       {({ values }) => (
         <Form className="flex flex-col items-center gap-[30px] max-desktop:pt-4 max-tablet:4">
           <div className="flex max-desktop:flex-col max-tablet:flex-col w-full gap-3">
@@ -301,12 +296,9 @@ function Index() {
               <div className="w-[49%] max-tablet:w-full">
                 <InputField
                   type="date"
-                 
                   value={values?.updated_on}
                   name="updated_on"
-                
                   disable={true}
-                 
                   label="Transaction Date:"
                 />
               </div>
@@ -323,11 +315,9 @@ function Index() {
               <div className="w-[49%] max-tablet:w-full">
                 <InputField
                   type="date"
-                
                   value={values?.updated_on}
                   name="created_on"
                   disable={true}
-                 
                   label="Transaction Date:"
                 />
               </div>
@@ -360,7 +350,6 @@ function Index() {
             </div>
           </div>
           <div className="flex flex-row gap-4 mt-12">
-
             <button
               type="button"
               onClick={() => navigate(-1)}
@@ -370,32 +359,31 @@ function Index() {
                 Go Back
               </h1>
             </button>
-          
-            {data?.status ==='Pending' && (
-                <>
+
+            {data?.status === "Pending" && (
+              <>
                 <PrimaryButton
                   sx={{
-                    height: '30px',
-                    width: '120px',
-                    background: '#219D80',
-                    color: 'white',
+                    height: "30px",
+                    width: "120px",
+                    background: "#219D80",
+                    color: "white",
                     "& .MuiButton-root:hover": {
-                      background: "yellow"
-                    }
+                      background: "yellow",
+                    },
                   }}
                   type="submit"
-                  onClick={()=>setDonation(true)}
+                  onClick={() => setDonation(true)}
                 >
                   Mark As Paid
                 </PrimaryButton>
                 <PrimaryButton type="submit">
-                <h1 className="text-white font-semibold font-[satoshi]">
-                  Reject Request
-                </h1>
-              </PrimaryButton>
+                  <h1 className="text-white font-semibold font-[satoshi]">
+                    Reject Request
+                  </h1>
+                </PrimaryButton>
               </>
-              )
-            }
+            )}
           </div>
         </Form>
       )}

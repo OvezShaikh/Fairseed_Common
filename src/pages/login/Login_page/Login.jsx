@@ -15,7 +15,7 @@ const StyledTypography = styled(Typography)({
   background:
     "var(--Linear-BG, linear-gradient(71deg, #FF9F0A 0%, #FF375F 62.9%))",
   WebkitBackgroundClip: "text",
-  fontSize: "46px",
+  fontSize: "2.8rem",
   color: "transparent",
   display: "inline-block",
   fontfamily: "Epilogue",
@@ -40,7 +40,7 @@ const Formcom = ({ Initial_value, formValidation, loginData }) => {
         <hr className="text-gray-500  pt-2" />
         <h1
           style={{
-            fontSize: "20px",
+            fontSize: "1.2rem",
             fontWeight: 500,
             color: "var(--Neutral-Neutral-7, #717171)",
             fontFamily: "satoshi",
@@ -114,7 +114,7 @@ const Formcom = ({ Initial_value, formValidation, loginData }) => {
                   sx={{ width: "100%", padding: "12px 40px" }}
                   type="submit"
                 >
-                  <span style={{ fontSize: "22px", fontWeight: 900 }}>
+                  <span style={{ fontSize: "1.4rem", fontWeight: 900 }}>
                     {" "}
                     Sign In{" "}
                   </span>

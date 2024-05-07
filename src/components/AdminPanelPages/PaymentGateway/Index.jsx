@@ -94,7 +94,7 @@ function Index() {
             <div className=" w-full pl-2 max-desktop:w-full max-tablet:w-full">
               <RadioGroup
                 name={"is_enabled"}
-                sx={{ fontSize: "22px" }}
+                sx={{ fontSize: "1.3rem" }}
                 onChange={(e) => {
                   setFieldValue("is_enabled", e === "true");
                 }}

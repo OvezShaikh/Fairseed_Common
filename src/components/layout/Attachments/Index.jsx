@@ -36,15 +36,14 @@ function YourComponent({ imageUrl, id, iconShow }) {
       }
     );
 
-    const downloadImage = () => {
-      const downloadLink = document.createElement('a');
-      downloadLink.href = imageUrl;
-      downloadLink.download = 'image.jpg'; 
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
+  const downloadImage = () => {
+    const downloadLink = document.createElement("a");
+    downloadLink.href = imageUrl;
+    downloadLink.download = "image.jpg";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
   };
-    
 
   const handleDeleteSuccess = () => {
     setIsImageDeleted(true);
@@ -110,14 +109,14 @@ function YourComponent({ imageUrl, id, iconShow }) {
             <div className="absolute max-tablet:-top-8 right-0 top-0 desktop:m-4">
               <RiCloseLine
                 className="cursor-pointer text-black bg-white hover:bg-slate-100 rounded-full"
-                style={{ fontSize: "24px" }}
+                style={{ fontSize: "1.5rem" }}
                 onClick={toggleFullScreen}
               />
             </div>
             <div className="absolute max-tablet:-top-10 left-0   top-0 desktop:m-4">
-              <PrimaryButton onClick={()=>downloadImage()} >
+              <PrimaryButton onClick={() => downloadImage()}>
                 <Download className="me-1" />
-                 {"Download"}
+                {"Download"}
               </PrimaryButton>
             </div>
           </div>

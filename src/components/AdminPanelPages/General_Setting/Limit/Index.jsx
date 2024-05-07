@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 
 const styleLabel = {
   fontFamily: "satoshi",
-  fontSize: 16,
+  fontSize: "1rem",
   fontWeight: 700,
   color: "#383A42",
   padding: "0 0 0 5px",

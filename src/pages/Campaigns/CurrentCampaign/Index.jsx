@@ -68,19 +68,12 @@ function CurrentCampaign({
   let Data = JSON.parse(userData);
   let user_id = Data?.id;
 
-  const copy_current_url = () => {
-    navigator.clipboard.writeText(currentPageUrl);
-    toast.info("Link Copied !", {
-      position: "top-right",
-    });
-  };
-
   const { mutate } = useCreateOrUpdate({
     url: `/user-dashboard/report-campaign`,
   });
   const handleButtonClick = () => {
     if (cardDetails?.fund_raised === cardDetails?.goal_amount) {
-      toast.error("Donation goal has already been reached", {
+      toast.info("Donation goal has already been reached", {
         position: "top-right",
       });
     } else {
@@ -95,7 +88,6 @@ function CurrentCampaign({
       )
       .then((res) => {
         setCardDetails(res.data.data);
-     
       })
       .catch((error) => {});
   }, [id]);
@@ -143,7 +135,7 @@ function CurrentCampaign({
               className="flex flex-col text-black/70 "
               style={{
                 fontFamily: "satoshi",
-                fontSize: 20,
+                fontSize: "1.2rem",
                 fontWeight: 700,
                 color: "#95999D",
               }}
@@ -161,7 +153,7 @@ function CurrentCampaign({
           </div>
         </Typography>
         <h1
-          className="text-5xl text-black font-bold max-tablet:text-3xl max-desktop:text-[44px] max-tablet:text-[28px]"
+          className="text-5xl text-black font-bold max-tablet:text-3xl max-desktop:text-[2.9rem] max-tablet:text-[1.8rem]"
           style={{ fontFamily: "satoshi" }}
         >
           {cardDetails?.title}
@@ -211,7 +203,7 @@ function CurrentCampaign({
                 />
               </div>
               <div
-                className="desktop:text-[24px] max-desktop:text-[20px] max-tablet:text-[18px]"
+                className="desktop:text-[1.5rem] max-desktop:text-[1.2rem] max-tablet:text-[1.1rem]"
                 style={{
                   color: "#FF8A00",
 
@@ -224,13 +216,13 @@ function CurrentCampaign({
               </div>
             </div>
             <h1
-              className="desktop:text-[72px] max-desktop:text-[54px] max-tablet:text-[32px] font-bold"
+              className="desktop:text-[4.5rem] max-desktop:text-[54px] max-tablet:text-[2rem] font-bold"
               style={{ fontFamily: "satoshi" }}
             >
               {cardDetails?.fund_raised}
             </h1>
             <p
-              className="m-3 desktop:text-[36px] max-desktop:text-[28px] max-tablet:text-[18px]"
+              className="m-3 desktop:text-[2.25rem] max-desktop:text-[1.8rem] max-tablet:text-[1.1rem]"
               style={{
                 width: "100%",
                 textAlign: "center",
@@ -279,13 +271,13 @@ function CurrentCampaign({
                   "-webkit-text-fill-color": "transparent",
                 }}
               >
-                <p className="text-2xl max-tablet:text-[20px] font-bold">
+                <p className="text-2xl max-tablet:text-[1.2rem] font-bold">
                   Zakah Eligible !
                 </p>
               </h1>
             </div>
             <p
-              className="text-black/40 w-full text-2xl text-center py-10 max-desktop:w-full  max-tablet:text-[18px] max-tablet:py-[24px] font-medium max-tablet:leading-5"
+              className="text-black/40 w-full text-2xl text-center py-10 max-desktop:w-full  max-tablet:text-[1.1rem] max-tablet:py-[24px] font-medium max-tablet:leading-5"
               style={{ fontFamily: "satoshi" }}
             >
               <span className="font-bold " style={{ color: " #25272C" }}>
@@ -322,7 +314,7 @@ function CurrentCampaign({
                     <img src={images.coins2} alt="" />
                   </div>
                   <div
-                    className="desktop:text-2xl max-desktop:text-[20px] max-tablet:text-base"
+                    className="desktop:text-2xl max-desktop:text-[1.2rem] max-tablet:text-base"
                     style={{
                       color: "rgba(255, 255, 255, 0.90)",
 
@@ -344,20 +336,20 @@ function CurrentCampaign({
               <div className="flex">
                 <div className="desktop:w-[96px] desktop:h-[96px] max-desktop:w-[70px] max-desktop:h-[70px]">
                   <Avatar
-                    className="desktop:w-[96px] desktop:h-[96px] max-desktop:w-[70px] text-[30px]"
+                    className="desktop:w-[96px] desktop:h-[96px] max-desktop:w-[70px] text-[1.9rem]"
                     alt={cardDetails?.user}
                     src="/static/images/avatar/1.jpg"
                     sx={{
                       width: "100%",
                       height: "100%",
-                      fontSize: "35px !important",
+                      fontSize: "2.15rem !important",
                     }}
                   >
                     {firstLetter}
                   </Avatar>
                 </div>
                 <h1
-                  className="text-[40px] flex items-center pl-6 font-bold max-desktop:text-3xl max-tablet:text-xl"
+                  className="text-[2.5rem] flex items-center pl-6 font-bold max-desktop:text-3xl max-tablet:text-xl"
                   style={{ fontFamily: "satoshi" }}
                 >
                   {cardDetails?.user}
@@ -497,7 +489,7 @@ function CurrentCampaign({
                     sx={{
                       border: "1px solid red",
                       fontWeight: 700,
-                      fontSize: "20px",
+                      fontSize: "1.2rem",
                       fontFamily: "satoshi",
                     }}
                     color="red"
@@ -597,7 +589,7 @@ function CurrentCampaign({
                           className=" bg-[#F7F7F7]"
                           onClick={onClose}
                         >
-                          <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
+                          <h1 className="text-[#000000] font-medium text-[0.9rem] font-[satoshi]">
                             Cancel
                           </h1>
                         </Button>
@@ -637,7 +629,7 @@ function CurrentCampaign({
             <h1
               style={{
                 color: "rgba(255, 255, 255, 0.90)",
-                fontSize: 20,
+                fontSize: "1.2rem",
                 fontFamily: "Satoshi ",
                 fontWeight: "900",
                 wordWrap: "break-word",
@@ -671,7 +663,7 @@ function CurrentCampaign({
             <h1
               style={{
                 color: "var(--Base-Colours-Text-Primary, #25272C)",
-                fontSize: 20,
+                fontSize: "1.2rem",
                 fontFamily: "Satoshi ",
                 fontWeight: 700,
                 wordWrap: "break-word",
@@ -701,7 +693,7 @@ function CurrentCampaign({
             <h1
               style={{
                 color: "var(--Base-Colours-Text-Primary, #25272C)",
-                fontSize: 20,
+                fontSize: "1.2rem",
                 fontFamily: "Satoshi ",
                 fontWeight: 700,
                 wordWrap: "break-word",

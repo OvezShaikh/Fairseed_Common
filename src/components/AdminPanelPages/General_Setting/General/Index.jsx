@@ -13,7 +13,7 @@ import CustomChipsArray from "../../../inputs/MultiAddTags/Index.jsx";
 
 const styleLabel = {
   fontFamily: "satoshi",
-  fontSize: 16,
+  fontSize: "1rem",
   paddingBottom: "5px",
   paddingLeft: "5px",
   fontWeight: 700,
@@ -21,14 +21,14 @@ const styleLabel = {
 };
 const styleInput = {
   color: "#B6BAC3",
-  fontSize: 16,
+  fontSize: "1rem",
   fontFamily: "Satoshi ",
   fontWeight: "500",
 };
 
 function General() {
   const [Details, setDetails] = useState({});
-  const [Chips , setChips] = useState([]);
+  const [Chips, setChips] = useState([]);
 
   const { data } = useGetAll({
     key: `/admin-dashboard/gs`,
@@ -38,14 +38,13 @@ function General() {
     },
     onSuccess: (data) => {
       setDetails(data);
-      setChips(data?.keywords)
+      setChips(data?.keywords);
     },
   });
 
   const { mutate } = useCreateOrUpdate({
     url: `/admin-dashboard/gs`,
   });
-
 
   const initialValues = {
     namesite: Details?.namesite || "",
@@ -55,7 +54,7 @@ function General() {
     email_admin: Details?.email_admin || "",
     tandc_url: Details?.tandc_url || "",
     email_no_reply: Details?.email_no_reply || "",
-    keywords : Chips || [],
+    keywords: Chips || [],
     privacy_policy_url: Details?.privacy_policy_url || "",
     date_time: Details?.date_time || "",
     new_registration_enabled: Details?.new_registration_enabled || false,
@@ -124,14 +123,13 @@ function General() {
               />
             </div>
           </div>
-          <div className="w-[49%] max-desktop:w-full max-tablet:w-full pt-2">           
-          <CustomChipsArray
-            name="keywords" 
-            label="Keywords"
-            sx={styleLabel}
-            placeholder="Add Tags"
-          />
-           
+          <div className="w-[49%] max-desktop:w-full max-tablet:w-full pt-2">
+            <CustomChipsArray
+              name="keywords"
+              label="Keywords"
+              sx={styleLabel}
+              placeholder="Add Tags"
+            />
           </div>
           <div className="pt-7 mb-5 h-[200px]">
             <FormLabel style={styleLabel}>Description</FormLabel>
@@ -244,7 +242,9 @@ function General() {
                   { label: "Off", value: false },
                 ]}
                 label="Google Login"
-                onChange={(e) => { setFieldValue("google_login_enabled", e === "true")}}
+                onChange={(e) => {
+                  setFieldValue("google_login_enabled", e === "true");
+                }}
               />
             </div>
             <div className=" lg:w-[25%] max-tablet:w-full max-desktop:w-full">

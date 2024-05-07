@@ -9,6 +9,7 @@ import images from "../../../constants/images";
 import { format } from "date-fns";
 import { useDownloadExcel } from "react-export-table-to-excel";
 import PrimaryButton from "../../inputs/PrimaryButton";
+import { TiExportOutline } from "react-icons/ti";
 
 const Campaign = () => {
   let userData = localStorage.getItem("user_info");
@@ -17,7 +18,7 @@ const Campaign = () => {
   let tableRef = useRef(null);
   const [selectedRowID, setSelectedRowID] = useState(null);
   const getStatusCellStyle = (status) => {
-      if (status === "Pending") {
+    if (status === "Pending") {
       return {
         color: "#fa9820",
         background: "#f5fabe  ",
@@ -154,8 +155,6 @@ const Campaign = () => {
     },
   ]);
 
-
-
   return (
     <div>
       <ReactTable
@@ -169,7 +168,15 @@ const Campaign = () => {
         downloadExcel
         url={`/admin-dashboard/campaign`}
         addButton={
-          <PrimaryButton onClick={onDownload} > Export Excel </PrimaryButton>
+          <PrimaryButton onClick={onDownload}>
+            {" "}
+            <TiExportOutline
+              color="white"
+              size={20}
+              className="me-1 max-tablet:hidden"
+            />
+            Export Excel{" "}
+          </PrimaryButton>
         }
         extraQuery={{ inactive: true }}
         selectedRowID={selectedRowID}

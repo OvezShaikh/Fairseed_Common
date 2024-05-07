@@ -65,7 +65,7 @@ function Index() {
       // `${process.env.REACT_APP_API_URL}/campaign/category?name=${name}&page=${page}&limit=${perPage}`
       `${process.env.REACT_APP_API_URL}/campaign/category-filter?name=${name}&page=${page}&limit=${perPage}&filter=${tabName}`
     );
- 
+
     setFilterName(res.data?.filter_key);
     if (Array.isArray(res.data.rows)) {
       setTotalPages(res.data.pages_count);
@@ -143,7 +143,7 @@ function Index() {
               <img src={images.Funnel} alt="" />
               {/* <img src={images.Filter} /> */}
               <p
-                className="text-[18px]"
+                className="text-[1.1rem]"
                 style={{
                   background:
                     "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
@@ -196,7 +196,7 @@ function Index() {
                     width: "fit-content",
                     textAlign: "center",
                     color: "#FF9F0A",
-                    fontSize: 24,
+                    fontSize: "1.5rem",
                     fontFamily: "Satoshi",
                     fontWeight: "500",
                     textDecoration: "underline",

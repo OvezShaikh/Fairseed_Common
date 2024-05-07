@@ -53,14 +53,14 @@ export default function ScrollableTabsButtonForce({
             background: "linear-gradient(71deg, #FF9F0A 0%, #FF375F 100%)",
             color: "white !important",
             textTransform: "capitalize",
-            fontSize: "20px !important",
+            fontSize: "1.2rem !important",
 
             "& .icon": {
               color: "white !important",
             },
           },
           "& .MuiButtonBase-root": { textTransform: "capitalize" },
-          fontSize: "20px !important",
+          fontSize: "1.2rem !important",
         }}
         onChange={handleChange}
         variant="scrollable"
@@ -75,7 +75,7 @@ export default function ScrollableTabsButtonForce({
             borderRadius: "var(--Spacing-24, 50px)",
             border: "1.5px solid rgb(248, 85, 85)",
             fontFamily: "Satoshi",
-            fontSize: "18px",
+            fontSize: "1.1rem",
             fontStyle: "normal",
           }}
           label={
@@ -94,7 +94,7 @@ export default function ScrollableTabsButtonForce({
             borderRadius: "var(--Spacing-24, 50px)",
             border: "1.5px solid rgb(248, 85, 85)",
             fontFamily: "Satoshi",
-            fontSize: "18px",
+            fontSize: "1.1rem",
             marginLeft: "12px",
             fontStyle: "normal",
           }}
@@ -115,7 +115,7 @@ export default function ScrollableTabsButtonForce({
             border: "1.5px solid rgb(248, 85, 85)",
             marginLeft: "12px",
             fontFamily: "Satoshi",
-            fontSize: "18px",
+            fontSize: "1.1rem",
             fontStyle: "normal",
           }}
           label={
@@ -135,7 +135,7 @@ export default function ScrollableTabsButtonForce({
             border: "1.5px solid rgb(248, 85, 85)",
             marginLeft: "12px",
             fontFamily: "Satoshi",
-            fontSize: "18px",
+            fontSize: "1.1rem",
             fontStyle: "normal",
           }}
           label={
@@ -156,7 +156,7 @@ export default function ScrollableTabsButtonForce({
             border: "1.5px solid rgb(248, 85, 85)",
             marginLeft: "12px",
             fontFamily: "Satoshi",
-            fontSize: "18px",
+            fontSize: "1.1rem",
             fontStyle: "normal",
           }}
           label={

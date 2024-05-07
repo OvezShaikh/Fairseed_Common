@@ -37,7 +37,7 @@ const RadioGroup = ({
         sx={{
           padding: "4px 8px 0px 8px",
           color: colors.text.main,
-          fontSize: size || "20px",
+          fontSize: size || "1.2rem",
           fontWeight: 700,
           fontFamily: "satoshi",
           fontStyle: "normal",
@@ -72,10 +72,10 @@ const RadioGroup = ({
             value={item.value}
             sx={{
               "& .MuiTypography-root": {
-                fontSize: "20px",
+                fontSize: "1.2rem",
                 padding: "0",
                 color: colors.text.main,
-                fontSize: size || "20px",
+                fontSize: size || "1.2rem",
                 fontWeight: 700,
                 fontFamily: "satoshi",
                 fontStyle: "normal",

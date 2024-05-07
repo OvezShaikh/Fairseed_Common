@@ -102,7 +102,7 @@ const NavbarContainer = ({ handleDrawerToggle, mobileOpen }) => {
                   className="flex flex-col "
                   style={{
                     fontFamily: "satoshi",
-                    fontSize: 20,
+                    fontSize: "1.2rem",
                     fontWeight: 600,
                   }}
                 >
@@ -111,7 +111,7 @@ const NavbarContainer = ({ handleDrawerToggle, mobileOpen }) => {
                     className="breadcrumbs_title max-tablet:hidden"
                     sx={{
                       color: "#B6BAC3",
-                      fontSize: 14,
+                      fontSize: "0.9rem",
                       fontFamily: "Satoshi",
                       fontWeight: 500,
                     }}

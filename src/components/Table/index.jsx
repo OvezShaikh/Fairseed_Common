@@ -155,7 +155,7 @@ const ReactTable = ({
   //       .columnOrder
   //   )
   //   : []
-    // );
+  // );
 
   useEffect(() => {
     if (data) {
@@ -507,20 +507,22 @@ const ReactTable = ({
             isMobile={isMobile}
           />
           {downloadExcel && (
-            <SecondaryButton
-              onClick={() => GetExcel()}
-              isLoading={ExcelLoading}
-              loaderColor={"warning"}
-              startIcon={
-                <Download
-                  color={colors.primary.dark}
-                  size={"20"}
-                  className="me-1"
-                />
-              }
-            >
-              Download Excel
-            </SecondaryButton>
+            <div className="me-2">
+              <SecondaryButton
+                onClick={() => GetExcel()}
+                isLoading={ExcelLoading}
+                loaderColor={"warning"}
+                startIcon={
+                  <Download
+                    color={colors.primary.dark}
+                    size={"20"}
+                    className="me-1"
+                  />
+                }
+              >
+                {!isMobile && "Download Excel"}
+              </SecondaryButton>
+            </div>
           )}
           <SecondaryButton
             onClick={() => {
@@ -554,7 +556,7 @@ const ReactTable = ({
           overflowX: "auto",
         }}
       >
-        <Table sx={dataGridStyles} {...getTableProps()} >
+        <Table sx={dataGridStyles} {...getTableProps()}>
           <TableHead>
             {headerGroups.map((headerGroup) => (
               <TableRow
@@ -574,7 +576,7 @@ const ReactTable = ({
                         minWidth: column.minWidth,
                         width: column.width,
                         color: "#484649",
-                        fontSize: "18px",
+                        fontSize: "1.1rem",
                         // flex: '75 0 auto',
 
                         // flex: 150,
@@ -588,12 +590,12 @@ const ReactTable = ({
                         display: "flex",
                         flexDirection: "row",
                       },
-                      className: "!max-tablet:text-[5px]",
+                      className: "!max-tablet:text-[0.3rem]",
                     })}
                     key={column?.id}
                   >
                     <div className="flex flex-col  max-w-[200px] w-full">
-                      <div className="pt-1 max-tablet:w-[70px] w-[100px] max-desktop:text-[16px] max-tablet:text-[14px]  truncate">
+                      <div className="pt-1 max-tablet:w-[70px] w-[100px] max-desktop:text-[1rem] max-tablet:text-[14px]  truncate">
                         {column.render("Header")}
                       </div>
 
@@ -651,7 +653,7 @@ const ReactTable = ({
                               width: cell.column.width,
                               height: rowHeight ? rowHeight : "40px",
                               color: "#717171",
-                              fontSize: "14px",
+                              fontSize: "0.9rem",
                               // flex: 150,
                               fontFamily: "satoshi",
                               fontWeight: 500,
@@ -691,4 +693,3 @@ const ReactTable = ({
 };
 
 export default ReactTable;
-

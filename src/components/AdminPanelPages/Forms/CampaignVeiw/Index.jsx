@@ -57,8 +57,9 @@ function Index() {
         const image = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign_image}`;
         setC_image(image);
       } else {
-        const image = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign?.campaign_image || ""
-          }`;
+        const image = `${process.env.REACT_APP_BE_BASE_URL}${
+          data?.campaign?.campaign_image || ""
+        }`;
         setC_image(image);
       }
       setDocuments(data?.campaign?.documents);
@@ -103,7 +104,7 @@ function Index() {
       campaign?.campaign?.zakat_eligible ||
       false,
     documents: campaign?.documents || [],
-    status: campaign?.campaign_data?.status || (campaign?.campaign?.status || ''),
+    status: campaign?.campaign_data?.status || campaign?.campaign?.status || "",
   };
 
   const handleSubmit = (values) => {
@@ -161,7 +162,6 @@ function Index() {
                 </p>
               </div>
               <div className="w-full">
-                
                 <InputField
                   color={campaignData?.title ? "red" : undefined}
                   onChange={handleChange}
@@ -195,7 +195,6 @@ function Index() {
               </div>
               <div className="w-full">
                 <InputField
-              
                   color={campaignData?.location ? "red" : undefined}
                   name={"location"}
                   onChange={handleChange}
@@ -223,7 +222,7 @@ function Index() {
                       color: campaignData?.zakat_eligible
                         ? "red"
                         : colors.text.main,
-                      fontSize: "16px",
+                      fontSize: "1rem",
                       fontWeight: 700,
                       fontFamily: "satoshi",
                       fontStyle: "normal",
@@ -257,7 +256,7 @@ function Index() {
                     fontWeight: 700,
                     fontFamily: "satoshi",
                     fontStyle: "normal",
-                    fontSize: "16px",
+                    fontSize: "1rem",
                   }}
                 >
                   About the Campaign:
@@ -310,7 +309,7 @@ function Index() {
                     fontFamily: "satoshi",
                     fontStyle: "normal",
                     height: "22px",
-                    fontSize: "16px",
+                    fontSize: "1rem",
                   }}
                 >
                   Attachments:
@@ -350,8 +349,8 @@ function Index() {
             </div>
           </div>
           <div className="flex gap-3 pt-5 max-tablet:flex-col max-tablet:items-center">
-            {
-              campaign?.campaign?.status === 'Active' ? (<>
+            {campaign?.campaign?.status === "Active" ? (
+              <>
                 <button
                   type="button"
                   onClick={() => navigate(-1)}
@@ -372,17 +371,18 @@ function Index() {
                     Reject Modification Request
                   </h1>
                 </PrimaryButton>
-              </>) : (
-                <button
-                  type="button"
-                  onClick={() => navigate(-1)}
-                  className="w-[69px] content-stretch h-[32px] bg-[#F7F7F7]"
-                >
-                  <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
-                    Cancel
-                  </h1>
-                </button>)
-            }
+              </>
+            ) : (
+              <button
+                type="button"
+                onClick={() => navigate(-1)}
+                className="w-[69px] content-stretch h-[32px] bg-[#F7F7F7]"
+              >
+                <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
+                  Cancel
+                </h1>
+              </button>
+            )}
             {/* <button
               onClick={() => navigate(-1)}
               className="w-[69px] content-stretch h-[32px] bg-[#F7F7F7]"

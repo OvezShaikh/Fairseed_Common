@@ -82,7 +82,7 @@ const Sign_02 = ({ handleBack, handleNext }) => {
               name="user_type"
               sx={{
                 "& .MuiTypography-root": {
-                  fontSize: "20px",
+                  fontSize: "1.2rem",
                 },
               }}
               options={[
@@ -109,7 +109,7 @@ const Sign_02 = ({ handleBack, handleNext }) => {
                   width: "fit-content",
                   textAlign: "center",
                   color: "#FF9F0A",
-                  fontSize: 18,
+                  fontSize: "1.2rem",
                   fontFamily: "Satoshi",
                   fontWeight: 700,
                   textDecoration: "underline",
@@ -138,7 +138,7 @@ const Sign_02 = ({ handleBack, handleNext }) => {
               sx={{ width: "50%", padding: "12px 40px", borderRadius: "4px" }}
               onClick={() => handleBack()}
             >
-              <h1 className="text-[22px] font-[satoshi] font-semibold text-black ">
+              <h1 className="text-[1.4rem] font-[satoshi] font-semibold text-black ">
                 Back
               </h1>
             </SecondaryButton>
@@ -148,7 +148,7 @@ const Sign_02 = ({ handleBack, handleNext }) => {
               disabled={!isValid}
               onClick={handleNextClick}
             >
-              <h1 className="text-[22px] font-[satoshi] font-semibold text-whites ">
+              <h1 className="text-[1.4rem] font-[satoshi] font-semibold text-whites ">
                 SignUp
               </h1>
             </PrimaryButton>
