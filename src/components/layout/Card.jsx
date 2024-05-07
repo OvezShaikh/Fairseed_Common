@@ -147,7 +147,7 @@ function Card({
             >
               {Profile_pic ? (
                 <img
-                  src={`http://143.110.253.227:8000${Profile_pic}`}
+                  src={`${process.env.REACT_APP_BASE_URL}${Profile_pic}`}
                   alt="Profile"
                 />
               ) : (
