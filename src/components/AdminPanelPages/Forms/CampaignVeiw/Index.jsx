@@ -119,7 +119,7 @@ function Index() {
     formData.append("category", values?.category);
     formData.append("zakat_eligible", values?.zakat_eligible);
     formData.append("document", values?.category);
-    formData.append("status", values?.status);
+    // formData.append("status", values?.status.value);
     formData.append("approve_campaign", approval);
 
     mutate(formData, {
