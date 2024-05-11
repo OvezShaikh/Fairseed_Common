@@ -126,7 +126,7 @@ export default function Example() {
     setLoading(true);
     // Replace 'https://api.example.com/search' with your actual API endpoint
     serverAPI
-      .get(`https://dev.fairseed.org:8000/campaign/global-search`)
+      .get(`${process.env.REACT_APP_BASE_URL}/campaign/global-search`)
       .then((response) => {
         if (!response.data.rows) {
           console.error("Invalid response data:", response);

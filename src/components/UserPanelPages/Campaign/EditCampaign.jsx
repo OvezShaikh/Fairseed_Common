@@ -91,7 +91,7 @@ const EditCampaign = () => {
   const initial_values = {
     campaign_image: "",
     title: user.title || "",
-    amount: user.goal_amount || "",
+    goal_amount: user.goal_amount || "",
     location: user.location || "",
     category: user?.category || " ",
     is_featured: user?.is_featured || false,
@@ -207,8 +207,8 @@ const EditCampaign = () => {
                 <InputField
                   type={"number"}
                   onChange={handleChange}
-                  value={values?.amount}
-                  name={"amount"}
+                  value={values?.goal_amount}
+                  name={"goal_amount"}
                   label={"Amount to be raised:"}
                   placeholder={"Minimum 50 INR"}
                 />

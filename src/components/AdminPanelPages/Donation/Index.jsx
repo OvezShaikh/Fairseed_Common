@@ -66,25 +66,26 @@ const Index = () => {
       {
         Header: "Full Name",
         accessor: "full_name",
-        // minWidth: 150,
-        // width: 200,
+        minWidth: 150,
+        width: 200,
         nofilter: true,
 
       },
       {
         Header: "Campaign",
         accessor: "campaign",
-        // minWidth: 200,
-        // width: 280,
+        minWidth: 200,
+        width: 280,
         Cell: ({ row }) => {
           return (
             <div className='flex  '>
-              <div className="w-[80px] truncate">
+              <div className="w-[80px] ">
                 {row?.original?.campaign}
               </div>
-              <a href={`/campaign-details/${row.id}`} target="_blank">
+              {/* {console.log(row , "<=======")} */}
+              {/* <a href={`/campaign-details/${row?.original?.id}`} target="_blank">
                 <img className='ml-2' src={images.CausesDetails} alt="CausesDetails"  />
-              </a>
+              </a> */}
             </div>
           );
         },
@@ -93,31 +94,31 @@ const Index = () => {
       {
         Header: "Email",
         accessor: "email",
-        // minWidth: 150,
-        // width: 200,
+        minWidth: 150,
+        width: 200,
         nofilter: true,
 
       },
       {
         Header: "Donation",
         accessor: "amount",
-        // minWidth: 200,
-        // width: 280,
+        minWidth: 200,
+        width: 280,
 
       },
       {
         Header: "Payment Type",
         accessor: "payment_type",
-        // minWidth: 150,
-        // width: 200,
+        minWidth: 150,
+        width: 200,
         nofilter: true,
 
       },
       {
         Header: "Date",
         accessor: "created_on",
-        // minWidth: 200,
-        // width: 280,
+        minWidth: 200,
+        width: 280,
        Cell:({row})=>{
         return (
           <p>{DateConvert(row?.original?.created_on)}</p>
@@ -133,8 +134,8 @@ const Index = () => {
       {
         Header: "Status",
         accessor: "status",
-        // minWidth: 200,
-        // width: 280,
+        minWidth: 200,
+        width: 280,
         nofilter: true,
         Cell: StatusCell,
 

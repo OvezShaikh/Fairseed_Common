@@ -74,7 +74,7 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
     const fetchLocationList = async () => {
       try {
         // const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/campaign/campaign-category?page=${page}&limit=${limit}`;
-        const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/campaign/campaign-category?page=1&limit=1000`;
+        const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/campaign/global-search`;
         const response = await axios.get(API_ENDPOINT);
         setLocationList(response.data.rows);
 
@@ -93,10 +93,9 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
       const perPage = 100;
       const response = await axios.get(
         // `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
-        `${
-          process.env.REACT_APP_API_URL
-        }/campaign/campaign-filter?page=1&limit=${1000}&filter`
+        `${process.env.REACT_APP_API_URL}/campaign/global-search`
       );
+      
       const res = response.data;
 
       if (Array.isArray(res.rows)) {
@@ -108,12 +107,15 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
       console.error("Error fetching user list:", error);
     }
   };
+
   useEffect(() => {
     fetchCategoryList();
   }, [page]);
 
+
+  
   const uniqueCategory = Array.from(
-    new Set(LocationList.map((item) => item.name))
+    new Set(LocationList.map((item) => item.category_name))
   );
   const uniqueLocations = Array.from(
     new Set(CategoryList.map((item) => item.location))
@@ -147,7 +149,7 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
             >
               {uniqueCategory.map((item, index) => (
                 <MenuItem
-                  key={item}
+                  key={index}
                   value={item}
                   sx={{
                     padding: "12px",
@@ -155,7 +157,7 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
                     color: "rgba(23, 43, 77, 1)",
 
                     "&.Mui-selected": {
-                      backgroundColor: "transparent", // Set the background color to transparent when selected
+                      backgroundColor: "transparent", 
                     },
                   }}
                 >

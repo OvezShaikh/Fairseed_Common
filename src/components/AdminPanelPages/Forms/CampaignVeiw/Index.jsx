@@ -82,7 +82,7 @@ function Index() {
       campaign?.campaign?.category?.name ||
       "",
     goal_amount:
-      campaign?.campaign_data?.amount || campaign?.campaign?.goal_amount || "",
+      campaign?.campaign_data?.goal_amount || campaign?.campaign?.goal_amount || "",
     location:
       campaign?.campaign_data?.location || campaign?.campaign?.location || "",
     end_date:
@@ -184,7 +184,7 @@ function Index() {
               />
               <div className="w-full">
                 <InputField
-                  color={campaignData?.amount ? "red" : undefined}
+                  color={campaignData?.goal_amount ? "red" : undefined}
                   onChange={handleChange}
                   type="number"
                   name={"goal_amount"}

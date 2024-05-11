@@ -106,8 +106,8 @@ const Campaign = () => {
     {
       Header: "Email",
       accessor: "user.email",
-      minWidth: 100,
-      width: 100,
+      minWidth: 200,
+      width: 200,
     },
     {
       Header: "Mobile",

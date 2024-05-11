@@ -143,7 +143,7 @@ const User_Campaign = ({ onClose }) => {
         return (
           <div className="flex  ">
             <div className="w-[80px] truncate">{row?.original?.title}</div>
-            <a href={`/campaign-details/${row.id}`}>
+            <a href={`/campaign-details/${row.id}`} target="_blank">
               <img
                 className="ml-2"
                 src={images.CausesDetails}
