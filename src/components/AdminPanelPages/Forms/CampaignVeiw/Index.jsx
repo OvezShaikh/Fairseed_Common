@@ -52,6 +52,7 @@ function Index() {
       return data.data.data;
     },
     onSuccess: (data) => {
+      console.log(data , '<========')
       setCampaign(data);
       if (data?.campaign_image) {
         const image = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign_image}`;
@@ -149,7 +150,7 @@ function Index() {
                     {values.title}
                   </h1>
                   <a
-                    href={`/campaign-details/${id}`}
+                    href={`/campaign-details/${campaign?.campaign?.id}`}
                     target="_blank"
                     rel="noreferrer"
                   >
