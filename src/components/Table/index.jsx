@@ -49,7 +49,7 @@ const dataGridStyles = {
     color: "#000",
     "& .MuiDataGrid-columnHeaderTitleContainer": {
       padding: "2px 8px 2px 6px",
-      // padding: "2px 8px 2px 6px",
+     
     },
     "& .MuiTableCell-root.MuiTableCell-head": {
       backgroundColor: "#FFF4EB",
