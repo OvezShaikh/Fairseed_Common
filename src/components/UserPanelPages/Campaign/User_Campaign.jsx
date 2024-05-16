@@ -8,7 +8,6 @@ import { Link, useLocation } from "react-router-dom";
 import images from "../../../constants/images";
 import { Dialog } from "../../../components/layout/dialogBox";
 import PrimaryButton from "../../inputs/PrimaryButton";
-import axios from "axios";
 import { toast } from "react-toastify";
 import { Form, Formik } from "formik";
 import { useCreateOrUpdate } from "../../../Hooks";

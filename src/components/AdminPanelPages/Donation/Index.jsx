@@ -74,8 +74,8 @@ const Index = () => {
       {
         Header: "Campaign",
         accessor: "campaign",
-        minWidth: 200,
-        width: 280,
+        minWidth: 150,
+        width: 200,
         Cell: ({ row }) => {
           return (
             <div className='flex  '>
@@ -102,8 +102,8 @@ const Index = () => {
       {
         Header: "Donation",
         accessor: "amount",
-        minWidth: 200,
-        width: 280,
+        minWidth: 100,
+        width: 150,
 
       },
       {
@@ -117,8 +117,8 @@ const Index = () => {
       {
         Header: "Date",
         accessor: "created_on",
-        minWidth: 200,
-        width: 280,
+        minWidth: 100,
+        width: 150,
        Cell:({row})=>{
         return (
           <p>{DateConvert(row?.original?.created_on)}</p>
@@ -134,8 +134,8 @@ const Index = () => {
       {
         Header: "Status",
         accessor: "status",
-        minWidth: 200,
-        width: 280,
+        minWidth: 100,
+        width: 150,
         nofilter: true,
         Cell: StatusCell,
 
@@ -146,7 +146,7 @@ const Index = () => {
         sortable: false,
         nofilter: true,
         minWidth: 100,
-        width: 100,
+        width: 150,
         search: false,
         Cell: ({ row }) => {
           return (
