@@ -127,7 +127,7 @@ function Index() {
                   <h1 className="text-[16px] font-[satoshi] pt-3   font-medium max-tablet:pl-2 max-tablet:pb-2">
                     {data?.campaign}
                   </h1>
-                  <a href={`/campaign-details/${id}`}>
+                  <a href={`/campaign-details/${data?.campaign}`} target="_blank">
                     <img
                       className="pt-3 pl-2"
                       src={images.CausesDetails}
