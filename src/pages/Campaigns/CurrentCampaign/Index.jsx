@@ -66,7 +66,7 @@ function CurrentCampaign({
     url: `/user-dashboard/report-campaign`,
   });
   const handleButtonClick = () => {
-    if (cardDetails?.fund_raised === cardDetails?.goal_amount) {
+    if (cardDetails?.fund_raised === cardDetails?.goal_amount || cardDetails?.fund_raised > cardDetails?.goal_amount) {
       toast.info("Donation goal has already been reached", {
         position: "top-right",
       });
@@ -293,7 +293,7 @@ function CurrentCampaign({
             <div className="w-full">
               <Link
                 to={
-                  cardDetails?.fund_raised === cardDetails?.goal_amount
+                  cardDetails?.fund_raised === cardDetails?.goal_amount ||  cardDetails?.fund_raised > cardDetails?.goal_amount
                     ? "#"
                     : `/Home/donate/${id}`
                 }
@@ -616,7 +616,7 @@ function CurrentCampaign({
       <div className="flex justify-center mt-4 gap-4 max-desktop:hidden">
         <Link
           to={
-            cardDetails?.fund_raised === cardDetails?.goal_amount
+            cardDetails?.fund_raised === cardDetails?.goal_amount || cardDetails?.fund_raised > cardDetails?.goal_amount
               ? "#"
               : `/Home/donate/${id}`
           }
