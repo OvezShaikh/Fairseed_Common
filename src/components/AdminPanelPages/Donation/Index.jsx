@@ -73,20 +73,21 @@ const Index = () => {
       },
       {
         Header: "Campaign",
-        accessor: "campaign",
+        accessor: "campaign_title",
         minWidth: 150,
         width: 200,
         Cell: ({ row }) => {
           return (
-            <div className='flex  '>
-              <div className="w-[80px] ">
-                {row?.original?.campaign}
-              </div>
-              {/* {console.log(row , "<=======")} */}
-              {/* <a href={`/campaign-details/${row?.original?.id}`} target="_blank">
-                <img className='ml-2' src={images.CausesDetails} alt="CausesDetails"  />
-              </a> */}
-            </div>
+            <div className="flex  ">
+            <div className="w-[80px] truncate">{row?.original?.campaign_title}</div>
+            <a href={`/campaign-details/${row?.original?.campaign}`} target="_blank">
+              <img
+                className="ml-2"
+                src={images.CausesDetails}
+                alt="CausesDetails"
+              />
+            </a>
+          </div>
           );
         },
 
@@ -116,12 +117,12 @@ const Index = () => {
       },
       {
         Header: "Date",
-        accessor: "created_on",
+        accessor: "transaction_date",
         minWidth: 100,
         width: 150,
        Cell:({row})=>{
         return (
-          <p>{DateConvert(row?.original?.created_on)}</p>
+          <p>{DateConvert(row?.original?.transaction_date)}</p>
         )
         
        }
