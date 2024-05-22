@@ -32,7 +32,7 @@ function Card({
   //   });
   // };
   const handleButtonClick = () => {
-    if (fundRaised === goalAmount) {
+    if (fundRaised === goalAmount || fundRaised > goalAmount ) {
       toast.info("Donation goal has already been reached", {
         position: "top-right",
       });
@@ -58,7 +58,7 @@ function Card({
             className="card-img-top h-80 w-full relative"
             alt="..."
           />
-          {goalAmount === fundRaised ? (
+          {goalAmount === fundRaised || goalAmount < fundRaised ? (
             <div className="absolute z-20 top-4 left-4 w-[104px] h-[27px] gap-1 flex justify-center items-center bg-[#1ABD54] rounded">
               <img src={images.CompleteVector} alt="" />
               <p className="font-[satoshi] font-medium text-[#FFFFFF] text-[0.9rem]">
@@ -212,7 +212,7 @@ function Card({
             </div>
             <div className="w-[35%] max-desktop:w-full">
               <Link
-                to={fundRaised === goalAmount ? "#" : `/Home/donate/${og_id}`}
+                to={fundRaised === goalAmount || fundRaised > goalAmount ? "#" : `/Home/donate/${og_id}`}
               >
                 <button
                   // onClick={fundRaised === goalAmount ? handleClick : null}
