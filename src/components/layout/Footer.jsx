@@ -197,8 +197,7 @@ function Footer() {
                 wordWrap: "break-word",
               }}
             >
-              Be it for a personal need, social cause or a creative idea - you
-              can count on us for the project that you want to raise funds for.
+             FairSeed Technology Foundation is India's first Education focussed & technology based online crowdfunding platform dedicated to revolutionizing the way education is funded and accessible. Our mission is to bridge the financial gap in education by connecting passionate learners, educators, and educational institutions with a global community of generous donors and supporters. Hello
             </p>
           </div>
 
