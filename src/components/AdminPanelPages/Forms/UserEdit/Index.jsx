@@ -31,8 +31,8 @@ function Index() {
 
   const handleOk = () => {
     setDeleteSuccess(false);
-    setIsImageDeleted(true); // Actually delete the image
-    setShowDeleteConfirmation(false); // Close the confirmation dialog
+    setIsImageDeleted(true); 
+    setShowDeleteConfirmation(false); 
   };
 
   const confirmDelete = () => {
@@ -48,7 +48,6 @@ function Index() {
     key: `/admin-dashboard/users/${id}`,
     enabled: true,
     select: (data) => {
-      console.log(data.data.data);
       return data.data.data;
     },
     onSuccess: (data) => {
@@ -60,7 +59,6 @@ function Index() {
     key: `/admin-dashboard/user-roles?page=1&limit=10`,
     enabled: true,
     select: (data) => {
-      console.log(data);
       return data.data.rows;
     },
     onSuccess: (data) => {
@@ -142,6 +140,7 @@ function Index() {
               </div>
               <div className="flex flex-row gap-4 mt-12">
                 <button
+                  type="button"
                   onClick={() => navigate(-1)}
                   className="w-[69px] h-[32px] bg-[#F7F7F7]"
                 >
@@ -212,8 +211,7 @@ function Index() {
               url={`/admin-dashboard/users`}
               data={id}
               title={"User"}
-              // onClick={() => setSelectedRowID(row?.original?.id)}
-              // onSuccess={() => setSelectedRowID(null)}
+           
               onClose={() => navigate(-1)}
               refetchUrl={"/admin-dashboard/users"}
             ></DeleteBox>
@@ -241,12 +239,14 @@ function Index() {
                     </p>
                     <div className="mt-4">
                       <button
+                        type="button"
                         onClick={cancelDelete}
                         className="bg-gray-300 px-4 py-2  text-[20px] mr-2 font-[satoshi] font-medium rounded"
                       >
                         No, cancel!
                       </button>
                       <button
+                        type="button"
                         onClick={confirmDelete}
                         className="bg-green-500 text-white text-[20px] font-[satoshi] font-medium px-4 py-2  rounded"
                       >
@@ -265,6 +265,7 @@ function Index() {
                     </p>
                     <div className="mt-4">
                       <button
+                        type="button"
                         onClick={handleOk}
                         className="bg-green-500 text-white text-[20px] font-[satoshi] font-medium px-4 py-2  rounded"
                       >

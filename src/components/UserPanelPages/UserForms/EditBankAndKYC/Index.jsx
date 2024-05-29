@@ -18,19 +18,19 @@ function CausesView() {
   let { id } = state;
 
   const [data, setData] = useState({});
-  const [adhar_card_image , setAdhar_card_image] = useState('');
-  const [pan_card_image , setPan_card_image] = useState(''); 
-  const [passbook_image , setPassbook_image] = useState('');
+  const [adhar_card_image, setAdhar_card_image] = useState("");
+  const [pan_card_image, setPan_card_image] = useState("");
+  const [passbook_image, setPassbook_image] = useState("");
 
   let navigate = useNavigate();
 
-
- 
   const validationSchema = Yup.object().shape({
-    declaration: Yup.boolean().test('consent', 'You must give consent by checking the checkbox', value => value === true),
+    declaration: Yup.boolean().test(
+      "consent",
+      "You must give consent by checking the checkbox",
+      (value) => value === true
+    ),
   });
-  
-
 
   const initial_values = {
     account_holder_name: data?.account_holder_name || "",
@@ -44,11 +44,11 @@ function CausesView() {
     pan_card: data?.pan_card || "",
     adhar_card: data?.adhar_card || "",
     tandc_accept: data?.tandc_accept || "",
-    pan_card_image:pan_card_image || '',
-    passbook_image : passbook_image ||'',
-    adhar_card_image:adhar_card_image ||'',
+    pan_card_image: pan_card_image || "",
+    passbook_image: passbook_image || "",
+    adhar_card_image: adhar_card_image || "",
     other: data?.other || "",
-    rasing_for: data?.rasing_for || '', 
+    rasing_for: data?.rasing_for || "",
   };
 
   useGetAll({
@@ -59,15 +59,14 @@ function CausesView() {
     },
     onSuccess: (data) => {
       setData(data);
-      const img1= `${process.env.REACT_APP_BASE_URL}${data?.adhar_card_image}`
+      const img1 = `${process.env.REACT_APP_BASE_URL}${data?.adhar_card_image}`;
       setAdhar_card_image(img1);
-      const img2= `${process.env.REACT_APP_BASE_URL}${data?.pan_card_image}`
-      setPan_card_image(img2)
-      const img3= `${process.env.REACT_APP_BASE_URL}${data?.passbook_image}`
-      setPassbook_image(img3)
+      const img2 = `${process.env.REACT_APP_BASE_URL}${data?.pan_card_image}`;
+      setPan_card_image(img2);
+      const img3 = `${process.env.REACT_APP_BASE_URL}${data?.passbook_image}`;
+      setPassbook_image(img3);
     },
   });
-
 
   const { mutate } = useCreateOrUpdate({
     url: `/user-dashboard/edit-bankkyc/${id}`,
@@ -76,19 +75,22 @@ function CausesView() {
 
   const handleSubmit = (values) => {
     const changedValues = Object.keys(values).filter(
-      key => values[key] !== initial_values[key]
+      (key) => values[key] !== initial_values[key]
     );
-  
+
     const payload = {};
-    changedValues.forEach(key => {
+    changedValues.forEach((key) => {
       payload[key] = values[key];
     });
-  
+
     const formData = new FormData();
     Object.entries(payload).forEach(([key, value]) => {
-        formData.append(key, value instanceof File ? value : JSON.stringify(value));
+      formData.append(
+        key,
+        value instanceof File ? value : JSON.stringify(value)
+      );
     });
-  
+
     mutate(formData, {
       onSuccess: (response) => {
         toast.success(response?.data?.message, {
@@ -97,14 +99,13 @@ function CausesView() {
         navigate(-1);
       },
       onError: (error) => {
-        console.error('There was a problem updating the data:', error);
+        console.error("There was a problem updating the data:", error);
         toast.error(error?.data?.message, {
-          position: 'top-right',
+          position: "top-right",
         });
       },
     });
   };
-  
 
   return (
     <Formik
@@ -193,7 +194,7 @@ function CausesView() {
                 <div className="w-full">
                   <FormLabel
                     sx={{
-                      fontSize: "16px",
+                      fontSize: "1rem",
                       fontFamily: "satoshi",
                       fontWeight: 700,
                       color: "#383A42",
@@ -207,7 +208,7 @@ function CausesView() {
                       <Attachments imageUrl={values?.passbook_image} />
                       <FormLabel
                         sx={{
-                          fontSize: "16px",
+                          fontSize: "1rem",
                           fontFamily: "satoshi",
                           fontWeight: 700,
                           color: "#383A42",
@@ -221,7 +222,7 @@ function CausesView() {
                       <Attachments imageUrl={values?.adhar_card_image} />
                       <FormLabel
                         sx={{
-                          fontSize: "16px",
+                          fontSize: "1rem",
                           fontFamily: "satoshi",
                           fontWeight: 700,
                           color: "#383A42",
@@ -235,7 +236,7 @@ function CausesView() {
                       <Attachments imageUrl={values?.pan_card_image} />
                       <FormLabel
                         sx={{
-                          fontSize: "16px",
+                          fontSize: "1rem",
                           fontFamily: "satoshi",
                           fontWeight: 700,
                           color: "#383A42",
@@ -248,13 +249,25 @@ function CausesView() {
                   </div>
                 </div>
                 <div className="w-full">
-                  <UploadField label="Upload PAN Card Copy:" multiple={false} name={"pan_card_image"} />
+                  <UploadField
+                    label="Upload PAN Card Copy:"
+                    multiple={false}
+                    name={"pan_card_image"}
+                  />
                 </div>
                 <div className="w-full">
-                  <UploadField label="Upload Aadhar Card Copy:" multiple={false} name={"adhar_card_image"} />
+                  <UploadField
+                    label="Upload Aadhar Card Copy:"
+                    multiple={false}
+                    name={"adhar_card_image"}
+                  />
                 </div>
                 <div className="w-full">
-                  <UploadField label="Upload Passbook Copy:" multiple={false} name={"passbook_image"} />
+                  <UploadField
+                    label="Upload Passbook Copy:"
+                    multiple={false}
+                    name={"passbook_image"}
+                  />
                 </div>
                 <RadioGroup
                   onChange={(value) => {
@@ -277,7 +290,7 @@ function CausesView() {
                       color: red[500],
                     },
                   }}
-                  style={{ fontSize: "14px !important" }}
+                  style={{ fontSize: "0.9rem !important" }}
                   name="tandc_accept"
                   checked={values?.tandc_accept}
                   label={
@@ -289,7 +302,7 @@ function CausesView() {
                     onClick={() => navigate(-1)}
                     className="w-[69px] h-[32px] bg-[#F7F7F7]"
                   >
-                    <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
+                    <h1 className="text-[#000000] font-medium text-[0.9rem] font-[satoshi]">
                       Go Back
                     </h1>
                   </button>

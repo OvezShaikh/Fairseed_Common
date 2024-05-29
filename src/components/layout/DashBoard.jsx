@@ -23,7 +23,6 @@ const Dashboard = () => {
           successfulCampaign: responseData.successful_campaign || 0,
           studentBenefited: responseData.student_benefited || 0,
         });
-        console.log(responseData, "Dashboard");
       })
       .catch((error) => {
         console.error("Error fetching dashboard data:", error);
@@ -58,7 +57,6 @@ const Dashboard = () => {
     },
   ];
 
- 
   return (
     <>
       {dashboards.map((data, index) => (
@@ -79,7 +77,7 @@ const Dashboard = () => {
             style={{
               textAlign: "center",
               color: "#25272C",
-              fontSize: 36,
+              fontSize: "2.25rem",
               fontWeight: "900",
               fontFamily: "satoshi",
               wordWrap: "break-word",
@@ -94,7 +92,7 @@ const Dashboard = () => {
               alignSelf: "stretch",
               textAlign: "center",
               color: "#8E95A2",
-              fontSize: 17,
+              fontSize: "1.05rem",
               fontWeight: "500",
               fontFamily: "satoshi",
               wordWrap: "break-word",

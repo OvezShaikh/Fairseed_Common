@@ -17,7 +17,7 @@ const styleStep = {
   "& .MuiStepLabel-label.Mui-active": {
     color: "var(--Cool-Grey-Cool-Grey-10, #383A42)",
     fontFamily: "Satoshi",
-    fontSize: "20px",
+    fontSize: "1.2rem",
     fontStyle: "normal",
     paddingRight: "5px",
     fontWeight: 700,
@@ -36,7 +36,7 @@ const styleStep = {
     "& .MuiStepLabel-label": {
       color: "var(--Cool-Grey-Cool-Grey-10, #383A42)",
       fontFamily: "Satoshi",
-      fontSize: "20px",
+      fontSize: "1.2rem",
       fontStyle: "normal",
       paddingRight: "5px",
       fontWeight: 700,
@@ -68,7 +68,7 @@ const styleStep = {
     "& .MuiStepLabel-label": {
       color: "var(--Cool-Grey-Cool-Grey-10, #383A42)",
       fontFamily: "Satoshi",
-      fontSize: "20px",
+      fontSize: "1.2rem",
       paddingRight: "5px",
       fontStyle: "normal",
       fontWeight: 700,
@@ -79,7 +79,7 @@ const StyledTypography = styled(Typography)({
   background:
     "var(--Linear-BG, linear-gradient(71deg, #FF9F0A 0%, #FF375F 62.9%))",
   WebkitBackgroundClip: "text",
-  fontSize: "46px",
+  fontSize: "2.8rem",
   color: "transparent",
   display: "inline-block",
   fontfamily: "Epilogue",
@@ -168,16 +168,13 @@ const Sign_Stepper = () => {
 
     mutate(formData, {
       onSuccess: (response) => {
-        console.log(response);
-        toast.success(`${response?.data?.message}`, {
+        toast.success(response?.data?.message, {
           position: "top-right",
         });
         navigate("/Home");
-        // window.location.href = "/Home";
+        window.location.href = "/Home";
       },
       onError: (response) => {
-        console.log(response);
-
         toast.error(`${response?.response?.data?.email[0]}`, {
           position: "top-right",
         });

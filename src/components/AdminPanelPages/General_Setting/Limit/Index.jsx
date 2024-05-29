@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 
 const styleLabel = {
   fontFamily: "satoshi",
-  fontSize: 16,
+  fontSize: "1rem",
   fontWeight: 700,
   color: "#383A42",
   padding: "0 0 0 5px",
@@ -23,16 +23,12 @@ function Limit() {
     key: `/admin-dashboard/limit`,
     enabled: true,
     select: (data) => {
-      console.log(data);
       return data.data.rows[0];
     },
     onSuccess: (data) => {
-      console.log(data);
       setLimit(data);
     },
   });
-
-  console.log(limit, "limit");
 
   const initialValues = {
     num_campaigns: limit?.num_campaigns || 0,

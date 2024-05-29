@@ -1,4 +1,4 @@
-import React, { PureComponent, useState } from "react";
+import React, { PureComponent, useState, useEffect } from "react";
 import { useGetAll } from "../../../../Hooks";
 
 import {
@@ -66,6 +66,7 @@ export default function DonationInMonths() {
   const [dataObject, setDataObject] = useState([]);
   const [fundRaised, setFundRaised] = useState(50000);
   const [goalAmount, setGoalAmount] = useState(100000);
+  const [xAxisTickInterval, setXAxisTickInterval] = useState(2);
   const customTickFormatter = (value) => {
     const date = new Date(value);
     const formattedDate = date.toLocaleDateString('en-US', {
@@ -76,46 +77,57 @@ export default function DonationInMonths() {
   };
 
 
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+      if (screenWidth <= 767) {
+        setXAxisTickInterval(3);
+      
+      } else {
+        setXAxisTickInterval(2);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+
   useGetAll({
-    key: `/admin-dashboard/donation-api`,
+    key: `/admin-dashboard/donation-graph`,
     enabled: true,
    
     select: (data) => {
-      return data.data.fundraiser_data;
-    },
+      return data.data.donation_data;
+   },
     onSuccess: (data) => {
       setDataObject(data);
     },
   });
 
   return (
-    <div className="rounded-md shadow-md p-2 ">
+    <div className="rounded-md shadow-md p-2  max-tablet:overflow-x-scroll ">
       <p className={"mb-3 text-lg font-semibold"}>Donation In Months(lacs): </p>
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer className="max-tablet:w-[800px] max-mobile" height={300}>
         <BarChart
-          width={500}
+        
           height={200}
           data={dataObject}
           margin={{top: 20, right: 20, bottom: 20, left: 0}}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis className="mt-2" dataKey='date' axisLine={false} tickLine={false} tickFormatter={customTickFormatter} interval={2} textAnchor="start" />
-          {/* <XAxis
-            dataKey='total_amount'
-            axisLine={false}
-            tickLine={false}
-            interval={0}
-            tick={renderQuarterTick}
-            height={1}
-            scale="band"
-            xAxisId="quarter"
-          /> */}
-          <YAxis />
+          <XAxis className="max-tablet:w-[800px] max-tablet:overflow-scroll max-mobile" fontSize={14} dataKey='date' axisLine={false} tickLine={false} tickFormatter={customTickFormatter} interval={xAxisTickInterval} textAnchor="start"  />
+          <YAxis padding={{right:20}} />
           <Tooltip />
           <Legend />
           <Bar
             className="w-5"
-            dataKey='total_amount'
+            dataKey='donation_count'
             shape={(props) => (
               <LinearGradientBar
                 fundRaised={fundRaised}

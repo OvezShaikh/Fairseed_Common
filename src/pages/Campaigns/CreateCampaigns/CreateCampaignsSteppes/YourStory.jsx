@@ -12,7 +12,7 @@ const styleSecondaryButton = {
   width: "100%",
   height: "100%",
   padding: "10px",
-  fontSize: "24px",
+  fontSize: "1.5rem",
   fontWeight: 700,
   borderRadius: "12px",
 };
@@ -20,7 +20,7 @@ const stylePrimaryButton = {
   width: "100%",
   height: "100%",
   padding: "10px",
-  fontSize: "24px",
+  fontSize: "1.5rem",
   fontWeight: 700,
   borderRadius: "12px",
 };
@@ -34,10 +34,10 @@ function YourStory({ handleBack, handleNext }) {
   };
 
   return (
-    <form className="py-[80px] flex flex-col gap-y-[80px]">
+    <form className="py-[80px] flex flex-col gap-y-[50px]">
       <div className="">
         <FormLabel
-          className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
+          className="font-medium d-flex align-items-center desktop:text-[1.2rem] max-desktop:text-[16px]"
           style={{
             padding: "4px 8px 8px 8px",
             color: colors.text.main,
@@ -50,7 +50,7 @@ function YourStory({ handleBack, handleNext }) {
           Tell us your Story:
           <span className="text-red-600">*</span>
         </FormLabel>
-        <div className="h-[410px] story-div">
+        <div className="h-[410px] max-tablet:h-[370px] story-div">
           <ReactQuilTextField
             theme="snow"
             name="story"
@@ -69,9 +69,9 @@ Make an Appeal.`}
         </div>
       </div>
 
-      <div className="max-tablet:pt-4">
+      <div className="max-tablet:pt-12">
         <FormLabel
-          className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
+          className="font-medium d-flex align-items-center desktop:text-[1.2rem] max-desktop:text-[16px]"
           style={{
             padding: "4px 8px 8px 8px",
             color: colors.text.main,
@@ -96,14 +96,14 @@ Make an Appeal.`}
         </div>
       </div>
 
-      <div className="document-upload-div max-tablet:pt-4">
+      <div className="document-upload-div max-tablet:pt-12">
         <UploadField
           label="Document:"
           name="documents"
           required={"true"}
           placeholder="Upload marksheets, Medical records, Fees Structure etc."
           sx={{ padding: "20px" }}
-          multiple={false}
+          multiple={true}
           onChange={(value) => setFieldValue("documents", value)}
         />
       </div>

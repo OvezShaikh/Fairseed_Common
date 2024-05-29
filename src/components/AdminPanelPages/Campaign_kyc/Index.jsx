@@ -5,11 +5,11 @@ import IndeterminateCheckbox from "../../Table/IndeterminateCheckbox";
 import { Link } from "react-router-dom";
 import PrimaryButton from "../../inputs/PrimaryButton";
 import { GoDotFill } from "react-icons/go";
+import images from "../../../constants/images";
 
 const Campaign_Kyc = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
   const getStatusCellStyle = (status) => {
-    // let { state } = useLocation(); let { id } = state
     if (status === "Pending") {
       return {
         color: "#fa9820",
@@ -49,10 +49,10 @@ const Campaign_Kyc = () => {
 
   const columns = React.useMemo(() => [
     {
-      Header: "Id", // Row number header
-      accessor: "index", // Accessor for row number
+      Header: "Id", 
+      accessor: "index", 
       Cell: ({ row }) => (
-        // Display row number using index provided by React Table
+       
         <div>{row.index + 1}</div>
       ),
       minWidth: 50,
@@ -62,21 +62,20 @@ const Campaign_Kyc = () => {
     {
       Header: "Campaign Title",
       accessor: "bank_kyc.title",
-
       minWidth: 100,
       width: 100,
-      // Cell: ({ row }) => {
-      //   return (
-      //     <div className='flex  '>
-      //       <div className="w-[80px] truncate">
-      //         {row?.original?.title}
-      //       </div>
-      //       <a href={`/campaign-details/${row.id}`}>
-      //         <img className='ml-2' src={images.CausesDetails} alt="CausesDetails" />
-      //       </a>
-      //     </div>
-      //   );
-      // },
+      Cell: ({ row }) => {
+        return (
+          <div className='flex  '>
+            <div className="w-[80px] truncate">
+              {row?.original?.bank_kyc?.title}
+            </div>
+            <a href={`/campaign-details/${row.id}`} target="_blank">
+              <img className='ml-2' src={images.CausesDetails} alt="CausesDetails"  />
+            </a>
+          </div>
+        );
+      },
     },
     {
       Header: "IFSC Code",

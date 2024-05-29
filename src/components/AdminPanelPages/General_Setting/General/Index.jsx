@@ -9,10 +9,11 @@ import { useCreateOrUpdate } from "../../../../Hooks/useCreateOrUpdate.js";
 import { toast } from "react-toastify";
 import MultiKeyTextField from "../../../inputs/MultiAddTags/Index.jsx";
 import { useGetAll } from "../../../../Hooks/useGetAll.js";
+import CustomChipsArray from "../../../inputs/MultiAddTags/Index.jsx";
 
 const styleLabel = {
   fontFamily: "satoshi",
-  fontSize: 16,
+  fontSize: "1rem",
   paddingBottom: "5px",
   paddingLeft: "5px",
   fontWeight: 700,
@@ -20,26 +21,24 @@ const styleLabel = {
 };
 const styleInput = {
   color: "#B6BAC3",
-  fontSize: 16,
+  fontSize: "1rem",
   fontFamily: "Satoshi ",
   fontWeight: "500",
 };
 
 function General() {
   const [Details, setDetails] = useState({});
-  // const [Keywords , setkeywords]= useState([])
+  const [Chips, setChips] = useState([]);
 
   const { data } = useGetAll({
     key: `/admin-dashboard/gs`,
     enabled: true,
     select: (data) => {
-      // console.log(data.data.rows);
       return data.data.rows[0];
     },
     onSuccess: (data) => {
       setDetails(data);
-      // console.log(data?.keywords_data , '<=====')
-      // setkeywords(data?.keywords_data)
+      setChips(data?.keywords);
     },
   });
 
@@ -55,7 +54,7 @@ function General() {
     email_admin: Details?.email_admin || "",
     tandc_url: Details?.tandc_url || "",
     email_no_reply: Details?.email_no_reply || "",
-    keywords_data:Details?.keywords_data || [], // Set initial value as an empty array
+    keywords: Chips || [],
     privacy_policy_url: Details?.privacy_policy_url || "",
     date_time: Details?.date_time || "",
     new_registration_enabled: Details?.new_registration_enabled || false,
@@ -114,7 +113,6 @@ function General() {
                 value={values?.welcome_text}
               />
             </div>
-           
             <div className="w-[24%] max-desktop:w-full max-tablet:w-full">
               <InputAdminField
                 label={"Email No-reply"}
@@ -125,17 +123,13 @@ function General() {
               />
             </div>
           </div>
-         
-          <div className="w-[49%] max-desktop:w-full max-tablet:w-full pt-2">           
-            <MultiKeyTextField
-              name={"keywords_data"}
-              label={"Keywords"}
+          <div className="w-[49%] max-desktop:w-full max-tablet:w-full pt-2">
+            <CustomChipsArray
+              name="keywords"
+              label="Keywords"
               sx={styleLabel}
-              placeholder={"Add Tags"}
-              value={values?.keywords_data || []} 
-              // onChange={(value)=>setFieldValue('keywords_data' , value)}
+              placeholder="Add Tags"
             />
-           
           </div>
           <div className="pt-7 mb-5 h-[200px]">
             <FormLabel style={styleLabel}>Description</FormLabel>
@@ -248,7 +242,9 @@ function General() {
                   { label: "Off", value: false },
                 ]}
                 label="Google Login"
-                onChange={(e) => { setFieldValue("google_login_enabled", e === "true")}}
+                onChange={(e) => {
+                  setFieldValue("google_login_enabled", e === "true");
+                }}
               />
             </div>
             <div className=" lg:w-[25%] max-tablet:w-full max-desktop:w-full">

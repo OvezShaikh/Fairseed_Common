@@ -23,7 +23,7 @@ import { ImageCropper } from "../../inputs/ImageCropper/ImageCropper";
 import { ImagePreviewDialog } from "../../inputs/PreviewImage/PreviewImage";
 import DropZone from "../../inputs/ImageCropper/CropDrop";
 
-const   EditCampaign = () => {
+const EditCampaign = () => {
   let { state } = useLocation();
   let { id } = state;
   const navigate = useNavigate();
@@ -91,7 +91,7 @@ const   EditCampaign = () => {
   const initial_values = {
     campaign_image: "",
     title: user.title || "",
-    amount: user.goal_amount || "",
+    goal_amount: user.goal_amount || "",
     location: user.location || "",
     category: user?.category || " ",
     is_featured: user?.is_featured || false,
@@ -111,33 +111,30 @@ const   EditCampaign = () => {
     const changedValues = Object.keys(values).filter(
       (key) => values[key] !== initial_values[key]
     );
-  
+
     const payload = {};
     changedValues.forEach((key) => {
       payload[key] = values[key];
     });
-  
+
     const formData = new FormData();
-  
+
     const documentsArray = values.documents ? Array.from(values.documents) : [];
-  
+
     documentsArray.forEach((file, index) => {
       formData.append(`documents`, file);
     });
-  
+
     Object.entries(payload).forEach(([key, value]) => {
-      if (key !== "documents" && key !== "status") { // Exclude status from payload
-        formData.append(
-          key,
-          value instanceof File ? value : JSON.stringify(value)
-        );
+      if (key !== "documents" && key !== "status") {
+        formData.append(key, value instanceof File ? value : value);
       }
     });
-  
-    if (!formData.has('status')) {
-      formData.append('status', values.status.value);
+
+    if (changedValues.includes("status")) {
+      formData.append("status", values.status);
     }
-  
+
     mutate(formData, {
       onSuccess: (response) => {
         toast.success(response?.data?.message, {
@@ -153,7 +150,6 @@ const   EditCampaign = () => {
       },
     });
   };
-  
 
   return (
     <Formik
@@ -211,8 +207,8 @@ const   EditCampaign = () => {
                 <InputField
                   type={"number"}
                   onChange={handleChange}
-                  value={values?.amount}
-                  name={"amount"}
+                  value={values?.goal_amount}
+                  name={"goal_amount"}
                   label={"Amount to be raised:"}
                   placeholder={"Minimum 50 INR"}
                 />
@@ -228,14 +224,14 @@ const   EditCampaign = () => {
               </div>
               <div className="w-full">
                 <FormLabel
-                  className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
+                  className="font-medium d-flex align-items-center desktop:text-[1.2rem] max-desktop:text-[1rem]"
                   style={{
                     padding: "4px 8px 8px 8px",
                     color: colors.text.main,
                     fontWeight: 700,
                     fontFamily: "satoshi",
                     fontStyle: "normal",
-                    fontSize: "16px",
+                    fontSize: "1rem",
                   }}
                 >
                   About the Campaign:
@@ -279,7 +275,7 @@ const   EditCampaign = () => {
 
               <div className="w-full flex flex-col">
                 <FormLabel
-                  className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
+                  className="font-medium d-flex align-items-center desktop:text-[1.2rem] max-desktop:text-[1rem]"
                   style={{
                     padding: "4px 8px 16px 8px",
                     color: colors.text.main,
@@ -349,7 +345,7 @@ const   EditCampaign = () => {
                     style={{
                       padding: "4px 8px 8px 8px",
                       color: colors.text.main,
-                      fontSize: "16px",
+                      fontSize: "1rem",
                       fontWeight: 700,
                       fontFamily: "satoshi",
                       fontStyle: "normal",
@@ -398,7 +394,7 @@ const   EditCampaign = () => {
                     { label: "Off", value: false },
                   ]}
                   label="Featured:"
-                  style={{ fontSize: "18px", fontWeight: 500 }}
+                  style={{ fontSize: "1.1rem", fontWeight: 500 }}
                 />
               </div>
             </div>
@@ -424,7 +420,7 @@ const   EditCampaign = () => {
               onClick={() => navigate(-1)}
               className="w-[69px] content-stretch h-[32px] bg-[#F7F7F7]"
             >
-              <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
+              <h1 className="text-[#000000] font-medium text-[0.9rem] font-[satoshi]">
                 Cancel
               </h1>
             </button>

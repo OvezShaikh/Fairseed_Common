@@ -3,20 +3,16 @@
   font-size: 0;
   color: #080505;
   background-color: #fff;
-
-
 }
 
 .slick-prev:hover,
 .slick-next:hover {
   color: #080505;
-
 }
 
 /* .slick-prev {
 /* background: url('../../assets/reshot-icon-arrow-left-4NA6KJF8CU.svg') no-repeat center center;
 fill: rgb(1, 1, 12); */
-
 
 /* } */
 */
@@ -31,11 +27,7 @@ fill: rgb(1, 1, 12); */
   color: #080505;
   /* font-size: 35px; */
   align-items: start;
-
-
 }
-
-
 
 .slick-slider .slick-track {
   margin: 0;
@@ -57,42 +49,30 @@ fill: rgb(1, 1, 12); */
   align-items: center;
 }
 
-
 .slick-prev:before,
 .slick-next:before {
   color: #080505;
-  font-size: 35px;
-
+  font-size: 1.95rem;
 }
-
 
 .slick-prev,
 .slick-next {
   font-size: 0;
   color: #080505;
   background-color: #fff;
-
-
 }
 
 .slick-prev:hover,
 .slick-next:hover {
   color: #080505;
-
 }
-
-
 
 .slick-prev:before,
 .slick-next:before {
   color: #080505;
   /* font-size: 35px; */
   align-items: start;
-
-
 }
-
-
 
 .slick-slider .slick-track {
   margin: 0;
@@ -118,9 +98,7 @@ fill: rgb(1, 1, 12); */
 .slick-next {
   width: 48px;
   height: 48px;
-
 }
-
 
 .slick-next {
   margin-left: 50px;
@@ -128,9 +106,7 @@ fill: rgb(1, 1, 12); */
   top: 260px;
 }
 
-
 @media only screen and (max-width: 1365px) {
-
   svg.slick-arrow.slick-next,
   svg.slick-arrow.slick-prev.slick-disabled {
     display: none !important;

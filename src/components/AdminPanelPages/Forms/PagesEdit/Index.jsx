@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 
 const styleLabel = {
   fontFamily: "satoshi",
-  fontSize: 16,
+  fontSize: "1rem",
   fontWeight: 700,
   color: "#383A42",
 };
@@ -23,7 +23,6 @@ function Index() {
   const navigate = useNavigate();
   let { state } = useLocation();
   let { id } = state;
-  // console.log(id, "=====<id");
   const initialValues = {
     title: Details?.title || "",
     slug: Details?.slug || "",
@@ -37,7 +36,6 @@ function Index() {
     key: `admin-dashboard/pages/${id}`,
     enabled: true,
     select: (data) => {
-      console.log(data.data);
       return data.data.data;
     },
     onSuccess: (data) => {
@@ -94,53 +92,44 @@ function Index() {
           <div className="flex gap-32 w-full pt-8 max-tablet:flex-col max-tablet:gap-0">
             <div className="  lg:w-[25%] ">
               <RadioGroup
-
                 name={"show_navbar"}
-                onChange={
-                  (e) => {
-                    setFieldValue("show_navbar", e === "true")
-                  }}
+                onChange={(e) => {
+                  setFieldValue("show_navbar", e === "true");
+                }}
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
                 ]}
                 label="Show Navbar"
                 value={values?.show_navbar}
-              // onChange={onChange}
               />
             </div>
             <div className="lg:w-[25%]">
               <RadioGroup
                 name={"show_footer"}
-
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
                 ]}
                 label="Show Footer"
-                onChange={
-                  (e) => {
-                    setFieldValue("show_footer", e === "true")
-                  }
-                }
+                onChange={(e) => {
+                  setFieldValue("show_footer", e === "true");
+                }}
                 value={values?.show_footer}
-              // onChange={onChange}
               />
             </div>
             <div className=" lg:w-[25%] ">
               <RadioGroup
-                onChange={
-                  (e) => {
-                    setFieldValue("show_page", e === "true")
-                  }
-                } name={"show_page"}
+                onChange={(e) => {
+                  setFieldValue("show_page", e === "true");
+                }}
+                name={"show_page"}
                 options={[
                   { label: "On", value: true },
                   { label: "Off", value: false },
                 ]}
                 label="Show Page"
                 value={values?.show_page}
-              // onChange={onChange}
               />
             </div>
           </div>
@@ -157,6 +146,7 @@ function Index() {
           </div>
           <div className="flex flex-row gap-4 mt-12 max-tablet:mt-16">
             <button
+              type="button"
               className="w-[69px] h-[32px] bg-[#F7F7F7]"
               onClick={() => navigate(-1)}
             >

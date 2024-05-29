@@ -22,7 +22,7 @@ export const PagesAddNew = ({
   const queryClient = useQueryClient();
   const styleLabel = {
     fontFamily: "satoshi",
-    fontSize: 16,
+    fontSize: "1rem",
     fontWeight: 700,
     color: "#383A42",
   };
@@ -54,43 +54,17 @@ export const PagesAddNew = ({
     url: `/admin-dashboard/pages`,
   });
 
-  // const { mutate, isLoading } = useCreateOrUpdate({
-  //   url: isUpdate ? `/admin/tooltip/${data?.id}` : "/admin/tooltip",
-  //   method: isUpdate ? "put" : "post",
-  //   onSuccess: () => onSuccess && onSuccess(),
-  // });
-
   return (
     <Dialog
       title={`${isUpdate ? "Update" : "Add"}  New Pages`}
       onClose={() => onClose && onClose()}
       button={
-        // isUpdate ? (
-        //   <Button
-        //     onClick={() => onClick && onClick()}
-        //     startIcon={<Edit />}
-        //     className="text-capitalize"
-        //     sx={{
-        //       lineHeight: "18px",
-        //       fontFamily: "FuturaLight",
-        //       fontWeight: "300",
-        //       fontSize: {
-        //         xs: "0.8rem",
-        //         lg: "0.9rem",
-        //       },
-        //     }}
-        //     variant="text"
-        //   >
-        //     View/Edit
-        //   </Button>
-        // ) : (
         <PrimaryButton
           className="text-capitalize"
           startIcon={<Add size={24} />}
         >
           Add New
         </PrimaryButton>
-        // )
       }
     >
       {({ onClose }) => (
@@ -199,6 +173,7 @@ export const PagesAddNew = ({
               </div>
               <div className="flex flex-row gap-4 mt-12 max-tablet:mt-16">
                 <button
+                  type="button"
                   className="w-[69px] h-[32px] bg-[#F7F7F7]"
                   onClick={() => onClose()}
                 >

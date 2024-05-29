@@ -101,8 +101,8 @@ const MultipleRows = () => {
         },
       }}
       scrollbar={{ draggable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
+      // onSwiper={(swiper) => console.log(swiper)}
+      // onSlideChange={() => console.log("slide change")}
     >
       {loading && <div>Loading...</div>}
       {error && <div>Error: {error}</div>}
@@ -129,7 +129,7 @@ const MultipleRows = () => {
                     />
                   </div>
                   <div
-                    className="py-2 text-[24px] max-desktop:text-[20px] max-tablet:text-[18px] w-[100%] text-center bottom-slider"
+                    className="py-2 text-[1.5rem] max-desktop:text-[20px] max-tablet:text-[18px] w-[100%] text-center bottom-slider"
                     style={{
                       fontFamily: "Satoshi",
                       color: "#383A42",

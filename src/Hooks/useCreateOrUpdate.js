@@ -2,7 +2,6 @@ import serverAPI from "../config/serverAPI";
 import { useMutation } from "react-query";
 import errorHandle from "../utils/errorHandle";
 
-
 export function useCreateOrUpdate({
   url,
   method = "post",
@@ -17,7 +16,6 @@ export function useCreateOrUpdate({
     onSuccess: (response, variables, context) => {
       onSuccess && onSuccess(response, variables, context);
       refetch && refetch();
-      console.log(response, "<------------------>");
     },
     onError: (data) => {
       errorHandle(data);

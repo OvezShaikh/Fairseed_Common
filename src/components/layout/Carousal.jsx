@@ -12,7 +12,7 @@ import images from "../../constants/images";
 import removeTags from "../../utils/Removetag";
 
 const style = {
-  fontSize: "24px",
+  fontSize: "1.5rem",
   fontWeight: 900,
   fontFamily: "satoshi",
   color: "#FFFFFF",
@@ -20,7 +20,7 @@ const style = {
   borderRadius: "8px",
 };
 const style1 = {
-  fontSize: "16px",
+  fontSize: "1rem",
   fontWeight: 900,
   fontFamily: "satoshi",
   color: "#FFFFFF",
@@ -39,7 +39,6 @@ const HomeSwiper = () => {
     key: `/campaign/featured-campaign?page=${page}&limit=${perPage}`,
     enabled: true,
     select: (data) => {
-      console.log(data?.data?.rows, ">>>>>>>>>>>");
       return data?.data?.rows;
     },
     onSuccess: (data) => {
@@ -70,7 +69,7 @@ const HomeSwiper = () => {
           src={images.NoData}
           alt="Error"
         />
-        <p className="text-[40px] font-[satoshi] font-bold max-desktop:text-[22px] max-tablet:text-[14px]">
+        <p className="text-[2.5rem] font-[satoshi] font-bold max-desktop:text-[1.4rem] max-tablet:text-[0.9rem]">
           Oops! Something went wrong. Please try again later.
         </p>
       </div>
@@ -101,8 +100,8 @@ const HomeSwiper = () => {
       }}
       navigation
       scrollbar={{ draggable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
+      // onSwiper={(swiper) => console.log(swiper)}
+      // onSlideChange={() => console.log("slide change")}
     >
       {allCards.map((item) => {
         const image = `${process.env.REACT_APP_API_URL}${item?.campaign_image}`;
@@ -125,10 +124,10 @@ const HomeSwiper = () => {
               </div>
 
               <div className="max-w-[815px] max-tablet:left-3.5 bg-transparent max-tablet:top-[6%] max-tablet:w-[343px] h-[408px] max-desktop:flex max-desktop:flex-col space-y-6 top-[29%] left-[14rem] max-desktop:top-[5%] max-desktop:left-[4rem] z-20 absolute max-desktop:text-center max-desktop:justify-center">
-                <h1 className="text-[56px] font-black font-[satoshi] max-tablet:text-[28px] max-desktop:w-[630px] max-tablet:w-full  text-[#25272C]">
+                <h1 className="text-[3.5rem] font-black font-[satoshi] max-tablet:text-[1.75rem] max-desktop:w-[630px] max-tablet:w-full  text-[#25272C]">
                   {item?.title}
                 </h1>
-                <p className="text-[28px] font-medium font-[satoshi]  max-tablet:text-[18px]  max-desktop:w-[630px] max-tablet:w-full text-[#8E95A2] ">
+                <p className="text-[1.75rem] font-medium font-[satoshi]  max-tablet:text-[1.1rem]  max-desktop:w-[630px] max-tablet:w-full text-[#8E95A2] max-h-[200px] line-clamp-3 !max-desktop:truncate">
                   {removeTags(item?.summary)}
                 </p>
                 <div className="">
@@ -150,10 +149,10 @@ const HomeSwiper = () => {
                 style={{ backgroundImage: `url(${images.HeaderImage2})` }}
               >
                 <div className="flex flex-col  w-[70%] items-center gap-4 absolute z-50 text-center">
-                  <h1 className="text-[56px] font-black font-[satoshi] max-tablet:text-[28px]  max-tablet:w-full  text-[#25272C]">
+                  <h1 className="text-[3.5em] font-black font-[satoshi] max-tablet:text-[1.75rem]  max-tablet:w-full  text-[#25272C]">
                     {item?.title}
                   </h1>
-                  <p className="text-[28px] font-medium font-[satoshi]  max-tablet:text-[18px]  max-tablet:w-full text-[#8E95A2] ">
+                  <p className="text-[1.75rem] font-medium font-[satoshi]  max-tablet:text-[1.1rem]  max-tablet:w-full text-[#8E95A2] ">
                     {removeTags(item?.summary)}
                   </p>
                   <div className="max-tablet:hidden">

@@ -7,7 +7,7 @@ import images from "../../../constants/images";
 
 const UploadField = ({
   variant,
-  multiple = true,
+  multiple = false,
   label = "",
   name,
   placeholder,
@@ -42,7 +42,7 @@ const UploadField = ({
           sx={{
             padding: "4px 8px 12px 8px",
             color: colors.text.main,
-            fontSize: "20px",
+            fontSize: "1.2rem",
             fontWeight: 700,
             fontFamily: "satoshi",
             fontStyle: "normal",
@@ -56,13 +56,14 @@ const UploadField = ({
 
       <div className="flex w-full desktop:h-[64px] max-desktop:h-[64px] max-tablet:h-[48px] Upload_field">
         <InputBase
+          multiple={multiple}
           value={field.value ? field.value.name : ""}
           placeholder={placeholder}
           label={label}
           sx={{
             "& .MuiInputBase-input": {
               padding: "10px",
-              fontSize: "15px",
+              fontSize: "1rem",
             },
           }}
           fullWidth
@@ -77,6 +78,7 @@ const UploadField = ({
         <>
           <input
             type="file"
+            multiple={multiple}
             ref={ref}
             style={{ display: "none" }}
             id={`file - input - ${name}`} // Unique ID for each input

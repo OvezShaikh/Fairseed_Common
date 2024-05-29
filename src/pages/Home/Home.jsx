@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./Home.css";
 
 import button from "../../constants/button";
@@ -20,6 +20,7 @@ import { Link } from "react-router-dom";
 import BottomSlider from "../../components/layout/BottomSlider/Index";
 
 import FilterField from "../../components/inputs/FilterField/Index";
+import UserLogin from "../login/Login_page/Index";
 
 function Home() {
   const [userList, setUserList] = useState([]);
@@ -30,7 +31,6 @@ function Home() {
   const [showOptions, setShowOptions] = useState(false);
   const [perPage, setPerPage] = useState(100);
   const [tabName, setTabName] = useState("newly_added");
-  const [userProfile, setUserProfile] = useState();
   const [categoryDataFromChild, setCategoryDataFromChild] = useState("");
   const [locationDataFromChild, setLocationDataFromChild] = useState("");
   const [filterName, setFilterName] = useState("");
@@ -112,13 +112,11 @@ function Home() {
       );
 
       const res = response.data;
-      console.log(res, "FilterName=======>");
+
       setFilterName(res.filter_key);
-      // console.log("RES ----->", res);
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList(res.rows);
-        // setUserProfile(res.rows?.user?.profile_pic);
         setCampaignCount(res.count);
       } else {
         console.error("Invalid data structure. Expected an array:", res.data);
@@ -137,8 +135,6 @@ function Home() {
         `${process.env.REACT_APP_API_URL}/campaign/campaign-filter?page=${page}&limit=${perPage}&filter=${tabName}`
       );
       const res = response.data;
-      // console.log("RES ----->", res);
-
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
         setUserList([...userList, ...res.rows]);
@@ -154,17 +150,25 @@ function Home() {
     fetchCampaigns();
   }, [page]);
 
-  let bnk = [
-    {
-      title: "Help me fund my College Fees for Harvard University",
-      img: "https://deih43ym53wif.cloudfront.net/large_blue-mosque-glorius-sunset-istanbul-sultan-ahmed-turkey-shutterstock_174067919.jpg_1404e76369.jpg",
-      actualMoney: 6700,
-      totalMoney: 64000,
-      userCount: "1003",
-      daysLeft: "10 Days Left",
-    },
-  ];
-  console.log(userProfile, "UserProfile==================>");
+
+
+
+  const ancestorRef = useRef(null);
+  const elementRef = useRef(null);
+  const [position, setPosition] = useState({ top: 0, left: 0 });
+
+  useEffect(() => {
+    const ancestorRect = ancestorRef.current.getBoundingClientRect();
+    const elementRect = elementRef.current.getBoundingClientRect();
+
+    const relativePosition = {
+      top: elementRect.top - ancestorRect.top,
+      left: elementRect.left - ancestorRect.left
+    };
+
+    setPosition(relativePosition);
+  }, []);
+
   return (
     <>
       <div className="">
@@ -187,7 +191,7 @@ function Home() {
       <div className="flex pt-[128px] ">
         <div className="w-full flex-wrap flex flex-col items-center mx-10">
           <h1
-            className="font-extrabold pb-[24px] desktop:text-[48px] max-desktop:text-[36px] max-tablet:text-[24px] max-tablet:pb-[20px]"
+            className="font-extrabold pb-[24px] desktop:text-[3rem] max-desktop:text-[2.25rem] max-tablet:text-[1.5rem] max-tablet:pb-[20px]"
             style={{ fontFamily: "Satoshi" }}
           >
             Ongoing Campaigns
@@ -198,7 +202,7 @@ function Home() {
               style={{
                 width: "100%",
                 textAlign: "center",
-                fontSize: 24,
+                fontSize: "1.5rem",
                 fontFamily: "Satoshi",
                 fontWeight: "500",
                 wordWrap: "break-word",
@@ -210,7 +214,7 @@ function Home() {
                 position: "relative",
               }}
             >
-              <p className="gradient-button mb-0 underline max-tablet:text-[16px]">
+              <p className="gradient-button mb-0 underline max-tablet:text-[1rem]">
                 See all {campaignCount} active campaigns
               </p>
             </Link>
@@ -226,9 +230,9 @@ function Home() {
             style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
             onClick={filterToggle}
           >
-            <img src={images.Funnel} />
+            <img src={images.Funnel} alt="" />
             <p
-              className="text-[18px]"
+              className="text-[1.1rem]"
               style={{
                 background:
                   "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
@@ -242,16 +246,19 @@ function Home() {
             </p>
           </button>
         </div>
+        <div className="div-rel"  ref={ancestorRef} >
         {showOptions && (
           <FilterField
             sendCategoryToParent={receiveCategoryFromChild}
             sendLocationToParent={receiveLocationFromChild}
           />
         )}
+        </div>
         <div className="desktop:gap-x-[36px] desktop:gap-y-[48px] mt-[48px]  flex flex-wrap w-full justify-center desktop:max-w-[1740px] max-desktop:gap-x-[16px]  max-desktop:gap-y-[24px] max-tablet:gap-y-[48px]">
           {filteredUserList?.slice(0, visibleCards).map((item) => {
             return (
               <Card
+                Profile_pic={item?.user?.profile_pic}
                 filterName={filterName}
                 key={item?.id}
                 username={item?.user?.username}
@@ -276,7 +283,7 @@ function Home() {
             width: "fit-content",
             textAlign: "center",
             color: "#FF9F0A",
-            fontSize: 24,
+            fontSize: "1.5rem",
             fontFamily: "Satoshi",
             fontWeight: "500",
             textDecoration: "underline",
@@ -301,7 +308,7 @@ function Home() {
           style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
         >
           <h1
-            className="font-bold pb-[96px] text-[48px] max-desktop:pb-[48px] max-tablet:pb-[28px] max-tablet:text-[24px]"
+            className="font-bold pb-[96px] text-[3rem] max-desktop:pb-[48px] max-tablet:pb-[28px] max-tablet:text-[1.5rem]"
             style={{ fontFamily: "Satoshi", fontWeight: 900 }}
           >
             How it Works
@@ -317,7 +324,7 @@ function Home() {
                 </div>
                 <div className=" ml-2 col-span-10">
                   <h1
-                    className="text-[28px] font-black max-tablet:text-[24px] max-tablet:font-bold"
+                    className="text-[2.25rem] font-black max-tablet:text-[1.5rem] max-tablet:font-bold"
                     style={{
                       color: "#4A4E5A",
 
@@ -329,7 +336,7 @@ function Home() {
                     Create your Profile
                   </h1>
                   <p
-                    className="text-[24px] max-tablet:text-[18px] max-tablet:font-normal"
+                    className="text-[1.5rem] max-tablet:text-[1.1rem] max-tablet:font-normal"
                     style={{
                       width: "100%",
                       color: "#6B7280",
@@ -349,6 +356,7 @@ function Home() {
             </div>
             <img
               className="col-span-1 max-desktop:rotate-90"
+              alt=""
               src={images.Arrow}
             />
             <div className="col-span-3 grid grid-cols-1 place-items-center">
@@ -361,7 +369,7 @@ function Home() {
                 </div>
                 <div className=" ml-2 col-span-10">
                   <h1
-                    className="text-[28px] font-black max-tablet:text-[24px] max-tablet:font-bold"
+                    className="text-[2.25rem] font-black max-tablet:text-[1.5rem] max-tablet:font-bold"
                     style={{
                       color: "#4A4E5A",
 
@@ -373,7 +381,7 @@ function Home() {
                     Fill Cause Information
                   </h1>
                   <p
-                    className="text-[24px] max-tablet:text-[18px] max-tablet:font-normal"
+                    className="text-[1.5rem] max-tablet:text-[1.1rem] max-tablet:font-normal"
                     style={{
                       width: "100%",
                       color: "#6B7280",
@@ -393,6 +401,7 @@ function Home() {
             </div>
             <img
               className="col-span-1 max-desktop:rotate-90"
+              alt=""
               src={images.Arrow}
             />
             <div className="col-span-3 grid grid-cols-1  place-items-center">
@@ -405,7 +414,7 @@ function Home() {
                 </div>
                 <div className=" ml-2 col-span-10">
                   <h1
-                    className="text-[28px] font-black max-tablet:text-[24px] max-tablet:font-bold"
+                    className="text-[2.25rem] font-black max-tablet:text-[1.5rem] max-tablet:font-bold"
                     style={{
                       color: "#4A4E5A",
 
@@ -417,7 +426,7 @@ function Home() {
                     Update Acc details
                   </h1>
                   <p
-                    className="text-[24px] max-tablet:text-[18px] max-tablet:font-normal"
+                    className="text-[1.5rem] max-tablet:text-[1.1rem] max-tablet:font-normal"
                     style={{
                       width: "100%",
                       color: "#6B7280",
@@ -436,38 +445,104 @@ function Home() {
               </div>
             </div>
           </div>
-          <Link to="/Home/Create-Campaign">
-            <PrimaryButton
-              sx={{
-                borderRadius: "var(--Pixels-8, 8px)",
-                fontSize: 20,
-                fontWeight: "900",
-                padding: "15px 28px 15px 28px",
-              }}
-              className="py-[15px] px-[28px] my-10"
-            >
-              <div
-                className="mr-2"
-                style={{ width: 32, height: 32, position: "relative" }}
-              >
-                <img src={images.RocketLaunch} alt="" />
+          {localStorage.getItem("token") ? (
+            <>
+              <Link to="/Home/Create-Campaign">
+                <PrimaryButton
+                  sx={{
+                    borderRadius: "var(--Pixels-8, 8px)",
+                    fontSize: "1.2rem",
+                    fontWeight: "900",
+                    padding: "15px 28px 15px 28px",
+                  }}
+                  className="py-[15px] px-[28px] my-10"
+                >
+                  <div
+                    className="mr-2"
+                    style={{ width: 32, height: 32, position: "relative" }}
+                  >
+                    <img src={images.RocketLaunch} alt="" />
+                  </div>
+                  <div className="max-tablet:text-[1rem]">
+                    Launch a Campaign Now !
+                  </div>
+                </PrimaryButton>
+              </Link>
+            </>
+          ) : (
+            <>
+              <div className="max-tablet:hidden max-desktop:hidden">
+                <PrimaryButton
+                  sx={{
+                    borderRadius: "var(--Pixels-8, 8px)",
+                    fontSize: "1.2rem",
+                    fontWeight: "900",
+                    padding: "15px 28px 15px 28px",
+                  }}
+                  className="py-[15px] px-[28px] my-10"
+                >
+                  <div
+                    className="mr-2"
+                    style={{ width: 32, height: 32, position: "relative" }}
+                  >
+                    <img src={images.RocketLaunch} alt="" />
+                  </div>
+                  <div className="max-tablet:text-[1rem]">
+                    <h1
+                      style={{
+                        color: "var(--Base-Colours-Text-Primary, #25272C)",
+                        fontSize: "1.2rem",
+                        fontFamily: "Satoshi ",
+                        fontWeight: 700,
+                        wordWrap: "break-word",
+                      }}
+                    >
+                      <UserLogin
+                        text={"Launch a Campaign Now !"}
+                        color={"white"}
+                        fontWeight={700}
+                        size={"20px"}
+                      />
+                    </h1>
+                  </div>
+                </PrimaryButton>
               </div>
-              <div className="max-tablet:text-[16px]">
-                Launch a Campaign Now !
+              <div className="desktop:hidden">
+                <Link to="/Home/Login">
+                  <PrimaryButton
+                    sx={{
+                      borderRadius: "var(--Pixels-8, 8px)",
+                      fontSize: "1.2rem",
+                      fontWeight: "900",
+                      padding: "15px 28px 15px 28px",
+                    }}
+                    className="py-[15px] px-[28px] my-10"
+                  >
+                    <div
+                      className="mr-2"
+                      style={{ width: 32, height: 32, position: "relative" }}
+                    >
+                      <img src={images.RocketLaunch} alt="" />
+                    </div>
+                    <div className="max-tablet:text-[1rem]">
+                      Launch a Campaign Now !
+                    </div>
+                  </PrimaryButton>
+                </Link>
               </div>
-            </PrimaryButton>
-          </Link>
+            </>
+          )}
         </div>
       </section>
       <div className="flex-col pt-[60px] pb-[50px] flex-wrap container flex w-full text-center items-center max-tablet:pb-[24px]">
         <h1
-          className="desktop:text-[48px] font-bold max-desktop:text-[36px] max-tablet:text-[24px]"
+          className="desktop:text-[3rem] font-bold max-desktop:text-[2.25rem] max-tablet:text-[1.5rem]"
           style={{ fontFamily: "Satoshi", fontWeight: 900 }}
         >
           Causes by Category
         </h1>
         <p
-          className="text-black/60 font-medium mt-3 max-w-[974px] desktop:text-[24px] desktop:font-bold capitalize text-[#8E95A2] max-desktop:text-[20px] max-tablet:text-[16px] max-tablet:mt-[24px] max-tablet:font-normal"
+          className="text-black/60 font-medium mt-3 max-w-[974px] desktop:text-[1.5rem] desktop:font-bold capitalize text-[#8E95A2] max-desktop:text-[1.25rem] max-tablet:text-[1rem] max-tablet:mt-[24px] max-tablet:font-normal"
           style={{ fontFamily: "Satoshi" }}
         >
           Be it for a personal need, social cause or a creative idea - you can

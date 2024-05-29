@@ -1,10 +1,8 @@
 import React from "react";
-
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import DrawerBody from "./User_DrawerBody";
 import Navbar from "../navbar/index";
-import AdminNavbar from "../AdminNavbar";
 import User_DrawerBody from "./User_DrawerBody";
 
 export function User_SideBar({ mobileOpen, setMobileOpen }) {
@@ -60,7 +58,7 @@ export function User_SideBar({ mobileOpen, setMobileOpen }) {
               boxSizing: "border-box",
               // width: mobileOpen ? `273px` : '0px',
               left: mobileOpen ? "0px" : "-285px",
-              top: "59px",
+              top: "72px",
             },
           }}
           open

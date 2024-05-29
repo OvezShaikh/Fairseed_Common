@@ -1,54 +1,50 @@
-import { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LuPencil } from "react-icons/lu";
 import Modal from "./Modal";
 import { useFormikContext } from "formik";
 
-const Profile = ({ name , value  , setSrcImg ,srcImg }) => {
-  const { setFieldValue , values } = useFormikContext();
-  const [avatarFile , setAvatarFile] = useState(srcImg);
+const Profile = ({ name, setSrcImg, srcImg }) => {
+  const { setFieldValue, values } = useFormikContext();
   const [modalOpen, setModalOpen] = useState(false);
- 
 
   const updateAvatar = (file) => {
-    let cropped_file =  base64toFile(file , name )
-    console.log(file ,"file")
-    setSrcImg(cropped_file);
-    setFieldValue(name, cropped_file); 
+    const croppedFile = base64toFile(file, name);
+    setSrcImg(file);
+    setFieldValue(name, croppedFile);
   };
 
   const base64toFile = (dataurl, name) => {
-    if (typeof name !== "null"){
-    const arr = dataurl.split(",");
-    const mime = arr[0].match(/:(.*?);/)[1];
-    const bstr = atob(arr[1]);
-    let n = bstr.length;
-    const u8arr = new Uint8Array(n);
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
+    if (name) {
+      const arr = dataurl.split(",");
+      const mime = arr[0].match(/:(.*?);/)[1];
+      const bstr = atob(arr[1]);
+      const n = bstr.length;
+      const u8arr = new Uint8Array(n);
+      for (let i = 0; i < n; i++) {
+        u8arr[i] = bstr.charCodeAt(i);
+      }
+      return new File([u8arr], values?.profile_pic || "${name}.png", {
+        type: mime,
+      });
     }
-    const fileName = name
-    ? value
-    :  "example.png";
-    return new File([u8arr], fileName, { type: mime });
-  }
+    return null;
   };
 
-
   return (
-    <div className="flex flex-col items-center pt-0">
+    <div className="flex flex-col items-center ">
       <div className="relative">
         <img
           src={srcImg}
           alt="Avatar"
-          className="w-[190px] h-[190px] rounded-full border-2 flex text-center  border-gray-400"
+          className="w-[180px] h-[180px] rounded-full border-2 border-gray-400"
         />
         <button
           type="button"
-          className="absolute bottom-3 left-13 right-2 m-auto w-fit p-[.35rem] rounded-full bg-gray-800 hover:bg-gray-700 border border-gray-600"
+          className="absolute bottom-[19px] left-[138px] right-[12px] m-auto w-fit p-[.35rem] rounded-full bg-gray-800 hover:bg-gray-700 border border-gray-600"
           title="Change photo"
           onClick={() => setModalOpen(true)}
         >
-          <LuPencil className="text-white size-7" />
+          <LuPencil className="size-7 text-white" />
         </button>
       </div>
       {modalOpen && (

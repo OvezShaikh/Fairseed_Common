@@ -17,13 +17,12 @@ import ImageEditor from "../../layout/ImageEditor/Index";
 import { useState } from "react";
 import ImageBackgroundWithDeleteButton from "../../layout/CropAddImage/Index";
 import Attachments from "../../../layout/Attachments/Index";
-import {  useGetAll } from "../../../Hooks";
+import { useGetAll } from "../../../Hooks";
 
-import { height } from "@mui/system";
 const InputStyle = {
   padding: "20px",
   border: "1px solid #e2e2e2",
-  // },
+
   "&:focus-within": {
     boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
     borderColor: "black",
@@ -32,7 +31,7 @@ const InputStyle = {
 const InputStyleDate = {
   padding: "12px",
   border: "1px solid #e2e2e2",
-  // },
+
   "&:focus-within": {
     boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
     borderColor: "black",
@@ -52,7 +51,6 @@ function Index() {
 
   const handleDocumentUpload = (documentUrl) => {
     setDocuments([...documents, documentUrl]);
-    console.log(setDocuments, "================>docs");
   };
 
   const [user, setUser] = useState({});
@@ -62,17 +60,14 @@ function Index() {
   const [imageUrl, setImageUrl] = useState("");
 
   const handleDelete = () => {
-    
     setImageUrl("");
   };
-
 
   const { data, isSuccess } = useGetAll({
     key: `/admin-dashboard/campaign/16399639-ba2c-44e4-94a6-294e11cb06a3
         `,
     enabled: true,
     select: (data) => {
-      console.log(data.data.data);
       return data.data.data;
     },
     onSuccess: (data) => {
@@ -92,7 +87,6 @@ function Index() {
   if (!isSuccess) {
     return <div>Loading...</div>;
   }
-  console.log(initial_values);
 
   return (
     <Formik initialValues={initial_values} enableReinitialize={true}>
@@ -120,7 +114,6 @@ function Index() {
                 required={true}
                 label="Choose a Category:"
                 value={values?.init_category}
-                // onChange={Formik.value.category}
                 options={category.map((item) => ({
                   label: item.name,
                   value: item.id,
@@ -150,7 +143,7 @@ function Index() {
                     fontWeight: 700,
                     fontFamily: "satoshi",
                     fontStyle: "normal",
-                    fontSize: "18px",
+                    fontSize: "1.1rem",
                   }}
                 >
                   About the Campaign:
@@ -187,7 +180,7 @@ function Index() {
                   sx={{
                     padding: "20px",
                     border: "1px solid #e2e2e2",
-                    // },
+
                     "&:focus-within": {
                       boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
                       borderColor: "black",
@@ -257,7 +250,7 @@ function Index() {
                     style={{
                       padding: "4px 8px 8px 8px",
                       color: colors.text.main,
-                      fontSize: "20px",
+                      fontSize: "1.2rem",
                       fontWeight: 700,
                       fontFamily: "satoshi",
                       fontStyle: "normal",
@@ -289,7 +282,7 @@ function Index() {
                   sx={{
                     padding: "20px",
                     border: "1px solid #e2e2e2",
-                    // },
+
                     "&:focus-within": {
                       boxShadow: `0px 4px 10px 0px rgba(0, 0, 0, 0.15);`,
                       borderColor: "black",
@@ -308,7 +301,6 @@ function Index() {
                   ]}
                   label="Featured:"
                   style={{ fontSize: "18px", fontWeight: 500 }}
-                  // onChange={onChange}
                 />
               </div>
             </div>
@@ -329,6 +321,7 @@ function Index() {
           </div>
           <div className="flex gap-3 max-tablet:flex-col  max-tablet:items-center pt-5">
             <button
+              type="button"
               onClick={() => {}}
               className="w-[69px] content-stretch h-[32px] bg-[#F7F7F7]"
             >

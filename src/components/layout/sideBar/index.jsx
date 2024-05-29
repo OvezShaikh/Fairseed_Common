@@ -58,7 +58,7 @@ export function SideBar({ mobileOpen, setMobileOpen }) {
               boxSizing: "border-box",
               // width: mobileOpen ? `273px` : '0px',
               left: mobileOpen ? "0px" : "-285px",
-              top: "59px",
+              top: "72px",
             },
           }}
           open

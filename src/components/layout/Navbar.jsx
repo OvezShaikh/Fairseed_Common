@@ -2,7 +2,7 @@ import * as React from "react";
 import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import PrimaryButton from "../inputs/PrimaryButton";
 import images from "../../constants/images";
 import UserLogin from "../../pages/login/Login_page/Index";
@@ -10,15 +10,14 @@ import { Link, NavLink } from "react-router-dom";
 import ProfileAvatar from "../../pages/login/ProfileAvatar";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { useGetAll } from "../../Hooks";
+import { useDebounce, useGetAll } from "../../Hooks";
 import { useRef } from "react";
-import MenuItem from "@mui/material/MenuItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import Logout from "@mui/icons-material/Logout";
-import Avatar from "@mui/material/Avatar";
-import Divider from "@mui/material/Divider";
-import Settings from "@mui/icons-material/Settings";
-
+import { Search } from "../inputs/Search";
+import serverAPI from "../../config/serverAPI";
+import { SiClubhouse, SiSearxng } from "react-icons/si";
+import { useEffect } from "react";
+import { Close } from "@mui/icons-material";
 const GetInvolved = [
   {
     name: "Associateship",
@@ -74,13 +73,6 @@ const AboutUs = [
   },
 ];
 
-const HowItWorks = [
-  {
-    name: "How-It-Works",
-    href: "/How-It-Works",
-  },
-];
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -101,20 +93,7 @@ export default function Example() {
   const perPage = 10;
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredCards, setFilteredCards] = useState([]);
   const [allCards, setAllCards] = useState([]);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [searchSuggestions, setSearchSuggestions] = useState([]);
-  const [showSuggestions, setShowSuggestions] = useState(true);
-  const [showSearch, setShowSearch] = useState(false);
-  // const [isInputFocused, setInputFocused] = useState(false);
-  // const [isInputVisible, setInputVisible] = useState(true);
-  const [isInputFocused, setIsInputFocused] = useState("");
-
-  const ref = useRef(null);
-  const suggestionRef = useRef(null);
-  const navigate = useNavigate();
 
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
@@ -122,63 +101,78 @@ export default function Example() {
   let image = Data?.profile_pic;
   let img = `${process.env.REACT_APP_API_URL}` + image;
 
-  const handleInputChange = (e) => {
-    setSearchTerm(e.target.value);
-    setShowSuggestions(true);
-    setIsInputFocused(true);
-  };
+  const [query, setQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [notFound, setNotFound] = useState(false);
+  const [inputVisible, setInputVisible] = useState(false); // State to control input visibility
 
-  const handleInputFocus = () => {
-    setIsInputFocused(true);
-  };
+  const debouncedQuery = useDebounce(query);
 
-  const handleInputBlur = (event) => {
-    const relatedTarget = event.relatedTarget;
-    if (
-      relatedTarget &&
-      suggestionRef.current &&
-      suggestionRef.current.contains(relatedTarget)
-    ) {
-      return;
+  useEffect(() => {
+    if (debouncedQuery) {
+      handleSearch();
     } else {
-      setIsInputFocused(false);
-      setSearchTerm("");
+      setSearchResults([]);
+      setNotFound(false);
     }
+  }, [debouncedQuery]);
+
+  const handleInputChange = (event) => {
+    setQuery(event.target.value);
   };
 
-  //   const handleInputBlur = (event) => {
-  //     const relatedTarget = event.relatedTarget;
-  //     if (relatedTarget && suggestionRef.current && suggestionRef.current.contains(relatedTarget)) {
-  //         if (relatedTarget.classList.contains('suggestion')) {
-  //             return;
-  //         }
-  //     }
-  //     setIsInputFocused(false);
-  //     setSearchTerm("");
-  //     setShowSuggestions(false);
-  // };
+  const handleSearch = () => {
+    setLoading(true);
+    // Replace 'https://api.example.com/search' with your actual API endpoint
+    serverAPI
+      .get(`${process.env.REACT_APP_BASE_URL}/campaign/global-search`)
+      .then((response) => {
+        if (!response.data.rows) {
+          console.error("Invalid response data:", response);
+          setLoading(false);
+          return;
+        }
 
-  const handleSuggestionClick = () => {
-    setIsInputFocused(true);
+        // Filter the response data based on the query
+        const filteredResults = response.data.rows.filter((result) => {
+          if (!result.title) {
+            console.warn("Result title is missing:", result);
+            return false;
+          }
+          // Check if any word in the title matches the query
+          const title = result.title.toLowerCase();
+          const query = debouncedQuery.toLowerCase();
+          return title.includes(query);
+        });
+
+        // Prepare suggestions with highlighted matching words
+        const highlightedResults = filteredResults.map((result) => {
+          const title = result.title;
+          const query = debouncedQuery;
+          const highlightedTitle = title.replace(
+            new RegExp(query, "gi"),
+            (match) => `<span class="highlight">${match}</span>`
+          );
+          return { ...result, highlightedTitle };
+        });
+
+        setSearchResults(highlightedResults);
+        setLoading(false);
+        // If no filtered results found, set notFound state to true
+        setNotFound(highlightedResults.length === 0);
+      })
+      .catch((error) => {
+        console.error("Error fetching search results:", error);
+        setLoading(false);
+      });
   };
-
-  // const toggleInputVisibility = () => {
-  //   setInputVisible(!isInputVisible);
-  // };
-
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    const filtered = allCards.filter((card) =>
-      card.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredCards(filtered);
-    const suggestion = allCards.map((card) => ({
-      id: card.id,
-      title: card.title,
-    }));
-    setSearchSuggestions(suggestion);
-    console.log(suggestion);
-    setIsInputFocused(true);
+  const toggleInputVisibility = () => {
+    if (inputVisible === false) {
+      setInputVisible((prev) => !prev); // Toggle input visibility
+    } else {
+      setInputVisible(false); // Toggle input visibility
+    }
   };
 
   useGetAll({
@@ -194,6 +188,10 @@ export default function Example() {
       console.error("Error fetching card titles:");
     },
   });
+  const clearInput = () => {
+    setQuery("");
+    setSearchResults([]); // Clear search results when input is cleared
+  };
 
   return (
     <header
@@ -232,7 +230,7 @@ export default function Example() {
           <Popover.Group className="max-nav:hidden lg:flex lg:gap-x-12">
             <Popover className="relative mt-1">
               <Popover.Button
-                className="flex pt-2 nav_button items-center gap-x-1 text-[18px] font-medium font-[satoshi]  text-[#40444C]"
+                className="flex pt-2 nav_button items-center gap-x-1 text-[1.1rem] font-medium font-[satoshi]  text-[#40444C]"
                 onClick="this.style.backgroundColor = (this.style.backgroundColor === '#40444C') ? 'blue' : '#40444C';"
                 // style={buttonStyles}
                 // onClick={handleButtonClick}
@@ -279,7 +277,7 @@ export default function Example() {
                     {GetInvolved.map((item) => (
                       <div
                         key={item.name}
-                        className="group relative flex items-center gap-x-6 pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+                        className="group relative flex items-center gap-x-6 pl-4 pt-4 text-[1rem] font-[satoshi] text-[#333] hover:bg-gray-50"
                         style={{ fontWeight: 400 }}
                       >
                         <div className="flex-auto">
@@ -295,7 +293,7 @@ export default function Example() {
                     ))}
                     {hasToken && (
                       <div
-                        className="group relative flex items-center gap-x-6 pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+                        className="group relative flex items-center gap-x-6 pl-4 pt-4 text-[1rem] font-[satoshi] text-[#333] hover:bg-gray-50"
                         style={{ fontWeight: 400 }}
                       >
                         <div className="flex-auto">
@@ -316,7 +314,7 @@ export default function Example() {
             {/*  second button */}
 
             <Popover className="relative mt-1">
-              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium font-[satoshi] text-[#40444C]">
+              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[1.1rem] font-medium font-[satoshi] text-[#40444C]">
                 Our Impact
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -359,7 +357,7 @@ export default function Example() {
                     {OurImpact.map((item) => (
                       <div
                         key={item.name}
-                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[satoshi] text-[#333] hover:bg-gray-50"
+                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[1rem] font-[satoshi] text-[#333] hover:bg-gray-50"
                         style={{ fontWeight: 400 }}
                       >
                         <div className="flex-auto">
@@ -380,7 +378,7 @@ export default function Example() {
 
             {/* third button */}
             <Popover className="relative mt-1">
-              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[18px] font-medium  font-[satoshi] text-[#40444C]">
+              <Popover.Button className="flex pt-2 items-center gap-x-1 text-[1.1rem] font-medium  font-[satoshi] text-[#40444C]">
                 About us
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -423,7 +421,7 @@ export default function Example() {
                     {AboutUs.map((item) => (
                       <div
                         key={item.name}
-                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[16px] font-[Satoshi] text-[#333] hover:bg-gray-50"
+                        className="group relative flex items-center gap-x-6  pl-4 pt-4 text-[1rem] font-[Satoshi] text-[#333] hover:bg-gray-50"
                         style={{ fontWeight: 400 }}
                       >
                         <div className="flex-auto">
@@ -443,7 +441,7 @@ export default function Example() {
             </Popover>
             {/* Fourth button */}
 
-            <button className="font-[satoshi] text-[18px] font-medium text-[#40444C]">
+            <button className="font-[satoshi] text-[1.1rem] font-medium text-[#40444C]">
               <Link to="/Home/How-It-Works">How it Works</Link>
             </button>
             {/* Fifth button */}
@@ -452,7 +450,7 @@ export default function Example() {
                 sx={{
                   borderRadius: "var(--Pixels-8, 8px)",
                   fontWeight: 700,
-                  fontSize: "18px",
+                  fontSize: "1.1rem",
                   padding: "12px 20px",
                 }}
               >
@@ -460,76 +458,106 @@ export default function Example() {
               </PrimaryButton>
             ) : (
               <PrimaryButton
-                onClick={() => {
-                  toast.error("please login First !!! ", {
-                    position: "top-center",
-                  });
-                }}
                 sx={{
                   borderRadius: "var(--Pixels-8, 8px)",
                   fontWeight: 700,
-                  fontSize: "18px",
-                  // padding: "12px 10px 12px 10px",
+                  fontSize: "1.1rem",
+                  padding: "12px 20px",
                 }}
               >
-                Start a Campaign
+                <UserLogin
+                  text={"Start a Campaign"}
+                  color={"white"}
+                  fontWeight={700}
+                />
               </PrimaryButton>
             )}
 
-            <div className="flex space-x-0  ">
-              <div className="flex-col relative pr-4">
-                <form
-                  onSubmit={handleSearch}
-                  className="relative mx-auto flex "
+            <div className="flex space-x-0 items-center ">
+              <div className="flex-col relative pr-5 pt-1">
+                <div
+                  className={`flex items-center flex-col  ${
+                    !inputVisible ? " " : "border"
+                  } border-gray-300 rounded-md p-2`}
                 >
-                  <input
-                    ref={ref}
-                    type="search"
-                    onFocus={handleInputFocus}
-                    onBlur={handleInputBlur}
-                    value={searchTerm}
-                    onChange={handleInputChange}
-                    className="text-xs peer cursor-pointer relative mt-2 z-10 h-8 w-10  bg-transparent border rounded  pr-8 outline-none focus:rounded-r-none focus:w-full focus:cursor-text focus:border-taupeGray focus:px-3"
-                    placeholder="Typing..."
-                    required
-                  />
-
-                  <button
-                    type="submit"
-                    className="absolute top-0 mt-2 mr-2 right-0  bottom-0 my-auto h-8 w-10 px-3 bg-transparent rounded-lg peer-focus:relative peer-focus:rounded-l-none"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      x="0px"
-                      y="0px"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 50 50"
-                    >
-                      <path d="M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z"></path>
-                    </svg>
-                  </button>
-
-                  {isInputFocused && searchTerm && (
-                    <ul
-                      className={`search-suggestions pt-7 mt-2 pb-2 h-8 w-auto flex flex-col absolute`}
-                      tabIndex="-1"
-                      onClick={handleSuggestionClick}
-                      ref={suggestionRef}
-                    >
-                      {filteredCards.map((card, index) => (
-                        <Link to={`/campaign-details/${card?.id}`}>
-                          <li
-                            key={index}
-                            className="pt-4 font-bold bg-gray-200"
+                  <div className="relative flex items-center px-2">
+                    {!inputVisible && (
+                      <button
+                        onClick={toggleInputVisibility}
+                        className=" bg-transparent text-white rounded-md"
+                      >
+                        <SiSearxng className="w-6 h-6 text-black" />
+                      </button>
+                    )}
+                    {inputVisible && (
+                      <div className="relative flex items-center ease-in-out duration-500">
+                        <input
+                          type="text"
+                          placeholder="Search Campaign..."
+                          value={query}
+                          onChange={handleInputChange}
+                          className="flex-1 mr-2 border-none outline-none bg-transparent"
+                        />
+                        {query && ( // Conditionally render clear button
+                          <button
+                            onClick={clearInput}
+                            className="pl-4 bg-transparent text-white rounded-md"
                           >
-                            {card.title}
-                          </li>
-                        </Link>
-                      ))}
-                    </ul>
+                            <Close className="w-6 h-6 text-black" />
+                          </button>
+                        )}
+                        <button
+                          onClick={toggleInputVisibility}
+                          disabled={loading}
+                          className="pl-4 bg-transparent text-white rounded-md disabled:bg-gray-300 disabled:cursor-not-allowed"
+                        >
+                          <SiSearxng className="w-6 h-6 text-black" />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Conditionally render absolute div */}
+                  {query && (
+                    <div className="absolute top-14 rounded-lg p-2 left-0 bg-white shadow-lg  w-[270px] max-h-[500px] overflow-scroll overflow-x-hidden">
+                      {loading && (
+                        <p className="text-gray-500 ml-2">Searching...</p>
+                      )}
+                      {notFound && !loading && (
+                        <p className="text-red-500 ml-2">
+                          No results found for "{query}".
+                        </p>
+                      )}
+                      <ul className="ml-2 flex-col space-y-2 items-center ">
+                        {searchResults.map((result) => (
+                          <div
+                            key={result.id}
+                            className="flex gap-2 hover:bg-black/10 h-10 rounded-md items-center"
+                          >
+                            <img
+                              src={
+                                result.campaign_image
+                                  ? `${process.env.REACT_APP_API_URL}${result.campaign_image}`
+                                  : images.HeaderImage
+                              }
+                              className="size-7 ml-2 rounded-md"
+                              alt=""
+                            />
+                            <Link to={`/campaign-details/${result.id}`}>
+                              {/* Render highlighted title */}
+                              <li
+                                className="cursor-pointer truncate max-w-[190px] hover:text-blue-500"
+                                dangerouslySetInnerHTML={{
+                                  __html: result.highlightedTitle,
+                                }}
+                              />
+                            </Link>
+                          </div>
+                        ))}
+                      </ul>
+                    </div>
                   )}
-                </form>
+                </div>
               </div>
 
               {localStorage.getItem("token") ? (
@@ -537,8 +565,8 @@ export default function Example() {
                   <ProfileAvatar />
                 </div>
               ) : (
-                <button className="font-[satoshi] text-[18px]  font-medium text-[#40444C]">
-                  <UserLogin />
+                <button className="font-[satoshi] text-[1.1rem]  font-medium text-[#40444C]">
+                  <UserLogin text={"Log in"} />
                 </button>
               )}
             </div>
@@ -554,7 +582,7 @@ export default function Example() {
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <Link to="#" className="-m-1.5 p-1.5">
+            <Link to="#" className="-m-1.5 p-1.5 outline-none">
               <span className="sr-only">Your Company</span>
               <img className="h-8 w-auto" src={images.Logo} alt="" />
             </Link>
@@ -567,14 +595,80 @@ export default function Example() {
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-          <div className="mt-6 flow-root">
+          <div className="mt-10 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
+              <div className="flex items-center justify-between flex-col border border-gray-300 rounded-md py-2 !px-0">
+                <div className="relative flex flex-row  items-center">
+                  <input
+                    type="text"
+                    placeholder="Search Campaign..."
+                    value={query}
+                    onChange={handleInputChange}
+                    className="flex-1 mr-0 border-none outline-none bg-transparent"
+                  />
+                  {query && ( // Conditionally render clear button
+                    <button
+                      onClick={clearInput}
+                      className="pl-0 bg-transparent text-white rounded-md"
+                    >
+                      <Close className="w-6 h-6 text-black  outline-none" />
+                    </button>
+                  )}
+                  <button
+                    onClick={handleSearch}
+                    disabled={loading}
+                    className="pl-4 bg-transparent text-white rounded-md disabled:bg-gray-300 disabled:cursor-not-allowed"
+                  >
+                    <SiSearxng className="w-6 h-6 text-black  outline-none" />
+                  </button>
+                </div>
+                {/* Conditionally render absolute div */}
+                {query && (
+                  <div className="absolute top-[120px] rounded-lg p-2 left-6 bg-white shadow-lg max-h-[500px] overflow-scroll  overflow-x-hidden	 w-[330px]">
+                    {loading && (
+                      <p className="text-gray-500 ml-2">Searching...</p>
+                    )}
+
+                    {notFound && (
+                      <p className="text-red-500 ml-2">
+                        No results found for "{query}".
+                      </p>
+                    )}
+                    <ul className="ml-2 flex-col space-y-2 items-center ">
+                      {searchResults.map((result) => (
+                        <div className="flex gap-2 hover:bg-black/10 h-10 rounded-md items-center">
+                          <img
+                            src={
+                              result.campaign_image
+                                ? `${process.env.REACT_APP_API_URL}${result.campaign_image}`
+                                : images.HeaderImage
+                            }
+                            className="size-7 ml-2 rounded-md"
+                            alt=""
+                          />
+                          <Link
+                            key={result.id}
+                            to={`/campaign-details/${result.id}`}
+                          >
+                            <li
+                              className="cursor-pointer truncate max-w-[250px] hover:text-red-400"
+                              dangerouslySetInnerHTML={{
+                                __html: result.highlightedTitle,
+                              }}
+                            />
+                          </Link>
+                        </div>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
               <div className="space-y-2 py-6">
                 <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
                     <>
                       <Disclosure.Button
-                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] max-tablet:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[1.1rem] max-desktop:text-[1.2rem] max-desktop:font-[satoshi] max-tablet:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
                           open ? " text-red-400" : ""
                         }`}
                       >
@@ -593,7 +687,7 @@ export default function Example() {
                             key={item.name}
                             as="a"
                             href={item.href}
-                            className="block rounded-lg py-2 pl-6 pr-3 text-lg max-tablet:text-[16px] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                            className="block rounded-lg py-2 pl-6 pr-3 text-lg max-tablet:text-[1rem] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -606,7 +700,7 @@ export default function Example() {
                   {({ open }) => (
                     <>
                       <Disclosure.Button
-                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[1.1rem] max-desktop:text-[1.2rem] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
                           open ? " text-red-400" : ""
                         }`}
                       >
@@ -625,7 +719,7 @@ export default function Example() {
                             key={item.name}
                             as="a"
                             href={item.href}
-                            className="block rounded-lg py-2 pl-6 pr-3 text-lg max-tablet:text-[16px] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                            className="block rounded-lg py-2 pl-6 pr-3 text-lg max-tablet:text-[1rem] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -639,7 +733,7 @@ export default function Example() {
                   {({ open }) => (
                     <>
                       <Disclosure.Button
-                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[18px] max-desktop:text-[20px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                        className={`flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 max-tablet:text-[1.1rem] max-desktop:text-[1.2rem] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
                           open ? " text-red-400" : ""
                         }`}
                       >
@@ -658,7 +752,7 @@ export default function Example() {
                             key={item.name}
                             as="a"
                             href={item.href}
-                            className="block rounded-lg py-2 pl-6 pr-3 text-lg max-tablet:text-[16px] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                            className="block rounded-lg py-2 pl-6 pr-3 text-lg max-tablet:text-[1rem] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -669,7 +763,7 @@ export default function Example() {
                 </Disclosure>
                 <Link
                   to={"/Home/How-It-Works"}
-                  className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[20px]  max-tablet:text-[18px] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block rounded-lg px-3 py-2 max-desktop:text-[1.2rem]  max-tablet:text-[1.1rem] max-desktop:font-[satoshi] font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   How It works
                 </Link>
@@ -680,7 +774,7 @@ export default function Example() {
                     {role === "Admin" && (
                       <>
                         <Link
-                          className="flex text-[satoshi] text-[20px] items-center max-desktop:font-[satoshi] font-medium text-black"
+                          className="flex text-[satoshi] text-[1.2rem] items-center max-desktop:font-[satoshi] font-medium text-black"
                           to="/AdminPanel"
                         >
                           AdminPanel
@@ -689,21 +783,21 @@ export default function Example() {
                     )}
 
                     <Link
-                      className="flex text-[satoshi] text-[20px] items-center max-desktop:font-[satoshi] font-medium text-black"
+                      className="flex text-[satoshi] text-[1.2rem] items-center max-desktop:font-[satoshi] font-medium text-black"
                       to={"/User"}
                     >
                       Dashboard
                     </Link>
 
                     <Link
-                      className="flex text-[satoshi] text-[20px] items-center max-desktop:font-[satoshi] font-medium text-black"
-                      to={"/account-settings"}
+                      className="flex text-[satoshi] text-[1.2rem] items-center max-desktop:font-[satoshi] font-medium text-black"
+                      to={"/Home/account-settings"}
                     >
                       Settings
                     </Link>
                     <div className="flex items-center">
                       <button
-                        className="max-desktop:font-[satoshi] text-[satoshi] text-[20px] font-medium text-black pr-1 "
+                        className="max-desktop:font-[satoshi] text-[satoshi] text-[1.2rem] font-medium text-black pr-1 "
                         onClick={() => logout()}
                       >
                         Logout
@@ -713,7 +807,7 @@ export default function Example() {
                   </div>
                 ) : (
                   <Link to="/Home/Login">
-                    <button className="font-[satoshi] text-[22px] font-medium text-[#40444C]">
+                    <button className="font-[satoshi] text-[1.4rem] font-medium text-[#40444C]">
                       Log In
                     </button>
                   </Link>

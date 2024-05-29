@@ -12,7 +12,6 @@ const UserDashboardActivities = () => {
       return data.data.data;
     },
     onSuccess: (data) => {
-      console.log("datatatat  ", data);
       setDataObject(data);
     },
   });
@@ -33,11 +32,11 @@ const UserDashboardActivities = () => {
       </div>
       <div className="max-w-[240px] w-full border border-[#DBDBDE] rounded-[20px] py-[22px] px-[11px]">
         <h4 className="font-[satoshi] font-bold text-[16px]">Funds Raised</h4>
-        <h6 className="font-[satoshi] font-medium text-[40px]">200000</h6>
+        <h6 className="font-[satoshi] font-medium text-[40px]">{dataObject.amount_received}</h6>
       </div>
       <div className="max-w-[240px] w-full border border-[#DBDBDE] rounded-[20px] py-[22px] px-[11px]">
         <h4 className="font-[satoshi] font-bold text-[16px]">Withdrawn</h4>
-        <h6 className="font-[satoshi] font-medium text-[40px]">2</h6>
+        <h6 className="font-[satoshi] font-medium text-[40px]">{dataObject.withdrawals}</h6>
       </div>
     </div>
   );

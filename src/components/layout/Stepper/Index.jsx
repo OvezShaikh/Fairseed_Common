@@ -23,7 +23,7 @@ const styleStep = {
   "& .MuiStepLabel-label.Mui-active": {
     color: "var(--Cool-Grey-Cool-Grey-10, #383A42)",
     fontFamily: "Satoshi",
-    fontSize: "24px",
+    fontSize: "1.5rem",
     fontStyle: "normal",
     fontWeight: 700,
   },
@@ -40,7 +40,7 @@ const styleStep = {
     "& .MuiStepLabel-label": {
       color: "var(--Cool-Grey-Cool-Grey-10, #383A42)",
       fontFamily: "Satoshi",
-      fontSize: "24px",
+      fontSize: "1.5rem",
       fontStyle: "normal",
       fontWeight: 700,
     },
@@ -71,7 +71,7 @@ const styleStep = {
     "& .MuiStepLabel-label": {
       color: "var(--Cool-Grey-Cool-Grey-10, #383A42)",
       fontFamily: "Satoshi",
-      fontSize: "24px",
+      fontSize: "1.5rem",
       fontStyle: "normal",
       fontWeight: 700,
     },
@@ -81,7 +81,7 @@ const styleSecondaryButton = {
   width: "100%",
   height: "100%",
   padding: "10px",
-  fontSize: "24px",
+  fontSize: "1.5rem",
   fontWeight: 700,
   borderRadius: "12px",
 };
@@ -89,7 +89,7 @@ const stylePrimaryButton = {
   width: "100%",
   height: "100%",
   padding: "10px",
-  fontSize: "24px",
+  fontSize: "1.5rem",
   fontWeight: 700,
   borderRadius: "12px",
 };
@@ -111,10 +111,10 @@ const initialValues = {
   branch_name: "",
   ifsc_code: "",
   passbook_image: "",
-  adhar_card: "",
-  adhar_card_image: "",
-  pan_card: "",
-  pan_card_image: "",
+  // adhar_card: "",
+  // adhar_card_image: "",
+  // pan_card: "",
+  // pan_card_image: "",
   declaration: false,
 };
 
@@ -132,11 +132,11 @@ const validations = [
         const maxSize = 5 * 1024 * 1024; // 5 MB in bytes
         return value && value.size <= maxSize;
       }),
-    title: yup.string().required("title is required"),
-    goal_amount: yup
-      .number()
-      .max(100000, "Amount must be less than or equal to 100,000")
-      .required("Amount is required"),
+    title: yup
+      .string()
+      .max(250, "Title must be at most 250 characters")
+      .required("Title is required"),
+    goal_amount: yup.number().required("Amount is required"),
     location: yup.string().required("location is required"),
     category: yup
       .object({
@@ -145,7 +145,7 @@ const validations = [
       })
       .nullable()
       .required("Category is required!"),
-   
+
     end_date: yup.string().required("End date is required"),
   }),
   yup.object({
@@ -166,36 +166,32 @@ const validations = [
     bank_name: yup.string().required("Bank name is required"),
     branch_name: yup.string().required("Branch name is required"),
     ifsc_code: yup.string().required("IFSC Code is required"),
-  }),
-  yup.object({
-    adhar_card: yup
-      .string()
-      .required("Adhar Card number is required")
-      .max(12, "Maximum 12 Number allowed")
-      .min(12, "Minimun 12 Number allowed"),
-
-    pan_card: yup
-      .string()
-      .required("Pan Card number is required")
-      .max(10, "Maximum 10 Character allowed")
-      .min(10, "Minimum 10 character allowed"),
     declaration: yup
       .boolean()
       .oneOf([true], "You must agree to the terms and conditions")
       .required("You must agree to the terms and conditions"),
   }),
+  // yup.object({
+  //   adhar_card: yup
+  //     .string()
+  //     .required("Adhar Card number is required")
+  //     .max(12, "Maximum 12 Number allowed")
+  //     .min(12, "Minimun 12 Number allowed"),
+
+  //   pan_card: yup
+  //     .string()
+  //     .required("Pan Card number is required")
+  //     .max(10, "Maximum 10 Character allowed")
+  //     .min(10, "Minimum 10 character allowed"),
+
+  // }),
 ];
 
 export default function HorizontalLinearStepper() {
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
   const getSteps = () => {
-    return [
-      "Campaign Details",
-      "Your Story",
-      "Account Details",
-      "Complete KYC",
-    ];
+    return ["Campaign Details", "Your Story", "Account Details"];
   };
 
   const getStepContent = (step) => {
@@ -211,8 +207,8 @@ export default function HorizontalLinearStepper() {
         return (
           <AccountDetails handleBack={handleBack} handleNext={handleNext} />
         );
-      case 3:
-        return <CompleteKYC handleBack={handleBack} handleNext={handleNext} />;
+      // case 3:
+      //   return <CompleteKYC handleBack={handleBack} handleNext={handleNext} />;
       default:
         return "unknown step";
     }
@@ -235,16 +231,15 @@ export default function HorizontalLinearStepper() {
       });
       handleNext();
     },
-    onError: async (data) => {
-      toast.error(`${data.data.message} error`, {
+    onError: (data, Values) => {
+      toast.error(`${data.response.data.message} Error !!!!!!!!!!!!!!!!!!`, {
         position: "top-center",
       });
-      console.log(data, "===========campaignResponse");
+      handleNext();
     },
   });
 
   const onSubmit = (Values) => {
-    console.log("Values", Values);
     const formData = new FormData();
     for (const key in Values) {
       if (key == "category") {
@@ -260,7 +255,7 @@ export default function HorizontalLinearStepper() {
     <Box sx={{ width: "100%" }} className="stepper-box">
       <div className="steps-counter-div">
         <StepLabel>
-          {activeStep === 4
+          {activeStep === 3
             ? "All Steps Completed"
             : `${activeStep + 1} of ${steps.length} steps`}
         </StepLabel>
@@ -284,7 +279,7 @@ export default function HorizontalLinearStepper() {
         <React.Fragment>
           <Typography variant="h3" align="center">
             <div className="w-full px-0 py-[89px] flex flex-col justify-center items-center gap-3 max-desktop:px-0">
-              <h1 className="text-[#06B217] deskttop:text-[48px] max-desktop:text-[48px] mb-[35px] font-[satoshi] font-bold max-tablet:text-[20px]">
+              <h1 className="text-[#06B217] desktop:text-[3rem] max-desktop:text-[3rem] mb-[35px] font-[satoshi] font-bold max-tablet:text-[1.2rem]">
                 Success!
               </h1>
               <img
@@ -293,7 +288,7 @@ export default function HorizontalLinearStepper() {
                 alt=""
               />
               <p
-                className="text-[24px] font-[satoshi] font-bold mb-[90px] max-tablet:text-[20px] max-tablet:px-[12px]"
+                className="text-[1.5rem] font-[satoshi] font-bold mb-[90px] max-tablet:text-[1.2rem] max-tablet:px-[12px]"
                 style={{
                   background:
                     "linear-gradient(71deg, #06B217 0%, #FF375F 62.9%)",
@@ -334,32 +329,7 @@ export default function HorizontalLinearStepper() {
             validationSchema={validations[activeStep]}
             onSubmit={(Values) => onSubmit(Values)}
           >
-            <>
-              {getStepContent(activeStep)}
-
-              {/* <div className="flex mt-4 gap-5">
-                <SecondaryButton
-                  disabled={activeStep === 0}
-                  onClick={handleBack}
-                  sx={styleSecondaryButton}
-                >
-                  Back
-                </SecondaryButton> */}
-              {/* {isStepOptional(activeStep) && (
-                <Button
-                  // className={classes.button}
-                  variant="contained"
-                  color="primary"
-                  onClick={handleSkip}
-                >
-                  skip
-                </Button>
-              )} */}
-              {/* <PrimaryButton onClick={onSubmit} sx={stylePrimaryButton} type="submit">
-                  {activeStep === steps.length - 1 ? "Submit" : "Next"}
-                </PrimaryButton>
-              </div> */}
-            </>
+            <>{getStepContent(activeStep)}</>
           </Formik>
         </React.Fragment>
       )}

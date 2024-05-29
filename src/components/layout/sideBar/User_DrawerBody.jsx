@@ -36,7 +36,7 @@ import {
   ScholarshipsIcon,
   PagesIcon,
   PgSettingsIcon,
-  MyDonations
+  MyDonations,
 } from "../../../utils/Icons";
 import { colors } from "../../../constants/theme";
 import SearchIcon from "@mui/icons-material/Search";
@@ -49,7 +49,7 @@ const activeMenuStyles = {
 
   "& .MuiButtonBase-root .MuiListItemText-root .MuiTypography-root": {
     color: "#25272C",
-    fontSize: 16,
+    fontSize: "1rem",
     fontFamily: "Satoshi",
     fontWeight: 700,
   },
@@ -60,7 +60,7 @@ const activeSubMenuStyles = {
   width: "95%",
   "& .MuiButtonBase-root .MuiListItemText-root .MuiTypography-root": {
     color: "#25272C",
-    fontSize: 16,
+    fontSize: "1rem",
     fontFamily: "Satoshi",
     fontWeight: 700,
   },
@@ -78,7 +78,9 @@ let Icons = {
   CategorysIcon: (isActive) => <CategorysIcon isActive={isActive} />,
   CausesIcon: (isActive) => <CausesIcon isActive={isActive} />,
   CausesApprovalIcon: (isActive) => <CausesApprovalIcon isActive={isActive} />,
-  ScholarshipCausesIcon: (isActive) => <ScholarshipCausesIcon isActive={isActive} />,
+  ScholarshipCausesIcon: (isActive) => (
+    <ScholarshipCausesIcon isActive={isActive} />
+  ),
   ReportedIcon: (isActive) => <ReportedIcon isActive={isActive} />,
   CampaignIcon: (isActive) => <CampaignIcon isActive={isActive} />,
   WithdrawalsIcon: (isActive) => <WithdrawalsIcon isActive={isActive} />,
@@ -89,9 +91,6 @@ let Icons = {
   PgSettingsIcon: (isActive) => <PgSettingsIcon isActive={isActive} />,
   DashboardIcon: (isActive) => <DashboardIcon isActive={isActive} />,
   MyDonationIcon: (isActive) => <MyDonations isActive={isActive} />,
-
-
-
 };
 
 const CollapsibleMenuItem = ({
@@ -111,7 +110,6 @@ const CollapsibleMenuItem = ({
           setSelectedMenu((prev) => (prev !== item.path ? item.path : ""))
         }
         key={item.title + index}
-
       >
         <ListItemButton className="pl-8 ">
           {item.icon && (
@@ -127,7 +125,7 @@ const CollapsibleMenuItem = ({
             primary={item.title}
             primaryTypographyProps={{
               fontFamily: "satoshi",
-              fontSize: 16,
+              fontSize: "1rem",
               color: colors.text.main,
               fontWeight: 500,
             }}
@@ -137,7 +135,6 @@ const CollapsibleMenuItem = ({
           ) : (
             <KeyboardArrowDownIcon />
           )}
-
         </ListItemButton>
       </ListItem>
       <Collapse
@@ -183,9 +180,6 @@ const CollapsibleMenuItem = ({
                     </svg>
                   )}
 
-
-
-
                   <ListItemButton className="pl-8">
                     <RiArrowRightSFill className="text-[#B6BAC3]" />
                     <ListItemText
@@ -193,7 +187,7 @@ const CollapsibleMenuItem = ({
                       primaryTypographyProps={{
                         fontFamily: "satoshi",
                         fontWeight: 500,
-                        fontSize: 16,
+                        fontSize: "1rem",
                         color: "#383A42",
                         paddingLeft: "1.5rem",
                       }}
@@ -243,9 +237,7 @@ const User_DrawerBody = () => {
       path: "/User/Scholarships",
       title: "Scholarships",
     },
-
   ];
-
 
   const [selectedPath, setSelectedMenu] = useState("");
 
@@ -254,7 +246,7 @@ const User_DrawerBody = () => {
   }, [pathname]);
 
   return (
-    <div className="link-none transition-all duration-1000 ease-in-out">
+    <div className="link-none transition-all duration-500 ease-in-out">
       <List
         // className="pt-4"
         sx={{
@@ -314,7 +306,7 @@ const User_DrawerBody = () => {
                       primaryTypographyProps={{
                         fontFamily: "satoshi",
                         fontWeight: 500,
-                        fontSize: 16,
+                        fontSize: "1rem",
                         color: "#717171",
                       }}
                     />
@@ -329,9 +321,3 @@ const User_DrawerBody = () => {
 };
 
 export default User_DrawerBody;
-
-
-
-
-
-

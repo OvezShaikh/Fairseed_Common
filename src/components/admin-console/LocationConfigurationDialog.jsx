@@ -115,13 +115,14 @@ export const LocationConfigurationDialog = ({
                     { label: "Inactive", value: "Inactive" },
                   ]}
                   label="Status"
-                // onChange={onChange}
+             
 
                 />
               </div>
             </div>
             <div className="flex flex-row gap-4 mt-12">
               <button
+              type="button"
                 onClick={() => {
                   onClose();
                 }}

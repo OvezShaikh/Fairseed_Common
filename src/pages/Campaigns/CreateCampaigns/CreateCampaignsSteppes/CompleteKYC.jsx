@@ -19,7 +19,7 @@ const styleSecondaryButton = {
   width: "100%",
   height: "100%",
   padding: "10px",
-  fontSize: "24px",
+  fontSize: "1.5rem",
   fontWeight: 700,
   borderRadius: "12px",
 };
@@ -28,7 +28,7 @@ const stylePrimaryButton = {
   width: "100%",
   height: "100%",
   padding: "10px",
-  fontSize: "24px",
+  fontSize: "1.5rem",
   fontWeight: 700,
   borderRadius: "12px",
 };
@@ -49,7 +49,7 @@ function CompleteKYC({ handleBack, handleNext }) {
 
   return (
     <form>
-      <div className="py-20 flex flex-col gap-4">
+      <div className="py-10 flex flex-col gap-3">
         <div>
           <InputField
             required

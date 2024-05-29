@@ -202,104 +202,130 @@ const CollapsibleMenuItem = ({
 };
 
 const DrawerBody = () => {
+
+  let userData = localStorage.getItem("user_info");
+  let Data = JSON.parse(userData);
+  let role = Data?.user_role;
+
   const { pathname } = useLocation();
 
-  const menus = [
-    {
-      icon: "DashboardIcon",
-      path: "/AdminPanel/",
-      title: "Dashboard",
-    },
+  const menus = role === 'Admin'
+  ? [
+      {
+        icon: "DashboardIcon",
+        path: "/AdminPanel/",
+        title: "Dashboard",
+      },
+      {
+        icon: "SettingsIcon",
+        path: "/AdminPanel/General-Settings",
+        title: "General Settings ",
+        children: [
+          {
+            icon: "TbCaretRightFilled",
+            path: "/AdminPanel/General-Settings/General",
+            title: "General",
+          },
+          {
+            path: "/AdminPanel/General-Settings/Limits",
+            title: "Limits",
+          },
+          {
+            path: "/AdminPanel/General-Settings/Profiles-Social",
+            title: "Profiles Social",
+          },
+        ],
+      },
+      // Other Admin menus...
+      {
+        icon: "CategorysIcon",
+        path: "/AdminPanel/Categories",
+        title: "Categories",
+      },
+      {
+        icon: "CausesIcon",
+        path: "/AdminPanel/Campaigns",
+        title: "Campaigns",
+      },
+      {
+        icon: "CausesApprovalIcon",
+        path: "/AdminPanel/Causes-Edit-Approval",
+        title: "Cause Edit Approval",
+      },
+      {
+        icon: "ScholarshipCausesIcon",
+        path: "/AdminPanel/Scholarship-Cause",
+        title: "Scholarship Cause",
+      },
+      {
+        icon: "ReportedIcon",
+        path: "/AdminPanel/Reported-Cause",
+        title: "Reported Cause",
+      },
+      {
+        icon: "WithdrawalsIcon",
+        path: "/AdminPanel/Withdrawals",
+        title: "Withdrawals",
+      },
+      // Other Admin menus...
+      {
+        icon: "DonationIcon",
+        path: "/AdminPanel/Donations",
+        title: "Donations",
+      },
+      {
+        icon: "UserIcon",
+        path: "/AdminPanel/Users",
+        title: "Users",
+      },
+      {
+        icon: "ScholarshipsIcon",
+        path: "/AdminPanel/Scholarships",
+        title: "Scholarships",
+      },
+      {
+        icon: "PagesIcon",
+        path: "/AdminPanel/Pages",
+        title: "Pages",
+      },
+      {
+        icon: "PgSettingsIcon",
+        path: "/AdminPanel/PG-Setting/PhonePe",
+        title: "Payment Gateway",
+      },
+    ]
+  : role === 'Campaign_Manager'
+  ? [
+      {
+        icon: "CausesIcon",
+        path: "/AdminPanel/Campaigns",
+        title: "Campaigns",
+      },
+      {
+        icon: "CausesApprovalIcon",
+        path: "/AdminPanel/Causes-Edit-Approval",
+        title: "Cause Edit Approval",
+      },
+      {
+        icon: "ReportedIcon",
+        path: "/AdminPanel/Reported-Cause",
+        title: "Reported Cause",
+      }
+    ]
+  : [
+      {
+        icon: "DonationIcon",
+        path: "/AdminPanel/Donations",
+        title: "Donations",
+      },
+      {
+        icon: "WithdrawalsIcon",
+        path: "/AdminPanel/Withdrawals",
+        title: "Withdrawals",
+      }
+    ];
 
-    {
-      icon: "SettingsIcon",
-      path: "/AdminPanel/General-Settings",
-      title: "General Settings ",
-      children: [
-        {
-          icon: "TbCaretRightFilled",
-          path: "/AdminPanel/General-Settings/General",
-          title: "General",
-        },
-        {
-          path: "/AdminPanel/General-Settings/Limits",
-          title: "Limits",
-        },
-       
-        {
-          path: "/AdminPanel/General-Settings/Profiles-Social",
-          title: "Profiles Social",
-        },
-      ],
-    },
-    {
-      icon: "LandingIcon",
-      path: "/AdminPanel/Landing-page",
-      title: "Landing Page",
-    },
-    {
-      icon: "CategorysIcon",
-      path: "/AdminPanel/Categories",
-      title: "Categories",
-    },
-    {
-      icon: "CausesIcon",
-      path: "/AdminPanel/Campaigns",
-      title: "Campaigns",
-    },
-    {
-      icon: "CausesApprovalIcon",
-      path: "/AdminPanel/Causes-Edit-Approval",
-      title: "Cause Edit Approval",
-    },
-    {
-      icon: "ScholarshipCausesIcon",
-      path: "/AdminPanel/Scholarship-Cause",
-      title: "Scholarship Cause",
-    },
-    {
-      icon: "ReportedIcon",
-      path: "/AdminPanel/Reported-Cause",
-      title: "Reported Cause",
-    },
-    {
-      icon: "WithdrawalsIcon",
-      path: "/AdminPanel/Withdrawals",
-      title: "Withdrawals",
-    },
-    {
-      icon: "CampaignIcon",
-      path: "/AdminPanel/Cause-KYC",
-      title: "Cause KYC",
-    },
-    {
-      icon: "DonationIcon",
-      path: "/AdminPanel/Donations",
-      title: "Donations",
-    },
-    {
-      icon: "UserIcon",
-      path: "/AdminPanel/Users",
-      title: "Users",
-    },
-    {
-      icon: "ScholarshipsIcon",
-      path: "/AdminPanel/Scholarships",
-      title: "Scholarships",
-    },
-    {
-      icon: "PagesIcon",
-      path: "/AdminPanel/Pages",
-      title: "Pages",
-    },
-    {
-      icon: "PgSettingsIcon",
-      path: "/AdminPanel/PG-Setting/PhonePe",
-      title: "Payment Gateway",
-    },
-  ];
 
- 
 
   const [selectedPath, setSelectedMenu] = useState("");
 
@@ -308,7 +334,7 @@ const DrawerBody = () => {
   }, [pathname]);
 
   return (
-    <div className="link-none transition-all duration-1000 ease-in-out">
+    <div className="link-none transition-all duration-500 ease-in-out">
       <List
         // className="pt-4"
         sx={{

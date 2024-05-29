@@ -13,8 +13,7 @@ function Index() {
     key: `/admin-dashboard/phonepay`,
     enabled: true,
     select: (data) => {
-      console.log(data.data.data, "++++++id++++++");
-      return data?.data?.data;
+      return data?.data?.data[0];
     },
     onSuccess: (data) => {
       setDetails(data);
@@ -95,7 +94,7 @@ function Index() {
             <div className=" w-full pl-2 max-desktop:w-full max-tablet:w-full">
               <RadioGroup
                 name={"is_enabled"}
-                sx={{ fontSize: "22px" }}
+                sx={{ fontSize: "1.3rem" }}
                 onChange={(e) => {
                   setFieldValue("is_enabled", e === "true");
                 }}

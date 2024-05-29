@@ -23,21 +23,16 @@ const useLogin = () => {
   const loginData = async (data) => {
     try {
       const res = await serverAPI.post("/accounts/login/nt/", data);
-
       toast.success("Logged in Successfully ", {
         position: "top-center",
       });
-
       const userinfo = res.data.user_info;
       const info = JSON.stringify(userinfo);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user_info", info);
-
-      navigate("/");
+      // navigate("/");
       window.location.href = "/Home";
-      console.log(localStorage.getItem("token"));
     } catch (error) {
-      console.log(error, "error from catch");
       toast.error("please enter valid credentials", {
         position: "top-center",
       });

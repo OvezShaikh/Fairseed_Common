@@ -77,7 +77,7 @@ const OperatorSelectField = ({
           className="text-capitalize font-medium d-flex align-items-center "
           sx={{
             color: colors.text.main,
-            fontSize: "16px",
+            fontSize: "1rem",
             fontFamily: "satoshi",
             height: "22px",
             fontWeight: 700,

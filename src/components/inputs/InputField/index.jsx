@@ -24,7 +24,9 @@ const InputField = ({
   infoText,
   characterCount,
   label,
+  Size,
   style,
+  top,
   disabled = false,
   // multiple = false,
   sx,
@@ -47,12 +49,13 @@ const InputField = ({
     },
     "& .MuiInputBase-input": {
       borderRadius: "3px",
+      fontFamily: "ellipsis",
       // borderTopLeftRadius: configTextfield?.startAdornment ? "0px" : "4px",
       // borderBottomLeftRadius: configTextfield?.startAdornment ? "0px" : "4px",
       position: "relative",
       backgroundColor: "#fff",
       // border: "1px solid #e2e2e2",
-      fontSize: "20px",
+      fontSize: "1.2rem",
       width: "100%",
       // ...sx,
       // transition: theme.transitions.create([
@@ -74,7 +77,7 @@ const InputField = ({
       // },
     },
     "& input::placeholder": {
-      fontSize: "20px",
+      fontSize: "1.2rem",
       fontStyle: "satoshi",
     },
     // "& .MuiInputBase-input.Mui-disabled": {
@@ -85,7 +88,7 @@ const InputField = ({
     "& .MuiInputAdornment-root.MuiInputAdornment-positionEnd": {
       backgroundColor: "#fff",
       padding: "21px 12px",
-      fontSize: "20px",
+      fontSize: "1.2rem",
       marginLeft: "0px",
       borderTopRightRadius: theme.shape.borderRadius + "px",
       borderBottomRightRadius: theme.shape.borderRadius + "px",
@@ -93,7 +96,7 @@ const InputField = ({
     "& .MuiInputAdornment-root.MuiInputAdornment-positionStart": {
       // backgroundColor: theme.palette.divider,
       padding: "21px 12px",
-      fontSize: "20px",
+      fontSize: "1.2rem",
       marginRight: "0px",
       borderTopLeftRadius: theme.shape.borderRadius + "px",
       borderBottomLeftRadius: theme.shape.borderRadius + "px",
@@ -120,7 +123,7 @@ const InputField = ({
     ...otherProps,
     sx: { ...styles, ...otherProps.sx },
   };
-  // console.log(styles);
+
   if (name) {
     //eslint-disable-next-line
     const [field, meta] = useField(name || "");
@@ -135,15 +138,6 @@ const InputField = ({
     }
   }
 
-  // const tooltipData = localStorage.getItem("tooltipData")
-  //   ? JSON.parse(localStorage.getItem("tooltipData"))?.filter(
-  //       (item) =>
-  //         item?.field_name?.toLowerCase() ===
-  //         configTextfield?.label?.toLowerCase()
-  //     )
-  //   : null;
-
-  // Return input field with password visibility icon
   return (
     <>
       {label && (
@@ -152,7 +146,7 @@ const InputField = ({
           sx={{
             padding: "4px 8px 8px 8px",
             color: colors.text.main,
-            fontSize: "20px",
+            fontSize: Size || "1.2rem",
             fontWeight: 700,
             fontFamily: "satoshi",
             fontStyle: "normal",
@@ -168,25 +162,36 @@ const InputField = ({
         <InputBase
           disabled={disabled}
           sx={styles}
-          type={type === "password" && !showPassword ? "password" : "text"} // Toggle type between password and text based on visibility
-          // multiple={multiple}
-          // style={{ ...configTextfield?.style }}
+          type={
+            type === "password" && !showPassword
+              ? "password"
+              : type === "date"
+              ? "date"
+              : type === "number"
+              ? "number"
+              : "text"
+          }
           {...textFieldConfig}
         />
-        <div className="absolute right-[20px] top-[35px]">
-          {type === "password" && (
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={togglePasswordVisibility}
-                edge="end"
-              >
-                {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
-              </IconButton>
-            </InputAdornment>
-          )}
-        </div>
+
+        {/* Conditionally render icons section */}
+        {type !== "date" && (
+          <div className={`absolute right-[20px] top-[28px]`}>
+            {type === "password" && (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={togglePasswordVisibility}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                </IconButton>
+              </InputAdornment>
+            )}
+          </div>
+        )}
       </div>
+
       <ErrorMessage
         name={name}
         render={(msg) => (

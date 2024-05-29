@@ -6,9 +6,10 @@ import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
 import { toast } from "react-toastify";
 import PrimaryButton from "../../inputs/PrimaryButton";
 import Profile from "../../inputs/AvatarCrop/Profile";
+import { useNavigate } from "react-router-dom";
 
 const InputStyle = {
-  padding: "20px",
+  padding: "15px 20px",
   border: "1px solid #e2e2e2",
   // },
   "&:focus-within": {
@@ -32,7 +33,7 @@ let id = Data?.id;
 const Account = () => {
   const [Details, setDetails] = useState({});
   const [srcImg, setSrcImg] = useState("");
-  const [openCrop, setOpenCrop] = useState(false);
+  const navigate = useNavigate();
 
   useGetAll({
     key: `/accounts/user/${id}`,
@@ -55,7 +56,7 @@ const Account = () => {
     email: Details?.email || "",
     mobile_number: Details?.mobile_number || "",
     country: Details?.country || "",
-    profile_pic: srcImg || "",
+    profile_pic: Details?.profile_pic || "",
   };
 
   const { mutate } = useCreateOrUpdate({
@@ -63,32 +64,34 @@ const Account = () => {
     method: "put",
   });
 
-  const onChange = (e) => {
-    let files;
-    if (e) {
-      files = e;
-    }
-    const reader = new FileReader();
-    reader.onload = () => {
-      setSrcImg(reader.result);
-    };
-    reader.readAsDataURL(files[0]);
-    setOpenCrop(true);
-  };
-
   const handleSubmit = (values) => {
+    const changedValues = Object.keys(values).filter(
+      (key) => values[key] !== initial_values[key]
+    );
+
+    const payload = {};
+    changedValues.forEach((key) => {
+      payload[key] = values[key];
+    });
+
     const formData = new FormData();
-    formData.append("username", values?.username);
-    formData.append("email", values?.email);
-    formData.append("mobile_number", values?.mobile_number);
-    formData.append("country", values?.country);
-    formData.append("profile_pic", values?.profile_pic);
+
+    Object.entries(payload).forEach(([key, value]) => {
+      if (value) {
+        if (value instanceof File) {
+          formData.append(key, value);
+        } else {
+          formData.append(key, value);
+        }
+      }
+    });
 
     mutate(formData, {
       onSuccess: () => {
         toast.success(" Details Updated Successfully !", {
           position: "top-right",
         });
+        navigate(-1);
       },
     });
   };
@@ -100,32 +103,43 @@ const Account = () => {
       onSubmit={(values) => handleSubmit(values)}
     >
       {({ values, handleChange }) => (
-        <Form>
-          <Profile name={"profile_pic"} value={values?.profile_pic} />
+        <Form className="space-y-2.5">
+          <Profile
+            name={"profile_pic"}
+            value={values?.profile_pic}
+            srcImg={srcImg}
+            setSrcImg={setSrcImg}
+          />
+          <div className="">
+            <InputField
+              onChange={handleChange}
+              value={values?.username}
+              name={"username"}
+              label={"Full Name:"}
+              sx={InputStyle}
+            />
+          </div>
+          <div className="">
+            <InputField
+              onChange={handleChange}
+              value={values?.email}
+              name={"email"}
+              label={"Email Id:"}
+              sx={InputStyle}
+            />
+          </div>
+          <div className="">
+            <InputField
+              onChange={handleChange}
+              value={values?.mobile_number}
+              name={"mobile_number"}
+              type="number"
+              label={"Mobile:"}
+              placeholder={"(Optional)"}
+              sx={InputStyle}
+            />
+          </div>
 
-          <InputField
-            onChange={handleChange}
-            value={values?.username}
-            name={"username"}
-            label={"Full Name:"}
-            sx={InputStyle}
-          />
-          <InputField
-            onChange={handleChange}
-            value={values?.email}
-            name={"email"}
-            label={"Email Id:"}
-            sx={InputStyle}
-          />
-          <InputField
-            onChange={handleChange}
-            value={values?.mobile_number}
-            name={"mobile_number"}
-            type="number"
-            label={"Mobile:"}
-            placeholder={"(Optional)"}
-            sx={InputStyle}
-          />
           <div className="country-select-div">
             <CountrySelect
               onChange={handleChange}

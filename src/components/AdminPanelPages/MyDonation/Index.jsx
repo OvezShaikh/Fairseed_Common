@@ -2,6 +2,8 @@ import React from 'react'
 import ReactTable from '../../Table/index'
 import { useState } from 'react';
 import { GoDotFill } from "react-icons/go";
+import { format } from "date-fns";
+
 
 
 
@@ -9,8 +11,7 @@ const Index = () => {
     const [selectedRowID, setSelectedRowID] = useState(null);
     const getStatusCellStyle = (status) => {
         // let { state } = useLocation(); let { id } = state
-        console.log('Status:', status);
-        if (status === 'Pending') {
+         if (status === 'Pending') {
             return {
 
 
@@ -38,6 +39,10 @@ const Index = () => {
         ;
     };
 
+    function DateConvert (Mydate){
+        const date = new Date(Mydate);
+        return format(date ,'dd-MMM-yyyy');
+      }
 
     const StatusCell = ({ value }) => (
         <div className=' flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl' style={getStatusCellStyle(value)}>
@@ -101,6 +106,12 @@ const Index = () => {
                 accessor: "created_on",
                 // minWidth: 200,
                 // width: 280,
+                Cell:({row})=>{
+                    return (
+                      <p>{DateConvert(row?.original?.created_on)}</p>
+                    )
+                    
+                   }
 
             },
           

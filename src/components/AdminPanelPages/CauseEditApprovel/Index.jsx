@@ -26,6 +26,7 @@ import DropZone from "../../inputs/ImageCropper/CropDrop";
 function CauseEdit_Form() {
   let { state } = useLocation();
   let { id } = state;
+
   const navigate = useNavigate();
   const [documents, setDocuments] = useState([]);
   const [Categories, setCategories] = useState([]);
@@ -45,7 +46,6 @@ function CauseEdit_Form() {
 
   const onChange = (e) => {
     let files;
-
     if (e) {
       files = e;
     }
@@ -64,7 +64,6 @@ function CauseEdit_Form() {
       return data.data.data;
     },
     onSuccess: (data) => {
-      console.log(data);
       setUser(data);
       const imageUrl = `${process.env.REACT_APP_BE_BASE_URL}${
         data?.campaign_image || ""
@@ -111,7 +110,6 @@ function CauseEdit_Form() {
     documents: user?.documents || [],
   };
 
-  console.log(initial_values);
   if (!isSuccess) {
     return <div>Loading...</div>;
   }
@@ -128,7 +126,7 @@ function CauseEdit_Form() {
     formData.append("summary", values?.summary);
     formData.append("story", values?.story);
     formData.append("category", values?.category?.id);
-    formData.append("status", values?.status);
+    formData.append("status", values?.status?.value);
     formData.append("zakat_eligible", values?.zakat_eligible);
 
     mutate(formData, {
@@ -148,10 +146,10 @@ function CauseEdit_Form() {
       onSubmit={(values) => handleSubmit(values)}
     >
       {({ values, setFieldValue, handleChange }) => (
-        <Form className="flex flex-col items-center">
+        <Form className="flex flex-col items-center max-tablet:pt-8 max-desktop:pt-4">
           <div className="flex w-[100%] mt-2 gap-14 max-tablet:flex-col max-desktop:flex-col">
             <div className="flex flex-col w-[70%] max-tablet:w-[100%] max-desktop:w-[100%] gap-2 items-center">
-              <div className="desktop:py-[80px] max-desktop:py-[53px] p-0">
+              <div className="desktop:py-[80px] max-desktop:py-[53px] p-0 max-tablet:w-full ">
                 <DropZone
                   name="campaign_image"
                   onChange={onChange}
@@ -220,7 +218,7 @@ function CauseEdit_Form() {
                     fontWeight: 700,
                     fontFamily: "satoshi",
                     fontStyle: "normal",
-                    fontSize: "16px",
+                    fontSize: "1rem",
                   }}
                 >
                   About the Campaign:
@@ -280,7 +278,6 @@ function CauseEdit_Form() {
 
                 <div className="flex gap-4 max-tablet:flex-col">
                   {values?.documents?.map((imageUrl, index) => {
-                    console.log(imageUrl.id, "==========>Documents");
                     const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl?.doc_file}`;
                     return (
                       <Attachments
@@ -339,7 +336,7 @@ function CauseEdit_Form() {
                     style={{
                       padding: "4px 8px 8px 8px",
                       color: colors.text.main,
-                      fontSize: "16px",
+                      fontSize: "1rem",
                       fontWeight: 700,
                       fontFamily: "satoshi",
                       fontStyle: "normal",
@@ -358,7 +355,6 @@ function CauseEdit_Form() {
                     }}
                     name="zakat_eligible"
                     checked={values?.zakat_eligible}
-                    // onChange={handleChange}
                     label={"Yes"}
                   />
                 </div>
@@ -398,7 +394,7 @@ function CauseEdit_Form() {
                 dataUrl={srcImg}
               />
 
-              <Link to={"Revision-History"}>
+              <Link to={"Revision-History"} state={{ id: user?.id }}>
                 <PrimaryButton sx={{ borderRadius: "12px", width: "100%" }}>
                   <h1 className="text-white font-medium py-2.5 text-[18px] font-[satoshi]">
                     View Revision History
@@ -410,6 +406,7 @@ function CauseEdit_Form() {
 
           <div className="flex gap-3 max-tablet:flex-col  max-tablet:items-center pt-5">
             <button
+              type="button"
               onClick={() => navigate(-1)}
               className="w-[69px] content-stretch h-[32px] bg-[#F7F7F7]"
             >
@@ -417,11 +414,16 @@ function CauseEdit_Form() {
                 Cancel
               </h1>
             </button>
-            <SuccessButton
-              type="submit"
-              text={"Save"}
-              icon={<PiCheckFat className="w-4 h-4 mt-1" />}
-            />
+
+            {values?.status === "Rejected" || values?.status === "Completed" ? (
+              " "
+            ) : (
+              <SuccessButton
+                type="submit"
+                text={"Save"}
+                icon={<PiCheckFat className="w-4 h-4 mt-1" />}
+              />
+            )}
           </div>
         </Form>
       )}

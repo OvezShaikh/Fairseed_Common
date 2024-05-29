@@ -29,7 +29,7 @@ const styleSecondaryButton = {
   width: "100%",
   height: "100%",
   padding: "10px",
-  fontSize: "24px",
+  fontSize: "1.5rem",
   fontWeight: 700,
   borderRadius: "12px",
 };
@@ -37,7 +37,7 @@ const stylePrimaryButton = {
   width: "100%",
   height: "100%",
   padding: "10px",
-  fontSize: "24px",
+  fontSize: "1.5rem",
   fontWeight: 700,
   borderRadius: "12px",
 };
@@ -98,15 +98,12 @@ const Test = ({ handleBack, handleNext }) => {
       !!values.goal_amount &&
       !!values.location &&
       !!values.category &&
-      !!values.zakat_eligible &&
       !!values.end_date
     );
   };
-  console.log(data, "============City+");
-  console.log(category);
 
   return (
-    <Form className="flex flex-col gap-4 campagin-form">
+    <Form className="flex flex-col  campagin-form">
       <Box className="desktop:py-[80px] max-desktop:py-[53px] flex flex-col items-center">
         <DropZone
           name="campaign_image"
@@ -176,14 +173,14 @@ const Test = ({ handleBack, handleNext }) => {
         )} */}
       </div>
 
-      <div className="flex desktop:gap-5 w-full campaign-input-div max-desktop:gap-x-0 max-tablet:flex-col max-tablet:gap-y-[50px]">
+      <div className="flex desktop:gap-5 w-full campaign-input-div max-desktop:gap-x-0 max-tablet:flex-col max-tablet:gap-y-[10px]">
         <div className="w-[50%] checkmark-div max-desktop:w-[46%] max-tablet:w-[100%]">
           <FormLabel
             className="text-capitalize font-medium d-flex align-items-center"
             style={{
               padding: "4px 8px 8px 8px",
               color: colors.text.main,
-              fontSize: "20px",
+              fontSize: "1.2rem",
               fontWeight: 700,
               fontFamily: "satoshi",
               fontStyle: "normal",
@@ -191,7 +188,6 @@ const Test = ({ handleBack, handleNext }) => {
             }}
           >
             Is the Campaign Zakaat eligible?
-            <span className="text-red-600">*</span>
           </FormLabel>
           <CheckBox
             sx={{ paddingLeft: "15px" }}
