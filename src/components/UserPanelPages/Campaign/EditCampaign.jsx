@@ -326,6 +326,7 @@ const EditCampaign = () => {
               <div className="flex w-[100%] max-tablet:flex-col gap-4">
                 <div className="w-[50%] max-tablet:w-full">
                   <SelectField
+                  disable={true}
                     value={values?.status}
                     name={"status"}
                     label={"Status:"}
