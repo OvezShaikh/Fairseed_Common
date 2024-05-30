@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import "./Home.css";
 
 import button from "../../constants/button";
@@ -21,6 +21,7 @@ import BottomSlider from "../../components/layout/BottomSlider/Index";
 
 import FilterField from "../../components/inputs/FilterField/Index";
 import UserLogin from "../login/Login_page/Index";
+import FF2 from "../../components/inputs/FilterField/FF2";
 
 function Home() {
   const [userList, setUserList] = useState([]);
@@ -44,6 +45,9 @@ function Home() {
   const receiveLocationFromChild = (locationData) => {
     setLocationDataFromChild(locationData);
   };
+
+
+  const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
 
   const handleTabChange = (index, label) => {
     switch (label) {
@@ -150,25 +154,6 @@ function Home() {
     fetchCampaigns();
   }, [page]);
 
-
-
-
-  const ancestorRef = useRef(null);
-  const elementRef = useRef(null);
-  const [position, setPosition] = useState({ top: 0, left: 0 });
-
-  useEffect(() => {
-    const ancestorRect = ancestorRef.current.getBoundingClientRect();
-    const elementRect = elementRef.current.getBoundingClientRect();
-
-    const relativePosition = {
-      top: elementRect.top - ancestorRect.top,
-      left: elementRect.left - ancestorRect.left
-    };
-
-    setPosition(relativePosition);
-  }, []);
-
   return (
     <>
       <div className="">
@@ -246,14 +231,18 @@ function Home() {
             </p>
           </button>
         </div>
-        <div className="div-rel"  ref={ancestorRef} >
         {showOptions && (
           <FilterField
             sendCategoryToParent={receiveCategoryFromChild}
             sendLocationToParent={receiveLocationFromChild}
           />
+        )}{showOptions && (
+          <FF2 options={options}/>
         )}
-        </div>
+        
+
+
+
         <div className="desktop:gap-x-[36px] desktop:gap-y-[48px] mt-[48px]  flex flex-wrap w-full justify-center desktop:max-w-[1740px] max-desktop:gap-x-[16px]  max-desktop:gap-y-[24px] max-tablet:gap-y-[48px]">
           {filteredUserList?.slice(0, visibleCards).map((item) => {
             return (

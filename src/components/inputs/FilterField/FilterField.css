@@ -26,9 +26,7 @@ span.no-selected-text{
     background-color: transparent !important;
 
 }
-.filter-location {
-    position: fixed;
-}
+
 
 .div-rel,.form-control-wrap{
     position:relative;
