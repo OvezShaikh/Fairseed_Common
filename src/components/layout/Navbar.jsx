@@ -124,7 +124,6 @@ export default function Example() {
 
   const handleSearch = () => {
     setLoading(true);
-    // Replace 'https://api.example.com/search' with your actual API endpoint
     serverAPI
       .get(`${process.env.REACT_APP_BASE_URL}/campaign/global-search`)
       .then((response) => {

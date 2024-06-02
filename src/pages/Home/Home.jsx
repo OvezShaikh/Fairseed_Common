@@ -21,6 +21,7 @@ import BottomSlider from "../../components/layout/BottomSlider/Index";
 
 import FilterField from "../../components/inputs/FilterField/Index";
 import UserLogin from "../login/Login_page/Index";
+import SelectWithCheckboxes from "../../components/inputs/FilterField/Ff2";
 
 function Home() {
   const [userList, setUserList] = useState([]);
@@ -39,10 +40,13 @@ function Home() {
 
   const receiveCategoryFromChild = (categoryData) => {
     setCategoryDataFromChild(categoryData);
+    console.log(categoryData , "categoryData")
+
   };
 
   const receiveLocationFromChild = (locationData) => {
     setLocationDataFromChild(locationData);
+    console.log(locationData , "locationData")
   };
 
   const handleTabChange = (index, label) => {
@@ -83,8 +87,7 @@ function Home() {
 
           return isDataMatch;
         })
-        .map((item) => item.id)
-    )
+        .map((item) => item.id) )
   ).map((id) => userList.find((item) => item.id === id));
 
   const filteredCardCount = filteredUserList.length;
@@ -110,9 +113,7 @@ function Home() {
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/campaign/campaign-filter?page=${page}&limit=${perPage}&filter=${tabName}`
       );
-
       const res = response.data;
-
       setFilterName(res.filter_key);
       if (Array.isArray(res.rows)) {
         setTotalPages(res.pages_count);
@@ -125,6 +126,7 @@ function Home() {
       console.error("Error fetching user list:", error);
     }
   };
+
   useEffect(() => {
     fetchUserListFromTabs();
   }, [tabName]);
@@ -228,10 +230,7 @@ function Home() {
           </button>
         </div>
         {showOptions && (
-          <FilterField
-            sendCategoryToParent={receiveCategoryFromChild}
-            sendLocationToParent={receiveLocationFromChild}
-          />
+          <SelectWithCheckboxes sendCategoryToParent={receiveCategoryFromChild} sendLocationToParent={receiveLocationFromChild}/>
         )}
         <div className="desktop:gap-x-[36px] desktop:gap-y-[48px] mt-[48px]  flex flex-wrap w-full justify-center desktop:max-w-[1740px] max-desktop:gap-x-[16px]  max-desktop:gap-y-[24px] max-tablet:gap-y-[48px]">
           {filteredUserList?.slice(0, visibleCards).map((item) => {
