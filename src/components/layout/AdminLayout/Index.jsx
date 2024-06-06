@@ -10,7 +10,7 @@ const AdminLayout = ({ children , count }) => {
   return (
     <>
       <AdminNavbar />
-      <SideBar mobileOpen={mobileOpen} setMobileOpen={setMobileOpen}></SideBar>
+      <SideBar count={count} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} ></SideBar>
       <div
         className="main-container transition-all duration-500 ease-in-out max-tablet:pr-0 "
         style={{

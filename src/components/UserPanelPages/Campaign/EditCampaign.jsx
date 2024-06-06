@@ -126,7 +126,7 @@ const EditCampaign = () => {
     });
 
     Object.entries(payload).forEach(([key, value]) => {
-      if (key !== "documents" && key !== "status") {
+      if (key !== "documents" && key !== "status"  && key !== "category" ) {
         formData.append(key, value instanceof File ? value : value);
       }
     });
@@ -134,6 +134,11 @@ const EditCampaign = () => {
     if (changedValues.includes("status")) {
       formData.append("status", values.status);
     }
+
+    if (changedValues.includes("category")) {
+      formData.append("category", values.category.id);
+    }
+    
 
     mutate(formData, {
       onSuccess: (response) => {

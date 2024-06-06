@@ -25,8 +25,8 @@ import { FaCopy  } from "react-icons/fa";
 import {
   EmailIcon,
   EmailShareButton,
-  PinterestIcon,
-  PinterestShareButton,
+  FacebookIcon,
+  FacebookShareButton,
   TwitterIcon,
   TwitterShareButton,
   WhatsappIcon,
@@ -264,7 +264,8 @@ function CurrentCampaign({
                 src={images.SealCheck}
                 alt=""
               />
-              <h1
+              {cardDetails?.zakat_eligible && 
+              ( <h1
                 className="text-3xl w-[80%] flex justify-items-start  pb-2  "
                 style={{
                   fontFamily: "satoshi",
@@ -279,6 +280,8 @@ function CurrentCampaign({
                   Zakah Eligible !
                 </p>
               </h1>
+              )} 
+             
             </div>
             <p
               className="text-black/40 w-full text-2xl text-center py-10 max-desktop:w-full  max-tablet:text-[1.1rem] max-tablet:py-[24px] font-medium max-tablet:leading-5"
@@ -432,14 +435,11 @@ function CurrentCampaign({
                             <TwitterIcon size={45} round />
                           </TwitterShareButton>
                         </div>
-                        <div>
-                          <PinterestShareButton
-                            url={currentPageUrl}
-                            media={media}
-                          >
-                            <PinterestIcon size={45} round />
-                          </PinterestShareButton>
-                        </div>
+                       <div>
+                        <FacebookShareButton url={currentPageUrl} hashtag={'#Fairseed#EducationForAll#EducationMatters'}>
+                          <FacebookIcon size={45} round />
+                        </FacebookShareButton>
+                       </div>
                         <div className="pl-4">
                         <FaCopy size={40} onClick={copyToClipboard} />
                         </div>

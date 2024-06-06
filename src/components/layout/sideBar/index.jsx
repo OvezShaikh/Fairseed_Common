@@ -5,7 +5,7 @@ import Drawer from "@mui/material/Drawer";
 import DrawerBody from "./DrawerBody";
 import Navbar from "../navbar/index";
 
-export function SideBar({ mobileOpen, setMobileOpen }) {
+export function SideBar({ mobileOpen, setMobileOpen , count }) {
   const container = React.useRef(null);
 
   const handleDrawerToggle = () => {
@@ -45,7 +45,7 @@ export function SideBar({ mobileOpen, setMobileOpen }) {
             },
           }}
         >
-          <DrawerBody  />
+          <DrawerBody count={count}  />
         </Drawer>
         <Drawer
           PaperProps={{
@@ -63,7 +63,7 @@ export function SideBar({ mobileOpen, setMobileOpen }) {
           }}
           open
         >
-          <DrawerBody />
+          <DrawerBody count={count} />
         </Drawer>
       </Box>
     </Box>

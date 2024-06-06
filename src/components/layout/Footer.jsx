@@ -8,6 +8,7 @@ import icons from "../../constants/icons";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SecondaryButton from "../inputs/secondaryButton";
 import { toast } from "react-toastify";
+import { FaFacebookF } from "react-icons/fa";
 import UserLogin from "../../pages/login/Login_page/Index";
 
 function Footer() {
@@ -424,16 +425,10 @@ function Footer() {
                 >
                   <img src={icons.FooterIconIn} />
                 </Link>
-                <Link
-                  className="text-white/80 ml-3  text-3xl"
-                  style={{
-                    fontFamily: "Satoshi",
-                    fontWeight: "400",
-                    textTransform: "capitalize",
-                  }}
-                  to="#"
-                >
-                  <img src={icons.FooterIconPi} />
+                <Link to="https://www.facebook.com/profile.php?id=61550906075110">
+                <div className="w-[33px] h-[32px] flex justify-center items-center bg-[#D9F5EE] rounded-full ml-3  ">
+                <FaFacebookF />
+                </div>
                 </Link>
                 <Link
                   className="text-white/80 ml-3 text-3xl"
