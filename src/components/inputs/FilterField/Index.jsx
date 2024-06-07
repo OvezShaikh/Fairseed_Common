@@ -22,6 +22,19 @@ const MenuProps = {
   },
 };
 
+const PopperProps = {
+  modifiers: [
+    {
+      name: 'preventOverflow',
+      options: {
+        altBoundary: true,
+        tether: false,
+        rootBoundary: 'document',
+      },
+    },
+  ],
+};
+
 function Index({ sendCategoryToParent, sendLocationToParent }) {
   const [CategoryList, setCategoryList] = useState([]);
   const [LocationList, setLocationList] = useState([]);
@@ -64,16 +77,16 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
           y2="2.98968"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#FF9F0A" />
-          <stop offset="1" stop-color="#FF375F" />
+          <stop stopColor="#FF9F0A" />
+          <stop offset="1" stopColor="#FF375F" />
         </linearGradient>
       </defs>
     </svg>
   );
+
   useEffect(() => {
     const fetchLocationList = async () => {
       try {
-        // const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/campaign/campaign-category?page=${page}&limit=${limit}`;
         const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/campaign/global-search`;
         const response = await axios.get(API_ENDPOINT);
         setLocationList(response.data.rows);
@@ -92,7 +105,6 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
     try {
       const perPage = 100;
       const response = await axios.get(
-        // `${process.env.REACT_APP_API_URL}/campaign/campaign?page=${page}&limit=${perPage}`
         `${process.env.REACT_APP_API_URL}/campaign/global-search`
       );
       
@@ -112,8 +124,6 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
     fetchCategoryList();
   }, [page]);
 
-
-  
   const uniqueCategory = Array.from(
     new Set(LocationList.map((item) => item.category_name))
   );
@@ -123,7 +133,7 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
 
   return (
     <>
-      <div className="extra-filter-options flex items-center gap-x-[40px] mt-[20px] max-tablet:flex-col max-tablet:gap-y-[20px]">
+      <div className="extra-filter-options flex items-center gap-x-[40px] mt-[20px] max-tablet:flex-col max-tablet:gap-y-[20px]  ">
         <div className="extra-filter-category flex">
           {" "}
           <span className="font-[Satoshi] font-bold text-[18px] items-center flex mr-[12px]">
@@ -143,8 +153,14 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
                 <span className="no-selected-text font-[Satoshi] font-bold text-[18px]">{`${selected.length} selected`}</span>
               )}
               MenuProps={MenuProps}
+              PopperProps={PopperProps}
               sx={{
+                // position:"fixed",
                 height: 60,
+                // background:'red !important',
+                "& .MuiPaper-root":{
+                  // background:'red !important'
+                },
               }}
             >
               {uniqueCategory.map((item, index) => (
@@ -175,16 +191,16 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
                       "&.Mui-checked": {
                         width: "14px",
                         height: "14px",
-                        color: "transparent", // Set the color to transparent for the checked state
+                        color: "transparent",
 
-                        backgroundImage: `url(${images.CheckBoxGradient})`, // Add the path to your image
-                        backgroundSize: "cover", // Adjust this property based on your image requirements
-                        backgroundRepeat: "no-repeat", // Set to 'repeat' if needed
+                        backgroundImage: `url(${images.CheckBoxGradient})`,
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
                         borderRadius: "4px",
                         "&:hover": {
-                          backgroundImage: `url(${images.CheckBoxGradient})`, // Add the path to your image
-                          backgroundSize: "cover", // Adjust this property based on your image requirements
-                          backgroundRepeat: "no-repeat", // Set to 'repeat' if needed
+                          backgroundImage: `url(${images.CheckBoxGradient})`,
+                          backgroundSize: "cover",
+                          backgroundRepeat: "no-repeat",
                           borderRadius: "4px",
                         },
                       },
@@ -216,6 +232,7 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
                 <span className="no-selected-text font-[Satoshi] font-bold text-[18px]">{`${selected.length} selected`}</span>
               )}
               MenuProps={MenuProps}
+              PopperProps={PopperProps}
               sx={{
                 height: 60,
               }}
@@ -230,7 +247,7 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
                     color: "rgba(23, 43, 77, 1)",
 
                     "&.Mui-selected": {
-                      backgroundColor: "transparent", // Set the background color to transparent when selected
+                      backgroundColor: "transparent", 
                     },
                   }}
                 >
@@ -248,16 +265,16 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
                       "&.Mui-checked": {
                         width: "14px",
                         height: "14px",
-                        color: "transparent", // Set the color to transparent for the checked state
+                        color: "transparent",
 
-                        backgroundImage: `url(${images.CheckBoxGradient})`, // Add the path to your image
-                        backgroundSize: "cover", // Adjust this property based on your image requirements
-                        backgroundRepeat: "no-repeat", // Set to 'repeat' if needed
+                        backgroundImage: `url(${images.CheckBoxGradient})`,
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
                         borderRadius: "4px",
                         "&:hover": {
-                          backgroundImage: `url(${images.CheckBoxGradient})`, // Add the path to your image
-                          backgroundSize: "cover", // Adjust this property based on your image requirements
-                          backgroundRepeat: "no-repeat", // Set to 'repeat' if needed
+                          backgroundImage: `url(${images.CheckBoxGradient})`,
+                          backgroundSize: "cover",
+                          backgroundRepeat: "no-repeat",
                           borderRadius: "4px",
                         },
                       },

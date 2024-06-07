@@ -9,7 +9,7 @@ import images from '../../../constants/images';
 import { format } from "date-fns";
 
 
-const Campaign = () => {
+const Campaign = ({ setReq }) => {
   const [selectedRowID, setSelectedRowID] = useState(null);
 
   const getStatusCellStyle = (status) => {
@@ -38,6 +38,8 @@ const Campaign = () => {
     }
     ;
   };
+
+ 
 
 
   const StatusCell = ({ value }) => (
@@ -137,15 +139,14 @@ const Campaign = () => {
       {
         Header: 'Actions',
         accessor: 'actions',
-
         nofilter: true,
         minWidth: 100,
         width: 100,
         Cell: ({ row }) => {
+          setReq(row?.index+1);
           return (
             <div className='flex items-center justify-center pl-6 max-desktop:pl-0 max-tablet:pl-0'>
               <Link to="View" state={{ id: row?.id }} ><SecondaryButton sx={{ height: '30px' }} >Edit</SecondaryButton></Link>
-              
             </div >
           )
         }

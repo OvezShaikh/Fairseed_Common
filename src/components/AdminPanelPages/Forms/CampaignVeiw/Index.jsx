@@ -52,7 +52,6 @@ function Index() {
       return data.data.data;
     },
     onSuccess: (data) => {
-      console.log(data , '<========')
       setCampaign(data);
       if (data?.campaign_image) {
         const image = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign_image}`;
@@ -117,10 +116,10 @@ function Index() {
     formData.append("end_date", values?.end_date);
     formData.append("summary", values?.summary);
     formData.append("story", values?.story);
-    formData.append("category", values?.category);
+    formData.append("category", values?.category?.id || campaign?.campaign_data?.category?.id ||  campaign?.campaign?.category?.id );
     formData.append("zakat_eligible", values?.zakat_eligible);
-    formData.append("document", values?.category);
-    formData.append("status", values?.status.value);
+    formData.append("document", values?.documents);
+    formData.append("status", values?.status);
     formData.append("approve_campaign", approval);
 
     mutate(formData, {

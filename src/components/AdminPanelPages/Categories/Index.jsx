@@ -78,7 +78,6 @@ const Index = () => {
             <Link to="Edit" state={{ id: row?.id }}>
               <SecondaryButton sx={{ height: "30px" }}>Edit</SecondaryButton>
             </Link>
-
             <DeleteBox
               url={`/admin-dashboard/category`}
               data={row?.original?.id}
@@ -101,7 +100,6 @@ const Index = () => {
   return (
     <div>
       <ReactTable
-      
         rows={[]}
         columns={columns}
         manualPagination

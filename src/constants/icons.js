@@ -5,6 +5,7 @@ import FooterIconIn from '../assets/FooterIconIn.svg'
 import FooterIconPi from '../assets/FooterIconPi.svg'
 import FooterIconYo from '../assets/FooterIconYo.svg'
 import MapPin from '../assets/MapPin.svg'
+import FooterIconFa from '../assets/FooterIconFa.svg'
 
 
 export default{
@@ -14,5 +15,6 @@ export default{
  FooterIconIn,
  FooterIconPi,
  FooterIconYo,
- MapPin
+ MapPin,
+ FooterIconFa
 }

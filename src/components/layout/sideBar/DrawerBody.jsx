@@ -11,7 +11,6 @@ import {
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { RiArrowRightSFill } from "react-icons/ri";
-import Badge from '@mui/material/Badge';
 import { Link, useLocation } from "react-router-dom";
 import { TbCaretRightFilled } from "react-icons/tb";
 
@@ -194,7 +193,6 @@ const CollapsibleMenuItem = ({
                         paddingLeft: "1.5rem",
                       }}
                     />
-                   
                   </ListItemButton>
                 </ListItem>
               </Link>
@@ -413,4 +411,4 @@ const DrawerBody = () => {
   );
 };
 
-export default DrawerBody;
+export default DrawerBody;  

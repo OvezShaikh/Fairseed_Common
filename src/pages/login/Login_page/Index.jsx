@@ -30,6 +30,7 @@ const StyledTypography = styled(Typography)({
 });
 
 const UserLogin = ({ text, color, fontWeight, size }) => {
+  
   const { Initial_value, formValidation, loginData } = useLogin();
 
   const theme = createTheme();
@@ -64,7 +65,7 @@ const UserLogin = ({ text, color, fontWeight, size }) => {
         open={open}
         fullScreen={isSmallScreen}
         maxWidth="xl"
-        TouchRippleProps={{ disableTouchRipple: true }} // Disable touch ripple outside dialog
+        TouchRippleProps={{ disableTouchRipple: true }} 
       >
         <IconButton
           aria-label="close"

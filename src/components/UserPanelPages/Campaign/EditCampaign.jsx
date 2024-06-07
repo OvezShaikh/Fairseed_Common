@@ -126,7 +126,7 @@ const EditCampaign = () => {
     });
 
     Object.entries(payload).forEach(([key, value]) => {
-      if (key !== "documents" && key !== "status") {
+      if (key !== "documents" && key !== "status"  && key !== "category" ) {
         formData.append(key, value instanceof File ? value : value);
       }
     });
@@ -134,6 +134,11 @@ const EditCampaign = () => {
     if (changedValues.includes("status")) {
       formData.append("status", values.status);
     }
+
+    if (changedValues.includes("category")) {
+      formData.append("category", values.category.id);
+    }
+    
 
     mutate(formData, {
       onSuccess: (response) => {
@@ -326,6 +331,7 @@ const EditCampaign = () => {
               <div className="flex w-[100%] max-tablet:flex-col gap-4">
                 <div className="w-[50%] max-tablet:w-full">
                   <SelectField
+                  disable={true}
                     value={values?.status}
                     name={"status"}
                     label={"Status:"}
