@@ -114,10 +114,6 @@ function CauseEdit_Form() {
     return <div>Loading...</div>;
   }
 
-  console.log(initial_values , "<------");
-
-
-
   const handleSubmit = (values) => {
     const formData = new FormData();
     if (values?.campaign_image instanceof File) {

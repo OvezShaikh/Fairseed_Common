@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import {
+  Badge,
   Box,
   Collapse,
   List,
@@ -40,6 +41,7 @@ import { colors } from "../../../constants/theme";
 import SearchIcon from "@mui/icons-material/Search";
 import { TextField } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
+import { useGetAll } from "../../../Hooks";
 
 const activeMenuStyles = {
   background: "#FFF4EB",
@@ -90,6 +92,8 @@ let Icons = {
   DashboardIcon: (isActive) => <DashboardIcon isActive={isActive} />,
 };
 
+
+
 const CollapsibleMenuItem = ({
   item,
   index,
@@ -134,7 +138,7 @@ const CollapsibleMenuItem = ({
           )}
         </ListItemButton>
       </ListItem>
-      
+
       <Collapse
         in={selectedPath.startsWith(item.path)}
         timeout="auto"
@@ -144,14 +148,14 @@ const CollapsibleMenuItem = ({
         <List component="div" className={`border-start  ps-2 py-0 ml-8`}>
           {item.children.map((subItem, index) =>
             subItem?.children ? (
-              
+
               <CollapsibleMenuItem
                 item={subItem}
                 index={index}
                 selectedPath={selectedPath}
                 setSelectedMenu={setSelectedMenu}
               />
-              
+
             ) : (
               <Link key={subItem.title} to={subItem.path}>
                 <ListItem
@@ -181,7 +185,7 @@ const CollapsibleMenuItem = ({
                   )}
 
                   <ListItemButton className="pl-8">
-                  
+
                     <RiArrowRightSFill className="text-[#B6BAC3]" />
                     <ListItemText
                       primary={subItem.title}
@@ -209,11 +213,11 @@ const DrawerBody = () => {
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
   let role = Data?.user_role;
-
+  const [invisible, setInvisible] = React.useState(false);
   const { pathname } = useLocation();
 
   const menus = role === 'Admin'
-  ? [
+    ? [
       {
         icon: "DashboardIcon",
         path: "/AdminPanel/",
@@ -297,44 +301,66 @@ const DrawerBody = () => {
         title: "Payment Gateway",
       },
     ]
-  : role === 'Campaign_Manager'
-  ? [
-      {
-        icon: "CausesIcon",
-        path: "/AdminPanel/Campaigns",
-        title: "Campaigns",
-      },
-      {
-        icon: "CausesApprovalIcon",
-        path: "/AdminPanel/Causes-Edit-Approval",
-        title: "Campaign Edit Approval",
-      },
-      {
-        icon: "ReportedIcon",
-        path: "/AdminPanel/Reported-Cause",
-        title: "Reported Campaign",
-      }
-    ]
-  : [
-      {
-        icon: "DonationIcon",
-        path: "/AdminPanel/Donations",
-        title: "Donations",
-      },
-      {
-        icon: "WithdrawalsIcon",
-        path: "/AdminPanel/Withdrawals",
-        title: "Withdrawals",
-      }
-    ];
+    : role === 'Campaign_Manager'
+      ? [
+        {
+          icon: "CausesIcon",
+          path: "/AdminPanel/Campaigns",
+          title: "Campaigns",
+        },
+        {
+          icon: "CausesApprovalIcon",
+          path: "/AdminPanel/Causes-Edit-Approval",
+          title: "Campaign Edit Approval",
+        },
+        {
+          icon: "ReportedIcon",
+          path: "/AdminPanel/Reported-Cause",
+          title: "Reported Campaign",
+        }
+      ]
+      : [
+        {
+          icon: "DonationIcon",
+          path: "/AdminPanel/Donations",
+          title: "Donations",
+        },
+        {
+          icon: "WithdrawalsIcon",
+          path: "/AdminPanel/Withdrawals",
+          title: "Withdrawals",
+        }
+      ];
 
 
 
   const [selectedPath, setSelectedMenu] = useState("");
+  const [Requests, setRequests] = useState(0)
 
   useEffect(() => {
     setSelectedMenu(pathname);
   }, [pathname]);
+
+  const { refetch: refetchrequests } = useGetAll({
+    key: `/admin-dashboard/cause-edit`,
+    enabled: false,
+    select: (data) => {
+      return data?.data;
+    },
+    onSuccess: (data) => {
+      console.log(data.count);
+      // setRequests(data?.count);
+    },
+  });
+
+  useEffect(() => {
+    if (Requests === 0) {
+      setInvisible(true)
+    } else {
+      setInvisible(false)
+    }
+    refetchrequests();
+  }, [Requests])
 
   return (
     <div className="link-none transition-all duration-500 ease-in-out">
@@ -387,20 +413,33 @@ const DrawerBody = () => {
                 >
                   <ListItemButton className="pl-8">
                     <ListItemIcon sx={{ minWidth: "40px" }} className="pr-3">
-                      {item.icon &&
-                        (Icons[item.icon]
-                          ? Icons[item.icon](item.path === selectedPath)
-                          : "")}
+                      {item.icon && Icons[item.icon]
+                        ? Icons[item.icon](item.path === selectedPath)
+                        : ""}
                     </ListItemIcon>
-                    <ListItemText
-                      primary={item.title}
-                      primaryTypographyProps={{
-                        fontFamily: "satoshi",
-                        fontWeight: 500,
-                        fontSize: 16,
-                        color: "#717171",
-                      }}
-                    />
+                    {item.title === "Campaign Edit Approval" ? (
+                      <Badge color="warning" variant="dot" invisible={invisible}  >
+                        <ListItemText
+                          primary={item.title}
+                          primaryTypographyProps={{
+                            fontFamily: "satoshi",
+                            fontWeight: 500,
+                            fontSize: 16,
+                            color: "#717171",
+                          }}
+                        />
+                      </Badge>
+                    ) : (
+                      <ListItemText
+                        primary={item.title}
+                        primaryTypographyProps={{
+                          fontFamily: "satoshi",
+                          fontWeight: 500,
+                          fontSize: 16,
+                          color: "#717171",
+                        }}
+                      />
+                    )}
                   </ListItemButton>
                 </ListItem>
               </Link>

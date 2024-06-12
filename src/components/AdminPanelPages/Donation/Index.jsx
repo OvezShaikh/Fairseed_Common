@@ -51,18 +51,18 @@ const Index = () => {
   );
   const columns = React.useMemo(
     () => [
-      {
-        Header: "Id", 
-        accessor: "index",
-        Cell: ({ row }) => (
+      // {
+      //   Header: "Id", 
+      //   accessor: "index",
+      //   Cell: ({ row }) => (
          
-          <div>{row.index + 1}</div>
-        ),
-        minWidth: 50,
-        width: 50,
-        search: false,
-        sortable: false
-      },
+      //     <div>{row.index + 1}</div>
+      //   ),
+      //   minWidth: 50,
+      //   width: 50,
+      //   search: false,
+      //   sortable: false
+      // },
       {
         Header: "Full Name",
         accessor: "full_name",

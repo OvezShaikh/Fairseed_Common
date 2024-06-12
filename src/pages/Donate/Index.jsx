@@ -1,6 +1,6 @@
-import React, { useContext, useMemo } from "react";
+import React from "react";
 import images from "../../constants/images";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/Footer";
 import InputField from "../../components/inputs/InputField";
@@ -14,12 +14,10 @@ import Navigation from "../../components/layout/Navigation/Index";
 import { Formik, Form } from "formik";
 import "./Donate.css";
 import * as yup from "yup";
-
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Avatar } from "@mui/material";
-
 import moment from "moment";
 import CountrySelect from "../../components/inputs/countrySelect";
 import { useCreateOrUpdate, useGetAll } from "../../Hooks";
@@ -65,11 +63,10 @@ const stylePrimaryButton = {
 
 function Index({ goalAmount, fundRaised }) {
   const navigate = useNavigate();
-  const { pathname } = useLocation();
   const { id } = useParams();
   const [cardDetails, setCardDetails] = useState(null);
   const [selectedPaymentGateway, setSelectedPaymentGateway] = useState("");
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
 
   let userData = localStorage.getItem("user_info");
   let Data = JSON.parse(userData);
@@ -88,57 +85,7 @@ function Index({ goalAmount, fundRaised }) {
       });
   }, [id]);
 
-  const { mutate } = useCreateOrUpdate({
-    url: `/donors/donate-money`,
-  });
-
-  const handleSubmit = (values) => {
-    const formData = new FormData();
-    formData.append("donation_type", values?.donation_type.value);
-    formData.append("full_name", values?.full_name);
-    formData.append("amount", values?.amount);
-    formData.append("city", values?.city);
-    formData.append("email", values?.email);
-    formData.append("pancard", values?.pancard);
-    formData.append("country", values?.country);
-    formData.append("comment", values?.comment);
-    formData.append("payment_type", selectedPaymentGateway);
-    formData.append("is_anonymous", values?.is_anonymous);
-    formData.append("campaign", cardDetails?.id);
-    formData.append("mobile", values?.mobile);
-    formData.append("transaction_date ", values?.transaction_date);
-    formData.append("bank_name", values?.bank_name);
-    {
-      localStorage.getItem("token") && formData.append("user", user_id);
-    }
-
-    mutate(formData, {
-      onSuccess: (response) => {
-        if (selectedPaymentGateway === "Bank_Transfer") {
-          window.location.href = "/Home";
-        } else {
-          const url = response?.data?.pay_page_url;
-          window.location.href = url;
-        }
-      },
-      onError: (response) => {
-        toast.error(`${response?.message}errors`, { position: "top-right" });
-      },
-    });
-  };
-
-  useGetAll({
-    key: `/accounts/user/${user_id}`,
-    enabled: true,
-    select: (data) => {
-      return data?.data?.data;
-    },
-    onSuccess: (data) => {
-      setUser(data);
-    },
-  });
-
-  const inititalValues = {
+  const initialValues = {
     user: "",
     campaign: "",
     donation_type: "",
@@ -156,14 +103,105 @@ function Index({ goalAmount, fundRaised }) {
     bank_name: "",
     other_details: "",
   };
+  
+
   const validationSchema = yup.object().shape({
+    donation_type: yup.object().required("Donation Type is required"),
     amount: yup
       .number()
       .typeError("Please enter a valid amount")
       .min(50, "Amount must be at least 50 INR")
       .required("Amount is required"),
-    donation_type: yup.object().required("Donation Type is required"),
   });
+  
+
+  const { mutate } = useCreateOrUpdate({
+    url: `/donors/donate-money`,
+  });
+
+  const handleSubmit = (values) => {
+    const formData = new FormData();
+    formData.append("donation_type", values?.donation_type.value);
+    formData.append("amount", values?.amount);
+    formData.append("pancard", values?.pancard);
+    formData.append("comment", values?.comment);
+    formData.append("payment_type", selectedPaymentGateway);
+    formData.append("is_anonymous", values?.is_anonymous);
+    formData.append("campaign", cardDetails?.id);
+    formData.append("transaction_date", values?.transaction_date); 
+    formData.append("bank_name", values?.bank_name);
+    formData.append("full_name", user?.username || values?.full_name);
+    formData.append("country", user?.country || values?.country);
+    formData.append("email", user?.email || values?.email); 
+    formData.append("city", user?.city || values?.city);
+    formData.append("mobile", user?.mobile_number || values?.mobile);
+    if (user !== null) formData.append("user", user?.id);
+    
+    mutate(formData, {
+      onSuccess: (response) => {
+        if (selectedPaymentGateway === "Bank_Transfer") {
+          window.location.href = "/Home";
+        } else {
+          const url = response?.data?.pay_page_url;
+          window.location.href = url;
+        }
+      },
+      onError: (response) => {
+        toast.error(`${response?.message} errors`, { position: "top-right" });
+      },
+    });
+  };
+
+  // const handleSubmit = (values) => {
+  //   const data = {
+  //     donation_type: values?.donation_type.value,
+  //     amount: values?.amount,
+  //     pancard: values?.pancard,
+  //     comment: values?.comment,
+  //     payment_type: selectedPaymentGateway,
+  //     is_anonymous: values?.is_anonymous,
+  //     campaign: cardDetails?.id,
+  //     transaction_date: values?.transaction_date,
+  //     bank_name: values?.bank_name,
+  //     full_name: user?.username || values?.full_name,
+  //     country: user?.country || values?.country,
+  //     email: user?.email || values?.email,
+  //     city: user?.city || values?.city,
+  //     mobile: user?.mobile_number || values?.mobile,
+  //   };
+  //   if (user !== null) data.user = user?.id;
+  
+  //   console.log("Data to be submitted:", data); // Debugging
+  
+  //   mutate(data, {
+  //     onSuccess: (response) => {
+  //       if (selectedPaymentGateway === "Bank_Transfer") {
+  //         window.location.href = "/Home";
+  //       } else {
+  //         const url = response?.data?.pay_page_url;
+  //         window.location.href = url;
+  //       }
+  //     },
+  //     onError: (response) => {
+  //       toast.error(`${response?.message} errors`, { position: "top-right" });
+  //     },
+  //   });
+  // };
+  
+  
+
+  useGetAll({
+    key: `/accounts/user/${user_id}`,
+    enabled: true,
+    select: (data) => {
+      return data?.data?.data;
+    },
+    onSuccess: (data) => {
+      setUser(data);
+    },
+  });
+
+ 
 
   return (
     <>
@@ -181,7 +219,7 @@ function Index({ goalAmount, fundRaised }) {
               <Formik
                 enableReinitialize={true}
                 validationSchema={validationSchema}
-                initialValues={inititalValues}
+                initialValues={initialValues}
                 onSubmit={(values) => handleSubmit(values)}
               >
                 <Form>
