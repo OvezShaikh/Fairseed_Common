@@ -62,7 +62,6 @@ const Campaign = ({ setReq }) => {
         minWidth: 75,
         width: 100,
       },
-
       {
         Header: "Title",
         accessor: "campaign.title",
