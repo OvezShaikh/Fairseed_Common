@@ -271,9 +271,11 @@ function CurrentCampaign({
                   "-webkit-text-fill-color": "transparent",
                 }}
               >
-                <p className="text-2xl max-tablet:text-[1.2rem] font-bold">
-                  Zakah Eligible !
-                </p>
+                {cardDetails?.zakat_eligible === true && (
+                  <p className="text-2xl max-tablet:text-[1.2rem] font-bold">
+                    Zakah Eligible !
+                  </p>
+                )}
               </h1>
             </div>
             <p

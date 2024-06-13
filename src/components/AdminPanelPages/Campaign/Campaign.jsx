@@ -8,8 +8,6 @@ import { Link, useLocation } from "react-router-dom";
 import images from "../../../constants/images";
 import { format } from "date-fns";
 import { useDownloadExcel } from "react-export-table-to-excel";
-import PrimaryButton from "../../inputs/PrimaryButton";
-import { TiExportOutline } from "react-icons/ti";
 
 const Campaign = () => {
   let userData = localStorage.getItem("user_info");
@@ -167,17 +165,17 @@ const Campaign = () => {
         checkboxComponent={IndeterminateCheckbox}
         downloadExcel
         url={`/admin-dashboard/campaign`}
-        addButton={
-          <PrimaryButton onClick={onDownload}>
-            {" "}
-            <TiExportOutline
-              color="white"
-              size={20}
-              className="me-1 max-tablet:hidden"
-            />
-            Export Excel{" "}
-          </PrimaryButton>
-        }
+        // addButton={
+        //   <PrimaryButton onClick={onDownload}>
+        //     {" "}
+        //     <TiExportOutline
+        //       color="white"
+        //       size={20}
+        //       className="me-1 max-tablet:hidden"
+        //     />
+        //     Export Excel{" "}
+        //   </PrimaryButton>
+        // }
         extraQuery={{ inactive: true }}
         selectedRowID={selectedRowID}
       />

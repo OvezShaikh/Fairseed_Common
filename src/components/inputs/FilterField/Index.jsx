@@ -228,7 +228,7 @@ function Index({ sendCategoryToParent, sendLocationToParent }) {
                     color: "rgba(23, 43, 77, 1)",
 
                     "&.Mui-selected": {
-                      backgroundColor: "transparent", // Set the background color to transparent when selected
+                      backgroundColor: "", // Set the background color to transparent when selected
                     },
                   }}
                 >

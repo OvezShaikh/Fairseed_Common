@@ -190,6 +190,7 @@ const HomeSwiper = () => {
       })}
       <div className="swiper-pagination"></div>
     </Swiper>
+    
   );
 };
 

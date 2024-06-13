@@ -129,7 +129,7 @@ const MultipleRows = () => {
                     />
                   </div>
                   <div
-                    className="py-2 text-[1.5rem] max-desktop:text-[20px] max-tablet:text-[18px] w-[100%] text-center bottom-slider"
+                    className="py-2 text-[1.5rem] max-desktop:text-[1.2rem] max-tablet:text-[1.1rem] w-[100%] text-center bottom-slider"
                     style={{
                       fontFamily: "Satoshi",
                       color: "#383A42",

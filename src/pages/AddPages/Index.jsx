@@ -46,7 +46,7 @@ function KnowingFairseed({ title, content, navbar, footer }) {
       </div>
 
       <div
-        className="pt-12 flex flex-col text-start text-ellipsis font-[satoshi] max-w-[1920px] max-desktop:w-[718px] max-tablet:w-[370px] gap-[10px] px-10 max-desktop:px-2 desktop:text-[22px] text-[satoshi] max-tablet:px-2"
+        className="pt-12 flex flex-col text-start text-ellipsis font-[satoshi] max-w-[1920px] max-desktop:w-[718px] max-tablet:w-[370px] gap-[10px] px-10 max-desktop:px-2 desktop:text-[1.4rem] text-[satoshi] max-tablet:px-2"
         dangerouslySetInnerHTML={{ __html: contentData?.content }}
         style={{ whiteSpace: "pre-line", fontFamily: "satoshi" }}
       ></div>

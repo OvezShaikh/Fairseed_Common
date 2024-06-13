@@ -160,7 +160,7 @@ function Index() {
             >
               <img src={images.Funnel} />
               <p
-                className="text-[18px]"
+                className="text-[1.12rem]"
                 style={{
                   background:
                     "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",

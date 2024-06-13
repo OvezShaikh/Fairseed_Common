@@ -11,7 +11,7 @@ const NotFoundPage = ({ color, background }) => {
     >
       <div className=" flex flex-col justify-center items-center">
         <h1
-          className="text-[9.37rem] font-black font-[Epilogue] max-tablet:text-[100px]  animate-bounce "
+          className="text-[9.37rem] font-black font-[Epilogue] max-tablet:text-[6.25rem]  animate-bounce "
           style={{
             background: "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
             "-webkit-background-clip": "text",

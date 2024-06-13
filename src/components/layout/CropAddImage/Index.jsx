@@ -53,10 +53,10 @@ function ImageBackgroundWithDeleteButton({ imgUrl, onDelete, setDataUrl, name , 
             className="flex flex-col text-center items-center justify-center"
             onClick={() => setOpenModal(true)}
           >
-            <h1 className=" text-[20px] font-bold font-[satoshi]">
+            <h1 className=" text-[1.2rem] font-bold font-[satoshi]">
               Click to select image
             </h1>
-            <p className="text-[#00000066] text-[16px] font-normal   font-[satoshi] w-[70%]">
+            <p className="text-[#00000066] text-[1rem] font-normal   font-[satoshi] w-[70%]">
               The Image must be less than 5 MB. Recommended size is 850x550.
               Minimum height is 550 and minimum width is 850.{" "}
             </p>

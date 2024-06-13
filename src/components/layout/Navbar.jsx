@@ -566,7 +566,7 @@ export default function Example() {
                 </div>
               ) : (
                 <button className="font-[satoshi] text-[1.1rem]  font-medium text-[#40444C]">
-                  <UserLogin text={"Log in"} />
+                  <UserLogin text={"Log in"} color={"black"} />
                 </button>
               )}
             </div>
