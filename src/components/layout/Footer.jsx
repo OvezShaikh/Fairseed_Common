@@ -192,7 +192,7 @@ function Footer() {
                 wordWrap: "break-word",
               }}
             >
-              FairSeed Technology Foundation is India's first Education focussed & technology based online crowdfunding platform dedicated to revolutionizing the way education is funded and accessible. Our mission is to bridge the financial gap in education by connecting passionate learners, educators, and educational institutions with a global community of generous donors and supporters. Hello
+              FairSeed Technology Foundation is India's first Education focussed & technology based online crowdfunding platform dedicated to revolutionizing the way education is funded and accessible. Our mission is to bridge the financial gap in education by connecting passionate learners, educators, and educational institutions with a global community of generous donors and supporters.
             </p>
           </div>
           <div className="w-[15%] max-desktop:w-[35%] max-tablet:w-[50%]">
@@ -486,7 +486,7 @@ function Footer() {
                 </Link>
                 <Link to="https://www.facebook.com/profile.php?id=61550906075110">
                   <div className="w-[33px] h-[32px] flex justify-center items-center bg-[#D9F5EE] rounded-full ml-3  ">
-                    <FaFacebookF />
+                    <FaFacebookF  size={22}/>
                   </div>
                 </Link>
                 <Link
