@@ -330,6 +330,19 @@ function Footer() {
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
+                  to="/Home/FAQ's"
+                >
+                  FAQ's
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="text-white/80"
+                  style={{
+                    fontFamily: "Satoshi",
+                    fontWeight: "400",
+                    textTransform: "capitalize",
+                  }}
                   to="/Home/Disclaimer"
                 >
                   Disclaimer
