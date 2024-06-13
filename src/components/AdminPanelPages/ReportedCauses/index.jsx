@@ -80,11 +80,9 @@ const Reported_Causes = () => {
   const columns = React.useMemo(() => [
     {
       Header: "Id",
-      accessor: "index",
-      Cell: ({ row }) => <div>{row.index + 1}</div>,
-      minWidth: 50,
-      width: 50,
-      search: false,
+      accessor: "c_id", 
+      minWidth: 75,
+      width: 100,
     },
     {
       Header: "Name",

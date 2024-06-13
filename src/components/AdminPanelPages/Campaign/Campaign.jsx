@@ -63,11 +63,10 @@ const Campaign = () => {
   const columns = React.useMemo(() => [
     {
       Header: "Id",
-      accessor: "id",
-      Cell: ({ row }) => <div>{row.index + 1}</div>,
-      minWidth: 50,
-      width: 50,
-      search: false,
+      accessor: "c_id",
+      minWidth: 75,
+      width: 100,
+      // search: false,
     },
 
     {

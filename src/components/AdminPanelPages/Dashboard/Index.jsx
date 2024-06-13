@@ -3,8 +3,6 @@ import DashboardActivities from './components/DashboardActivities'
 import OngoingCampaigns from './components/OngoingCampaigns'
 import MembersByCountries from './components/MembersByCountries'
 import DonationInMonths from './components/DonationInMonths'
-
-import { Chart as ChartJs } from "chart.js/auto"
 import { donationValues } from "./components/constant/data"
 function Dashboard() {
   const funds = donationValues.fundraised_data

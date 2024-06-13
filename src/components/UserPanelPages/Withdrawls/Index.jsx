@@ -56,9 +56,8 @@ const Withdrawals = () => {
 
   const columns = React.useMemo(() => [
     {
-      Header: "Id", // Row number header
-      accessor: "id", // Accessor for row number
-      Cell: ({ row }) => <div>{row.index + 1}</div>,
+      Header: "Id", 
+      accessor: "campaign.c_id",
       minWidth: 50,
       width: 50,
       search: false,

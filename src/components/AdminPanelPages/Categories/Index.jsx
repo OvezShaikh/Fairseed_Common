@@ -103,7 +103,7 @@ const Index = () => {
         rows={[]}
         columns={columns}
         manualPagination
-        title={"Categories"}
+        title={"categories"}
         url="/admin-dashboard/category"
         addButton={<LocationConfigurationDialog />}
         selectedRowID={selectedRowID}

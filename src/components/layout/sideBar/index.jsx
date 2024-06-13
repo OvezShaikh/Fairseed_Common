@@ -45,7 +45,7 @@ export function SideBar({ mobileOpen, setMobileOpen , count }) {
             },
           }}
         >
-          <DrawerBody count={count}  />
+          <DrawerBody />
         </Drawer>
         <Drawer
           PaperProps={{
@@ -63,7 +63,7 @@ export function SideBar({ mobileOpen, setMobileOpen , count }) {
           }}
           open
         >
-          <DrawerBody count={count} />
+          <DrawerBody/>
         </Drawer>
       </Box>
     </Box>
