@@ -233,7 +233,7 @@ function Footer() {
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
-                    background:""
+                    background: ""
                     //   "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
                     // "-webkit-background-clip": "text",
                     // "-webkit-text-fill-color": "transparent",
@@ -499,7 +499,7 @@ function Footer() {
                 </Link>
                 <Link to="https://www.facebook.com/profile.php?id=61550906075110">
                   <div className="w-[33px] h-[32px] flex justify-center items-center bg-[#D9F5EE] rounded-full ml-3  ">
-                    <FaFacebookF  size={22}/>
+                    <FaFacebookF size={22} />
                   </div>
                 </Link>
                 <Link
@@ -520,11 +520,16 @@ function Footer() {
 
         <div>
           <hr className="text-white/50 pb-2"></hr>
-          <p className="text-white/40 text-1xl max-tablet:text-center">
-            Copyright © Fairseed 2023
-          </p>
+          <div className="flex justify-between items-center">
+            <p className="text-white/40 text-1xl max-tablet:text-center">
+              Copyright © Fairseed 2023
+            </p>
+            <p className="text-white/40 text-1xl max-tablet:text-center">
+            Crafted at <a href="https://lowcosys.com">lowcosys.com </a>
+            </p>
+          </div>
         </div>
-      </div>
+    </div >
     </>
   );
 }
