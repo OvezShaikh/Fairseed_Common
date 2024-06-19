@@ -277,7 +277,7 @@ function CurrentCampaign({
                 }}
               >
                 <p className="text-2xl max-tablet:text-[1.2rem] font-bold">
-                  Zakah Eligible !
+                  Zakat Eligible !
                 </p>
               </h1>
               )} 
@@ -330,7 +330,7 @@ function CurrentCampaign({
                       wordWrap: "break-word",
                     }}
                   >
-                    Support Cause
+                    Support Campaign
                   </div>
                 </PrimaryButton>
               </Link>
@@ -505,7 +505,7 @@ function CurrentCampaign({
                     Report
                   </SecondaryButton>
                 }
-                title="Reporte Cause"
+                title="Reporte Campaign"
                 onClose={() => onClose && onClose()}
               >
                 {({ onClose }) => (
@@ -583,7 +583,7 @@ function CurrentCampaign({
                           }}
                           label={"Message:"}
                           name={"message"}
-                          placeholder={"write why you report this cause?"}
+                          placeholder={"write why you report this Campaign?"}
                         />
                       </div>
                       <div className="flex gap-4">
@@ -642,7 +642,7 @@ function CurrentCampaign({
                 wordWrap: "break-word",
               }}
             >
-              Support Cause
+              Support Campaign
             </h1>
           </PrimaryButton>
         </Link>

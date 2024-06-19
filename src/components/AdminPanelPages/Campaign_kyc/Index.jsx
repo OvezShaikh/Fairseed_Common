@@ -66,7 +66,7 @@ const Campaign_Kyc = () => {
               {row?.original?.bank_kyc?.title}
             </div>
             <a href={`/campaign-details/${row.id}`} target="_blank">
-              <img className='ml-2' src={images.CausesDetails} alt="CausesDetails"  />
+              <img className='ml-2' src={images.CausesDetails} alt="CampaignDetails"  />
             </a>
           </div>
         );
@@ -154,7 +154,7 @@ const Campaign_Kyc = () => {
         columns={columns}
         showFilter
         manualPagination
-        title={"Cause-KYC"}
+        title={"Campaign-KYC"}
         checkboxComponent={IndeterminateCheckbox}
         url={`/admin-dashboard/campaign-kyc`}
         extraQuery={{ inactive: true }}

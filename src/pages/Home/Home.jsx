@@ -356,7 +356,7 @@ function Home() {
                       wordWrap: "break-word",
                     }}
                   >
-                    Fill Cause Information
+                    Fill Campaign Information
                   </h1>
                   <p
                     className="text-[1.5rem] max-tablet:text-[1.1rem] max-tablet:font-normal"
@@ -517,13 +517,13 @@ function Home() {
           className="desktop:text-[3rem] font-bold max-desktop:text-[2.25rem] max-tablet:text-[1.5rem]"
           style={{ fontFamily: "Satoshi", fontWeight: 900 }}
         >
-          Causes by Category
+          Campaign by Category
         </h1>
         <p
           className="text-black/60 font-medium mt-3 max-w-[974px] desktop:text-[1.5rem] desktop:font-bold capitalize text-[#8E95A2] max-desktop:text-[1.25rem] max-tablet:text-[1rem] max-tablet:mt-[24px] max-tablet:font-normal"
           style={{ fontFamily: "Satoshi" }}
         >
-          Be it for a personal need, social cause or a creative idea - you can
+          Be it for a personal need, social Campaign or a creative idea - you can
           count on us for the project that you want to raise funds for.
         </p>
       </div>

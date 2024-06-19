@@ -358,7 +358,7 @@ const EditCampaign = () => {
                       height: "22px",
                     }}
                   >
-                    Is the Campaign Zakaat eligible?
+                    Is the Campaign zakat eligible?
                     <span className="text-red-600">*</span>
                   </FormLabel>
                   <CheckBox

@@ -214,7 +214,7 @@ function General() {
                   { label: "On", value: true },
                   { label: "Off", value: false },
                 ]}
-                label="Auto Approve Causes"
+                label="Auto Approve Campaign"
               />
             </div>
             <div className=" lg:w-[25%] max-tablet:w-full max-desktop:w-full">

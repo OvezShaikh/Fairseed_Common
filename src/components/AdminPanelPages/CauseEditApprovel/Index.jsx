@@ -342,7 +342,7 @@ function CauseEdit_Form() {
                       height: "22px",
                     }}
                   >
-                    Is the Campaign Zakaat eligible?
+                    Is the Campaign Zakat eligible?
                     <span className="text-red-600">*</span>
                   </FormLabel>
                   <CheckBox

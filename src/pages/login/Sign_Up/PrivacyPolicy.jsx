@@ -51,7 +51,7 @@ function PrivacyPolicy() {
                 privacy and security of your personal information. This Privacy
                 Policy explains how we collect, use, and safeguard your
                 information when you use our digital crowd-funding platform
-                focused on educational causes. By using our platform, you
+                focused on educational Campaign. By using our platform, you
                 consent to the practices described in this Privacy Policy
                 <br />
                 <br />
@@ -182,7 +182,7 @@ function PrivacyPolicy() {
                 className=" text-[1.75rem] max-desktop:text-[1.5rem] max-tablet:text-[1.12rem]  tracking-wide gap-16 pt-1 font-normal"
                 style={{ fontFamily: "satoshi" }}
               >
-                Information related to the educational cause for which you are
+                Information related to the educational Campaign for which you are
                 seeking crowd-funding, including details about the project,
                 images, videos, and other content you upload. Hence, if you
                 create a campaign or support a campaign, we may collect

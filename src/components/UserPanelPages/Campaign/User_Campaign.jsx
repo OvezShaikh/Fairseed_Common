@@ -290,7 +290,7 @@ const User_Campaign = ({ onClose }) => {
                         <div className="flex flex-col gap-10 justify-center items-center flex-wrap text-center pb-4">
                           <img src={images.Vector} alt="" />
                           <p className="text-[ var(--Neutral-Neutral-7, #717171)] w-[65%] font-[satoshi] text-[2.1rem] font-semibold max-tablet:text-[1.1rem]">
-                            Are you Sure you want to finalize the cause. This
+                            Are you Sure you want to finalize the Campaign. This
                             action can’t be undone.
                           </p>
                           <div className="flex justify-center gap-4 max-tablet:flex-col">
