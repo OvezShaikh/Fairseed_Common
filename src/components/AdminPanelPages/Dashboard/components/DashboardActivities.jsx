@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import images from "../../../../constants/images";
 import { useGetAll } from "../../../../Hooks";
 
 const DashboardActivities = () => {

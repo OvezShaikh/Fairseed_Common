@@ -91,7 +91,7 @@ const EditCampaign = () => {
   const initial_values = {
     campaign_image: "",
     title: user.title || "",
-    amount: user.goal_amount || "",
+    goal_amount: user.goal_amount || "",
     location: user.location || "",
     category: user?.category || " ",
     is_featured: user?.is_featured || false,
@@ -126,7 +126,7 @@ const EditCampaign = () => {
     });
 
     Object.entries(payload).forEach(([key, value]) => {
-      if (key !== "documents" && key !== "status") {
+      if (key !== "documents" && key !== "status"  && key !== "category" ) {
         formData.append(key, value instanceof File ? value : value);
       }
     });
@@ -134,6 +134,11 @@ const EditCampaign = () => {
     if (changedValues.includes("status")) {
       formData.append("status", values.status);
     }
+
+    if (changedValues.includes("category")) {
+      formData.append("category", values.category.id);
+    }
+    
 
     mutate(formData, {
       onSuccess: (response) => {
@@ -207,8 +212,8 @@ const EditCampaign = () => {
                 <InputField
                   type={"number"}
                   onChange={handleChange}
-                  value={values?.amount}
-                  name={"amount"}
+                  value={values?.goal_amount}
+                  name={"goal_amount"}
                   label={"Amount to be raised:"}
                   placeholder={"Minimum 50 INR"}
                 />
@@ -326,6 +331,7 @@ const EditCampaign = () => {
               <div className="flex w-[100%] max-tablet:flex-col gap-4">
                 <div className="w-[50%] max-tablet:w-full">
                   <SelectField
+                  disable={true}
                     value={values?.status}
                     name={"status"}
                     label={"Status:"}

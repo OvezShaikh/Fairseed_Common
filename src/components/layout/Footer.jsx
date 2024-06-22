@@ -1,13 +1,8 @@
 import React from "react";
 import images from "../../constants/images";
-import { TiSocialTwitter } from "react-icons/ti";
-import { FiInstagram } from "react-icons/fi";
-import { RiPinterestLine } from "react-icons/ri";
-import { RiYoutubeLine } from "react-icons/ri";
 import icons from "../../constants/icons";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import SecondaryButton from "../inputs/secondaryButton";
-import { toast } from "react-toastify";
+import { FaFacebookF } from "react-icons/fa";
 import UserLogin from "../../pages/login/Login_page/Index";
 
 function Footer() {
@@ -22,9 +17,7 @@ function Footer() {
         style={{
           width: "100%",
           height: "100%",
-
           background: "#22262F",
-
           fontFamily: "satoshi",
         }}
       >
@@ -182,7 +175,7 @@ function Footer() {
         </div>
 
         <div className="flex justify-between max-desktop:flex-wrap max-tablet:justify-start desktop:max-w-[1628px] desktop:m-auto">
-          <div className="w-[34%] max-desktop:w-[100%] max-desktop:mb-[48px] max-tablet:mb-[20px] max-tablet:w-[100%]">
+          <div className="w-[30%] max-desktop:w-[100%] max-desktop:mb-[48px] max-tablet:mb-[20px] max-tablet:w-[100%]">
             <img
               className="desktop:w-[118px] pb-[16px]"
               src={images.FooterLogo}
@@ -199,12 +192,10 @@ function Footer() {
                 wordWrap: "break-word",
               }}
             >
-              Be it for a personal need, social cause or a creative idea - you
-              can count on us for the project that you want to raise funds for.
+              FairSeed Technology Foundation is India's first Education focussed & technology based online crowdfunding platform dedicated to revolutionizing the way education is funded and accessible. Our mission is to bridge the financial gap in education by connecting passionate learners, educators, and educational institutions with a global community of generous donors and supporters.
             </p>
           </div>
-
-          <div className="w-[11%] max-desktop:w-[30%] max-desktop:mb-[48px] max-tablet:w-[36%] max-tablet:mb-[12px]">
+          <div className="w-[15%] max-desktop:w-[35%] max-tablet:w-[50%]">
             <Link
               className="text-white font-bold"
               style={{
@@ -213,7 +204,70 @@ function Footer() {
                 fontWeight: "700",
               }}
             >
-              Quick Link
+              Contact Us
+            </Link>
+            <ul className="mt-3 pr-2">
+              <li>
+                <Link
+                  className="text-white/80"
+                  style={{
+                    fontFamily: "Satoshi",
+                    fontWeight: "400",
+                    textTransform: "capitalize",
+                  }}
+                  to="#"
+                >
+                  Have questions or need assistance? Our dedicated support
+                  team is here to help. Reach out to us at:
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="#"
+                  onClick={(e) => {
+                    window.location.href = "mailto:info@fairseed.org";
+                    e.preventDefault();
+                  }}
+                  className="text-white/80"
+                  style={{
+                    fontFamily: "Satoshi",
+                    fontWeight: "400",
+                    textTransform: "capitalize",
+                    background:""
+                    //   "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+                    // "-webkit-background-clip": "text",
+                    // "-webkit-text-fill-color": "transparent",
+                    // "font-family": "Satoshi",
+                  }}
+                >
+                  info@fairseed.org
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="text-white/80"
+                  style={{
+                    fontFamily: "Satoshi",
+                    fontWeight: "400",
+                    textTransform: "capitalize",
+                  }}
+                  to="tel:+918421061921"
+                >
+                  +918421061921
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className="w-[11%] max-desktop:w-[27%] max-desktop:mb-[48px] max-tablet:w-[36%] max-tablet:mb-[12px]">
+            <Link
+              className="text-white font-bold"
+              style={{
+                fontSize: "1rem",
+                fontFamily: "Satoshi",
+                fontWeight: "700",
+              }}
+            >
+              Explore FairSeed
             </Link>
             <ul className="mt-3">
               <li>
@@ -224,9 +278,9 @@ function Footer() {
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="/Home"
+                  to="/Home/Terms-of-use"
                 >
-                  Home
+                  Terms of use
                 </Link>
               </li>
               <li>
@@ -237,9 +291,9 @@ function Footer() {
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="/Home/Knowing-Fairseed"
+                  to="/Home/Privacy-Policy"
                 >
-                  About Us
+                  Privacy Policy
                 </Link>
               </li>
               <li>
@@ -250,9 +304,9 @@ function Footer() {
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="#"
+                  to="/Home/Cookie-Policy"
                 >
-                  Blog Post
+                  Cookie Policy
                 </Link>
               </li>
               <li>
@@ -263,15 +317,41 @@ function Footer() {
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="#"
+                  to="/Home/pricing-refund"
                 >
-                  Photo Gallery
+                  Pricing & Refund Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="text-white/80"
+                  style={{
+                    fontFamily: "Satoshi",
+                    fontWeight: "400",
+                    textTransform: "capitalize",
+                  }}
+                  to="/Home/faq"
+                >
+                  FAQ's
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="text-white/80"
+                  style={{
+                    fontFamily: "Satoshi",
+                    fontWeight: "400",
+                    textTransform: "capitalize",
+                  }}
+                  to="/Home/Disclaimer"
+                >
+                  Disclaimer
                 </Link>
               </li>
             </ul>
           </div>
 
-          <div className="w-[11%] max-desktop:w-[30%] max-tablet:w-[36%]">
+          <div className="w-[17%] max-desktop:w-[38%] max-tablet:mt-1 max-tablet:w-[90%] max-tablet:mb-[20px]">
             <Link
               className="text-white font-bold"
               style={{
@@ -280,7 +360,7 @@ function Footer() {
                 fontWeight: "700",
               }}
             >
-              Get In Touch
+              FairSeed Community
             </Link>
             <ul className="mt-3">
               <li>
@@ -291,9 +371,9 @@ function Footer() {
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="#"
+                  to="/Home/Founders"
                 >
-                  Contact us
+                  Founders
                 </Link>
               </li>
               <li>
@@ -304,35 +384,25 @@ function Footer() {
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="#"
+                  to="/Home/Our-Team"
                 >
-                  Our services
+                  Our Team
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="text-white/80"
+                  style={{
+                    fontFamily: "Satoshi",
+                    fontWeight: "400",
+                    textTransform: "capitalize",
+                  }}
+                  to="/Home/Our-Aspirations"
+                >
+                  Our Aspirations
                 </Link>
               </li>
             </ul>
-          </div>
-
-          <div className="w-[17%] max-desktop:w-[40%] max-tablet:w-[90%] max-tablet:mb-[20px]">
-            <Link
-              className="text-white font-bold"
-              style={{
-                fontSize: "1rem",
-                fontFamily: "Satoshi",
-                fontWeight: "700",
-              }}
-            >
-              Address
-            </Link>
-            <p
-              className="text-white/80 mt-3 w-[70%]"
-              style={{
-                fontFamily: "Satoshi",
-                fontWeight: "400",
-                textTransform: "capitalize",
-              }}
-            >
-              2464 Royal Ln. Mesa, New Jersey 45463
-            </p>
           </div>
 
           <div className="flex justify-end w-[24.5%] max-desktop:w-[54%] max-tablet:w-full">
@@ -427,16 +497,10 @@ function Footer() {
                 >
                   <img src={icons.FooterIconIn} />
                 </Link>
-                <Link
-                  className="text-white/80 ml-3  text-3xl"
-                  style={{
-                    fontFamily: "Satoshi",
-                    fontWeight: "400",
-                    textTransform: "capitalize",
-                  }}
-                  to="#"
-                >
-                  <img src={icons.FooterIconPi} />
+                <Link to="https://www.facebook.com/profile.php?id=61550906075110">
+                  <div className="w-[33px] h-[32px] flex justify-center items-center bg-[#D9F5EE] rounded-full ml-3  ">
+                    <FaFacebookF  size={22}/>
+                  </div>
                 </Link>
                 <Link
                   className="text-white/80 ml-3 text-3xl"

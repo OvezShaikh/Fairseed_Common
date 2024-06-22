@@ -6,12 +6,12 @@ import Slider from "react-slick";
 
 const StyledSlider = styled(Slider)({
   width: "100%",
-  height: "100%", // Set your desired height here
+  height: "100%", 
   position: "relative",
   overflowX: "hidden",
   objectFit: "contain",
   "& .slick-dots": {
-    bottom: "5rem", // Adjust dot position if needed
+    bottom: "5rem", 
   },
 });
 
@@ -20,7 +20,7 @@ const OverlayContainer = styled("div")({
   width: "630px",
   display: "flex",
   justifyContent: "center",
-  alignItems: "flex-end", // Adjusted to align at the bottom
+  alignItems: "flex-end", 
   zIndex: 1,
 });
 
@@ -43,6 +43,8 @@ const FormSlider = ({ isSmallScreen }) => {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
     slidesToScroll: 1,
     responsive: [
       {

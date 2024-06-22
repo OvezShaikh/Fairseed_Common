@@ -7,11 +7,10 @@ import PrimaryButton from "../../../components/inputs/PrimaryButton";
 import { Grid, Typography } from "@mui/material";
 import SecondaryButton from "../../../components/inputs/secondaryButton";
 import { useLocation, useNavigate, useParams, Link } from "react-router-dom";
-import React, { useContext, useMemo } from "react";
+import React, { useMemo } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Avatar } from "@mui/material";
-import UserNavbar from "../../login/UserNavbar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GiHazardSign } from "react-icons/gi";
@@ -19,34 +18,24 @@ import { Dialog } from "../../../components/layout/dialogBox/dialog";
 import InputField from "../../../components/inputs/InputField";
 import { Form, Formik } from "formik";
 import ErrorIcon from "@mui/icons-material/Error";
+import copy from "copy-to-clipboard";
 import { useCreateOrUpdate } from "../../../Hooks";
 import InputAdminField from "../../../components/inputs/InputAdminField/Index";
+import { FaCopy } from "react-icons/fa";
 import {
   EmailIcon,
   EmailShareButton,
-  PinterestIcon,
-  PinterestShareButton,
+  FacebookIcon,
+  FacebookShareButton,
   TwitterIcon,
   TwitterShareButton,
   WhatsappIcon,
   WhatsappShareButton,
-  XIcon,
 } from "react-share";
 import { MdClose } from "react-icons/md";
 import UserLogin from "../../login/Login_page/Index";
 
-function CurrentCampaign({
-  key,
-  username,
-  cardImage,
-  goalAmount,
-  fundRaised,
-  onClose,
-  daysLeft,
-  userCount,
-  location,
-  og_id,
-}) {
+function CurrentCampaign({ goalAmount, fundRaised, onClose }) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { id } = useParams();
@@ -72,12 +61,25 @@ function CurrentCampaign({
     url: `/user-dashboard/report-campaign`,
   });
   const handleButtonClick = () => {
-    if (cardDetails?.fund_raised === cardDetails?.goal_amount) {
+    if (
+      cardDetails?.fund_raised === cardDetails?.goal_amount ||
+      cardDetails?.fund_raised > cardDetails?.goal_amount
+    ) {
       toast.info("Donation goal has already been reached", {
         position: "top-right",
       });
     } else {
       return null;
+    }
+  };
+
+  const copyToClipboard = () => {
+    let currentURL = window.location.href;
+    let isCopy = copy(currentURL);
+    if (isCopy) {
+      toast.success("Copied to Clipboard", {
+        position: "top-right",
+      });
     }
   };
 
@@ -260,23 +262,25 @@ function CurrentCampaign({
                 src={images.SealCheck}
                 alt=""
               />
-              <h1
-                className="text-3xl w-[80%] flex justify-items-start  pb-2  "
-                style={{
-                  fontFamily: "satoshi",
-                  fontWeight: 700,
-                  background:
-                    "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
-                  "-webkit-background-clip": "text",
-                  "-webkit-text-fill-color": "transparent",
-                }}
-              >
-                {cardDetails?.zakat_eligible === true && (
-                  <p className="text-2xl max-tablet:text-[1.2rem] font-bold">
-                    Zakah Eligible !
-                  </p>
-                )}
-              </h1>
+              {cardDetails?.zakat_eligible && (
+                <h1
+                  className="text-3xl w-[80%] flex justify-items-start  pb-2  "
+                  style={{
+                    fontFamily: "satoshi",
+                    fontWeight: 700,
+                    background:
+                      "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+                    "-webkit-background-clip": "text",
+                    "-webkit-text-fill-color": "transparent",
+                  }}
+                >
+                  {cardDetails?.zakat_eligible === true && (
+                    <p className="text-2xl max-tablet:text-[1.2rem] font-bold">
+                      Zakah Eligible !
+                    </p>
+                  )}
+                </h1>
+              )}
             </div>
             <p
               className="text-black/40 w-full text-2xl text-center py-10 max-desktop:w-full  max-tablet:text-[1.1rem] max-tablet:py-[24px] font-medium max-tablet:leading-5"
@@ -291,7 +295,8 @@ function CurrentCampaign({
             <div className="w-full">
               <Link
                 to={
-                  cardDetails?.fund_raised === cardDetails?.goal_amount
+                  cardDetails?.fund_raised === cardDetails?.goal_amount ||
+                  cardDetails?.fund_raised > cardDetails?.goal_amount
                     ? "#"
                     : `/Home/donate/${id}`
                 }
@@ -431,12 +436,17 @@ function CurrentCampaign({
                           </TwitterShareButton>
                         </div>
                         <div>
-                          <PinterestShareButton
+                          <FacebookShareButton
                             url={currentPageUrl}
-                            media={media}
+                            hashtag={
+                              "#Fairseed#EducationForAll#EducationMatters"
+                            }
                           >
-                            <PinterestIcon size={45} round />
-                          </PinterestShareButton>
+                            <FacebookIcon size={45} round />
+                          </FacebookShareButton>
+                        </div>
+                        <div className="pl-4">
+                          <FaCopy size={40} onClick={copyToClipboard} />
                         </div>
                       </div>
                     </div>
@@ -611,7 +621,8 @@ function CurrentCampaign({
       <div className="flex justify-center mt-4 gap-4 max-desktop:hidden">
         <Link
           to={
-            cardDetails?.fund_raised === cardDetails?.goal_amount
+            cardDetails?.fund_raised === cardDetails?.goal_amount ||
+            cardDetails?.fund_raised > cardDetails?.goal_amount
               ? "#"
               : `/Home/donate/${id}`
           }

@@ -13,7 +13,7 @@ import { format } from "date-fns";
 const Withdrawals = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
   const getStatusCellStyle = (status) => {
-    
+
     if (status === 'Pending') {
       return {
         color: '#fa9820',
@@ -38,9 +38,9 @@ const Withdrawals = () => {
     ;
   };
 
-  function DateConvert (Mydate){
+  function DateConvert(Mydate) {
     const date = new Date(Mydate);
-    return format(date ,'dd-MMM-yyyy');
+    return format(date, 'dd-MMM-yyyy');
   }
 
 
@@ -53,15 +53,10 @@ const Withdrawals = () => {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Id", // Row number header
-        accessor: "id", // Accessor for row number
-        Cell: ({ row }) => (
-          <div>{row.index + 1}</div>
-        ),
-        minWidth: 50,
-        width: 50,
-        search: false,
-        sortable: false
+        Header: "Camp. Id", // Row number header
+        accessor: "c_id",
+        minWidth: 75,
+        width: 100,
       },
       {
         Header: "Full Name",
@@ -79,8 +74,8 @@ const Withdrawals = () => {
         Cell: ({ row }) => {
           return (
             <div className="flex  ">
-              <div className="w-[80px] truncate">{row?.original?.campaign?.title}</div>
-              <a href={`/campaign-details/${row.id}`} target='_blank'>
+              <div className="w-[80px] truncate">{row?.original?.campaign.title}</div>
+              <a href={`/campaign-details/${row?.original?.campaign.id}`} target='_blank'>
                 <img
                   className="ml-2"
                   src={images.CausesDetails}
@@ -120,12 +115,12 @@ const Withdrawals = () => {
         accessor: "updated_on",
         // minWidth: 200,
         // width: 280,
-        Cell:({row})=>{
+        Cell: ({ row }) => {
           return (
             <p>{DateConvert(row?.original?.updated_on)}</p>
           )
-          
-         }
+
+        }
 
       },
       // {

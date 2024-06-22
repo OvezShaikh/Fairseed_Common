@@ -3,14 +3,14 @@ import AdminNavbar from "../AdminNavbar";
 import { SideBar } from "../sideBar";
 import { useMediaQuery } from "@mui/material";
 
-const AdminLayout = ({ children }) => {
+const AdminLayout = ({ children , count }) => {
   const [mobileOpen, setMobileOpen] = React.useState(true);
   const isMobile = useMediaQuery("(max-width:900px)");
 
   return (
     <>
       <AdminNavbar />
-      <SideBar mobileOpen={mobileOpen} setMobileOpen={setMobileOpen}></SideBar>
+      <SideBar count={count} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} ></SideBar>
       <div
         className="main-container transition-all duration-500 ease-in-out max-tablet:pr-0 "
         style={{

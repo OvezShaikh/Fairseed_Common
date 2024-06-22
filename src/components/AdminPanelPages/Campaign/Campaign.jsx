@@ -7,7 +7,6 @@ import { GoDotFill } from "react-icons/go";
 import { Link, useLocation } from "react-router-dom";
 import images from "../../../constants/images";
 import { format } from "date-fns";
-import { useDownloadExcel } from "react-export-table-to-excel";
 
 const Campaign = () => {
   let userData = localStorage.getItem("user_info");
@@ -40,12 +39,6 @@ const Campaign = () => {
     }
   };
 
-  const { onDownload } = useDownloadExcel({
-    currentTableRef: tableRef.current,
-    filename: "CampaignTable",
-    sheet: "Campaigns",
-  });
-
   function DateConvert(Mydate) {
     const date = new Date(Mydate);
     return format(date, "dd-MMM-yyyy");
@@ -68,11 +61,10 @@ const Campaign = () => {
   const columns = React.useMemo(() => [
     {
       Header: "Id",
-      accessor: "id",
-      Cell: ({ row }) => <div>{row.index + 1}</div>,
-      minWidth: 50,
-      width: 50,
-      search: false,
+      accessor: "c_id",
+      minWidth: 75,
+      width: 100,
+      // search: false,
     },
 
     {
@@ -104,8 +96,8 @@ const Campaign = () => {
     {
       Header: "Email",
       accessor: "user.email",
-      minWidth: 100,
-      width: 100,
+      minWidth: 200,
+      width: 200,
     },
     {
       Header: "Mobile",
@@ -165,17 +157,6 @@ const Campaign = () => {
         checkboxComponent={IndeterminateCheckbox}
         downloadExcel
         url={`/admin-dashboard/campaign`}
-        // addButton={
-        //   <PrimaryButton onClick={onDownload}>
-        //     {" "}
-        //     <TiExportOutline
-        //       color="white"
-        //       size={20}
-        //       className="me-1 max-tablet:hidden"
-        //     />
-        //     Export Excel{" "}
-        //   </PrimaryButton>
-        // }
         extraQuery={{ inactive: true }}
         selectedRowID={selectedRowID}
       />

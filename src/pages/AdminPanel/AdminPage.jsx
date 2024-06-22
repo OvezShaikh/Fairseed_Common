@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import AdminLayout from "../../components/layout/AdminLayout/Index";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -29,6 +29,8 @@ import CampaignView from "../../components/AdminPanelPages/Forms/CampaignVeiw/In
 import PageDoesNotExists from "../../pages/PageDoesNotExists/NotFoundPage";
 
 function AdminPage() {
+
+  const [ req , setReq] = useState(0)
   return (
     <div className="">
       <Routes>
@@ -109,8 +111,8 @@ function AdminPage() {
         <Route
           path="/Causes-Edit-Approval"
           element={
-            <AdminLayout>
-              <CauseEdit_Form />
+            <AdminLayout count={req}>
+              <CauseEdit_Form setReq={setReq} />
             </AdminLayout>
           }
         />

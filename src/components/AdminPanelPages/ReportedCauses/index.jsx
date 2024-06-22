@@ -80,11 +80,9 @@ const Reported_Causes = () => {
   const columns = React.useMemo(() => [
     {
       Header: "Id",
-      accessor: "index",
-      Cell: ({ row }) => <div>{row.index + 1}</div>,
-      minWidth: 50,
-      width: 50,
-      search: false,
+      accessor: "c_id", 
+      minWidth: 75,
+      width: 100,
     },
     {
       Header: "Name",
@@ -97,7 +95,7 @@ const Reported_Causes = () => {
             <div className="w-[80px] truncate">
               {row?.original?.campaign?.title}
             </div>
-            <a href={`/campaign-details/${row.id}`} target="_blank">
+            <a href={`/campaign-details/${row?.original?.campaign?.id}`} target="_blank">
               <img
                 className="ml-2"
                 src={images.CausesDetails}

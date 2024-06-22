@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { Button, Checkbox } from '@mui/material';
 import IndeterminateCheckbox from '../../Table/IndeterminateCheckbox';
 import { LocationConfigurationDialog } from '../../admin-console/LocationConfigurationDialog';
-import Columnfilter from '../../Table/Columnfilter'
 import SecondaryButton from '../../inputs/secondaryButton';
 import CauseEdit from '../CauseEditApprovel/Index';
 import { Link } from 'react-router-dom';
@@ -16,13 +15,9 @@ const Reported_Campaign = () => {
     () => [
       {
         Header: "Id", // Row number header
-        accessor: "index", // Accessor for row number
-        Cell: ({ row }) => (
-          <div>{row.index + 1}</div>
-        ),
-        minWidth: 50,
-        width: 50,
-        search: false
+        accessor: "c_id",
+        minWidth: 75,
+        width: 100,
       },
       {
         Header: "Name",
@@ -118,7 +113,6 @@ const Reported_Campaign = () => {
         url={`/admin-dashboard/campaign`}
         extraQuery={{ inactive: true }}
         addButton={<LocationConfigurationDialog />}
-        // addButton={<Button>HElloooooo</Button>}
         selectedRowID={selectedRowID}
       />
     </div>
