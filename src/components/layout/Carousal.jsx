@@ -136,7 +136,7 @@ const HomeSwiper = () => {
                       className="hidden max-tablet::block"
                       sx={style}
                     >
-                      Donate for the Campaign
+                      Donate
                     </PrimaryButton>
                   </Link>
                 </div>
