@@ -80,7 +80,7 @@ const Reported_Causes = () => {
   const columns = React.useMemo(() => [
     {
       Header: "Id",
-      accessor: "c_id", 
+      accessor: "campaign.c_id", 
       minWidth: 75,
       width: 100,
     },
