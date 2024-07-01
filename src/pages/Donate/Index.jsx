@@ -141,7 +141,7 @@ function Index({ goalAmount, fundRaised }) {
       onSuccess: (response) => {
         if (selectedPaymentGateway === "Bank_Transfer") {
           window.location.href = "/Home";
-        } else {
+        } else {        
           const url = response?.data?.pay_page_url;
           window.location.href = url;
         }

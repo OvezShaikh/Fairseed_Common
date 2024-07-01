@@ -82,6 +82,7 @@ function Index() {
     status: user.status || "",
     image: user.campaign_image || "",
     init_category: user?.category?.name || "",
+    notes:user?.notes || "",
   };
 
   if (!isSuccess) {
@@ -274,7 +275,7 @@ function Index() {
               </div>
               <div className="w-full ">
                 <InputField
-                  name={"Notes/Comments:"}
+                  name={"notes"}
                   label={"Notes/Comments:"}
                   required={"true"}
                   multiline
