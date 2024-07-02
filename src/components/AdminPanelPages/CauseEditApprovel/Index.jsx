@@ -26,19 +26,17 @@ import DropZone from "../../inputs/ImageCropper/CropDrop";
 function CauseEdit_Form() {
   let { state } = useLocation();
   let { id } = state;
-
   const navigate = useNavigate();
   const [documents, setDocuments] = useState([]);
   const [Categories, setCategories] = useState([]);
-
-  const handleDocumentUpload = (documentUrl) => {
-    setDocuments([...documents, documentUrl]);
-  };
-
   const [user, setUser] = useState({});
   const [srcImg, setSrcImg] = useState("");
   const [openCrop, setOpenCrop] = useState(false);
 
+  const handleDocumentUpload = (documentUrl) => {
+    setDocuments([...documents, documentUrl]);
+  };
+  
   useEffect(() => {
     refetch();
     refetchCategories();

@@ -75,7 +75,7 @@ function Index() {
     username: User.username || "",
     user_role: User.user_role || "",
     email: User.email || "",
-    password: "",
+    password: User.password || "",
   };
 
   const handleSubmit = (values) => {
@@ -136,7 +136,7 @@ function Index() {
                 <InputField name={"email"} label={"Email Id:"} />
               </div>
               <div className="w-full">
-                <InputField name={"password"} label={"Password:"} />
+                <InputField name={"password"} type={'password'} label={"Password:"} />
               </div>
               <div className="flex flex-row gap-4 mt-12">
                 <button
