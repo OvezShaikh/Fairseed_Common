@@ -101,7 +101,7 @@ const EditCampaign = () => {
     story: user?.story || "",
     documents: [],
     zakat_eligible: user?.zakat_eligible || false,
-    notes:user?.notes || "",
+    // notes:user?.notes || "",
   };
 
   if (!isSuccess) {
@@ -376,7 +376,7 @@ const EditCampaign = () => {
                   />
                 </div>
               </div>
-              <div className="w-full ">
+              {/* <div className="w-full ">
                 <InputField
                   onChange={handleChange}
                   name={"notes"}
@@ -385,7 +385,7 @@ const EditCampaign = () => {
                   multiline
                   rows={5}
                 />
-              </div>
+              </div> */}
 
               <div className=" w-full ">
                 <RadioGroup

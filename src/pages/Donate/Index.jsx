@@ -142,8 +142,11 @@ function Index({ goalAmount, fundRaised }) {
         if (selectedPaymentGateway === "Bank_Transfer") {
           window.location.href = "/Home";
         } else {        
-          const url = response?.data?.pay_page_url;
-          window.location.href = url;
+          // const url = response?.data?.pay_page_url;
+          toast.info('This page has benn removed for safety purposes', {
+            position:'top-right'
+          });
+          // window.location.href = url;
         }
       },
       onError: (response) => {
@@ -151,44 +154,6 @@ function Index({ goalAmount, fundRaised }) {
       },
     });
   };
-
-  // const handleSubmit = (values) => {
-  //   const data = {
-  //     donation_type: values?.donation_type.value,
-  //     amount: values?.amount,
-  //     pancard: values?.pancard,
-  //     comment: values?.comment,
-  //     payment_type: selectedPaymentGateway,
-  //     is_anonymous: values?.is_anonymous,
-  //     campaign: cardDetails?.id,
-  //     transaction_date: values?.transaction_date,
-  //     bank_name: values?.bank_name,
-  //     full_name: user?.username || values?.full_name,
-  //     country: user?.country || values?.country,
-  //     email: user?.email || values?.email,
-  //     city: user?.city || values?.city,
-  //     mobile: user?.mobile_number || values?.mobile,
-  //   };
-  //   if (user !== null) data.user = user?.id;
-
-  //   console.log("Data to be submitted:", data); // Debugging
-
-  //   mutate(data, {
-  //     onSuccess: (response) => {
-  //       if (selectedPaymentGateway === "Bank_Transfer") {
-  //         window.location.href = "/Home";
-  //       } else {
-  //         const url = response?.data?.pay_page_url;
-  //         window.location.href = url;
-  //       }
-  //     },
-  //     onError: (response) => {
-  //       toast.error(`${response?.message} errors`, { position: "top-right" });
-  //     },
-  //   });
-  // };
-
-
 
   useGetAll({
     key: `/accounts/user/${user_id}`,
