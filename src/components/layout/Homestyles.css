@@ -103,7 +103,10 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
 
 .custom-pagination li.bullet.active {
   width: 50px;
-  height: 23px;
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+  height: 20px;
   background: linear-gradient(71.48deg, #ff9f0a 0%, #ff375f 62.9%);
   border-radius: 19px;
   opacity: 1;

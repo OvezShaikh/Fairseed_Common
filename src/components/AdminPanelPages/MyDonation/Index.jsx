@@ -74,7 +74,7 @@ const Index = () => {
             },
             {
                 Header: "Campaign",
-                accessor: "campaign",
+                accessor: "campaign_title",
                 // minWidth: 200,
                 // width: 280,
 

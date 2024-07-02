@@ -128,13 +128,11 @@ const User_Campaign = ({ onClose }) => {
   const columns = React.useMemo(() => [
     {
       Header: "Id",
-      accessor: "id",
-      Cell: ({ row }) => <div>{row.index + 1}</div>,
+      accessor: "c_id", 
       minWidth: 50,
       width: 50,
       search: false,
     },
-
     {
       Header: "Title",
       accessor: "campaign.title",

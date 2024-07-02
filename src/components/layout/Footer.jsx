@@ -192,7 +192,12 @@ function Footer() {
                 wordWrap: "break-word",
               }}
             >
-              FairSeed Technology Foundation is India's first Education focussed & technology based online crowdfunding platform dedicated to revolutionizing the way education is funded and accessible. Our mission is to bridge the financial gap in education by connecting passionate learners, educators, and educational institutions with a global community of generous donors and supporters.
+              FairSeed Technology Foundation is India's first Education focussed
+              & technology based online crowdfunding platform dedicated to
+              revolutionizing the way education is funded and accessible. Our
+              mission is to bridge the financial gap in education by connecting
+              passionate learners, educators, and educational institutions with
+              a global community of generous donors and supporters.
             </p>
           </div>
           <div className="w-[15%] max-desktop:w-[35%] max-tablet:w-[50%]">
@@ -217,8 +222,8 @@ function Footer() {
                   }}
                   to="#"
                 >
-                  Have questions or need assistance? Our dedicated support
-                  team is here to help. Reach out to us at:
+                  Have questions or need assistance? Our dedicated support team
+                  is here to help. Reach out to us at:
                 </Link>
               </li>
               <li>
@@ -233,7 +238,7 @@ function Footer() {
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
-                    background:""
+                    background: "",
                     //   "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
                     // "-webkit-background-clip": "text",
                     // "-webkit-text-fill-color": "transparent",
@@ -330,7 +335,7 @@ function Footer() {
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="/Home/faq"
+                  to="/Home/FAQ's"
                 >
                   FAQ's
                 </Link>
@@ -499,7 +504,7 @@ function Footer() {
                 </Link>
                 <Link to="https://www.facebook.com/profile.php?id=61550906075110">
                   <div className="w-[33px] h-[32px] flex justify-center items-center bg-[#D9F5EE] rounded-full ml-3  ">
-                    <FaFacebookF  size={22}/>
+                    <FaFacebookF size={22} />
                   </div>
                 </Link>
                 <Link
