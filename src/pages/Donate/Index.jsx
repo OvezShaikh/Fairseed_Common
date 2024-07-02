@@ -115,30 +115,30 @@ function Index({ goalAmount, fundRaised }) {
   });
 
 
-  const { mutate } = useCreateOrUpdate({
-    url: `/donors/donate-money`,
-  });
+  // const { mutate } = useCreateOrUpdate({
+  //   url: `/donors/donate-money`,
+  // });
 
   const handleSubmit = (values) => {
-    const formData = new FormData();
-    formData.append("donation_type", values?.donation_type.value);
-    formData.append("amount", values?.amount);
-    formData.append("pancard", values?.pancard);
-    formData.append("comment", values?.comment);
-    formData.append("payment_type", selectedPaymentGateway);
-    formData.append("is_anonymous", values?.is_anonymous);
-    formData.append("campaign", cardDetails?.id);
-    formData.append("transaction_date", values?.transaction_date);
-    formData.append("bank_name", values?.bank_name);
-    formData.append("full_name", user?.username || values?.full_name);
-    formData.append("country", user?.country || values?.country);
-    formData.append("email", user?.email || values?.email);
-    formData.append("city", user?.city || values?.city);
-    formData.append("mobile", user?.mobile_number || values?.mobile);
-    if (user !== null) formData.append("user", user?.id);
+    // const formData = new FormData();
+    // formData.append("donation_type", values?.donation_type.value);
+    // formData.append("amount", values?.amount);
+    // formData.append("pancard", values?.pancard);
+    // formData.append("comment", values?.comment);
+    // formData.append("payment_type", selectedPaymentGateway);
+    // formData.append("is_anonymous", values?.is_anonymous);
+    // formData.append("campaign", cardDetails?.id);
+    // formData.append("transaction_date", values?.transaction_date);
+    // formData.append("bank_name", values?.bank_name);
+    // formData.append("full_name", user?.username || values?.full_name);
+    // formData.append("country", user?.country || values?.country);
+    // formData.append("email", user?.email || values?.email);
+    // formData.append("city", user?.city || values?.city);
+    // formData.append("mobile", user?.mobile_number || values?.mobile);
+    // if (user !== null) formData.append("user", user?.id);
 
-    mutate(formData, {
-      onSuccess: (response) => {
+    // mutate(formData, {
+    //   onSuccess: (response) => {
         if (selectedPaymentGateway === "Bank_Transfer") {
           window.location.href = "/Home";
         } else {        
@@ -148,12 +148,13 @@ function Index({ goalAmount, fundRaised }) {
           });
           // window.location.href = url;
         }
-      },
-      onError: (response) => {
-        toast.error(`${response?.message} errors`, { position: "top-right" });
-      },
-    });
-  };
+      // },
+      // onError: (response) => {
+      //   toast.error(`${response?.message} errors`, { position: "top-right" });
+      // },
+    }
+  // );
+  // };
 
   useGetAll({
     key: `/accounts/user/${user_id}`,
