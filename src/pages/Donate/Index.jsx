@@ -143,7 +143,7 @@ function Index({ goalAmount, fundRaised }) {
           window.location.href = "/Home";
         } else {        
           // const url = response?.data?.pay_page_url;
-          toast.info('This page has benn removed for safety purposes', {
+          toast.info('This page has been removed for safety purposes', {
             position:'top-right'
           });
           // window.location.href = url;
