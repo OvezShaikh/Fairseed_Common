@@ -55,7 +55,7 @@ const EditCampaign = () => {
     setOpenCrop(true);
   };
 
-  const { data, isSuccess, refetch } = useGetAll({
+  const {  isSuccess, refetch } = useGetAll({
     key: `/user-dashboard/campaign/${id}`,
     enabled: false,
     select: (data) => {
@@ -375,7 +375,7 @@ const EditCampaign = () => {
                   />
                 </div>
               </div>
-              <div className="w-full ">
+              {/* <div className="w-full ">
                 <InputField
                   onChange={handleChange}
                   name={"Notes/Comments:"}
@@ -384,7 +384,7 @@ const EditCampaign = () => {
                   multiline
                   rows={5}
                 />
-              </div>
+              </div> */}
 
               <div className=" w-full ">
                 <RadioGroup

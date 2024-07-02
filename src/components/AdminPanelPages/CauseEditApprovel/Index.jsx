@@ -106,6 +106,7 @@ function CauseEdit_Form() {
     status: user?.status || "",
     story: user?.story || "",
     documents: user?.documents || [],
+    notes:user?.notes || "",
   };
 
   if (!isSuccess) {
@@ -359,7 +360,7 @@ function CauseEdit_Form() {
               <div className="w-full ">
                 <InputField
                   onChange={handleChange}
-                  name={"Notes/Comments:"}
+                  name={"notes"}
                   label={"Notes/Comments:"}
                   required={"true"}
                   multiline
