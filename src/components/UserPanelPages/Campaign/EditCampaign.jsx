@@ -329,7 +329,7 @@ const EditCampaign = () => {
                 </div>
               </div>
               <div className="flex w-[100%] max-tablet:flex-col gap-4">
-                <div className="w-[50%] max-tablet:w-full">
+                {/* <div className="w-[50%] max-tablet:w-full">
                   <SelectField
                   disable={true}
                     value={values?.status}
@@ -343,7 +343,7 @@ const EditCampaign = () => {
                       { label: "Rejected", value: "Rejected" },
                     ]}
                   />
-                </div>
+                </div> */}
 
                 <div className="w-[50%] pt-3 checkmark-div max-desktop:w-[46%] max-tablet:w-[100%]">
                   <FormLabel
@@ -386,7 +386,7 @@ const EditCampaign = () => {
                 />
               </div> */}
 
-              <div className=" w-full ">
+              {/* <div className=" w-full ">
                 <RadioGroup
                   name={"is_featured"}
                   value={values?.is_featured}
@@ -402,7 +402,7 @@ const EditCampaign = () => {
                   label="Featured:"
                   style={{ fontSize: "1.1rem", fontWeight: 500 }}
                 />
-              </div>
+              </div> */}
             </div>
             <div className="w-[30%] max-tablet:w-[100%] max-desktop:w-[100%] flex flex-col max-desktop:items-center  gap-8">
               <div className=" w-[100%] max-desktop:w-[100%]">
