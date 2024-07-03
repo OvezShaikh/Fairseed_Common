@@ -118,9 +118,15 @@ function Index({ goalAmount, fundRaised }) {
     url: `/donors/donate-money`,
   });
 
+
+
   const handleSubmit = (values) => {
-    const formData = new FormData();
-    const currentDate = new Date().toISOString();
+    const formData = new FormData();    
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); 
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;  
     formData.append("donation_type", values?.donation_type.value);
     formData.append("amount", values?.amount);
     formData.append("pancard", values?.pancard);
@@ -135,7 +141,7 @@ function Index({ goalAmount, fundRaised }) {
     formData.append("email", user?.email || values?.email);
     formData.append("city", user?.city || values?.city);
     formData.append("mobile", user?.mobile_number || values?.mobile);
-    if (selectedPaymentGateway === "UPI") formData.append("transaction_date", currentDate);
+    if (selectedPaymentGateway === "UPI") formData.append("transaction_date", formattedDate);
     if (user !== null) formData.append("user", user?.id);
 
     mutate(formData, {

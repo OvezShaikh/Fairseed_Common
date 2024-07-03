@@ -38,8 +38,10 @@ const Index = () => {
   };
 
   function DateConvert (Mydate){
+    if(Mydate !== null){
     const date = new Date(Mydate);
     return format(date ,'dd-MMM-yyyy');
+  }
   }
 
 
