@@ -111,7 +111,6 @@ const Index = () => {
         minWidth: 150,
         width: 200,
         nofilter: true,
-
       },
       {
         Header: "Date",
@@ -120,7 +119,7 @@ const Index = () => {
         width: 150,
        Cell:({row})=>{
         return (
-          <p>{DateConvert(row?.original?.transaction_date)}</p>
+          <p>{DateConvert(row?.original?.created_on)}</p>
         )
         
        }
