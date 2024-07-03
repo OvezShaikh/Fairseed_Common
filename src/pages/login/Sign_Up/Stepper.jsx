@@ -93,8 +93,8 @@ const INITIAL_VALUE = {
   mobile_number: "",
   password: "",
   password2: "",
-  country: "",
-  user_type: "Indivitual",
+  country: "IN",
+  user_type: "Individual",
   profile_pic: "",
 };
 
@@ -242,6 +242,7 @@ const Sign_Stepper = () => {
         ) : (
           <React.Fragment>
             <Formik
+             enableReinitialize={true}
               initialValues={INITIAL_VALUE}
               validationSchema={formValidation[activeStep]}
               onSubmit={(values) => {

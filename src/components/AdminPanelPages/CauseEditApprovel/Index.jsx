@@ -127,6 +127,7 @@ function CauseEdit_Form() {
     formData.append("category", values?.category?.id);
     formData.append("status", values?.status?.value || user?.status);
     formData.append("zakat_eligible", values?.zakat_eligible);
+    formData.append("notes", values?.notes);
 
     mutate(formData, {
       onSuccess: (response) => {

@@ -104,7 +104,6 @@ function Index({ goalAmount, fundRaised }) {
     other_details: "",
   };
 
-
   const validationSchema = yup.object().shape({
     donation_type: yup.object().required("Donation Type is required"),
     amount: yup
@@ -121,6 +120,7 @@ function Index({ goalAmount, fundRaised }) {
 
   const handleSubmit = (values) => {
     const formData = new FormData();
+    const currentDate = new Date().toISOString();
     formData.append("donation_type", values?.donation_type.value);
     formData.append("amount", values?.amount);
     formData.append("pancard", values?.pancard);
@@ -135,6 +135,7 @@ function Index({ goalAmount, fundRaised }) {
     formData.append("email", user?.email || values?.email);
     formData.append("city", user?.city || values?.city);
     formData.append("mobile", user?.mobile_number || values?.mobile);
+    if (selectedPaymentGateway === "UPI") formData.append("transaction_date", currentDate);
     if (user !== null) formData.append("user", user?.id);
 
     mutate(formData, {
@@ -151,43 +152,6 @@ function Index({ goalAmount, fundRaised }) {
       },
     });
   };
-
-  // const handleSubmit = (values) => {
-  //   const data = {
-  //     donation_type: values?.donation_type.value,
-  //     amount: values?.amount,
-  //     pancard: values?.pancard,
-  //     comment: values?.comment,
-  //     payment_type: selectedPaymentGateway,
-  //     is_anonymous: values?.is_anonymous,
-  //     campaign: cardDetails?.id,
-  //     transaction_date: values?.transaction_date,
-  //     bank_name: values?.bank_name,
-  //     full_name: user?.username || values?.full_name,
-  //     country: user?.country || values?.country,
-  //     email: user?.email || values?.email,
-  //     city: user?.city || values?.city,
-  //     mobile: user?.mobile_number || values?.mobile,
-  //   };
-  //   if (user !== null) data.user = user?.id;
-
-  //   console.log("Data to be submitted:", data); // Debugging
-
-  //   mutate(data, {
-  //     onSuccess: (response) => {
-  //       if (selectedPaymentGateway === "Bank_Transfer") {
-  //         window.location.href = "/Home";
-  //       } else {
-  //         const url = response?.data?.pay_page_url;
-  //         window.location.href = url;
-  //       }
-  //     },
-  //     onError: (response) => {
-  //       toast.error(`${response?.message} errors`, { position: "top-right" });
-  //     },
-  //   });
-  // };
-
 
 
   useGetAll({
