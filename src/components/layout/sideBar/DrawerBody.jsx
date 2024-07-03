@@ -285,11 +285,11 @@ const DrawerBody = () => {
         path: "/AdminPanel/Users",
         title: "Users",
       },
-      {
-        icon: "ScholarshipsIcon",
-        path: "/AdminPanel/Scholarships",
-        title: "Scholarships",
-      },
+      // {
+      //   icon: "ScholarshipsIcon",
+      //   path: "/AdminPanel/Scholarships",
+      //   title: "Scholarships",
+      // },
       {
         icon: "PagesIcon",
         path: "/AdminPanel/Pages",

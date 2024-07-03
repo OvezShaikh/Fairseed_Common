@@ -229,7 +229,7 @@ function Index() {
                       height: "22px",
                     }}
                   >
-                    Is the Campaign Zakaat eligible?
+                    Is the Campaign zakat eligible?
                   </FormLabel>
                   <CheckBox
                     fontSize={"16px !important"}

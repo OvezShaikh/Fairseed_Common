@@ -274,11 +274,9 @@ function CurrentCampaign({ goalAmount, fundRaised, onClose }) {
                     "-webkit-text-fill-color": "transparent",
                   }}
                 >
-                  {cardDetails?.zakat_eligible === true && (
-                    <p className="text-2xl max-tablet:text-[1.2rem] font-bold">
-                      Zakah Eligible !
-                    </p>
-                  )}
+                  <p className="text-2xl max-tablet:text-[1.2rem] font-bold">
+                    Zakat Eligible !
+                  </p>
                 </h1>
               )}
             </div>
@@ -330,7 +328,7 @@ function CurrentCampaign({ goalAmount, fundRaised, onClose }) {
                       wordWrap: "break-word",
                     }}
                   >
-                    Support Cause
+                    Support Campaign
                   </div>
                 </PrimaryButton>
               </Link>
@@ -510,7 +508,7 @@ function CurrentCampaign({ goalAmount, fundRaised, onClose }) {
                     Report
                   </SecondaryButton>
                 }
-                title="Reporte Cause"
+                title="Reporte Campaign"
                 onClose={() => onClose && onClose()}
               >
                 {({ onClose }) => (
@@ -588,7 +586,7 @@ function CurrentCampaign({ goalAmount, fundRaised, onClose }) {
                           }}
                           label={"Message:"}
                           name={"message"}
-                          placeholder={"write why you report this cause?"}
+                          placeholder={"write why you report this Campaign?"}
                         />
                       </div>
                       <div className="flex gap-4">
@@ -648,7 +646,7 @@ function CurrentCampaign({ goalAmount, fundRaised, onClose }) {
                 wordWrap: "break-word",
               }}
             >
-              Support Cause
+              Support Campaign
             </h1>
           </PrimaryButton>
         </Link>

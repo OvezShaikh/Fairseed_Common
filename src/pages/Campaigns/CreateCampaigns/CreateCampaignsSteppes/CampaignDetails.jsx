@@ -187,7 +187,7 @@ const Test = ({ handleBack, handleNext }) => {
               height: "22px",
             }}
           >
-            Is the Campaign Zakaat eligible?
+            Is the Campaign zakat eligible?
           </FormLabel>
           <CheckBox
             sx={{ paddingLeft: "15px" }}

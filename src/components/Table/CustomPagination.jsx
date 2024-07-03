@@ -80,10 +80,10 @@ const CustomPagination = ({
           <PageLast />
         </Button>
         <span className="border-r-2 px-2  text-black/40">
-          Showing {" "}
+          Page{" "}
           <strong>
-            {(pageIndex * pageSize) + 1}</strong> to <strong>{((pageIndex + 1) * pageSize)}</strong> of <strong>{pageOptions.length}
-          </strong>
+            {pageIndex + 1} of {pageOptions.length}
+          </strong>{" "}
         </span>
         <Grid
           item
@@ -105,7 +105,7 @@ const CustomPagination = ({
               // width: "50px",
             }}
           >
-            {[5,10,25, 50, 75, 100, 150].map((pageSize) => (
+            {[25, 50, 75, 100, 150].map((pageSize) => (
               <MenuItem
                 key={pageSize}
                 value={pageSize}

@@ -108,6 +108,7 @@ function CauseEdit_Form() {
     status: user?.status || "",
     story: user?.story || "",
     documents: user?.documents || [],
+    notes:user?.notes || "",
   };
 
   if (!isSuccess) {
@@ -127,6 +128,7 @@ function CauseEdit_Form() {
     formData.append("story", values?.story);
     formData.append("category", values?.category?.id);
     formData.append("status", values?.status?.value || user?.status);
+    formData.append("notes", values?.notes || user?.notes);
     formData.append("zakat_eligible", values?.zakat_eligible);
 
     mutate(formData, {
@@ -342,7 +344,7 @@ function CauseEdit_Form() {
                       height: "22px",
                     }}
                   >
-                    Is the Campaign Zakaat eligible?
+                    Is the Campaign Zakat eligible?
                     <span className="text-red-600">*</span>
                   </FormLabel>
                   <CheckBox
@@ -361,7 +363,7 @@ function CauseEdit_Form() {
               <div className="w-full ">
                 <InputField
                   onChange={handleChange}
-                  name={"Notes/Comments:"}
+                  name={"notes"}
                   label={"Notes/Comments:"}
                   required={"true"}
                   multiline

@@ -57,7 +57,7 @@ function Footer() {
                     wordWrap: "break-word",
                   }}
                 >
-                  Support a Cause
+                  Support a Campaign
                 </div>
               </button>
               {localStorage.getItem("token") ? (
@@ -192,7 +192,7 @@ function Footer() {
                 wordWrap: "break-word",
               }}
             >
-              FairSeed Technology Foundation is India's first Education focussed
+              FairSeed Technology Foundation is India's first Education focused
               & technology based online crowdfunding platform dedicated to
               revolutionizing the way education is funded and accessible. Our
               mission is to bridge the financial gap in education by connecting
@@ -226,7 +226,7 @@ function Footer() {
                   is here to help. Reach out to us at:
                 </Link>
               </li>
-              <li>
+              <li className="mt-2">
                 <Link
                   to="#"
                   onClick={(e) => {
@@ -248,7 +248,7 @@ function Footer() {
                   info@fairseed.org
                 </Link>
               </li>
-              <li>
+              <li className="mt-2">
                 <Link
                   className="text-white/80"
                   style={{
@@ -258,7 +258,7 @@ function Footer() {
                   }}
                   to="tel:+918421061921"
                 >
-                  +918421061921
+                  +91-8421061921
                 </Link>
               </li>
             </ul>
@@ -488,6 +488,7 @@ function Footer() {
                     textTransform: "capitalize",
                   }}
                   to="https://twitter.com/FairSeedTech"
+                  target="_blank"
                 >
                   <img src={icons.FooterIconTw} />
                 </Link>
@@ -499,10 +500,14 @@ function Footer() {
                     textTransform: "capitalize",
                   }}
                   to="https://www.instagram.com/fairseedtechfoundation/"
+                  target="_blank"
                 >
                   <img src={icons.FooterIconIn} />
                 </Link>
-                <Link to="https://www.facebook.com/profile.php?id=61550906075110">
+                <Link
+                  to="https://www.facebook.com/profile.php?id=61550906075110"
+                  target="_blank"
+                >
                   <div className="w-[33px] h-[32px] flex justify-center items-center bg-[#D9F5EE] rounded-full ml-3  ">
                     <FaFacebookF size={22} />
                   </div>
@@ -515,6 +520,7 @@ function Footer() {
                     textTransform: "capitalize",
                   }}
                   to="#"
+                  target="_blank"
                 >
                   <img src={icons.FooterIconYo} />
                 </Link>
@@ -525,9 +531,14 @@ function Footer() {
 
         <div>
           <hr className="text-white/50 pb-2"></hr>
-          <p className="text-white/40 text-1xl max-tablet:text-center">
-            Copyright © Fairseed 2023
-          </p>
+          <div className="flex justify-between items-center">
+            <p className="text-white/40 text-1xl max-tablet:text-center">
+              Copyright © Fairseed 2023
+            </p>
+            <p className="text-white/40 text-1xl max-tablet:text-center">
+              Crafted at <a href="https://lowcosys.com">lowcosys.com </a>
+            </p>
+          </div>
         </div>
       </div>
     </>

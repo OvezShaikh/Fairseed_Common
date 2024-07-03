@@ -95,7 +95,7 @@ function Index({ goalAmount, fundRaised }) {
     email: user?.email || "",
     mobile: user?.mobile_number || "",
     pancard: "",
-    country: user?.country || "",
+    country: user?.country || "IN" || "",
     comment: "",
     payment_type: "",
     is_anonymous: false,
@@ -103,7 +103,7 @@ function Index({ goalAmount, fundRaised }) {
     bank_name: "",
     other_details: "",
   };
-  
+
 
   const validationSchema = yup.object().shape({
     donation_type: yup.object().required("Donation Type is required"),
@@ -113,7 +113,7 @@ function Index({ goalAmount, fundRaised }) {
       .min(50, "Amount must be at least 50 INR")
       .required("Amount is required"),
   });
-  
+
 
   const { mutate } = useCreateOrUpdate({
     url: `/donors/donate-money`,
@@ -128,20 +128,20 @@ function Index({ goalAmount, fundRaised }) {
     formData.append("payment_type", selectedPaymentGateway);
     formData.append("is_anonymous", values?.is_anonymous);
     formData.append("campaign", cardDetails?.id);
-    formData.append("transaction_date", values?.transaction_date); 
+    formData.append("transaction_date", values?.transaction_date);
     formData.append("bank_name", values?.bank_name);
     formData.append("full_name", user?.username || values?.full_name);
     formData.append("country", user?.country || values?.country);
-    formData.append("email", user?.email || values?.email); 
+    formData.append("email", user?.email || values?.email);
     formData.append("city", user?.city || values?.city);
     formData.append("mobile", user?.mobile_number || values?.mobile);
     if (user !== null) formData.append("user", user?.id);
-    
+
     mutate(formData, {
       onSuccess: (response) => {
         if (selectedPaymentGateway === "Bank_Transfer") {
           window.location.href = "/Home";
-        } else {
+        } else {        
           const url = response?.data?.pay_page_url;
           window.location.href = url;
         }
@@ -170,9 +170,9 @@ function Index({ goalAmount, fundRaised }) {
   //     mobile: user?.mobile_number || values?.mobile,
   //   };
   //   if (user !== null) data.user = user?.id;
-  
+
   //   console.log("Data to be submitted:", data); // Debugging
-  
+
   //   mutate(data, {
   //     onSuccess: (response) => {
   //       if (selectedPaymentGateway === "Bank_Transfer") {
@@ -187,8 +187,8 @@ function Index({ goalAmount, fundRaised }) {
   //     },
   //   });
   // };
-  
-  
+
+
 
   useGetAll({
     key: `/accounts/user/${user_id}`,
@@ -201,7 +201,7 @@ function Index({ goalAmount, fundRaised }) {
     },
   });
 
- 
+
 
   return (
     <>
@@ -330,26 +330,26 @@ function Index({ goalAmount, fundRaised }) {
                       }
                     >
                       <div
-                        className=" w-full min-h-[302px] h-full bg-[#F7FAFF]  border flex flex-col gap-7"
+                        className=" w-full min-h-[302px] h-full bg-[#F7FAFF]  border flex flex-col gap-3"
                         style={{ borderRadius: "4px", padding: "8px 16px" }}
                       >
                         <p className="text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]">
-                          Bank Name: ICICI BANK
+                          <span className="font-extrabold">Bank Name </span>: ICICI BANK
                         </p>
                         <p className="text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]">
-                          Branch: Pune
+                          <span className="font-extrabold">Branch</span>: Pune
                         </p>
                         <p className="text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]">
-                          Name: Fairseed Technology Foundation
+                          <span className="font-extrabold"> Name </span>: Fairseed Technology Foundation
                         </p>
                         <p className="text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]">
-                          Account Number: 007405011500
+                          <span className="font-extrabold">Account Number </span>: 007405011500
                         </p>
                         <p className="text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]">
-                          Type: Current Account
+                          <span className="font-extrabold">Type </span>: Current Account
                         </p>
                         <p className="text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]">
-                          IFSC: ICIC0000074
+                          <span className="font-extrabold"> IFSC </span>: ICIC0000074
                         </p>
                       </div>
                       <div className="w-full donate-date-div max-tablet:w-[100%] p-0">
@@ -448,7 +448,7 @@ function Index({ goalAmount, fundRaised }) {
                 </div>
               </div>
               <h1
-                className="desktop:text-[4.5rem] max-desktop:text-[3.37rem] max-tablet:text-[2rem] font-bold"
+                className="desktop:text-[4.5rem] max-desktop:text-[3.37rem] max-tablet:text-[2rem] font-extrabold"
                 style={{ fontFamily: "satoshi" }}
               >
                 {cardDetails?.fund_raised}
@@ -474,9 +474,8 @@ function Index({ goalAmount, fundRaised }) {
                   sx={{
                     height: "100%",
                     borderRadius: "16px",
-                    background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${
-                      (fundRaised / goalAmount) * 100
-                    }%, #e0e0e0 ${(fundRaised / goalAmount) * 100}%)`,
+                    background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${(fundRaised / goalAmount) * 100
+                      }%, #e0e0e0 ${(fundRaised / goalAmount) * 100}%)`,
                     "& .MuiLinearProgress-bar": {
                       backgroundColor: "#0DC7B1 !important",
                     },
@@ -503,8 +502,8 @@ function Index({ goalAmount, fundRaised }) {
                     "-webkit-text-fill-color": "transparent",
                   }}
                 >
-                  <p className="text-2xl max-tablet:text-[1.1rem] font-bold">
-                    Zakah Eligible !
+                  <p className="text-2xl max-tablet:text-[1.1rem] font-extrabold">
+                    Zakat Eligible !
                   </p>
                 </h1>
               </div>
@@ -519,7 +518,7 @@ function Index({ goalAmount, fundRaised }) {
                   {cardDetails?.user}
                 </span>
               </div>
-              <div className="mt-[40px] font-bold font-[satoshi] text-[1.87rem] text-[#383A42]">
+              <div className="mt-[40px] font-extrabold font-[satoshi] text-[1.87rem] text-[#383A42]">
                 {cardDetails?.title}
               </div>
               <div className="flex flex-wrap justify-center gap-[20px] mt-[50px]">

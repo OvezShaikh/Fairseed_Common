@@ -80,7 +80,7 @@ const Index = () => {
               <img
                 className="ml-2"
                 src={images.CausesDetails}
-                alt="CausesDetails"
+                alt="CampaignDetails"
               />
             </a>
           </div>

@@ -33,7 +33,7 @@ const Dashboard = () => {
     {
       DashBoardImg: images.HandShake,
       DashBoardTotal: dashboardData.totalCampaign,
-      DashBoardText: "Causes Raised",
+      DashBoardText: "Campaigns Raised",
     },
     {
       DashBoardImg: images.HandCoins,
@@ -50,11 +50,11 @@ const Dashboard = () => {
       DashBoardTotal: dashboardData.successfulCampaign,
       DashBoardText: "Successful Campaigns",
     },
-    {
-      DashBoardImg: images.Student,
-      DashBoardTotal: dashboardData.studentBenefited,
-      DashBoardText: "Student Benefitted",
-    },
+    // {
+    //   DashBoardImg: images.Student,
+    //   DashBoardTotal: dashboardData.studentBenefited,
+    //   DashBoardText: "Student Benefitted",
+    // },
   ];
 
   return (

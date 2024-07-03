@@ -54,7 +54,7 @@ const Withdrawals = () => {
     () => [
       {
         Header: "Camp. Id", // Row number header
-        accessor: "c_id",
+        accessor: "campaign.c_id",
         minWidth: 75,
         width: 100,
       },

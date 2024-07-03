@@ -80,7 +80,7 @@ const Reported_Causes = () => {
   const columns = React.useMemo(() => [
     {
       Header: "Id",
-      accessor: "c_id", 
+      accessor: "campaign.c_id", 
       minWidth: 75,
       width: 100,
     },
@@ -99,7 +99,7 @@ const Reported_Causes = () => {
               <img
                 className="ml-2"
                 src={images.CausesDetails}
-                alt="CausesDetails"
+                alt="CampaignDetails"
               />
             </a>
           </div>
@@ -184,7 +184,7 @@ const Reported_Causes = () => {
         columns={columns}
         showFilter
         manualPagination
-        title={"Reported-Cause"}
+        title={"Reported-Campaign"}
         checkboxComponent={IndeterminateCheckbox}
         url={`/admin-dashboard/reported-campaign`}
         extraQuery={{ inactive: true }}

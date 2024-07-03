@@ -101,6 +101,7 @@ const EditCampaign = () => {
     story: user?.story || "",
     documents: [],
     zakat_eligible: user?.zakat_eligible || false,
+    notes:user?.notes || "",
   };
 
   if (!isSuccess) {
@@ -358,7 +359,7 @@ const EditCampaign = () => {
                       height: "22px",
                     }}
                   >
-                    Is the Campaign Zakaat eligible?
+                    Is the Campaign zakat eligible?
                     <span className="text-red-600">*</span>
                   </FormLabel>
                   <CheckBox
@@ -378,7 +379,7 @@ const EditCampaign = () => {
               <div className="w-full ">
                 <InputField
                   onChange={handleChange}
-                  name={"Notes/Comments:"}
+                  name={"notes"}
                   label={"Notes/Comments:"}
                   required={"true"}
                   multiline

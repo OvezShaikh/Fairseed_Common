@@ -55,7 +55,7 @@ function YourStory({ handleBack, handleNext }) {
             theme="snow"
             name="story"
             value={values.story}
-            placeholder={`Write a story that does justice to your cause and make the supporter click the Donate button.
+            placeholder={`Write a story that does justice to your Campaign and make the supporter click the Donate button.
                 
 Pointers:
 

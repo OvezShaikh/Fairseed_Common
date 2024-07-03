@@ -55,6 +55,7 @@ const Campaign = ({ setReq }) => {
     return format(date, "dd-MMM-yyyy");
   }
 
+<<<<<<< HEAD
   const columns = React.useMemo(() => [
     {
       Header: "Id",
@@ -72,6 +73,32 @@ const Campaign = ({ setReq }) => {
           <div className="flex  ">
             <div className="w-[80px] truncate">
               {row?.original?.campaign?.title}
+=======
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: "Id",
+        accessor: "campaign.c_id", 
+        minWidth: 75,
+        width: 100,
+      },
+      {
+        Header: "Title",
+        accessor: "campaign.title",
+        minWidth: 100,
+        width: 100,
+        Cell: ({ row }) => {
+          return (
+            <div className="flex  ">
+              <div className="w-[80px] truncate">{row?.original?.campaign?.title}</div>
+              <a href={`/campaign-details/${row?.original?.campaign.id}`} target='_blank'>
+                <img
+                  className="ml-2"
+                  src={images.CausesDetails}
+                  alt="CampaignDetails"
+                />
+              </a>
+>>>>>>> 86d85c127ce627c64a2d6be13da4541c34b151b6
             </div>
             <a
               href={`/campaign-details/${row?.original?.campaign.id}`}
