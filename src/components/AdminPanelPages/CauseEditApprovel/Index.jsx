@@ -96,7 +96,7 @@ function CauseEdit_Form() {
   const initial_values = {
     campaign_image: user.campaign_image || "",
     title: user.title || "",
-    amount: user.goal_amount || "",
+    goal_amount: user.goal_amount || "",
     location: user.location || "",
     category: user?.category || " ",
     is_featured: user?.is_featured || false,
@@ -119,7 +119,7 @@ function CauseEdit_Form() {
       formData.append("campaign_image", values?.campaign_image);
     }
     formData.append("title", values?.title);
-    formData.append("amount", values?.amount);
+    formData.append("goal_amount", values?.goal_amount);
     formData.append("location", values?.location);
     formData.append("end_date", values?.end_date);
     formData.append("summary", values?.summary);
@@ -194,8 +194,8 @@ function CauseEdit_Form() {
                 <InputField
                   type={"number"}
                   onChange={handleChange}
-                  value={values?.amount}
-                  name={"amount"}
+                  value={values?.goal_amount}
+                  name={"goal_amount"}
                   label={"Amount to be raised:"}
                   placeholder={"Minimum 50 INR"}
                 />

@@ -93,6 +93,22 @@ const Account = () => {
         });
         navigate(-1);
       },
+      onError:(response)=>{
+        const emailError = response?.response?.data?.data?.email[0];
+        const mobileNumberError = response?.response?.data?.data?.mobile_number[0];
+  
+        if (emailError) {
+          toast.error(emailError, {
+            position: "top-right",
+          });
+        }
+  
+        if (mobileNumberError) {
+          toast.error(mobileNumberError, {
+            position: "top-right",
+          });
+        }
+      }
     });
   };
 

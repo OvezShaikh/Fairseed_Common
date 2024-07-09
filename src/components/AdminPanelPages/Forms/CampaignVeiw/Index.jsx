@@ -107,7 +107,6 @@ function Index() {
   };
 
   const handleSubmit = (values) => {
-    console.log(values , "<<<<<<<<<<")
     const formData = new FormData();
     formData.append("campaign_image", values?.campaign_image);
     formData.append("title", values?.title);

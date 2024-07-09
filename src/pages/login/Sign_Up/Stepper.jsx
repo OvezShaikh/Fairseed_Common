@@ -107,15 +107,15 @@ const formValidation = [
     mobile_number: Yup.string()
       .test("is-valid-phone", "Phone number is not valid", (value) => {
         if (!value) return false;
-        const phoneRegExp = /^(?![0]+$)(\+[0-9]+)?[0-9]{6,14}$/; // Updated regex for international phone numbers
+        const phoneRegExp = /^(?![0]+$)(\+[0-9]+)?[0-9]{6,14}$/; 
         return phoneRegExp.test(value);
       })
       .test(
         "not-starts-with-zero",
         "Phone number should not start with zero",
         (value) => {
-          if (!value) return true; // Return true if phone number is empty
-          return value.charAt(0) !== "0"; // Check if the first character of the phone number is not zero
+          if (!value) return true; 
+          return value.charAt(0) !== "0"; 
         }
       )
       .required("Phone number is required")
@@ -175,13 +175,21 @@ const Sign_Stepper = () => {
         window.location.href = "/Home";
       },
       onError: (response) => {
-        toast.error(`${response?.response?.data?.email[0]}`, {
+      const emailError = response?.response?.data?.email[0];
+      const mobileNumberError = response?.response?.data?.mobile_number[0];
+
+      if (emailError) {
+        toast.error(emailError, {
           position: "top-right",
         });
-        toast.error(`${response?.response?.data?.mobile_number[0]}`, {
+      }
+
+      if (mobileNumberError) {
+        toast.error(mobileNumberError, {
           position: "top-right",
         });
-      },
+      }
+      }      
     });
   };
 

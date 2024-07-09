@@ -225,14 +225,14 @@ export default function HorizontalLinearStepper() {
 
   const { mutate } = useCreateOrUpdate({
     url: "/add-campaign",
-    onSuccess: async (data, Values) => {
+    onSuccess: async (data) => {
       toast.success(`${data.data.message} `, {
         position: "top-center",
       });
       handleNext();
     },
-    onError: (data, Values) => {
-      toast.error(`${data.response.data.message} Error !!!!!!!!!!!!!!!!!!`, {
+    onError: (data) => {
+      toast.error(`${data.response.data.mobile_number} Error !!!!!!!!!!!!!!!!!!`, {
         position: "top-center",
       });
       handleNext();
