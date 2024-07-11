@@ -23,7 +23,8 @@ import { ImageCropper } from "../../inputs/ImageCropper/ImageCropper";
 import { ImagePreviewDialog } from "../../inputs/PreviewImage/PreviewImage";
 import DropZone from "../../inputs/ImageCropper/CropDrop";
 
-function CauseEdit_Form() {
+function 
+CauseEdit_Form() {
   let { state } = useLocation();
   let { id } = state;
   const navigate = useNavigate();
@@ -94,10 +95,10 @@ function CauseEdit_Form() {
   });
 
   const initial_values = {
-    campaign_image: user.campaign_image || "",
-    title: user.title || "",
-    goal_amount: user.goal_amount || "",
-    location: user.location || "",
+    campaign_image: user?.campaign_image || "",
+    title: user?.title || "",
+    goal_amount: user?.goal_amount || "",
+    location: user?.location || "",
     category: user?.category || " ",
     is_featured: user?.is_featured || false,
     summary: user?.summary || "",
