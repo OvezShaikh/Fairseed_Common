@@ -158,10 +158,10 @@ const validations = [
     account_holder_name: yup
       .string()
       .required("account holder name is required"),
-    account_number: yup
+      account_number: yup
       .string()
       .required("Account number is required")
-      .min(11)
+      .min(12)
       .max(16),
     bank_name: yup.string().required("Bank name is required"),
     branch_name: yup.string().required("Branch name is required"),
