@@ -5,6 +5,7 @@ function Index({ text, icon, sx, ...otherProps }) {
   return (
     <button
       // variant="text"
+      type="button"
       style={{
         padding: "7px",
         borderRadius: "4px",
