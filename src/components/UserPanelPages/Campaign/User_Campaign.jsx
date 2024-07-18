@@ -104,7 +104,7 @@ const User_Campaign = ({ onClose }) => {
 
   const handlewithdrawSubmit = (row, onClose) => {
     const formData = new FormData();
-    formData.append("campaign", row?.values?.id);
+    formData.append("campaign", row?.id);
     Withdrawl(formData, {
       onSuccess: (response) => {
         toast.success(`Withdrawals request sent successfully`, {

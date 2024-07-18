@@ -34,9 +34,21 @@ const InputField = ({
   type, // Adding type prop
   ...otherProps
 }) => {
-  const [field, meta] = useField(name);
+  const [field, meta , helpers] = useField(name);
 
   const [showPassword, setShowPassword] = React.useState(false); // State to manage password visibility
+
+  const handleInputChange = (e) => {
+    const { value } = e.target;
+    if (type === "number" && /^\d*$/.test(value)) {
+      // Only allow numeric values for number type
+      helpers.setValue(value);
+    } else if (type !== "number") {
+      // Allow all values for other types
+      helpers.setValue(value);
+    }
+  };
+
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -172,6 +184,7 @@ const InputField = ({
               : "text"
           }
           {...textFieldConfig}
+          onChange={handleInputChange}
         />
 
         {/* Conditionally render icons section */}
