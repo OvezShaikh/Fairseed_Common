@@ -240,17 +240,6 @@ export default function HorizontalLinearStepper() {
   });
 
   const onSubmit = (Values) => {
-    // console.log(Values , "<-------------Formdata");
-    // console.log(Values.documents , "<-------------Formdata");
-    // let docs =[];
-    // for(let i=0 ; i<Values.documents.length; i++){
-    //   docs.push(Values.documents[i]);
-    // }
-    // // docs.push(Values.documents[0]);
-    // // docs.push(Values.documents[1]);
-    // // docs.push(Values.documents[2]);
-    // console.log(docs , "<=============");
-
     const formData = new FormData();
     for (const key in Values) {
       if (key === "category") {
