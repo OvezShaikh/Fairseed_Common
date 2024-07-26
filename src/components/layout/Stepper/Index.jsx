@@ -103,7 +103,7 @@ const initialValues = {
   end_date: "",
   story: "",
   summary: "",
-  documents: "",
+  documents: [],
   rasing_for: "",
   account_holder_name: "",
   account_number: "",
@@ -242,8 +242,12 @@ export default function HorizontalLinearStepper() {
   const onSubmit = (Values) => {
     const formData = new FormData();
     for (const key in Values) {
-      if (key == "category") {
+      if (key === "category") {
         formData.append("category", Values["category"]["value"]);
+      } else if (key === "documents") {
+        for (let i = 0; i < Values.documents.length; i++) {
+          formData.append("documents", Values.documents[i]);
+        }
       } else {
         formData.append(key, Values[key]);
       }

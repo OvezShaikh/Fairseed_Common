@@ -126,8 +126,15 @@ function CauseEdit_Form() {
     formData.append("story", values?.story);
     formData.append("category", values?.category?.id);
     formData.append("status", values?.status?.value || user?.status);
+    formData.append("notes", values?.notes || user?.notes);
     formData.append("zakat_eligible", values?.zakat_eligible);
-    formData.append("notes", values?.notes);
+    if (Array.isArray(values?.documents)){
+      for (let i = 0; i < values.documents.length; i++) {
+      formData.append("documents", values?.documents[i]);
+    }
+  }else{
+    formData.append("documents", values?.documents);
+  }
 
     mutate(formData, {
       onSuccess: (response) => {
@@ -277,7 +284,7 @@ function CauseEdit_Form() {
                 </FormLabel>
 
                 <div className="flex gap-4 max-tablet:flex-col">
-                  {values?.documents?.map((imageUrl, index) => {
+                  {documents?.map((imageUrl, index) => {
                     const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl?.doc_file}`;
                     return (
                       <Attachments
@@ -305,7 +312,7 @@ function CauseEdit_Form() {
                   <UploadField
                     label="Upload Attachment:"
                     onDocumentUpload={handleDocumentUpload}
-                    name="document"
+                    name="documents"
                     placeholder="Upload marksheets, Medical records, Fees Structure etc."
                     sx={{ padding: "20px" }}
                     multiple={false}
