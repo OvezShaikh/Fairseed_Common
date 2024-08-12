@@ -301,6 +301,7 @@ const EditCampaign = () => {
                       <Attachments
                         key={index}
                         id={id}
+                        iconShow={true}
                         imageUrl={documentLink}
                       />
                     );

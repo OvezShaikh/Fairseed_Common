@@ -34,6 +34,7 @@ CauseEdit_Form() {
   const [srcImg, setSrcImg] = useState("");
   const [openCrop, setOpenCrop] = useState(false);
 
+
   const handleDocumentUpload = (documentUrl) => {
     setDocuments([...documents, documentUrl]);
   };
@@ -128,7 +129,15 @@ CauseEdit_Form() {
     formData.append("category", values?.category?.id);
     formData.append("status", values?.status?.value || user?.status);
     formData.append("notes", values?.notes || user?.notes);
+    formData.append("is_featured", values?.is_featured || user?.is_featured);
     formData.append("zakat_eligible", values?.zakat_eligible);
+    if (Array.isArray(values?.documents)){
+      for (let i = 0; i < values.documents.length; i++) {
+      formData.append("documents", values?.documents[i]);
+    }
+  }else{
+    formData.append("documents", values?.documents);
+  }
 
     mutate(formData, {
       onSuccess: (response) => {
@@ -276,20 +285,33 @@ CauseEdit_Form() {
                   Attachments:
                   <span className="text-red-600">*</span>
                 </FormLabel>
-
+{/* <==================================================================================> changed it acooding to single and multilple docs handeling  */} 
                 <div className="flex gap-4 max-tablet:flex-col">
-                  {values?.documents?.map((imageUrl, index) => {
-                    const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl?.doc_file}`;
-                    return (
-                      <Attachments
-                        key={index}
-                        id={imageUrl?.id}
-                        imageUrl={documentLink}
-                      />
-                    );
-                  })}
+                {Array.isArray(values?.documents) 
+                      ? values?.documents?.map((imageUrl, index) => {
+                          const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl?.doc_file}`;
+                          return (
+                            <Attachments
+                              key={index}
+                              id={imageUrl?.id}
+                              imageUrl={documentLink}
+                            />
+                          );
+                        })
+                      : (() => {
+                          const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${values?.documents?.doc_file}`;
+                          return (
+                            <Attachments
+                              key={values?.documents?.id}
+                              id={values?.documents?.id}
+                              imageUrl={documentLink}
+                            />
+                          );
+                        })()
+                    }
                 </div>
               </div>
+{/* <==================================================================================> */}
 
               <div className="flex max-tablet:flex-col  w-[100%] gap-4">
                 <div className="w-[50%] max-tablet:w-full pt-1.5">
@@ -306,10 +328,10 @@ CauseEdit_Form() {
                   <UploadField
                     label="Upload Attachment:"
                     onDocumentUpload={handleDocumentUpload}
-                    name="document"
+                    name="documents"
                     placeholder="Upload marksheets, Medical records, Fees Structure etc."
                     sx={{ padding: "20px" }}
-                    multiple={false}
+                    multiple={true}
                     onChange={(value) => setFieldValue("document", value)}
                   />
                 </div>

@@ -7,7 +7,7 @@ import PrimaryButton from "../../../components/inputs/PrimaryButton";
 import { Grid, Typography } from "@mui/material";
 import SecondaryButton from "../../../components/inputs/secondaryButton";
 import { useLocation, useNavigate, useParams, Link } from "react-router-dom";
-import React, { useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Avatar } from "@mui/material";
@@ -22,6 +22,7 @@ import copy from "copy-to-clipboard";
 import { useCreateOrUpdate } from "../../../Hooks";
 import InputAdminField from "../../../components/inputs/InputAdminField/Index";
 import { FaCopy  } from "react-icons/fa";
+import Attachments from "../../../components/layout/Attachments/Index"
 import {
   EmailIcon,
   EmailShareButton,
@@ -34,6 +35,7 @@ import {
 } from "react-share";
 import { MdClose } from "react-icons/md";
 import UserLogin from "../../login/Login_page/Index";
+import AuthContext from "../../../context/authContext/AuthContext";
 
 function CurrentCampaign({
   goalAmount,
@@ -45,6 +47,7 @@ function CurrentCampaign({
   const { id } = useParams();
   const [cardDetails, setCardDetails] = useState(null);
   const [showSharePopup, setShowSharePopup] = useState(false);
+  const [ docs , setDocs] = useState([]);
   
 
   const handleShareButtonClick = () => {
@@ -58,13 +61,14 @@ function CurrentCampaign({
   const currentPageUrl = window.location.href;
   const media = `${process.env.REACT_APP_BE_BASE_URL}${cardDetails?.campaign_image}`;
 
-  let userData = localStorage.getItem("user_info");
-  let Data = JSON.parse(userData);
-  let user_id = Data?.id;
+  const { user , isLogin } = useContext(AuthContext);
+  const user_id =  user?.id;
 
   const { mutate } = useCreateOrUpdate({
     url: `/user-dashboard/report-campaign`,
   });
+
+  
   const handleButtonClick = () => {
     if (cardDetails?.fund_raised === cardDetails?.goal_amount || cardDetails?.fund_raised > cardDetails?.goal_amount) {
       toast.info("Donation goal has already been reached", {
@@ -92,6 +96,7 @@ function CurrentCampaign({
       )
       .then((res) => {
         setCardDetails(res.data.data);
+        setDocs(res.data.data.documents);
       })
       .catch((error) => {});
   }, [id]);
@@ -103,6 +108,7 @@ function CurrentCampaign({
   );
   const fullNameWords = cardDetails?.user?.split(" ");
   const firstLetter = fullNameWords?.[0]?.charAt(0)?.toUpperCase() ?? "";
+
 
   return (
     <>
@@ -448,19 +454,38 @@ function CurrentCampaign({
                   </div>
                 )}
               </div>
-            </div>
-            <div
-              className="pt-4"
-              style={{
-                fontFamily: "satoshi",
-              }}
-            >
+            </div> 
+            {/* <----------------------------------------------> this was needed as per requirements*/} 
+            <div className="flex-col p-4 gap-3">
+            <div className="flex py-2">
+                <span className="font-bold">CREATED ON:</span>
+                {cardDetails?.created_on}
+              </div>
+            <div className="flex gap-2">
+              {docs?.length > 0 && 
+                docs.map((imageUrl, index) => {
+                  const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl?.doc_file}`;
+                  return (
+                    <Attachments
+                      key={index}
+                      iconShow={true}
+                      id={imageUrl?.id}
+                      imageUrl={documentLink}
+                    />
+                  );
+                })
+              }
+              </div>
+              </div>
+              {/* <----------------------------------------------> */}
+            <div className="pt-4" style={{ fontFamily: 'Satoshi, sans-serif' }}>
               {cardDetails?.story && (
                 <div
                   className="pt-4"
                   dangerouslySetInnerHTML={{ __html: cardDetails.story }}
-                  style={{ whiteSpace: "pre-line" }}
-                ></div>
+                  style={{ whiteSpace: 'pre-line' , fontSize:'initial' }}
+                >
+                </div>
               )}
             </div>
           </div>
@@ -489,8 +514,8 @@ function CurrentCampaign({
             </h1>
             <div className="space-y-4 flex flex-col justify-center items-center">
               <Donor data={cardDetails?.donor} />
-
-              <Dialog
+              {isLogin &&
+                (<Dialog
                 button={
                   <SecondaryButton
                     sx={{
@@ -507,7 +532,7 @@ function CurrentCampaign({
                 }
                 title="Reporte Campaign"
                 onClose={() => onClose && onClose()}
-              >
+                >
                 {({ onClose }) => (
                   <Formik
                     initialValues={{
@@ -608,7 +633,9 @@ function CurrentCampaign({
                     </Form>
                   </Formik>
                 )}
-              </Dialog>
+                </Dialog>
+)              }
+             
             </div>
           </div>
         </div>

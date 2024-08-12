@@ -39,6 +39,7 @@ import { toast } from "react-toastify";
 import serverAPI from "../../config/serverAPI";
 import { positions } from "@mui/system";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 const dataGridStyles = {
   borderRadius: 0,
@@ -159,11 +160,10 @@ const ReactTable = ({
   //   )
   //   : []
   // );
-
+  const location = useLocation();
   useEffect(() => {
     if (data) {
       setTableData(("rows" in data && data?.rows) || []);
-      // setTableData(data?.products || []);
     }
   }, [data]);
 
@@ -177,7 +177,7 @@ const ReactTable = ({
     : {};
 
   useEffect(() => {
-    let preference = JSON.parse(localStorage?.getItem("userObj"))?.preferences
+    let preference = JSON.parse(localStorage?.getItem("user_obj"))?.preferences
       ?.user_preference;
     if (preference && JSON.parse(preference)[`columns-of-${title_slug}`]) {
       setTableMetaData(JSON.parse(preference)[`columns-of-${title_slug}`]);
@@ -324,7 +324,7 @@ const ReactTable = ({
         columnOrder: JSON.stringify(columnOrder),
       },
     };
-    let old_userObj = JSON.parse(localStorage.getItem("userObj"));
+    let old_userObj = JSON.parse(localStorage.getItem("user_obj"));
     let old_preference = old_userObj?.preferences?.user_preference
       ? JSON.parse(old_userObj?.preferences?.user_preference)
       : {};
@@ -339,7 +339,7 @@ const ReactTable = ({
       },
     };
 
-    localStorage.setItem("userObj", JSON.stringify(new_preference));
+    localStorage.setItem("user_obj", JSON.stringify(new_preference));
     return { user_preference: user_preference };
   };
 
@@ -431,10 +431,9 @@ const ReactTable = ({
       setQuery(e.target.value);
     }
   };
-
   const GetExcel = async () => {
     axios({
-      url: `${process.env.REACT_APP_BASE_URL}/admin-dashboard/export-data/nt/`,
+      url: location.pathname === '/AdminPanel/Campaigns' ? `${process.env.REACT_APP_BASE_URL}/admin-dashboard/export-data/nt/` : `${process.env.REACT_APP_BASE_URL}/admin-dashboard/export-donordata/nt/`,
       method: 'GET',
       responseType: 'blob', 
     })

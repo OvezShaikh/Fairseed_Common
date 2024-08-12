@@ -14,11 +14,13 @@ import { toast } from "react-toastify";
 import { useGetAll } from "../../Hooks/useGetAll";
 import "react-toastify/dist/ReactToastify.css";
 import images from "../../constants/images";
+import {useContext} from 'react'
+import AuthContext from "../../context/authContext/AuthContext";
 
 export default function ProfileAvatar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [image, setImage] = React.useState("");
-  const [role, setRole] = React.useState("");
+  // const [image, setImage] = React.useState("");
+  // const [role, setRole] = React.useState("");
 
   function logout() {
     localStorage.removeItem("token");
@@ -39,22 +41,29 @@ export default function ProfileAvatar() {
     setAnchorEl(null);
   };
 
-  let userData = localStorage.getItem("user_info");
-  let Data = JSON.parse(userData);
-  let id = Data?.id;
+  // <------------------------------------------------------->
+  const { user }  =  useContext(AuthContext);
+  const userData = user;
+  let id = userData?.id;
+  let role = userData?.user_role;
+  const img = `${process.env.REACT_APP_BASE_URL}${userData?.profile_pic}`;
+  let image = img;
+  
 
-  useGetAll({
-    key: `/accounts/user/${id}`,
-    enabled: true,
-    select: (data) => {
-      return data?.data?.data;
-    },
-    onSuccess: (data) => {
-      const img = `${process.env.REACT_APP_BASE_URL}${data?.profile_pic}`;
-      setImage(img);
-      setRole(data?.user_role);
-    },
-  });
+  // <------------------------------------------------------->
+
+  // useGetAll({
+  //   key: `/accounts/user/${id}`,
+  //   enabled: true,
+  //   select: (data) => {
+  //     return data?.data?.data;
+  //   },
+  //   onSuccess: (data) => {
+      
+  //     setImage(img);
+  //     setRole(data?.user_role);
+  //   },
+  // });
 
   return (
     <React.Fragment>

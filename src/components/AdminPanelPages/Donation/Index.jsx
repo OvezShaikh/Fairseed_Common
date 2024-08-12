@@ -172,11 +172,10 @@ const Index = () => {
         rows={[]}
         columns={columns}
         manualPagination
+        downloadExcel
         title={"Donations"}
         url="/admin-dashboard/donors?page=1&limit=10"
         extraQuery={{ inactive: true }}
-        // addButton={<LocationConfigurationDialog />}
-        // addButton={<Button>HElloooooo</Button>}
         selectedRowID={selectedRowID}
         checkboxSelection={true}
       />

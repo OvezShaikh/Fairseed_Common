@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import images from "../../constants/images";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/layout/Navbar";
@@ -22,6 +22,7 @@ import moment from "moment";
 import CountrySelect from "../../components/inputs/countrySelect";
 import { useCreateOrUpdate, useGetAll } from "../../Hooks";
 import { toast } from "react-toastify";
+import AuthContext from "../../context/authContext/AuthContext";
 
 const InputStyle = {
   padding: "15px 20px",
@@ -66,11 +67,10 @@ function Index({ goalAmount, fundRaised }) {
   const { id } = useParams();
   const [cardDetails, setCardDetails] = useState(null);
   const [selectedPaymentGateway, setSelectedPaymentGateway] = useState("");
-  const [user, setUser] = useState(null);
+  const [User, setUser] = useState(null);
 
-  let userData = localStorage.getItem("user_info");
-  let Data = JSON.parse(userData);
-  let user_id = Data?.id;
+  const { user } = useContext(AuthContext)
+  let user_id = user?.id;
 
   useEffect(() => {
     axios
@@ -89,13 +89,13 @@ function Index({ goalAmount, fundRaised }) {
     user: "",
     campaign: "",
     donation_type: "",
-    full_name: user?.username || "",
+    full_name: User?.username || "",
     amount: "",
-    city: user?.city || "",
-    email: user?.email || "",
-    mobile: user?.mobile_number || "",
+    city: User?.city || "",
+    email: User?.email || "",
+    mobile: User?.mobile_number || "",
     pancard: "",
-    country: user?.country || "IN" || "",
+    country: User?.country || "IN" || "",
     comment: "",
     payment_type: "",
     is_anonymous: false,
@@ -115,30 +115,30 @@ function Index({ goalAmount, fundRaised }) {
   });
 
 
-  // const { mutate } = useCreateOrUpdate({
-  //   url: `/donors/donate-money`,
-  // });
+  const { mutate } = useCreateOrUpdate({
+    url: `/donors/donate-money`,
+  });
 
   const handleSubmit = (values) => {
-    // const formData = new FormData();
-    // formData.append("donation_type", values?.donation_type.value);
-    // formData.append("amount", values?.amount);
-    // formData.append("pancard", values?.pancard);
-    // formData.append("comment", values?.comment);
-    // formData.append("payment_type", selectedPaymentGateway);
-    // formData.append("is_anonymous", values?.is_anonymous);
-    // formData.append("campaign", cardDetails?.id);
-    // formData.append("transaction_date", values?.transaction_date);
-    // formData.append("bank_name", values?.bank_name);
-    // formData.append("full_name", user?.username || values?.full_name);
-    // formData.append("country", user?.country || values?.country);
-    // formData.append("email", user?.email || values?.email);
-    // formData.append("city", user?.city || values?.city);
-    // formData.append("mobile", user?.mobile_number || values?.mobile);
-    // if (user !== null) formData.append("user", user?.id);
+    const formData = new FormData();
+    formData.append("donation_type", values?.donation_type.value);
+    formData.append("amount", values?.amount);
+    formData.append("pancard", values?.pancard);
+    formData.append("comment", values?.comment);
+    formData.append("payment_type", selectedPaymentGateway);
+    formData.append("is_anonymous", values?.is_anonymous);
+    formData.append("campaign", cardDetails?.id);
+    formData.append("transaction_date", values?.transaction_date);
+    formData.append("bank_name", values?.bank_name);
+    formData.append("full_name", User?.username || values?.full_name);
+    formData.append("country", User?.country || values?.country);
+    formData.append("email", User?.email || values?.email);
+    formData.append("city", User?.city || values?.city);
+    formData.append("mobile", User?.mobile_number || values?.mobile);
+    if (user !== null) formData.append("user", User?.id);
 
-    // mutate(formData, {
-    //   onSuccess: (response) => {
+    mutate(formData, {
+      onSuccess: (response) => {
         if (selectedPaymentGateway === "Bank_Transfer") {
           window.location.href = "/Home";
         } else {        
@@ -148,13 +148,13 @@ function Index({ goalAmount, fundRaised }) {
           });
           // window.location.href = url;
         }
-      // },
-      // onError: (response) => {
-      //   toast.error(`${response?.message} errors`, { position: "top-right" });
-      // },
+      },
+      onError: (response) => {
+        toast.error(`${response?.message} errors`, { position: "top-right" });
+      },
     }
-  // );
-  // };
+  );
+  };
 
   useGetAll({
     key: `/accounts/user/${user_id}`,

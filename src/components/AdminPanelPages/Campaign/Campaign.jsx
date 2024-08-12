@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import ReactTable from "../../Table/index";
 import { useState } from "react";
 import IndeterminateCheckbox from "../../Table/IndeterminateCheckbox";
@@ -7,12 +7,14 @@ import { GoDotFill } from "react-icons/go";
 import { Link, useLocation } from "react-router-dom";
 import images from "../../../constants/images";
 import { format } from "date-fns";
+import AuthContext from "../../../context/authContext/AuthContext";
 
 
 const Campaign = () => {
-  let userData = localStorage.getItem("user_info");
-  let Data = JSON.parse(userData);
-  let id = Data?.id;
+  const { user } = useContext(AuthContext)
+  const id = user?.id;
+
+
   let tableRef = useRef(null);
   const [selectedRowID, setSelectedRowID] = useState(null);
   const getStatusCellStyle = (status) => {
@@ -95,12 +97,14 @@ const Campaign = () => {
       minWidth: 100,
       width: 100,
     },
+    // <------------------------------------------------------->
     {
       Header: "Email",
       accessor: "user.email",
-      minWidth: 200,
-      width: 200,
+      minWidth: 150,
+      width: 150,
     },
+    // <-------------------------------------------------------> this column was needed as per requirements
     {
       Header: "Mobile",
       accessor: "user.mobile_number",
@@ -114,11 +118,23 @@ const Campaign = () => {
       width: 100,
     },
     {
+      Header: "Funds Raised",
+      accessor: "fund_raised",
+      minWidth: 100,
+      width: 100,
+    },
+    {
       Header: "Status",
       accessor: "status",
       minWidth: 100,
       width: 100,
       Cell: StatusCell,
+    },
+    {
+      Header: "Created On",
+      accessor: "created_on",
+      minWidth: 100,
+      width: 100,
     },
     {
       Header: "Deadline",

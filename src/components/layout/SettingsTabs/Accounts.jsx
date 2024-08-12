@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Formik, Form } from "formik";
 import InputField from "../../inputs/InputField";
 import CountrySelect from "../../inputs/countrySelect/index";
@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import PrimaryButton from "../../inputs/PrimaryButton";
 import Profile from "../../inputs/AvatarCrop/Profile";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../../../context/authContext/AuthContext";
 
 const InputStyle = {
   padding: "15px 20px",
@@ -26,13 +27,14 @@ const SelectStyle = {
   },
 };
 
-let userData = localStorage.getItem("user_info");
-let Data = JSON.parse(userData);
-let id = Data?.id;
+
 
 const Account = () => {
   const [Details, setDetails] = useState({});
   const [srcImg, setSrcImg] = useState("");
+  const { user } = useContext(AuthContext);
+  let userData = user ;
+  let id = userData.id;
   const navigate = useNavigate();
 
   useGetAll({

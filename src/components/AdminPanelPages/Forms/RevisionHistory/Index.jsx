@@ -51,7 +51,7 @@ function ModificationLogTable() {
                   {item.modified_by}
                 </td>
                 <td className="border border-gray-800 text-[16px] max-tablet:text-[16px] font-[satoshi] font-normal px-4 py-3">
-                  <a href={`/campaign-details/${item.id}`}>
+                  <a href={`/campaign-details/${item.campaign}`}>
                     <SuccessButton text={"View"} />
                   </a>
                 </td>

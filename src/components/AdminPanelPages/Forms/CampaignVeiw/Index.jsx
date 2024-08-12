@@ -55,7 +55,6 @@ function Index() {
       setCampaign(data);
       if (data?.campaign_data?.campaign_image) {
         const image = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign_data?.campaign_image}`;
-        console.log(image , "<------")
         setC_image(image);
       } else {
         const image = `${process.env.REACT_APP_BE_BASE_URL}${data?.campaign?.campaign_image || ""}`;
@@ -107,7 +106,6 @@ function Index() {
   };
 
   const handleSubmit = (values) => {
-    console.log(values , "<<<<<<<<<<")
     const formData = new FormData();
     formData.append("campaign_image", values?.campaign_image);
     formData.append("title", values?.title);
