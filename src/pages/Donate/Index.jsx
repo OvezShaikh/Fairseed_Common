@@ -142,11 +142,11 @@ function Index({ goalAmount, fundRaised }) {
         if (selectedPaymentGateway === "Bank_Transfer") {
           window.location.href = "/Home";
         } else {        
-          // const url = response?.data?.pay_page_url;
+          const url = response?.data?.pay_page_url;
           toast.info('This page has been removed for safety purposes', {
             position:'top-right'
           });
-          // window.location.href = url;
+          window.location.href = url;
         }
       },
       onError: (response) => {
