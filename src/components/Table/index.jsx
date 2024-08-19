@@ -499,14 +499,14 @@ const ReactTable = ({
             <div />
           )}
           {!noSearch && showFilter && <div className="border  py-3 mx-3"></div>}
-          {showFilter && (
+          {/* {showFilter && (
             <ApplyFilters
               title={title}
               allColumns={allColumns}
               filters={filters}
               setFilters={setFilters}
             />
-          )}
+          )} */}
         </Grid>
         <Grid
           item
@@ -544,7 +544,7 @@ const ReactTable = ({
               </SecondaryButton>
             </div>
           )}
-          <SecondaryButton
+          {/* <SecondaryButton
             onClick={() => {
               localStorage.removeItem(`filters-of-${title_slug}`);
               setFilters([]);
@@ -558,7 +558,7 @@ const ReactTable = ({
             }
           >
             {!isMobile && "Reset Filters"}
-          </SecondaryButton>
+          </SecondaryButton> */}
 
           {addButton && <div className="border  py-3 mx-3"></div>}
           {addButton}

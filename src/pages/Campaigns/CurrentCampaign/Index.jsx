@@ -455,12 +455,18 @@ function CurrentCampaign({
                 )}
               </div>
             </div> 
-            {/* <----------------------------------------------> this was needed as per requirements*/} 
+            <div className="pt-4" style={{ fontFamily: 'Satoshi, sans-serif' }}>
+              {cardDetails?.story && (
+                <div
+                  className="pt-4"
+                  dangerouslySetInnerHTML={{ __html: cardDetails.story }}
+                  style={{ whiteSpace: 'pre-line' , fontSize:'initial' }}
+                >
+                </div>
+              )}
+            </div>
+              {/* <----------------------------------------------> this was needed as per requirements*/} 
             <div className="flex-col p-4 gap-3">
-            <div className="flex py-2">
-                <span className="font-bold">CREATED ON:</span>
-                {cardDetails?.created_on}
-              </div>
             <div className="flex gap-2">
               {docs?.length > 0 && 
                 docs.map((imageUrl, index) => {
@@ -478,16 +484,6 @@ function CurrentCampaign({
               </div>
               </div>
               {/* <----------------------------------------------> */}
-            <div className="pt-4" style={{ fontFamily: 'Satoshi, sans-serif' }}>
-              {cardDetails?.story && (
-                <div
-                  className="pt-4"
-                  dangerouslySetInnerHTML={{ __html: cardDetails.story }}
-                  style={{ whiteSpace: 'pre-line' , fontSize:'initial' }}
-                >
-                </div>
-              )}
-            </div>
           </div>
           <div
             className="w-[37%] flex pt-2 pl-5  pb-12 max-desktop:pl-0 max-tablet:w-[100%] max-desktop:w-full"
