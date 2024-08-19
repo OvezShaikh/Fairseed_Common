@@ -142,9 +142,8 @@ function Index({ goalAmount, fundRaised }) {
         if (selectedPaymentGateway === "Bank_Transfer") {
           window.location.href = "/Home";
         } else {    
-          console.log(response , "<+++++++++++")    
           const url = response?.data?.pay_page_url;
-          // window.location.href = url;
+          window.location.href = url;
         }
       },
       onError: (response) => {
