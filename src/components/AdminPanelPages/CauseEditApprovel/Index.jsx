@@ -109,6 +109,7 @@ CauseEdit_Form() {
     story: user?.story || "",
     documents: user?.documents || [],
     notes:user?.notes || "",
+    created_on:user?.created_on || ""
   };
 
   if (!isSuccess) {
@@ -391,8 +392,8 @@ CauseEdit_Form() {
                   rows={5}
                 />
               </div>
-
-              <div className=" w-full ">
+              <div className="flex max-tablet:flex-col  w-[100%] gap-4">
+                <div className="w-[50%] max-tablet:w-full pt-1.5">
                 <RadioGroup
                   name={"is_featured"}
                   type="radio"
@@ -408,6 +409,17 @@ CauseEdit_Form() {
                   label="Featured:"
                   style={{ fontSize: "18px", fontWeight: 500 }}
                 />
+                </div>
+
+                <div className="w-[50%] max-tablet:w-full document-upload-div">
+                  <InputField
+                    value={values?.created_on}
+                    type={"date"}
+                    name={"created_on"}
+                    disabled={true}
+                    label={"Campaign Creation Date:"}
+                  />
+                </div>
               </div>
             </div>
             <div className="w-[30%] max-tablet:w-[100%] max-desktop:w-[100%] flex flex-col  items-center max-desktop:items-center  gap-8">

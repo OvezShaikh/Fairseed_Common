@@ -103,6 +103,7 @@ function Index({ goalAmount, fundRaised }) {
     bank_name: "",
     other_details: "",
   };
+  console.log(user , "<======");
 
 
   const validationSchema = yup.object().shape({
@@ -135,7 +136,7 @@ function Index({ goalAmount, fundRaised }) {
     formData.append("email", User?.email || values?.email);
     formData.append("city", User?.city || values?.city);
     formData.append("mobile", User?.mobile_number || values?.mobile);
-    if (user !== null) formData.append("user", User?.id);
+    if (user !== null) formData.append("user", User?.user_id);
 
     mutate(formData, {
       onSuccess: (response) => {

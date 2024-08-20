@@ -135,6 +135,9 @@ const Campaign = () => {
       accessor: "created_on",
       minWidth: 100,
       width: 100,
+      Cell: ({ row }) => {
+        return <p>{DateConvert(row?.original?.created_on)}</p>;
+      },
     },
     {
       Header: "Deadline",

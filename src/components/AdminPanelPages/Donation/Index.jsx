@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactTable from '../../Table/index'
+import ReactTable from '../../Table/index';
 import { useState } from 'react';
 import PrimaryButton from '../../inputs/PrimaryButton';
 import { Link } from 'react-router-dom';
@@ -113,12 +113,12 @@ const Index = () => {
       },
       {
         Header: "Date",
-        accessor: "transaction_date",
+        accessor: "created_on",
         minWidth: 100,
         width: 150,
        Cell:({row})=>{
         return (
-          <p>{DateConvert(row?.original?.transaction_date)}</p>
+          <p>{DateConvert(row?.original?.created_on)}</p>
         )
         
        }
