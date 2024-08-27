@@ -10,7 +10,8 @@ const AuthReducer = (state, action) => {
       };
     case LOGIN_UNSET:
       localStorage.removeItem("token");
-      localStorage.removeItem("user_obj");
+      localStorage.removeItem("user_info");
+      localStorage.clear();
       return {
         ...state,
         isLogin: false,

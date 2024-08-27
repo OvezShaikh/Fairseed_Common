@@ -67,10 +67,8 @@ function Index({ goalAmount, fundRaised }) {
   const { id } = useParams();
   const [cardDetails, setCardDetails] = useState(null);
   const [selectedPaymentGateway, setSelectedPaymentGateway] = useState("");
-  const [User, setUser] = useState(null);
 
   const { user } = useContext(AuthContext)
-  let user_id = user?.id;
 
   useEffect(() => {
     axios
@@ -89,13 +87,13 @@ function Index({ goalAmount, fundRaised }) {
     user: "",
     campaign: "",
     donation_type: "",
-    full_name: User?.username || "",
+    full_name: user?.username || "",
     amount: "",
-    city: User?.city || "",
-    email: User?.email || "",
-    mobile: User?.mobile_number || "",
+    city: user?.city || "",
+    email: user?.email || "",
+    mobile: user?.mobile_number || "",
     pancard: "",
-    country: User?.country || "IN" || "",
+    country: user?.country || "IN" || "",
     comment: "",
     payment_type: "",
     is_anonymous: false,
@@ -103,7 +101,6 @@ function Index({ goalAmount, fundRaised }) {
     bank_name: "",
     other_details: "",
   };
-  console.log(user , "<======");
 
 
   const validationSchema = yup.object().shape({
@@ -131,12 +128,12 @@ function Index({ goalAmount, fundRaised }) {
     formData.append("campaign", cardDetails?.id);
     formData.append("transaction_date", values?.transaction_date);
     formData.append("bank_name", values?.bank_name);
-    formData.append("full_name", User?.username || values?.full_name);
-    formData.append("country", User?.country || values?.country);
-    formData.append("email", User?.email || values?.email);
-    formData.append("city", User?.city || values?.city);
-    formData.append("mobile", User?.mobile_number || values?.mobile);
-    if (user !== null) formData.append("user", user_id);
+    formData.append("full_name", user?.username || values?.full_name);
+    formData.append("country", user?.country || values?.country);
+    formData.append("email", user?.email || values?.email);
+    formData.append("city", user?.city || values?.city);
+    formData.append("mobile", user?.mobile_number || values?.mobile);
+    if (user !== null) formData.append("user", user?.id);
 
     mutate(formData, {
       onSuccess: (response) => {
@@ -153,18 +150,6 @@ function Index({ goalAmount, fundRaised }) {
     }
   );
   };
-
-  useGetAll({
-    key: `/accounts/user/${user_id}`,
-    enabled: true,
-    select: (data) => {
-      return data?.data?.data;
-    },
-    onSuccess: (data) => {
-      setUser(data);
-    },
-  });
-
 
 
   return (

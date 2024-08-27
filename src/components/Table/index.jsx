@@ -177,7 +177,7 @@ const ReactTable = ({
     : {};
 
   useEffect(() => {
-    let preference = JSON.parse(localStorage?.getItem("user_obj"))?.preferences
+    let preference = JSON.parse(localStorage?.getItem("user_info"))?.preferences
       ?.user_preference;
     if (preference && JSON.parse(preference)[`columns-of-${title_slug}`]) {
       setTableMetaData(JSON.parse(preference)[`columns-of-${title_slug}`]);
@@ -324,7 +324,7 @@ const ReactTable = ({
         columnOrder: JSON.stringify(columnOrder),
       },
     };
-    let old_userObj = JSON.parse(localStorage.getItem("user_obj"));
+    let old_userObj = JSON.parse(localStorage.getItem("user_info"));
     let old_preference = old_userObj?.preferences?.user_preference
       ? JSON.parse(old_userObj?.preferences?.user_preference)
       : {};
@@ -339,7 +339,7 @@ const ReactTable = ({
       },
     };
 
-    localStorage.setItem("user_obj", JSON.stringify(new_preference));
+    localStorage.setItem("user_info", JSON.stringify(new_preference));
     return { user_preference: user_preference };
   };
 

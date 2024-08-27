@@ -10,8 +10,8 @@ const AuthState = ({ children }) => {
   const InitialState = {
     isLogin: localStorage.getItem("token") ? true : false,
     token: localStorage.getItem("token") ? localStorage.getItem("token") : null,
-    user: localStorage.getItem("user_obj")
-      ? JSON.parse(localStorage.getItem("user_obj"))
+    user: localStorage.getItem("user_info")
+      ? JSON.parse(localStorage.getItem("user_info"))
       : null,
   };
 
@@ -23,7 +23,7 @@ const AuthState = ({ children }) => {
 
   const Login = (data) => {
     setAuthToken(data?.token);
-    localStorage.setItem("user_obj", JSON.stringify(data?.user_info));
+    localStorage.setItem("user_info", JSON.stringify(data?.user_info));
     localStorage.setItem("token", data?.token);
     dispatch({ type: LOGIN_SET, payload: data?.user_info });
     navigate("/Home");
