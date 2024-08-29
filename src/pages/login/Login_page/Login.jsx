@@ -14,6 +14,7 @@ import AuthContext from "../../../context/authContext/AuthContext";
 import * as yup from "yup"
 import { useCreateOrUpdate } from "../../../Hooks";
 import { toast } from "react-toastify";
+import errorHandle from "../../../utils/errorHandle";
 
 
 
@@ -93,6 +94,10 @@ const Formcom = (
               if(LoggedIn){
                 navigate("/")
               }
+            },
+            onError:(response)=> {
+              let message = response.response.data.message;
+              toast.error(message)
             }
           })
         }}
