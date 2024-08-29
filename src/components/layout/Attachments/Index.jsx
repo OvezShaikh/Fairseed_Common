@@ -27,7 +27,8 @@ function YourComponent({ imageUrl, id, iconShow }) {
 
   const downloadImage = () => {
     const downloadLink = document.createElement("a");
-    downloadLink.href = imageUrl;
+    // downloadLink.href = imageUrl;
+    window.open(imageUrl, '_blank');
     downloadLink.download = "image.jpg";
     document.body.appendChild(downloadLink);
     downloadLink.click();
