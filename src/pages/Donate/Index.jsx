@@ -456,21 +456,23 @@ function Index({ goalAmount, fundRaised }) {
                   src={images.SealCheck}
                   alt=""
                 />
-                <h1
-                  className="text-3xl w-[80%] flex justify-items-start  pb-2  "
-                  style={{
-                    fontFamily: "satoshi",
-                    fontWeight: 700,
-                    background:
-                      "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
-                    "-webkit-background-clip": "text",
-                    "-webkit-text-fill-color": "transparent",
-                  }}
-                >
-                  <p className="text-2xl max-tablet:text-[1.1rem] font-extrabold">
-                    Zakat Eligible !
-                  </p>
-                </h1>
+               {cardDetails?.zakat_eligible && 
+              ( <h1
+                className="text-3xl w-[80%] flex justify-items-start  pb-2  "
+                style={{
+                  fontFamily: "satoshi",
+                  fontWeight: 700,
+                  background:
+                    "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+                  "-webkit-background-clip": "text",
+                  "-webkit-text-fill-color": "transparent",
+                }}
+              >
+                <p className="text-2xl max-tablet:text-[1.2rem] font-bold">
+                  Zakat Eligible !
+                </p>
+              </h1>
+              )} 
               </div>
               <div className="flex gap-x-[12px] mt-[46px]">
                 <Avatar

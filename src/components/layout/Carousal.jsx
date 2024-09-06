@@ -161,14 +161,14 @@ const HomeSwiper = () => {
                         className="hidden max-tablet:block"
                         sx={style}
                       >
-                        Donate for the Cause
+                        Donate 
                       </PrimaryButton>
                     </Link>
                   </div>
                   <div className="max-tablet:block max-desktop:hidden">
                     <Link to={`/Home/donate/${item?.id}`} className="mx-auto">
                       <PrimaryButton className="block" sx={style1}>
-                        Donate for the Cause
+                        Donate 
                       </PrimaryButton>
                     </Link>
                   </div>
