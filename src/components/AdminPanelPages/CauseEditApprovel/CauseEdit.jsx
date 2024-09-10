@@ -157,7 +157,7 @@ const Campaign = ({ setReq }) => {
         columns={columns}
         showFilter
         manualPagination
-        title={"Cause"}
+        title={"cause"}
         checkboxComponent={IndeterminateCheckbox}
         url={`/admin-dashboard/cause-edit`}
         extraQuery={{ inactive: true }}

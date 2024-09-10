@@ -136,7 +136,7 @@ const Campaign = () => {
       minWidth: 100,
       width: 100,
       Cell: ({ row }) => {
-        return <p>{DateConvert(row?.original?.created_on)}</p>;
+        return <p>{DateConvert(row?.original?.created_on || new Date())}</p>;
       },
     },
     {
@@ -174,7 +174,7 @@ const Campaign = () => {
         columns={columns}
         showFilter
         manualPagination
-        title={"Campaign"}
+        title={"campaign"}
         checkboxComponent={IndeterminateCheckbox}
         downloadExcel
         url={`/admin-dashboard/campaign`}

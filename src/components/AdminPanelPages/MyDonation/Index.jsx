@@ -134,7 +134,7 @@ const Index = () => {
                 rows={[]}
                 columns={columns}
                 manualPagination
-                title={"Donations"}
+                title={"my_donations"}
                 url="/user-dashboard/my-donations"
                 extraQuery={{ inactive: true }}
                 selectedRowID={selectedRowID}

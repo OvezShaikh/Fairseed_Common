@@ -134,7 +134,7 @@ const User = () => {
         columns={columns}
         showFilter
         manualPagination
-        title={"User"}
+        title={"user"}
         checkboxComponent={IndeterminateCheckbox}
         url={`/admin-dashboard/users`}
         addButton={<AddUser />}

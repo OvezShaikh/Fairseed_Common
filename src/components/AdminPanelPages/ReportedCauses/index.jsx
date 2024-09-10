@@ -184,7 +184,7 @@ const Reported_Causes = () => {
         columns={columns}
         showFilter
         manualPagination
-        title={"Reported-Campaign"}
+        title={"reported-campaign"}
         checkboxComponent={IndeterminateCheckbox}
         url={`/admin-dashboard/reported-campaign`}
         extraQuery={{ inactive: true }}
