@@ -31,7 +31,7 @@ const StyledTypography = styled(Typography)({
 
 const UserLogin = ({ text, color, fontWeight, size }) => {
   
-  const { Initial_value, formValidation, loginData } = useLogin();
+  // const { Initial_value, formValidation, loginData } = useLogin();
 
   const theme = createTheme();
 
@@ -92,9 +92,9 @@ const UserLogin = ({ text, color, fontWeight, size }) => {
           <div className="flex w-full">
             <div className="w-1/2 flex flex-col justify-center  items-center max-desktop:font-[satoshi]">
               <Formcom
-                Initial_value={Initial_value}
-                formValidation={formValidation}
-                loginData={loginData}
+                // Initial_value={Initial_value}
+                // formValidation={formValidation}
+                // loginData={loginData}
               />
             </div>
             {!isSmallScreen && (

@@ -94,13 +94,14 @@ const EditCampaign = () => {
     goal_amount: user.goal_amount || "",
     location: user.location || "",
     category: user?.category || " ",
-    is_featured: user?.is_featured || false,
+    // is_featured: user?.is_featured || false,
     summary: user?.summary || "",
     end_date: user?.end_date || "",
-    status: user?.status || "",
+    // status: user?.status || "",
     story: user?.story || "",
     documents: [],
     zakat_eligible: user?.zakat_eligible || false,
+    // notes:user?.notes || "",
   };
 
   if (!isSuccess) {
@@ -300,6 +301,7 @@ const EditCampaign = () => {
                       <Attachments
                         key={index}
                         id={id}
+                        iconShow={true}
                         imageUrl={documentLink}
                       />
                     );
@@ -378,7 +380,7 @@ const EditCampaign = () => {
               {/* <div className="w-full ">
                 <InputField
                   onChange={handleChange}
-                  name={"Notes/Comments:"}
+                  name={"notes"}
                   label={"Notes/Comments:"}
                   required={"true"}
                   multiline

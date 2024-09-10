@@ -18,6 +18,7 @@ import serverAPI from "../../config/serverAPI";
 import { SiClubhouse, SiSearxng } from "react-icons/si";
 import { useEffect } from "react";
 import { Close } from "@mui/icons-material";
+import AuthContext from "../../context/authContext/AuthContext";
 const GetInvolved = [
   {
     name: "Associateship",
@@ -95,10 +96,9 @@ export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [allCards, setAllCards] = useState([]);
 
-  let userData = localStorage.getItem("user_info");
-  let Data = JSON.parse(userData);
-  let role = Data?.user_role;
-  let image = Data?.profile_pic;
+  const { user } = React.useContext(AuthContext);
+  let role = user?.user_role;
+  let image = user?.profile_pic;
   let img = `${process.env.REACT_APP_API_URL}` + image;
 
   const [query, setQuery] = useState("");

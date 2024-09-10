@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactTable from '../../Table/index'
+import ReactTable from '../../Table/index';
 import { useState } from 'react';
 import PrimaryButton from '../../inputs/PrimaryButton';
 import { Link } from 'react-router-dom';
@@ -114,7 +114,7 @@ const Index = () => {
       },
       {
         Header: "Date",
-        accessor: "transaction_date",
+        accessor: "created_on",
         minWidth: 100,
         width: 150,
        Cell:({row})=>{
@@ -173,11 +173,10 @@ const Index = () => {
         rows={[]}
         columns={columns}
         manualPagination
+        downloadExcel
         title={"Donations"}
         url="/admin-dashboard/donors?page=1&limit=10"
         extraQuery={{ inactive: true }}
-        // addButton={<LocationConfigurationDialog />}
-        // addButton={<Button>HElloooooo</Button>}
         selectedRowID={selectedRowID}
         checkboxSelection={true}
       />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import TuneIcon from "@mui/icons-material/Tune";
 import HelpIcon from "@mui/icons-material/Help";
@@ -12,16 +12,17 @@ import { Search } from "../inputs/Search";
 import { Link } from "react-router-dom";
 import { useGetAll } from "../../Hooks";
 import ProfileAvatar from "../../pages/login/ProfileAvatar";
+import AuthContext from "../../context/authContext/AuthContext";
 
 const Navbar = () => {
   const isTab = useMediaQuery("(max-width: 1100px)");
   const sideBar = useMediaQuery("(max-width: 900px)");
 
-  let userData = localStorage.getItem("user_info");
-  let Data = JSON.parse(userData);
-  let username = Data?.username;
-  let user_role = Data?.user_role;
-  let profile_pic = Data?.profile_pic;
+  const { user } = useContext(AuthContext);
+  let username = user?.username;
+  let user_role = user?.user_role;
+  let profile_pic = user?.profile_pic;
+
 
   return (
     <>

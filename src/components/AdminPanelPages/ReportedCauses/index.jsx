@@ -153,7 +153,7 @@ const Reported_Causes = () => {
                 <DeleteBox
                   url={`/admin-dashboard/reported-campaign`}
                   data={row?.original?.id}
-                  title={"Reported Campaign"}
+                  title={"Campaign From List"}
                   // onClick={() => setSelectedRowID(row?.original?.id)}
                   // onSuccess={() => setSelectedRowID(null)}
                   // onClose={() => setSelectedRowID(null)}

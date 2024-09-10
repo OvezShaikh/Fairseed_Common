@@ -36,7 +36,12 @@ const InputField = ({
 }) => {
   const [field, meta , helpers] = useField(name);
 
-  const [showPassword, setShowPassword] = React.useState(false); // State to manage password visibility
+  const [showPassword, setShowPassword] = React.useState(false); 
+
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleInputChange = (e) => {
     const { value } = e.target;
@@ -47,11 +52,6 @@ const InputField = ({
       // Allow all values for other types
       helpers.setValue(value);
     }
-  };
-
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
   };
 
   const styles = {

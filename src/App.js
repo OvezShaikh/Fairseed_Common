@@ -12,7 +12,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "react-image-crop/dist/ReactCrop.css";
 import RegisterSmallScreen from "./pages/login/Sign_Up/RegisterSmallScreen";
-
+import 'react-quill/dist/quill.snow.css';
 import "react-toastify/dist/ReactToastify.css";
 import ForgotPasswordSmScreen from "./pages/login/ForgotPassword/ForgotPasswordSmScreens";
 import Account from "./pages/Account Settings/Index";
@@ -23,6 +23,9 @@ import AddPages from "./pages/AddPages/Index";
 import PageDoesNotExists from "./pages/PageDoesNotExists/NotFoundPage";
 import SuccessfulCampaign from "./pages/Campaigns/SuccessfulCampaign/Index";
 import FAQ from "./pages/FAQ's/Index"
+import PublicRoutes from "./utils/PublicRoutes";
+import PrivateRoute from "./utils/PrivateRoutes"
+import AuthState from "./context/authContext/AuthState"
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -37,6 +40,7 @@ function App() {
   return (
     <div className="container p-0">
       <BrowserRouter>
+      <AuthState>
         <ToastContainer
           position="bottom-center"
           autoClose={5000}
@@ -51,19 +55,32 @@ function App() {
           pauseOnHover
         />
         <ScrollToTop />
+        
+
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="/Home" element={<HomePage />} />
           <Route path="/Home/Create-Campaign" element={<CreateCampaigns />} />
           <Route path="/Home/OnGoingCampaigns" element={<OnGoingCampaigns />} />
-          <Route path="/AdminPanel/*" element={<AdminPage />} />
-          <Route path="/User/*" element={<UserPage />} />
+          <Route path="/AdminPanel/*" element={
+            <PrivateRoute>
+            <AdminPage />
+            </PrivateRoute>
+            } />
+          <Route path="/User/*" element={
+            <PrivateRoute>
+            <UserPage />
+            </PrivateRoute>
+            } />
 
           <Route
             path="/Home/CampaignsByCategory/:name"
             element={<CampaignsByCategory />}
-          />
-          <Route path="/Home/Login" element={<LoginOnSmallScreen />} />
+            />
+          <Route path="/Home/Login" element={ 
+            <PublicRoutes restricted>
+            <LoginOnSmallScreen />
+            </PublicRoutes>} />
           <Route path="/Home/Register" element={<RegisterSmallScreen />} />
 
           <Route path="/campaign-details/:id" element={<CurrentCampaign />} />
@@ -71,7 +88,7 @@ function App() {
           <Route
             path="/Home/Password-Reset"
             element={<ForgotPasswordSmScreen />}
-          />
+            />
 
           <Route path="/Home/account-settings" element={<Account />} />
           <Route path="/Home/donate" element={<Donate />} />
@@ -80,18 +97,19 @@ function App() {
           <Route
             path="/adminpanellandingpage"
             element={<AdminPanelLandingPage />}
-          />
+            />
           <Route
             path="/Home/Successful-campaign"
             element={<SuccessfulCampaign />}
-          />
+            />
           <Route
             path="/Home/FAQ's"
             element={<FAQ />}
-          />
+            />
           <Route path="/Home/:slug" element={<AddPages />} />
           <Route path="*" element={<PageDoesNotExists />} />
         </Routes>
+      </AuthState>
       </BrowserRouter>
     </div>
   );

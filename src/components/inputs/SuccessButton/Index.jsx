@@ -4,6 +4,7 @@ import React from "react";
 function Index({ text, icon, sx, ...otherProps }) {
   return (
     <button
+    type="button"
       // variant="text"
       type="button"
       style={{

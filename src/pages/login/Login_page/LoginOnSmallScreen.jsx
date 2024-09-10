@@ -1,19 +1,43 @@
-import React from "react";
+import React, { useContext } from "react";
 import Navigation from "../../../components/layout/Navigation/Index";
 import Navbar from "../../../components/layout/Navbar";
 import { Formik, Form } from "formik";
 import CheckBox from "../../../components/inputs/checkBox";
 import { Grid } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputField from "../../../components/inputs/InputField";
 import PrimaryButton from "../../../components/inputs/PrimaryButton";
 import UserSignUp_02 from "../Sign_Up/Index";
 import { Container } from "@mui/system";
 import Footer from "../../../components/layout/Footer";
 import useLogin from "../../../Hooks/useLogin";
+import AuthContext from "../../../context/authContext/AuthContext";
+import * as yup from "yup"
+import { useCreateOrUpdate } from "../../../Hooks";
+
 
 function LoginOnSmallScreen() {
-  const { Initial_value, formValidation, loginData } = useLogin();
+
+  const { Login }= useContext(AuthContext)
+  const navigate = useNavigate();
+
+  const InitialValues = {
+    email:"",
+    password:""
+  }
+
+  const { mutate } = useCreateOrUpdate({
+    url:`/accounts/login/nt/`
+  })
+
+  const validations = yup.object({
+    email: yup
+      .string()
+      .email()
+      .trim("This field cannot include leading and trailing spaces")
+      .strict(true)
+      .required("Email is required!"),
+  });
 
   return (
     <div>
@@ -28,10 +52,17 @@ function LoginOnSmallScreen() {
         </p>
 
         <Formik
-          initialValues={Initial_value}
-          validationSchema={formValidation}
-          onSubmit={async (values) => {
-            loginData(values);
+          initialValues={InitialValues}
+          validationSchema={validations}
+          onSubmit={(values)=>{
+            mutate(values ,{
+              onSuccess:(data)=>{
+                const LoggedIn = Login(data?.data);
+                if(LoggedIn){
+                  navigate("/Home")
+                }
+              }
+            })
           }}
         >
           <Form className="max-w-[471px] w-[100%] flex flex-col gap-4">

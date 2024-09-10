@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import images from "../../constants/images";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/layout/Navbar";
@@ -22,6 +22,7 @@ import moment from "moment";
 import CountrySelect from "../../components/inputs/countrySelect";
 import { useCreateOrUpdate, useGetAll } from "../../Hooks";
 import { toast } from "react-toastify";
+import AuthContext from "../../context/authContext/AuthContext";
 
 const InputStyle = {
   padding: "15px 20px",
@@ -66,11 +67,8 @@ function Index({ goalAmount, fundRaised }) {
   const { id } = useParams();
   const [cardDetails, setCardDetails] = useState(null);
   const [selectedPaymentGateway, setSelectedPaymentGateway] = useState("");
-  const [user, setUser] = useState(null);
 
-  let userData = localStorage.getItem("user_info");
-  let Data = JSON.parse(userData);
-  let user_id = Data?.id;
+  const { user } = useContext(AuthContext)
 
   useEffect(() => {
     axios
@@ -142,7 +140,7 @@ function Index({ goalAmount, fundRaised }) {
       onSuccess: (response) => {
         if (selectedPaymentGateway === "Bank_Transfer") {
           window.location.href = "/Home";
-        } else {        
+        } else {    
           const url = response?.data?.pay_page_url;
           window.location.href = url;
         }
@@ -151,21 +149,9 @@ function Index({ goalAmount, fundRaised }) {
         const message = response?.response?.data?.message || "An error occurred";
         toast.error(`${message} errors`, { position: "top-right" });
       },
-    });
+    }
+  );
   };
-
-
-  useGetAll({
-    key: `/accounts/user/${user_id}`,
-    enabled: true,
-    select: (data) => {
-      return data?.data?.data;
-    },
-    onSuccess: (data) => {
-      setUser(data);
-    },
-  });
-
 
 
   return (
@@ -250,7 +236,6 @@ function Index({ goalAmount, fundRaised }) {
                       </div>
                     </div>
                   </div>
-
                   <InputField
                     label={"PAN Card:"}
                     placeholder={
@@ -259,7 +244,6 @@ function Index({ goalAmount, fundRaised }) {
                     name={"pancard"}
                     sx={InputStyle}
                   />
-
                   <InputField
                     label={"Write a brief comment:"}
                     placeholder={"(Optional)"}

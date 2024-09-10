@@ -42,6 +42,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { TextField } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { useGetAll } from "../../../Hooks";
+import AuthContext from "../../../context/authContext/AuthContext";
 
 const activeMenuStyles = {
   background: "#FFF4EB",
@@ -209,10 +210,14 @@ const CollapsibleMenuItem = ({
 };
 
 const DrawerBody = () => {
+  const { user } = useContext(AuthContext);
+  const userData = user;
+  const role = userData.user_role;
 
-  let userData = localStorage.getItem("user_info");
-  let Data = JSON.parse(userData);
-  let role = Data?.user_role;
+  // let userData = localStorage.getItem("user_info");
+  // let Data = JSON.parse(userData);
+  // let role = Data?.user_role;
+  
   const [invisible, setInvisible] = React.useState(false);
   const { pathname } = useLocation();
 

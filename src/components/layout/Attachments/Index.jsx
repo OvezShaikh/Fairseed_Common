@@ -25,20 +25,10 @@ function YourComponent({ imageUrl, id, iconShow }) {
 
   const url = `/admin-dashboard/cause-edit/${id}`;
 
-  const { refetch: downloadFile, isFetching: downloadingFile } =
-    useDownloadFile(
-      imageUrl,
-      {
-        download: true,
-      },
-      () => {
-        console.log("File download successful");
-      }
-    );
-
   const downloadImage = () => {
     const downloadLink = document.createElement("a");
-    downloadLink.href = imageUrl;
+    // downloadLink.href = imageUrl;
+    window.open(imageUrl, '_blank');
     downloadLink.download = "image.jpg";
     document.body.appendChild(downloadLink);
     downloadLink.click();

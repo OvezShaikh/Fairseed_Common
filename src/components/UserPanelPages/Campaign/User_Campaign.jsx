@@ -223,7 +223,9 @@ const User_Campaign = ({ onClose }) => {
                     {({ onClose }) => (
                       <Formik
                         initialValues={{ campaign: "" }}
-                        onSubmit={() => handlewithdrawSubmit(row, onClose)}
+                        onSubmit={() => 
+                          handlewithdrawSubmit(row, onClose)
+                        }
                       >
                         <Form>
                           <div className="flex flex-col gap-10 justify-center items-center flex-wrap text-center pb-4">

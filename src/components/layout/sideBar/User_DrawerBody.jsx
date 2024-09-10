@@ -217,11 +217,11 @@ const User_DrawerBody = () => {
       path: "/User/Campaigns",
       title: "Campaigns",
     },
-    {
-      icon: "DonationIcon",
-      path: "/User/Donations",
-      title: "Donations",
-    },
+    // {
+    //   icon: "DonationIcon",
+    //   path: "/User/Donations",
+    //   title: "Donations",
+    // },
     {
       icon: "MyDonationIcon",
       path: "/User/My-Donations",

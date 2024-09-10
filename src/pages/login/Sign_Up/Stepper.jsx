@@ -175,21 +175,21 @@ const Sign_Stepper = () => {
         window.location.href = "/Home";
       },
       onError: (response) => {
-      const emailError = response?.response?.data?.email?.[0];
-      const mobileNumberError = response?.response?.data?.mobile_number?.[0];
-
-      if (emailError) {
-        toast.error(emailError, {
-          position: "top-right",
-        });
-      }
-
-      if (mobileNumberError) {
-        toast.error(mobileNumberError, {
-          position: "top-right",
-        });
-      }
-      }      
+        const emailError = response?.response?.data?.email?.[0];
+        const mobileNumberError = response?.response?.data?.mobile_number?.[0];
+  
+        if (emailError) {
+          toast.error(emailError, {
+            position: "top-right",
+          });
+        }
+  
+        if (mobileNumberError) {
+          toast.error(mobileNumberError, {
+            position: "top-right",
+          });
+        }
+        }    
     });
   };
 
