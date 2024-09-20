@@ -104,11 +104,11 @@ function Index({ goalAmount, fundRaised }) {
 
   const validationSchema = yup.object().shape({
     donation_type: yup.object().required("Donation Type is required"),
-    amount: yup
-      .number()
-      .typeError("Please enter a valid amount")
-      .min(50, "Amount must be at least 50 INR")
-      .required("Amount is required"),
+    // amount: yup
+    //   .number()
+    //   .typeError("Please enter a valid amount")
+    //   .min(50, "Amount must be at least 50 INR")
+    //   .required("Amount is required"),
   });
 
   const { mutate } = useCreateOrUpdate({
