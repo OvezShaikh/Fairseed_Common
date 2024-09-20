@@ -20,7 +20,7 @@ import { useParams } from "react-router-dom";
 import { Avatar } from "@mui/material";
 import moment from "moment";
 import CountrySelect from "../../components/inputs/countrySelect";
-import { useCreateOrUpdate, useGetAll } from "../../Hooks";
+import { useCreateOrUpdate } from "../../Hooks";
 import { toast } from "react-toastify";
 import AuthContext from "../../context/authContext/AuthContext";
 
@@ -93,7 +93,7 @@ function Index({ goalAmount, fundRaised }) {
     email: user?.email || "",
     mobile: user?.mobile_number || "",
     pancard: "",
-    country: user?.country || "IN" || "",
+    country: user?.country || "IN",
     comment: "",
     payment_type: "",
     is_anonymous: false,
@@ -104,11 +104,11 @@ function Index({ goalAmount, fundRaised }) {
 
   const validationSchema = yup.object().shape({
     donation_type: yup.object().required("Donation Type is required"),
-    // amount: yup
-    //   .number()
-    //   .typeError("Please enter a valid amount")
-    //   .min(50, "Amount must be at least 50 INR")
-    //   .required("Amount is required"),
+    amount: yup
+      .number()
+      .typeError("Please enter a valid amount")
+      .min(50, "Amount must be at least 50 INR")
+      .required("Amount is required"),
   });
 
   const { mutate } = useCreateOrUpdate({
