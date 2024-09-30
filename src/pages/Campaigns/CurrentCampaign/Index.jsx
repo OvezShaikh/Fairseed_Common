@@ -52,9 +52,26 @@ function CurrentCampaign({ goalAmount, fundRaised, onClose }) {
   const handleCloseSharePopup = () => {
     setShowSharePopup(false);
   };
-  const Share_title = "Donate For Good";
+
+  const stripHtmlTags = (html) => {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent || "";
+  };
+
+  const truncateText = (text, length) => {
+    return text.length > length ? text.slice(0, length) + "..." : text;
+  };
+
+  const nhtmlStory = stripHtmlTags(cardDetails?.story);
+  const desc = truncateText(nhtmlStory, 200);
+  const campaignTitle = cardDetails?.title || "Support a Campaign";
   const currentPageUrl = window.location.href;
-  const media = `${process.env.REACT_APP_BE_BASE_URL}${cardDetails?.campaign_image}`;
+
+  const Share_title = `📚 ${campaignTitle}! 📚\n\n"${desc}"\n\nEducate and Empower someone in need at FairSeed.   Donate now! 🌟\n\nRead more and support the cause: `;
+
+  // const Share_title = "Donate For Good";
+  // const currentPageUrl = window.location.href;
+  // const media = `${process.env.REACT_APP_BE_BASE_URL}${cardDetails?.campaign_image}`;
 
   const { user, isLogin } = useContext(AuthContext);
   const user_id = user?.id;
@@ -251,28 +268,26 @@ function CurrentCampaign({ goalAmount, fundRaised, onClose }) {
               />
             </div>
             <div className='flex' style={{ display: "inline-flex" }}>
+              <img
+                className='w-[17%] pr-2 mb-2 max-tablet:w-[20%]'
+                src={images.SealCheck}
+                alt=''
+              />
               {cardDetails?.zakat_eligible && (
-                <>
-                  <img
-                    className='w-[17%] pr-2 mb-2 max-tablet:w-[20%]'
-                    src={images.SealCheck}
-                    alt=''
-                  />
-                  <h1
-                    className='text-3xl w-[80%] flex justify-items-start  pb-2  '
-                    style={{
-                      fontFamily: "satoshi",
-                      fontWeight: 700,
-                      background:
-                        "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
-                      "-webkit-background-clip": "text",
-                      "-webkit-text-fill-color": "transparent",
-                    }}>
-                    <p className='text-2xl max-tablet:text-[1.2rem] font-bold'>
-                      Zakat Eligible !
-                    </p>
-                  </h1>
-                </>
+                <h1
+                  className='text-3xl w-[80%] flex justify-items-start  pb-2  '
+                  style={{
+                    fontFamily: "satoshi",
+                    fontWeight: 700,
+                    background:
+                      "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+                    "-webkit-background-clip": "text",
+                    "-webkit-text-fill-color": "transparent",
+                  }}>
+                  <p className='text-2xl max-tablet:text-[1.2rem] font-bold'>
+                    Zakat Eligible !
+                  </p>
+                </h1>
               )}
             </div>
             <p
@@ -320,7 +335,7 @@ function CurrentCampaign({ goalAmount, fundRaised, onClose }) {
                       fontWeight: "900",
                       wordWrap: "break-word",
                     }}>
-                    Support Campaign
+                    Donate for Campaign
                   </div>
                 </PrimaryButton>
               </Link>
@@ -633,7 +648,7 @@ function CurrentCampaign({ goalAmount, fundRaised, onClose }) {
                 fontWeight: "900",
                 wordWrap: "break-word",
               }}>
-              Support Campaign
+              Donate for Campaign
             </h1>
           </PrimaryButton>
         </Link>

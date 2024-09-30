@@ -108,7 +108,7 @@ const Reported_Campaign = () => {
         columns={columns}
         showFilter
         manualPagination
-        title={"Campaign"}
+        title={"campaign"}
         checkboxComponent={IndeterminateCheckbox}
         url={`/admin-dashboard/campaign`}
         extraQuery={{ inactive: true }}

@@ -4,7 +4,6 @@ import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Settings from "@mui/icons-material/Settings";
@@ -97,7 +96,7 @@ export default function ProfileAvatar() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        {(role === "Admin" || role === "Campaign_Manager"  || role === "Campaign_Approver" ) && (
+        {(role === "Admin" || role === "Campaign_Manager"  || role === "Accountant" ) && (
           <>
             <MenuItem onClick={handleClose}>
               <Link className="flex items-center" to="/AdminPanel">

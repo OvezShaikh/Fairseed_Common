@@ -64,8 +64,7 @@ function Index() {
   };
 
   const { data, isSuccess } = useGetAll({
-    key: `/admin-dashboard/campaign/16399639-ba2c-44e4-94a6-294e11cb06a3
-        `,
+    key: `/admin-dashboard/campaign/16399639-ba2c-44e4-94a6-294e11cb06a3`,
     enabled: true,
     select: (data) => {
       return data.data.data;

@@ -57,7 +57,7 @@ function Footer() {
                     wordWrap: "break-word",
                   }}
                 >
-                  Support a Campaign
+                  Donate For Campaign
                 </div>
               </button>
               {localStorage.getItem("token") ? (

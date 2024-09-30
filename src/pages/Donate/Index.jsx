@@ -20,7 +20,7 @@ import { useParams } from "react-router-dom";
 import { Avatar } from "@mui/material";
 import moment from "moment";
 import CountrySelect from "../../components/inputs/countrySelect";
-import { useCreateOrUpdate, useGetAll } from "../../Hooks";
+import { useCreateOrUpdate } from "../../Hooks";
 import { toast } from "react-toastify";
 import AuthContext from "../../context/authContext/AuthContext";
 
@@ -93,7 +93,7 @@ function Index({ goalAmount, fundRaised }) {
     email: user?.email || "",
     mobile: user?.mobile_number || "",
     pancard: "",
-    country: user?.country || "IN" || "",
+    country: user?.country || "IN",
     comment: "",
     payment_type: "",
     is_anonymous: false,
@@ -143,7 +143,9 @@ function Index({ goalAmount, fundRaised }) {
         }
       },
       onError: (response) => {
-        toast.error(`${response?.message} errors`, { position: "top-right" });
+        const message =
+          response?.response?.data?.message || "An error occurred";
+        toast.error(`${message} errors`, { position: "top-right" });
       },
     });
   };
@@ -247,7 +249,7 @@ function Index({ goalAmount, fundRaised }) {
                   />
                   <div className='donation-type-div'>
                     <SelectField
-                      label={"Payment Gateway:"}
+                      label={"Payment Method:"}
                       options={[
                         { label: "BANK TRANSFER", value: "Bank_Transfer" },
                         {
@@ -430,25 +432,29 @@ function Index({ goalAmount, fundRaised }) {
                 />
               </div>
               <div className='flex'>
-                <img
-                  className='w-[32px] h-[32px] mr-[18px] max-tablet:w-[20%]'
-                  src={images.SealCheck}
-                  alt=''
-                />
-                <h1
-                  className='text-3xl w-[80%] flex justify-items-start  pb-2  '
-                  style={{
-                    fontFamily: "satoshi",
-                    fontWeight: 700,
-                    background:
-                      "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
-                    "-webkit-background-clip": "text",
-                    "-webkit-text-fill-color": "transparent",
-                  }}>
-                  <p className='text-2xl max-tablet:text-[1.1rem] font-extrabold'>
-                    Zakat Eligible !
-                  </p>
-                </h1>
+                {cardDetails?.zakat_eligible && (
+                  <>
+                    <img
+                      className='w-[32px] h-[32px] mr-[18px] max-tablet:w-[20%]'
+                      src={images.SealCheck}
+                      alt=''
+                    />
+                    <h1
+                      className='text-3xl w-[80%] flex justify-items-start  pb-2 '
+                      style={{
+                        fontFamily: "satoshi",
+                        fontWeight: 700,
+                        background:
+                          "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+                        "-webkit-background-clip": "text",
+                        "-webkit-text-fill-color": "transparent",
+                      }}>
+                      <p className='text-2xl max-tablet:text-[1.2rem] font-bold'>
+                        Zakat Eligible !
+                      </p>
+                    </h1>
+                  </>
+                )}
               </div>
               <div className='flex gap-x-[12px] mt-[46px]'>
                 <Avatar

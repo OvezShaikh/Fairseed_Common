@@ -65,7 +65,7 @@ const Page = () => {
         columns={columns}
         showFilter
         manualPagination
-        title={"Campaign"}
+        title={"pages"}
         checkboxComponent={IndeterminateCheckbox}
         url={`/admin-dashboard/pages`}
         addButton={<PagesAddNew />}

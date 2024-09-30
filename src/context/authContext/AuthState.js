@@ -39,9 +39,12 @@ const AuthState = ({ children }) => {
     queryClient.removeQueries();
   };
 
+
   useEffect(() => {
     setAuthToken(localStorage.getItem("token"));
   }, []);
+
+  
 
   useEffect(() => {
     if (!localStorage.getItem("token")) queryClient.removeQueries();

@@ -111,7 +111,7 @@ function AdminPage() {
         <Route
           path="/Causes-Edit-Approval"
           element={
-            <AdminLayout count={req}>
+            <AdminLayout >
               <CauseEdit_Form setReq={setReq} />
             </AdminLayout>
           }

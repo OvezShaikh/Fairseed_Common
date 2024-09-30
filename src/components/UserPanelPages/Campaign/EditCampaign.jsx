@@ -55,7 +55,7 @@ const EditCampaign = () => {
     setOpenCrop(true);
   };
 
-  const { data, isSuccess, refetch } = useGetAll({
+  const {  isSuccess, refetch } = useGetAll({
     key: `/user-dashboard/campaign/${id}`,
     enabled: false,
     select: (data) => {
