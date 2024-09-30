@@ -143,24 +143,23 @@ function Index() {
     <div>
       <Navbar />
 
-      <div className="flex flex-col ">
+      <div className='flex flex-col '>
         <Navigation label={"OnGoingCampaigns"} heading={"Ongoing Campaigns"} />
 
         <br />
         <br />
         <br />
 
-        <div className="flex flex-col flex-wrap w-full mb-[128px] items-center max-tablet:mb-[48px]">
-          <div className="flex  desktop:ml-[-30px] desktop:max-w-[1760px] desktop:w-full desktop:justify-between max-desktop:w-[90%] max-desktop:flex-col max-desktop:items-end max-desktop:gap-y-[48px] max-tablet:mb-[50px] max-tablet:gap-y-[20px] scrollable-tabs-class ">
+        <div className='flex flex-col flex-wrap w-full mb-[128px] items-center max-tablet:mb-[48px]'>
+          <div className='flex  desktop:ml-[-30px] desktop:max-w-[1760px] desktop:w-full desktop:justify-between max-desktop:w-[90%] max-desktop:flex-col max-desktop:items-end max-desktop:gap-y-[48px] max-tablet:mb-[50px] max-tablet:gap-y-[20px] scrollable-tabs-class '>
             <ScrollableTabsButtonForce onTabChange={handleTabChange} />
             <button
-              className="flex items-center ml-2 px-3 py-1.5 max-w-[115px] gap-x-[12px] max-desktop:px-[20px] max-desktop:py-[17px] max-tablet:py-[6px]"
+              className='flex items-center ml-2 px-3 py-1.5 max-w-[115px] gap-x-[12px] max-desktop:px-[20px] max-desktop:py-[17px] max-tablet:py-[6px]'
               style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
-              onClick={filterToggle}
-            >
+              onClick={filterToggle}>
               <img src={images.Funnel} />
               <p
-                className="text-[18px]"
+                className='text-[18px]'
                 style={{
                   background:
                     "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
@@ -168,8 +167,7 @@ function Index() {
                   "-webkit-text-fill-color": "transparent",
                   "font-family": "Satoshi",
                   "font-weight": "700",
-                }}
-              >
+                }}>
                 Filter
               </p>
             </button>
@@ -180,7 +178,7 @@ function Index() {
               sendLocationToParent={receiveLocationFromChild}
             />
           )}
-          <div className="desktop:gap-x-[36px] desktop:gap-y-[48px] mt-[48px]  flex flex-wrap w-full justify-center desktop:max-w-[1740px] max-desktop:gap-x-[16px]  max-desktop:gap-y-[24px] max-tablet:gap-y-[48px]">
+          <div className='desktop:gap-x-[36px] desktop:gap-y-[48px] mt-[48px]  flex flex-wrap w-full justify-center desktop:max-w-[1740px] max-desktop:gap-x-[16px]  max-desktop:gap-y-[24px] max-tablet:gap-y-[48px]'>
             {filteredUserList?.slice(0, visibleCards).map((item) => {
               return (
                 <Card
@@ -188,7 +186,7 @@ function Index() {
                   key={item?.id}
                   username={item?.user?.username}
                   title={item.title}
-                  og_id={item.id}
+                  og_id={item.c_id}
                   cardImage={item.campaign_image}
                   goalAmount={item.goal_amount}
                   fundRaised={item.fund_raised}
@@ -200,10 +198,10 @@ function Index() {
             })}
           </div>
           <button
-            className="pt-[64px] max-tablet:pt-[24px]"
+            className='pt-[64px] max-tablet:pt-[24px]'
             onClick={() => loadMore()}
             disabled={visibleCards >= campaignCount}
-            id="loadmorebutton"
+            id='loadmorebutton'
             style={{
               width: "fit-content",
               textAlign: "center",
@@ -223,9 +221,8 @@ function Index() {
                   ? "none"
                   : "block",
               position: "relative",
-            }}
-          >
-            <p className="gradient-button mb-0">Load More</p>
+            }}>
+            <p className='gradient-button mb-0'>Load More</p>
           </button>
         </div>
       </div>

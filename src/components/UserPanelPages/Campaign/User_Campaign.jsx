@@ -68,13 +68,12 @@ const User_Campaign = ({ onClose }) => {
 
   const StatusCell = ({ value }) => (
     <div
-      className=" flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl"
-      style={getStatusCellStyle(value)}
-    >
-      <span className="" style={getStatusCellStyle(value)}>
+      className=' flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl'
+      style={getStatusCellStyle(value)}>
+      <span className='' style={getStatusCellStyle(value)}>
         <GoDotFill />
       </span>
-      <span className="" style={getStatusCellStyle(value)}>
+      <span className='' style={getStatusCellStyle(value)}>
         {value}
       </span>
     </div>
@@ -128,7 +127,7 @@ const User_Campaign = ({ onClose }) => {
   const columns = React.useMemo(() => [
     {
       Header: "Id",
-      accessor: "c_id", 
+      accessor: "c_id",
       minWidth: 50,
       width: 50,
       search: false,
@@ -138,13 +137,13 @@ const User_Campaign = ({ onClose }) => {
       accessor: "campaign.title",
       Cell: ({ row }) => {
         return (
-          <div className="flex  ">
-            <div className="w-[80px] truncate">{row?.original?.title}</div>
-            <a href={`/campaign-details/${row.id}`} target="_blank">
+          <div className='flex  '>
+            <div className='w-[80px] truncate'>{row?.original?.title}</div>
+            <a href={`/campaign-details/${row.original.c_id}`} target='_blank'>
               <img
-                className="ml-2"
+                className='ml-2'
                 src={images.CausesDetails}
-                alt="CausesDetails"
+                alt='CausesDetails'
               />
             </a>
           </div>
@@ -206,8 +205,7 @@ const User_Campaign = ({ onClose }) => {
       Cell: ({ row }) => {
         return (
           <div
-            className={`flex items-center gap-2 justify-center max-desktop:pl-0 max-tablet:pl-0`}
-          >
+            className={`flex items-center gap-2 justify-center max-desktop:pl-0 max-tablet:pl-0`}>
             {row?.original?.status === "Completed" &&
               row?.original?.withdrawal_status !== "Paid" && (
                 <>
@@ -218,27 +216,23 @@ const User_Campaign = ({ onClose }) => {
                         Make Withdrawl
                       </SecondaryButton>
                     }
-                    maxWidth="sm"
-                  >
+                    maxWidth='sm'>
                     {({ onClose }) => (
                       <Formik
                         initialValues={{ campaign: "" }}
-                        onSubmit={() => 
-                          handlewithdrawSubmit(row, onClose)
-                        }
-                      >
+                        onSubmit={() => handlewithdrawSubmit(row, onClose)}>
                         <Form>
-                          <div className="flex flex-col gap-10 justify-center items-center flex-wrap text-center pb-4">
-                            <img src={images.Vector} alt="" />
-                            <p className="text-[ var(--Neutral-Neutral-7, #717171)] w-[65%] font-[satoshi] text-[2.1rem] font-semibold max-tablet:text-[1.1rem]">
+                          <div className='flex flex-col gap-10 justify-center items-center flex-wrap text-center pb-4'>
+                            <img src={images.Vector} alt='' />
+                            <p className='text-[ var(--Neutral-Neutral-7, #717171)] w-[65%] font-[satoshi] text-[2.1rem] font-semibold max-tablet:text-[1.1rem]'>
                               Are you Sure you want to Make Withdrawl request.
                               This action can’t be undone.
                             </p>
-                            <div className="flex justify-center gap-4 max-tablet:flex-col">
+                            <div className='flex justify-center gap-4 max-tablet:flex-col'>
                               <SecondaryButton onClick={onClose} sx={style2}>
                                 Cancel
                               </SecondaryButton>
-                              <PrimaryButton type="submit" sx={style}>
+                              <PrimaryButton type='submit' sx={style}>
                                 Withdraw
                               </PrimaryButton>
                             </div>
@@ -265,7 +259,7 @@ const User_Campaign = ({ onClose }) => {
 
             {row?.values?.status === "Active" && (
               <>
-                <Link to="Edit-Campaign" state={{ id: row?.id }}>
+                <Link to='Edit-Campaign' state={{ id: row?.id }}>
                   <SecondaryButton sx={{ height: "30px" }}>
                     Edit
                   </SecondaryButton>
@@ -276,34 +270,30 @@ const User_Campaign = ({ onClose }) => {
                   button={
                     <SecondaryButton
                       sx={{ height: "30px" }}
-                      onClick={() => setRowId(row?.id)}
-                    >
+                      onClick={() => setRowId(row?.id)}>
                       Finalize Campaign
                     </SecondaryButton>
                   }
-                  maxWidth="sm"
-                >
+                  maxWidth='sm'>
                   {({ onClose }) => (
                     <Formik
                       initialValues={{}}
-                      onSubmit={(values) => handleSubmit(values)}
-                    >
+                      onSubmit={(values) => handleSubmit(values)}>
                       <Form>
-                        <div className="flex flex-col gap-10 justify-center items-center flex-wrap text-center pb-4">
-                          <img src={images.Vector} alt="" />
-                          <p className="text-[ var(--Neutral-Neutral-7, #717171)] w-[65%] font-[satoshi] text-[2.1rem] font-semibold max-tablet:text-[1.1rem]">
+                        <div className='flex flex-col gap-10 justify-center items-center flex-wrap text-center pb-4'>
+                          <img src={images.Vector} alt='' />
+                          <p className='text-[ var(--Neutral-Neutral-7, #717171)] w-[65%] font-[satoshi] text-[2.1rem] font-semibold max-tablet:text-[1.1rem]'>
                             Are you Sure you want to finalize the Campaign. This
                             action can’t be undone.
                           </p>
-                          <div className="flex justify-center gap-4 max-tablet:flex-col">
+                          <div className='flex justify-center gap-4 max-tablet:flex-col'>
                             <SecondaryButton onClick={onClose} sx={style2}>
                               Cancel
                             </SecondaryButton>
                             <PrimaryButton
-                              type="submit"
+                              type='submit'
                               sx={style}
-                              onClick={() => setRowId(row?.id, onClose)}
-                            >
+                              onClick={() => setRowId(row?.id, onClose)}>
                               Finalize
                             </PrimaryButton>
                           </div>

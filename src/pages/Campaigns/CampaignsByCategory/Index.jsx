@@ -125,25 +125,24 @@ function Index() {
   return (
     <div>
       <Navbar />
-      <div className="flex flex-col ">
+      <div className='flex flex-col '>
         <Navigation
           label={"ReligiousEducationCampaigns"}
           heading={name}
           remove={"remove"}
         />
 
-        <div className="flex flex-col flex-wrap w-full mb-[128px] items-center max-tablet:mb-[48px]">
-          <div className="flex desktop:ml-[-30px] desktop:max-w-[1760px] desktop:w-full desktop:justify-between max-desktop:w-[90%] max-desktop:flex-col max-desktop:items-end max-desktop:gap-y-[48px] max-tablet:mb-[50px] max-tablet:gap-y-[20px] scrollable-tabs-class mt-[50px] ">
+        <div className='flex flex-col flex-wrap w-full mb-[128px] items-center max-tablet:mb-[48px]'>
+          <div className='flex desktop:ml-[-30px] desktop:max-w-[1760px] desktop:w-full desktop:justify-between max-desktop:w-[90%] max-desktop:flex-col max-desktop:items-end max-desktop:gap-y-[48px] max-tablet:mb-[50px] max-tablet:gap-y-[20px] scrollable-tabs-class mt-[50px] '>
             <ScrollableTabsButtonForce onTabChange={handleTabChange} />
             <button
-              className="flex items-center ml-2 px-3 py-1.5 max-w-[115px] gap-x-[12px] max-desktop:px-[20px] max-desktop:py-[17px] max-tablet:py-[6px]"
+              className='flex items-center ml-2 px-3 py-1.5 max-w-[115px] gap-x-[12px] max-desktop:px-[20px] max-desktop:py-[17px] max-tablet:py-[6px]'
               style={{ backgroundColor: "rgba(255, 246, 245, 1)" }}
-              onClick={filterToggle}
-            >
-              <img src={images.Funnel} alt="" />
+              onClick={filterToggle}>
+              <img src={images.Funnel} alt='' />
               {/* <img src={images.Filter} /> */}
               <p
-                className="text-[1.1rem]"
+                className='text-[1.1rem]'
                 style={{
                   background:
                     "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
@@ -151,17 +150,16 @@ function Index() {
                   "-webkit-text-fill-color": "transparent",
                   "font-family": "Satoshi",
                   "font-weight": "700",
-                }}
-              >
+                }}>
                 Filter
               </p>
             </button>
           </div>
 
-          <div className="flex flex-col justify-center  pt-[50px] px-[10px] items-center max-desktop:pt-[20px]">
+          <div className='flex flex-col justify-center  pt-[50px] px-[10px] items-center max-desktop:pt-[20px]'>
             {categoryCampaignList?.length > 0 ? (
-              <div className="flex flex-col justify-center items-center ">
-                <div id="filter-location">
+              <div className='flex flex-col justify-center items-center '>
+                <div id='filter-location'>
                   {showOptions && (
                     <FilterField
                       sendCategoryToParent={receiveCategoryFromChild}
@@ -169,7 +167,7 @@ function Index() {
                     />
                   )}
                 </div>
-                <div className="gap-4 pt-[2rem] flex flex-wrap justify-center desktop:w-[100%]">
+                <div className='gap-4 pt-[2rem] flex flex-wrap justify-center desktop:w-[100%]'>
                   {filteredUserList?.map((item) => {
                     return (
                       <Card
@@ -177,7 +175,7 @@ function Index() {
                         key={item?.id}
                         username={item?.user?.username}
                         title={item?.title}
-                        og_id={item?.id}
+                        og_id={item?.c_id}
                         cardImage={item?.campaign_image}
                         goalAmount={item?.goal_amount}
                         fundRaised={item?.fund_raised}
@@ -191,7 +189,7 @@ function Index() {
                 <button
                   onClick={() => setPage(page + 1)}
                   disabled={page >= totalPages}
-                  className="pt-[68px]"
+                  className='pt-[68px]'
                   style={{
                     width: "fit-content",
                     textAlign: "center",
@@ -208,9 +206,8 @@ function Index() {
                     textDecoration: "underline",
                     position: "relative",
                     display: page >= totalPages ? "none" : "block",
-                  }}
-                >
-                  <p className="gradient-button mb-0 align-middle">Load More</p>
+                  }}>
+                  <p className='gradient-button mb-0 align-middle'>Load More</p>
                 </button>
               </div>
             ) : (

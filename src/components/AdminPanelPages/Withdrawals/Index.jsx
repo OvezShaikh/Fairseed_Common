@@ -1,53 +1,53 @@
-import React from 'react'
-import ReactTable from '../../Table/index'
-import { useState } from 'react';
-import PrimaryButton from '../../inputs/PrimaryButton';
-import { Link } from 'react-router-dom';
+import React from "react";
+import ReactTable from "../../Table/index";
+import { useState } from "react";
+import PrimaryButton from "../../inputs/PrimaryButton";
+import { Link } from "react-router-dom";
 import { GoDotFill } from "react-icons/go";
-import images from '../../../constants/images';
+import images from "../../../constants/images";
 import { format } from "date-fns";
-
-
-
 
 const Withdrawals = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
   const getStatusCellStyle = (status) => {
-
-    if (status === 'Pending') {
+    if (status === "Pending") {
       return {
-        color: '#fa9820',
-        background: '#f5fabe  ',
+        color: "#fa9820",
+        background: "#f5fabe  ",
       };
-    } else if (status === 'Approved') {
+    } else if (status === "Approved") {
       return {
-        background: '#ECFDF3  ',
-        color: '#037847',
+        background: "#ECFDF3  ",
+        color: "#037847",
       };
-    } else if (status === 'Rejected') {
+    } else if (status === "Rejected") {
       return {
-        background: '#f5d0d0',
-        color: '#f03c24',
-      }
+        background: "#f5d0d0",
+        color: "#f03c24",
+      };
     } else {
       return {
-        background: '#EBF0ED',
-        color: '#717171'
-      }
+        background: "#EBF0ED",
+        color: "#717171",
+      };
     }
-    ;
   };
 
   function DateConvert(Mydate) {
     const date = new Date(Mydate);
-    return format(date, 'dd-MMM-yyyy');
+    return format(date, "dd-MMM-yyyy");
   }
 
-
   const StatusCell = ({ value }) => (
-    <div className=' flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl' style={getStatusCellStyle(value)}>
-      <span className='' style={getStatusCellStyle(value)}><GoDotFill /></span>
-      <span className='' style={getStatusCellStyle(value)}>{value}</span>
+    <div
+      className=' flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl'
+      style={getStatusCellStyle(value)}>
+      <span className='' style={getStatusCellStyle(value)}>
+        <GoDotFill />
+      </span>
+      <span className='' style={getStatusCellStyle(value)}>
+        {value}
+      </span>
     </div>
   );
   const columns = React.useMemo(
@@ -64,7 +64,6 @@ const Withdrawals = () => {
         // minWidth: 150,
         // width: 200,
         nofilter: true,
-
       },
       {
         Header: "Campaign",
@@ -73,19 +72,22 @@ const Withdrawals = () => {
         width: 280,
         Cell: ({ row }) => {
           return (
-            <div className="flex  ">
-              <div className="w-[80px] truncate">{row?.original?.campaign.title}</div>
-              <a href={`/campaign-details/${row?.original?.campaign.id}`} target='_blank'>
+            <div className='flex  '>
+              <div className='w-[80px] truncate'>
+                {row?.original?.campaign.title}
+              </div>
+              <a
+                href={`/campaign-details/${row?.original?.campaign.c_id}`}
+                target='_blank'>
                 <img
-                  className="ml-2"
+                  className='ml-2'
                   src={images.CausesDetails}
-                  alt="CausesDetails"
+                  alt='CausesDetails'
                 />
               </a>
             </div>
           );
-        }
-
+        },
       },
       {
         Header: "Email",
@@ -93,14 +95,12 @@ const Withdrawals = () => {
         // minWidth: 150,
         // width: 200,
         nofilter: true,
-
       },
       {
         Header: "Mobile",
         accessor: "campaign.user.mobile_number",
         // minWidth: 200,
         // width: 280,
-
       },
       {
         Header: "Amount",
@@ -108,7 +108,6 @@ const Withdrawals = () => {
         // minWidth: 150,
         // width: 200,
         nofilter: true,
-
       },
       {
         Header: "Date",
@@ -116,12 +115,8 @@ const Withdrawals = () => {
         // minWidth: 200,
         // width: 280,
         Cell: ({ row }) => {
-          return (
-            <p>{DateConvert(row?.original?.updated_on)}</p>
-          )
-
-        }
-
+          return <p>{DateConvert(row?.original?.updated_on)}</p>;
+        },
       },
       // {
       //   Header: "Donation Type",
@@ -134,11 +129,10 @@ const Withdrawals = () => {
         // width: 280,
         nofilter: true,
         Cell: StatusCell,
-
       },
       {
-        Header: 'Actions',
-        accessor: 'actions',
+        Header: "Actions",
+        accessor: "actions",
         sortable: false,
         nofilter: true,
         minWidth: 100,
@@ -147,16 +141,25 @@ const Withdrawals = () => {
         Cell: ({ row }) => {
           return (
             <div className='flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0'>
-              <Link to="View" state={{ id: row?.id }}><PrimaryButton sx={{
-                height: '30px', width: '60px', background: '#219D80', color: 'white', "&  .MuiButton-root:hover": {
-                  background: "yellow"
-                }
-              }} text={'View'}>View</PrimaryButton></Link>
-            </div >
-          )
-        }
-      }
-
+              <Link to='View' state={{ id: row?.id }}>
+                <PrimaryButton
+                  sx={{
+                    height: "30px",
+                    width: "60px",
+                    background: "#219D80",
+                    color: "white",
+                    "&  .MuiButton-root:hover": {
+                      background: "yellow",
+                    },
+                  }}
+                  text={"View"}>
+                  View
+                </PrimaryButton>
+              </Link>
+            </div>
+          );
+        },
+      },
     ],
 
     []
@@ -175,7 +178,7 @@ const Withdrawals = () => {
         checkboxSelection={true}
       />
     </div>
-  )
-}
+  );
+};
 
-export default Withdrawals
+export default Withdrawals;

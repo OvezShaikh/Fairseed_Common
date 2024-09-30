@@ -415,7 +415,8 @@ function CurrentCampaign({ goalAmount, fundRaised, onClose }) {
                           <EmailShareButton
                             url={currentPageUrl}
                             subject={Share_title}
-                            body='body'>
+                            body='body'
+                            >
                             <EmailIcon size={45} round />
                           </EmailShareButton>
                         </div>

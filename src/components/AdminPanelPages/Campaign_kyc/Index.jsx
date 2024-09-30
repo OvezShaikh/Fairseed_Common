@@ -35,13 +35,12 @@ const Campaign_Kyc = () => {
   };
   const StatusCell = ({ value }) => (
     <div
-      className=" flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl"
-      style={getStatusCellStyle(value)}
-    >
-      <span className="" style={getStatusCellStyle(value)}>
+      className=' flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl'
+      style={getStatusCellStyle(value)}>
+      <span className='' style={getStatusCellStyle(value)}>
         <GoDotFill />
       </span>
-      <span className="" style={getStatusCellStyle(value)}>
+      <span className='' style={getStatusCellStyle(value)}>
         {value}
       </span>
     </div>
@@ -49,8 +48,8 @@ const Campaign_Kyc = () => {
 
   const columns = React.useMemo(() => [
     {
-      Header: "Id", 
-      accessor: "c_id", 
+      Header: "Id",
+      accessor: "c_id",
       minWidth: 75,
       width: 100,
     },
@@ -62,11 +61,15 @@ const Campaign_Kyc = () => {
       Cell: ({ row }) => {
         return (
           <div className='flex  '>
-            <div className="w-[80px] truncate">
+            <div className='w-[80px] truncate'>
               {row?.original?.bank_kyc?.title}
             </div>
-            <a href={`/campaign-details/${row.id}`} target="_blank">
-              <img className='ml-2' src={images.CausesDetails} alt="CampaignDetails"  />
+            <a href={`/campaign-details/${row.original.c_id}`} target='_blank'>
+              <img
+                className='ml-2'
+                src={images.CausesDetails}
+                alt='CampaignDetails'
+              />
             </a>
           </div>
         );
@@ -124,8 +127,8 @@ const Campaign_Kyc = () => {
       width: 100,
       Cell: ({ row }) => {
         return (
-          <div className="flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0">
-            <Link to="View" state={{ id: row?.id }}>
+          <div className='flex items-center justify-center pl-6 gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0'>
+            <Link to='View' state={{ id: row?.id }}>
               <PrimaryButton
                 sx={{
                   height: "30px",
@@ -136,8 +139,7 @@ const Campaign_Kyc = () => {
                     background: "yellow",
                   },
                 }}
-                text={"View"}
-              >
+                text={"View"}>
                 View
               </PrimaryButton>
             </Link>

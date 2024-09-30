@@ -9,11 +9,9 @@ import images from "../../../constants/images";
 import { format } from "date-fns";
 import AuthContext from "../../../context/authContext/AuthContext";
 
-
 const Campaign = () => {
-  const { user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
   const id = user?.id;
-
 
   let tableRef = useRef(null);
   const [selectedRowID, setSelectedRowID] = useState(null);
@@ -42,7 +40,6 @@ const Campaign = () => {
     }
   };
 
- 
   function DateConvert(Mydate) {
     const date = new Date(Mydate);
     return format(date, "dd-MMM-yyyy");
@@ -50,13 +47,12 @@ const Campaign = () => {
 
   const StatusCell = ({ value }) => (
     <div
-      className=" flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl"
-      style={getStatusCellStyle(value)}
-    >
-      <span className="" style={getStatusCellStyle(value)}>
+      className=' flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl'
+      style={getStatusCellStyle(value)}>
+      <span className='' style={getStatusCellStyle(value)}>
         <GoDotFill />
       </span>
-      <span className="" style={getStatusCellStyle(value)}>
+      <span className='' style={getStatusCellStyle(value)}>
         {value}
       </span>
     </div>
@@ -78,13 +74,13 @@ const Campaign = () => {
       width: 100,
       Cell: ({ row }) => {
         return (
-          <div className="flex  ">
-            <div className="w-[80px] truncate">{row?.original?.title}</div>
-            <a href={`/campaign-details/${row.id}`} target="_blank">
+          <div className='flex  '>
+            <div className='w-[80px] truncate'>{row?.original?.title}</div>
+            <a href={`/campaign-details/${row.original.c_id}`} target='_blank'>
               <img
-                className="ml-2"
+                className='ml-2'
                 src={images.CausesDetails}
-                alt="CampaignDetails"
+                alt='CampaignDetails'
               />
             </a>
           </div>
@@ -156,8 +152,8 @@ const Campaign = () => {
 
       Cell: ({ row }) => {
         return (
-          <div className="flex items-center gap-2 justify-center pl-6 max-desktop:pl-0 max-tablet:pl-0">
-            <Link to="Edit" state={{ id: row?.id }}>
+          <div className='flex items-center gap-2 justify-center pl-6 max-desktop:pl-0 max-tablet:pl-0'>
+            <Link to='Edit' state={{ id: row?.id }}>
               <SecondaryButton sx={{ height: "30px" }}>Edit</SecondaryButton>
             </Link>
           </div>
