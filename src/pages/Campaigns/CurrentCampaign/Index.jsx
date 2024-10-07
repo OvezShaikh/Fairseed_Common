@@ -62,15 +62,12 @@ function CurrentCampaign({ goalAmount, fundRaised, onClose }) {
     return text.length > length ? text.slice(0, length) + "..." : text;
   };
 
-  // const nhtmlStory = stripHtmlTags(cardDetails?.story);
-  // const desc = truncateText(nhtmlStory, 20);
-  // const media = `${process.env.REACT_APP_BE_BASE_URL}${cardDetails?.campaign_image}`;
-  // const Share_title = `${cardDetails?.title}\n${desc}`;
-  // const currentPageUrl = window.location.href;
-
-  const Share_title = "Donate For Good";
+  const nhtmlStory = stripHtmlTags(cardDetails?.story);
+  const desc = truncateText(nhtmlStory, 200);
+  const campaignTitle = cardDetails?.title || "Support a Campaign";
   const currentPageUrl = window.location.href;
-  const media = `${process.env.REACT_APP_BE_BASE_URL}${cardDetails?.campaign_image}`;
+
+  const Share_title = `📚 ${campaignTitle}! 📚\n\n"${desc}"\n\nEducate and Empower someone in need at FairSeed.   Donate now! 🌟\n\nRead more and support the cause: `;
 
   const { user, isLogin } = useContext(AuthContext);
   const user_id = user?.id;
@@ -292,10 +289,7 @@ function CurrentCampaign({ goalAmount, fundRaised, onClose }) {
             <p
               className='text-black/40 w-full text-2xl text-center py-10 max-desktop:w-full  max-tablet:text-[1.1rem] max-tablet:py-[24px] font-medium max-tablet:leading-5'
               style={{ fontFamily: "satoshi" }}>
-              <span className='font-bold ' style={{ color: " #25272C" }}>
-                Partial Funding
-              </span>
-              - This campaign will collect all funds raised by{" "}
+              This campaign will collect donations till <br />
               {cardDetails?.end_date}
             </p>
             <div className='w-full'>
@@ -422,7 +416,7 @@ function CurrentCampaign({ goalAmount, fundRaised, onClose }) {
                           <WhatsappShareButton
                             url={currentPageUrl}
                             title={Share_title}
-                            separator=':: '>
+                            separator='👉🏻👉🏻👉🏻  '>
                             <WhatsappIcon size={45} round />
                           </WhatsappShareButton>
                         </div>

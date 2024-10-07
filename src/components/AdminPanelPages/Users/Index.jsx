@@ -7,7 +7,7 @@ import SecondaryButton from "../../inputs/secondaryButton";
 import { Link } from "react-router-dom";
 import { GoDotFill } from "react-icons/go";
 import { DeleteBox } from "../../layout/dialogBox/delete";
-import { format } from 'date-fns'
+import { format } from "date-fns";
 
 const User = () => {
   const [selectedRowID, setSelectedRowID] = useState(null);
@@ -32,21 +32,20 @@ const User = () => {
   };
   const StatusCell = ({ value }) => (
     <div
-      className=" flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl"
-      style={getStatusCellStyle(value)}
-    >
-      <span className="" style={getStatusCellStyle(value)}>
+      className=' flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl'
+      style={getStatusCellStyle(value)}>
+      <span className='' style={getStatusCellStyle(value)}>
         <GoDotFill />
       </span>
-      <span className="" style={getStatusCellStyle(value)}>
+      <span className='' style={getStatusCellStyle(value)}>
         {value}
       </span>
     </div>
   );
 
-  function DateConvert (Mydate){
+  function DateConvert(Mydate) {
     const date = new Date(Mydate);
-    return format(date ,'dd-MMM-yyyy');
+    return format(date, "dd-MMM-yyyy");
   }
   const columns = React.useMemo(() => [
     {
@@ -62,11 +61,9 @@ const User = () => {
       accessor: "created_on",
       minWidth: 100,
       width: 100,
-      Cell:({row})=>{
-        return(
-          <p>{DateConvert(row?.original?.created_on)}</p>
-        )
-      }
+      Cell: ({ row }) => {
+        return <p>{DateConvert(row?.original?.created_on)}</p>;
+      },
     },
     {
       Header: "User",
@@ -99,6 +96,16 @@ const User = () => {
       width: 100,
       Cell: StatusCell,
     },
+    // user_role
+    {
+      Header: "Role",
+      accessor: "user_role",
+      minWidth: 100,
+      width: 100,
+      Cell: ({ row }) => (
+        <span>{row?.original?.user_role.replace("_", " ")}</span>
+      ),
+    },
 
     {
       Header: "Actions",
@@ -108,8 +115,8 @@ const User = () => {
       width: 100,
       Cell: ({ row }) => {
         return (
-          <div className="flex items-center justify-center gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0">
-            <Link to="Edit" state={{ id: row?.id }}>
+          <div className='flex items-center justify-center gap-3 max-desktop:pl-0 max-tablet:pl-0 max-tablet:gap-0 !max-desktop:gap-0'>
+            <Link to='Edit' state={{ id: row?.id }}>
               <SecondaryButton sx={{ height: "30px" }}>Edit</SecondaryButton>
             </Link>
             <DeleteBox
@@ -120,8 +127,7 @@ const User = () => {
               // onSuccess={() => setSelectedRowID(null)}
               // onClose={() => setSelectedRowID(null)}
 
-              refetchUrl={"/admin-dashboard/users"}
-            ></DeleteBox>
+              refetchUrl={"/admin-dashboard/users"}></DeleteBox>
           </div>
         );
       },
