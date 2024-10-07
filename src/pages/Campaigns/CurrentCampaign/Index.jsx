@@ -412,8 +412,7 @@ function CurrentCampaign({ goalAmount, fundRaised, onClose }) {
                           <EmailShareButton
                             url={currentPageUrl}
                             subject={Share_title}
-                            body='body'
-                            >
+                            body='body'>
                             <EmailIcon size={45} round />
                           </EmailShareButton>
                         </div>
@@ -426,13 +425,19 @@ function CurrentCampaign({ goalAmount, fundRaised, onClose }) {
                           </WhatsappShareButton>
                         </div>
                         <div className='mr-4'>
-                          <TwitterShareButton url={currentPageUrl}>
+                          <TwitterShareButton
+                            url={currentPageUrl}
+                            title={Share_title}
+                            hashtag={
+                              "#Fairseed#EducationForAll#EducationMatters"
+                            }>
                             <TwitterIcon size={45} round />
                           </TwitterShareButton>
                         </div>
                         <div>
                           <FacebookShareButton
                             url={currentPageUrl}
+                            title={Share_title}
                             hashtag={
                               "#Fairseed#EducationForAll#EducationMatters"
                             }>

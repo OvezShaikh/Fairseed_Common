@@ -125,34 +125,19 @@ const HomeSwiper = () => {
         {/* First slide */}
         <div className='max-w-[1920px] max-desktop:w-full max-tablet:w-full w-full h-[753px] relative '>
           <div className='max-w-[1920px] max-desktop:w-full max-desktop:flex  max-tablet:w-full  w-full h-[753px] flex  z-16 top-0 left-0 absolute  '>
-            {windowWidth < 600 ? (
-              // Mobile View
-              <div
-                className='w-full bg-no-repeat'
-                style={{
-                  backgroundImage: `url(${images.WebsiteBannerMobile})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center 100px",
-                }}></div>
-            ) : windowWidth < 1000 ? (
-              // Tablet View
-              <div
-                className='w-full bg-no-repeat'
-                style={{
-                  backgroundImage: `url(${images.WebsiteBannerDesktop})`,
-                  backgroundSize: "contain",
-                  backgroundPosition: "center 100px",
-                }}></div>
-            ) : (
-              // Desktop View
-              <div
-                className='w-full bg-no-repeat bg-cover'
-                style={{
-                  backgroundImage: `url(${images.WebsiteBannerDesktop})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center 100px",
-                }}></div>
-            )}
+            <div
+              className={`w-full bg-no-repeat ${
+                windowWidth < 751 ? "bg-cover" : "bg-contain"
+              }`}
+              style={{
+                backgroundImage: `url(${
+                  windowWidth < 751
+                    ? images.WebsiteBannerMobile
+                    : images.WebsiteBannerDesktop
+                })`,
+                backgroundPosition: "center 100px",
+                backgroundSize: windowWidth >= 1365 ? "contain" : "contain",
+              }}></div>
           </div>
         </div>
       </SwiperSlide>
@@ -160,34 +145,27 @@ const HomeSwiper = () => {
         {/* Second slide */}
         <div className='max-w-[1920px] max-desktop:w-full max-tablet:w-full w-full h-[753px] relative '>
           <div className='max-w-[1920px] max-desktop:w-full max-desktop:flex  max-tablet:w-full  w-full h-[753px] flex  z-16 top-0 left-0 absolute  '>
-            {windowWidth < 600 ? (
-              // Mobile View
-              <div
-                className='w-full bg-no-repeat'
-                style={{
-                  backgroundImage: `url(${images.WhyChooseFairseedMobile})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center 50px",
-                }}></div>
-            ) : windowWidth < 1000 ? (
-              // Tablet View
-              <div
-                className='w-full bg-no-repeat'
-                style={{
-                  backgroundImage: `url(${images.WhyChooseFairseed})`,
-                  backgroundSize: "contain",
-                  backgroundPosition: "center 100px",
-                }}></div>
-            ) : (
-              // Desktop View
-              <div
-                className='w-full bg-no-repeat bg-cover'
-                style={{
-                  backgroundImage: `url(${images.WhyChooseFairseed})`,
-                  backgroundSize: "contain",
-                  backgroundPosition: "center 36px",
-                }}></div>
-            )}
+            <div
+              className={`w-full bg-no-repeat ${
+                windowWidth < 751
+                  ? "bg-cover"
+                  : windowWidth < 1365
+                  ? "bg-contain"
+                  : "bg-contain"
+              }`}
+              style={{
+                backgroundImage: `url(${
+                  windowWidth < 751
+                    ? images.WhyChooseFairseedMobile
+                    : images.WhyChooseFairseed
+                })`,
+                backgroundPosition:
+                  windowWidth < 751
+                    ? "center 50px"
+                    : windowWidth < 1365
+                    ? "center 100px"
+                    : "center 36px",
+              }}></div>
           </div>
         </div>
       </SwiperSlide>
