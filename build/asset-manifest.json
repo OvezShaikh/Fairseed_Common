@@ -1,8 +1,9 @@
 {
   "files": {
-    "main.css": "/static/css/main.ec5fbd81.css",
-    "main.js": "/static/js/main.1a5a883d.js",
+    "main.css": "/static/css/main.62a568a8.css",
+    "main.js": "/static/js/main.52f69f93.js",
     "static/js/787.bcf9f87a.chunk.js": "/static/js/787.bcf9f87a.chunk.js",
+    "static/media/WebsiteBannerDesktop.png": "/static/media/WebsiteBannerDesktop.e19aae8a0c96975782bf.png",
     "static/media/Bg404.jpg": "/static/media/Bg404.85fbc2d81eb844fe630e.jpg",
     "static/media/HomePageHero.png": "/static/media/HomePageHero.c09f0ed5bc6dd60ed8e0.png",
     "static/media/HeaderBgImg.png": "/static/media/HeaderBgImg.c2e2e786029fd166348b.png",
@@ -15,11 +16,15 @@
     "static/media/HomePageHeroTab.png": "/static/media/HomePageHeroTab.39ad0a418ae0116bb41d.png",
     "static/media/VissionMission.png": "/static/media/VissionMission.66508d03f0f7126f4f58.png",
     "static/media/HeaderImage.svg": "/static/media/HeaderImage.91562e555d26c0ecdd20f051bf86cc0f.svg",
+    "static/media/WebsiteBannerMobile.png": "/static/media/WebsiteBannerMobile.82d08ccbdcaecd340459.png",
     "static/media/SideImage.jpg": "/static/media/SideImage.3a8aa3c0f45514aa2c45.jpg",
+    "static/media/FairseedCrowdfundingForEducation.png": "/static/media/FairseedCrowdfundingForEducation.e85da1a1e662adb09750.png",
+    "static/media/WhyChooseFairseed.png": "/static/media/WhyChooseFairseed.a2bd65761aa761df0dfd.png",
     "static/media/Maskgroup2.png": "/static/media/Maskgroup2.b442c5a0676467b25340.png",
     "static/media/Maskgroup.png": "/static/media/Maskgroup.b25f4399ee382b8cf47e.png",
     "static/media/Maskgroup4.png": "/static/media/Maskgroup4.b5dd6686e2a3a17c6a60.png",
     "static/media/Maskgroup3.png": "/static/media/Maskgroup3.8dcde51dee561511ae30.png",
+    "static/media/WhyChooseFairseedMobile.png": "/static/media/WhyChooseFairseedMobile.f59428028621dcda4e6e.png",
     "static/media/NoData.svg": "/static/media/NoData.9cee3ac8e11b35496c9fccd52e272a2a.svg",
     "static/media/Rectangle.png": "/static/media/Rectangle.1b7b66015836d4f78009.png",
     "static/media/HowItWork.png": "/static/media/HowItWork.f6a058ce0dd8eef2bb85.png",
@@ -44,7 +49,6 @@
     "static/media/FooterIconPi.svg": "/static/media/FooterIconPi.ebfca818fff80360b25ee76d47c69fed.svg",
     "static/media/HandShake.svg": "/static/media/HandShake.0585976d461ecad2b399922e02c48b73.svg",
     "static/media/Student.svg": "/static/media/Student.d58dc325ad55d98fb68ce1aca8c0f506.svg",
-    "index.html": "/index.html",
     "static/media/Home.svg": "/static/media/Home.c8bfbb8f2cf327babe42719cde698565.svg",
     "static/media/FooterIconFa.svg": "/static/media/FooterIconFa.b93c3217e7bf298317a0b1627c42021c.svg",
     "static/media/three.svg": "/static/media/three.78ff17c21fa96e3b04459715521eee72.svg",
@@ -52,6 +56,7 @@
     "static/media/MapPin.svg": "/static/media/MapPin.942b3bf7b466cecbc09e2c2fdf2865a9.svg",
     "static/media/RocketLaunch.svg": "/static/media/RocketLaunch.b954d224e4194d82c2d0b631d2b6e967.svg",
     "static/media/two.svg": "/static/media/two.943034aac805ba6d541c462e86feab62.svg",
+    "index.html": "/index.html",
     "static/media/Coins.svg": "/static/media/Coins.a444e6f69a40629dd8ecab6e32f14fe5.svg",
     "static/media/UploadFile.svg": "/static/media/UploadFile.03f949f31e555e168b95598d238ecce6.svg",
     "static/media/FooterIconIn.svg": "/static/media/FooterIconIn.5d1fd033fe6f915299169bc2ef35c89f.svg",
@@ -72,12 +77,12 @@
     "static/media/CompleteVector.svg": "/static/media/CompleteVector.93ae473092c3dd3c8a0ffadc0b1f6d18.svg",
     "static/media/Vector.svg": "/static/media/Vector.9c3261e8b06355366d2c6c0a54ef20d4.svg",
     "static/media/caretDown.svg": "/static/media/caretDown.274d0fd582c9a048b6991edfa70f4bec.svg",
-    "main.ec5fbd81.css.map": "/static/css/main.ec5fbd81.css.map",
-    "main.1a5a883d.js.map": "/static/js/main.1a5a883d.js.map",
+    "main.62a568a8.css.map": "/static/css/main.62a568a8.css.map",
+    "main.52f69f93.js.map": "/static/js/main.52f69f93.js.map",
     "787.bcf9f87a.chunk.js.map": "/static/js/787.bcf9f87a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ec5fbd81.css",
-    "static/js/main.1a5a883d.js"
+    "static/css/main.62a568a8.css",
+    "static/js/main.52f69f93.js"
   ]
 }
