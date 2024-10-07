@@ -249,7 +249,7 @@ function Index({ goalAmount, fundRaised }) {
                   />
                   <div className='donation-type-div'>
                     <SelectField
-                      label={"Payment Gateway:"}
+                      label={"Payment Method:"}
                       options={[
                         { label: "BANK TRANSFER", value: "Bank_Transfer" },
                         {

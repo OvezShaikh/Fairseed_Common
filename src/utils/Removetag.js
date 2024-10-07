@@ -1,5 +1,5 @@
 function removeTags(str) {
-  if (str === null || str === "") return false;
+  if (str === null || str === "" || str === undefined) return false;
   else str = str.toString();
 
   // Regular expression to identify HTML tags in

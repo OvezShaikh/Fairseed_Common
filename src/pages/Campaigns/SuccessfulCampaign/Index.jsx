@@ -91,26 +91,26 @@ const Index = () => {
   return (
     <div>
       <Navbar />
-      <div className="flex flex-col ">
+      <div className='flex flex-col '>
         <Navigation
           label={"Successful Campaign"}
           heading={"Successful Campaign"}
         />
 
-        <div className="flex flex-col flex-wrap w-full mb-[128px] items-center max-tablet:mb-[48px] mt-[100px] max-tablet:mt-[20px]">
-          <div className="w-[90%] flex justify-end successful-filter">
+        <div className='flex flex-col flex-wrap w-full mb-[128px] items-center max-tablet:mb-[48px] mt-[100px] max-tablet:mt-[20px]'>
+          <div className='w-[90%] flex justify-end successful-filter'>
             <SuccessFilterField
               sendLocationToParent={receiveLocationFromChild}
             />
           </div>
-          <div className="desktop:gap-x-[36px] desktop:gap-y-[48px] mt-[48px]  flex flex-wrap w-full justify-center desktop:max-w-[1740px] max-desktop:gap-x-[16px]  max-desktop:gap-y-[24px] max-tablet:gap-y-[48px]">
+          <div className='desktop:gap-x-[36px] desktop:gap-y-[48px] mt-[48px]  flex flex-wrap w-full justify-center desktop:max-w-[1740px] max-desktop:gap-x-[16px]  max-desktop:gap-y-[24px] max-tablet:gap-y-[48px]'>
             {filteredUserList?.slice(0, visibleCards).map((item) => {
               return (
                 <Card
                   key={item?.id}
                   username={item?.user?.username}
                   title={item.title}
-                  og_id={item.id}
+                  og_id={item.c_id}
                   cardImage={item.campaign_image}
                   goalAmount={item.goal_amount}
                   fundRaised={item.fund_raised}
@@ -122,10 +122,10 @@ const Index = () => {
             })}
           </div>
           <button
-            className="pt-[64px] max-tablet:pt-[24px]"
+            className='pt-[64px] max-tablet:pt-[24px]'
             onClick={() => loadMore()}
             disabled={visibleCards >= campaignCount}
-            id="loadmorebutton"
+            id='loadmorebutton'
             style={{
               width: "fit-content",
               textAlign: "center",
@@ -145,9 +145,8 @@ const Index = () => {
                   ? "none"
                   : "block",
               position: "relative",
-            }}
-          >
-            <p className="gradient-button mb-0">Load More</p>
+            }}>
+            <p className='gradient-button mb-0'>Load More</p>
           </button>
         </div>
       </div>

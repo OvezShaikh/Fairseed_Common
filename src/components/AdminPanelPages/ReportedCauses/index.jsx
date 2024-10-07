@@ -65,13 +65,12 @@ const Reported_Causes = () => {
 
   const StatusCell = ({ value }) => (
     <div
-      className=" flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl "
-      style={getStatusCellStyle(value)}
-    >
-      <span className="" style={getStatusCellStyle(value)}>
+      className=' flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl '
+      style={getStatusCellStyle(value)}>
+      <span className='' style={getStatusCellStyle(value)}>
         <GoDotFill />
       </span>
-      <span className="" style={getStatusCellStyle(value)}>
+      <span className='' style={getStatusCellStyle(value)}>
         {value}
       </span>
     </div>
@@ -80,7 +79,7 @@ const Reported_Causes = () => {
   const columns = React.useMemo(() => [
     {
       Header: "Id",
-      accessor: "campaign.c_id", 
+      accessor: "campaign.c_id",
       minWidth: 75,
       width: 100,
     },
@@ -91,15 +90,17 @@ const Reported_Causes = () => {
       width: 100,
       Cell: ({ row }) => {
         return (
-          <div className="flex  ">
-            <div className="w-[80px] truncate">
+          <div className='flex  '>
+            <div className='w-[80px] truncate'>
               {row?.original?.campaign?.title}
             </div>
-            <a href={`/campaign-details/${row?.original?.campaign?.id}`} target="_blank">
+            <a
+              href={`/campaign-details/${row?.original?.campaign?.c_id}`}
+              target='_blank'>
               <img
-                className="ml-2"
+                className='ml-2'
                 src={images.CausesDetails}
-                alt="CampaignDetails"
+                alt='CampaignDetails'
               />
             </a>
           </div>
@@ -148,8 +149,8 @@ const Reported_Causes = () => {
       Cell: ({ row }) => {
         return (
           <>
-            <div className="flex gap-2 justify-center items-center p-3">
-              <div className=" flex gap-2">
+            <div className='flex gap-2 justify-center items-center p-3'>
+              <div className=' flex gap-2'>
                 <DeleteBox
                   url={`/admin-dashboard/reported-campaign`}
                   data={row?.original?.id}
@@ -157,17 +158,15 @@ const Reported_Causes = () => {
                   // onClick={() => setSelectedRowID(row?.original?.id)}
                   // onSuccess={() => setSelectedRowID(null)}
                   // onClose={() => setSelectedRowID(null)}
-                  refetchUrl={"/admin-dashboard/reported-campaign"}
-                >
+                  refetchUrl={"/admin-dashboard/reported-campaign"}>
                   <p>Are You Sure To Remove This Campaign!</p>
-                  <p className="text-red-500">This Action Cannot Be Undone !</p>
+                  <p className='text-red-500'>This Action Cannot Be Undone !</p>
                 </DeleteBox>
 
                 <PrimaryButton
                   onClick={() => {
                     handleReject(row?.id);
-                  }}
-                >
+                  }}>
                   Reject Campaign
                 </PrimaryButton>
               </div>

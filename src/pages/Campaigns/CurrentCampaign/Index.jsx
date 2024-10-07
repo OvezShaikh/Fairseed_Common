@@ -69,6 +69,10 @@ function CurrentCampaign({ goalAmount, fundRaised, onClose }) {
 
   const Share_title = `📚 ${campaignTitle}! 📚\n\n"${desc}"\n\nEducate and Empower someone in need at FairSeed.   Donate now! 🌟\n\nRead more and support the cause: `;
 
+  // const Share_title = "Donate For Good";
+  // const currentPageUrl = window.location.href;
+  // const media = `${process.env.REACT_APP_BE_BASE_URL}${cardDetails?.campaign_image}`;
+
   const { user, isLogin } = useContext(AuthContext);
   const user_id = user?.id;
 
@@ -408,7 +412,8 @@ function CurrentCampaign({ goalAmount, fundRaised, onClose }) {
                           <EmailShareButton
                             url={currentPageUrl}
                             subject={Share_title}
-                            body='body'>
+                            body='body'
+                            >
                             <EmailIcon size={45} round />
                           </EmailShareButton>
                         </div>
