@@ -102,6 +102,10 @@ import WhyChooseFairseed from "../assets/WhyChooseFairseed.png";
 import WhyChooseFairseedMobile from "../assets/WhyChooseFairseedMobile.png";
 import WebsiteBannerDesktop from "../assets/WebsiteBannerDesktop.png";
 import WebsiteBannerMobile from "../assets/WebsiteBannerMobile.png";
+import WebsiteBannerTablet from "../assets/WebsiteBannerTablet.png";
+import WhyChooseFairseedTablet from "../assets/WhyChooseFairseedTablet.png";
+
+
 
 export default {
   SealCheck,
@@ -203,7 +207,10 @@ export default {
   Bg404,
   FairseedCrowdfundingForEducation,
   WhyChooseFairseed,
+  WhyChooseFairseedTablet,
   WhyChooseFairseedMobile,
   WebsiteBannerDesktop,
+  WebsiteBannerTablet,
   WebsiteBannerMobile,
+  
 };

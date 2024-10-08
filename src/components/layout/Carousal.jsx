@@ -133,9 +133,11 @@ const HomeSwiper = () => {
                 backgroundImage: `url(${
                   windowWidth < 751
                     ? images.WebsiteBannerMobile
+                    : windowWidth < 1365 && windowWidth > 751
+                    ? images.WebsiteBannerTablet
                     : images.WebsiteBannerDesktop
                 })`,
-                backgroundPosition: "center 100px",
+                backgroundPosition: "center",
                 backgroundSize: windowWidth >= 1365 ? "contain" : "contain",
               }}></div>
           </div>
@@ -157,14 +159,17 @@ const HomeSwiper = () => {
                 backgroundImage: `url(${
                   windowWidth < 751
                     ? images.WhyChooseFairseedMobile
+                    : windowWidth < 1365 && windowWidth > 751
+                    ? images.WhyChooseFairseedTablet
                     : images.WhyChooseFairseed
                 })`,
-                backgroundPosition:
-                  windowWidth < 751
-                    ? "center 50px"
-                    : windowWidth < 1365
-                    ? "center 100px"
-                    : "center 36px",
+                backgroundPosition: "center",
+                // windowWidth < 751
+                //   ? "center 50px"
+                //   : windowWidth < 1365
+                //   ? "center 100px"
+                //   : "center 36px",
+                backgroundSize: windowWidth >= 1365 ? "contain" : "contain",
               }}></div>
           </div>
         </div>
