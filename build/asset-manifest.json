@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/static/css/main.62a568a8.css",
-    "main.js": "/static/js/main.a686faef.js",
+    "main.css": "/static/css/main.200019dd.css",
+    "main.js": "/static/js/main.92302d2f.js",
     "static/js/787.bcf9f87a.chunk.js": "/static/js/787.bcf9f87a.chunk.js",
-    "static/media/WebsiteBannerTablet.png": "/static/media/WebsiteBannerTablet.e19aae8a0c96975782bf.png",
+    "static/media/WebsiteBannerTablet.png": "/static/media/WebsiteBannerTablet.d4d28c21ee8fd816b66d.png",
     "static/media/Bg404.jpg": "/static/media/Bg404.85fbc2d81eb844fe630e.jpg",
     "static/media/HomePageHero.png": "/static/media/HomePageHero.c09f0ed5bc6dd60ed8e0.png",
-    "static/media/WebsiteBannerDesktop.png": "/static/media/WebsiteBannerDesktop.3ea5c6c00a59025273ae.png",
+    "static/media/WebsiteBannerDesktop.png": "/static/media/WebsiteBannerDesktop.6bf2ffc31fca1cd3a59d.png",
     "static/media/HeaderBgImg.png": "/static/media/HeaderBgImg.c2e2e786029fd166348b.png",
     "static/media/sliderimg.png": "/static/media/sliderimg.5b3800bc6b3348e47bc6.png",
     "static/media/HeroSection.png": "/static/media/HeroSection.14c4ae33dad61a885124.png",
@@ -17,11 +17,11 @@
     "static/media/HomePageHeroTab.png": "/static/media/HomePageHeroTab.39ad0a418ae0116bb41d.png",
     "static/media/VissionMission.png": "/static/media/VissionMission.66508d03f0f7126f4f58.png",
     "static/media/HeaderImage.svg": "/static/media/HeaderImage.91562e555d26c0ecdd20f051bf86cc0f.svg",
-    "static/media/WebsiteBannerMobile.png": "/static/media/WebsiteBannerMobile.7625c595c8635e15f71c.png",
     "static/media/WhyChooseFairseedTablet.png": "/static/media/WhyChooseFairseedTablet.312279edb3bec379a6e2.png",
     "static/media/SideImage.jpg": "/static/media/SideImage.3a8aa3c0f45514aa2c45.jpg",
     "static/media/FairseedCrowdfundingForEducation.png": "/static/media/FairseedCrowdfundingForEducation.e85da1a1e662adb09750.png",
     "static/media/WhyChooseFairseed.png": "/static/media/WhyChooseFairseed.5d27546331c1a8e6ef8a.png",
+    "static/media/WebsiteBannerMobile.png": "/static/media/WebsiteBannerMobile.cac3157f676883172408.png",
     "static/media/Maskgroup2.png": "/static/media/Maskgroup2.b442c5a0676467b25340.png",
     "static/media/Maskgroup.png": "/static/media/Maskgroup.b25f4399ee382b8cf47e.png",
     "static/media/Maskgroup4.png": "/static/media/Maskgroup4.b5dd6686e2a3a17c6a60.png",
@@ -79,12 +79,12 @@
     "static/media/CompleteVector.svg": "/static/media/CompleteVector.93ae473092c3dd3c8a0ffadc0b1f6d18.svg",
     "static/media/Vector.svg": "/static/media/Vector.9c3261e8b06355366d2c6c0a54ef20d4.svg",
     "static/media/caretDown.svg": "/static/media/caretDown.274d0fd582c9a048b6991edfa70f4bec.svg",
-    "main.62a568a8.css.map": "/static/css/main.62a568a8.css.map",
-    "main.a686faef.js.map": "/static/js/main.a686faef.js.map",
+    "main.200019dd.css.map": "/static/css/main.200019dd.css.map",
+    "main.92302d2f.js.map": "/static/js/main.92302d2f.js.map",
     "787.bcf9f87a.chunk.js.map": "/static/js/787.bcf9f87a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.62a568a8.css",
-    "static/js/main.a686faef.js"
+    "static/css/main.200019dd.css",
+    "static/js/main.92302d2f.js"
   ]
 }

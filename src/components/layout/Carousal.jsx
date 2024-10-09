@@ -124,9 +124,9 @@ const HomeSwiper = () => {
       <SwiperSlide>
         {/* First slide */}
         <div className='max-w-[1920px] max-desktop:w-full max-tablet:w-full w-full h-[753px] relative '>
-          <div className='max-w-[1920px] max-desktop:w-full max-desktop:flex  max-tablet:w-full  w-full h-[753px] flex  z-16 top-0 left-0 absolute  '>
+          <div className='max-w-[1920px] max-desktop:w-full max-tablet:mt-20 max-desktop:flex  max-tablet:w-full  w-full h-[753px] flex  z-16 top-0 left-0 absolute  '>
             <div
-              className={`w-full bg-no-repeat ${
+              className={`w-full bg-no-repeat  ${
                 windowWidth < 751 ? "bg-cover" : "bg-contain"
               }`}
               style={{
@@ -138,7 +138,7 @@ const HomeSwiper = () => {
                     : images.WebsiteBannerDesktop
                 })`,
                 backgroundPosition: "center",
-                backgroundSize: windowWidth >= 1365 ? "contain" : "contain",
+                backgroundSize: "cover",
               }}></div>
           </div>
         </div>
@@ -169,7 +169,7 @@ const HomeSwiper = () => {
                 //   : windowWidth < 1365
                 //   ? "center 100px"
                 //   : "center 36px",
-                backgroundSize: windowWidth >= 1365 ? "contain" : "contain",
+                backgroundSize: "cover",
               }}></div>
           </div>
         </div>
