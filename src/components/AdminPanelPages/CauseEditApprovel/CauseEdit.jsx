@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import ReactTable from "../../Table/index";
 import { useState } from "react";
@@ -38,13 +40,13 @@ const Campaign = ({ setReq }) => {
 
   const StatusCell = ({ value }) => (
     <div
-      className=" flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl"
+      className=' flex justify-center gap-1  items-center w-[100px] h-[25px] rounded-3xl'
       style={getStatusCellStyle(value)}
     >
-      <span className="" style={getStatusCellStyle(value)}>
+      <span className='' style={getStatusCellStyle(value)}>
         <GoDotFill />
       </span>
-      <span className="" style={getStatusCellStyle(value)}>
+      <span className='' style={getStatusCellStyle(value)}>
         {value}
       </span>
     </div>
@@ -55,7 +57,6 @@ const Campaign = ({ setReq }) => {
     return format(date, "dd-MMM-yyyy");
   }
 
-<<<<<<< HEAD
   const columns = React.useMemo(() => [
     {
       Header: "Id",
@@ -70,44 +71,18 @@ const Campaign = ({ setReq }) => {
       width: 100,
       Cell: ({ row }) => {
         return (
-          <div className="flex  ">
-            <div className="w-[80px] truncate">
+          <div className='flex  '>
+            <div className='w-[80px] truncate'>
               {row?.original?.campaign?.title}
-=======
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: "Id",
-        accessor: "campaign.c_id", 
-        minWidth: 75,
-        width: 100,
-      },
-      {
-        Header: "Title",
-        accessor: "campaign.title",
-        minWidth: 100,
-        width: 100,
-        Cell: ({ row }) => {
-          return (
-            <div className="flex  ">
-              <div className="w-[80px] truncate">{row?.original?.campaign?.title}</div>
-              <a href={`/campaign-details/${row?.original?.campaign.id}`} target='_blank'>
-                <img
-                  className="ml-2"
-                  src={images.CausesDetails}
-                  alt="CampaignDetails"
-                />
-              </a>
->>>>>>> 86d85c127ce627c64a2d6be13da4541c34b151b6
             </div>
             <a
               href={`/campaign-details/${row?.original?.campaign.id}`}
-              target="_blank"
+              target='_blank'
             >
               <img
-                className="ml-2"
+                className='ml-2'
                 src={images.CausesDetails}
-                alt="CausesDetails"
+                alt='CausesDetails'
               />
             </a>
           </div>
@@ -163,8 +138,8 @@ const Campaign = ({ setReq }) => {
       Cell: ({ row }) => {
         setReq(row?.index + 1);
         return (
-          <div className="flex items-center justify-center pl-6 max-desktop:pl-0 max-tablet:pl-0">
-            <Link to="View" state={{ id: row?.id }}>
+          <div className='flex items-center justify-center pl-6 max-desktop:pl-0 max-tablet:pl-0'>
+            <Link to='View' state={{ id: row?.id }}>
               <SecondaryButton sx={{ height: "30px" }}>Edit</SecondaryButton>
             </Link>
           </div>

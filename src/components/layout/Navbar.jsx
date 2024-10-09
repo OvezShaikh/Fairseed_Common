@@ -195,10 +195,10 @@ export default function Example() {
   return (
     <header
       className="absolute top-0 left-0 right-0 bg-transparent z-10 container"
-      style={{
-        backgroundColor: "#8EC5FC",
-        backdropFilter: "blur(10px)",
-      }}
+        style={{
+          backgroundColor: "#8EC5FC",
+          backdropFilter: "blur(10px)",
+        }}
     >
       <nav
         className="mx-auto flex max-w-9xl max-desktop:px-2 max-tablet:px-0  items-center justify-between p-6 lg:px-8"

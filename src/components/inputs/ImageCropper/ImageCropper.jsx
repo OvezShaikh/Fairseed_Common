@@ -14,27 +14,27 @@ import PrimaryButton from '../PrimaryButton'
 import SecondaryButton from "../secondaryButton";
 
 export const ImageCropper = ({ srcImg, setOpenCrop, setsrcImg }) => {
-  const [_, setCropData] = useState("#");
-  const [cropper, setCropper] = useState();
-  const { setFieldValue, values } = useFormikContext();
+    const [_, setCropData] = useState("#");
+    const [cropper, setCropper] = useState();
+    const { setFieldValue, values } = useFormikContext();
 
-  const getCropData = () => {
-    if (typeof cropper !== "undefined") {
-      setCropData(cropper.getCroppedCanvas().toDataURL());
-      setsrcImg(cropper.getCroppedCanvas().toDataURL());
-      setOpenCrop(false);
-      var arr = cropper.getCroppedCanvas().toDataURL().split(",");
-      let mime = arr[0].match(/:(.*?);/)[1];
-      let bstr = atob(arr[1]);
-      let n = bstr.length;
-      let u8arr = new Uint8Array(n);
-      while (n--) {
-        u8arr[n] = bstr.charCodeAt(n);
+    const getCropData = () => {
+      if (typeof cropper !== "undefined") {
+        setCropData(cropper.getCroppedCanvas().toDataURL());
+        setsrcImg(cropper.getCroppedCanvas().toDataURL());
+        setOpenCrop(false);
+        var arr = cropper.getCroppedCanvas().toDataURL().split(",");
+        let mime = arr[0].match(/:(.*?);/)[1];
+        let bstr = atob(arr[1]);
+        let n = bstr.length;
+        let u8arr = new Uint8Array(n);
+        while (n--) {
+          u8arr[n] = bstr.charCodeAt(n);
+        }
+        let img = new File([u8arr], values?.campaign_image?.name, { type: mime });
+        setFieldValue("campaign_image", img);
       }
-      let img = new File([u8arr], values?.campaign_image?.name, { type: mime });
-      setFieldValue("campaign_image", img);
-    }
-  };
+    };
 
   return (
     <>

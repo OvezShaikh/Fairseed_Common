@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import images from "../../constants/images";
 import { useNavigate } from "react-router-dom";
@@ -104,7 +106,6 @@ function Index({ goalAmount, fundRaised }) {
     other_details: "",
   };
 
-
   const validationSchema = yup.object().shape({
     donation_type: yup.object().required("Donation Type is required"),
     amount: yup
@@ -113,7 +114,6 @@ function Index({ goalAmount, fundRaised }) {
       .min(50, "Amount must be at least 50 INR")
       .required("Amount is required"),
   });
-
 
   const { mutate } = useCreateOrUpdate({
     url: `/donors/donate-money`,
@@ -141,7 +141,7 @@ function Index({ goalAmount, fundRaised }) {
       onSuccess: (response) => {
         if (selectedPaymentGateway === "Bank_Transfer") {
           window.location.href = "/Home";
-        } else {        
+        } else {
           const url = response?.data?.pay_page_url;
           window.location.href = url;
         }
@@ -188,8 +188,6 @@ function Index({ goalAmount, fundRaised }) {
   //   });
   // };
 
-
-
   useGetAll({
     key: `/accounts/user/${user_id}`,
     enabled: true,
@@ -201,21 +199,19 @@ function Index({ goalAmount, fundRaised }) {
     },
   });
 
-
-
   return (
     <>
       <Navbar />
-      <div className="flex flex-col ">
+      <div className='flex flex-col '>
         <Navigation
           remove={"remove"}
           label={"Donate"}
           heading={"Donate"}
           titleName={cardDetails?.user}
         />
-        <div className="flex px-20 py-32 gap-32 flex-col max-tablet:px-[16px]">
-          <div className="flex  gap-24 max-desktop:flex-col-reverse">
-            <div className="w-[65%] donate-div  max-desktop:w-full">
+        <div className='flex px-20 py-32 gap-32 flex-col max-tablet:px-[16px]'>
+          <div className='flex  gap-24 max-desktop:flex-col-reverse'>
+            <div className='w-[65%] donate-div  max-desktop:w-full'>
               <Formik
                 enableReinitialize={true}
                 validationSchema={validationSchema}
@@ -223,7 +219,7 @@ function Index({ goalAmount, fundRaised }) {
                 onSubmit={(values) => handleSubmit(values)}
               >
                 <Form>
-                  <div className="donation-type-div">
+                  <div className='donation-type-div'>
                     <SelectField
                       name={"donation_type"}
                       label={"Donation Type:"}
@@ -254,33 +250,33 @@ function Index({ goalAmount, fundRaised }) {
                     sx={InputStyle}
                   />
 
-                  <div className="flex w-full gap-4 p-0 max-tablet:flex-col">
-                    <div className="w-[50%] p-0 max-tablet:w-full max-tablet:mb-0 email-country-div">
+                  <div className='flex w-full gap-4 p-0 max-tablet:flex-col'>
+                    <div className='w-[50%] p-0 max-tablet:w-full max-tablet:mb-0 email-country-div'>
                       <InputField
                         label={"Email:"}
                         name={"email"}
                         sx={InputStyle}
                       />
-                      <div className="donation-type-div country-select">
+                      <div className='donation-type-div country-select'>
                         <CountrySelect
-                          label="Country:"
+                          label='Country:'
                           name={"country"}
                           sx={SelectStyle}
                         />
                       </div>
                     </div>
-                    <div className="w-[50%] p-0 max-tablet:w-full max-tablet:mb-0 city-mobile">
+                    <div className='w-[50%] p-0 max-tablet:w-full max-tablet:mb-0 city-mobile'>
                       <InputField
                         label={"City:"}
                         name={"city"}
                         sx={InputStyle}
                       />
-                      <div className="w">
+                      <div className='w'>
                         <InputField
                           label={"Mobile:"}
                           name={"mobile"}
                           sx={InputStyle}
-                          className="mobile-input"
+                          className='mobile-input'
                         />
                       </div>
                     </div>
@@ -301,7 +297,7 @@ function Index({ goalAmount, fundRaised }) {
                     name={"comment"}
                     sx={InputStyle}
                   />
-                  <div className="donation-type-div">
+                  <div className='donation-type-div'>
                     <SelectField
                       label={"Payment Gateway:"}
                       options={[
@@ -330,36 +326,43 @@ function Index({ goalAmount, fundRaised }) {
                       }
                     >
                       <div
-                        className=" w-full min-h-[302px] h-full bg-[#F7FAFF]  border flex flex-col gap-3"
+                        className=' w-full min-h-[302px] h-full bg-[#F7FAFF]  border flex flex-col gap-3'
                         style={{ borderRadius: "4px", padding: "8px 16px" }}
                       >
-                        <p className="text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]">
-                          <span className="font-extrabold">Bank Name </span>: ICICI BANK
+                        <p className='text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]'>
+                          <span className='font-extrabold'>Bank Name </span>:
+                          ICICI BANK
                         </p>
-                        <p className="text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]">
-                          <span className="font-extrabold">Branch</span>: Pune
+                        <p className='text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]'>
+                          <span className='font-extrabold'>Branch</span>: Pune
                         </p>
-                        <p className="text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]">
-                          <span className="font-extrabold"> Name </span>: Fairseed Technology Foundation
+                        <p className='text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]'>
+                          <span className='font-extrabold'> Name </span>:
+                          Fairseed Technology Foundation
                         </p>
-                        <p className="text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]">
-                          <span className="font-extrabold">Account Number </span>: 007405011500
+                        <p className='text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]'>
+                          <span className='font-extrabold'>
+                            Account Number{" "}
+                          </span>
+                          : 007405011500
                         </p>
-                        <p className="text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]">
-                          <span className="font-extrabold">Type </span>: Current Account
+                        <p className='text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]'>
+                          <span className='font-extrabold'>Type </span>: Current
+                          Account
                         </p>
-                        <p className="text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]">
-                          <span className="font-extrabold"> IFSC </span>: ICIC0000074
+                        <p className='text-[1.25rem] font-medium font-[satoshi] max-desktop:text-[1.12rem] max-tablet:text-[1rem] text-[#00000080]'>
+                          <span className='font-extrabold'> IFSC </span>:
+                          ICIC0000074
                         </p>
                       </div>
-                      <div className="w-full donate-date-div max-tablet:w-[100%] p-0">
+                      <div className='w-full donate-date-div max-tablet:w-[100%] p-0'>
                         <InputField
-                          type="date"
+                          type='date'
                           name={"transaction_date "}
                           sx={InputStyle}
                           inputProps={{ min: moment().format("YYYY-MM-DD") }}
                           required={true}
-                          label="Date of Transaction"
+                          label='Date of Transaction'
                         />
                       </div>
                       <InputField
@@ -379,20 +382,20 @@ function Index({ goalAmount, fundRaised }) {
                       />
                     </div>
                   ) : null}
-                  <div className="anonymous-donation-div">
+                  <div className='anonymous-donation-div'>
                     <CheckBox
                       name={"is_anonymous"}
                       label={"Make Anonymous donation"}
                     />
                   </div>
-                  <div className="flex justify-center gap-3">
+                  <div className='flex justify-center gap-3'>
                     <SecondaryButton
                       onClick={() => navigate(-1)}
                       sx={styleSecondaryButton}
                     >
                       Back
                     </SecondaryButton>
-                    <PrimaryButton type="submit" sx={stylePrimaryButton}>
+                    <PrimaryButton type='submit' sx={stylePrimaryButton}>
                       Donate
                     </PrimaryButton>
                   </div>
@@ -400,16 +403,16 @@ function Index({ goalAmount, fundRaised }) {
               </Formik>
             </div>
             <div
-              className="flex flex-col rounded-3xl justify-center items-center w-[35%] max-desktop:w-full pb-[24px] desktop:px-[26px] desktop:h-[900px] max-desktop:px-[40px] max-tablet:px-[20px]"
+              className='flex flex-col rounded-3xl justify-center items-center w-[35%] max-desktop:w-full pb-[24px] desktop:px-[26px] desktop:h-[900px] max-desktop:px-[40px] max-tablet:px-[20px]'
               style={{ border: "1px solid red" }}
             >
               <img
-                className="desktop:mt-8 max-desktop:mt-8 max-tablet:mt-[24px] max-tablet:w-[94px]"
+                className='desktop:mt-8 max-desktop:mt-8 max-tablet:mt-[24px] max-tablet:w-[94px]'
                 src={images.Logo}
-                alt="Logo"
+                alt='Logo'
               />
               <div
-                className="m-10 max-tablet:mt-[24px] max-tablet:mb-[16px]"
+                className='m-10 max-tablet:mt-[24px] max-tablet:mb-[16px]'
                 style={{
                   paddingLeft: 12,
                   paddingRight: 12,
@@ -435,7 +438,7 @@ function Index({ goalAmount, fundRaised }) {
                   />
                 </div>
                 <div
-                  className="desktop:text-[1.5rem] max-desktop:text-[1.25rem] max-tablet:text-[1.12rem]"
+                  className='desktop:text-[1.5rem] max-desktop:text-[1.25rem] max-tablet:text-[1.12rem]'
                   style={{
                     color: "#FF8A00",
 
@@ -448,13 +451,13 @@ function Index({ goalAmount, fundRaised }) {
                 </div>
               </div>
               <h1
-                className="desktop:text-[4.5rem] max-desktop:text-[3.37rem] max-tablet:text-[2rem] font-extrabold"
+                className='desktop:text-[4.5rem] max-desktop:text-[3.37rem] max-tablet:text-[2rem] font-extrabold'
                 style={{ fontFamily: "satoshi" }}
               >
                 {cardDetails?.fund_raised}
               </h1>
               <p
-                className="m-3 desktop:text-[36px] max-desktop:text-[1.75rem] max-tablet:text-[1.12rem]"
+                className='m-3 desktop:text-[36px] max-desktop:text-[1.75rem] max-tablet:text-[1.12rem]'
                 style={{
                   width: "100%",
                   textAlign: "center",
@@ -466,16 +469,17 @@ function Index({ goalAmount, fundRaised }) {
               >
                 funded of ₹ {cardDetails?.goal_amount}
               </p>
-              <div className="desktop:mb-5 max-desktop:mb-5 w-full h-[30px] max-desktop:w-full max-tablet:h-[11px] max-tablet:mb-[15px]">
+              <div className='desktop:mb-5 max-desktop:mb-5 w-full h-[30px] max-desktop:w-full max-tablet:h-[11px] max-tablet:mb-[15px]'>
                 {/* <LinearWithValueLabel className='!h-9' height={'30px'} value={30} /> */}
                 <LinearProgress
                   style={{ backgroundColor: "#EDEEF1" }}
-                  variant="determinate"
+                  variant='determinate'
                   sx={{
                     height: "100%",
                     borderRadius: "16px",
-                    background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${(fundRaised / goalAmount) * 100
-                      }%, #e0e0e0 ${(fundRaised / goalAmount) * 100}%)`,
+                    background: `linear-gradient(to right, #0DC7B1, #0DC7B1 ${
+                      (fundRaised / goalAmount) * 100
+                    }%, #e0e0e0 ${(fundRaised / goalAmount) * 100}%)`,
                     "& .MuiLinearProgress-bar": {
                       backgroundColor: "#0DC7B1 !important",
                     },
@@ -485,14 +489,14 @@ function Index({ goalAmount, fundRaised }) {
                   }
                 />
               </div>
-              <div className="flex">
+              <div className='flex'>
                 <img
-                  className="w-[32px] h-[32px] mr-[18px] max-tablet:w-[20%]"
+                  className='w-[32px] h-[32px] mr-[18px] max-tablet:w-[20%]'
                   src={images.SealCheck}
-                  alt=""
+                  alt=''
                 />
                 <h1
-                  className="text-3xl w-[80%] flex justify-items-start  pb-2  "
+                  className='text-3xl w-[80%] flex justify-items-start  pb-2  '
                   style={{
                     fontFamily: "satoshi",
                     fontWeight: 700,
@@ -502,54 +506,54 @@ function Index({ goalAmount, fundRaised }) {
                     "-webkit-text-fill-color": "transparent",
                   }}
                 >
-                  <p className="text-2xl max-tablet:text-[1.1rem] font-extrabold">
+                  <p className='text-2xl max-tablet:text-[1.1rem] font-extrabold'>
                     Zakat Eligible !
                   </p>
                 </h1>
               </div>
-              <div className="flex gap-x-[12px] mt-[46px]">
+              <div className='flex gap-x-[12px] mt-[46px]'>
                 <Avatar
-                  className="desktop:w-[96px] desktop:h-[96px] max-desktop:w-[70px]"
-                  alt="Remy Sharp"
-                  src="/static/images/avatar/1.jpg"
+                  className='desktop:w-[96px] desktop:h-[96px] max-desktop:w-[70px]'
+                  alt='Remy Sharp'
+                  src='/static/images/avatar/1.jpg'
                   sx={{ width: "32px", height: "32px" }}
                 />
-                <span className="font-[satoshi] font-medium text-[1.25rem] text-[#8E95A2]">
+                <span className='font-[satoshi] font-medium text-[1.25rem] text-[#8E95A2]'>
                   {cardDetails?.user}
                 </span>
               </div>
-              <div className="mt-[40px] font-extrabold font-[satoshi] text-[1.87rem] text-[#383A42]">
+              <div className='mt-[40px] font-extrabold font-[satoshi] text-[1.87rem] text-[#383A42]'>
                 {cardDetails?.title}
               </div>
-              <div className="flex flex-wrap justify-center gap-[20px] mt-[50px]">
-                <div className="flex">
+              <div className='flex flex-wrap justify-center gap-[20px] mt-[50px]'>
+                <div className='flex'>
                   <img
-                    alt="icons"
-                    className=" w-[28px] h-[26px] mr-[10px]"
+                    alt='icons'
+                    className=' w-[28px] h-[26px] mr-[10px]'
                     src={icons?.UsersThree}
                   />
-                  <p className="text-[#6B7280] text-[1.25rem]">
+                  <p className='text-[#6B7280] text-[1.25rem]'>
                     {cardDetails?.donor_count}
                   </p>
                 </div>
-                <div className="flex">
+                <div className='flex'>
                   <img
-                    alt="icons"
-                    className="w-[24px] h-[27px] mr-[10px]"
+                    alt='icons'
+                    className='w-[24px] h-[27px] mr-[10px]'
                     src={icons?.Clock}
                   />
 
-                  <p className="text-[#6B7280] text-[1.25rem]">
+                  <p className='text-[#6B7280] text-[1.25rem]'>
                     {cardDetails?.days_left} days left
                   </p>
                 </div>
-                <div className="flex">
+                <div className='flex'>
                   <img
-                    alt="icons"
-                    className="  w-[20px] h-[36px] mr-[10px]"
+                    alt='icons'
+                    className='  w-[20px] h-[36px] mr-[10px]'
                     src={images?.MapPin2}
                   />
-                  <p className="text-[#6B7280] text-[1.25rem]">
+                  <p className='text-[#6B7280] text-[1.25rem]'>
                     {cardDetails?.location}
                   </p>
                 </div>
