@@ -92,8 +92,6 @@ const HomeSwiper = () => {
     );
   }
 
-  console.log(allCards, "<======");
-
   return (
     <Swiper
       modules={[Navigation, Pagination, A11y]}
