@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.200019dd.css",
-    "main.js": "/static/js/main.5f410099.js",
+    "main.js": "/static/js/main.b0fae581.js",
     "static/js/787.bcf9f87a.chunk.js": "/static/js/787.bcf9f87a.chunk.js",
     "static/media/WebsiteBannerTablet.png": "/static/media/WebsiteBannerTablet.d4d28c21ee8fd816b66d.png",
     "static/media/Bg404.jpg": "/static/media/Bg404.85fbc2d81eb844fe630e.jpg",
@@ -21,12 +21,12 @@
     "static/media/SideImage.jpg": "/static/media/SideImage.3a8aa3c0f45514aa2c45.jpg",
     "static/media/FairseedCrowdfundingForEducation.png": "/static/media/FairseedCrowdfundingForEducation.e85da1a1e662adb09750.png",
     "static/media/WhyChooseFairseed.png": "/static/media/WhyChooseFairseed.5d27546331c1a8e6ef8a.png",
-    "static/media/WebsiteBannerMobile.png": "/static/media/WebsiteBannerMobile.cac3157f676883172408.png",
+    "static/media/WebsiteBannerMobile.png": "/static/media/WebsiteBannerMobile.bf5a01440c26cf2c3f27.png",
     "static/media/Maskgroup2.png": "/static/media/Maskgroup2.b442c5a0676467b25340.png",
     "static/media/Maskgroup.png": "/static/media/Maskgroup.b25f4399ee382b8cf47e.png",
     "static/media/Maskgroup4.png": "/static/media/Maskgroup4.b5dd6686e2a3a17c6a60.png",
     "static/media/Maskgroup3.png": "/static/media/Maskgroup3.8dcde51dee561511ae30.png",
-    "static/media/WhyChooseFairseedMobile.png": "/static/media/WhyChooseFairseedMobile.f59428028621dcda4e6e.png",
+    "static/media/WhyChooseFairseedMobile.png": "/static/media/WhyChooseFairseedMobile.6054ea4b201ea60fac07.png",
     "static/media/NoData.svg": "/static/media/NoData.9cee3ac8e11b35496c9fccd52e272a2a.svg",
     "static/media/Rectangle.png": "/static/media/Rectangle.1b7b66015836d4f78009.png",
     "static/media/HowItWork.png": "/static/media/HowItWork.f6a058ce0dd8eef2bb85.png",
@@ -80,11 +80,11 @@
     "static/media/Vector.svg": "/static/media/Vector.9c3261e8b06355366d2c6c0a54ef20d4.svg",
     "static/media/caretDown.svg": "/static/media/caretDown.274d0fd582c9a048b6991edfa70f4bec.svg",
     "main.200019dd.css.map": "/static/css/main.200019dd.css.map",
-    "main.5f410099.js.map": "/static/js/main.5f410099.js.map",
+    "main.b0fae581.js.map": "/static/js/main.b0fae581.js.map",
     "787.bcf9f87a.chunk.js.map": "/static/js/787.bcf9f87a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.200019dd.css",
-    "static/js/main.5f410099.js"
+    "static/js/main.b0fae581.js"
   ]
 }
