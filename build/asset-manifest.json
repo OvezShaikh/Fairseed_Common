@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.200019dd.css",
-    "main.js": "/static/js/main.b0fae581.js",
+    "main.js": "/static/js/main.4548f963.js",
     "static/js/787.bcf9f87a.chunk.js": "/static/js/787.bcf9f87a.chunk.js",
     "static/media/WebsiteBannerTablet.png": "/static/media/WebsiteBannerTablet.d4d28c21ee8fd816b66d.png",
     "static/media/Bg404.jpg": "/static/media/Bg404.85fbc2d81eb844fe630e.jpg",
@@ -20,7 +20,7 @@
     "static/media/WhyChooseFairseedTablet.png": "/static/media/WhyChooseFairseedTablet.312279edb3bec379a6e2.png",
     "static/media/SideImage.jpg": "/static/media/SideImage.3a8aa3c0f45514aa2c45.jpg",
     "static/media/FairseedCrowdfundingForEducation.png": "/static/media/FairseedCrowdfundingForEducation.e85da1a1e662adb09750.png",
-    "static/media/WhyChooseFairseed.png": "/static/media/WhyChooseFairseed.5d27546331c1a8e6ef8a.png",
+    "static/media/WhyChooseFairseed.png": "/static/media/WhyChooseFairseed.2fdafc6da96a546ac069.png",
     "static/media/WebsiteBannerMobile.png": "/static/media/WebsiteBannerMobile.bf5a01440c26cf2c3f27.png",
     "static/media/Maskgroup2.png": "/static/media/Maskgroup2.b442c5a0676467b25340.png",
     "static/media/Maskgroup.png": "/static/media/Maskgroup.b25f4399ee382b8cf47e.png",
@@ -80,11 +80,11 @@
     "static/media/Vector.svg": "/static/media/Vector.9c3261e8b06355366d2c6c0a54ef20d4.svg",
     "static/media/caretDown.svg": "/static/media/caretDown.274d0fd582c9a048b6991edfa70f4bec.svg",
     "main.200019dd.css.map": "/static/css/main.200019dd.css.map",
-    "main.b0fae581.js.map": "/static/js/main.b0fae581.js.map",
+    "main.4548f963.js.map": "/static/js/main.4548f963.js.map",
     "787.bcf9f87a.chunk.js.map": "/static/js/787.bcf9f87a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.200019dd.css",
-    "static/js/main.b0fae581.js"
+    "static/js/main.4548f963.js"
   ]
 }
