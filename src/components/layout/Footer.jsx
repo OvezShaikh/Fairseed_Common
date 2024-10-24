@@ -13,25 +13,23 @@ function Footer() {
   return (
     <>
       <div
-        className="flex flex-col relative mt-[20rem] desktop:pt-[300px] desktop:px-[90px] max-desktop:pt-[240px] max-desktop:px-[48px] max-tablet:px-[17px] gap-[100px] max-tablet:gap-[20px] max-tablet:pt-[220px] desktop:pb-[60px] max-desktop:pb-[60px] max-tablet:pb-[12px]"
+        className='flex flex-col relative mt-[20rem] desktop:pt-[300px] desktop:px-[90px] max-desktop:pt-[240px] max-desktop:px-[48px] max-tablet:px-[17px] gap-[100px] max-tablet:gap-[20px] max-tablet:pt-[220px] desktop:pb-[60px] max-desktop:pb-[60px] max-tablet:pb-[12px]'
         style={{
           width: "100%",
           height: "100%",
           background: "#22262F",
           fontFamily: "satoshi",
-        }}
-      >
-        <div className="flex mt-[140px] max-desktop:mt-[305px] desktop:max-w-[79%] desktop:w-full justify-center absolute -top-[50%] left-[50%] -translate-x-[50%] max-desktop:w-[81%] max-tablet:mt-[300px]">
-          <div className="rounded-[20px] footer text-center desktop:p-[90px] max-desktop:px-[48px] max-desktop:py-[85px] max-tablet:px-[23px] max-tablet:py-[33px]">
+        }}>
+        <div className='flex mt-[140px] max-desktop:mt-[305px] desktop:max-w-[79%] desktop:w-full justify-center absolute -top-[50%] left-[50%] -translate-x-[50%] max-desktop:w-[81%] max-tablet:mt-[300px]'>
+          <div className='rounded-[20px] footer text-center desktop:p-[90px] max-desktop:px-[48px] max-desktop:py-[85px] max-tablet:px-[23px] max-tablet:py-[33px]'>
             <p
-              className="footer_text w-[100%] mx-auto text-[56px] max-desktop:text-[36px] max-tablet:text-[22px]"
-              style={{ fontWeight: 700 }}
-            >
+              className='footer_text w-[100%] mx-auto text-[56px] max-desktop:text-[36px] max-tablet:text-[22px]'
+              style={{ fontWeight: 700 }}>
               Ready to make an Impact? Join thousands of others today
             </p>
-            <div className="flex justify-center my-10 mb-0 desktop:mt-[64px] gap-4 max-tablet:flex-col">
+            <div className='flex justify-center my-10 mb-0 desktop:mt-[64px] gap-4 max-tablet:flex-col'>
               <button
-                className="px-[28px] max-desktop:px-[15px]"
+                className='px-[28px] max-desktop:px-[15px]'
                 onClick={navigateToOng}
                 style={{
                   paddingTop: 16,
@@ -42,28 +40,26 @@ function Footer() {
                   alignItems: "center",
                   gap: 10,
                   display: "inline-flex",
-                }}
-              >
+                }}>
                 <div style={{ width: 32, position: "relative" }}>
-                  <img src={images.coins2} alt="" />
+                  <img src={images.coins2} alt='' />
                 </div>
                 <div
-                  className="text-[20px] max-tablet:text-[16px]"
+                  className='text-[20px] max-tablet:text-[16px]'
                   style={{
                     color: "rgba(255, 255, 255, 0.90)",
 
                     fontFamily: "Satoshi ",
                     fontWeight: "700",
                     wordWrap: "break-word",
-                  }}
-                >
+                  }}>
                   Donate For Campaign
                 </div>
               </button>
               {localStorage.getItem("token") ? (
                 <Link
-                  to="/Home/Create-Campaign"
-                  className="px-3 gap-[10px] max-tablet:gap-[0px]"
+                  to='/Home/Create-Campaign'
+                  className='px-3 gap-[10px] max-tablet:gap-[0px]'
                   style={{
                     background:
                       "linear-gradient(93deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.50) 100%)",
@@ -74,29 +70,27 @@ function Footer() {
                     alignItems: "center",
 
                     display: "inline-flex",
-                  }}
-                >
+                  }}>
                   <div style={{ width: 32, height: 32, position: "relative" }}>
-                    <img src={images.RocketLaunch2} alt="" />
+                    <img src={images.RocketLaunch2} alt='' />
                   </div>
                   <div
-                    className="text-[20px] max-tablet:text-[16px] max-tablet:p-[16px] max-tablet:pl-[10px]"
+                    className='text-[20px] max-tablet:text-[16px] max-tablet:p-[16px] max-tablet:pl-[10px]'
                     style={{
                       color: "#383A42",
 
                       fontFamily: "Satoshi",
                       fontWeight: "700",
                       wordWrap: "break-word",
-                    }}
-                  >
+                    }}>
                     Launch a Campaign
                   </div>
                 </Link>
               ) : (
                 <>
-                  <div className=" max-desktop:hidden max-tablet:hidden">
+                  <div className=' max-desktop:hidden max-tablet:hidden'>
                     <div
-                      className=" gap-[10px] py-3  w-full"
+                      className=' gap-[10px] py-3  w-full'
                       style={{
                         background:
                           "linear-gradient(93deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.50) 100%)",
@@ -108,23 +102,20 @@ function Footer() {
                         padding: "10px 20px",
 
                         display: "inline-flex",
-                      }}
-                    >
+                      }}>
                       <div
-                        style={{ width: 32, height: 32, position: "relative" }}
-                      >
-                        <img src={images.RocketLaunch2} alt="" />
+                        style={{ width: 32, height: 32, position: "relative" }}>
+                        <img src={images.RocketLaunch2} alt='' />
                       </div>
                       <div
-                        className="text-[20px] "
+                        className='text-[20px] '
                         style={{
                           color: "#383A42",
 
                           fontFamily: "Satoshi",
                           fontWeight: "700",
                           wordWrap: "break-word",
-                        }}
-                      >
+                        }}>
                         <UserLogin
                           text={"Launch Campaign"}
                           fontWeight={700}
@@ -133,10 +124,10 @@ function Footer() {
                       </div>
                     </div>
                   </div>
-                  <div className="desktop:hidden">
+                  <div className='desktop:hidden'>
                     <Link
-                      to="/Home/Login"
-                      className="px-3 gap-[10px] max-tablet:gap-[0px] w-full h-full"
+                      to='/Home/Login'
+                      className='px-3 gap-[10px] max-tablet:gap-[0px] w-full h-full'
                       style={{
                         background:
                           "linear-gradient(93deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.50) 100%)",
@@ -147,23 +138,20 @@ function Footer() {
                         alignItems: "center",
 
                         display: "inline-flex",
-                      }}
-                    >
+                      }}>
                       <div
-                        style={{ width: 32, height: 32, position: "relative" }}
-                      >
-                        <img src={images.RocketLaunch2} alt="" />
+                        style={{ width: 32, height: 32, position: "relative" }}>
+                        <img src={images.RocketLaunch2} alt='' />
                       </div>
                       <div
-                        className="text-[20px] max-tablet:text-[16px] max-tablet:p-[16px] max-tablet:pl-[10px] "
+                        className='text-[20px] max-tablet:text-[16px] max-tablet:p-[16px] max-tablet:pl-[10px] '
                         style={{
                           color: "#383A42",
 
                           fontFamily: "Satoshi",
                           fontWeight: "700",
                           wordWrap: "break-word",
-                        }}
-                      >
+                        }}>
                         Launch a Campaign
                       </div>
                     </Link>
@@ -174,15 +162,15 @@ function Footer() {
           </div>
         </div>
 
-        <div className="flex justify-between max-desktop:flex-wrap max-tablet:justify-start desktop:max-w-[1628px] desktop:m-auto">
-          <div className="w-[30%] max-desktop:w-[100%] max-desktop:mb-[48px] max-tablet:mb-[20px] max-tablet:w-[100%]">
+        <div className='flex justify-between max-desktop:flex-wrap max-tablet:justify-start desktop:max-w-[1628px] desktop:m-auto'>
+          <div className='w-[30%] max-desktop:w-[100%] max-desktop:mb-[48px] max-tablet:mb-[20px] max-tablet:w-[100%]'>
             <img
-              className="desktop:w-[118px] pb-[16px]"
+              className='desktop:w-[118px] pb-[16px]'
               src={images.FooterLogo}
-              alt=""
+              alt=''
             />
             <p
-              className="desktop:w-[79%] desktop:text-[16px] max-tablet:text-[14px] max-desktop:w-[59%] max-tablet:w-[100%]"
+              className='desktop:w-[79%] desktop:text-[16px] max-tablet:text-[14px] max-desktop:w-[59%] max-tablet:w-[100%]'
               style={{
                 color: "white",
 
@@ -190,242 +178,230 @@ function Footer() {
                 fontWeight: "500",
                 textTransform: "capitalize",
                 wordWrap: "break-word",
-              }}
-            >
-              FairSeed Technology Foundation is India's first Education focused & technology based online crowdfunding platform dedicated to revolutionizing the way education is funded and accessible. Our mission is to bridge the financial gap in education by connecting passionate learners, educators, and educational institutions with a global community of generous donors and supporters.
+              }}>
+              FairSeed Technology Foundation is India's first Education focused
+              & technology based online crowdfunding platform dedicated to
+              revolutionizing the way education is funded and accessible. Our
+              mission is to bridge the financial gap in education by connecting
+              passionate learners, educators, and educational institutions with
+              a global community of generous donors and supporters.
             </p>
           </div>
-          <div className="w-[15%] max-desktop:w-[35%] max-tablet:w-[50%]">
+          <div className='w-[15%] max-desktop:w-[35%] max-tablet:w-[50%]'>
             <Link
-              className="text-white font-bold"
+              className='text-white font-bold'
               style={{
                 fontSize: "1rem",
                 fontFamily: "Satoshi",
                 fontWeight: "700",
-              }}
-            >
+              }}>
               Contact Us
             </Link>
-            <ul className="mt-3 pr-2">
+            <ul className='mt-3 pr-2'>
               <li>
                 <Link
-                  className="text-white/80"
+                  className='text-white/80'
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="#"
-                >
-                  Have questions or need assistance? Our dedicated support
-                  team is here to help. Reach out to us at:
+                  to='#'>
+                  Have questions or need assistance? Our dedicated support team
+                  is here to help. Reach out to us at:
                 </Link>
               </li>
-              <li className="mt-2">
+              <li className='mt-2'>
                 <Link
-                  to="#"
+                  to='#'
                   onClick={(e) => {
                     window.location.href = "mailto:info@fairseed.org";
                     e.preventDefault();
                   }}
-                  className="text-white/80"
+                  className='text-white/80'
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
-                    background: ""
+                    background: "",
                     //   "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
                     // "-webkit-background-clip": "text",
                     // "-webkit-text-fill-color": "transparent",
                     // "font-family": "Satoshi",
-                  }}
-                >
+                  }}>
                   info@fairseed.org
                 </Link>
               </li>
-              <li className="mt-2">
+              <li className='mt-2'>
                 <Link
-                  className="text-white/80"
+                  className='text-white/80'
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="tel:+918421061921"
-                >
+                  to='tel:+918421061921'>
                   +91-8421061921
                 </Link>
               </li>
             </ul>
           </div>
-          <div className="w-[11%] max-desktop:w-[27%] max-desktop:mb-[48px] max-tablet:w-[36%] max-tablet:mb-[12px]">
+          <div className='w-[11%] max-desktop:w-[27%] max-desktop:mb-[48px] max-tablet:w-[36%] max-tablet:mb-[12px]'>
             <Link
-              className="text-white font-bold"
+              className='text-white font-bold'
               style={{
                 fontSize: "1rem",
                 fontFamily: "Satoshi",
                 fontWeight: "700",
-              }}
-            >
+              }}>
               Explore FairSeed
             </Link>
-            <ul className="mt-3">
+            <ul className='mt-3'>
               <li>
                 <Link
-                  className="text-white/80"
+                  className='text-white/80'
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="/Home/Terms-of-use"
-                >
+                  to='/Home/Terms-of-use'>
                   Terms of use
                 </Link>
               </li>
               <li>
                 <Link
-                  className="text-white/80"
+                  className='text-white/80'
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="/Home/Privacy-Policy"
-                >
+                  to='/Home/Privacy-Policy'>
                   Privacy Policy
                 </Link>
               </li>
               <li>
                 <Link
-                  className="text-white/80"
+                  className='text-white/80'
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="/Home/Cookie-Policy"
-                >
+                  to='/Home/Cookie-Policy'>
                   Cookie Policy
                 </Link>
               </li>
               <li>
                 <Link
-                  className="text-white/80"
+                  className='text-white/80'
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="/Home/pricing-refund"
-                >
+                  to='/Home/pricing-refund'>
                   Pricing & Refund Policy
                 </Link>
               </li>
               <li>
                 <Link
-                  className="text-white/80"
+                  className='text-white/80'
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="/Home/FAQ's"
-                >
+                  to="/Home/FAQ's">
                   FAQ's
                 </Link>
               </li>
               <li>
                 <Link
-                  className="text-white/80"
+                  className='text-white/80'
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="/Home/Disclaimer"
-                >
+                  to='/Home/Disclaimer'>
                   Disclaimer
                 </Link>
               </li>
             </ul>
           </div>
 
-          <div className="w-[17%] max-desktop:w-[38%] max-tablet:mt-1 max-tablet:w-[90%] max-tablet:mb-[20px]">
+          <div className='w-[17%] max-desktop:w-[38%] max-tablet:mt-1 max-tablet:w-[90%] max-tablet:mb-[20px]'>
             <Link
-              className="text-white font-bold"
+              className='text-white font-bold'
               style={{
                 fontSize: "1rem",
                 fontFamily: "Satoshi",
                 fontWeight: "700",
-              }}
-            >
+              }}>
               FairSeed Community
             </Link>
-            <ul className="mt-3">
+            <ul className='mt-3'>
               <li>
                 <Link
-                  className="text-white/80"
+                  className='text-white/80'
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="/Home/Founders"
-                >
+                  to='/Home/Founders'>
                   Founders
                 </Link>
               </li>
               <li>
                 <Link
-                  className="text-white/80"
+                  className='text-white/80'
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="/Home/Our-Team"
-                >
+                  to='/Home/Our-Team'>
                   Our Team
                 </Link>
               </li>
               <li>
                 <Link
-                  className="text-white/80"
+                  className='text-white/80'
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="/Home/Our-Aspirations"
-                >
+                  to='/Home/Our-Aspirations'>
                   Our Aspirations
                 </Link>
               </li>
             </ul>
           </div>
 
-          <div className="flex justify-end w-[24.5%] max-desktop:w-[54%] max-tablet:w-full">
-            <div className="w-full ">
+          <div className='flex justify-end w-[24.5%] max-desktop:w-[54%] max-tablet:w-full'>
+            <div className='w-full '>
               <Link
-                className="text-white  font-bold"
+                className='text-white  font-bold'
                 style={{
                   fontSize: "1rem",
                   fontFamily: "Satoshi",
                   fontWeight: "700",
-                }}
-              >
+                }}>
                 Newsletter
               </Link>
-              <div className="flex mt-3 flex-row rounded-lg w-full h-[48px]">
+              <div className='flex mt-3 flex-row rounded-lg w-full h-[48px]'>
                 <input
-                  className="text-[15px] pl-4 w-full"
-                  aria-label="Demo input"
+                  className='text-[15px] pl-4 w-full'
+                  aria-label='Demo input'
                   multiline={"true"}
-                  placeholder="Enter your email"
+                  placeholder='Enter your email'
                 />
                 <div
-                  className="max-w-[122px] w-full"
+                  className='max-w-[122px] w-full'
                   style={{
                     paddingLeft: 24,
                     paddingRight: 24,
@@ -436,8 +412,7 @@ function Footer() {
                     alignItems: "center",
                     gap: 10,
                     display: "inline-flex",
-                  }}
-                >
+                  }}>
                   <button
                     style={{
                       color: "white",
@@ -447,73 +422,69 @@ function Footer() {
                       textTransform: "capitalize",
                       wordWrap: "break-word",
                     }}
-                    className="pt-2"
-                  >
+                    className='pt-2'>
                     Subscribe
                   </button>
                 </div>
               </div>
               <p
-                className="text-white/80 mt-2 w-full text-[14px]"
+                className='text-white/80 mt-2 w-full text-[14px]'
                 style={{
                   fontFamily: "Satoshi",
                   fontWeight: "400",
                   textTransform: "capitalize",
-                }}
-              >
+                }}>
                 Your email is safe with us, we don’t spam.
               </p>
 
               <p
-                className="text-white mt-8 font-bold"
+                className='text-white mt-8 font-bold'
                 style={{
                   fontSize: "1rem",
                   fontFamily: "Satoshi",
                   fontWeight: "700",
-                }}
-              >
+                }}>
                 Follow Us
               </p>
-              <div className="flex mt-2 flex-row">
+              <div className='flex mt-2 flex-row'>
                 <Link
-                  className="text-white/80 text-3xl"
+                  className='text-white/80 text-3xl'
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="https://twitter.com/FairSeedTech"
-                  target="_blank"
-                >
+                  to='https://twitter.com/FairSeedTech'
+                  target='_blank'>
                   <img src={icons.FooterIconTw} />
                 </Link>
                 <Link
-                  className="text-white/80 ml-3 text-2xl"
+                  className='text-white/80 ml-3 text-2xl'
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="https://www.instagram.com/fairseedtechfoundation/"
-                  target="_blank"
-                >
+                  to='https://www.instagram.com/fairseedtechfoundation/'
+                  target='_blank'>
                   <img src={icons.FooterIconIn} />
                 </Link>
-                <Link to="https://www.facebook.com/profile.php?id=61550906075110" target="_blank">
-                  <div className="w-[33px] h-[32px] flex justify-center items-center bg-[#D9F5EE] rounded-full ml-3  ">
+                <Link
+                  to='https://www.facebook.com/profile.php?id=61550906075110'
+                  target='_blank'>
+                  <div className='w-[33px] h-[32px] flex justify-center items-center bg-[#D9F5EE] rounded-full ml-3  '>
                     <FaFacebookF size={22} />
                   </div>
                 </Link>
                 <Link
-                  className="text-white/80 ml-3 text-3xl"
+                  className='text-white/80 ml-3 text-3xl'
                   style={{
                     fontFamily: "Satoshi",
                     fontWeight: "400",
                     textTransform: "capitalize",
                   }}
-                  to="#"
-                  target="_blank"
-                >
+                  to='#'
+                  target='_blank'>
                   <img src={icons.FooterIconYo} />
                 </Link>
               </div>
@@ -522,17 +493,20 @@ function Footer() {
         </div>
 
         <div>
-          <hr className="text-white/50 pb-2"></hr>
-          <div className="flex justify-between items-center">
-            <p className="text-white/40 text-1xl max-tablet:text-center">
+          <hr className='text-white/50 pb-2'></hr>
+          <div className='flex justify-between items-center'>
+            <p className='text-white/40 text-1xl max-tablet:text-center'>
               Copyright © Fairseed 2023
             </p>
-            <p className="text-white/40 text-1xl max-tablet:text-center">
-              Crafted at <a href="https://lowcosys.com">lowcosys.com </a>
+            <p className='text-white/40 text-1xl max-tablet:text-center'>
+              Crafted at{" "}
+              <a href='https://lowcosys.com' target='_blank'>
+                lowcosys.com{" "}
+              </a>
             </p>
           </div>
         </div>
-      </div >
+      </div>
     </>
   );
 }
