@@ -23,6 +23,8 @@ import { useCreateOrUpdate } from "../../../Hooks";
 import InputAdminField from "../../../components/inputs/InputAdminField/Index";
 import { FaCopy } from "react-icons/fa";
 import Attachments from "../../../components/layout/Attachments/Index";
+import { Helmet } from "react-helmet";
+
 import {
   EmailIcon,
   EmailShareButton,
@@ -66,13 +68,11 @@ function CurrentCampaign({ goalAmount, fundRaised, onClose }) {
   const desc = truncateText(nhtmlStory, 200);
   const campaignTitle = cardDetails?.title || "Support a Campaign";
   const currentPageUrl = window.location.href;
+  const image = `${process.env.REACT_APP_BE_BASE_URL}${cardDetails?.campaign_image}`;
 
   const Share_title = `📚 ${campaignTitle}! 📚\n\n"${desc}"\n\nEducate and Empower someone in need at FairSeed.   Donate now! 🌟\n\nRead more and support the cause: `;
 
-  // const Share_title = "Donate For Good";
-  // const currentPageUrl = window.location.href;
-  // const media = `${process.env.REACT_APP_BE_BASE_URL}${cardDetails?.campaign_image}`;
-
+  console.log(cardDetails, "<======cardDetails", window.location.href);
   const { user, isLogin } = useContext(AuthContext);
   const user_id = user?.id;
 
@@ -126,7 +126,18 @@ function CurrentCampaign({ goalAmount, fundRaised, onClose }) {
   return (
     <>
       <Navbar />
-
+      <Helmet>
+        <title>{`${Share_title} - Fairseed`}</title>
+        <meta property='og:title' content={`${campaignTitle} - Fairseed`} />
+        <meta property='og:description' content={desc} />
+        <meta property='og:image' content={image} />
+        <meta property='og:url' content={currentPageUrl} />
+        <meta property='og:type' content='website' />
+        <meta name='twitter:card' content='summary_large_image' />
+        <meta name='twitter:title' content={`${Share_title} - Fairseed`} />
+        <meta name='twitter:description' content={desc} />
+        <meta name='twitter:image' content={image} />
+      </Helmet>
       <div
         className='px-[52px] gap-[48px] max-tablet:gap-[28px] pt-[100px] max-desktop:w-full max-desktop:px-[28px] max-desktop:place-content-center max-tablet:px-[16px]'
         style={{
