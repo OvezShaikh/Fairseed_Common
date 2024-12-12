@@ -65,6 +65,9 @@ function Home() {
       case "Trending":
         setTabName("trending");
         break;
+      case "Completed":
+        setTabName("completed");
+        break;
       default:
         setTabName("");
     }
@@ -174,8 +177,10 @@ function Home() {
         <div className='w-full flex-wrap flex flex-col items-center mx-10'>
           <h1
             className='font-extrabold pb-[24px] desktop:text-[3rem] max-desktop:text-[2.25rem] max-tablet:text-[1.5rem] max-tablet:pb-[20px]'
-            style={{ fontFamily: "Satoshi" }}>
-            Ongoing Campaigns
+            style={{
+              fontFamily: "Satoshi",
+            }}>
+            Campaigns: Ongoing & Completed
           </h1>
           <div className='flex flex-col  text-center text-black/100 mb-[64px] max-tablet:mb-[52px]'>
             <Link
