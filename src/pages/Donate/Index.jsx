@@ -145,7 +145,7 @@ function Index({ goalAmount, fundRaised }) {
       onError: (response) => {
         const message =
           response?.response?.data?.message || "An error occurred";
-        toast.error(`${message} errors`, { position: "top-right" });
+        toast.info(`${message}`, { position: "top-right" });
       },
     });
   };
