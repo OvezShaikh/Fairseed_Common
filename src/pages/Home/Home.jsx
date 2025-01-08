@@ -65,6 +65,9 @@ function Home() {
       case "Trending":
         setTabName("trending");
         break;
+      case "Completed":
+        setTabName("completed");
+        break;
       default:
         setTabName("");
     }
@@ -175,29 +178,43 @@ function Home() {
           <h1
             className='font-extrabold pb-[24px] desktop:text-[3rem] max-desktop:text-[2.25rem] max-tablet:text-[1.5rem] max-tablet:pb-[20px]'
             style={{ fontFamily: "Satoshi" }}>
-            Ongoing Campaigns
+            Campaigns: Ongoing & Completed
           </h1>
-          <div className='flex flex-col  text-center text-black/100 mb-[64px] max-tablet:mb-[52px]'>
-            <Link
-              to='/Home/OnGoingCampaigns'
+          <div
+            className='flex flex-col items-center text-center font-[1.5rem] mb-[64px] max-tablet:mb-[52px]'
+            style={{ fontFamily: "Satoshi", fontWeight: "500" }}>
+            <p
+              className='max-tablet:text-[1rem] max-desktop:text-[1.25rem]'
               style={{
-                width: "100%",
-                textAlign: "center",
                 fontSize: "1.5rem",
-                fontFamily: "Satoshi",
-                fontWeight: "500",
                 wordWrap: "break-word",
-                background:
-                  "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
-                "-webkit-background-clip": "text",
-                "-webkit-text-fill-color": "transparent",
-                textDecoration: "underline",
-                position: "relative",
+                textAlign: "center",
               }}>
-              <p className='gradient-button mb-0 underline max-tablet:text-[1rem]'>
-                See all {campaignCount} active campaigns
-              </p>
-            </Link>
+              See all{" "}
+              <Link
+                to='/Home/OnGoingCampaigns'
+                style={{
+                  background:
+                    "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  textDecoration: "underline",
+                }}>
+                active campaigns
+              </Link>{" "}
+              or{" "}
+              <Link
+                to='/Home/Successful-campaign'
+                style={{
+                  background:
+                    "linear-gradient(to right, #FF9F0A 0%, #FF375F 62.9%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  textDecoration: "underline",
+                }}>
+                completed campaigns
+              </Link>
+            </p>
           </div>
         </div>
       </div>

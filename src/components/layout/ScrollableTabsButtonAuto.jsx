@@ -11,6 +11,7 @@ import {
   PiMosqueDuotone,
   PiAlarmDuotone,
   PiHeartDuotone,
+  PiCheckCircle,
 } from "react-icons/pi";
 import { RiErrorWarningLine } from "react-icons/ri";
 
@@ -44,8 +45,7 @@ export default function ScrollableTabsButtonForce({
             display: "none",
           },
         "& .css-ptiqhd-MuiSvgIcon-root": { width: 32, height: 32 },
-      }}
-    >
+      }}>
       <Tabs
         value={value}
         sx={{
@@ -63,12 +63,11 @@ export default function ScrollableTabsButtonForce({
           fontSize: "1.2rem !important",
         }}
         onChange={handleChange}
-        variant="scrollable"
+        variant='scrollable'
         scrollButtons
-        indicatorColor="transparent"
+        indicatorColor='transparent'
         allowScrollButtonsMobile
-        aria-label="scrollable force tabs example"
-      >
+        aria-label='scrollable force tabs example'>
         <Tab
           style={{
             color: "var(--cool-grey-cool-grey-10, #383A42)",
@@ -82,7 +81,7 @@ export default function ScrollableTabsButtonForce({
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <RiErrorWarningLine
                 style={{ color: "red" }}
-                className="icon pr-2 w-8 h-8"
+                className='icon pr-2 w-8 h-8'
               />
               Newly Added
             </Box>
@@ -102,7 +101,7 @@ export default function ScrollableTabsButtonForce({
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <PiHandCoinsDuotone
                 style={{ color: "red" }}
-                className="icon pr-2 w-7 h-7"
+                className='icon pr-2 w-7 h-7'
               />
               Most Supported
             </Box>
@@ -122,7 +121,7 @@ export default function ScrollableTabsButtonForce({
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <PiHeartDuotone
                 style={{ color: "red" }}
-                className="icon pr-2 w-7 h-7"
+                className='icon pr-2 w-7 h-7'
               />
               Needs Love
             </Box>
@@ -142,7 +141,7 @@ export default function ScrollableTabsButtonForce({
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <PiAlarmDuotone
                 style={{ color: "red" }}
-                className="icon pr-2 w-7 h-7"
+                className='icon pr-2 w-7 h-7'
               />
               Expiring Soon
             </Box>
@@ -163,9 +162,29 @@ export default function ScrollableTabsButtonForce({
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <PiTrendUpDuotone
                 style={{ color: "red" }}
-                className="icon pr-2 w-7 h-7"
+                className='icon pr-2 w-7 h-7'
               />
               Trending
+            </Box>
+          }
+        />
+        <Tab
+          style={{
+            color: "var(--cool-grey-cool-grey-10, #383A42)",
+            borderRadius: "var(--Spacing-24, 50px)",
+            border: "1.5px solid rgb(248, 85, 85)",
+            marginLeft: "12px",
+            fontFamily: "Satoshi",
+            fontSize: "1.1rem",
+            fontStyle: "normal",
+          }}
+          label={
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <PiCheckCircle
+                style={{ color: "red" }}
+                className='icon pr-2 w-7 h-7'
+              />
+              Completed
             </Box>
           }
         />
