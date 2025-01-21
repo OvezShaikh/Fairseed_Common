@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { useCreateOrUpdate, useGetAll } from "../../../Hooks";
 import { Button } from "@mui/material";
 import SelectField from "../../inputs/AdminSelectField/Index";
+import * as yup from "yup";
 
 const initialValues = {};
 
@@ -58,6 +59,11 @@ function View() {
     method: "put",
   });
 
+  const formValidations = yup.object().shape({
+    withdrawal_date: yup.string().required("Date is required"),
+    amount: yup.string().required("Amount is required"),
+  });
+
   const handleSubmit = (values) => {
     const formData = new FormData();
     formData.append("id", values?.id);
@@ -89,6 +95,7 @@ function View() {
     <Formik
       enableReinitialize={true}
       initialValues={initialValues}
+      validationSchema={formValidations}
       onSubmit={(values) => handleSubmit(values)}>
       {({ values, setFieldValue }) => (
         <Form className='flex flex-col items-center '>
@@ -117,6 +124,7 @@ function View() {
                 .
                 <InputField
                   name={"amount"}
+                  required={true}
                   placeholder={"Add Amount"}
                   label={"Amount:"}
                 />
@@ -137,6 +145,7 @@ function View() {
                 <InputField
                   name={"withdrawal_date"}
                   type={"date"}
+                  required={true}
                   placeholder={"Placeholder Text"}
                   label={"Payment Date:    "}
                 />
