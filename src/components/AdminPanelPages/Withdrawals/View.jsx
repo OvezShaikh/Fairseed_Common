@@ -335,13 +335,6 @@ function View() {
                     Reject
                   </h1>
                 </PrimaryButton>
-                <Button
-                  onClick={() => navigate(-1)}
-                  className='w-[69px] content-stretch h-[32px] bg-[#F7F7F7]'>
-                  <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>
-                    Go Back
-                  </h1>
-                </Button>
               </>
             ) : (
               <SuccessButton type='submit' text={"save"} />
