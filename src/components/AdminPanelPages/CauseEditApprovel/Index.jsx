@@ -23,8 +23,7 @@ import { ImageCropper } from "../../inputs/ImageCropper/ImageCropper";
 import { ImagePreviewDialog } from "../../inputs/PreviewImage/PreviewImage";
 import DropZone from "../../inputs/ImageCropper/CropDrop";
 
-function 
-CauseEdit_Form() {
+function CauseEdit_Form() {
   let { state } = useLocation();
   let { id } = state;
   const navigate = useNavigate();
@@ -34,11 +33,10 @@ CauseEdit_Form() {
   const [srcImg, setSrcImg] = useState("");
   const [openCrop, setOpenCrop] = useState(false);
 
-
   const handleDocumentUpload = (documentUrl) => {
     setDocuments([...documents, documentUrl]);
   };
-  
+
   useEffect(() => {
     refetch();
     refetchCategories();
@@ -100,7 +98,7 @@ CauseEdit_Form() {
     title: user?.title || "",
     goal_amount: user?.goal_amount || "",
     location: user?.location || "",
-    category: user?.category || " ",
+    category: user?.category || "",
     is_featured: user?.is_featured || false,
     summary: user?.summary || "",
     zakat_eligible: user?.zakat_eligible || false,
@@ -108,8 +106,8 @@ CauseEdit_Form() {
     status: user?.status || "",
     story: user?.story || "",
     documents: user?.documents || [],
-    notes:user?.notes || "",
-    created_on:user?.created_on || ""
+    notes: user?.notes || "",
+    created_on: user?.created_on || "",
   };
 
   if (!isSuccess) {
@@ -132,13 +130,13 @@ CauseEdit_Form() {
     formData.append("notes", values?.notes || user?.notes);
     formData.append("is_featured", values?.is_featured || user?.is_featured);
     formData.append("zakat_eligible", values?.zakat_eligible);
-    if (Array.isArray(values?.documents)){
+    if (Array.isArray(values?.documents)) {
       for (let i = 0; i < values.documents.length; i++) {
-      formData.append("documents", values?.documents[i]);
+        formData.append("documents", values?.documents[i]);
+      }
+    } else {
+      formData.append("documents", values?.documents);
     }
-  }else{
-    formData.append("documents", values?.documents);
-  }
 
     mutate(formData, {
       onSuccess: (response) => {
@@ -154,15 +152,14 @@ CauseEdit_Form() {
     <Formik
       initialValues={initial_values}
       enableReinitialize={true}
-      onSubmit={(values) => handleSubmit(values)}
-    >
+      onSubmit={(values) => handleSubmit(values)}>
       {({ values, setFieldValue, handleChange }) => (
-        <Form className="flex flex-col items-center max-tablet:pt-8 max-desktop:pt-4">
-          <div className="flex w-[100%] mt-2 gap-14 max-tablet:flex-col max-desktop:flex-col">
-            <div className="flex flex-col w-[70%] max-tablet:w-[100%] max-desktop:w-[100%] gap-2 items-center">
-              <div className="desktop:py-[80px] max-desktop:py-[53px] p-0 max-tablet:w-full ">
+        <Form className='flex flex-col items-center max-tablet:pt-8 max-desktop:pt-4'>
+          <div className='flex w-[100%] mt-2 gap-14 max-tablet:flex-col max-desktop:flex-col'>
+            <div className='flex flex-col w-[70%] max-tablet:w-[100%] max-desktop:w-[100%] gap-2 items-center'>
+              <div className='desktop:py-[80px] max-desktop:py-[53px] p-0 max-tablet:w-full '>
                 <DropZone
-                  name="campaign_image"
+                  name='campaign_image'
                   onChange={onChange}
                   initialPreview={srcImg}
                 />
@@ -180,7 +177,7 @@ CauseEdit_Form() {
                 {srcImg && <ImagePreviewDialog croppedImage={srcImg} />}
               </div>
 
-              <div className="w-full">
+              <div className='w-full'>
                 <InputField
                   value={values?.title}
                   onChange={handleChange}
@@ -194,14 +191,14 @@ CauseEdit_Form() {
               <SelectField
                 name={"category"}
                 required={true}
-                label="Choose a Category:"
+                label='Choose a Category:'
                 getOptionLabel={(item) => {
                   return item?.name;
                 }}
                 value={values?.category}
                 options={Categories}
               />
-              <div className="w-full">
+              <div className='w-full'>
                 <InputField
                   type={"number"}
                   onChange={handleChange}
@@ -212,7 +209,7 @@ CauseEdit_Form() {
                 />
               </div>
 
-              <div className="w-full">
+              <div className='w-full'>
                 <InputField
                   onChange={handleChange}
                   value={values?.location}
@@ -220,9 +217,9 @@ CauseEdit_Form() {
                   label={"Location:"}
                 />
               </div>
-              <div className="w-full">
+              <div className='w-full'>
                 <FormLabel
-                  className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
+                  className='font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]'
                   style={{
                     padding: "4px 8px 8px 8px",
                     color: colors.text.main,
@@ -230,23 +227,22 @@ CauseEdit_Form() {
                     fontFamily: "satoshi",
                     fontStyle: "normal",
                     fontSize: "1rem",
-                  }}
-                >
+                  }}>
                   About the Campaign:
-                  <span className="text-red-600">*</span>
+                  <span className='text-red-600'>*</span>
                 </FormLabel>
 
-                <div className="h-[200px] summary-div">
+                <div className='h-[200px] summary-div'>
                   <ReactQuilTextField
-                    theme="snow"
-                    name="story"
+                    theme='snow'
+                    name='story'
                     value={values?.story}
                     onChange={(value) => setFieldValue("story", value)}
                   />
                 </div>
               </div>
 
-              <div className="w-full mt-5 max-tablet:pt-10 max-desktop:pt-5">
+              <div className='w-full mt-5 max-tablet:pt-10 max-desktop:pt-5'>
                 <InputField
                   onChange={handleChange}
                   value={values?.summary}
@@ -257,7 +253,7 @@ CauseEdit_Form() {
                   info
                   CustomInfoIcon={
                     <ErrorIcon
-                      className="ms-1"
+                      className='ms-1'
                       style={{
                         color: "red",
                         cursor: "pointer",
@@ -267,13 +263,13 @@ CauseEdit_Form() {
                   }
                   infoText={"Please be careful while adding AD Path."}
                   rows={5}
-                  placeholder="Placeholder text"
+                  placeholder='Placeholder text'
                 />
               </div>
 
-              <div className="w-full flex flex-col">
+              <div className='w-full flex flex-col'>
                 <FormLabel
-                  className="font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]"
+                  className='font-medium d-flex align-items-center desktop:text-[20px] max-desktop:text-[16px]'
                   style={{
                     padding: "4px 8px 16px 8px",
                     color: colors.text.main,
@@ -281,41 +277,39 @@ CauseEdit_Form() {
                     fontFamily: "satoshi",
                     fontStyle: "normal",
                     height: "18px",
-                  }}
-                >
+                  }}>
                   Attachments:
-                  <span className="text-red-600">*</span>
+                  <span className='text-red-600'>*</span>
                 </FormLabel>
-{/* <==================================================================================> changed it acooding to single and multilple docs handeling  */} 
-                <div className="flex gap-4 max-tablet:flex-col">
-                {Array.isArray(values?.documents) 
-                      ? values?.documents?.map((imageUrl, index) => {
-                          const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl?.doc_file}`;
-                          return (
-                            <Attachments
-                              key={index}
-                              id={imageUrl?.id}
-                              imageUrl={documentLink}
-                            />
-                          );
-                        })
-                      : (() => {
-                          const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${values?.documents?.doc_file}`;
-                          return (
-                            <Attachments
-                              key={values?.documents?.id}
-                              id={values?.documents?.id}
-                              imageUrl={documentLink}
-                            />
-                          );
-                        })()
-                    }
+                {/* <==================================================================================> changed it acooding to single and multilple docs handeling  */}
+                <div className='flex gap-4 max-tablet:flex-col'>
+                  {Array.isArray(values?.documents)
+                    ? values?.documents?.map((imageUrl, index) => {
+                        const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${imageUrl?.doc_file}`;
+                        return (
+                          <Attachments
+                            key={index}
+                            id={imageUrl?.id}
+                            imageUrl={documentLink}
+                          />
+                        );
+                      })
+                    : (() => {
+                        const documentLink = `${process.env.REACT_APP_BE_BASE_URL}${values?.documents?.doc_file}`;
+                        return (
+                          <Attachments
+                            key={values?.documents?.id}
+                            id={values?.documents?.id}
+                            imageUrl={documentLink}
+                          />
+                        );
+                      })()}
                 </div>
               </div>
-{/* <==================================================================================> */}
+              {/* <==================================================================================> */}
 
-              <div className="flex max-tablet:flex-col  w-[100%] gap-4">
-                <div className="w-[50%] max-tablet:w-full pt-1.5">
+              <div className='flex max-tablet:flex-col  w-[100%] gap-4'>
+                <div className='w-[50%] max-tablet:w-full pt-1.5'>
                   <InputField
                     value={values?.end_date}
                     type={"date"}
@@ -325,20 +319,20 @@ CauseEdit_Form() {
                   />
                 </div>
 
-                <div className="w-[50%] max-tablet:w-full document-upload-div">
+                <div className='w-[50%] max-tablet:w-full document-upload-div'>
                   <UploadField
-                    label="Upload Attachment:"
+                    label='Upload Attachment:'
                     onDocumentUpload={handleDocumentUpload}
-                    name="documents"
-                    placeholder="Upload marksheets, Medical records, Fees Structure etc."
+                    name='documents'
+                    placeholder='Upload marksheets, Medical records, Fees Structure etc.'
                     sx={{ padding: "20px" }}
                     multiple={true}
                     onChange={(value) => setFieldValue("document", value)}
                   />
                 </div>
               </div>
-              <div className="flex w-[100%] max-tablet:flex-col gap-4">
-                <div className="w-[50%] max-tablet:w-full">
+              <div className='flex w-[100%] max-tablet:flex-col gap-4'>
+                <div className='w-[50%] max-tablet:w-full'>
                   <SelectField
                     value={values?.status}
                     name={"status"}
@@ -353,9 +347,9 @@ CauseEdit_Form() {
                   />
                 </div>
 
-                <div className="w-[50%] pt-3 max-desktop:w-[46%] max-tablet:w-[100%]">
+                <div className='w-[50%] pt-3 max-desktop:w-[46%] max-tablet:w-[100%]'>
                   <FormLabel
-                    className="text-capitalize  font-medium d-flex align-items-center"
+                    className='text-capitalize  font-medium d-flex align-items-center'
                     style={{
                       padding: "4px 8px 8px 8px",
                       color: colors.text.main,
@@ -364,10 +358,9 @@ CauseEdit_Form() {
                       fontFamily: "satoshi",
                       fontStyle: "normal",
                       height: "22px",
-                    }}
-                  >
+                    }}>
                     Is the Campaign Zakat eligible?
-                    <span className="text-red-600">*</span>
+                    <span className='text-red-600'>*</span>
                   </FormLabel>
                   <CheckBox
                     sx={{
@@ -376,13 +369,13 @@ CauseEdit_Form() {
                         color: red[500],
                       },
                     }}
-                    name="zakat_eligible"
+                    name='zakat_eligible'
                     checked={values?.zakat_eligible}
                     label={"Yes"}
                   />
                 </div>
               </div>
-              <div className="w-full ">
+              <div className='w-full '>
                 <InputField
                   onChange={handleChange}
                   name={"notes"}
@@ -392,26 +385,26 @@ CauseEdit_Form() {
                   rows={5}
                 />
               </div>
-              <div className="flex max-tablet:flex-col  w-[100%] gap-4">
-                <div className="w-[50%] max-tablet:w-full pt-1.5">
-                <RadioGroup
-                  name={"is_featured"}
-                  type="radio"
-                  sx={{ flexDirection: "column" }}
-                  onChange={(e) => {
-                    setFieldValue("is_featured", e === "true");
-                  }}
-                  options={[
-                    { label: "On", value: true },
-                    { label: "Off", value: false },
-                  ]}
-                  value={values?.is_featured}
-                  label="Featured:"
-                  style={{ fontSize: "18px", fontWeight: 500 }}
-                />
+              <div className='flex max-tablet:flex-col  w-[100%] gap-4'>
+                <div className='w-[50%] max-tablet:w-full pt-1.5'>
+                  <RadioGroup
+                    name={"is_featured"}
+                    type='radio'
+                    sx={{ flexDirection: "column" }}
+                    onChange={(e) => {
+                      setFieldValue("is_featured", e === "true");
+                    }}
+                    options={[
+                      { label: "On", value: true },
+                      { label: "Off", value: false },
+                    ]}
+                    value={values?.is_featured}
+                    label='Featured:'
+                    style={{ fontSize: "18px", fontWeight: 500 }}
+                  />
                 </div>
 
-                <div className="w-[50%] max-tablet:w-full document-upload-div">
+                <div className='w-[50%] max-tablet:w-full document-upload-div'>
                   <InputField
                     value={values?.created_on}
                     type={"date"}
@@ -422,7 +415,7 @@ CauseEdit_Form() {
                 </div>
               </div>
             </div>
-            <div className="w-[30%] max-tablet:w-[100%] max-desktop:w-[100%] flex flex-col  items-center max-desktop:items-center  gap-8">
+            <div className='w-[30%] max-tablet:w-[100%] max-desktop:w-[100%] flex flex-col  items-center max-desktop:items-center  gap-8'>
               <ImageEditor
                 sx={{ maxWidth: "400px", minHeight: "400px" }}
                 dataUrl={srcImg}
@@ -430,7 +423,7 @@ CauseEdit_Form() {
 
               <Link to={"Revision-History"} state={{ id: user?.id }}>
                 <PrimaryButton sx={{ borderRadius: "12px", width: "100%" }}>
-                  <h1 className="text-white font-medium py-2.5 text-[18px] font-[satoshi]">
+                  <h1 className='text-white font-medium py-2.5 text-[18px] font-[satoshi]'>
                     View Revision History
                   </h1>
                 </PrimaryButton>
@@ -438,13 +431,12 @@ CauseEdit_Form() {
             </div>
           </div>
 
-          <div className="flex gap-3 max-tablet:flex-col  max-tablet:items-center pt-5">
+          <div className='flex gap-3 max-tablet:flex-col  max-tablet:items-center pt-5'>
             <button
-              type="button"
+              type='button'
               onClick={() => navigate(-1)}
-              className="w-[69px] content-stretch h-[32px] bg-[#F7F7F7]"
-            >
-              <h1 className="text-[#000000] font-medium text-[14px] font-[satoshi]">
+              className='w-[69px] content-stretch h-[32px] bg-[#F7F7F7]'>
+              <h1 className='text-[#000000] font-medium text-[14px] font-[satoshi]'>
                 Cancel
               </h1>
             </button>
@@ -453,9 +445,9 @@ CauseEdit_Form() {
               " "
             ) : (
               <SuccessButton
-                type="submit"
+                type='submit'
                 text={"Save"}
-                icon={<PiCheckFat className="w-4 h-4 mt-1" />}
+                icon={<PiCheckFat className='w-4 h-4 mt-1' />}
               />
             )}
           </div>
